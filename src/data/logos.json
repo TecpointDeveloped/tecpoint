@@ -1,0 +1,42 @@
+[
+  {
+    "key": "1",
+    "logo": "/logos/apple.png"
+  },
+  {
+    "key": "2",
+    "logo": "/logos/deken.png"
+  },
+  {
+    "key": "3",
+    "logo": "/logos/ghostek.png"
+  },
+  {
+    "key": "4",
+    "logo": "/logos/hypergear.png"
+  },
+  {
+    "key": "5",
+    "logo": "/logos/krieg.png"
+  },
+  {
+    "key": "6",
+    "logo": "/logos/powepeak.png"
+  },
+  {
+    "key": "7",
+    "logo": "/logos/rock-space.png"
+  },
+  {
+    "key": "8",
+    "logo": "/logos/samsung.png"
+  },
+  {
+    "key": "9",
+    "logo": "/logos/usg.png"
+  },
+  {
+    "key": "10",
+    "logo": "/logos/xbase.png"
+  }
+]
