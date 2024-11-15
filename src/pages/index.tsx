@@ -1,8 +1,26 @@
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
-import LogosImages from "@/data/logos.json"; // Nueva ubicación del archivo JSON
+import LogosImages from "@/data/logos.json";
 
-export default function Home() {
+type Logo = {
+  key: string;
+  logo: string;
+};
+
+export async function getStaticProps() {
+  return {
+    props: {
+      logos: LogosImages as Logo[],
+    },
+    revalidate: 3600,
+  };
+}
+
+interface HomeProps {
+  logos: Logo[];
+}
+
+export default function Home({ logos = [] }: HomeProps) {
   return (
     <div>
       <NavbarMenu />
@@ -11,7 +29,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
         <div className="marquee">
           <div className="marquee-inner flex">
-            {LogosImages.map((logo, index) => (
+            {logos.map((logo, index) => (
               <div
                 key={index}
                 className="bg-[#fafafa] hover:bg-[#f3f3f3] w-[260px] h-[70px] 2xl:h-[80px] rounded-[8px] grid place-content-center grayscale hover:grayscale-0 cursor-pointer transition-all mx-4"
@@ -30,7 +48,6 @@ export default function Home() {
         </div>
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
-
     </div>
   );
 }
