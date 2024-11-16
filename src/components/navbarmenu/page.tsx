@@ -25,7 +25,7 @@ import {
 
 function NavbarMenu() {
   return (
-    <nav className="flex flex-col h-fit items-center justify-between bg-[#1b1b1b] text-white w-full py-4 m-auto z-10">
+    <nav className="flex flex-col h-fit items-center justify-between bg-[#1b1b1b] text-white w-full py-4 m-auto">
       <section className="flex items-center justify-between w-full lg:w-[1900px] md:px-24">
         <div className="flex items-center justify-center gap-8">
           <Image priority alt="Tecpoint Logo" src="/logo.png" width={180} height={80} className="aspect-[180-80]" />

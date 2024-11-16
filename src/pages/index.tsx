@@ -12,7 +12,7 @@ export async function getStaticProps() {
     props: {
       logos: LogosImages as Logo[],
     },
-    revalidate: 3600,
+    revalidate: 60,
   };
 }
 
@@ -24,6 +24,16 @@ export default function Home({ logos = [] }: HomeProps) {
   return (
     <div>
       <NavbarMenu />
+
+      <div>
+        <img
+          alt="cobertores iPhone 16 marca ghostek"
+          src="/banner_cobertores_ghostek.png"
+          width="auto"
+          height="auto"
+          className="w-full h-[540px] 2xl:h-[800px] object-cover object-top aspect-auto"
+        />
+      </div>
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
@@ -37,10 +47,10 @@ export default function Home({ logos = [] }: HomeProps) {
                 <Image
                   height={30}
                   width={180}
-                  quality={87}
+                  quality={95}
                   src={logo.logo || ""}
                   alt={`Logo ${index}`}
-                  className="w-fit h-[30px] select-none"
+                  className="w-fit h-[30px] select-none aspect-auto"
                 />
               </div>
             ))}
@@ -48,6 +58,8 @@ export default function Home({ logos = [] }: HomeProps) {
         </div>
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
+
+      <h1>Explora Nuestros Productos</h1>
     </div>
   );
 }
