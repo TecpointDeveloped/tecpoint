@@ -31,7 +31,7 @@ export default function Home({ logos = [] }: HomeProps) {
           src="/banner_cobertores_ghostek.png"
           width="auto"
           height="auto"
-          className="w-full h-[540px] 2xl:h-[800px] object-cover object-top aspect-auto"
+          className="w-full h-[540px] 2xl:h-[800px] object-cover aspect-auto"
         />
       </div>
 
