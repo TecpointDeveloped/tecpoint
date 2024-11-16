@@ -26,15 +26,15 @@ import {
 function NavbarMenu() {
   return (
     <nav className="flex flex-col h-fit items-center justify-between bg-[#1b1b1b] text-white w-full py-4 m-auto z-10">
-      <section className="flex items-center justify-between w-full lg:w-[1900px] md:px-24">
+      <section className="flex items-center justify-between w-full md:w-[] md:px-24">
         <div className="flex items-center justify-center gap-8">
           <Image priority alt="Tecpoint Logo" src="/logo.png" width={180} height={80} className="aspect-[180-80]" />
         </div>
 
         <div className="flex items-center justify-center gap-12">
-          <Link href="/" className="text-[14px] font-[500] font-[Poppins-medium]">Inicio</Link>
-          <Link href="/" className="text-[14px] font-[500] font-[Poppins-medium]">Categorias</Link>
-          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins-medium]">Productos</Link>
+          <Link href="/" className="text-[14px] font-[500] font-[Poppins]">Inicio</Link>
+          <Link href="/" className="text-[14px] font-[500] font-[Poppins]">Categorias</Link>
+          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">Productos</Link>
         </div>
 
         <div className="flex items-center justify-center gap-x-8">

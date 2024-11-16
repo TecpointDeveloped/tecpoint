@@ -17,7 +17,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
 }
 
 @layer utilities {
@@ -25,12 +25,12 @@ body {
     text-wrap: balance;
   }
 
-  /* @font-face {
+  @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-display: swap;
-    src: url('./pages/fonts/Poppins-Regular.ttf') format('truetype');
-  } */
+    src: url('../pages/fonts/Poppins-Regular.ttf') format('truetype');
+  }
 }
 
 
