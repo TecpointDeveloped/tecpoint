@@ -9,7 +9,8 @@
   },
   {
     "key": "3",
-    "logo": "/logos/ghostek.png"
+    "logo": "/logos/ghostek.png",
+    "color": "#000000"
   },
   {
     "key": "4",
