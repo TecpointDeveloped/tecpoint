@@ -27,6 +27,7 @@ export default function Home({ logos = [] }: HomeProps) {
     <div>
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta
           name="description"
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
@@ -39,7 +40,7 @@ export default function Home({ logos = [] }: HomeProps) {
           property="og:description"
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
         />
-        <meta property="og:url" content="https://tecpoint.vercel.app/" />
+        <meta property="og:url" content="https://tecpoint.ws" />
         <meta property="og:image" content="/og-image.png" />
       </Head>
 
