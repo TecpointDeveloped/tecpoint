@@ -1,0 +1,127 @@
+import NavbarMenu from "@/components/navbarmenu/page";
+import Head from "next/head";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/database/Config";
+import { Product } from "@/types/ProductTypes";
+import Link from "next/link";
+
+interface ShopProps {
+  products: Product[];
+}
+
+export async function getStaticProps() {
+  try {
+    const querySnapshot = await getDocs(
+      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
+    );
+    const products = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null, // Serializar fecha
+      };
+    }) as Product[];
+
+    return {
+      props: {
+        products,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error al cargar los productos:", error);
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
+}
+
+const Shop = ({ products = [] }: ShopProps) => {
+  if (!products || products.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-xl font-bold">No se encontraron productos.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <NavbarMenu />
+
+      <Head>
+        <title>Tienda Tecpoint | Todo en accesorios Tecnológicos</title>
+        <meta
+          name="description"
+          content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad."
+        />
+        <meta
+          property="og:title"
+          content="Tienda Tecpoint | Todo en accesorios Tecnológicos"
+        />
+        <meta
+          property="og:description"
+          content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad."
+        />
+        <meta property="og:url" content="https://tecpoint.ws/shop" />
+        <meta property="og:image" content="/favicon.ico" />
+      </Head>
+
+      <div className="w-full mx-auto p-4 mt-12">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Bienvenido a la tienda Tecpoint
+        </h1>
+
+        <div className="flex w-[320px] h-fit gap-6">
+          {products.map((product: Product) => {
+            const imagenesArray = Object.values(product.imagenes);
+
+            return (
+              <Link
+                href={`/shop/${product.slug}`}
+                key={product.id}
+                className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
+              >
+
+                <img
+                  src={imagenesArray[0]?.img || "/default-product.png"}
+                  alt={product.producto}
+                  className="w-[240px] h-[240px] m-auto aspect-square object-cover mb-4"
+                />
+
+                <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
+                  {product.producto}
+                </h2>
+
+                <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+
+                {/* Categorías */}
+                <div className="flex flex-wrap mt-4 gap-2">
+                  {product.categoria.map((cat: string, index: number) => (
+                    <span
+                      key={index}
+                      className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Botón para agregar al carrito */}
+                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-red-600">
+                  Ver Producto
+                </button>
+              </Link>
+            );
+          })}
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Shop;
