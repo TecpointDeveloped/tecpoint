@@ -10,11 +10,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
-        pathname: '/gs://tecpoint-2024.appspot.com'
+        pathname: "/v0/b/tecpoint-2024.appspot.com/o/**"
       },
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
+        pathname: '/**',
       },
     ],
   },
