@@ -46,10 +46,10 @@ export default function Home({ logos = [] }: HomeProps) {
 
       <NavbarMenu />
 
-      <div className="w-full h-[65dvh] sm:h-[75dvh] md:h-[75vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6">
+      <div className="w-full h-[85dvh] sm:h-[75dvh] md:h-[75vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
-          <h3 className="text-center text-white opacity-55">iPhone 16 series</h3>
-          <h2 className="text-white text-4xl tracking-[-1.4px] text-center leading-[30px]">
+          <h3 className="text-center text-white opacity-55 2xl:text-[28px]">iPhone 16 series</h3>
+          <h2 className="text-white text-4xl tracking-[-1.4px] text-center leading-[30px] 2xl:text-[60px]">
             Nuevos Cobertores Ghostek
           </h2>
         </div>
@@ -60,7 +60,7 @@ export default function Home({ logos = [] }: HomeProps) {
             src="/banner_cobertores_ghostek.png"
             width="auto"
             height="auto"
-            className="w-full h-[340px] z-[1] md:h-[350px] object-cover hover:scale-105 transition-transform"
+            className="w-full h-[340px] z-[1] md:h-[390px] 2xl:h-[480px] object-cover hover:scale-105 transition-transform"
           />
 
           <img
@@ -68,7 +68,7 @@ export default function Home({ logos = [] }: HomeProps) {
             src="/banner_cobertores_ghostek.png"
             width="auto"
             height="auto"
-            className="blur-2xl grayscale -mb-7 opacity-75 scale-110 absolute w-full h-[340px] md:h-[350px] object-cover"
+            className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-full h-[340px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
         </div>
       </div>
