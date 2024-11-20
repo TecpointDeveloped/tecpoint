@@ -25,7 +25,7 @@ import {
 
 function NavbarMenu() {
   return (
-    <nav className="flex flex-col h-fit px-4 items-center justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
+    <nav className="flex flex-col h-fit items-center justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         {/* Logo */}
         <div className="flex items-center justify-center gap-8">
@@ -45,7 +45,7 @@ function NavbarMenu() {
             Inicio
           </Link>
           <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
-            Categorias
+            Categorías
           </Link>
           <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
             Productos
@@ -88,6 +88,44 @@ function NavbarMenu() {
             </DialogContent>
           </Dialog>
 
+          {/* Carrito: Mostrar solo en pantallas grandes */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="hidden md:block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="white"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[300px] bg-[#1b1b1b] text-white"
+            >
+              <SheetHeader>
+                <SheetTitle className="text-center text-lg font-semibold">
+                  Tu Carrito
+                </SheetTitle>
+              </SheetHeader>
+              <div className="p-4">
+                {/* Aquí puedes añadir la lista de productos del carrito */}
+                <p className="text-center text-sm text-gray-300">
+                  Tu carrito está vacío.
+                </p>
+              </div>
+            </SheetContent>
+          </Sheet>
+
           {/* Menú hamburguesa con Sheet */}
           <Sheet>
             <SheetTrigger asChild>
@@ -97,7 +135,7 @@ function NavbarMenu() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full h-full bg-[#1b1b1b1e] text-white backdrop-blur-md border-transparent"
+              className="w-full h-full bg-[#1b1b1b] text-white"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
@@ -115,7 +153,7 @@ function NavbarMenu() {
                   href="/"
                   className="text-[20px] font-[500] font-[Poppins] hover:text-gray-300"
                 >
-                  Categorias
+                  Categorías
                 </Link>
                 <Link
                   href="/shop"
