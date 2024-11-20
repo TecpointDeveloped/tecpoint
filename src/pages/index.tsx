@@ -60,7 +60,7 @@ export default function Home({ logos = [] }: HomeProps) {
             src="/banner_cobertores_ghostek.png"
             width="auto"
             height="auto"
-            className="w-full h-[340px] z-[1] md:h-[390px] 2xl:h-[480px] object-cover hover:scale-105 transition-transform"
+            className="w-full h-[340px] z-[1] md:h-[390px] 2xl:h-[390px] object-cover hover:scale-105 transition-transform"
           />
 
           <img
