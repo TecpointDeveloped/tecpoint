@@ -25,7 +25,7 @@ import {
 
 function NavbarMenu() {
   return (
-    <nav className="flex flex-col h-fit items-center justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
+    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         {/* Logo */}
         <div className="flex items-center justify-center gap-8">
@@ -110,7 +110,7 @@ function NavbarMenu() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[300px] bg-[#1b1b1b] text-white"
+              className="w-[44%] bg-[#ffffff] text-blac border-transparent"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
@@ -118,8 +118,7 @@ function NavbarMenu() {
                 </SheetTitle>
               </SheetHeader>
               <div className="p-4">
-                {/* Aquí puedes añadir la lista de productos del carrito */}
-                <p className="text-center text-sm text-gray-300">
+                <p className="text-center text-sm text-black/80">
                   Tu carrito está vacío.
                 </p>
               </div>
@@ -134,14 +133,9 @@ function NavbarMenu() {
               </button>
             </SheetTrigger>
             <SheetContent
-              side="right"
-              className="w-full h-full bg-[#1b1b1b] text-white"
+              side="top"
+              className="w-full h-full bg-[#ffffff] text-black border-transparent"
             >
-              <SheetHeader>
-                <SheetTitle className="text-center text-lg font-semibold">
-                  Menú
-                </SheetTitle>
-              </SheetHeader>
               <div className="flex flex-col items-center justify-center h-full gap-6">
                 <Link
                   href="/"
