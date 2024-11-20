@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -91,7 +92,7 @@ function NavbarMenu() {
           {/* Carrito: Mostrar solo en pantallas grandes */}
           <Sheet>
             <SheetTrigger asChild>
-              <button className="hidden md:block">
+              <button className="block">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -110,7 +111,7 @@ function NavbarMenu() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[44%] bg-[#ffffff] text-blac border-transparent"
+              className="w-full md:w-[44%] bg-[#ffffff] text-blac border-transparent"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
@@ -123,6 +124,10 @@ function NavbarMenu() {
                 </p>
               </div>
             </SheetContent>
+
+            <SheetFooter>
+              <button className=""></button>
+            </SheetFooter>
           </Sheet>
 
           {/* Menú hamburguesa con Sheet */}
@@ -133,7 +138,7 @@ function NavbarMenu() {
               </button>
             </SheetTrigger>
             <SheetContent
-              side="top"
+              side="right"
               className="w-full h-full bg-[#ffffff] text-black border-transparent"
             >
               <div className="flex flex-col items-center justify-center h-full gap-6">

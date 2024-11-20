@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Product } from "@/types/ProductTypes";
 import Link from "next/link";
+import Image from 'next/image';
 
 interface ShopProps {
   products: Product[];
@@ -77,7 +78,7 @@ const Shop = ({ products = [] }: ShopProps) => {
 
         <div className="flex w-[320px] h-fit gap-6">
           {products.map((product: Product) => {
-            const imagenesArray = Object.values(product.imagenes);
+            const imagen_01 = product.imagenes?.imagen_01;
 
             return (
               <Link
@@ -85,22 +86,21 @@ const Shop = ({ products = [] }: ShopProps) => {
                 key={product.id}
                 className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
               >
-
-                <img
-                  src={imagenesArray[0]?.img || "/default-product.png"}
-                  alt={product.producto}
-                  className="w-[240px] h-[240px] m-auto aspect-square object-cover mb-4"
+                <Image
+                  src={imagen_01 || "/default-product.png"}
+                  alt={product.producto || "Imagen del producto"}
+                  width={240}
+                  height={240}
+                  className="m-auto aspect-square object-cover mb-4"
                 />
-
                 <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
                   {product.producto}
                 </h2>
-
                 <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
 
-                {/* Categorías */}
+                {/* Verificación si 'categoria' existe antes de usar .map() */}
                 <div className="flex flex-wrap mt-4 gap-2">
-                  {product.categoria.map((cat: string, index: number) => (
+                  {(product.categoria || []).map((cat: string, index: number) => (
                     <span
                       key={index}
                       className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded"
@@ -110,7 +110,6 @@ const Shop = ({ products = [] }: ShopProps) => {
                   ))}
                 </div>
 
-                {/* Botón para agregar al carrito */}
                 <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-red-600">
                   Ver Producto
                 </button>
@@ -118,7 +117,6 @@ const Shop = ({ products = [] }: ShopProps) => {
             );
           })}
         </div>
-
       </div>
     </div>
   );
