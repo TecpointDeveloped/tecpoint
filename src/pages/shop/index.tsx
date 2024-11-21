@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Product } from "@/types/ProductTypes";
 import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 
 interface ShopProps {
   products: Product[];
@@ -76,29 +76,28 @@ const Shop = ({ products = [] }: ShopProps) => {
           Bienvenido a la tienda Tecpoint
         </h1>
 
-        <div className="flex w-[320px] h-fit gap-6">
+        <div className="flex w-[580px] h-fit gap-6 relative">
           {products.map((product: Product) => {
-            const imagen_01 = product.imagenes?.imagen_01;
+            const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
-              <Link
-                href={`/shop/${product.slug}`}
+              <div
                 key={product.id}
-                className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
+                className="border rounded-lg p-4"
               >
                 <Image
-                  src={imagen_01 || "/default-product.png"}
+                  src={imagen_01}
                   alt={product.producto || "Imagen del producto"}
                   width={240}
                   height={240}
-                  className="m-auto aspect-square object-cover mb-4"
+                  className="m-auto size-[230px] aspect-square object-cover mb-4"
+                  quality={98}
                 />
                 <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
                   {product.producto}
                 </h2>
                 <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
 
-                {/* Verificación si 'categoria' existe antes de usar .map() */}
                 <div className="flex flex-wrap mt-4 gap-2">
                   {(product.categoria || []).map((cat: string, index: number) => (
                     <span
@@ -110,10 +109,12 @@ const Shop = ({ products = [] }: ShopProps) => {
                   ))}
                 </div>
 
-                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-red-600">
-                  Ver Producto
+                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-black/80">
+                  <Link href={`/shop/${product.slug}`} className="">
+                    Ver Producto
+                  </Link>
                 </button>
-              </Link>
+              </div>
             );
           })}
         </div>

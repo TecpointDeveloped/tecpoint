@@ -1,40 +1,48 @@
-import { useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
 import { Product } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface ProductDetailProps {
   product: Product | null;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const querySnapshot = await getDocs(
-    collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
-  );
-  const paths = querySnapshot.docs.map((doc) => ({
-    params: { slug: doc.data().slug },
-  }));
+  try {
+    const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
+    
+    const paths = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      if (data.slug) {
+        return { params: { slug: data.slug } }; // Asegurarse de que slug exista
+      }
+      return null;
+    }).filter(Boolean);
 
-  return {
-    paths,
-    fallback: true,
-  };
+    return {
+      paths: paths as { params: { slug: string } }[],
+      fallback: true,
+    };
+  } catch (error) {
+    console.error("Error fetching paths:", error);
+    return { paths: [], fallback: true };
+  }
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
+
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
 
   try {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
@@ -57,14 +65,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         },
         revalidate: 60,
       };
+    } else {
+      return { notFound: true };
     }
   } catch (error) {
     console.error("Error fetching product by slug:", error);
+    return { notFound: true };
   }
-
-  return {
-    notFound: true,
-  };
 };
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
@@ -146,8 +153,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           <div className="flex flex-col gap-y-3">
             <Image
               quality={96}
-              src={product.marca_producto.logo}
-              alt={`logo de marca ${product.marca_producto.marca}`}
+              src={product.marca_producto?.logo || "/default-logo.png"}
+              alt={`logo de marca ${product.marca_producto?.marca || "desconocida"}`}
               height={300}
               width={300}
               priority
@@ -186,8 +193,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
           <button
             onClick={handleAddToCart}
-            className={`mt-6 px-6 py-3 text-white font-bold rounded-md ${
-              isAddedToCart ? "bg-green-500" : "bg-blue-500 hover:bg-blue-600"
+            className={`mt-6 px-8 py-3 text-black font-semibold rounded-md ${
+              isAddedToCart ? "bg-transparent border-[1.4px] border-black" : "bg-black text-black hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
             }`}
           >
             {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"}
