@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: serializedData,
         },
-        revalidate: 60,
+        revalidate: 10,
       };
     } else {
       return { notFound: true };
@@ -158,7 +158,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               height={300}
               width={300}
               priority
-              className="h-[40px] w-fit rounded-full"
+              className="h-[18px] w-fit"
             />
             <h1 className="text-3xl font-semibold w-[650px] leading-8">{product.producto}</h1>
 
@@ -193,7 +193,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
           <button
             onClick={handleAddToCart}
-            className={`flex gap-x-3 mt-6 px-12 items-center justify-center py-3 text-black rounded-sm ${isAddedToCart ? "bg-transparent border-[1.4px] border-black text-black" : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
+            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black ${isAddedToCart ? "bg-transparent border-[1.4px] border-black text-black" : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
               }`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
