@@ -141,8 +141,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   className="size-[300px] md:size-[580px] object-contain"
                   width={300}
                   height={300}
-                  // placeholder="blur"
-                  // blurDataURL="/default-product.png"
+                  placeholder="blur"
+                  blurDataURL="/default-product.png"
                 />
               </CarouselItem>
             ))}

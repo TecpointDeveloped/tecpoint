@@ -24,8 +24,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -40,15 +38,16 @@ import { db } from "../../database/Config";
 import { collection, getDocs } from "firebase/firestore";
 
 import { Product } from "../../types/ProductTypes"; // Tu tipo definido
+import { useState, useEffect, forwardRef } from "react";
 
 function NavbarMenu() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [products, setProducts] = React.useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = React.useState<Product[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
 
   // Obtener todos los documentos de Firebase al cargar el componente
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
@@ -81,7 +80,7 @@ function NavbarMenu() {
 
     const filtered = products.filter(
       (product) =>
-        product.sku?.toLowerCase().includes(value.toLowerCase()) || // Insensible a mayúsculas
+        product.sku?.toLowerCase().includes(value.toLowerCase()) ||
         product.producto?.toLowerCase().includes(value.toLowerCase()) ||
         product.descripcion?.toLowerCase().includes(value.toLowerCase())
     );
@@ -232,7 +231,7 @@ function NavbarMenu() {
 
 export default NavbarMenu;
 
-const ListItem = React.forwardRef<
+const ListItem = forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
