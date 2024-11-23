@@ -158,7 +158,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               height={300}
               width={300}
               priority
-              className="h-[40px] w-fit rounded-full"
+              className="h-[16px] w-fit"
             />
             <h1 className="text-3xl font-semibold w-[650px] leading-8">{product.producto}</h1>
 

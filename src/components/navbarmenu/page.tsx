@@ -24,9 +24,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -34,14 +34,64 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
+
+import { db } from "../../database/Config";
+import { collection, getDocs } from "firebase/firestore";
+
+import { Product } from "../../types/ProductTypes"; // Tu tipo definido
 
 function NavbarMenu() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = React.useState<Product[]>([]);
+  const [loading, setLoading] = React.useState(false);
+
+  // Obtener todos los documentos de Firebase al cargar el componente
+  React.useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const querySnapshot = await getDocs(collection(db, "Products"));
+        const allProducts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Product[];
+        setProducts(allProducts);
+        setFilteredProducts(allProducts);
+      } catch (error) {
+        console.error("Error al obtener los productos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Manejar la búsqueda en tiempo real
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
+
+    if (!value) {
+      setFilteredProducts(products);
+      return;
+    }
+
+    const filtered = products.filter(
+      (product) =>
+        product.sku?.toLowerCase().includes(value) ||
+        product.producto?.toLowerCase().includes(value) ||
+        product.descripcion?.toLowerCase().includes(value)
+    );
+
+    setFilteredProducts(filtered);
+  };
+
   return (
     <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
-        {/* Logo */}
         <div className="flex items-center justify-center gap-8">
           <Image
             priority
@@ -52,61 +102,32 @@ function NavbarMenu() {
             className="aspect-[180-80]"
           />
         </div>
-
-        {/* Menu en pantallas grandes */}
         <div className="hidden md:flex items-center justify-center gap-12">
           <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
             Inicio
           </Link>
-
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Categorias</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Categorías</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            shadcn/ui
-                          </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Beautifully designed components built with Radix UI and
-                            Tailwind CSS.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
                     <ListItem href="/docs" title="Introduction">
                       Re-usable components built using Radix UI and Tailwind CSS.
                     </ListItem>
                     <ListItem href="/docs/installation" title="Installation">
                       How to install dependencies and structure your app.
                     </ListItem>
-                    <ListItem href="/docs/primitives/typography" title="Typography">
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-
-          <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
-            Blog
-          </Link>
           <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
             Tienda
           </Link>
         </div>
-
-        {/* Iconos de acción */}
         <div className="flex items-center justify-center gap-x-8">
-          {/* Buscador */}
           <Dialog>
             <DialogTrigger asChild className="cursor-pointer">
               <Search color="white" strokeWidth={1.8} />
@@ -122,25 +143,48 @@ function NavbarMenu() {
               </DialogDescription>
               <div className="flex items-center justify-center gap-x-2">
                 <Input
-                  id="name"
-                  defaultValue=""
+                  id="search"
+                  value={searchTerm}
+                  onChange={handleSearch}
                   className="flex-1 py-2 px-6 md:h-12 rounded-full"
-                  placeholder="Buscar Productos"
+                  placeholder="Buscar por SKU, Producto o Descripción"
                 />
-                <button
-                  type="submit"
-                  name="submit"
-                  id="submit"
-                  className="bg-black p-2 rounded-full border size-12 grid place-content-center active:bg-[#f30] transition-colors"
-                >
-                  <Search color="#fff" strokeWidth={1.8} />
-                </button>
               </div>
-              <DialogFooter className="h-[250px] w-full bg-gray-200"></DialogFooter>
+              <DialogFooter className="h-auto w-full bg-gray-200">
+                {loading ? (
+                  <p className="text-center text-gray-500">Cargando...</p>
+                ) : filteredProducts.length > 0 ? (
+                  <ul className="flex gap-x-1 p-1">
+                    {filteredProducts.map((product) => (
+                      <li
+                        key={product.id}
+                        className="p-2 w-[230px] cursor-pointer flex flex-col gap-y-3 border rounded-md bg-white text-black hover:bg-gray-100"
+                      >
+                        <Image
+                          src={product.imagenes?.imagen_01?.img || "/default-product.png"}
+                          alt={product.producto || "Producto"}
+                          width={160}
+                          height={160}
+                          quality={100}
+                          className="w-[160px] h-[160px] m-auto hover:scale-105 transition-transform"
+                        />
+                        <div className="flex flex-col gap-y-2">
+                          <p className="font-semibold text-[15px] leading-5 tracking-[-0.4px]">{product.producto}</p>
+                          <p className="text-gray-600">SKU: {product.sku}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-center text-gray-500">
+                    No se encontraron productos.
+                  </p>
+                )}
+              </DialogFooter>
             </DialogContent>
           </Dialog>
 
-          {/* Carrito: Mostrar solo en pantallas grandes */}
+          {/* Carrito */}
           <Sheet>
             <SheetTrigger asChild>
               <button className="block">
@@ -162,7 +206,7 @@ function NavbarMenu() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full md:w-[44%] bg-[#ffffff] text-blac border-transparent"
+              className="w-full md:w-[44%] bg-[#ffffff] text-black border-transparent"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
@@ -173,44 +217,6 @@ function NavbarMenu() {
                 <p className="text-center text-sm text-black/80">
                   Tu carrito está vacío.
                 </p>
-              </div>
-            </SheetContent>
-
-            <SheetFooter>
-              <button className=""></button>
-            </SheetFooter>
-          </Sheet>
-
-          {/* Menú hamburguesa con Sheet */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="block md:hidden">
-                <Menu color="white" strokeWidth={1.8} />
-              </button>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-full h-full bg-[#ffffff] text-black border-transparent"
-            >
-              <div className="flex flex-col items-center justify-center h-full gap-6">
-                <Link
-                  href="/"
-                  className="text-[20px] font-[500] font-[Poppins] hover:text-gray-300"
-                >
-                  Inicio
-                </Link>
-                <Link
-                  href="/"
-                  className="text-[20px] font-[500] font-[Poppins] hover:text-gray-300"
-                >
-                  Categorías
-                </Link>
-                <Link
-                  href="/shop"
-                  className="text-[20px] font-[500] font-[Poppins] hover:text-gray-300"
-                >
-                  Productos
-                </Link>
               </div>
             </SheetContent>
           </Sheet>
