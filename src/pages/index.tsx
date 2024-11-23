@@ -48,8 +48,8 @@ export default function Home({ logos = [] }: HomeProps) {
 
       <div className="w-full h-[85dvh] sm:h-[75dvh] md:h-[75vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
-          <h3 className="text-center text-white opacity-55 2xl:text-[28px]">iPhone 16 series</h3>
-          <h2 className="text-white text-4xl tracking-[-1.4px] text-center leading-[30px] 2xl:text-[60px]">
+          <h3 className="text-center text-white opacity-55 2xl:text-[20px]">iPhone 16 series</h3>
+          <h2 className="text-white text-4xl tracking-[-1.4px] text-center leading-[30px] 2xl:text-[50px]">
             Nuevos Cobertores Ghostek
           </h2>
         </div>

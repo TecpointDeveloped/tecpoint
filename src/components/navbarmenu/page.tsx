@@ -71,7 +71,7 @@ function NavbarMenu() {
 
   // Manejar la búsqueda en tiempo real
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value; // Permitir mayúsculas y minúsculas
     setSearchTerm(value);
 
     if (!value) {
@@ -81,9 +81,9 @@ function NavbarMenu() {
 
     const filtered = products.filter(
       (product) =>
-        product.sku?.toLowerCase().includes(value) ||
-        product.producto?.toLowerCase().includes(value) ||
-        product.descripcion?.toLowerCase().includes(value)
+        product.sku?.toLowerCase().includes(value.toLowerCase()) || // Insensible a mayúsculas
+        product.producto?.toLowerCase().includes(value.toLowerCase()) ||
+        product.descripcion?.toLowerCase().includes(value.toLowerCase())
     );
 
     setFilteredProducts(filtered);
@@ -147,6 +147,7 @@ function NavbarMenu() {
               <div className="flex items-center justify-center gap-x-2">
                 <Input
                   id="search"
+                  type="text"
                   value={searchTerm}
                   onChange={handleSearch}
                   className="flex-1 py-2 px-6 md:h-12 rounded-full"
@@ -209,7 +210,7 @@ function NavbarMenu() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full md:w-[44%] bg-[#ffffff] text-black border-transparent"
+              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">

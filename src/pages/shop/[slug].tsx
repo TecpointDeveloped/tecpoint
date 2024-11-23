@@ -128,19 +128,21 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <meta property="og:image" content="" />
       </Head>
 
-      <main className="flex h-[90dvh] w-full gap-x-28 mt-6 justify-center items-center overflow-hidden">
+      <main className="flex h-[90dvh] w-full gap-x-28 mt-3 justify-center items-center overflow-hidden">
         <Carousel>
-          <CarouselContent className="size-[300px] md:size-[480px]">
+          <CarouselContent className="size-[300px] md:size-[580px]">
             {imagenesArray?.map((img, index) => (
               <CarouselItem key={index}>
                 <Image
                   quality={100}
-                  priority
-                  src={img.img || "/default-image.jpg"}
+                  priority={true}
+                  src={img.img || "/default-product.png"}
                   alt={img.id || `Imagen ${index + 1}`}
-                  className="size-[300px] md:size-[480px] object-contain"
+                  className="size-[300px] md:size-[580px] object-contain"
                   width={300}
                   height={300}
+                  // placeholder="blur"
+                  // blurDataURL="/default-product.png"
                 />
               </CarouselItem>
             ))}
@@ -150,7 +152,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         </Carousel>
 
         <div className="w-[40%]">
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-5">
             <Image
               quality={96}
               src={product.marca_producto?.logo || "/default-logo.png"}
@@ -158,7 +160,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               height={300}
               width={300}
               priority
-              className="h-[40px] w-fit rounded-full"
+              className="h-[18px] w-fit"
             />
             <h1 className="text-3xl font-semibold w-[650px] leading-8">{product.producto}</h1>
 

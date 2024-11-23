@@ -76,41 +76,51 @@ const Shop = ({ products = [] }: ShopProps) => {
           Bienvenido a la tienda Tecpoint
         </h1>
 
-        <div className="flex w-[580px] h-fit gap-6 relative">
+        <div className="flex gap-4">
           {products.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
               <div
                 key={product.id}
-                className="border rounded-lg p-4"
+                className="border rounded-lg p-4 flex flex-col w-[340px] h-[450px] relative justify-between"
               >
-                <Image
-                  src={imagen_01}
-                  alt={product.producto || "Imagen del producto"}
-                  width={240}
-                  height={240}
-                  className="m-auto size-[230px] aspect-square object-cover mb-4"
-                  quality={98}
-                />
-                <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                  {product.producto}
-                </h2>
-                <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+                <div className="flex flex-col">
+                  <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
+                    <Image
+                      src={imagen_01}
+                      alt={product.producto || "Imagen del producto"}
+                      width={240}
+                      height={240}
+                      className="m-auto size-[240px] aspect-square object-cover mb-4"
+                      quality={100}
+                      priority
+                      unoptimized
+                    />
+                  </Link>
 
-                <div className="flex flex-wrap mt-4 gap-2">
-                  {(product.categoria || []).map((cat: string, index: number) => (
-                    <span
-                      key={index}
-                      className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded"
-                    >
-                      {cat}
-                    </span>
-                  ))}
+                  <div className="">
+                    <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
+                      {product.producto}
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+
+                    <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                      {(product.categorias || []).map((cat: string, index: number) => (
+                        <span
+                          key={index}
+                          className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
+                        >
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
                 </div>
 
                 <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-black/80">
-                  <Link href={`/shop/${product.slug}`} className="">
+                  <Link href={`/shop/${product.slug}`}>
                     Ver Producto
                   </Link>
                 </button>

@@ -1,6 +1,6 @@
 export interface Product {
   id: string;
-  categoria: string[];
+  categorias: string[];
   descripcion: string;
   fecha_agregado: string | null;
   imagenes: { [key: string]: { id: string; img: string } };
