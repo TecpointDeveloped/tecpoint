@@ -106,10 +106,13 @@ function NavbarMenu() {
           <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
             Inicio
           </Link>
+          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
+            Tienda
+          </Link>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Categorías</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <ListItem href="/docs" title="Introduction">
@@ -124,7 +127,7 @@ function NavbarMenu() {
             </NavigationMenuList>
           </NavigationMenu>
           <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
-            Tienda
+            Categorias
           </Link>
         </div>
         <div className="flex items-center justify-center gap-x-8">
