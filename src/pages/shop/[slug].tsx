@@ -156,14 +156,14 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               <CarouselItem key={index}>
                 <Image
                   quality={100}
-                  priority
+                  priority={true}
                   src={img.img || "/default-product.png"}
                   alt={product.producto || `Imagen ${index + 1}`}
                   className="size-[280px] md:size-[500px] aspect-square object-cover"
                   width={280}
                   height={280}
-                  placeholder="blur"
-                  blurDataURL="/default-product.png"
+                // placeholder="blur"
+                // blurDataURL="/default-product.png"
                 />
               </CarouselItem>
             ))}
@@ -188,33 +188,35 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             </h1>
 
             <Separator />
+          </div>
 
+          <div className="flex flex-col gap-y-3 mt-3">
             <span className="flex justify-center items-center gap-x-2 w-fit">
-              <p className="bg-black w-fit h-fit text-sm px-4 py-1 text-white rounded-[4px]">
+              <p className="bg-black w-fit h-fit md:text-[12px] px-3 py-1 text-white rounded-[4px]">
                 SKU
               </p>
               <p className="text-md font-bold">{product.sku}</p>
             </span>
+
+            <span className="flex flex-col">
+              <p className="text-[#696969]">Precio</p>
+              <p className="text-2xl font-bold leading-4">
+                {product.precio.detalle}.00
+              </p>
+            </span>
           </div>
 
-          <span className="flex flex-col">
-            <p className="text-[#696969]">Precio</p>
-            <p className="text-2xl font-bold leading-4">
-              {product.precio.detalle}.00
-            </p>
-          </span>
-
-          <div className="flex items-center gap-4 mt-6">
+          <div className="flex items-center gap-x-2 mt-6">
             <button
               onClick={() => handleQuantityChange("decrease")}
-              className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+              className="px-4 py-1 border"
             >
               -
             </button>
-            <span className="text-lg font-semibold">{quantity}</span>
+            <span className="text-lg font-semibold w-[30px] text-center">{quantity}</span>
             <button
               onClick={() => handleQuantityChange("increase")}
-              className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+              className="px-4 py-1 border"
             >
               +
             </button>
@@ -249,7 +251,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
       <article className="mt-12">
         <section
-          className={`bg-[#${product.banner?.color || "09f"}] overflow-hidden w-full h-36 grid place-content-center relative`}
+          style={{ backgroundColor: `#${product.banner?.color}` || "" }}
+          className={`overflow-hidden w-full h-36 grid place-content-center relative`}
         >
           <h2
             style={{
@@ -279,7 +282,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               height={560}
               alt="Ficha descriptiva"
               className="hover:scale-110 transition-transform"
-              loading="lazy"
+              quality={96}
+              priority
             />
           </picture>
 
