@@ -162,18 +162,20 @@ function NavbarMenu() {
                         key={product.id}
                         className="p-2 w-[230px] cursor-pointer flex flex-col gap-y-3 border rounded-md bg-white text-black hover:bg-gray-100"
                       >
-                        <Image
-                          src={product.imagenes?.imagen_01?.img || "/default-product.png"}
-                          alt={product.producto || "Producto"}
-                          width={160}
-                          height={160}
-                          quality={100}
-                          className="w-[160px] h-[160px] m-auto hover:scale-105 transition-transform"
-                        />
-                        <div className="flex flex-col gap-y-2">
-                          <p className="font-semibold text-[15px] leading-5 tracking-[-0.4px]">{product.producto}</p>
-                          <p className="text-gray-600">SKU: {product.sku}</p>
-                        </div>
+                        <Link href={`/shop/${product.slug}`}>
+                          <Image
+                            src={product.imagenes?.imagen_01?.img || "/default-product.png"}
+                            alt={product.producto || "Producto"}
+                            width={160}
+                            height={160}
+                            quality={100}
+                            className="w-[160px] h-[160px] m-auto hover:scale-105 transition-transform"
+                          />
+                          <div className="flex flex-col gap-y-2">
+                            <p className="font-semibold text-[15px] leading-5 tracking-[-0.4px]">{product.producto}</p>
+                            <p className="text-gray-600">SKU: {product.sku}</p>
+                          </div>
+                        </Link>
                       </li>
                     ))}
                   </ul>

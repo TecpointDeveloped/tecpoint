@@ -24,7 +24,7 @@ interface HomeProps {
 
 export default function Home({ logos = [] }: HomeProps) {
   return (
-    <div>
+    <div className="pb-24">
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -82,7 +82,7 @@ export default function Home({ logos = [] }: HomeProps) {
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className={`bg-[#fafafa] hover:bg-[#f3f3f3] shadow-md w-[260px] h-[70px] 2xl:h-[80px] rounded-[8px] grid place-content-center grayscale hover:grayscale-0 cursor-pointer transition-all mx-4`}
+                className={`hover:bg-[#f3f3f3] w-[260px] h-[70px] 2xl:h-[80px] hover:scale-105 rounded-[8px] grid place-content-center cursor-pointer transition-all mx-4`}
               >
                 <Image
                   height={30}
@@ -99,7 +99,28 @@ export default function Home({ logos = [] }: HomeProps) {
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
 
-      <h1>Explora Nuestros Productos</h1>
+      <h1 className="text-center md:text-2xl">Explora Nuestros Productos</h1>
+
+      <section className="mb-32 w-full h-[180px] bg-black relative">
+        <div className="grid place-content-center absolute w-full h-full">
+          <h4 className="text-[#ffffff] leading-7 md:text-[28px] font-bold text-center m-auto">
+            Revoluciona tu Teléfono con Accesorios
+            <span className="block">de Calidad</span>
+          </h4>
+        </div>
+
+        <div className="w-full h-[180px] bg-black">
+          <Image
+            className="w-fit h-full object-cover m-auto"
+            height={180}
+            width={1080}
+            src="/accesorios_para_iPhone_y_Samsung.webp"
+            alt="accesorios para iPhone y Samsung de la mas altaca calidad en San Pedro Sula - Honduras"
+            quality={100}
+            priority
+          />
+        </div>
+      </section>
     </div>
   );
 }

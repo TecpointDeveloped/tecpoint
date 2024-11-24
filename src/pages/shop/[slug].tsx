@@ -3,13 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Product } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -249,53 +243,92 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         </div>
       </main>
 
-      <article className="mt-12">
-        <section
-          style={{ backgroundColor: `#${product.banner?.color}` || "" }}
-          className={`overflow-hidden w-full h-36 grid place-content-center relative`}
+      <section
+        style={{ backgroundColor: `#${product.banner?.color}` || "" }}
+        className={`overflow-hidden w-full h-36 grid place-content-center relative mt-12`}
+      >
+        <h2
+          style={{
+            color: product.banner?.color?.startsWith("#") ? product.banner.color : "currentcolor",
+          }}
+          className="md:text-[28px] font-normal text-center tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
         >
-          <h2
-            style={{
-              color: product.banner?.color?.startsWith("#") ? product.banner.color : "currentcolor",
-            }}
-            className="md:text-[28px] font-normal text-center tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
-          >
-            {product.producto}
-          </h2>
+          {product.producto}
+        </h2>
 
-          <span className="w-full h-fit flex items-center justify-center absolute bottom-[-18px]">
-            <Image
-              className="md:w-[55%] opacity-30 select-none"
-              src={product.banner?.image_banner || "/default-banner.png"}
-              alt="Banner del producto"
-              width={500}
-              height={300}
-            />
-          </span>
-        </section>
+        <span className="w-full h-fit flex items-center justify-center absolute bottom-[-18px]">
+          <Image
+            className="md:w-[55%] opacity-30 select-none"
+            src={product.banner?.image_banner || "/default-banner.png"}
+            alt="Banner del producto"
+            width={500}
+            height={300}
+          />
+        </span>
+      </section>
 
-        <section className="flex gap-x-20 p-6 items-center justify-center bg-[#ECECEC]">
-          <picture className="md:size-[560px] overflow-hidden">
-            <Image
-              src={product.secciones?.ficha_descriptiva.ficha_image || "/default-image.png"}
-              width={560}
-              height={560}
-              alt="Ficha descriptiva"
-              className="hover:scale-110 transition-transform"
-              quality={96}
-              priority
-            />
-          </picture>
+      <article className="flex flex-col">
+        <div className="w-full p-3 py-6 md:h-56">
+          <h2 className="text-center md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
+        </div>
 
-          <div className="w-[560px] flex flex-col gap-y-4">
-            <h3 className="md:text-3xl font-black">
-              {product.secciones?.ficha_descriptiva.ficha_title}
-            </h3>
-            <p className="md:text-[18px] tracking-[-0.4px] text-[#949494]">
-              {product.secciones?.ficha_descriptiva.ficha_description}
-            </p>
+        <section className="bg-[#ECECEC] flex flex-col gap-y-12">
+          <div className="flex gap-x-2 p-3 justify-center">
+            <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+              <Image
+                className="md:size-[600px] aspect-square object-cover"
+                width={800}
+                height={800}
+                src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
+                alt=""
+              />
+              <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white">
+                  {product.secciones?.seccion_01.title}
+                </p>
+              </span>
+            </picture>
+
+            <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+              <Image
+                className="md:size-[600px] aspect-square object-cover"
+                width={800}
+                height={800}
+                src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
+                alt=""
+              />
+              <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white">
+                  {product.secciones?.seccion_02.title}
+                </p>
+              </span>
+            </picture>
           </div>
+
+          <section className="flex p-6 items-center justify-center">
+            <picture className="md:size-[600px] overflow-hidden">
+              <Image
+                src={product.secciones?.ficha_descriptiva.ficha_image || "/default-product.png"}
+                width={800}
+                height={800}
+                alt="Ficha descriptiva"
+                className="hover:scale-110 transition-transform"
+                quality={96}
+                priority
+              />
+            </picture>
+
+            <div className="md:w-[600px] pl-12 flex flex-col gap-y-4">
+              <h3 className="md:text-4xl font-black">
+                {product.secciones?.ficha_descriptiva.ficha_title}
+              </h3>
+              <p className="md:text-[18px] tracking-[-0.4px] text-[#949494] text-balance">
+                {product.secciones?.ficha_descriptiva.ficha_description}
+              </p>
+            </div>
+          </section>
         </section>
+
       </article>
     </div>
   );
