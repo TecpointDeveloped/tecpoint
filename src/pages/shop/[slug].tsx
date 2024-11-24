@@ -1,29 +1,44 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
-import NavbarMenu from "@/components/navbarmenu/page";
 import { Product } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import NavbarMenu from "@/components/navbarmenu/page";
 
 interface ProductDetailProps {
   product: Product | null;
 }
 
+interface CartItem {
+  id: string;
+  quantity: number;
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
+    const querySnapshot = await getDocs(
+      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
+    );
 
-    const paths = querySnapshot.docs.map((doc) => {
-      const data = doc.data();
-      if (data.slug) {
-        return { params: { slug: data.slug } }; // Asegurarse de que slug exista
-      }
-      return null;
-    }).filter(Boolean);
+    const paths = querySnapshot.docs
+      .map((doc) => {
+        const data = doc.data();
+        if (data.slug) {
+          return { params: { slug: data.slug } };
+        }
+        return null;
+      })
+      .filter(Boolean);
 
     return {
       paths: paths as { params: { slug: string } }[],
@@ -45,7 +60,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   try {
-    const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
+    const productsRef = collection(
+      db,
+      process.env.NEXT_PUBLIC_DATABASE_NAME as string
+    );
     const q = query(productsRef, where("slug", "==", slug));
     const querySnapshot = await getDocs(q);
 
@@ -63,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: serializedData,
         },
-        revalidate: 10,
+        revalidate: 60,
       };
     } else {
       return { notFound: true };
@@ -75,35 +93,32 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
-  if (!product) {
-    return <p className="text-center">Producto no encontrado</p>;
-  }
-
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
+  useEffect(() => {
+    if (product) {
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+      const isProductInCart = cart.some((item) => item.id === product.id);
+      setIsAddedToCart(isProductInCart);
+    }
+  }, [product]);
+
   const handleAddToCart = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (product) {
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    const isProductInCart = cart.some((item: any) => item.id === product.id);
-
-    if (!isProductInCart) {
-      cart.push({ ...product, quantity });
+      if (!cart.some((item) => item.id === product.id)) {
+        cart.push({ id: product.id, quantity });
+      } else {
+        cart.forEach((item) => {
+          if (item.id === product.id) item.quantity += quantity;
+        });
+      }
       localStorage.setItem("cart", JSON.stringify(cart));
       setIsAddedToCart(true);
-    } else {
-      const updatedCart = cart.map((item: any) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
-
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const isProductInCart = cart.some((item: any) => item.id === product.id);
-    setIsAddedToCart(isProductInCart);
-  }, [product]);
 
   const handleQuantityChange = (operation: "increase" | "decrease") => {
     setQuantity((prev) =>
@@ -111,36 +126,42 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     );
   };
 
+  if (!product) {
+    return <p className="text-center">Producto no encontrado</p>;
+  }
+
   const imagenesArray = Object.entries(product.imagenes || {})
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
     .map(([, value]) => value);
 
   return (
-    <div className="w-full mb-80">
+    <div className="w-full mb-[500px]">
       <NavbarMenu />
 
       <Head>
         <title>{product.producto || "Producto no Encontrado"}</title>
-        <meta name="keywords" content={product.descripcion} />
+        <meta name="keywords" content={product.descripcion || ""} />
+        <meta name="description" content={product.descripcion || ""} />
         <meta property="og:title" content={product.producto} />
-        <meta property="og:description" content={product.descripcion} />
-        <meta property="og:url" content="https://tecpoint.ws" />
-        <meta property="og:image" content="" />
+        <meta property="og:description" content={product.descripcion || ""} />
+        <meta property="og:url" content={`https://tecpoint.ws/${product.slug}`} />
+        <meta property="og:image" content={product.banner?.image_banner || ""} />
+        <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
       </Head>
 
-      <main className="flex h-[90dvh] w-full gap-x-28 mt-3 justify-center items-center overflow-hidden">
-        <Carousel>
-          <CarouselContent className="size-[300px] md:size-[580px]">
+      <main className="flex h-[90dvh] w-full gap-x-28 justify-center items-center overflow-hidden">
+        <Carousel className="border rounded-md">
+          <CarouselContent className="size-[280px] md:size-[500px] aspect-square">
             {imagenesArray?.map((img, index) => (
               <CarouselItem key={index}>
                 <Image
                   quality={100}
-                  priority={true}
+                  priority
                   src={img.img || "/default-product.png"}
-                  alt={img.id || `Imagen ${index + 1}`}
-                  className="size-[300px] md:size-[580px] object-contain"
-                  width={300}
-                  height={300}
+                  alt={product.producto || `Imagen ${index + 1}`}
+                  className="size-[280px] md:size-[500px] aspect-square object-cover"
+                  width={280}
+                  height={280}
                   placeholder="blur"
                   blurDataURL="/default-product.png"
                 />
@@ -156,25 +177,31 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             <Image
               quality={96}
               src={product.marca_producto?.logo || "/default-logo.png"}
-              alt={`logo de marca ${product.marca_producto?.marca || "desconocida"}`}
+              alt={`Logo de marca ${product.marca_producto?.marca || "desconocida"}`}
               height={300}
               width={300}
               priority
               className="h-[18px] w-fit"
             />
-            <h1 className="text-3xl font-semibold w-[650px] leading-8">{product.producto}</h1>
+            <h1 className="text-3xl font-semibold w-[650px] leading-8">
+              {product.producto}
+            </h1>
 
             <Separator />
 
             <span className="flex justify-center items-center gap-x-2 w-fit">
-              <p className="bg-black w-fit h-fit text-sm px-4 py-1 text-white rounded-[4px]">SKU</p>
+              <p className="bg-black w-fit h-fit text-sm px-4 py-1 text-white rounded-[4px]">
+                SKU
+              </p>
               <p className="text-md font-bold">{product.sku}</p>
             </span>
           </div>
 
           <span className="flex flex-col">
             <p className="text-[#696969]">Precio</p>
-            <p className="text-2xl font-bold leading-4">{product.precio.detalle}.00</p>
+            <p className="text-2xl font-bold leading-4">
+              {product.precio.detalle}.00
+            </p>
           </span>
 
           <div className="flex items-center gap-4 mt-6">
@@ -195,17 +222,77 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
           <button
             onClick={handleAddToCart}
-            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black ${isAddedToCart ? "bg-transparent border-[1.4px] border-black text-black" : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
+            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black ${isAddedToCart
+              ? "bg-transparent border-[1.4px] border-black text-black"
+              : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
               }`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
             </svg>
 
             {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"}
           </button>
         </div>
       </main>
+
+      <article className="mt-12">
+        <section
+          className={`bg-[#${product.banner?.color || "09f"}] overflow-hidden w-full h-36 grid place-content-center relative`}
+        >
+          <h2
+            style={{
+              color: product.banner?.color?.startsWith("#") ? product.banner.color : "currentcolor",
+            }}
+            className="md:text-[28px] font-normal text-center tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
+          >
+            {product.producto}
+          </h2>
+
+          <span className="w-full h-fit flex items-center justify-center absolute bottom-[-18px]">
+            <Image
+              className="md:w-[55%] opacity-30 select-none"
+              src={product.banner?.image_banner || "/default-banner.png"}
+              alt="Banner del producto"
+              width={500}
+              height={300}
+            />
+          </span>
+        </section>
+
+        <section className="flex gap-x-20 p-6 items-center justify-center bg-[#ECECEC]">
+          <picture className="md:size-[560px] overflow-hidden">
+            <Image
+              src={product.secciones?.ficha_descriptiva.ficha_image || "/default-image.png"}
+              width={560}
+              height={560}
+              alt="Ficha descriptiva"
+              className="hover:scale-110 transition-transform"
+              loading="lazy"
+            />
+          </picture>
+
+          <div className="w-[560px] flex flex-col gap-y-4">
+            <h3 className="md:text-3xl font-black">
+              {product.secciones?.ficha_descriptiva.ficha_title}
+            </h3>
+            <p className="md:text-[18px] tracking-[-0.4px] text-[#949494]">
+              {product.secciones?.ficha_descriptiva.ficha_description}
+            </p>
+          </div>
+        </section>
+      </article>
     </div>
   );
 };

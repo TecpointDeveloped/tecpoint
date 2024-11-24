@@ -55,19 +55,21 @@ export default function Home({ logos = [] }: HomeProps) {
         </div>
 
         <div className="px-4 md:px-12 flex items-center justify-center relative">
-          <img
+          <Image
             alt="cobertores iPhone 16 marca ghostek"
             src="/banner_cobertores_ghostek.png"
-            width="auto"
-            height="auto"
-            className="w-full h-[340px] z-[1] md:h-[390px] 2xl:h-[390px] object-cover hover:scale-105 transition-transform"
+            width={340}
+            height={340}
+            sizes="(min-width: 1536px) 390px, (min-width: 768px) 390px, 340px"
+            className="w-fit h-[340px] z-[1] md:h-[390px] 2xl:h-[390px] object-cover hover:scale-105 transition-transform"
           />
 
-          <img
+          <Image
             alt="cobertores iPhone 16 marca ghostek"
             src="/banner_cobertores_ghostek.png"
-            width="auto"
-            height="auto"
+            width={340}
+            height={340}
+            sizes="(min-width: 1536px) 480px, (min-width: 768px) 390px, 340px"
             className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-full h-[340px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
         </div>

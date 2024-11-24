@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Search, Menu } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -96,9 +95,9 @@ function NavbarMenu() {
             priority
             alt="Tecpoint Logo"
             src="/logo.png"
-            width={180}
-            height={80}
-            className="aspect-[180-80]"
+            width={160}
+            height={60}
+            className="aspect-[160-60]"
           />
         </div>
         <div className="hidden md:flex items-center justify-center gap-12">

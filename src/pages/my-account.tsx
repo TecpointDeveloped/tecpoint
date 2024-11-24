@@ -22,17 +22,20 @@ function My_Acoount() {
     try {
       await signInWithEmailAndPassword(email, password);
       window.location.href = "/"
-    } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
+    } catch (error) {
+      // Tipar el error como FirebaseError
+      const firebaseError = error as { code: string };
+
+      if (firebaseError.code === 'auth/user-not-found') {
         setEmailError(true);
         setError('Usuario no encontrado');
-      } else if (error.code === 'auth/wrong-password') {
+      } else if (firebaseError.code === 'auth/wrong-password') {
         setPasswordError(true);
         setError('Contraseña incorrecta');
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         setEmailError(true);
         setError('El formato del correo es incorrecto');
-      } else if (error.code === 'auth/invalid-credential') {
+      } else if (firebaseError.code === 'auth/invalid-credential') {
         setError('Cuenta no válida. Verifique el correo y contraseña.');
       } else {
         setError('Ocurrió un error. Intente nuevamente.');

@@ -15,6 +15,28 @@ export interface Product {
   producto: string;
   sku: string;
   slug: string;
-  upc?: string;
-  stock?: string;
+  banner?: {
+    color?: string;
+    image_banner?: string
+  };
+  secciones?: {
+    ficha_descriptiva: {
+      ficha_description: string;
+      ficha_image: string;
+      ficha_title: string;
+    }
+    seccion_01: {
+      imagenUrl: string;
+      title: string;
+    }
+    seccion_02: {
+      imagenUrl: string;
+      title: string;
+    }
+  }
+  extradata?: {
+    stock?: boolean;
+    discount?: number;
+    upc?: string;
+  }
 }
