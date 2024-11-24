@@ -136,12 +136,29 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <title>{product.producto || "Producto no Encontrado"}</title>
         <meta name="keywords" content={product.descripcion || ""} />
         <meta name="description" content={product.descripcion || ""} />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="product" />
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
-        <meta property="og:url" content={`https://tecpoint.ws/${product.slug}`} />
-        <meta property="og:image" content={product.banner?.image_banner || ""} />
-        <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
+        <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
+        <meta property="og:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Tecpoint" />
+        <meta property="og:locale" content="es_HN" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.producto} />
+        <meta name="twitter:description" content={product.descripcion || ""} />
+        <meta name="twitter:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
+
+        {/* <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} /> */}
       </Head>
+
 
       <main className="flex h-[90dvh] w-full gap-x-28 justify-center items-center overflow-hidden">
         <Carousel className="border rounded-md">

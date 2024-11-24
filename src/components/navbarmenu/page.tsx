@@ -91,14 +91,16 @@ function NavbarMenu() {
     <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
-          <Image
-            priority
-            alt="Tecpoint Logo"
-            src="/logo.png"
-            width={160}
-            height={60}
-            className="aspect-[160-60]"
-          />
+          <Link href="/">
+            <Image
+              priority
+              alt="Tecpoint Logo"
+              src="/logo.png"
+              width={160}
+              height={60}
+              className="aspect-[160-60]"
+            />
+          </Link>
         </div>
         <div className="hidden md:flex items-center justify-center gap-12">
           <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
@@ -113,10 +115,10 @@ function NavbarMenu() {
                 <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <ListItem href="/docs" title="Introduction">
+                    <ListItem href="/blog" title="Introduction">
                       Re-usable components built using Radix UI and Tailwind CSS.
                     </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
+                    <ListItem href="/blog" title="Installation">
                       How to install dependencies and structure your app.
                     </ListItem>
                   </ul>

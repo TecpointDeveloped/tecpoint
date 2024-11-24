@@ -76,6 +76,16 @@ const Shop = ({ products = [] }: ShopProps) => {
           Bienvenido a la tienda Tecpoint
         </h1>
 
+        <form onSubmit={(e) => { e.preventDefault() }} className="w-full md:py-8 md:px-12">
+          <input
+            className="border w-full py-3 px-6 rounded-full"
+            type="text"
+            placeholder="Buscar por SKU, Producto o Descripción"
+            name="buscador"
+            id="buscardor"
+          />
+        </form>
+
         <div className="flex gap-4">
           {products.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
