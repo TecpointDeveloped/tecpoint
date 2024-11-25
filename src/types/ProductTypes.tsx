@@ -38,5 +38,7 @@ export interface Product {
     stock?: boolean;
     discount?: number;
     upc?: string;
+    modelId?: string;
+    especificaciones?: Record<string, string>;
   }
 }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 interface ProductDetailProps {
   product: Product | null;
@@ -285,8 +286,21 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       </section>
 
       <article className="flex flex-col">
-        <div className="w-full p-3 py-6 md:h-56">
+        <div className="w-full p-3 py-6">
           <h2 className="text-center md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
+        </div>
+
+        <div className="md:h-[200px] grid place-content-center">
+          <Accordion type="single" collapsible className="flex gap-x-14">
+            {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
+              <AccordionItem className="md:w-[280px]" key={key} value={key}>
+                <AccordionTrigger className="font-bold md:text-lg">{key}</AccordionTrigger>
+                <AccordionContent>
+                  <p>{value}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         <section className="bg-[#ECECEC] flex flex-col gap-y-12">
