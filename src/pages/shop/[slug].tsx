@@ -267,9 +267,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       >
         <h2
           style={{
-            color: product.banner?.color?.startsWith("#") ? product.banner.color : "currentcolor",
+            color: product.banner?.color?.startsWith("#") ? product.banner.color : "",
           }}
-          className="md:text-[28px] font-normal text-center tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
+          className="md:text-[28px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
         >
           {product.producto}
         </h2>
