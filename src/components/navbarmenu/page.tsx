@@ -1,51 +1,35 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { Search } from "lucide-react";
-import Link from "next/link";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { db } from "../../database/Config";
 import { collection, getDocs } from "firebase/firestore";
-
-import { Product } from "../../types/ProductTypes"; // Tu tipo definido
+import { Product } from "../../types/ProductTypes";
 import { useState, useEffect, forwardRef } from "react";
+
+interface CartItem {
+  id: string;
+  quantity: number;
+  sku?: string;
+  imagenes?: string;
+  precio?: number;
+  producto?: string;
+}
 
 function NavbarMenu() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Obtener todos los documentos de Firebase al cargar el componente
+  // Cargar productos desde Firestore
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -67,9 +51,14 @@ function NavbarMenu() {
     fetchProducts();
   }, []);
 
-  // Manejar la búsqueda en tiempo real
+  // Cargar carrito desde localStorage
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+    setCart(storedCart);
+  }, []);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value; // Permitir mayúsculas y minúsculas
+    const value = e.target.value;
     setSearchTerm(value);
 
     if (!value) {
@@ -86,6 +75,16 @@ function NavbarMenu() {
 
     setFilteredProducts(filtered);
   };
+
+  // Manejo de eliminar productos del carrito
+  const handleRemoveFromCart = (id: string) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
+  };
+
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0).toFixed(2);
 
   return (
     <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
@@ -115,22 +114,23 @@ function NavbarMenu() {
                 <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <ListItem href="/blog" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind CSS.
+                    <ListItem href="/blog" title="Noticias">
+                      Descubre las últimas noticias de tecnología.
                     </ListItem>
-                    <ListItem href="/blog" title="Installation">
-                      How to install dependencies and structure your app.
+                    <ListItem href="/blog" title="Guías">
+                      Explora nuestras guías de compra y tips útiles.
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
-            Categorias
+          <Link href="/categories" className="text-[14px] font-[500] font-[Poppins]">
+            Categorías
           </Link>
         </div>
         <div className="flex items-center justify-center gap-x-8">
+          {/* Búsqueda */}
           <Dialog>
             <DialogTrigger asChild className="cursor-pointer">
               <Search color="white" strokeWidth={1.8} />
@@ -216,13 +216,52 @@ function NavbarMenu() {
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
-                  Tu Carrito
+                  Tu Carrito ({totalQuantity} productos)
                 </SheetTitle>
               </SheetHeader>
               <div className="p-4">
-                <p className="text-center text-sm text-black/80">
-                  Tu carrito está vacío.
+                {cart.length > 0 ? (
+                  <ul className="space-y-4">
+                    {cart.map((item) => (
+                      <li key={item.id} className="flex items-center gap-4 border-b pb-4">
+                        <Image
+                          src={item.imagenes || "/default-product.png"}
+                          alt={item.producto || "Producto"}
+                          width={80}
+                          height={80}
+                          className="w-20 h-20 object-cover"
+                        />
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold">{item.producto}</h3>
+                          <p className="text-gray-600 text-sm">SKU: {item.sku}</p>
+                          <p className="text-gray-800 text-sm">Cantidad: {item.quantity}</p>
+                          <p className="text-gray-800 text-sm">Precio: L. {item.precio?.toFixed(2)}</p>
+                        </div>
+                        <button
+                          onClick={() => handleRemoveFromCart(item.id)}
+                          className="text-red-500 text-sm hover:underline"
+                        >
+                          Quitar
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-center text-sm text-black/80">
+                    Tu carrito está vacío.
+                  </p>
+                )}
+              </div>
+              <div className="p-4 mt-4 border-t">
+                <p className="text-right text-lg font-semibold">
+                  Total: L. {totalPrice}
                 </p>
+                <button
+                  className="w-full mt-2 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+                  onClick={() => alert("Proceder al pago")}
+                >
+                  Proceder al pago
+                </button>
               </div>
             </SheetContent>
           </Sheet>

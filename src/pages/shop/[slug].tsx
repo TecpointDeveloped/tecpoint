@@ -17,6 +17,10 @@ interface ProductDetailProps {
 interface CartItem {
   id: string;
   quantity: number;
+  sku?: string;
+  imagenes?: string;
+  precio?: number;
+  producto?: string;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -93,7 +97,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   useEffect(() => {
     if (product) {
-      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
       const isProductInCart = cart.some((item) => item.id === product.id);
       setIsAddedToCart(isProductInCart);
     }
@@ -101,16 +105,22 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   const handleAddToCart = () => {
     if (product) {
-      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
 
       if (!cart.some((item) => item.id === product.id)) {
-        cart.push({ id: product.id, quantity });
+        cart.push({
+          id: product.id,
+          quantity,
+          sku: product.sku,
+          precio: product.precio.detalle,
+          imagenes: Object.values(product.imagenes || {})[1]?.img || "/default-product.png",
+        });
       } else {
         cart.forEach((item) => {
           if (item.id === product.id) item.quantity += quantity;
         });
       }
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart_tecpoint", JSON.stringify(cart));
       setIsAddedToCart(true);
     }
   };
@@ -277,7 +287,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <span className="w-full h-fit flex items-center justify-center absolute bottom-[-18px]">
           <Image
             className="md:w-[55%] opacity-30 select-none"
-            src={product.banner?.image_banner || "/default-banner.png"}
+            src={product.banner?.image_banner || ""}
             alt="Banner del producto"
             width={500}
             height={300}
