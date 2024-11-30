@@ -3,21 +3,48 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Search } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { db } from "../../database/Config";
 import { collection, getDocs } from "firebase/firestore";
 import { Product } from "../../types/ProductTypes";
 import { useState, useEffect, forwardRef } from "react";
 
+// Definir el tipo de imagenes más explícitamente
+interface ImageData {
+  img: string;
+}
+
 interface CartItem {
   id: string;
   quantity: number;
   sku?: string;
-  imagenes?: string;
+  imagenes?: { imagen_01?: ImageData; imagen_02?: ImageData }; // Definir imagenes como un objeto de tipo ImageData
   precio?: number;
   producto?: string;
 }
@@ -53,8 +80,16 @@ function NavbarMenu() {
 
   // Cargar carrito desde localStorage
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
-    setCart(storedCart);
+    const storedCart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+
+    // Asegurarnos de que las imágenes son un objeto (sin necesidad de JSON.parse)
+    const updatedCart = storedCart.map((item: CartItem) => ({
+      ...item,
+      // Ya es un objeto, por lo que no necesitamos hacer JSON.parse
+      imagenes: item.imagenes || {}, // Si no existe imagenes, asignamos un objeto vacío
+    }));
+
+    setCart(updatedCart);
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +210,7 @@ function NavbarMenu() {
                           />
                           <div className="flex flex-col gap-y-2">
                             <p className="font-semibold text-[15px] leading-5 tracking-[-0.4px]">{product.producto}</p>
-                            <p className="text-gray-600">SKU: {product.sku}</p>
+                            <p className="text-gray-600 font-bold">{product.sku}</p>
                           </div>
                         </Link>
                       </li>
@@ -210,6 +245,7 @@ function NavbarMenu() {
                 </svg>
               </button>
             </SheetTrigger>
+
             <SheetContent
               side="right"
               className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent"
@@ -225,7 +261,7 @@ function NavbarMenu() {
                     {cart.map((item) => (
                       <li key={item.id} className="flex items-center gap-4 border-b pb-4">
                         <Image
-                          src={item.imagenes || "/default-product.png"}
+                          src={item.imagenes?.imagen_01?.img || "/default-product.png"}  // Accedemos correctamente al objeto de imágenes
                           alt={item.producto || "Producto"}
                           width={80}
                           height={80}
@@ -233,7 +269,7 @@ function NavbarMenu() {
                         />
                         <div className="flex-1">
                           <h3 className="text-sm font-semibold">{item.producto}</h3>
-                          <p className="text-gray-600 text-sm">SKU: {item.sku}</p>
+                          <p className="text-gray-600 text-sm font-bold">{item.sku}</p>
                           <p className="text-gray-800 text-sm">Cantidad: {item.quantity}</p>
                           <p className="text-gray-800 text-sm">Precio: L. {item.precio?.toFixed(2)}</p>
                         </div>
@@ -252,17 +288,30 @@ function NavbarMenu() {
                   </p>
                 )}
               </div>
-              <div className="p-4 mt-4 border-t">
-                <p className="text-right text-lg font-semibold">
-                  Total: L. {totalPrice}
-                </p>
-                <button
-                  className="w-full mt-2 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
-                  onClick={() => alert("Proceder al pago")}
-                >
-                  Proceder al pago
-                </button>
-              </div>
+
+              <SheetFooter className="absolute w-full bottom-0 left-0">
+                <div className="p-4 mt-4 w-full">
+                  <p className="text-right text-lg font-semibold">
+                    Total: L. {totalPrice}
+                  </p>
+
+                  <div className="flex gap-x-2">
+                    <button
+                      className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-red-600"
+                      onClick={() => alert("Proceder al pago")}
+                    >
+                      Proceder al pago
+                    </button>
+
+                    <button
+                      className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-transparent border-[1.7px] border-black hover:text-black"
+                      onClick={() => alert("Proceder al pago")}
+                    >
+                      comprar mas
+                    </button>
+                  </div>
+                </div>
+              </SheetFooter>
             </SheetContent>
           </Sheet>
         </div>
@@ -295,6 +344,6 @@ const ListItem = forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";

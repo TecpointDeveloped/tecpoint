@@ -18,7 +18,7 @@ interface CartItem {
   id: string;
   quantity: number;
   sku?: string;
-  imagenes?: string;
+  imagenes?: object;
   precio?: number;
   producto?: string;
 }
@@ -113,7 +113,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           quantity,
           sku: product.sku,
           precio: product.precio.detalle,
-          imagenes: Object.values(product.imagenes || {})[1]?.img || "/default-product.png",
+          imagenes: Object.values(product.imagenes || {}),
+          producto: product.producto || "Producto no Encontrado"
+          // imagenes: JSON.stringify(product.imagenes || {}),
         });
       } else {
         cart.forEach((item) => {
