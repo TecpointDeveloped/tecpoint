@@ -42,3 +42,9 @@ export interface Product {
     especificaciones?: Record<string, string>;
   }
 }
+
+export type Logo = {
+  key: string;
+  logo: string;
+  color?: string;
+};

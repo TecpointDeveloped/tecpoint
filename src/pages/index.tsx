@@ -2,20 +2,36 @@ import Head from "next/head";
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
 import LogosImages from "@/data/logos.json";
+import CategoryCards from "@/components/CategoryCards/page";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/context/useAuth";
 import { Product } from "@/types/ProductTypes";
-
-type Logo = {
-  key: string;
-  logo: string;
-  color?: string;
-};
+import { Logo } from "@/types/ProductTypes";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../database/Config";
 
 export async function getStaticProps() {
+  const fetchProducts = async (): Promise<Product[]> => {
+    const productsCollection = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME);
+    const productDocs = await getDocs(productsCollection);
+
+    return productDocs.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        fecha_agregado: data.fecha_agregado?.toDate
+          ? data.fecha_agregado.toDate().toISOString()
+          : null,
+      };
+    }) as Product[];
+  };
+
+  const products = await fetchProducts();
+
   return {
     props: {
       logos: LogosImages as Logo[],
+      products,
     },
     revalidate: 60,
   };
@@ -23,9 +39,10 @@ export async function getStaticProps() {
 
 interface HomeProps {
   logos: Logo[];
+  products: Product[];
 }
 
-export default function Home({ logos = [] }: HomeProps) {
+export default function Home({ logos, products }: HomeProps) {
   const [offsetY, setOffsetY] = useState(0);
 
   const handleScroll = () => {
@@ -40,13 +57,15 @@ export default function Home({ logos = [] }: HomeProps) {
     };
   }, []);
 
-  const { products } = useAuth();
-
   return (
     <div className="pb-[600px]">
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta
+          name="keywords"
+          content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
+        />
         <meta
           name="description"
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
@@ -60,7 +79,7 @@ export default function Home({ logos = [] }: HomeProps) {
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
         />
         <meta property="og:url" content="https://tecpoint.ws" />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="/favicon.png" />
       </Head>
 
       <NavbarMenu />
@@ -81,6 +100,8 @@ export default function Home({ logos = [] }: HomeProps) {
             src="/banner_cobertores_ghostek.png"
             width={340}
             height={340}
+            quality={80}
+            priority={true}
             sizes="(min-width: 1536px) 390px, (min-width: 768px) 390px, 340px"
             className="w-fit h-[340px] z-[1] md:h-[390px] 2xl:h-[390px] object-cover hover:scale-105 transition-transform"
           />
@@ -90,6 +111,7 @@ export default function Home({ logos = [] }: HomeProps) {
             src="/banner_cobertores_ghostek.png"
             width={390}
             height={390}
+            priority={true}
             sizes="(min-width: 1536px) 480px, (min-width: 768px) 390px, 340px"
             className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-[390px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
@@ -98,7 +120,7 @@ export default function Home({ logos = [] }: HomeProps) {
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
-        <div className="marquee h-[120px]">
+        <div className="marquee">
           <div className="marquee-inner flex">
             {logos.map((logo, index) => (
               <div
@@ -123,19 +145,17 @@ export default function Home({ logos = [] }: HomeProps) {
       <section className="py-8 px-4 bg-gray-100 flex flex-col gap-y-6">
         <h1 className="text-center md:text-2xl">Explora Nuestros Productos</h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products && products.length > 0 ? (
-            products.map((product: Product) => (
+        <div className="flex gap-x-4">
+          {products.length > 0 ? (
+            products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white md:w-[300px] h-[430px] rounded-lg overflow-hidden relative px-4"
+                className="bg-white md:w-[300px] min-h-[380px] rounded-lg overflow-hidden relative px-4"
               >
-                <p className="text-[15px] absolute top-3">{product.marca_producto.marca}</p>
-
                 <picture className="size-[260px] overflow-hidden flex m-auto">
                   <Image
                     src={product.imagenes?.imagen_01?.img || "/default-product.png"}
-                    alt={product.producto || "producto con imagen no dispoinble"}
+                    alt={product.producto || "Producto sin imagen disponible"}
                     priority
                     quality={100}
                     width={240}
@@ -144,23 +164,21 @@ export default function Home({ logos = [] }: HomeProps) {
                   />
                 </picture>
 
-                <h3 className="md:text-[17px] font-semibold tracking-[-0.2px] leading-5">{product.producto}</h3>
+                <h3 className="md:text-[17px] font-semibold tracking-[-0.2px] leading-5">
+                  {product.producto}
+                </h3>
 
                 <div className="absolute bottom-0 w-full left-0 pl-3 pr-3 pb-4">
-                  <div className="flex items-center gap-x-4 justify-between mt-3">
-                    <div className="bg-[#ebebeb] size-fit py-1 px-3 rounded-[4px]">
-                      <p className="text-[13px] font-[600]">{product.sku}</p>
-                    </div>
-
-                    <p className="font-bold text-[17px]">
-                      {product.precio ? product.precio.detalle.toFixed(2) : "No disponible"} L
-                    </p>
-                  </div>
-
-                  <div className="w-full">
-                    <button className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-black/80 transition-colors">
-                      Ver detalles
+                  <div className="flex items-center gap-x-2">
+                    <button className="w-full bg-black text-white py-2 rounded-sm hover:bg-black/80 transition-colors">
+                      ver producto
                     </button>
+
+                    <p className="font-bold text-[17px] text-nowrap text-[#0c130b]">
+                      L. {product.precio
+                        ? product.precio.detalle.toFixed(2)
+                        : "No disponible"}{" "}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -173,14 +191,14 @@ export default function Home({ logos = [] }: HomeProps) {
         </div>
       </section>
 
-      <section className="mb-32 w-full h-[180px] bg-black relative overflow-hidden">
+      <section className="w-full h-[180px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
           <h4 className="text-[#ffffff] leading-7 md:text-[28px] font-bold text-center m-auto">
             Revoluciona tu Teléfono con Accesorios
             <span className="block">de Calidad</span>
           </h4>
 
-          <button className="text-white mt-6">ver mas</button>
+          <button className="text-white mt-6 hover:underline">ver mas</button>
         </div>
 
         <div className="flex items-end justify-center w-full h-[180px] bg-black">
@@ -188,23 +206,29 @@ export default function Home({ logos = [] }: HomeProps) {
             className="object-cover m-auto"
             height={250}
             width={250}
-            style={{ transform: `translateY(${offsetY * 0.04}px)` }} // Movimiento dinámico
+            style={{ transform: `translateY(${offsetY * 0.024}px)` }}
             src="/images/iphone_16_pro_max.webp"
             alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
             quality={100}
-            priority
+            priority={true}
           />
           <Image
             className="object-cover m-auto"
-            height={250}
-            width={250}
-            style={{ transform: `translateY(${offsetY * 0.04}px)` }} // Movimiento más lento
+            height={280}
+            width={280}
+            style={{ transform: `translateY(${offsetY * 0.024}px)` }}
             src="/images/samsung_s24_ultra.webp"
             alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
             quality={100}
-            priority
+            priority={true}
           />
         </div>
+      </section>
+
+      <section className="mt-12 p-4 flex gap-x-4 overflow-hidden overflow-x-scroll">
+        <CategoryCards alt="Accesorios de la mas alta calidad en San Pedro Sula Honduras" imagen="/images/marcas-de-alta-calidad.webp" />
+        <CategoryCards alt="Lo mejor en Audio con precios excelentes en San Pedro Sula Honduras" imagen="/images/audio-de-alta-calidad.webp" />
+        <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
       </section>
     </div>
   );
