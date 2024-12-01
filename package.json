@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
     "embla-carousel": "^8.5.1",
+    "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "firebase": "^11.0.2",
     "lucide-react": "^0.456.0",
