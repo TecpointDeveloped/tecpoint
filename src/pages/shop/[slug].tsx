@@ -112,10 +112,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           id: product.id,
           quantity,
           sku: product.sku,
-          precio: product.precio.detalle,
+          precio: parseFloat(product.precio.detalle?.toString() || "0"),
           imagenes: Object.values(product.imagenes || {}),
           producto: product.producto || "Producto no Encontrado"
-          // imagenes: JSON.stringify(product.imagenes || {}),
         });
       } else {
         cart.forEach((item) => {
@@ -143,6 +142,29 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.producto,
+    sku: product.sku,
+    image: primaryImage,
+    brand: {
+      "@type": "Brand",
+      name: product.marca_producto?.marca || "Marca no disponible",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+      priceCurrency: "L",
+      price: product.precio?.detalle || 0,
+      availability:
+        product.extradata?.stock === true
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
   return (
     <div className="w-full mb-[500px]">
       <NavbarMenu />
@@ -151,6 +173,11 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <title>{product.producto || "Producto no Encontrado"}</title>
         <meta name="keywords" content={product.descripcion || ""} />
         <meta name="description" content={product.descripcion || ""} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
 
         {/* Open Graph Meta Tags */}
         <meta property="og:type" content="product" />
