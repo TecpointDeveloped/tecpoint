@@ -18,7 +18,7 @@ interface CartItem {
   id: string;
   quantity: number;
   sku?: string;
-  imagenes?: string;
+  imagenes?: object;
   precio?: number;
   producto?: string;
 }
@@ -112,8 +112,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           id: product.id,
           quantity,
           sku: product.sku,
-          precio: product.precio.detalle,
-          imagenes: Object.values(product.imagenes || {})[1]?.img || "/default-product.png",
+          precio: parseFloat(product.precio.detalle?.toString() || "0"),
+          imagenes: Object.values(product.imagenes || {}),
+          producto: product.producto || "Producto no Encontrado"
         });
       } else {
         cart.forEach((item) => {
@@ -139,6 +140,31 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
     .map(([, value]) => value);
 
+  const primaryImage = imagenesArray[0]?.img || "/default-product.png";
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.producto,
+    sku: product.sku,
+    image: primaryImage,
+    brand: {
+      "@type": "Brand",
+      name: product.marca_producto?.marca || "Marca no disponible",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+      priceCurrency: "L",
+      price: product.precio?.detalle || 0,
+      availability:
+        product.extradata?.stock === true
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
   return (
     <div className="w-full mb-[500px]">
       <NavbarMenu />
@@ -148,23 +174,28 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <meta name="keywords" content={product.descripcion || ""} />
         <meta name="description" content={product.descripcion || ""} />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+
         {/* Open Graph Meta Tags */}
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
         <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
-        <meta property="og:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta property="og:image" content={primaryImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tecpoint" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
         <meta property="og:locale" content="es_HN" />
 
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.producto} />
         <meta name="twitter:description" content={product.descripcion || ""} />
-        <meta name="twitter:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta name="twitter:image" content={primaryImage} />
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
         {/* <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} /> */}
@@ -184,8 +215,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   className="size-[280px] md:size-[500px] aspect-square object-cover"
                   width={280}
                   height={280}
-                // placeholder="blur"
-                // blurDataURL="/default-product.png"
                 />
               </CarouselItem>
             ))}

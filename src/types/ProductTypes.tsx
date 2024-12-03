@@ -9,8 +9,8 @@ export interface Product {
     marca: string;
   };
   precio: {
-    detalle: number;
-    mayoreo: number;
+    detalle: number | string;
+    mayoreo: number | string;
   };
   producto: string;
   sku: string;
@@ -42,3 +42,9 @@ export interface Product {
     especificaciones?: Record<string, string>;
   }
 }
+
+export type Logo = {
+  key: string;
+  logo: string;
+  color?: string;
+};
