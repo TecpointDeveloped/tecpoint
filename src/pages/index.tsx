@@ -176,7 +176,7 @@ export default function Home({ logos, products }: HomeProps) {
 
                     <p className="font-bold text-[17px] text-nowrap text-[#0c130b]">
                       L. {product.precio
-                        ? product.precio.detalle.toFixed(2)
+                        ? parseFloat(product.precio.detalle?.toString() || "0")
                         : "No disponible"}{" "}
                     </p>
                   </div>
