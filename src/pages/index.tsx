@@ -225,7 +225,7 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <section className="mt-12 p-4 flex gap-x-4 overflow-hidden overflow-x-scroll">
+      <section className="mt-12 p-4 flex gap-x-4 overflow-hidden gap-4 flex-wrap">
         <CategoryCards alt="Accesorios de la mas alta calidad en San Pedro Sula Honduras" imagen="/images/marcas-de-alta-calidad.webp" />
         <CategoryCards alt="Lo mejor en Audio con precios excelentes en San Pedro Sula Honduras" imagen="/images/audio-de-alta-calidad.webp" />
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />

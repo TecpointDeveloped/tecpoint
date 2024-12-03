@@ -141,6 +141,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
     .map(([, value]) => value);
 
+  const primaryImage = imagenesArray[0]?.img || "/default-product.png";
+
   return (
     <div className="w-full mb-[500px]">
       <NavbarMenu />
@@ -155,18 +157,18 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
         <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
-        <meta property="og:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta property="og:image" content={primaryImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tecpoint" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
         <meta property="og:locale" content="es_HN" />
 
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.producto} />
         <meta name="twitter:description" content={product.descripcion || ""} />
-        <meta name="twitter:image" content={product.banner?.image_banner || "/default-image.png"} />
+        <meta name="twitter:image" content={primaryImage} />
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
         {/* <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} /> */}
@@ -186,8 +188,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   className="size-[280px] md:size-[500px] aspect-square object-cover"
                   width={280}
                   height={280}
-                // placeholder="blur"
-                // blurDataURL="/default-product.png"
                 />
               </CarouselItem>
             ))}
