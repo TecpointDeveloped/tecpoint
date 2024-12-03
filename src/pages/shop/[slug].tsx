@@ -145,9 +145,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.producto,
-    sku: product.sku,
-    image: primaryImage,
+    name: product.producto || "",
+    sku: product.sku || "",
+    image: primaryImage || "",
+    description: product.descripcion || "",
     brand: {
       "@type": "Brand",
       name: product.marca_producto?.marca || "Marca no disponible",
@@ -155,7 +156,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     offers: {
       "@type": "Offer",
       url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-      priceCurrency: "L",
+      priceCurrency: "HNL",
       price: product.precio?.detalle || 0,
       availability:
         product.extradata?.stock === true
