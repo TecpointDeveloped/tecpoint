@@ -94,6 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ProductDetail = ({ product }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [showRemaining, setShowRemaining] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -165,8 +166,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       itemCondition: "https://schema.org/NewCondition",
     },
   };
-
-  const [showRemaining, setShowRemaining] = useState(false);
 
   const handleToggleImages = () => {
     setShowRemaining((prevState) => !prevState);
