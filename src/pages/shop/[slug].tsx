@@ -156,7 +156,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     offers: {
       "@type": "Offer",
       url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-      priceCurrency: "HNL",
+      priceCurrency: "lps",
       price: product.precio?.detalle || 0,
       availability:
         product.extradata?.stock === true
@@ -165,6 +165,16 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       itemCondition: "https://schema.org/NewCondition",
     },
   };
+
+  const [showRemaining, setShowRemaining] = useState(false);
+
+  const handleToggleImages = () => {
+    setShowRemaining((prevState) => !prevState);
+  };
+
+  const imagesToShow = showRemaining
+    ? imagenesArray.slice(2) // Mostrar imágenes faltantes
+    : imagenesArray.slice(0, 3); // Mostrar primeras tres imágenes
 
   return (
     <div className="w-full mb-[500px]">
@@ -203,26 +213,65 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       </Head>
 
 
-      <main className="flex h-[90dvh] w-full gap-x-28 justify-center items-center overflow-hidden">
-        <Carousel className="border rounded-md">
-          <CarouselContent className="size-[280px] md:size-[500px] aspect-square">
-            {imagenesArray?.map((img, index) => (
-              <CarouselItem key={index}>
-                <Image
-                  quality={100}
-                  priority={true}
-                  src={img.img || "/default-product.png"}
-                  alt={product.producto || `Imagen ${index + 1}`}
-                  className="size-[280px] md:size-[500px] aspect-square object-cover"
-                  width={280}
-                  height={280}
-                />
-              </CarouselItem>
+      <main className="flex h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
+        <div className="flex flex-col gap-y-3 pt-2">
+          <Carousel className="border rounded-md">
+            <CarouselContent className="size-[280px] md:size-[500px] aspect-square">
+              {imagenesArray?.map((img, index) => (
+                <CarouselItem key={index}>
+                  <Image
+                    quality={100}
+                    priority={true}
+                    src={img.img || "/default-product.png"}
+                    alt={product.producto || `Imagen ${index + 1}`}
+                    className="size-[280px] md:size-[500px] aspect-square object-cover"
+                    width={280}
+                    height={280}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
+          <div className="flex w-full gap-x-2 flex-1">
+            {imagesToShow.map((img, index) => (
+              <Image
+                key={index}
+                quality={100}
+                priority={true}
+                src={img.img || "/default-product.png"}
+                alt={product.producto || `Imagen ${index + 1}`}
+                className="size-[110px] md:size-[110px] aspect-square object-cover border cursor-pointer"
+                width={110}
+                height={110}
+              />
             ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+
+            {/* Cuadro adicional para alternar entre las primeras y las restantes imágenes */}
+            {imagenesArray.length > 3 && !showRemaining && (
+              <div
+                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                onClick={handleToggleImages}
+              >
+                <span className="text-sm font-medium text-gray-600">
+                  +{imagenesArray.length - 3}
+                </span>
+              </div>
+            )}
+
+            {/* Botón para volver a las primeras imágenes */}
+            {showRemaining && (
+              <div
+                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                onClick={handleToggleImages}
+              >
+                <span className="text-sm font-medium text-gray-600">Ver menos</span>
+              </div>
+            )}
+          </div>
+        </div>
 
         <div className="w-[40%]">
           <div className="flex flex-col gap-y-5">
