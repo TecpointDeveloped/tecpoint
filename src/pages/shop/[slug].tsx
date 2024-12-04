@@ -157,7 +157,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     offers: {
       "@type": "Offer",
       url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-      priceCurrency: "lps",
+      priceCurrency: "HNL",
       price: product.precio?.detalle || 0,
       availability:
         product.extradata?.stock === true
