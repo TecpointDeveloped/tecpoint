@@ -1,10 +1,11 @@
-import NavbarMenu from "@/components/navbarmenu/page";
 import Head from "next/head";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/database/Config";
-import { Product } from "@/types/ProductTypes";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { db } from "@/database/Config";
+import { Product } from "@/types/ProductTypes";
+import { collection, getDocs } from "firebase/firestore";
+import NavbarMenu from "@/components/navbarmenu/page";
 
 interface ShopProps {
   products: Product[];
@@ -20,7 +21,7 @@ export async function getStaticProps() {
       return {
         id: doc.id,
         ...data,
-        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null, // Serializar fecha
+        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       };
     }) as Product[];
 
@@ -41,6 +42,15 @@ export async function getStaticProps() {
 }
 
 const Shop = ({ products = [] }: ShopProps) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProducts = products.filter((product) =>
+    product.producto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.descripcion.toUpperCase().includes(searchTerm.toUpperCase()) ||
+    product.marca_producto.marca.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (!products || products.length === 0) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -76,18 +86,21 @@ const Shop = ({ products = [] }: ShopProps) => {
           Bienvenido a la tienda Tecpoint
         </h1>
 
-        <form onSubmit={(e) => { e.preventDefault() }} className="w-full md:py-8 md:px-12">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="w-full md:py-8 md:px-12"
+        >
           <input
             className="border w-full py-3 px-6 rounded-full"
             type="text"
             placeholder="Buscar por SKU, Producto o Descripción"
-            name="buscador"
-            id="buscardor"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
 
         <div className="flex gap-4">
-          {products.map((product: Product) => {
+          {filteredProducts.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
@@ -96,10 +109,19 @@ const Shop = ({ products = [] }: ShopProps) => {
                 className="border rounded-lg p-4 flex flex-col w-[340px] h-[450px] relative justify-between"
               >
                 <div className="flex flex-col">
-                  <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
+                  <Link
+                    href={`/shop/${product.slug}`}
+                    className="hover:scale-105 transition-transform"
+                    rel="noopener noreferrer"
+                    download={false}
+                  >
                     <Image
                       src={imagen_01}
-                      alt={product.producto || "Imagen del producto"}
+                      alt={
+                        product.producto
+                          ? `Imagen de ${product.producto}`
+                          : "Imagen del producto"
+                      }
                       width={240}
                       height={240}
                       className="m-auto size-[240px] aspect-square object-cover mb-4"
@@ -108,11 +130,13 @@ const Shop = ({ products = [] }: ShopProps) => {
                     />
                   </Link>
 
-                  <div className="">
+                  <div>
                     <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
                       {product.producto}
                     </h2>
-                    <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      SKU: {product.sku}
+                    </p>
 
                     <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
                       {(product.categorias || []).map((cat: string, index: number) => (
@@ -125,7 +149,6 @@ const Shop = ({ products = [] }: ShopProps) => {
                       ))}
                     </div>
                   </div>
-
                 </div>
 
                 <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-black/80">
