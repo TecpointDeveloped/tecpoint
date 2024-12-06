@@ -35,7 +35,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { Product } from "../../types/ProductTypes";
 import { useState, useEffect, forwardRef } from "react";
 
-// Definir el tipo de imagenes más explícitamente
 interface ImageData {
   img: string;
 }
@@ -44,7 +43,7 @@ interface CartItem {
   id: string;
   quantity: number;
   sku?: string;
-  imagenes?: { imagen_01?: ImageData; imagen_02?: ImageData }; // Definir imagenes como un objeto de tipo ImageData
+  imagenes?: { imagen_01?: ImageData; imagen_02?: ImageData };
   precio?: number;
   producto?: string;
 }
@@ -56,7 +55,6 @@ function NavbarMenu() {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Cargar productos desde Firestore
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -78,15 +76,12 @@ function NavbarMenu() {
     fetchProducts();
   }, []);
 
-  // Cargar carrito desde localStorage
   useEffect(() => {
     const storedCart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
 
-    // Asegurarnos de que las imágenes son un objeto (sin necesidad de JSON.parse)
     const updatedCart = storedCart.map((item: CartItem) => ({
       ...item,
-      // Ya es un objeto, por lo que no necesitamos hacer JSON.parse
-      imagenes: item.imagenes || {}, // Si no existe imagenes, asignamos un objeto vacío
+      imagenes: item.imagenes || {},
     }));
 
     setCart(updatedCart);
@@ -111,7 +106,6 @@ function NavbarMenu() {
     setFilteredProducts(filtered);
   };
 
-  // Manejo de eliminar productos del carrito
   const handleRemoveFromCart = (id: string) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
