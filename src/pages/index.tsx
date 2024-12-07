@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -8,6 +9,7 @@ import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
+import TikTokEmbed from "@/components/Video/page";
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -63,6 +65,7 @@ export default function Home({ logos, products }: HomeProps) {
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta property="og:url" content="https://tecpoint.ws" />
         <meta property="og:image" content="/favicon.png" />
         <meta property="og:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
@@ -140,17 +143,21 @@ export default function Home({ logos, products }: HomeProps) {
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
 
-      <section className="py-8 px-4 bg-gray-100 flex flex-col gap-y-6">
+      <section className="py-8 px-4 flex flex-col gap-y-6">
         <h1 className="text-center md:text-2xl">Explora Nuestros Productos</h1>
 
-        <div className="flex gap-x-4">
+        <div className="flex gap-x-6">
           {products.length > 0 ? (
             products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white md:w-[300px] min-h-[380px] rounded-lg overflow-hidden relative px-4"
+                className="md:w-[290px] h-fit overflow-hidden relative flex flex-col gap-y-5"
               >
-                <picture className="size-[260px] overflow-hidden flex m-auto">
+                <Link
+                  rel="noopener noreferrer"
+                  download={false}
+                  href={`/shop/${product.slug}`}
+                  className="cursor-pointer size-[290px] overflow-hidden flex m-auto bg-[#fcfcfc62] border rounded-lg">
                   <Image
                     src={product.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={product.producto || "Producto sin imagen disponible"}
@@ -158,26 +165,21 @@ export default function Home({ logos, products }: HomeProps) {
                     quality={100}
                     width={240}
                     height={240}
-                    className="md:size-[240px] m-auto aspect-square object-cover"
+                    className="md:size-[260px] m-auto aspect-square object-cover"
                   />
-                </picture>
+                </Link>
 
-                <h3 className="md:text-[17px] font-semibold tracking-[-0.2px] leading-5">
-                  {product.producto}
-                </h3>
+                <div className="flex flex-col gap-y-2">
+                  <h3 className="md:text-[18px] font-normal tracking-[-0.2px] leading-5">
+                    {product.producto}
+                  </h3>
 
-                <div className="absolute bottom-0 w-full left-0 pl-3 pr-3 pb-4">
-                  <div className="flex items-center gap-x-2">
-                    <button className="w-full bg-black text-white py-2 rounded-sm hover:bg-black/80 transition-colors">
-                      ver producto
-                    </button>
-
-                    <p className="font-bold text-[17px] text-nowrap text-[#0c130b]">
-                      L. {product.precio
-                        ? parseFloat(product.precio.detalle?.toString() || "0")
-                        : "No disponible"}{" "}
-                    </p>
-                  </div>
+                  <p className="text-[20px] tracking-[-0.3px] text-nowrap font-semibold text-[#395fdb] flex gap-x-1">
+                    <span className="text-[13px] tracking-[0.6px]">Lps</span>
+                    {product.precio
+                      ? `${parseFloat(product.precio.detalle?.toString() || "0")}.00`
+                      : "No disponible"}{" "}
+                  </p>
                 </div>
               </div>
             ))
@@ -189,9 +191,16 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
+      {/* <div className="p-4 gap-2 flex flex-wrap w-fit m-auto">
+        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
+        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
+        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
+        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
+      </div> */}
+
       <section className="w-full h-[180px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
-          <h4 className="text-[#ffffff] leading-7 md:text-[28px] font-bold text-center m-auto">
+          <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
             Revoluciona tu Teléfono con Accesorios
             <span className="block">de Calidad</span>
           </h4>

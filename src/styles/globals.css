@@ -124,3 +124,19 @@ body {
     transform: translateX(-100%);
   }
 }
+
+.text-gradient {
+  color: #929292;
+  background-image: linear-gradient(45deg, #929292 29%, #ffffff 50%, #6b6868 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* .text-gradient {
+  color: #616161;
+  background-image: linear-gradient(315deg, #616161 2%, #ffffff 37%, #616161 94%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
