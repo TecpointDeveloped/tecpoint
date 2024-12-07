@@ -9,7 +9,6 @@ import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
-import TikTokEmbed from "@/components/Video/page";
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -65,7 +64,6 @@ export default function Home({ logos, products }: HomeProps) {
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta property="og:url" content="https://tecpoint.ws" />
         <meta property="og:image" content="/favicon.png" />
         <meta property="og:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
