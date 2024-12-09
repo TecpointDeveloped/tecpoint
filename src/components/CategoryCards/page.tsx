@@ -8,7 +8,7 @@ type Category = {
 
 function CategoryCards({ imagen, alt }: Category) {
   return (
-    <div className="overflow-hidden relative min-w-[500px] h-[244px] rounded-[26px]">
+    <div className="overflow-hidden relative min-w-[400px] h-[234px] rounded-[26px]">
       <div className="bg-[#0000005b] backdrop-blur-sm absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-300"></div>
 
       <Image

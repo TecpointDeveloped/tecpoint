@@ -212,10 +212,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       </Head>
 
 
-      <main className="flex h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
+      <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 pt-2">
           <Carousel className="border rounded-md">
-            <CarouselContent className="size-[280px] md:size-[500px] aspect-square">
+            <CarouselContent className="size-[380px] md:size-[500px] aspect-square">
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
                   <Image
@@ -223,7 +223,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     priority={true}
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
-                    className="size-[280px] md:size-[500px] aspect-square object-cover"
+                    className="size-[380px] md:size-[500px] aspect-square object-cover"
                     width={280}
                     height={280}
                   />
