@@ -9,6 +9,7 @@ import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
+import Footer from "@/components/Footer/page";
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -59,7 +60,7 @@ export default function Home({ logos, products }: HomeProps) {
   }, []);
 
   return (
-    <div className="pb-[600px]">
+    <div className="">
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -234,6 +235,8 @@ export default function Home({ logos, products }: HomeProps) {
         <CategoryCards alt="Lo mejor en Audio con precios excelentes en San Pedro Sula Honduras" imagen="/images/audio-de-alta-calidad.webp" />
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
       </section>
+
+      <Footer />
     </div>
   );
 }
