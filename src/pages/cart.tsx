@@ -46,7 +46,7 @@ const CartPage = () => {
     settings.setupCredentials("FHI372717363", "b36aa20b0010f042b5bf788a4793b902");
 
     const card = new Card();
-    card.number = "4042635200319965";
+    card.number = "000000000000000";
     card.cvv2 = "999";
     card.expire_month = 9;
     card.expire_year = 2027;
@@ -63,7 +63,7 @@ const CartPage = () => {
     order.id = `ORDER-${Date.now()}`;
     order.currency = "HNL";
     order.customer_name = "Aerley Lopez";
-    order.customer_email = "lopezkeller65@gmail.com";
+    order.customer_email = "example@gmail.com";
 
     cart.forEach((item) => {
       const orderItem = new Item();
