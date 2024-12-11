@@ -9,6 +9,7 @@ import Head from "next/head";
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Footer from "@/components/Footer/page";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -176,7 +177,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     : imagenesArray.slice(0, 3); // Mostrar primeras tres imágenes
 
   return (
-    <div className="w-full mb-[500px]">
+    <div className="w-full">
       <NavbarMenu />
 
       <Head>
@@ -211,11 +212,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         {/* <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} /> */}
       </Head>
 
-
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 pt-2">
           <Carousel className="border rounded-md">
-            <CarouselContent className="size-[380px] md:size-[500px] aspect-square">
+            <CarouselContent className="size-[380px] md:size-[500px] 2xl:size-[650px] aspect-square">
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
                   <Image
@@ -223,7 +223,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     priority={true}
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
-                    className="size-[380px] md:size-[500px] aspect-square object-cover"
+                    className="size-[380px] md:size-[500px] 2xl:size-[650px] aspect-square object-cover"
                     width={280}
                     height={280}
                   />
@@ -283,7 +283,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               priority
               className="h-[28px] w-fit"
             />
-            <h1 className="text-3xl font-semibold w-[650px] leading-8">
+            <h1 className="text-3xl font-semibold w-[650px] leading-8 2xl:text-4xl">
               {product.producto}
             </h1>
 
@@ -292,10 +292,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
           <div className="flex flex-col gap-y-3 mt-3">
             <span className="flex justify-center items-center gap-x-2 w-fit">
-              <p className="bg-black w-fit h-fit md:text-[12px] px-3 py-1 text-white rounded-[4px]">
+              <p className="bg-black w-fit h-fit md:text-[12px] 2xl:text-[17px] px-3 py-1 text-white rounded-[4px]">
                 SKU
               </p>
-              <p className="text-md font-bold">{product.sku}</p>
+              <p className="text-md font-bold 2xl:text-[20px]">{product.sku}</p>
             </span>
 
             <span className="flex flex-col">
@@ -449,6 +449,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         </section>
 
       </article>
+
+      <Footer />
     </div>
   );
 };
