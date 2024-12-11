@@ -35,7 +35,7 @@ export async function getStaticProps() {
       logos: LogosImages as Logo[],
       products,
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 }
 

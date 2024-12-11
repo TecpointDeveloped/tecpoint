@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: serializedData,
         },
-        revalidate: 60,
+        revalidate: 30,
       };
     } else {
       return { notFound: true };
@@ -214,8 +214,8 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 pt-2">
-          <Carousel className="border rounded-md">
-            <CarouselContent className="size-[380px] md:size-[500px] aspect-square">
+          <Carousel className="border rounded-md size-[480px]">
+            <CarouselContent className="size-[480px] md:size-[500px] aspect-square">
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
                   <Image
@@ -223,7 +223,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     priority={true}
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
-                    className="size-[380px] md:size-[500px] aspect-square object-cover"
+                    className="size-[480px] md:size-[500px] aspect-square object-cover"
                     width={280}
                     height={280}
                   />
@@ -234,7 +234,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             <CarouselNext />
           </Carousel>
 
-          <div className="flex w-full gap-x-2 flex-1">
+          <div className="flex w-full gap-x-2 flex-1 overflow-hidden">
             {imagesToShow.map((img, index) => (
               <Image
                 key={index}
@@ -272,7 +272,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           </div>
         </div>
 
-        <div className="w-[40%]">
+        <div className="md:w-[40%] w-full">
           <div className="flex flex-col gap-y-5">
             <Image
               quality={96}

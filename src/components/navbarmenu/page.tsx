@@ -292,14 +292,14 @@ function NavbarMenu() {
                   <div className="flex gap-x-2">
                     <button
                       className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-red-600"
-                      onClick={() => alert("Proceder al pago")}
+                      onClick={() => window.location.href = "/cart"}
                     >
                       Proceder al pago
                     </button>
 
                     <button
                       className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-transparent border-[1.7px] border-black hover:text-black"
-                      onClick={() => alert("Proceder al pago")}
+                      onClick={() => window.location.href = "/shop"}
                     >
                       comprar mas
                     </button>
