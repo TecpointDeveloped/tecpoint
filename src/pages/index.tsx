@@ -134,7 +134,7 @@ export default function Home({ logos, products }: HomeProps) {
                   quality={95}
                   src={logo.logo || ""}
                   alt={`Logo ${index}`}
-                  className="w-fit h-[30px] select-none aspect-auto"
+                  className="w-[180px] h-[30px] select-none aspect-auto object-contain"
                 />
               </div>
             ))}
