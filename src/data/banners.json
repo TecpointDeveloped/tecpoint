@@ -1,0 +1,68 @@
+[
+  {
+    "BannerID": "1",
+    "marca": "Apple",
+    "ImageBanner": "/logos/apple.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "2",
+    "marca": "Deken",
+    "ImageBanner": "/logos/deken.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "3",
+    "marca": "Ghostek",
+    "ImageBanner": "/logos/ghostek.png",
+    "color": "#000000"
+  },
+  {
+    "BannerID": "4",
+    "marca": "Hypergear",
+    "ImageBanner": "/logos/hypergear.webp",
+    "color": "FF7F5C"
+  },
+  {
+    "BannerID": "5",
+    "marca": "Krieg",
+    "ImageBanner": "/logos/krieg.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "6",
+    "marca": "Powerpeak",
+    "ImageBanner": "/logos/powepeak.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "7",
+    "marca": "Rock Space",
+    "ImageBanner": "/logos/rock-space.png",
+    "color": "00B9FF"
+  },
+  {
+    "BannerID": "8",
+    "marca": "Samsung",
+    "ImageBanner": "/logos/samsung.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "9",
+    "marca": "USG",
+    "ImageBanner": "/logos/usg.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "10",
+    "marca": "XBase",
+    "ImageBanner": "/logos/xbase.png",
+    "color": "09f"
+  },
+  {
+    "BannerID": "10",
+    "marca": "Naztech",
+    "ImageBanner": "/logos/xbase.png",
+    "color": "00B9FF"
+  }
+]
