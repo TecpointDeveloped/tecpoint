@@ -27,7 +27,7 @@
     "BannerID": "5",
     "marca": "Krieg",
     "ImageBanner": "/logos/krieg.png",
-    "color": "09f"
+    "color": "FFCB54"
   },
   {
     "BannerID": "6",
@@ -39,7 +39,7 @@
     "BannerID": "7",
     "marca": "Rock Space",
     "ImageBanner": "/logos/rock-space.png",
-    "color": "00B9FF"
+    "color": "63EBFF"
   },
   {
     "BannerID": "8",
@@ -64,5 +64,11 @@
     "marca": "Naztech",
     "ImageBanner": "/logos/naztech.png",
     "color": "00B9FF"
+  },
+  {
+    "BannerID": "10",
+    "marca": "Appacs",
+    "ImageBanner": "/logos/appacs.png",
+    "color": "76D660"
   }
 ]

@@ -1,4 +1,4 @@
-import React from 'react'
+import Image from "next/image"
 
 function Footer() {
   return (
@@ -15,9 +15,27 @@ function Footer() {
         <div className='flex-1 flex flex-col gap-y-4'>
           <h4 className='text-white'>Únete a la comunidad</h4>
           <div className='flex gap-x-8'>
-            <img className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors' src="/images/social/facebook.svg" alt="cuenta de facebook tecpoint" height={24} width={24} />
-            <img className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors' src="/images/social/instagram.svg" alt="cuenta de instagram tecpoint" height={24} width={24} />
-            <img className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors' src="/images/social/tiktok.svg" alt="cuenta de tiktok tecpoint" height={30} width={30} />
+            <Image
+              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+              src="/images/social/facebook.svg"
+              alt="cuenta de facebook tecpoint"
+              height={24}
+              width={24}
+            />
+            <Image
+              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+              src="/images/social/instagram.svg"
+              alt="cuenta de instagram tecpoint"
+              height={24}
+              width={24}
+            />
+            <Image
+              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+              src="/images/social/tiktok.svg"
+              alt="cuenta de tiktok tecpoint"
+              height={30}
+              width={30}
+            />
           </div>
         </div>
       </section>

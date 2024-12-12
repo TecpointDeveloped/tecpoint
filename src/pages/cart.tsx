@@ -32,7 +32,6 @@ const CartPage = () => {
     }));
 
     setCart(updatedCart);
-    console.log(cart)
   }, []);
 
   const handleRemoveFromCart = (id: string) => {
