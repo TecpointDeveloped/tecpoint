@@ -15,7 +15,7 @@ interface CartItem {
   id: string;
   quantity: number;
   sku?: string;
-  imagenes?: { imagen_01?: string; imagen_02?: string };
+  imagenes?: { imagen_01?: { id?: string, img?: string } };
   precio?: number;
   producto?: string;
 }
@@ -32,6 +32,7 @@ const CartPage = () => {
     }));
 
     setCart(updatedCart);
+    console.log(cart)
   }, []);
 
   const handleRemoveFromCart = (id: string) => {
@@ -115,7 +116,7 @@ const CartPage = () => {
               {cart.map((item) => (
                 <li key={item.id} className="flex items-center gap-4 border-b pb-4">
                   <Image
-                    src={item.imagenes?.imagen_01 || "/default-product.png"}
+                    src={item.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={item.producto || "Producto"}
                     width={80}
                     height={80}

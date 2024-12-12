@@ -48,3 +48,11 @@ export type Logo = {
   logo: string;
   color?: string;
 };
+
+
+export interface BannerInterface {
+  BannerID: string;
+  marca: string;
+  ImageBanner?: string;
+  color?: string;
+}

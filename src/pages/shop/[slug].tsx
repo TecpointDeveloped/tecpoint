@@ -1,18 +1,20 @@
+import Head from "next/head";
+import Image from "next/image";
+import Banners from "@/data/banners.json";
+import Footer from "@/components/Footer/page";
+import NavbarMenu from "@/components/navbarmenu/page";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
-import { Product } from "../../types/ProductTypes";
+import { Product, BannerInterface } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import NavbarMenu from "@/components/navbarmenu/page";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import Footer from "@/components/Footer/page";
 
 interface ProductDetailProps {
   product: Product | null;
+  Banners: BannerInterface[]
 }
 
 interface CartItem {
@@ -80,6 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       return {
         props: {
           product: serializedData,
+          Banners
         },
         revalidate: 30,
       };
@@ -92,7 +95,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 };
 
-const ProductDetail = ({ product }: ProductDetailProps) => {
+const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
@@ -115,7 +118,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           quantity,
           sku: product.sku,
           precio: parseFloat(product.precio.detalle?.toString() || "0"),
-          imagenes: Object.values(product.imagenes || {}),
+          imagenes: product.imagenes || {},
           producto: product.producto || "Producto no Encontrado"
         });
       } else {
@@ -175,6 +178,13 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const imagesToShow = showRemaining
     ? imagenesArray.slice(2) // Mostrar imágenes faltantes
     : imagenesArray.slice(0, 3); // Mostrar primeras tres imágenes
+
+  console.log(Banners);
+
+  const banner = Banners.find((banner) => banner.marca === product.marca_producto?.marca) || {
+    color: "000000", // Color predeterminado en caso de no encontrar la marca
+    ImageBanner: "/default-banner.png", // Banner predeterminado
+  };
 
   return (
     <div className="w-full">
@@ -344,28 +354,24 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               />
             </svg>
 
-            {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"}
+            {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"} */}
+            Agregar al carrito
           </button>
         </div>
       </main>
 
       <section
-        style={{ backgroundColor: `#${product.banner?.color}` || "" }}
-        className={`overflow-hidden w-full h-36 grid place-content-center relative mt-12`}
+        style={{ backgroundColor: `#${banner.color}` }}
+        className="overflow-hidden w-full h-36 grid place-content-center relative mt-12"
       >
-        <h2
-          style={{
-            color: product.banner?.color?.startsWith("#") ? product.banner.color : "",
-          }}
-          className="md:text-[28px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]"
-        >
+        <h2 className="md:text-[28px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]">
           {product.producto}
         </h2>
 
         <span className="w-full h-fit flex items-center justify-center absolute bottom-[-28px]">
           <Image
-            className="md:w-[55%] opacity-30 select-none"
-            src={product.banner?.image_banner || ""}
+            className="h-[100%] opacity-30 select-none"
+            src={banner.ImageBanner || ""}
             alt="Banner del producto"
             width={500}
             height={300}
