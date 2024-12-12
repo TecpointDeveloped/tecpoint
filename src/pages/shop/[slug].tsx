@@ -399,58 +399,72 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
         <section className="bg-[#ECECEC] flex flex-col gap-y-12">
           <div className="flex gap-x-2 p-3 justify-center">
-            <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
-              <Image
-                className="md:size-[600px] aspect-square object-cover"
-                width={800}
-                height={800}
-                src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
-                alt=""
-              />
-              <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white">
-                  {product.secciones?.seccion_01.title}
-                </p>
-              </span>
-            </picture>
+            {/* Primera Sección */}
+            {product.secciones?.seccion_01.imagenUrl ?
+              <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+                <Image
+                  className="md:size-[600px] aspect-square object-cover"
+                  width={800}
+                  height={800}
+                  src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
+                  alt=""
+                />
+                <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p
+                    className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+                  >
+                    {product.secciones?.seccion_01.title}
+                  </p>
+                </span>
+              </picture> : null
+            }
 
-            <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
-              <Image
-                className="md:size-[600px] aspect-square object-cover"
-                width={800}
-                height={800}
-                src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
-                alt=""
-              />
-              <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white">
-                  {product.secciones?.seccion_02.title}
-                </p>
-              </span>
-            </picture>
+            {/* Segunda Sección */}
+            {product.secciones?.seccion_02.imagenUrl ?
+              <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+                <Image
+                  className="md:size-[600px] aspect-square object-cover"
+                  width={800}
+                  height={800}
+                  src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
+                  alt=""
+                />
+                <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p
+                    className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+                  >
+                    {product.secciones?.seccion_02.title}
+                  </p>
+                </span>
+              </picture> : null
+            }
           </div>
 
           <section className="flex p-6 items-center justify-center">
-            <picture className="md:size-[600px] overflow-hidden">
-              <Image
-                src={product.secciones?.ficha_descriptiva.ficha_image || "/default-product.png"}
-                width={800}
-                height={800}
-                alt="Ficha descriptiva"
-                className="hover:scale-110 transition-transform"
-                quality={96}
-                priority
-              />
-            </picture>
+            {product.secciones?.ficha_descriptiva.ficha_image ?
+              <picture className="md:size-[600px] overflow-hidden">
+                <Image
+                  src={product.secciones?.ficha_descriptiva.ficha_image || "/default-product.png"}
+                  width={800}
+                  height={800}
+                  alt="Ficha descriptiva"
+                  className="hover:scale-110 transition-transform"
+                  quality={96}
+                  priority
+                />
+              </picture> : null
+            }
 
-            <div className="md:w-[600px] pl-12 flex flex-col gap-y-4">
-              <h3 className="md:text-4xl font-black">
-                {product.secciones?.ficha_descriptiva.ficha_title}
-              </h3>
-              <p className="md:text-[18px] tracking-[-0.4px] text-[#949494] text-balance">
-                {product.secciones?.ficha_descriptiva.ficha_description}
-              </p>
-            </div>
+            {product.secciones?.ficha_descriptiva ?
+              <div className="md:w-[600px] pl-12 flex flex-col gap-y-4">
+                <h3 className="md:text-4xl font-black">
+                  {product.secciones?.ficha_descriptiva.ficha_title}
+                </h3>
+                <p className="md:text-[18px] tracking-[-0.4px] text-[#949494] text-balance">
+                  {product.secciones?.ficha_descriptiva.ficha_description}
+                </p>
+              </div> : null
+            }
           </section>
         </section>
 

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Product {
   id: string;
   categorias: string[];
@@ -21,7 +23,7 @@ export interface Product {
   };
   secciones?: {
     ficha_descriptiva: {
-      ficha_description: string;
+      ficha_description: string | ReactNode;
       ficha_image: string;
       ficha_title: string;
     }
