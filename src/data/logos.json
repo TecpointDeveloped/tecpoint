@@ -39,5 +39,13 @@
   {
     "key": "10",
     "logo": "/logos/xbase.png"
+  },
+  {
+    "key": "11",
+    "logo": "/logos/naztech.png"
+  },
+  {
+    "key": "12",
+    "logo": "/logos/appacs.png"
   }
 ]

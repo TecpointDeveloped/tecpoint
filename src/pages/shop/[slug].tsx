@@ -373,8 +373,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             className="h-[100%] opacity-30 select-none"
             src={banner.ImageBanner || ""}
             alt="Banner del producto"
-            width={500}
-            height={300}
+            width={700}
+            height={700}
           />
         </span>
       </section>
