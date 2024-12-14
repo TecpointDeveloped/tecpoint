@@ -1,9 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+// generateSitemap.ts
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../database/Config';
+import { db } from '../../database/Config'; // Ajusta la ruta a tu configuración de Firebase
+import fs from 'fs';
+import path from 'path';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const baseUrl = "https://tecpoint.ws";
+async function generateSitemap() {
+  const baseUrl = "https://tecpoint.ws";  // Cambia a tu dominio
   const productCollection = collection(db, 'Products');
 
   try {
@@ -26,12 +28,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     sitemap += `</urlset>`;
 
-    res.setHeader('Content-Type', 'application/xml');
-    res.status(200).send(sitemap);
-  } catch (error) {
-    console.error("Error generating sitemap:", error);
-    res.status(500).json({ error: "Error generating sitemap" });
-  }
-};
+    // Guarda el sitemap en public/sitemap.xml
+    const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, sitemap);
 
-export default handler;
+    console.log("Sitemap generado correctamente en public/sitemap.xml");
+
+  } catch (error) {
+    console.error("Error generando el sitemap:", error);
+  }
+}
+
+// Ejecuta el script
+generateSitemap();
