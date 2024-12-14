@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@algolia/client-search':
+        specifier: ^5.17.1
+        version: 5.17.1
       '@pixelpay/sdk-core':
         specifier: ^2.3.1
         version: 2.3.1
