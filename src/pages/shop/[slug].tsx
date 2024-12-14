@@ -234,8 +234,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
                     className="size-[380px] md:size-[500px] aspect-square object-cover"
-                    width={280}
-                    height={280}
+                    width={1100}
+                    height={1100}
                   />
                 </CarouselItem>
               ))}
@@ -397,7 +397,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </Accordion>
         </div>
 
-        <section className="bg-[#ECECEC] flex flex-col gap-y-12">
+        <section className="bg-[#ECECEC] flex flex-col gap-y-12 md:mt-10">
           <div className="flex gap-x-2 p-3 justify-center">
             {/* Primera Sección */}
             {product.secciones?.seccion_01.imagenUrl ?
@@ -444,7 +444,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {product.secciones?.ficha_descriptiva.ficha_image ?
               <picture className="md:size-[600px] overflow-hidden">
                 <Image
-                  src={product.secciones?.ficha_descriptiva.ficha_image || "/default-product.png"}
+                  src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
                   width={800}
                   height={800}
                   alt="Ficha descriptiva"
