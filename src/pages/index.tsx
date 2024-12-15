@@ -81,7 +81,6 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:description" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:image" content="favicon.png" />
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta name="google-site-verification" content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w" />
       </Head>
 
       <NavbarMenu />
