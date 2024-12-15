@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/useAuth";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 function My_Acoount() {
@@ -12,6 +13,7 @@ function My_Acoount() {
   const [error, setError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const route = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ function My_Acoount() {
 
     try {
       await signInWithEmailAndPassword(email, password);
-      window.location.href = "/"
+      route.push("/")
     } catch (error) {
       // Tipar el error como FirebaseError
       const firebaseError = error as { code: string };
