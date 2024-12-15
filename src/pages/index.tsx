@@ -61,7 +61,7 @@ export default function Home({ logos, products }: HomeProps) {
 
   return (
     <div className="">
-      <Head>
+      {/* <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
@@ -81,7 +81,7 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:description" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:image" content="favicon.png" />
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-      </Head>
+      </Head> */}
 
       <NavbarMenu />
 
