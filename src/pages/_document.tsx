@@ -4,10 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta
-          name="google-site-verification"
-          content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w"
-        />
+        <meta name="google-site-verification" content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w" />
       </Head>
       <body className="antialiased">
         <Main />
