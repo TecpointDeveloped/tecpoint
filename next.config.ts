@@ -3,8 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
-  source: '/sitemap.xml',
-  destination: '/api/sitemap',
   output: "standalone",
   images: {
     remotePatterns: [
