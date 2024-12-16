@@ -9,6 +9,7 @@ import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -62,6 +63,16 @@ export default function Home({ logos, products }: HomeProps) {
     <div className="">
 
       <NavbarMenu />
+
+      <Head>
+        <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
+        <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras, cargadores, adaptadores, audífonos, periféricos" />
+        <meta property="og:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
+        <meta property="og:description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <meta property="og:url" content="https://tecpoint.ws" />
+        <meta property="og:image" content="/favicon.png" />
+      </Head>
 
       <div className="w-full h-[85dvh] sm:h-[75dvh] md:h-[75vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
