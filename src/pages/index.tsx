@@ -25,7 +25,7 @@ export async function getStaticProps() {
           ? data.fecha_agregado.toDate().toISOString()
           : null,
       };
-    }) as Product[];
+    }) as Product[] ;
   };
 
   const products = await fetchProducts();
