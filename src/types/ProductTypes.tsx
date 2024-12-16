@@ -42,7 +42,8 @@ export interface Product {
     upc?: string;
     modelId?: string;
     especificaciones?: Record<string, string>;
-  }
+  },
+  objectID?: string;
 }
 
 export type Logo = {

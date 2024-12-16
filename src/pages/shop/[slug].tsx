@@ -10,7 +10,7 @@ import { Product, BannerInterface } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -200,7 +200,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
 
-        {/* Open Graph Meta Tags */}
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
@@ -212,14 +211,13 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
         <meta property="og:locale" content="es_HN" />
 
-        {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.producto} />
         <meta name="twitter:description" content={product.descripcion || ""} />
         <meta name="twitter:image" content={primaryImage} />
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
-        {/* <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} /> */}
+        <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
       </Head>
 
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
@@ -234,8 +232,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
                     className="size-[380px] md:size-[500px] aspect-square object-cover"
-                    width={280}
-                    height={280}
+                    width={1100}
+                    height={1100}
                   />
                 </CarouselItem>
               ))}
@@ -397,7 +395,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </Accordion>
         </div>
 
-        <section className="bg-[#ECECEC] flex flex-col gap-y-12">
+        <section className="bg-[#ECECEC] flex flex-col gap-y-12 md:mt-10">
           <div className="flex gap-x-2 p-3 justify-center">
             {/* Primera Sección */}
             {product.secciones?.seccion_01.imagenUrl ?
@@ -444,7 +442,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {product.secciones?.ficha_descriptiva.ficha_image ?
               <picture className="md:size-[600px] overflow-hidden">
                 <Image
-                  src={product.secciones?.ficha_descriptiva.ficha_image || "/default-product.png"}
+                  src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
                   width={800}
                   height={800}
                   alt="Ficha descriptiva"

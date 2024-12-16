@@ -5,6 +5,7 @@ import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword as fire
 import { auth, db } from '../database/Config';
 import { collection, getDocs } from 'firebase/firestore';
 import { Product } from '../types/ProductTypes'
+import { useRouter } from 'next/router';
 
 export interface AuthContextProps {
   currentUser: User | null;
@@ -25,6 +26,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
+  const route = useRouter()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -55,7 +57,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      window.location.href = '/';
+      route.push("/")
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
     }
@@ -75,7 +77,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signOut = async () => {
     try {
       await auth.signOut();
-      window.location.href = "/my-account";
+      route.push("/my-account")
     } catch (error) {
       console.error('Error al cerrar sesión', error);
     }
