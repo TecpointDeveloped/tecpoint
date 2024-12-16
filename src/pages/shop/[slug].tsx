@@ -26,6 +26,32 @@ interface CartItem {
   producto?: string;
 }
 
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   try {
+//     const querySnapshot = await getDocs(
+//       collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
+//     );
+
+//     const paths = querySnapshot.docs
+//       .map((doc) => {
+//         const data = doc.data();
+//         if (data.slug) {
+//           return { params: { slug: data.slug } };
+//         }
+//         return null;
+//       })
+//       .filter(Boolean);
+
+//     return {
+//       paths: paths as { params: { slug: string } }[],
+//       fallback: "blocking",
+//     };
+//   } catch (error) {
+//     console.error("Error fetching paths:", error);
+//     return { paths: [], fallback: "blocking" };
+//   }
+// };
+
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const querySnapshot = await getDocs(
@@ -48,7 +74,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   } catch (error) {
     console.error("Error fetching paths:", error);
-    return { paths: [], fallback: "blocking" };
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
   }
 };
 
