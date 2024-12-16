@@ -169,13 +169,6 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <div className="p-4 gap-2 flex flex-wrap w-fit m-auto">
-        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
-        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
-        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
-        <div className="sm:bg-red-200 md:bg-blue-200 sm:w-full hover:w-[360px] cursor-pointer transition-all md:w-[300px] h-[460px] bg-gray-200 rounded-3xl"></div>
-      </div>
-
       <section className="w-full h-[180px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
           <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
