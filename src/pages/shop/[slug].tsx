@@ -233,7 +233,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
-        <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
+        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
         <meta property="og:image" content={primaryImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
@@ -248,7 +248,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta name="twitter:image" content={primaryImage} />
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
-        <link rel="canonical" href={`https://tecpoint.vercer.app/shop/${product.slug}`} />
+        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
       </Head>
 
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
