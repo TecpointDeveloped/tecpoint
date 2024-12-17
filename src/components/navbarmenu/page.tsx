@@ -2,38 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Search } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { useRouter } from "next/router";
 import { db } from "../../database/Config";
 import { collection, getDocs } from "firebase/firestore";
 import { Product } from "../../types/ProductTypes";
 import { useState, useEffect, forwardRef } from "react";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 
 interface ImageData {
   img: string;
@@ -54,6 +33,7 @@ function NavbarMenu() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const route = useRouter();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -183,7 +163,7 @@ function NavbarMenu() {
                   placeholder="Buscar por SKU, Producto o Descripción"
                 />
               </div>
-              <DialogFooter className="h-auto w-full bg-gray-200">
+              <DialogFooter className="h-auto w-full bg-gray-200 overflow-hidden overflow-x-scroll">
                 {loading ? (
                   <p className="text-center text-gray-500">Cargando...</p>
                 ) : filteredProducts.length > 0 ? (
@@ -292,14 +272,14 @@ function NavbarMenu() {
                   <div className="flex gap-x-2">
                     <button
                       className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-red-600"
-                      onClick={() => window.location.href = "/cart"}
+                      onClick={() => route.push("/cart")}
                     >
                       Proceder al pago
                     </button>
 
                     <button
                       className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-transparent border-[1.7px] border-black hover:text-black"
-                      onClick={() => window.location.href = "/shop"}
+                      onClick={() => route.push("/shop")}
                     >
                       comprar mas
                     </button>

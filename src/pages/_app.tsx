@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthProvider>
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
-        {/* <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta property="og:url" content="https://tecpoint.ws" />
@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:description" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:image" content="favicon.png" />
-        <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" /> */}
+        <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
       <Component {...pageProps} />
     </AuthProvider>
