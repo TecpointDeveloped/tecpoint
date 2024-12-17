@@ -147,32 +147,35 @@ export default function Home({ logos, products }: HomeProps) {
       <section className="py-8 px-4 flex flex-col gap-y-6">
         <h1 className="text-center md:text-2xl">Explora Nuestros Productos</h1>
 
-        <div className="flex gap-x-6">
+        <div className="grid grid-cols-3 gap-6 flex-wrap">
           {products.length > 0 ? (
             products.map((product) => (
               <div
                 key={product.id}
-                className="md:w-[290px] h-fit overflow-hidden relative flex flex-col gap-y-5"
+                className="md:w-fit w-[200px] h-fit overflow-hidden relative flex flex-col gap-y-1"
               >
                 <Link
                   rel="noopener noreferrer"
                   download={false}
                   href={`/shop/${product.slug}`}
-                  className="cursor-pointer size-[290px] overflow-hidden flex m-auto bg-[#fcfcfc62] border rounded-lg">
+                  className="cursor-pointer w-[200px] md:w-[350px] md:h-[300px] relative overflow-hidden flex m-auto bg-[#fcfcfc62] border rounded-tr-[20px] rounded-tl-[20px]">
                   <Image
                     src={product.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={product.producto || "Producto sin imagen disponible"}
                     priority
                     quality={100}
-                    width={240}
-                    height={240}
-                    className="md:size-[260px] m-auto aspect-square object-cover"
+                    width={1080}
+                    height={1080}
+                    className="md:size-[300px] size-[200px] m-auto aspect-square object-cover"
                   />
+                  <span className="bg-[#09f] absolute top-4 left-4 rounded-full px-3 py-1">
+                    <p className="text-[12px] font-semibold text-white">Nuevo</p>
+                  </span>
                 </Link>
 
-                <div className="flex flex-col gap-y-2">
+                <div className="flex flex-col gap-y-2 bg-gray-200 p-3 items-center rounded-bl-[20px] rounded-br-[20px]">
                   <h3 className="md:text-[18px] font-normal tracking-[-0.2px] leading-5">
-                    {product.producto}
+                    {product.marca_producto.marca}
                   </h3>
 
                   <p className="text-[20px] tracking-[-0.3px] text-nowrap font-semibold text-[#395fdb] flex gap-x-1">
