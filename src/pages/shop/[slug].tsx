@@ -265,7 +265,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
           <button
             onClick={handleAddToCart}
-            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black ${isAddedToCart
+            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black rounded-[6px] ${isAddedToCart
               ? "bg-transparent border-[1.4px] border-black text-black"
               : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
               }`}
@@ -315,17 +315,17 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <h2 className="text-center md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
         </div>
 
-        <div className="md:h-[200px] grid place-content-center">
-          <Accordion type="single" collapsible className="flex gap-x-14">
-            {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-              <AccordionItem className="md:w-[280px]" key={key} value={key}>
-                <AccordionTrigger className="font-bold md:text-lg">{key}</AccordionTrigger>
+        <div className="grid grid-cols-3 gap-x-20 gap-y-8 max-w-[1200px] m-auto">
+          {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
+            <Accordion type="single" collapsible key={key} className="w-[300px]">
+              <AccordionItem value={key}>
+                <AccordionTrigger className="font-bold md:text-[20px]">{key}</AccordionTrigger>
                 <AccordionContent>
-                  <p>{value}</p>
+                  <p className="md:text-[16px]">{value}</p>
                 </AccordionContent>
               </AccordionItem>
-            ))}
-          </Accordion>
+            </Accordion>
+          ))}
         </div>
 
         <section className="bg-[#ECECEC] flex flex-col gap-y-12 md:mt-10">
@@ -372,7 +372,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </div>
 
           <section className="flex p-6 items-center justify-center">
-            {product.secciones?.ficha_descriptiva.ficha_image ?
+            {product.secciones?.ficha_descriptiva.ficha_image.trim() ?
               <picture className="md:size-[600px] overflow-hidden">
                 <Image
                   src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
