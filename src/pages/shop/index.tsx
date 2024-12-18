@@ -106,7 +106,7 @@ const Shop = ({ products = [] }: ShopProps) => {
             return (
               <div
                 key={product.id}
-                className="border rounded-lg p-4 flex flex-col w-[340px] h-[450px] relative justify-between"
+                className="border rounded-[26px] p-4 flex flex-col w-[340px] h-[450px] relative justify-between"
               >
                 <div className="flex flex-col">
                   <Link
@@ -151,7 +151,7 @@ const Shop = ({ products = [] }: ShopProps) => {
                   </div>
                 </div>
 
-                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-black/80">
+                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
                   <Link href={`/shop/${product.slug}`}>
                     Ver Producto
                   </Link>
