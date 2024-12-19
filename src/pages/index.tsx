@@ -147,15 +147,15 @@ export default function Home({ logos, products }: HomeProps) {
       <section className="py-8 px-4 flex flex-col gap-y-6">
         <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Explora Nuestros Productos</h1>
 
-        <section className="md:max-w-[1200px] m-auto">
-          <div className="flex gap-4">
+        <section className="md:max-w-[1500px] m-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {products.map((product: Product) => {
               const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
               return (
                 <div
                   key={product.id}
-                  className="border rounded-[26px] p-4 flex flex-col w-[340px] h-[480px] relative justify-between"
+                  className="border rounded-[26px] p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
                 >
 
                   <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
@@ -253,6 +253,12 @@ export default function Home({ logos, products }: HomeProps) {
         <CategoryCards alt="Accesorios de la mas alta calidad en San Pedro Sula Honduras" imagen="/images/marcas-de-alta-calidad.webp" />
         <CategoryCards alt="Lo mejor en Audio con precios excelentes en San Pedro Sula Honduras" imagen="/images/audio-de-alta-calidad.webp" />
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
+      </section>
+
+      <section className="w-full h-96 bg-gray-200">
+        <div>
+
+        </div>
       </section>
 
       <Footer />
