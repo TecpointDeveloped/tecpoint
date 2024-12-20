@@ -148,7 +148,7 @@ export default function Home({ logos, products }: HomeProps) {
         <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Explora Nuestros Productos</h1>
 
         <section className="md:max-w-[1500px] m-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {products.map((product: Product) => {
               const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
@@ -255,9 +255,61 @@ export default function Home({ logos, products }: HomeProps) {
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
       </section>
 
-      <section className="w-full h-96 bg-gray-200">
-        <div>
+      <section className="w-full h-fit py-12 flex p-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/audifonos__categoria.png"
+            className="aspect-square object-contain"
+          />
 
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/auriculares__categoria.png"
+            className="aspect-square object-contain"
+          />
+
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/cables__categoria.png"
+            className="aspect-square object-contain"
+          />
+
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/cargadores__categoria.png"
+            className="aspect-square object-contain"
+          />
+
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/cobertores_categoria.png"
+            className="aspect-square object-contain"
+          />
+
+          <Image
+            alt="audifonos__categoria"
+            quality={100}
+            width={140}
+            height={140}
+            src="/images/categorias/minis/parlantes_categoria.png"
+            className="aspect-square object-contain"
+          />
         </div>
       </section>
 

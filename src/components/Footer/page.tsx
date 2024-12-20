@@ -3,16 +3,16 @@ import Image from "next/image"
 function Footer() {
   return (
     <footer className='w-full'>
-      <section className='bg-black p-8 md:px-20 flex flex-col gap-6 sm:flex-col md:flex-row'>
+      <section className='bg-black p-8 md:px-8 px-20 flex flex-col gap-6 sm:flex-col md:flex-row md:justify-between lg:flex-row'>
         <div className='flex-1 flex flex-col gap-y-4'>
           <h4 className='text-white'>Suscribirse para recibir Ofertas y mas</h4>
           <div className='flex flex-col gap-3'>
-            <input className='w-[350px] bg-[#2c2c2c] py-2 px-4 rounded-[4px] text-[14px]' placeholder='Introduce tu correo electronico...' type="email" name="correo" id="correo" />
+            <input className='w-full md:w-[350px] bg-[#2c2c2c] py-2 px-4 rounded-[4px] text-[14px]' placeholder='Introduce tu correo electronico...' type="email" name="correo" id="correo" />
             <button type="submit" className='bg-white w-fit text-current py-2 px-6 text-[14px]'>Suscríbete</button>
           </div>
         </div>
 
-        <div className='flex-1 flex flex-col gap-y-4'>
+        <div className='flex-1 md:w-fit flex flex-col gap-y-4'>
           <h4 className='text-white'>Únete a la comunidad</h4>
           <div className='flex gap-x-8'>
             <Image
