@@ -10,6 +10,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
+import Zc1Max from "../../public/images/rockspace/plotter_rock_space_zc1_max.png"
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -255,62 +256,84 @@ export default function Home({ logos, products }: HomeProps) {
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
       </section>
 
-      <section className="w-full h-fit py-12 flex p-4">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
+      {/* <section className="flex flex-col md:flex-row">
+        <div className="">
           <Image
-            alt="audifonos__categoria"
+            height={800}
+            width={800}
             quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/audifonos__categoria.png"
-            className="aspect-square object-contain"
+            alt="zc1max.png"
+            src="/images/rockspace/zc1max.png"
+            className="aspect-square object-cover"
           />
 
-          <Image
-            alt="audifonos__categoria"
-            quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/auriculares__categoria.png"
-            className="aspect-square object-contain"
-          />
+          <span className="bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h6>Plotter ZC1 MAX</h6>
+          </span>
+        </div>
 
+        <div>
           <Image
-            alt="audifonos__categoria"
+            height={800}
+            width={800}
             quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/cables__categoria.png"
-            className="aspect-square object-contain"
-          />
-
-          <Image
-            alt="audifonos__categoria"
-            quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/cargadores__categoria.png"
-            className="aspect-square object-contain"
-          />
-
-          <Image
-            alt="audifonos__categoria"
-            quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/cobertores_categoria.png"
-            className="aspect-square object-contain"
-          />
-
-          <Image
-            alt="audifonos__categoria"
-            quality={100}
-            width={140}
-            height={140}
-            src="/images/categorias/minis/parlantes_categoria.png"
-            className="aspect-square object-contain"
+            alt="zc3.png"
+            src="/images/rockspace/zc3.png"
+            className="aspect-square object-cover"
           />
         </div>
+      </section> */}
+
+      <section className="flex flex-col md:flex-row">
+        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+          <Image
+            className="aspect-square object-cover"
+            width={800}
+            height={800}
+            src={"/images/rockspace/zc1max.png"}
+            alt="zc1max"
+          />
+          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Image
+              width={240}
+              height={285}
+              alt="logo rock space"
+              src="/logos/rock-space-white.png"
+              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            />
+
+            <p
+              className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            >
+              Plotter ZC1 MAX
+            </p>
+          </span>
+        </picture>
+
+        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+          <Image
+            className="aspect-square object-cover"
+            width={800}
+            height={800}
+            src={"/images/rockspace/zc3.png"}
+            alt="zc3"
+          />
+          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Image
+              width={240}
+              height={285}
+              alt="logo rock space"
+              src="/logos/rock-space-white.png"
+              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            />
+            
+            <p
+              className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            >
+              Plotter ZC1 MAX
+            </p>
+          </span>
+        </picture>
       </section>
 
       <Footer />
