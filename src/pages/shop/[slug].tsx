@@ -110,8 +110,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     ? imagenesArray.slice(2) // Mostrar imágenes faltantes
     : imagenesArray.slice(0, 3); // Mostrar primeras tres imágenes
 
-  console.log(Banners);
-
   const banner = Banners.find((banner) => banner.marca === product.marca_producto?.marca) || {
     color: "000000", // Color predeterminado en caso de no encontrar la marca
     ImageBanner: "/default-banner.png", // Banner predeterminado
@@ -154,7 +152,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       </Head>
 
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
-        <div className="flex flex-col gap-y-3 pt-2">
+        <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
           <Carousel className="border rounded-md">
             <CarouselContent className="size-[380px] md:size-[500px] aspect-square">
               {imagenesArray?.map((img, index) => (
@@ -175,7 +173,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <CarouselNext />
           </Carousel>
 
-          <div className="flex w-full gap-x-2 flex-1 overflow-hidden">
+          <div className="flex p-2 md:p-0 w-full gap-x-2 flex-1 overflow-y-scroll sm:overflow-hidden md:overflow-hidden">
             {imagesToShow.map((img, index) => (
               <Image
                 key={index}
@@ -213,7 +211,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </div>
         </div>
 
-        <div className="md:w-[40%] w-full">
+        <div className="md:w-[40%] w-full p-3">
           <div className="flex flex-col gap-y-5">
             <Image
               quality={96}
@@ -224,7 +222,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               priority
               className="h-[28px] w-fit"
             />
-            <h1 className="text-3xl font-semibold w-[650px] leading-8 2xl:text-4xl">
+            <h1 className="text-2xl font-semibold md:w-[650px] leading-8 2xl:text-4xl">
               {product.producto}
             </h1>
 
@@ -265,7 +263,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
           <button
             onClick={handleAddToCart}
-            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black rounded-[6px] ${isAddedToCart
+            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black rounded-[6px] w-full sm:w-fit md:w-fit
+              ${isAddedToCart
               ? "bg-transparent border-[1.4px] border-black text-black"
               : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
               }`}
@@ -293,9 +292,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       <section
         style={{ backgroundColor: `#${banner.color}` }}
-        className="overflow-hidden w-full h-36 grid place-content-center relative mt-12"
+        className="overflow-hidden px-8 w-full h-24 md:h-36 grid place-content-center relative mt-12"
       >
-        <h2 className="md:text-[28px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]">
+        <h2 className="md:text-[28px] text-[20px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]">
           {product.producto}
         </h2>
 
@@ -315,20 +314,20 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <h2 className="text-center md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-x-20 gap-y-8 max-w-[1200px] m-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4">
           {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-            <Accordion type="single" collapsible key={key} className="w-[300px]">
+            <Accordion type="single" collapsible key={key} className="w-[300px] sm:w-[260px] md:w-[300px]">
               <AccordionItem value={key}>
-                <AccordionTrigger className="font-bold md:text-[20px]">{key}</AccordionTrigger>
+                <AccordionTrigger className="font-bold text-[20px] sm:text-[20px] md:text-[20px]">{key}</AccordionTrigger>
                 <AccordionContent>
-                  <p className="md:text-[16px]">{value}</p>
+                  <p className=" text-[18px] sm:text-[15px] md:text-[16px]">{value}</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           ))}
         </div>
 
-        <section className="bg-[#ECECEC] flex flex-col gap-y-12 md:mt-10">
+        <section className="bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10">
           <div className="flex gap-x-2 p-3 justify-center">
             {/* Primera Sección */}
             {product.secciones?.seccion_01.imagenUrl ?
@@ -340,7 +339,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                   src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
                   alt=""
                 />
-                <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p
                     className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
                   >
@@ -360,7 +359,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                   src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
                   alt=""
                 />
-                <span className="md:size-[600px] bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p
                     className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
                   >
@@ -371,27 +370,27 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             }
           </div>
 
-          <section className="flex p-6 items-center justify-center">
+          <section className="flex flex-col gap-4 sm:flex-row md:flex-row p-3 items-center justify-center">
             {product.secciones?.ficha_descriptiva.ficha_image.trim() ?
-              <picture className="md:size-[600px] overflow-hidden">
+              <picture className="md:size-[600px] overflow-hidden rounded-3xl">
                 <Image
                   src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
                   width={800}
                   height={800}
                   alt="Ficha descriptiva"
                   className="hover:scale-110 transition-transform"
-                  quality={96}
+                  quality={100}
                   priority
                 />
               </picture> : null
             }
 
             {product.secciones?.ficha_descriptiva ?
-              <div className="md:w-[600px] pl-12 flex flex-col gap-y-4">
-                <h3 className="md:text-4xl font-black">
+              <div className="w-full md:w-[600px] md:pl-12 flex flex-col gap-y-4 md:gap-y-6 text-balance">
+                <h3 className="text-3xl md:text-[38px] font-black">
                   {product.secciones?.ficha_descriptiva.ficha_title}
                 </h3>
-                <p className="md:text-[18px] tracking-[-0.4px] text-[#949494] text-balance">
+                <p className="text-[17px] md:text-[20px] tracking-[-0.4px] text-[#3c3c3c]">
                   {product.secciones?.ficha_descriptiva.ficha_description}
                 </p>
               </div> : null

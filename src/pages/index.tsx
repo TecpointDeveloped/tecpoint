@@ -10,7 +10,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
-import Zc1Max from "../../public/images/rockspace/plotter_rock_space_zc1_max.png"
 
 export async function getStaticProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -206,8 +205,8 @@ export default function Home({ logos, products }: HomeProps) {
                     </div>
                   </div>
 
-                  <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
-                    <Link href={`/shop/${product.slug}`}>
+                  <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
+                    <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
                       Ver Producto
                     </Link>
                   </button>
@@ -228,7 +227,7 @@ export default function Home({ logos, products }: HomeProps) {
 
         <div className="flex items-end justify-center w-full h-[180px] bg-black">
           <Image
-            className="object-cover m-auto"
+            className="m-auto aspect-square object-cover object-top"
             height={250}
             width={250}
             style={{ transform: `translateY(${offsetY * 0.024}px)` }}
@@ -238,7 +237,7 @@ export default function Home({ logos, products }: HomeProps) {
             priority={true}
           />
           <Image
-            className="object-cover m-auto"
+            className="m-auto aspect-square object-cover object-top"
             height={280}
             width={280}
             style={{ transform: `translateY(${offsetY * 0.024}px)` }}
@@ -256,33 +255,18 @@ export default function Home({ logos, products }: HomeProps) {
         <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
       </section>
 
-      {/* <section className="flex flex-col md:flex-row">
-        <div className="">
+      <section className="flex flex-col md:flex-row">
+        <div className="relative w-full h-[300px] md:h-[500px]">
           <Image
-            height={800}
-            width={800}
+            layout="fill"
+            objectFit="cover"
             quality={100}
             alt="zc1max.png"
-            src="/images/rockspace/zc1max.png"
-            className="aspect-square object-cover"
-          />
-
-          <span className="bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h6>Plotter ZC1 MAX</h6>
-          </span>
-        </div>
-
-        <div>
-          <Image
-            height={800}
-            width={800}
-            quality={100}
-            alt="zc3.png"
-            src="/images/rockspace/zc3.png"
-            className="aspect-square object-cover"
+            src="/images/rockspace/Portada-RockSpace.webp"
+            className="object-center"
           />
         </div>
-      </section> */}
+      </section>
 
       <section className="flex flex-col md:flex-row">
         <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
@@ -303,7 +287,7 @@ export default function Home({ logos, products }: HomeProps) {
             />
 
             <p
-              className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+              className="text-center hover:underline md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             >
               Plotter ZC1 MAX
             </p>
@@ -326,9 +310,9 @@ export default function Home({ logos, products }: HomeProps) {
               src="/logos/rock-space-white.png"
               className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             />
-            
+
             <p
-              className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             >
               Plotter ZC1 MAX
             </p>
