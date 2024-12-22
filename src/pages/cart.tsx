@@ -104,27 +104,28 @@ const CartPage = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       <NavbarMenu />
-      <main>
+      <main className="p-4">
         <h1 className="text-2xl font-bold text-center my-6">Tu carrito</h1>
 
-        <div className="p-4">
+        <div className="py-4 px-6 bg-white w-fit rounded-xl">
           {cart.length > 0 ? (
-            <ul className="space-y-4">
+            <ul className="space-y-4 flex flex-col gap-y-2">
               {cart.map((item) => (
-                <li key={item.id} className="flex items-center gap-4 border-b pb-4">
+                <li key={item.id} className="flex items-center gap-4 border-b pb-2 w-[500px]">
                   <Image
                     src={item.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={item.producto || "Producto"}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-cover"
+                    width={120}
+                    height={120}
+                    quality={100}
+                    className="object-cover"
                   />
-                  <div className="flex-1">
-                    <h3 className="text-sm font-semibold">{item.producto}</h3>
+                  <div className="w-fit">
+                    <h3 className="text-md font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>
                     <p className="text-gray-600">Cantidad: {item.quantity}</p>
-                    <p className="text-gray-600">Precio: L {item.precio?.toFixed(2)}</p>
+                    <p className="text-gray-600">Lps. {item.precio?.toFixed(2)}</p>
                   </div>
                   <button
                     onClick={() => handleRemoveFromCart(item.id)}
