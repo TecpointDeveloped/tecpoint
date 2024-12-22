@@ -222,7 +222,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               priority
               className="h-[28px] w-fit"
             />
-            <h1 className="text-2xl font-semibold md:w-[650px] leading-8 2xl:text-4xl">
+            <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
               {product.producto}
             </h1>
 
@@ -265,8 +265,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             onClick={handleAddToCart}
             className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black rounded-[6px] w-full sm:w-fit md:w-fit
               ${isAddedToCart
-              ? "bg-transparent border-[1.4px] border-black text-black"
-              : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
+                ? "bg-transparent border-[1.4px] border-black text-black"
+                : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
               }`}
           >
             <svg
@@ -287,6 +287,23 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"} */}
             Agregar al carrito
           </button>
+
+          <div className="mt-3">
+            {Number(product.precio.detalle) > 1200 ?
+              (
+                <span className="flex items-center justify-center gap-2 w-fit">
+                  <Image className="aspect-square" height={24} width={24} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <p>Incluye entrega Gratis al comprar</p>
+                </span>
+              )
+              : (
+                <span className="flex items-center justify-center gap-1 w-fit">
+                  <Image className="aspect-square" height={24} width={24} src="/icons/info.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <p>Faltan Lps {1200 - Number(product.precio.detalle)} para entrega gratis</p>
+                </span>
+              )
+            }
+          </div>
         </div>
       </main>
 
@@ -327,51 +344,52 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           ))}
         </div>
 
-        <section className="bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10">
+        <section
+          className={`bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10 ${(!product.secciones?.seccion_01.imagenUrl || typeof product.secciones?.seccion_01.imagenUrl !== 'string' || !product.secciones?.seccion_01.imagenUrl.trim()) &&
+            (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
+            (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim()) ? 'hidden' : ''}`}
+        >
           <div className="flex gap-x-2 p-3 justify-center">
             {/* Primera Sección */}
-            {product.secciones?.seccion_01.imagenUrl ?
+            {product.secciones?.seccion_01.imagenUrl && typeof product.secciones?.seccion_01.imagenUrl === 'string' && product.secciones?.seccion_01.imagenUrl.trim() && product.secciones?.seccion_01.title?.trim() ? (
               <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
                   className="md:size-[600px] aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
-                  alt=""
+                  alt="Imagen de la primera sección"
                 />
                 <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p
-                    className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-                  >
+                  <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_01.title}
                   </p>
                 </span>
-              </picture> : null
-            }
+              </picture>
+            ) : null}
 
             {/* Segunda Sección */}
-            {product.secciones?.seccion_02.imagenUrl ?
+            {product.secciones?.seccion_02.imagenUrl && typeof product.secciones?.seccion_02.imagenUrl === 'string' && product.secciones?.seccion_02.imagenUrl.trim() && product.secciones?.seccion_02.title?.trim() ? (
               <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
                   className="md:size-[600px] aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
-                  alt=""
+                  alt="Imagen de la segunda sección"
                 />
                 <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p
-                    className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-                  >
+                  <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_02.title}
                   </p>
                 </span>
-              </picture> : null
-            }
+              </picture>
+            ) : null}
           </div>
 
           <section className="flex flex-col gap-4 sm:flex-row md:flex-row p-3 items-center justify-center">
-            {product.secciones?.ficha_descriptiva.ficha_image.trim() ?
+            {/* Ficha descriptiva */}
+            {product.secciones?.ficha_descriptiva?.ficha_image && typeof product.secciones?.ficha_descriptiva?.ficha_image === 'string' && product.secciones?.ficha_descriptiva?.ficha_image.trim() ? (
               <picture className="md:size-[600px] overflow-hidden rounded-3xl">
                 <Image
                   src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
@@ -382,19 +400,24 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                   quality={100}
                   priority
                 />
-              </picture> : null
-            }
+              </picture>
+            ) : null}
 
-            {product.secciones?.ficha_descriptiva ?
+            {product.secciones?.ficha_descriptiva ? (
               <div className="w-full md:w-[600px] md:pl-12 flex flex-col gap-y-4 md:gap-y-6 text-balance">
-                <h3 className="text-3xl md:text-[38px] font-black">
-                  {product.secciones?.ficha_descriptiva.ficha_title}
-                </h3>
-                <p className="text-[17px] md:text-[20px] tracking-[-0.4px] text-[#3c3c3c]">
-                  {product.secciones?.ficha_descriptiva.ficha_description}
-                </p>
-              </div> : null
-            }
+                {product.secciones?.ficha_descriptiva.ficha_title && typeof product.secciones?.ficha_descriptiva.ficha_title === 'string' && product.secciones?.ficha_descriptiva.ficha_title.trim() ? (
+                  <h3 className="text-3xl md:text-[38px] font-black">
+                    {product.secciones?.ficha_descriptiva.ficha_title}
+                  </h3>
+                ) : null}
+
+                {product.secciones?.ficha_descriptiva.ficha_description && typeof product.secciones?.ficha_descriptiva.ficha_description === 'string' && product.secciones?.ficha_descriptiva.ficha_description.trim() ? (
+                  <p className="text-[17px] md:text-[20px] tracking-[-0.4px] text-[#3c3c3c]">
+                    {product.secciones?.ficha_descriptiva.ficha_description}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
           </section>
         </section>
 

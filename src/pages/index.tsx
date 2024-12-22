@@ -86,8 +86,8 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
 
-      <div className="w-full h-[85dvh] sm:h-[75dvh] md:h-[75vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
-        <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
+      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
+        {/* <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
           <h3 className="text-center text-white opacity-55 2xl:text-[20px]">
             iPhone 16 series
           </h3>
@@ -117,7 +117,12 @@ export default function Home({ logos, products }: HomeProps) {
             sizes="(min-width: 1536px) 480px, (min-width: 768px) 390px, 340px"
             className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-[390px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
-        </div>
+        </div> */}
+        <video className="w-full h-full object-cover object-center" controls={false} muted loop autoPlay>
+          <source src="/video/HyperGearActiv8Smartwatch.mp4" type="video/mp4" />
+          Tu navegador no soporta el elemento de video.
+        </video>
+
       </div>
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
@@ -314,7 +319,7 @@ export default function Home({ logos, products }: HomeProps) {
             <p
               className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             >
-              Plotter ZC1 MAX
+              Plotter ZC1 MINI
             </p>
           </span>
         </picture>
