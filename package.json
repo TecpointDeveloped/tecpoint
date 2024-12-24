@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "@paypal/paypal-server-sdk": "^0.6.1",
+    "@paypal/react-paypal-js": "^8.7.0",
     "@pixelpay/sdk-core": "^2.3.1",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-dialog": "^1.1.2",
