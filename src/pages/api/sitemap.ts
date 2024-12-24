@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function generateSitemap() {
-  const baseUrl = "https://tecpoint.ws";  // Cambia a tu dominio
+  const baseUrl = "https://tecpoint.vercel.app";  // Cambia a tu dominio
   const productCollection = collection(db, 'Products');
 
   try {
@@ -15,7 +15,7 @@ async function generateSitemap() {
     sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
     snapshot.forEach((doc) => {
-      const productUrl = `${baseUrl}/producto/${doc.id}`;
+      const productUrl = `${baseUrl}/shop/${doc.data().slug}`;
       sitemap += `
         <url>
           <loc>${productUrl}</loc>
