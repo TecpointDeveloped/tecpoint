@@ -2,7 +2,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 interface PayPalButtonProps {
   total?: number;
-  onSuccess?: (details: any) => void;
+  onSuccess?: (details: Record<string, unknown>) => void;
 }
 
 const PayPalButton = ({ total, onSuccess }: PayPalButtonProps) => {
@@ -44,8 +44,13 @@ const PayPalButton = ({ total, onSuccess }: PayPalButtonProps) => {
             }
           } catch (error) {
             console.error("Error al aprobar el pago:", error);
+            
             if (onSuccess) {
-              onSuccess(error);
+              if (error instanceof Error) {
+                onSuccess({ message: error.message, stack: error.stack });
+              } else {
+                onSuccess({});
+              }
             }
           }
         }}

@@ -1,8 +1,6 @@
-// /pages/api/capture-order.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import paypal from "@paypal/checkout-server-sdk";
 
-// Configuración del entorno de PayPal (Sandbox o Producción)
 const environment = new paypal.core.SandboxEnvironment(
   process.env.PAYPAL_CLIENT_ID || "AWLXP5vCA1FjayLx8uiKQK_tqCIYX8JASMsGyc5Jw2NCuTxtWjJG89GJgfIsW2j6B-G7aIteNuF71Y-m",
   process.env.PAYPAL_CLIENT_SECRET || "EP7JoqAt8D-Bqk5BVz5IVuMCPUhUXaxEYED-h8lWFadQFSlgRehIUZsE9l69b18XPXumoIQxe-A39mwP"
@@ -23,16 +21,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const request = new paypal.orders.OrdersCaptureRequest(orderID);
-
   request.requestBody({});
 
   try {
     const response = await paypalClient.execute(request);
 
     return res.status(200).json({ details: response.result });
-  } catch (error: any) {
-    console.error("Error al capturar el pedido:", error);
-
-    return res.status(500).json({ error: "Error al capturar el pedido", details: error.message });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error al capturar el pedido:", error.message);
+      return res.status(500).json({ error: "Error al capturar el pedido", details: error.message });
+    } else {
+      console.error("Error inesperado:", error);
+      return res.status(500).json({ error: "Error inesperado al capturar el pedido" });
+    }
   }
 }
