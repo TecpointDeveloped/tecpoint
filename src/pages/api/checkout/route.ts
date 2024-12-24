@@ -30,9 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await paypalClient.execute(request);
 
     return res.status(200).json({ details: response.result });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error al capturar el pedido:", error);
-    
+
     return res.status(500).json({ error: "Error al capturar el pedido", details: error.message });
   }
 }
