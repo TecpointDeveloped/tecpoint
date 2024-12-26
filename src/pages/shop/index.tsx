@@ -81,7 +81,7 @@ const Shop = ({ products = [] }: ShopProps) => {
         <meta property="og:image" content="/favicon.ico" />
       </Head>
 
-      <div className="w-full mx-auto p-4 mt-12">
+      <main className="w-full mx-auto p-4 mt-12">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Bienvenido a la tienda Tecpoint
         </h1>
@@ -98,6 +98,8 @@ const Shop = ({ products = [] }: ShopProps) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
+        
+        
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {filteredProducts.map((product: Product) => {
@@ -160,7 +162,7 @@ const Shop = ({ products = [] }: ShopProps) => {
             );
           })}
         </div>
-      </div>
+      </main>
     </div>
   );
 };
