@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 function Footer() {
   return (
@@ -15,27 +16,45 @@ function Footer() {
         <div className='md:flex-1 md:w-fit flex flex-col gap-y-4'>
           <h4 className='text-white'>Únete a la comunidad</h4>
           <div className='flex gap-x-8'>
-            <Image
-              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
-              src="/images/social/facebook.svg"
-              alt="cuenta de facebook tecpoint"
-              height={24}
-              width={24}
-            />
-            <Image
-              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
-              src="/images/social/instagram.svg"
-              alt="cuenta de instagram tecpoint"
-              height={24}
-              width={24}
-            />
-            <Image
-              className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
-              src="/images/social/tiktok.svg"
-              alt="cuenta de tiktok tecpoint"
-              height={30}
-              width={30}
-            />
+            <Link href='https://www.facebook.com/Tecpoint.Distribucion/'>
+              <Image
+                className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+                src="/images/social/facebook.svg"
+                alt="cuenta de facebook tecpoint"
+                height={24}
+                width={24}
+              />
+            </Link>
+
+            <Link href='https://www.instagram.com/tecpoint_distribucion/'>
+              <Image
+                className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+                src="/images/social/instagram.svg"
+                alt="cuenta de instagram tecpoint"
+                height={24}
+                width={24}
+              />
+            </Link>
+
+            <Link href='https://www.tiktok.com/@tecpoint.ws'>
+              <Image
+                className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+                src="/images/social/tiktok.svg"
+                alt="cuenta de tiktok tecpoint"
+                height={30}
+                width={30}
+              />
+            </Link>
+
+            <Link href='https://www.tiktok.com/@tecpoint.ws'>
+              <Image
+                className='cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-colors'
+                src="/images/social/whatsapp.svg"
+                alt="cuenta de whatsapp tecpoint"
+                height={30}
+                width={30}
+              />
+            </Link>
           </div>
         </div>
       </section>

@@ -30,7 +30,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     if (product) {
@@ -39,131 +38,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       setIsAddedToCart(isProductInCart);
     }
   }, [product]);
-
-  useEffect(() => {
-    if (product) {
-      const productSchema = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: product.producto || "",
-        sku: product.sku || "",
-        image: primaryImage || "",
-        description: product.descripcion || "",
-        brand: {
-          "@type": "Brand",
-          name: product.marca_producto?.marca || "Marca no disponible",
-        },
-        offers: {
-          "@type": "Offer",
-          url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-          priceCurrency: "HNL",
-          price: product.precio?.detalle || 0,
-          availability:
-            product.extradata?.stock === true
-              ? "https://schema.org/InStock"
-              : "https://schema.org/OutOfStock",
-          itemCondition: "https://schema.org/NewCondition",
-        },
-      };
-
-      const head = document.querySelector("head");
-      if (head) {
-        const title = document.createElement("title");
-        title.textContent = product.producto || "Producto no Encontrado";
-        head.appendChild(title);
-
-        const metaDescription = document.createElement("meta");
-        metaDescription.name = "description";
-        metaDescription.content = product.descripcion || "";
-        head.appendChild(metaDescription);
-
-        const metaKeywords = document.createElement("meta");
-        metaKeywords.name = "keywords";
-        metaKeywords.content = product.descripcion || "";
-        head.appendChild(metaKeywords);
-
-        const script = document.createElement("script");
-        script.type = "application/ld+json";
-        script.innerHTML = JSON.stringify(productSchema);
-        head.appendChild(script);
-
-        const ogTitle = document.createElement("meta");
-        ogTitle.setAttribute("property", "og:title");
-        ogTitle.content = product.producto;
-        head.appendChild(ogTitle);
-
-        const ogDescription = document.createElement("meta");
-        ogDescription.setAttribute("property", "og:description");
-        ogDescription.content = product.descripcion || "";
-        head.appendChild(ogDescription);
-
-        const ogUrl = document.createElement("meta");
-        ogUrl.setAttribute("property", "og:url");
-        ogUrl.content = `https://tecpoint.vercel.app/shop/${product.slug}`;
-        head.appendChild(ogUrl);
-
-        const ogImage = document.createElement("meta");
-        ogImage.setAttribute("property", "og:image");
-        ogImage.content = primaryImage;
-        head.appendChild(ogImage);
-
-        const ogImageType = document.createElement("meta");
-        ogImageType.setAttribute("property", "og:image:type");
-        ogImageType.content = "image/png";
-        head.appendChild(ogImageType);
-
-        const ogImageWidth = document.createElement("meta");
-        ogImageWidth.setAttribute("property", "og:image:width");
-        ogImageWidth.content = "1200";
-        head.appendChild(ogImageWidth);
-
-        const ogImageHeight = document.createElement("meta");
-        ogImageHeight.setAttribute("property", "og:image:height");
-        ogImageHeight.content = "630";
-        head.appendChild(ogImageHeight);
-
-        const ogSiteName = document.createElement("meta");
-        ogSiteName.setAttribute("property", "og:site_name");
-        ogSiteName.content = "Tecpoint Distribucion - Honduras";
-        head.appendChild(ogSiteName);
-
-        const ogLocale = document.createElement("meta");
-        ogLocale.setAttribute("property", "og:locale");
-        ogLocale.content = "es_HN";
-        head.appendChild(ogLocale);
-
-        const twitterCard = document.createElement("meta");
-        twitterCard.name = "twitter:card";
-        twitterCard.content = "summary_large_image";
-        head.appendChild(twitterCard);
-
-        const twitterTitle = document.createElement("meta");
-        twitterTitle.name = "twitter:title";
-        twitterTitle.content = product.producto;
-        head.appendChild(twitterTitle);
-
-        const twitterDescription = document.createElement("meta");
-        twitterDescription.name = "twitter:description";
-        twitterDescription.content = product.descripcion || "";
-        head.appendChild(twitterDescription);
-
-        const twitterImage = document.createElement("meta");
-        twitterImage.name = "twitter:image";
-        twitterImage.content = primaryImage;
-        head.appendChild(twitterImage);
-
-        const twitterImageAlt = document.createElement("meta");
-        twitterImageAlt.name = "twitter:image:alt";
-        twitterImageAlt.content = product.producto || "Imagen del producto";
-        head.appendChild(twitterImageAlt);
-
-        const canonicalLink = document.createElement("link");
-        canonicalLink.rel = "canonical";
-        canonicalLink.href = `https://tecpoint.vercel.app/shop/${product.slug}`;
-        head.appendChild(canonicalLink);
-      }
-    }
-  }, [product, primaryImage]);
 
   const handleAddToCart = () => {
     if (product) {
@@ -204,6 +78,30 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.producto || "",
+    sku: product.sku || "",
+    image: primaryImage || "",
+    description: product.descripcion || "",
+    brand: {
+      "@type": "Brand",
+      name: product.marca_producto?.marca || "Marca no disponible",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+      priceCurrency: "HNL",
+      price: product.precio?.detalle || 0,
+      availability:
+        product.extradata?.stock === true
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
   const handleToggleImages = () => {
     setShowRemaining((prevState) => !prevState);
   };
@@ -220,6 +118,38 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   return (
     <div className="w-full">
       <NavbarMenu />
+
+      <Head>
+        <title>{product.producto || "Producto no Encontrado"}</title>
+        <meta name="keywords" content={product.descripcion || ""} />
+        <meta name="description" content={product.descripcion || ""} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={product.producto} />
+        <meta property="og:description" content={product.descripcion || ""} />
+        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+        <meta property="og:image" content={primaryImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.producto} />
+        <meta name="twitter:description" content={product.descripcion || ""} />
+        <meta name="twitter:image" content={primaryImage} />
+        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
+
+        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+      </Head>
 
       <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
@@ -244,6 +174,77 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </Carousel>
 
           <div className="flex p-2 md:p-0 w-full gap-x-2 flex-1 overflow-y-scroll sm:overflow-hidden md:overflow-hidden">
+            {imagesToShow.map((img, index) => (
+              <Image
+                key={index}
+                quality={100}
+                priority={true}
+                src={img.img || "/default-product.png"}
+                alt={product.producto || `Imagen ${index + 1}`}
+                className="size-[110px] md:size-[110px] aspect-square object-cover border cursor-pointer"
+                width={110}
+                height={110}
+              />
+            ))}
+
+            {/* Cuadro adicional para alternar entre las primeras y las restantes imágenes */}
+            {imagenesArray.length > 3 && !showRemaining && (
+              <div
+                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                onClick={handleToggleImages}
+              >
+                <span className="text-sm font-medium text-gray-600">
+                  +{imagenesArray.length - 3}
+                </span>
+              </div>
+            )}
+
+            {/* Botón para volver a las primeras imágenes */}
+            {showRemaining && (
+              <div
+                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                onClick={handleToggleImages}
+              >
+                <span className="text-sm font-medium text-gray-600">Ver menos</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="md:w-[40%] w-full p-3">
+          <div className="flex flex-col gap-y-5">
+            <Image
+              quality={96}
+              src={product.marca_producto?.logo || "/default-logo.png"}
+              alt={`Logo de marca ${product.marca_producto?.marca || "desconocida"}`}
+              height={300}
+              width={300}
+              priority
+              className="h-[28px] w-fit"
+            />
+            <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
+              {product.producto}
+            </h1>
+
+            <Separator />
+          </div>
+
+          <div className="flex flex-col gap-y-3 mt-3">
+            <span className="flex justify-center items-center gap-x-2 w-fit">
+              <p className="bg-black w-fit h-fit md:text-[12px] 2xl:text-[17px] px-3 py-1 text-white rounded-[4px]">
+                SKU
+              </p>
+              <p className="text-md font-bold 2xl:text-[20px]">{product.sku}</p>
+            </span>
+
+            <span className="flex flex-col">
+              <p className="text-[#696969]">Precio</p>
+              <p className="text-2xl font-bold leading-4">
+                {product.precio.detalle}.00
+              </p>
+            </span>
+          </div>
+
           <div className="flex items-center gap-x-2 mt-6">
             <button
               onClick={() => handleQuantityChange("decrease")}

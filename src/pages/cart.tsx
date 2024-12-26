@@ -42,7 +42,7 @@ const CartPage = () => {
       <NavbarMenu />
 
       <main className="p-4 flex flex-col lg:flex-row gap-4 md:justify-between lg:justify-evenly">
-        <div className="py-4 px-6 bg-white w-full lg:w-fit rounded-xl">
+        <div className="py-4 px-6 bg-white w-full lg:w-fit h-fit rounded-xl">
           {cart.length > 0 ? (
             <ul className="space-y-4 flex flex-col gap-y-2">
               {cart.map((item) => (
@@ -50,10 +50,10 @@ const CartPage = () => {
                   <Image
                     src={item.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={item.producto || "Producto"}
-                    width={120}
-                    height={120}
+                    width={90}
+                    height={90}
                     quality={100}
-                    className="object-cover"
+                    className="object-cover aspect-square"
                   />
                   <div className="w-fit">
                     <h3 className="text-md font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>

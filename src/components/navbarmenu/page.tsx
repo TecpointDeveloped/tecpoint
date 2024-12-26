@@ -222,7 +222,7 @@ function NavbarMenu() {
 
             <SheetContent
               side="right"
-              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent"
+              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent z-[999]"
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">
@@ -239,7 +239,8 @@ function NavbarMenu() {
                           alt={item.producto || "Producto"}
                           width={80}
                           height={80}
-                          className="w-20 h-20 object-cover"
+                          quality={90}
+                          className="object-cover aspect-square"
                         />
                         <div className="flex-1">
                           <h3 className="text-sm font-semibold">{item.producto}</h3>
