@@ -13,6 +13,7 @@ import { useState, useEffect, forwardRef } from "react";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { useAuth } from "@/context/useAuth";
 
 interface ImageData {
   img: string;
@@ -34,6 +35,8 @@ function NavbarMenu() {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const route = useRouter();
+
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -101,12 +104,13 @@ function NavbarMenu() {
         <div className="flex items-center justify-center gap-8">
           <Link href="/">
             <Image
+              quality={100}
               priority
               alt="Tecpoint Logo"
               src="/logo.png"
               width={160}
               height={60}
-              className="aspect-[160-60]"
+              className="aspect-[160-60] object-contain"
             />
           </Link>
         </div>
@@ -289,6 +293,23 @@ function NavbarMenu() {
               </SheetFooter>
             </SheetContent>
           </Sheet>
+
+          {currentUser ? (
+            <div className="size-[36px] rounded-full overflow-hidden grid place-content-center hover:bg-[#ffffff2a] transition-colors">
+              <Image
+                src={currentUser.photoURL || "/default-user.png"}
+                alt={currentUser.displayName || "Usuario tecpoint distribucion"}
+                quality={100}
+                priority={true}
+                width={26}
+                height={26}
+                className="cursor-pointer aspect-square rounded-full"
+              />
+            </div>
+          ) : (
+            <p className="text-sm">Iniciar sesión</p>
+          )}
+
         </div>
       </section>
     </nav>
