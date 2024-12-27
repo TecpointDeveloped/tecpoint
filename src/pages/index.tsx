@@ -91,7 +91,7 @@ export default function Home({ logos, products }: HomeProps) {
           <h3 className="text-center text-white opacity-55 2xl:text-[20px]">
             iPhone 16 series
           </h3>
-          <h2 className="text-white text-4xl font-semibold tracking-[-1.2px] text-center leading-[30px] 2xl:text-[50px]">
+          <h2 className="text-white text-4xl tracking-[-1.2px] text-center leading-[30px] 2xl:text-[50px]">
             Nuevos Cobertores Ghostek
           </h2>
         </div>

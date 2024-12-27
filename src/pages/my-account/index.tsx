@@ -59,17 +59,26 @@ function My_Acoount() {
         <div className="w-full h-full flex flex-col">
           <NavbarMenu />
 
-          <section className="p-4">
-            <Image
-              alt={currentUser.displayName || 'user'}
-              src={currentUser.photoURL || '/user.svg'}
-              height={80}
-              width={80}
-              className="rounded-2xl"
-            />
+          <section className="p-4 md:w-[1200px] mx-auto">
+            <article className="border rounded-3xl p-4 flex justify-between items-center gap-4">
+              <div className="flex gap-4 items-center">
+                <Image
+                  alt={currentUser.displayName || 'user'}
+                  src={currentUser.photoURL || '/user.svg'}
+                  height={70}
+                  width={70}
+                  className="rounded-full aspect-square object-contain"
+                />
 
-            <h1>{currentUser.displayName || ""}</h1>
-            <h2>{currentUser.email || ""}</h2>
+                <span className="flex flex-col">
+                  <h1 className="md:text-[22px] font-black tracking-[-0.8px]">{currentUser.displayName || ""}</h1>
+                  <h2>{currentUser.email || ""}</h2>
+                </span>
+
+              </div>
+
+              <button className=" bg-black text-white py-2 px-6 rounded-full size-fit">salir</button>
+            </article>
 
             <h2>creacion de la cuenta : {currentUser.metadata.creationTime}</h2>
             <h3>ultimo inicio de sesion : {currentUser.metadata.lastSignInTime}</h3>
