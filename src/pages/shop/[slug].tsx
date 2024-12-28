@@ -151,10 +151,11 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
       </Head>
 
-      <main className="flex flex-col sm:flex-col md:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
+      <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
-          <Carousel className="border rounded-md">
-            <CarouselContent className="size-[380px] md:size-[500px] aspect-square">
+
+          <Carousel className="border rounded-md flex-1 sm:size-[480px] md:size-[500px]">
+            <CarouselContent className="">
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
                   <Image
@@ -162,7 +163,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     priority={true}
                     src={img.img || "/default-product.png"}
                     alt={product.producto || `Imagen ${index + 1}`}
-                    className="size-[380px] md:size-[500px] aspect-square object-cover"
+                    className="flex-1 sm:size-[480px] md:size-[500px] aspect-square object-cover"
                     width={1100}
                     height={1100}
                   />
@@ -211,7 +212,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </div>
         </div>
 
-        <div className="md:w-[40%] w-full p-3">
+        <div className="lg:w-[40%] p-3">
           <div className="flex flex-col gap-y-5">
             <Image
               quality={96}
@@ -349,54 +350,54 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
             (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim()) ? 'hidden' : ''}`}
         >
-          <div className="flex gap-x-2 p-3 justify-center">
+          <div className="flex flex-col md:flex-row gap-2 p-3 justify-center m-auto">
             {/* Primera Sección */}
             {product.secciones?.seccion_01.imagenUrl && typeof product.secciones?.seccion_01.imagenUrl === 'string' && product.secciones?.seccion_01.imagenUrl.trim() && product.secciones?.seccion_01.title?.trim() ? (
-              <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+              <div className="flex sm:size-[500px] md:size-[700px] items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
-                  className="md:size-[600px] aspect-square object-cover"
+                  className="flex-1 sm:size-[500px] md:size-[700px] aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
                   alt="Imagen de la primera sección"
                 />
-                <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="flex-1 sm:size-[500px] md:size-[700px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_01.title}
                   </p>
                 </span>
-              </picture>
+              </div>
             ) : null}
 
             {/* Segunda Sección */}
             {product.secciones?.seccion_02.imagenUrl && typeof product.secciones?.seccion_02.imagenUrl === 'string' && product.secciones?.seccion_02.imagenUrl.trim() && product.secciones?.seccion_02.title?.trim() ? (
-              <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+              <div className="flex sm:size-[500px] md:size-[700px] items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
-                  className="md:size-[600px] aspect-square object-cover"
+                  className="flex-1 sm:size-[500px] md:size-[700px] aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
                   alt="Imagen de la segunda sección"
                 />
-                <span className="md:size-[600px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="flex-1 sm:size-[500px] md:size-[700px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_02.title}
                   </p>
                 </span>
-              </picture>
+              </div>
             ) : null}
           </div>
 
           <section className="flex flex-col gap-4 sm:flex-row md:flex-row p-3 items-center justify-center">
             {/* Ficha descriptiva */}
             {product.secciones?.ficha_descriptiva?.ficha_image && typeof product.secciones?.ficha_descriptiva?.ficha_image === 'string' && product.secciones?.ficha_descriptiva?.ficha_image.trim() ? (
-              <picture className="md:size-[600px] overflow-hidden rounded-3xl">
+              <picture className="md:size-[700px] overflow-hidden">
                 <Image
                   src={product.secciones?.ficha_descriptiva.ficha_image.trim() || "/default-product.png"}
                   width={800}
                   height={800}
                   alt="Ficha descriptiva"
-                  className="hover:scale-110 transition-transform"
+                  className="hover:scale-110 transition-transform aspect-square object-cover"
                   quality={100}
                   priority
                 />
@@ -404,7 +405,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             ) : null}
 
             {product.secciones?.ficha_descriptiva ? (
-              <div className="w-full md:w-[600px] md:pl-12 flex flex-col gap-y-4 md:gap-y-6 text-balance">
+              <div className="w-full md:w-[700px] md:pl-12 flex flex-col gap-y-4 md:gap-y-6 text-balance">
                 {product.secciones?.ficha_descriptiva.ficha_title && typeof product.secciones?.ficha_descriptiva.ficha_title === 'string' && product.secciones?.ficha_descriptiva.ficha_title.trim() ? (
                   <h3 className="text-3xl md:text-[38px] font-black">
                     {product.secciones?.ficha_descriptiva.ficha_title}
@@ -412,7 +413,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 ) : null}
 
                 {product.secciones?.ficha_descriptiva.ficha_description && typeof product.secciones?.ficha_descriptiva.ficha_description === 'string' && product.secciones?.ficha_descriptiva.ficha_description.trim() ? (
-                  <p className="text-[17px] md:text-[20px] tracking-[-0.4px] text-[#3c3c3c]">
+                  <p className="text-[17px] lg:w-[580px] md:text-[20px] tracking-[-0.9px] leading-7 text-[#3c3c3c]">
                     {product.secciones?.ficha_descriptiva.ficha_description}
                   </p>
                 ) : null}
@@ -446,13 +447,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths: paths as { params: { slug: string } }[],
-      fallback: "blocking",
+      fallback: true,
     };
   } catch (error) {
     console.error("Error fetching paths:", error);
     return {
       paths: [],
-      fallback: "blocking",
+      fallback: true,
     };
   }
 };

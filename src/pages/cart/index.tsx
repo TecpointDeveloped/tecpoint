@@ -1,7 +1,7 @@
 import NavbarMenu from "@/components/navbarmenu/page";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-// import PayPalButton from "@/components/PayPalButton/page";
+import PayPalButton from "@/components/PayPalButton/page";
 
 import Settings from "@pixelpay/sdk-core/lib/models/Settings";
 import Card from "@pixelpay/sdk-core/lib/models/Card";
@@ -149,10 +149,10 @@ const CartPage = () => {
         </div>
 
         <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
-          {/* <PayPalButton
-            total={getTotal()}
-            onSuccess={(details) => console.log("Pago exitoso", details)}
-          /> */}
+            <PayPalButton
+              total={getTotal()}
+              onSuccess={(details) => console.log("Pago exitoso", details)}
+            />
 
           <button
             onClick={handlePayment}
