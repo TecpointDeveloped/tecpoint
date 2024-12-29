@@ -24,7 +24,9 @@ export default function Document() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:description" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta name="twitter:image" content="favicon.png" />
+        {/* <meta name="twitter:image" content="/favicon.png" /> */}
+        <meta property="twitter:image" content="/favicon.png" />
+
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
       <body className="antialiased">

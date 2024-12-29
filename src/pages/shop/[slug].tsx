@@ -58,8 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
-  if (!slug || typeof slug !== "string") {
-    console.error("Invalid slug:", slug);
+  if (!slug) {
     return {
       notFound: true,
     };
@@ -77,7 +76,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       const doc = querySnapshot.docs[0];
       const data = doc.data();
 
-      // Serializa los datos
       const serializedData = {
         ...data,
         id: doc.id,
@@ -87,12 +85,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       return {
         props: {
           product: serializedData,
-          Banners, // Asegúrate de cargar esto correctamente si es necesario
+          Banners
         },
-        revalidate: 30, // Revalida cada 30 segundos
+        revalidate: 30,
       };
     } else {
-      console.warn(`No product found with slug: ${slug}`);
       return { notFound: true };
     }
   } catch (error) {
