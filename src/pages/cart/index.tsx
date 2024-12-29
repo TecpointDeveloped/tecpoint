@@ -3,14 +3,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PayPalButton from "@/components/PayPalButton/page";
 
-import Settings from "@pixelpay/sdk-core/lib/models/Settings";
-import Card from "@pixelpay/sdk-core/lib/models/Card";
-import Billing from "@pixelpay/sdk-core/lib/models/Billing";
-import Item from "@pixelpay/sdk-core/lib/models/Item";
-import Order from "@pixelpay/sdk-core/lib/models/Order";
-import SaleTransaction from "@pixelpay/sdk-core/lib/requests/SaleTransaction";
-import Transaction from "@pixelpay/sdk-core/lib/services/Transaction";
-import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
+// import Settings from "@pixelpay/sdk-core/lib/models/Settings";
+// import Card from "@pixelpay/sdk-core/lib/models/Card";
+// import Billing from "@pixelpay/sdk-core/lib/models/Billing";
+// import Item from "@pixelpay/sdk-core/lib/models/Item";
+// import Order from "@pixelpay/sdk-core/lib/models/Order";
+// import SaleTransaction from "@pixelpay/sdk-core/lib/requests/SaleTransaction";
+// import Transaction from "@pixelpay/sdk-core/lib/services/Transaction";
+// import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
 
 interface CartItem {
   id: string;
