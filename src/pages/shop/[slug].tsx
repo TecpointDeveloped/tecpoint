@@ -26,6 +26,81 @@ interface CartItem {
   producto?: string;
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const querySnapshot = await getDocs(
+      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
+    );
+
+    const paths = querySnapshot.docs
+      .map((doc) => {
+        const data = doc.data();
+        if (data.slug) {
+          return { params: { slug: data.slug } };
+        }
+        return null;
+      })
+      .filter(Boolean);
+
+    return {
+      paths: paths as { params: { slug: string } }[],
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error("Error fetching paths:", error);
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = params?.slug as string;
+
+  if (!slug || typeof slug !== "string") {
+    console.error("Invalid slug:", slug);
+    return {
+      notFound: true,
+    };
+  }
+
+  try {
+    const productsRef = collection(
+      db,
+      process.env.NEXT_PUBLIC_DATABASE_NAME as string
+    );
+    const q = query(productsRef, where("slug", "==", slug));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      const data = doc.data();
+
+      // Serializa los datos
+      const serializedData = {
+        ...data,
+        id: doc.id,
+        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+      };
+
+      return {
+        props: {
+          product: serializedData,
+          Banners, // Asegúrate de cargar esto correctamente si es necesario
+        },
+        revalidate: 30, // Revalida cada 30 segundos
+      };
+    } else {
+      console.warn(`No product found with slug: ${slug}`);
+      return { notFound: true };
+    }
+  } catch (error) {
+    console.error("Error fetching product by slug:", error);
+    return { notFound: true };
+  }
+};
+
 const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -121,8 +196,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       <Head>
         <title>{product.producto || "Producto no Encontrado"}</title>
-        <meta name="keywords" content={product.descripcion || ""} />
-        <meta name="description" content={product.descripcion || ""} />
+        <meta name="keywords" content={product.descripcion || "keywords no generad"} />
+        <meta name="description" content={product.descripcion || "descripcion no generada"} />
 
         <script
           type="application/ld+json"
@@ -427,78 +502,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       <Footer />
     </div>
   );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const querySnapshot = await getDocs(
-      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
-    );
-
-    const paths = querySnapshot.docs
-      .map((doc) => {
-        const data = doc.data();
-        if (data.slug) {
-          return { params: { slug: data.slug } };
-        }
-        return null;
-      })
-      .filter(Boolean);
-
-    return {
-      paths: paths as { params: { slug: string } }[],
-      fallback: true,
-    };
-  } catch (error) {
-    console.error("Error fetching paths:", error);
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params?.slug as string;
-
-  if (!slug) {
-    return {
-      notFound: true,
-    };
-  }
-
-  try {
-    const productsRef = collection(
-      db,
-      process.env.NEXT_PUBLIC_DATABASE_NAME as string
-    );
-    const q = query(productsRef, where("slug", "==", slug));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      const data = doc.data();
-
-      const serializedData = {
-        ...data,
-        id: doc.id,
-        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-      };
-
-      return {
-        props: {
-          product: serializedData,
-          Banners
-        },
-        revalidate: 30,
-      };
-    } else {
-      return { notFound: true };
-    }
-  } catch (error) {
-    console.error("Error fetching product by slug:", error);
-    return { notFound: true };
-  }
 };
 
 export default ProductDetail;
