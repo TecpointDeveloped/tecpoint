@@ -1,5 +1,3 @@
-"use client"
-
 import React, { createContext, useEffect, useState, ReactNode } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword, User } from 'firebase/auth';
 import { auth, db } from '../database/Config';

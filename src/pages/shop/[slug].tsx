@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+// import { RecommendedProducts } from "../../components/RecomendProducts/page"
 
 interface ProductDetailProps {
   product: Product | null;
@@ -55,6 +56,53 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
+//   const slug = params?.slug as string;
+
+//   if (!slug) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   try {
+//     const productsRef = collection(
+//       db,
+//       process.env.NEXT_PUBLIC_DATABASE_NAME as string
+//     );
+//     const q = query(productsRef, where("slug", "==", slug));
+//     const querySnapshot = await getDocs(q);
+
+//     if (!querySnapshot.empty) {
+//       const doc = querySnapshot.docs[0];
+//       const data = doc.data();
+
+//       const serializedData = {
+//         ...data,
+//         id: doc.id,
+//         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+//       };
+
+//       const productBanner = Banners.find(
+//         (banner) => banner.marca === data.marca_producto?.marca
+//       );
+
+//       return {
+//         props: {
+//           product: serializedData,
+//           Banners: productBanner ? [productBanner] : [],
+//         },
+//         revalidate: 30,
+//       };
+//     } else {
+//       return { notFound: true };
+//     }
+//   } catch (error) {
+//     console.error("Error fetching product by slug:", error);
+//     return { notFound: true };
+//   }
+// };
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
@@ -64,40 +112,35 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  try {
-    const productsRef = collection(
-      db,
-      process.env.NEXT_PUBLIC_DATABASE_NAME as string
+  const productsRef = collection(
+    db,
+    process.env.NEXT_PUBLIC_DATABASE_NAME as string
+  );
+  const q = query(productsRef, where("slug", "==", slug));
+  const querySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    const doc = querySnapshot.docs[0];
+    const data = doc.data();
+
+    const serializedData = {
+      ...data,
+      id: doc.id,
+      fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+    };
+
+    const productBanner = Banners.find(
+      (banner) => banner.marca === data.marca_producto?.marca
     );
-    const q = query(productsRef, where("slug", "==", slug));
-    const querySnapshot = await getDocs(q);
 
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      const data = doc.data();
-
-      const serializedData = {
-        ...data,
-        id: doc.id,
-        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-      };
-
-      const productBanner = Banners.find(
-        (banner) => banner.marca === data.marca_producto?.marca
-      );
-
-      return {
-        props: {
-          product: serializedData,
-          Banners: productBanner ? [productBanner] : [],
-        },
-        revalidate: 30,
-      };
-    } else {
-      return { notFound: true };
-    }
-  } catch (error) {
-    console.error("Error fetching product by slug:", error);
+    return {
+      props: {
+        product: serializedData,
+        Banners: productBanner ? [productBanner] : [],
+      },
+      revalidate: 30,
+    };
+  } else {
     return { notFound: true };
   }
 };
@@ -192,9 +235,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   };
 
   return (
-    <div className="w-full">
-      <NavbarMenu />
-
+    <>
       <Head>
         <title>{product.producto || "Producto no Encontrado"}</title>
         <meta name="keywords" content={product.descripcion || "keywords no generad"} />
@@ -226,6 +267,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
         <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
       </Head>
+
+      <NavbarMenu />
 
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
@@ -325,45 +368,60 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <div className="flex items-center gap-x-2 mt-6">
             <button
               onClick={() => handleQuantityChange("decrease")}
-              className="px-4 py-1 border"
+              className="size-10 border rounded-[10px] text-lg hover:bg-[#ebebeb]"
             >
               -
             </button>
             <span className="text-lg font-semibold w-[30px] text-center">{quantity}</span>
             <button
               onClick={() => handleQuantityChange("increase")}
-              className="px-4 py-1 border"
+              className="size-10 border rounded-[10px] text-lg hover:bg-[#ebebeb]"
             >
               +
             </button>
           </div>
 
-          <button
-            onClick={handleAddToCart}
-            className={`flex gap-x-3 mt-6 px-16 items-center justify-center py-3 text-black rounded-[6px] w-full sm:w-fit md:w-fit
+          <div className="w-full flex flex-col mt-6 md:w-[470px]">
+            <button
+              onClick={handleAddToCart}
+              className={`flex gap-x-3 px-16 items-center justify-center py-3 text-black rounded-[6px] w-full
               ${isAddedToCart
-                ? "bg-transparent border-[1.4px] border-black text-black"
-                : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
-              }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
+                  ? "bg-transparent border-[1.4px] border-black text-black"
+                  : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
+                }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                />
+              </svg>
 
-            {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"} */}
-            Agregar al carrito
-          </button>
+              {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"} */}
+              Agregar al carrito
+            </button>
+
+            <button
+              onClick={handleAddToCart}
+              className={`flex gap-x-3 mt-1 px-16 items-center justify-center py-3 rounded-[6px] w-full 
+                bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors
+                `}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+              </svg>
+
+              pagar ahora
+            </button>
+          </div>
 
           <div className="mt-3">
             {Number(product.precio.detalle) > 1200 ?
@@ -426,19 +484,19 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
             (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim()) ? 'hidden' : ''}`}
         >
-          <div className="flex flex-col md:flex-row gap-2 p-3 justify-center m-auto">
+          <div className="flex flex-col sm:flex-row gap-2 p-3 justify-center m-auto w-full max-w-[1600px]">
             {/* Primera Sección */}
             {product.secciones?.seccion_01.imagenUrl && typeof product.secciones?.seccion_01.imagenUrl === 'string' && product.secciones?.seccion_01.imagenUrl.trim() && product.secciones?.seccion_01.title?.trim() ? (
-              <div className="flex sm:size-[500px] md:size-[700px] items-center justify-center relative cursor-pointer overflow-hidden group">
+              <div className="flex size-full sm:size-1/2 md:w-1/2 lg:h-1/2 items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
-                  className="flex-1 sm:size-[500px] md:size-[700px] aspect-square object-cover"
+                  className="flex-1 size-full aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
                   alt="Imagen de la primera sección"
                 />
-                <span className="flex-1 sm:size-[500px] md:size-[700px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                <span className="flex-1 inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-center md:font-black text-3xl w-[300px] md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_01.title}
                   </p>
                 </span>
@@ -447,16 +505,16 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
             {/* Segunda Sección */}
             {product.secciones?.seccion_02.imagenUrl && typeof product.secciones?.seccion_02.imagenUrl === 'string' && product.secciones?.seccion_02.imagenUrl.trim() && product.secciones?.seccion_02.title?.trim() ? (
-              <div className="flex sm:size-[500px] md:size-[700px] items-center justify-center relative cursor-pointer overflow-hidden group">
+              <div className="flex size-full sm:size-1/2 md:w-1/2 lg:h-1/2 items-center justify-center relative cursor-pointer overflow-hidden group">
                 <Image
-                  className="flex-1 sm:size-[500px] md:size-[700px] aspect-square object-cover"
+                  className="flex-1 w-full aspect-square object-cover"
                   width={800}
                   height={800}
                   src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
                   alt="Imagen de la segunda sección"
                 />
-                <span className="flex-1 sm:size-[500px] md:size-[700px] inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-center md:font-black md:text-3xl md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                <span className="flex-1 inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-center md:font-black text-3xl w-[300px] md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                     {product.secciones?.seccion_02.title}
                   </p>
                 </span>
@@ -500,8 +558,10 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       </article>
 
+      {/* <RecommendedProducts currentProduct={product} /> */}
+
       <Footer />
-    </div>
+    </>
   );
 };
 
