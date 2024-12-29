@@ -82,10 +82,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       };
 
+      const productBanner = Banners.find(
+        (banner) => banner.marca === data.marca_producto?.marca
+      );
+
       return {
         props: {
           product: serializedData,
-          Banners
+          Banners: productBanner ? [productBanner] : [],
         },
         revalidate: 30,
       };
@@ -288,7 +292,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <div className="flex flex-col gap-y-5">
             <Image
               quality={96}
-              src={product.marca_producto?.logo || "/default-logo.png"}
+              src={banner.ImageBanner || "/default-logo.png"}
               alt={`Logo de marca ${product.marca_producto?.marca || "desconocida"}`}
               height={300}
               width={300}

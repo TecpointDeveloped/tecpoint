@@ -2,6 +2,7 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import PayPalButton from "@/components/PayPalButton/page";
+import Head from "next/head";
 
 // import Settings from "@pixelpay/sdk-core/lib/models/Settings";
 // import Card from "@pixelpay/sdk-core/lib/models/Card";
@@ -113,6 +114,27 @@ const CartPage = () => {
 
   return (
     <div className="bg-gray-100 w-full h-screen">
+      <Head>
+        <title>Carrito de compras | Tecpoint</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <meta name="keywords" content="Carrito de compras, Tecpoint, Distribuidor de accesorios tecnológicos" />
+        <meta name="description" content="Carrito de compras de Tecpoint, distribuidor de accesorios tecnológicos en Honduras." />
+        <meta property="og:url" content="https://tecpoint.ws/cart" />
+        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
+        <meta property="og:title" content="Carrito de compras | Tecpoint" />
+        <meta property="og:description" content="Carrito de compras de Tecpoint, distribuidor de accesorios tecnológicos en Honduras." />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Carrito de compras | Tecpoint" />
+        <meta name="twitter:description" content="Carrito de compras de Tecpoint, distribuidor de accesorios tecnológicos en Honduras." />
+        <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
+        <meta name="twitter:image:alt" content="Carrito de compras | Tecpoint" />
+      </Head>
       <NavbarMenu />
 
       <main className="p-4 flex flex-col lg:flex-row gap-4 md:justify-between lg:justify-evenly">

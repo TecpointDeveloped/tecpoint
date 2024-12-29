@@ -1,12 +1,12 @@
 import { AuthProvider } from "@/context/AuthContext";
-import Head from "next/head";
+// import Head from "next/head";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <Head>
+      {/* <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:description" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
         <meta name="twitter:image" content="favicon.png" />
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-      </Head>
+      </Head> */}
       <Component {...pageProps} />
     </AuthProvider>
   );

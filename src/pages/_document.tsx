@@ -3,7 +3,8 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head>
+      <Head />
+      {/* <Head>
         <meta name="google-site-verification" content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
@@ -27,8 +28,8 @@ export default function Document() {
         <meta property="twitter:image" content="/favicon.png" />
 
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-      </Head>
-      <body className="antialiased">
+      </Head> */}
+      <body>
         <Main />
         <NextScript />
       </body>
