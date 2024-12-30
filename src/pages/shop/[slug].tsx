@@ -45,13 +45,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths: paths as { params: { slug: string } }[],
-      fallback: "blocking",
+      fallback: true,
     };
   } catch (error) {
     console.error("Error fetching paths:", error);
     return {
       paths: [],
-      fallback: "blocking",
+      fallback: true,
     };
   }
 };
