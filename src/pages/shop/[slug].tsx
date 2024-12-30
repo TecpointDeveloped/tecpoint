@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-// import { RecommendedProducts } from "../../components/RecomendProducts/page"
+import { RecommendedProducts } from "../../components/RecomendProducts/page"
 
 interface ProductDetailProps {
   product: Product | null;
@@ -56,53 +56,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const slug = params?.slug as string;
-
-//   if (!slug) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   try {
-//     const productsRef = collection(
-//       db,
-//       process.env.NEXT_PUBLIC_DATABASE_NAME as string
-//     );
-//     const q = query(productsRef, where("slug", "==", slug));
-//     const querySnapshot = await getDocs(q);
-
-//     if (!querySnapshot.empty) {
-//       const doc = querySnapshot.docs[0];
-//       const data = doc.data();
-
-//       const serializedData = {
-//         ...data,
-//         id: doc.id,
-//         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-//       };
-
-//       const productBanner = Banners.find(
-//         (banner) => banner.marca === data.marca_producto?.marca
-//       );
-
-//       return {
-//         props: {
-//           product: serializedData,
-//           Banners: productBanner ? [productBanner] : [],
-//         },
-//         revalidate: 30,
-//       };
-//     } else {
-//       return { notFound: true };
-//     }
-//   } catch (error) {
-//     console.error("Error fetching product by slug:", error);
-//     return { notFound: true };
-//   }
-// };
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
@@ -112,35 +65,40 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const productsRef = collection(
-    db,
-    process.env.NEXT_PUBLIC_DATABASE_NAME as string
-  );
-  const q = query(productsRef, where("slug", "==", slug));
-  const querySnapshot = await getDocs(q);
-
-  if (!querySnapshot.empty) {
-    const doc = querySnapshot.docs[0];
-    const data = doc.data();
-
-    const serializedData = {
-      ...data,
-      id: doc.id,
-      fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-    };
-
-    const productBanner = Banners.find(
-      (banner) => banner.marca === data.marca_producto?.marca
+  try {
+    const productsRef = collection(
+      db,
+      process.env.NEXT_PUBLIC_DATABASE_NAME as string
     );
+    const q = query(productsRef, where("slug", "==", slug));
+    const querySnapshot = await getDocs(q);
 
-    return {
-      props: {
-        product: serializedData,
-        Banners: productBanner ? [productBanner] : [],
-      },
-      revalidate: 30,
-    };
-  } else {
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      const data = doc.data();
+
+      const serializedData = {
+        ...data,
+        id: doc.id,
+        fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+      };
+
+      const productBanner = Banners.find(
+        (banner) => banner.marca === data.marca_producto?.marca
+      );
+
+      return {
+        props: {
+          product: serializedData,
+          Banners: productBanner ? [productBanner] : [],
+        },
+        revalidate: 30,
+      };
+    } else {
+      return { notFound: true };
+    }
+  } catch (error) {
+    console.error("Error fetching product by slug:", error);
     return { notFound: true };
   }
 };
@@ -558,7 +516,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       </article>
 
-      {/* <RecommendedProducts currentProduct={product} /> */}
+      <RecommendedProducts currentProduct={product} />
 
       <Footer />
     </>
