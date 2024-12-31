@@ -11,7 +11,7 @@ import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
     const productsCollection = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME);
     const productDocs = await getDocs(productsCollection);
@@ -35,7 +35,6 @@ export async function getStaticProps() {
       logos: LogosImages as Logo[],
       products,
     },
-    revalidate: 30,
   };
 }
 
