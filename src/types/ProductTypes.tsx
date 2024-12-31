@@ -40,8 +40,10 @@ export interface Product {
     stock?: boolean;
     discount?: number;
     upc?: string;
+    color?: string;
     modelId?: string;
     especificaciones?: Record<string, string>;
+    tags?: string[];
   },
   objectID?: string;
 }

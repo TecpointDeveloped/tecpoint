@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { RecommendedProducts } from "../../components/RecomendProducts/page"
+// import { RecommendedProducts } from "../../components/RecomendProducts/page";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -66,10 +66,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   try {
-    const productsRef = collection(
-      db,
-      process.env.NEXT_PUBLIC_DATABASE_NAME as string
-    );
+    const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const q = query(productsRef, where("slug", "==", slug));
     const querySnapshot = await getDocs(q);
 
@@ -83,9 +80,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       };
 
-      const productBanner = Banners.find(
-        (banner) => banner.marca === data.marca_producto?.marca
-      );
+      const productBanner = Banners.find((banner) => banner.marca === data.marca_producto?.marca);
 
       return {
         props: {
@@ -149,10 +144,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     return <p className="text-center">Producto no encontrado</p>;
   }
 
-  const imagenesArray = Object.entries(product.imagenes || {})
-    .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-    .map(([, value]) => value);
-
+  const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
   const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
   const productSchema = {
@@ -183,13 +175,11 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     setShowRemaining((prevState) => !prevState);
   };
 
-  const imagesToShow = showRemaining
-    ? imagenesArray.slice(2) // Mostrar imágenes faltantes
-    : imagenesArray.slice(0, 3); // Mostrar primeras tres imágenes
+  const imagesToShow = showRemaining ? imagenesArray.slice(2) : imagenesArray.slice(0, 3);
 
   const banner = Banners.find((banner) => banner.marca === product.marca_producto?.marca) || {
-    color: "000000", // Color predeterminado en caso de no encontrar la marca
-    ImageBanner: "/default-banner.png", // Banner predeterminado
+    color: "000000",
+    ImageBanner: "/default-banner.png",
   };
 
   return (
@@ -516,8 +506,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       </article>
 
-      <RecommendedProducts currentProduct={product} />
-
+      {/* <RecommendedProducts currentProduct={product} /> */}
       <Footer />
     </>
   );

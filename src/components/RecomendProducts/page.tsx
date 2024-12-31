@@ -48,7 +48,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
             onClick={() => handleProductClick(product.slug)}
           >
             <Image
-              src={product.imagenes?.[0]?.img || "/default-product.png"}
+              src={product.imagenes[0].img}
               alt={product.producto}
               width={300}
               height={300}
