@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { serialize } from "v8";
 // import { RecommendedProducts } from "../../components/RecomendProducts/page";
 
 interface ProductDetailProps {
@@ -81,10 +82,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
 
       const productBanner = Banners.find((banner) => banner.marca === data.marca_producto?.marca);
+      console.info("Producto serializado :", serializedData);
 
       return {
         props: {
-          product: serializedData,
+          product: data as Product,
           Banners: productBanner ? [productBanner] : [],
         },
         revalidate: 30,
