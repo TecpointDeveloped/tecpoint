@@ -31,7 +31,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
     if (currentProduct.categorias) {
       fetchRecommendedProducts();
     }
-  }, [currentProduct]);
+  }, [currentProduct, recommendedProducts]);
 
   const handleProductClick = (slug: string) => {
     router.push(`/shop/${slug}`);
