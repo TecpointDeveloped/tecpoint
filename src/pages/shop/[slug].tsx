@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           product: serializedData,
           Banners: productBanner ? [productBanner] : [],
         },
-        revalidate: 30,
+        // revalidate: 30,
       };
     } else {
       return { notFound: true };
