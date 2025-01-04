@@ -152,7 +152,7 @@ export default function Home({ logos, products }: HomeProps) {
 
         <section className="md:max-w-[1500px] m-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {products.map((product: Product) => {
+            {products.slice(0, 8).map((product: Product) => {
               const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
               return (
@@ -233,7 +233,7 @@ export default function Home({ logos, products }: HomeProps) {
             className="m-auto aspect-square object-cover object-top"
             height={250}
             width={250}
-            style={{ transform: `translateY(${offsetY * 0.024}px)` }}
+            // style={{ transform: `translateY(${offsetY * 0.024}px)` }}
             src="/images/iphone_16_pro_max.webp"
             alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
             quality={100}
@@ -243,7 +243,7 @@ export default function Home({ logos, products }: HomeProps) {
             className="m-auto aspect-square object-cover object-top"
             height={280}
             width={280}
-            style={{ transform: `translateY(${offsetY * 0.024}px)` }}
+            // style={{ transform: `translateY(${offsetY * 0.024}px)` }}
             src="/images/samsung_s24_ultra.webp"
             alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
             quality={100}
@@ -322,6 +322,82 @@ export default function Home({ logos, products }: HomeProps) {
           </span>
         </picture>
       </section>
+
+      <div className="py-8 px-4 flex flex-col gap-y-6">
+        <h3 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Productos Recomendados</h3>
+
+        <section className="md:max-w-[1500px] m-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {products
+              .sort((a, b) => Number(b.precio.detalle) - Number(a.precio.detalle))
+              .slice(0, 4)
+              .map((product: Product) => {
+                const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
+
+                return (
+                  <div
+                    key={product.id}
+                    className="border rounded-[26px] p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                  >
+
+                    <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
+                      <p className="text-[12px] font-semibold text-white">Nuevo</p>
+                    </span>
+
+                    <div className="flex flex-col">
+                      <Link
+                        href={`/shop/${product.slug}`}
+                        className="hover:scale-105 transition-transform"
+                        rel="noopener noreferrer"
+                        download={false}
+                      >
+                        <Image
+                          src={imagen_01}
+                          alt={
+                            product.producto
+                              ? `Imagen de ${product.producto}`
+                              : "Imagen del producto"
+                          }
+                          width={240}
+                          height={240}
+                          className="m-auto size-[240px] aspect-square object-cover mb-4"
+                          quality={100}
+                          priority
+                        />
+                      </Link>
+
+                      <div>
+                        <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
+                          {product.producto.slice(0, 55)}
+                        </h2>
+                        <p className="text-lg font-bold mt-2 text-[#666666]">
+                          Lps: {product.precio.detalle}.00
+                        </p>
+
+                        <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                          {(product.categorias || []).map((cat: string, index: number) => (
+                            <span
+                              key={index}
+                              className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
+                            >
+                              {cat}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
+                      <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
+                        Ver Producto
+                      </Link>
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
+        </section>
+      </div>
 
       <Footer />
     </div>
