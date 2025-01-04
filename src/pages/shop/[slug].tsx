@@ -15,8 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 interface ProductDetailProps {
   product: Product | null;
-  Banners: BannerInterface[],
-  title: string;
+  Banners: BannerInterface[]
 }
 
 interface CartItem {
@@ -82,13 +81,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
 
       const productBanner = Banners.find((banner) => banner.marca === data.marca_producto?.marca);
-      console.info("Producto serializado :", serializedData);
 
       return {
         props: {
           product: serializedData,
           Banners: productBanner ? [productBanner] : [],
-          title: data.producto || "Producto no Encontrado",
         },
         revalidate: 30,
       };
@@ -101,7 +98,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 };
 
-const ProductDetail = ({ product, Banners, title }: ProductDetailProps) => {
+const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
@@ -188,7 +185,7 @@ const ProductDetail = ({ product, Banners, title }: ProductDetailProps) => {
   return (
     <>
       <Head>
-        <title>{title || "Producto no Encontrado"}</title>
+        <title>{product.producto || "Producto no Encontrado"}</title>
         <meta name="keywords" content={product.descripcion || "keywords no generad"} />
         <meta name="description" content={product.descripcion || "descripcion no generada"} />
 
@@ -199,7 +196,7 @@ const ProductDetail = ({ product, Banners, title }: ProductDetailProps) => {
 
         {/* Open Graph Meta Tags */}
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={title || "Tienda Tecpoint Distribucion"} />
+        <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
         <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
         <meta property="og:image" content={primaryImage} />
