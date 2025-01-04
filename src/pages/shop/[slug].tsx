@@ -1,8 +1,9 @@
-import Head from "next/head";
+// import Head from "next/head";
 import Image from "next/image";
 import Banners from "@/data/banners.json";
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
+import { NextSeo } from 'next-seo';
 import { GetStaticPaths, GetStaticProps } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
@@ -147,29 +148,29 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
   const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.producto || "",
-    sku: product.sku || "",
-    image: primaryImage || "",
-    description: product.descripcion || "",
-    brand: {
-      "@type": "Brand",
-      name: product.marca_producto?.marca || "Marca no disponible",
-    },
-    offers: {
-      "@type": "Offer",
-      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-      priceCurrency: "HNL",
-      price: product.precio?.detalle || 0,
-      availability:
-        product.extradata?.stock === true
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
-      itemCondition: "https://schema.org/NewCondition",
-    },
-  };
+  // const productSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "Product",
+  //   name: product.producto || "",
+  //   sku: product.sku || "",
+  //   image: primaryImage || "",
+  //   description: product.descripcion || "",
+  //   brand: {
+  //     "@type": "Brand",
+  //     name: product.marca_producto?.marca || "Marca no disponible",
+  //   },
+  //   offers: {
+  //     "@type": "Offer",
+  //     url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+  //     priceCurrency: "HNL",
+  //     price: product.precio?.detalle || 0,
+  //     availability:
+  //       product.extradata?.stock === true
+  //         ? "https://schema.org/InStock"
+  //         : "https://schema.org/OutOfStock",
+  //     itemCondition: "https://schema.org/NewCondition",
+  //   },
+  // };
 
   const handleToggleImages = () => {
     setShowRemaining((prevState) => !prevState);
@@ -184,37 +185,34 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   return (
     <>
-      <Head>
-        <title>{product.producto || "Producto no Encontrado"}</title>
-        <meta name="keywords" content={product.descripcion || "keywords no generad"} />
-        <meta name="description" content={product.descripcion || "descripcion no generada"} />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={product.producto} />
-        <meta property="og:description" content={product.descripcion || ""} />
-        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
-        <meta property="og:image" content={primaryImage} />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
-        <meta property="og:locale" content="es_HN" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.producto} />
-        <meta name="twitter:description" content={product.descripcion || ""} />
-        <meta name="twitter:image" content={primaryImage} />
-        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
-
-        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
-      </Head>
+      <NextSeo
+        title={product.producto || "Producto no Encontrado"}
+        description={product.descripcion || "descripcion no generada"}
+        canonical={`https://tecpoint.vercel.app/shop/${product.slug}`}
+        openGraph={{
+          type: 'product',
+          title: product.producto,
+          description: product.descripcion || "",
+          url: `https://tecpoint.vercel.app/shop/${product.slug}`,
+          images: [
+            {
+              url: primaryImage,
+              width: 1200,
+              height: 630,
+              alt: product.producto || "Imagen del producto",
+              type: 'image/png',
+            },
+          ],
+          site_name: 'Tecpoint Distribucion - Honduras',
+          locale: 'es_HN',
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+        defaultTitle="Distribuidores de Accesorios Tecnológicos | Tecpoint"
+      />
 
       <NavbarMenu />
 
@@ -353,7 +351,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 />
               </svg>
 
-              {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carrito"} */}
+              {/* {isAddedToCart ? "Producto en el carrito" : "Agregar al carri</svg>to"} */}
               Agregar al carrito
             </button>
 
