@@ -44,19 +44,19 @@ interface HomeProps {
 }
 
 export default function Home({ logos, products }: HomeProps) {
-  const [offsetY, setOffsetY] = useState(0);
+  // const [offsetY, setOffsetY] = useState(0);
 
-  const handleScroll = () => {
-    setOffsetY(window.scrollY);
-  };
+  // const handleScroll = () => {
+  //   setOffsetY(window.scrollY);
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div className="">
