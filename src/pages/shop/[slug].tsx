@@ -145,29 +145,29 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
   const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.producto || "",
-    sku: product.sku || "",
-    image: primaryImage || "",
-    description: product.descripcion || "",
-    brand: {
-      "@type": "Brand",
-      name: product.marca_producto?.marca || "Marca no disponible",
-    },
-    offers: {
-      "@type": "Offer",
-      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-      priceCurrency: "HNL",
-      price: product.precio?.detalle || 0,
-      availability:
-        product.extradata?.stock === true
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
-      itemCondition: "https://schema.org/NewCondition",
-    },
-  };
+  // const productSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "Product",
+  //   name: product.producto || "",
+  //   sku: product.sku || "",
+  //   image: primaryImage || "",
+  //   description: product.descripcion || "",
+  //   brand: {
+  //     "@type": "Brand",
+  //     name: product.marca_producto?.marca || "Marca no disponible",
+  //   },
+  //   offers: {
+  //     "@type": "Offer",
+  //     url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+  //     priceCurrency: "HNL",
+  //     price: product.precio?.detalle || 0,
+  //     availability:
+  //       product.extradata?.stock === true
+  //         ? "https://schema.org/InStock"
+  //         : "https://schema.org/OutOfStock",
+  //     itemCondition: "https://schema.org/NewCondition",
+  //   },
+  // };
 
   const handleToggleImages = () => {
     setShowRemaining((prevState) => !prevState);

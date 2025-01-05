@@ -4,9 +4,9 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
-  let title = pageProps.title ? pageProps.title : "Pagina de Producto";
-  let description = pageProps.description ? pageProps.description : "Default description";
-  let slug = pageProps.slug ? pageProps.slug : "default-slug";
+  const title = pageProps.title ? pageProps.title : "Pagina de Producto";
+  const description = pageProps.description ? pageProps.description : "Default description";
+  const slug = pageProps.slug ? pageProps.slug : "default-slug";
 
   return (
     <AuthProvider>
