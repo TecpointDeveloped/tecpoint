@@ -59,12 +59,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
-  if (!slug) {
-    return {
-      notFound: true,
-    };
-  }
-
   try {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const q = query(productsRef, where("slug", "==", slug));

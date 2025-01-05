@@ -1,13 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://tecpoint.vercel.app/shop/hypergear-smartwatch-ftiness-tracker-silver</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/shop/audifonos-hypergear-stealth2-anc-inalambricos-bone</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/shop/audifonos-hypergear-stealth2-anc-inalambricos-black</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/shop/naztech-aura-360-anc-wireless-headphones-moondust</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/shop/</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/my-account</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/cart</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/blog</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-<url><loc>https://tecpoint.vercel.app/categories</loc><lastmod>2024-11-06T20:25:24.205Z</lastmod></url>
-</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/hypergear-smartwatch-ftiness-tracker-silver</loc>
+          <lastmod>2025-01-05T01:19:02.693Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/audifonos-hypergear-stealth2-anc-inalambricos-bone</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/transmisor-fm-hypergear-intellicast-road-con-cargador-de-carro</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/cobertor-base-para-iphone-15-pro-max-de-silicone-series-con-magsafe-azul</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/audifonos-hypergear-stealth2-anc-inalambricos-black</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/altavoz-inalambrico-usg-impermeable-play3-con-luces</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/cargador-powerpeak-de-doble-puerto-para-auto-de-48w</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/cobertor-ghostek-exec-6-con-magsafe-para-15-pro-max-gray</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/original-samsung-45w-usb-c-fast-charger-only-charger-black</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/memoria-usb-de-metal-con-capacidad-de-32g-c10</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/naztech-aura-360-anc-wireless-headphones-moondust</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/hypergear-audio-essentials-duo</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/adaptador-apple-original-para-macbook-de-96w-usb-c</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/kx-30-krieg-adaptador-hdmi-m-a-hdmi-h-270-negro</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://tecpoint.vercel.app/shop/almohadilla-de-carga-inalmbrica-adaptable-de-carga-rpida-powerpeak-para-15w-compatible-con-qi</loc>
+          <lastmod>2025-01-05T01:19:02.694Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.8</priority>
+        </url>
+      </urlset>
