@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import Banners from "@/data/banners.json";
 import Footer from "@/components/Footer/page";
@@ -16,6 +15,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 interface ProductDetailProps {
   product: Product | null;
   Banners: BannerInterface[]
+  title: string;
+  description: string;
 }
 
 interface CartItem {
@@ -80,6 +81,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: serializedData,
           Banners: productBanner ? [productBanner] : [],
+          title: data.producto,
+          description: data.descripcion,
+          slug: data.slug,
         },
         revalidate: 30,
       };
@@ -178,38 +182,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   return (
     <>
-      <Head>
-        <title>{product.producto || "Producto no Encontrado"}</title>
-        <meta name="keywords" content={product.descripcion || "keywords no generad"} />
-        <meta name="description" content={product.descripcion || "descripcion no generada"} />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={product.producto} />
-        <meta property="og:description" content={product.descripcion || ""} />
-        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
-        <meta property="og:image" content={primaryImage} />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
-        <meta property="og:locale" content="es_HN" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.producto} />
-        <meta name="twitter:description" content={product.descripcion || ""} />
-        <meta name="twitter:image" content={primaryImage} />
-        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
-
-        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
-      </Head>
-
       <NavbarMenu />
 
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
