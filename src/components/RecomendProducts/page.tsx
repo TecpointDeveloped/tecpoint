@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/ProductTypes";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -9,7 +8,6 @@ import Link from "next/link";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchRecommendedProducts = async () => {
