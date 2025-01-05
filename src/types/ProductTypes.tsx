@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface Product {
   id: string;
   categorias: string[];
+  Subcategoria: string;
   descripcion: string;
   fecha_agregado: string | null;
   imagenes: { [key: string]: { id: string; img: string } };
