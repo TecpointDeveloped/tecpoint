@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import Banners from "@/data/banners.json";
 import Footer from "@/components/Footer/page";
@@ -143,31 +144,31 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   }
 
   const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
-  // const primaryImage = imagenesArray[0]?.img || "/default-product.png";
+  const primaryImage = imagenesArray[0]?.img || "https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338";
 
-  // const productSchema = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Product",
-  //   name: product.producto || "",
-  //   sku: product.sku || "",
-  //   image: primaryImage || "",
-  //   description: product.descripcion || "",
-  //   brand: {
-  //     "@type": "Brand",
-  //     name: product.marca_producto?.marca || "Marca no disponible",
-  //   },
-  //   offers: {
-  //     "@type": "Offer",
-  //     url: `https://tecpoint.ws/shop/${product.slug}` || "#",
-  //     priceCurrency: "HNL",
-  //     price: product.precio?.detalle || 0,
-  //     availability:
-  //       product.extradata?.stock === true
-  //         ? "https://schema.org/InStock"
-  //         : "https://schema.org/OutOfStock",
-  //     itemCondition: "https://schema.org/NewCondition",
-  //   },
-  // };
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.producto || "",
+    sku: product.sku || "",
+    image: primaryImage || "",
+    description: product.descripcion || "",
+    brand: {
+      "@type": "Brand",
+      name: product.marca_producto?.marca || "Marca no disponible",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://tecpoint.ws/shop/${product.slug}` || "#",
+      priceCurrency: "HNL",
+      price: product.precio?.detalle || 0,
+      availability:
+        product.extradata?.stock === true
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
 
   const handleToggleImages = () => {
     setShowRemaining((prevState) => !prevState);
@@ -182,6 +183,36 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   return (
     <>
+      <Head>
+        <title>{product.producto || "Producto no Encontrado"}</title>
+        <meta name="keywords" content={product.descripcion || "keywords no generad"} />
+        <meta name="description" content={product.descripcion || "descripcion no generada"} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={product.producto} />
+        <meta property="og:description" content={product.descripcion || ""} />
+        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+        <meta property="og:image" content={primaryImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.producto} />
+        <meta name="twitter:description" content={product.descripcion || ""} />
+        <meta name="twitter:image" content={primaryImage} />
+        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
+
+        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+      </Head>
+
       <NavbarMenu />
 
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
