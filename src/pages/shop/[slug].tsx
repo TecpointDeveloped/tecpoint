@@ -143,7 +143,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   }
 
   const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
-  const primaryImage = imagenesArray[0]?.img || "/default-product.png";
+  // const primaryImage = imagenesArray[0]?.img || "/default-product.png";
 
   // const productSchema = {
   //   "@context": "https://schema.org",
