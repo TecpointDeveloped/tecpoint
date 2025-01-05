@@ -6,7 +6,6 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
 import Link from "next/link";
-import { Car } from "lucide-react";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
@@ -35,10 +34,6 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
       fetchRecommendedProducts();
     }
   }, [currentProduct]);
-
-  const handleProductClick = (slug: string) => {
-    router.push(`/shop/${slug}`);
-  };
 
   return (
     <section className="mt-12 mb-12">
