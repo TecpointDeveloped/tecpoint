@@ -3,7 +3,6 @@ import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
 import LogosImages from "@/data/logos.json";
 import CategoryCards from "@/components/CategoryCards/page";
-// import { useEffect, useState } from "react";
 import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
@@ -57,7 +56,6 @@ export default function Home({ logos, products }: HomeProps) {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, []);
-
   return (
     <div className="">
 

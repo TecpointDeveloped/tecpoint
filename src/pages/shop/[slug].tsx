@@ -3,7 +3,7 @@ import Image from "next/image";
 import Banners from "@/data/banners.json";
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Product, BannerInterface } from "../../types/ProductTypes";
@@ -27,36 +27,36 @@ interface CartItem {
   producto?: string;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const querySnapshot = await getDocs(
-      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
-    );
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   try {
+//     const querySnapshot = await getDocs(
+//       collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
+//     );
 
-    const paths = querySnapshot.docs
-      .map((doc) => {
-        const data = doc.data();
-        if (data.slug) {
-          return { params: { slug: data.slug } };
-        }
-        return null;
-      })
-      .filter(Boolean);
+//     const paths = querySnapshot.docs
+//       .map((doc) => {
+//         const data = doc.data();
+//         if (data.slug) {
+//           return { params: { slug: data.slug } };
+//         }
+//         return null;
+//       })
+//       .filter(Boolean);
 
-    return {
-      paths: paths as { params: { slug: string } }[],
-      fallback: true,
-    };
-  } catch (error) {
-    console.error("Error fetching paths:", error);
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
-};
+//     return {
+//       paths: paths as { params: { slug: string } }[],
+//       fallback: true,
+//     };
+//   } catch (error) {
+//     console.error("Error fetching paths:", error);
+//     return {
+//       paths: [],
+//       fallback: true,
+//     };
+//   }
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
 
   try {
@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           product: serializedData,
           Banners: productBanner ? [productBanner] : [],
         },
-        revalidate: 30,
+        // revalidate: 30,
       };
     } else {
       return { notFound: true };
@@ -280,7 +280,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               height={300}
               width={300}
               priority
-              className="h-[28px] w-fit"
+              className="h-[28px] w-fit aspect-auto object-contain"
             />
             <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
               {product.producto}

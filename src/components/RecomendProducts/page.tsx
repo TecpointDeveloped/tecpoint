@@ -100,31 +100,9 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
             </CarouselItem>
           ))}
         </CarouselContent>
-
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-
-
-      {/* <div className="flex flex-wrap gap-4 justify-center">
-        {recommendedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="border rounded-md p-4 cursor-pointer w-[300px]"
-            onClick={() => handleProductClick(product.slug)}
-          >
-            <Image
-              src={product.imagenes && product.imagenes[0] ? product.imagenes[0].img : "/default-product.png"}
-              alt={product.producto}
-              width={300}
-              height={300}
-              className="object-cover w-full h-48"
-            />
-            <h3 className="text-lg font-semibold mt-2">{product.producto}</h3>
-            <p className="text-gray-600">{product.precio.detalle}.00 HNL</p>
-          </div>
-        ))}
-      </div> */}
     </section>
   );
 };
