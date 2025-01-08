@@ -9,6 +9,15 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
+import Autoplay from "embla-carousel-autoplay"
+import { useRef } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -56,6 +65,10 @@ export default function Home({ logos, products }: HomeProps) {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, []);
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false })
+  )
+
   return (
     <div className="">
 
@@ -115,6 +128,7 @@ export default function Home({ logos, products }: HomeProps) {
             className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-[390px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
         </div>
+
         {/* <video className="w-full h-full object-cover object-center" controls={false} muted loop autoPlay>
           <source src="/video/HyperGearActiv8Smartwatch.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
@@ -396,6 +410,26 @@ export default function Home({ logos, products }: HomeProps) {
           </div>
         </section>
       </div>
+
+      <Carousel
+        className="w-full h-fit"
+        // onMouseEnter={() => plugin.current.stop()}
+        // onMouseLeave={() => plugin.current.reset()}
+        plugins={[plugin.current]}
+        opts={{
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          <CarouselItem className="w-[1200px] h-[600px]">
+            <img src="/images/banner_act8.png" alt="Active 8 hypergear" />
+          </CarouselItem>
+
+          <CarouselItem className="w-[1200px] h-[600px]">
+            <img src="/images/banner_anc2.png" alt="Active 8 hypergear" />
+          </CarouselItem>
+        </CarouselContent>
+      </Carousel>
 
       <Footer />
     </div>
