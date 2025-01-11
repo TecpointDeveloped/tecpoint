@@ -68,8 +68,7 @@ export default function Home({ logos, products }: HomeProps) {
   )
 
   return (
-    <div className="">
-
+    <>
       <NavbarMenu />
 
       <Head>
@@ -430,6 +429,6 @@ export default function Home({ logos, products }: HomeProps) {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }
