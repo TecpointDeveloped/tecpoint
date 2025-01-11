@@ -12,6 +12,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RecommendedProducts } from "../../components/RecomendProducts/page";
+import { useRouter } from "next/router";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -96,6 +97,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
+  const [added, setAdded] = useState(false);
+  const route = useRouter();
 
   useEffect(() => {
     if (product) {
@@ -108,6 +111,30 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const handleAddToCart = () => {
     if (product) {
       const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+
+      const existingItem = cart.find((item) => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity,
+          sku: product.sku,
+          precio: parseFloat(product.precio.detalle?.toString() || "0"),
+          imagenes: product.imagenes || {},
+          producto: product.producto || "Producto no Encontrado"
+        });
+      }
+
+      localStorage.setItem("cart_tecpoint", JSON.stringify(cart));
+      setIsAddedToCart(true);
+    }
+  };
+
+  const handlePayNow = () => {
+    if (product) {
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+      route.push("/cart");
 
       if (!cart.some((item) => item.id === product.id)) {
         cart.push({
@@ -129,9 +156,18 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   };
 
   const handleQuantityChange = (operation: "increase" | "decrease") => {
-    setQuantity((prev) =>
-      operation === "increase" ? prev + 1 : prev > 1 ? prev - 1 : 1
-    );
+    setQuantity((prev) => {
+      if (operation === "increase") {
+        if ((Number(product?.precio.detalle ?? 0) > 1000) && prev >= 10) {
+          setAdded(true);
+          return prev;
+        }
+        return prev + 1;
+      } else {
+        setAdded(false);
+        return prev > 1 ? prev - 1 : 1;
+      }
+    });
   };
 
   if (!product) {
@@ -218,6 +254,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
                   <Image
+                    rel="noopener noreferrer"
                     quality={100}
                     priority={true}
                     src={img.img || "/default-product.png"}
@@ -315,7 +352,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <span className="text-lg font-semibold w-[30px] text-center">{quantity}</span>
             <button
               onClick={() => handleQuantityChange("increase")}
-              className="size-10 border rounded-[10px] text-lg hover:bg-[#ebebeb]"
+              className={`size-10 border rounded-[10px] text-lg ${added ? "bg-gray-200 cursor-not-allowed border-none" : "hover:bg-[#ebebeb]"}`}
+              disabled={added}
             >
               +
             </button>
@@ -324,22 +362,17 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <div className="w-full flex flex-col mt-6 md:w-[470px]">
             <button
               onClick={handleAddToCart}
-              className={`flex gap-x-3 px-16 items-center justify-center py-3 text-black rounded-[6px] w-full
-              ${isAddedToCart
-                  ? "bg-transparent border-[1.4px] border-black text-black"
-                  : "bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors"
-                }`}
+              className={`flex gap-x-3 px-16 items-center justify-center py-3 rounded-[6px] w-full bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
               </svg>
 
-              {/* {isAddedToCart ? "Agregar otra vez" : "Agregar al carrito"} */}
-              Agregar al carrito
+              {isAddedToCart ? "Agregar otra vez" : "Agregar al carrito"}
             </button>
 
             <button
-              onClick={handleAddToCart}
+              onClick={handlePayNow}
               className={`flex gap-x-3 mt-1 px-16 items-center justify-center py-3 rounded-[6px] w-full 
                 bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors
                 `}

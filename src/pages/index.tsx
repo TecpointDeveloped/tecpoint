@@ -60,7 +60,7 @@ export default function Home({ logos, products }: HomeProps) {
   //   window.addEventListener("scroll", handleScroll);
 
   //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
+  //     window.removeEventListener("scroll", handleScro l);
   //   };
   // }, []);
   const plugin = useRef(
@@ -94,7 +94,7 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
 
-      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
+      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12 -z-10">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
           <h3 className="text-center text-white opacity-55 2xl:text-[20px]">
             iPhone 16 series
