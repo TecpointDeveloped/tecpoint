@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RecommendedProducts } from "../../components/RecomendProducts/page";
 import { useRouter } from "next/router";
-import { useRef } from "react";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -315,10 +314,10 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               quality={96}
               src={banner.ImageBanner || "/default-logo.png"}
               alt={`Logo de marca ${product.marca_producto?.marca || "desconocida"}`}
-              height={300}
-              width={300}
+              height={28}
+              width={150}
               priority
-              className="h-[28px] w-fit aspect-auto object-contain"
+              className="h-[28px] w-[150px] aspect-[28/150] object-contain"
             />
             <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
               {product.producto}

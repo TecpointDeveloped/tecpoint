@@ -240,11 +240,11 @@ export default function Home({ logos, products }: HomeProps) {
       >
         <CarouselContent>
           <CarouselItem className="w-[1200px]">
-            <img className="cursor-pointer" src="/images/banner_act8.png" alt="Active 8 hypergear" />
+            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_act8.png" alt="Active 8 hypergear" />
           </CarouselItem>
 
           <CarouselItem className="w-[1200px]">
-            <img className="cursor-pointer" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
+            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
           </CarouselItem>
         </CarouselContent>
       </Carousel>
