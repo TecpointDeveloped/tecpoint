@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PayPalButton from "@/components/PayPalButton/page";
 import Head from "next/head";
+import { Separator } from "@/components/ui/separator";
 
 // import Settings from "@pixelpay/sdk-core/lib/models/Settings";
 // import Card from "@pixelpay/sdk-core/lib/models/Card";
@@ -113,7 +114,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full h-screen">
+    <div className="">
       <Head>
         <title>Carrito de compras | Tecpoint</title>
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -138,30 +139,33 @@ const CartPage = () => {
       <NavbarMenu />
 
       <main className="p-4 flex flex-col lg:flex-row gap-4 md:justify-between lg:justify-evenly">
-        <div className="py-4 px-6 bg-white w-full lg:w-fit h-fit rounded-xl">
+        <div className="py-4 px-6 bg-white w-full lg:w-fit h-fit">
           {cart.length > 0 ? (
-            <ul className="space-y-4 flex flex-col gap-y-2">
+            <ul className="space-y-4 flex flex-col gap-y-3">
               {cart.map((item) => (
-                <li key={item.id} className="flex items-center gap-4 border-b pb-2 w-[500px]">
+                <li key={item.id} className="flex items-center gap-4 w-[480px] relative">
                   <Image
+                    priority
                     src={item.imagenes?.imagen_01?.img || "/default-product.png"}
                     alt={item.producto || "Producto"}
-                    width={90}
-                    height={90}
+                    width={100}
+                    height={100}
                     quality={100}
-                    className="object-cover aspect-square"
+                    className="object-cover aspect-square bg-gray-100 p-2"
                   />
-                  <div className="w-fit">
-                    <h3 className="text-md font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>
-                    <p className="text-gray-600">Cantidad: {item.quantity}</p>
-                    <p className="text-gray-600">Lps. {item.precio?.toFixed(2)}</p>
+                  <div className="w-[340px] flex flex-col gap-2">
+                    <h3 className="text-[17px] font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>
+                    <span className="flex items-center gap-4">
+                      <p className="text-gray-500">Cantidad: <span className="font-bold">{item.quantity}</span></p>
+                      <p className="text-gray-500">HNL. <span className="font-bold">{item.precio?.toFixed(2)}</span></p>
+                    </span>
                   </div>
-                  <button
-                    onClick={() => handleRemoveFromCart(item.id)}
-                    className="text-red-500 hover:underline"
-                  >
-                    Eliminar
+                  <button onClick={() => handleRemoveFromCart(item.id)} className="text-red-500 hover:underline absolute right-0 top-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
                   </button>
+                  <Separator className="absolute -bottom-2" />
                 </li>
               ))}
             </ul>
@@ -171,10 +175,10 @@ const CartPage = () => {
         </div>
 
         <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
-            <PayPalButton
-              total={getTotal()}
-              onSuccess={(details) => console.log("Pago exitoso", details)}
-            />
+          <PayPalButton
+            total={getTotal()}
+            onSuccess={(details) => console.log("Pago exitoso", details)}
+          />
 
           <button
             onClick={handlePayment}
