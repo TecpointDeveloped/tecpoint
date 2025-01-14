@@ -51,7 +51,7 @@ const CartPage = () => {
   const handlePayment = async () => {
     const orderData = {
       settings: {
-        endpoint: "https://pixel-pay.com.com",
+        endpoint: "https://pixel-pay.com",
         credentials: {
           username: "FHI372717363",
           password: "b36aa20b0010f042b5bf788a4793b902",

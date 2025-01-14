@@ -110,7 +110,7 @@ function NavbarMenu() {
               src="/logo.png"
               width={160}
               height={60}
-              className="aspect-[160-60] object-contain"
+              className="aspect-[160/60] object-contain"
             />
           </Link>
         </div>
