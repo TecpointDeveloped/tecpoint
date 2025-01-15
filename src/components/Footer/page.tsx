@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className='bg-[#010101] w-full h-fit flex flex-col gap-y-6 py-10 px-4 md:px-8'>
       <section className='flex flex-col m-auto lg:m-0 lg:flex-row gap-6 md:justify-between'>
-        <h4 className="text-white text-start  text-2xl flex flex-col tracking-[-0.2px]">Distribuidores de marcas y accesorios <span className="block">Tecnologicios a nivel Nacional</span></h4>
+        <h4 className="text-white text-start  text-2xl flex flex-col tracking-[-0.2px]">Distribuidores de marcas y accesorios <span className="block">Tecnologicos a nivel Nacional</span></h4>
 
         <form className='flex gap-3' onSubmit={(e) => e.preventDefault()}>
           <input className='w-full h-10 md:w-[350px] bg-[#2c2c2c] text-white py-2 px-6 rounded-full text-[14px]' placeholder='Introduce tu correo electronico...' type="email" name="correo" id="correo" />
