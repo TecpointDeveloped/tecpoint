@@ -1,5 +1,3 @@
-"use client";
-
 import { useAuth } from "@/context/useAuth";
 import Head from "next/head";
 import Image from "next/image";
@@ -8,7 +6,18 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import NavbarMenu from "@/components/navbarmenu/page";
 
-function My_Acoount() {
+export async function getServerSideProps() {
+  return {
+    props: {
+      title: 'Inicio de Sesion | Tecpoint',
+      description: 'Inicia sesion en tu cuenta de Tecpoint',
+      keywords: 'inicio, sesion, cuenta, tecpoint, distribucion',
+      robots: 'index, follow'
+    }
+  }
+}
+
+function My_Acoount({ title, description, keywords, robots }: { title: string, description: string, keywords: string, robots: string }) {
   const { signInWithGoogle, signInWithEmailAndPassword } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,7 +61,15 @@ function My_Acoount() {
   return (
     <main>
       <Head>
-        <title>Incio de Sesion | Tecpoint</title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="robots" content={robots} />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tecpoint.vercel.app/my-account" />
+        <meta property="og:description" content={description} />
       </Head>
 
       {currentUser ? (
@@ -102,7 +119,7 @@ function My_Acoount() {
             </div> */}
 
                   <div className="flex flex-col justify-center items-center">
-                    <h1 className="font-[Poppins] font-[600] md:text-3xl 2xl:text-3xl text-center tracking-[-1.1px]">Bienvenido de Nuevo!</h1>
+                    <h1 className="font-[Poppins] font-[600] text-3xl text-center tracking-[-1.1px]">Bienvenido de Nuevo!</h1>
                     <h2 className="text-[15px]">Iniciar sesión con los siguientes proveedores</h2>
                   </div>
 

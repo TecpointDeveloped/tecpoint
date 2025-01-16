@@ -1,9 +1,33 @@
 import Image from 'next/image'
 import NavbarMenu from '@/components/navbarmenu/page'
+import Head from 'next/head'
 
-function Categories() {
+export async function getServerSideProps() {
+  return {
+    props: {
+      title: 'Categorias | Tecpoint Distribucion',
+      description: 'Explora todas nuestras categorias y marcas con la mejor calidad',
+      keywords: 'audifonos, cables, cargadores, cobertores, parlantes, marcas, categorias',
+      robots: 'index, follow',
+    }
+  }
+}
+
+function Categories({ title, description, keywords, robots }: { title: string, description: string, keywords: string, robots: string }) {
   return (
-    <div>
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="robots" content={robots} />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tecpoint.vercel.app/categories" />
+        <meta property="og:description" content={description} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <NavbarMenu />
 
       <main className='flex w-full gap-6'>
@@ -68,7 +92,7 @@ function Categories() {
           </div>
         </section>
       </main>
-    </div>
+    </>
   )
 }
 
