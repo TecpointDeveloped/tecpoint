@@ -5,5 +5,14 @@ Allow: /
 User-agent: *
 Allow: /shop
 
+User-agent: *
+Allow: /categories
+
+User-agent: *
+Allow: /blog
+
+User-agent: *
+Allow: /my-account
+
 # Sitemaps
 Sitemap: https://tecpoint.vercel.app/sitemap.xml

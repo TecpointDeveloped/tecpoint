@@ -99,7 +99,7 @@ function NavbarMenu() {
   const totalPrice = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0).toFixed(2);
 
   return (
-    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#1b1b1b] backdrop-blur text-white w-full py-4 m-auto z-[999]">
+    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#010101] backdrop-blur text-white w-full py-4 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
           <Link href="/">
@@ -110,7 +110,7 @@ function NavbarMenu() {
               src="/logo.png"
               width={160}
               height={60}
-              className="aspect-[160-60] object-contain"
+              className="aspect-[160/60] object-contain"
             />
           </Link>
         </div>
@@ -308,8 +308,8 @@ function NavbarMenu() {
             </div>
           ) : (
             <Link href="/my-account" className="size-[36px] cursor-pointer rounded-full overflow-hidden grid place-content-center hover:bg-[#ffffff2a] transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-[26px]">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-[26px]">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
               </svg>
             </Link>
           )}

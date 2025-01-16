@@ -3,13 +3,19 @@ import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
 import LogosImages from "@/data/logos.json";
 import CategoryCards from "@/components/CategoryCards/page";
-// import { useEffect, useState } from "react";
 import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
+import Autoplay from "embla-carousel-autoplay"
+import { useRef } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
 
 export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -54,13 +60,15 @@ export default function Home({ logos, products }: HomeProps) {
   //   window.addEventListener("scroll", handleScroll);
 
   //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
+  //     window.removeEventListener("scroll", handleScro l);
   //   };
   // }, []);
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false })
+  )
 
   return (
-    <div className="">
-
+    <>
       <NavbarMenu />
 
       <Head>
@@ -85,7 +93,7 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
 
-      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12">
+      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12 -z-10">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
           <h3 className="text-center text-white opacity-55 2xl:text-[20px]">
             iPhone 16 series
@@ -117,6 +125,7 @@ export default function Home({ logos, products }: HomeProps) {
             className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-[390px] md:h-[390px] 2xl:h-[480px] object-cover"
           />
         </div>
+
         {/* <video className="w-full h-full object-cover object-center" controls={false} muted loop autoPlay>
           <source src="/video/HyperGearActiv8Smartwatch.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
@@ -220,6 +229,26 @@ export default function Home({ logos, products }: HomeProps) {
         </section>
       </section>
 
+      <Carousel
+        className="w-full h-auto"
+        // onMouseEnter={() => plugin.current.stop()}
+        // onMouseLeave={() => plugin.current.reset()}
+        plugins={[plugin.current]}
+        opts={{
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          <CarouselItem className="w-[1200px]">
+            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_act8.png" alt="Active 8 hypergear" />
+          </CarouselItem>
+
+          <CarouselItem className="w-[1200px]">
+            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
+          </CarouselItem>
+        </CarouselContent>
+      </Carousel>
+
       <section className="w-full h-[180px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
           <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
@@ -317,7 +346,7 @@ export default function Home({ logos, products }: HomeProps) {
             <p
               className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             >
-              Plotter ZC1 MINI
+              Plotter ZV1 MINI
             </p>
           </span>
         </picture>
@@ -400,6 +429,6 @@ export default function Home({ logos, products }: HomeProps) {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

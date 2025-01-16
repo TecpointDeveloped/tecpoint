@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/page"
 import NavbarMenu from "@/components/navbarmenu/page"
 import Head from "next/head"
 
@@ -28,6 +29,8 @@ function Blog() {
       <main className="p-2 pt-8">
         <h1 className="md:text-xl lg:text-2xl text-center">Blog Tecpoint</h1>
       </main>
+
+      <Footer />
     </>
   )
 }

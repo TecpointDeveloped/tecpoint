@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Product } from "../../types/ProductTypes";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Link from "next/link";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
@@ -22,7 +22,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
         })) as Product[];
 
         setRecommendedProducts(products);
-        console.log("produtos recomendados:", recommendedProducts);
+        console.log("produtos recomendados:", products);
       } catch (error) {
         console.error("Error fetching recommended products:", error);
       }
@@ -33,18 +33,24 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
     }
   }, [currentProduct]);
 
+
   return (
     <section className="mt-12 mb-12">
       <h2 className="text-center text-2xl font-semibold mb-6">Productos Recomendados</h2>
 
-      <Carousel opts={{ align: "start", }} className="w-full md:max-w-[85%] md:m-auto">
+      <Carousel
+        className="w-full md:max-w-[85%] md:m-auto p-2 md:p-0"
+        opts={{
+          loop: true,
+          align: "center",
+        }}
+      >
         <CarouselContent className="flex gap-4 px-6 py-2">
           {recommendedProducts.map((product) => (
             <CarouselItem
               key={product.id}
               className="border rounded-[26px] p-4 flex flex-col max-w-[300px] h-[460px] relative justify-between"
             >
-
               <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
                 <p className="text-[12px] font-semibold text-white">Nuevo</p>
               </span>
@@ -57,7 +63,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
                   download={false}
                 >
                   <Image
-                    src={product.imagenes && product.imagenes[0] ? product.imagenes[0].img : "/default-product.png"}
+                    src={product.imagenes?.[3]?.img || "/default-product.png"}
                     alt={
                       product.producto
                         ? `Imagen de ${product.producto}`
@@ -100,31 +106,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
             </CarouselItem>
           ))}
         </CarouselContent>
-
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
-
-
-      {/* <div className="flex flex-wrap gap-4 justify-center">
-        {recommendedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="border rounded-md p-4 cursor-pointer w-[300px]"
-            onClick={() => handleProductClick(product.slug)}
-          >
-            <Image
-              src={product.imagenes && product.imagenes[0] ? product.imagenes[0].img : "/default-product.png"}
-              alt={product.producto}
-              width={300}
-              height={300}
-              className="object-cover w-full h-48"
-            />
-            <h3 className="text-lg font-semibold mt-2">{product.producto}</h3>
-            <p className="text-gray-600">{product.precio.detalle}.00 HNL</p>
-          </div>
-        ))}
-      </div> */}
     </section>
   );
 };

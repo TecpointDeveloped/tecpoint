@@ -78,7 +78,7 @@ const Shop = ({ products = [] }: ShopProps) => {
   }
 
   return (
-    <div>
+    <>
       <NavbarMenu />
 
       <Head>
@@ -190,7 +190,7 @@ const Shop = ({ products = [] }: ShopProps) => {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

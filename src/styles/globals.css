@@ -15,6 +15,25 @@
   }
 } */
 
+.embla {
+  overflow: hidden;
+  width: 300px;
+  border: solid 1px #000;
+  padding: 2px;
+}
+.embla__container {
+  display: flex;
+  gap: 16px;
+}
+.embla__slide {
+  min-width: 200px;
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #000;
+  border-radius: 12px;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
