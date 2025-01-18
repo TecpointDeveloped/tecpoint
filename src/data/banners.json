@@ -3,7 +3,7 @@
     "BannerID": "1",
     "marca": "Apple",
     "ImageBanner": "/logos/apple.png",
-    "color": "09f"
+    "color": "444"
   },
   {
     "BannerID": "2",
@@ -51,13 +51,13 @@
     "BannerID": "9",
     "marca": "USG",
     "ImageBanner": "/logos/usg.png",
-    "color": "09f"
+    "color": "000"
   },
   {
     "BannerID": "10",
     "marca": "XBase",
     "ImageBanner": "/logos/xbase.png",
-    "color": "09f"
+    "color": "64f2cc"
   },
   {
     "BannerID": "10",

@@ -28,6 +28,7 @@ export default function Document() {
         <meta property="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
 
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
+        <meta name="robots" content="index, follow"/>
       </Head>
       <body>
         <Main />
