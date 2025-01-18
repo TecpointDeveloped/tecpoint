@@ -99,7 +99,7 @@ function NavbarMenu() {
   const totalPrice = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0).toFixed(2);
 
   return (
-    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#010101] backdrop-blur text-white w-full py-4 m-auto z-[999]">
+    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#010101] backdrop-blur text-white w-full py-2 m-auto z-[999]">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
           <Link href="/">
