@@ -33,10 +33,11 @@ function Categories({ title, description, keywords, robots }: { title: string, d
       <main className='flex w-full gap-6'>
         <section className="w-full h-fit py-12 flex p-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
+
             <span className='flex flex-col items-center gap-y-2'>
-              <h2 className='text-[18px] font-semibold'>Audifonos</h2>
+              <h3 className='text-[18px] font-semibold'>Audifonos</h3>
               <Image
-                alt="audifonos__categoria"
+                alt="Audifonos de alta calidad para todas tus necesidades de audio"
                 quality={100}
                 width={140}
                 height={140}
@@ -45,50 +46,66 @@ function Categories({ title, description, keywords, robots }: { title: string, d
               />
             </span>
 
-            <Image
-              alt="audifonos__categoria"
-              quality={100}
-              width={140}
-              height={140}
-              src="/images/categorias/minis/auriculares__categoria.png"
-              className="aspect-square object-contain"
-            />
+            <span className="flex flex-col items-center gap-y-2">
+              <h2 className='text-[18px] font-semibold'>Auriculares</h2>
+              <Image
+                alt="Auriculares cómodos y duraderos para uso diario"
+                quality={100}
+                width={140}
+                height={140}
+                src="/images/categorias/minis/auriculares__categoria.png"
+                className="aspect-square object-contain"
+              />
+            </span>
 
-            <Image
-              alt="audifonos__categoria"
-              quality={100}
-              width={140}
-              height={140}
-              src="/images/categorias/minis/cables__categoria.png"
-              className="aspect-square object-contain"
-            />
+            <span className="flex flex-col items-center gap-y-2">
+              <h3 className='text-[18px] font-semibold'>Cables</h3>
+              <Image
+                alt="Cables resistentes y de alta velocidad para todos tus dispositivos"
+                quality={100}
+                width={140}
+                height={140}
+                src="/images/categorias/minis/cables__categoria.png"
+                className="aspect-square object-contain"
+              />
+            </span>
 
-            <Image
-              alt="audifonos__categoria"
-              quality={100}
-              width={140}
-              height={140}
-              src="/images/categorias/minis/cargadores__categoria.png"
-              className="aspect-square object-contain"
-            />
+            <span className="flex flex-col items-center gap-y-2">
+              <h3 className='text-[18px] font-semibold'>Cargadores</h3>
+              <Image
+                alt="Cargadores rápidos y eficientes para mantener tus dispositivos siempre encendidos"
+                quality={100}
+                width={140}
+                height={140}
+                src="/images/categorias/minis/cargadores__categoria.png"
+                className="aspect-square object-contain"
+              />
+            </span>
 
-            <Image
-              alt="audifonos__categoria"
-              quality={100}
-              width={140}
-              height={140}
-              src="/images/categorias/minis/cobertores_categoria.png"
-              className="aspect-square object-contain"
-            />
+            <span className="flex flex-col items-center gap-y-2">
+              <h3 className='text-[18px] font-semibold'>Cobertores</h3>
+              <Image
+                alt="Cobertores protectores para mantener tus dispositivos seguros"
+                quality={100}
+                width={140}
+                height={140}
+                src="/images/categorias/minis/cobertores_categoria.png"
+                className="aspect-square object-contain"
+              />
+            </span>
 
-            <Image
-              alt="audifonos__categoria"
-              quality={100}
-              width={140}
-              height={140}
-              src="/images/categorias/minis/parlantes_categoria.png"
-              className="aspect-square object-contain"
-            />
+            <span className="flex flex-col items-center gap-y-2">
+              <h3 className='text-[18px] font-semibold'>Audio</h3>
+              <Image
+                alt="Parlantes de alta fidelidad para una experiencia de audio superior"
+                quality={100}
+                width={140}
+                height={140}
+                src="/images/categorias/minis/parlantes_categoria.png"
+                className="aspect-square object-contain"
+              />
+            </span>
+
           </div>
         </section>
       </main>

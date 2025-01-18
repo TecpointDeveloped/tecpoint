@@ -174,7 +174,15 @@ const CartPage = () => {
           )}
         </div>
 
-        <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
+        <div className="w-1/2">
+          <h1>Selecciona un Metodo de Pago</h1>
+
+          <div>
+            
+          </div>
+        </div>
+
+        {/* <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
           <PayPalButton
             total={getTotal()}
             onSuccess={(details) => console.log("Pago exitoso", details)}
@@ -185,7 +193,7 @@ const CartPage = () => {
             className="px-4 py-2 bg-blue-500 text-white rounded-md size-fit">
             pagar
           </button>
-        </div>
+        </div> */}
       </main>
     </div>
   );
