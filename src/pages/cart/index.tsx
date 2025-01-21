@@ -114,7 +114,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="">
+    <>
       <Head>
         <title>Carrito de compras | Tecpoint</title>
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -175,7 +175,7 @@ const CartPage = () => {
         </div>
 
         <div className="w-1/2 flex-col flex gap-2">
-          <h1>Selecciona un Metodo de Pago</h1>
+          {/* <h1>Selecciona un Metodo de Pago</h1> */}
 
           <div className="w-[290px] p-2 h-fit bg-gray-100 rounded-lg flex gap-x-3 items-center cursor-pointer">
             <div className="size-12 rounded-full bg-gray-200 grid place-content-center">
@@ -215,7 +215,7 @@ const CartPage = () => {
           </button>
         </div> */}
       </main>
-    </div>
+    </>
   );
 };
 

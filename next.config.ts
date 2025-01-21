@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/transaction/sale",
-        destination: "https://ficoposonline.com/api/v2/transaction/sale",
+        destination: "https://pixel-pay.com/api/v2/transaction/sale",
       },
     ];
   },
