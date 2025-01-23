@@ -42,7 +42,7 @@ function NavbarMenu() {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const querySnapshot = await getDocs(collection(db, "Products"));
+        const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
         const allProducts = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -167,27 +167,27 @@ function NavbarMenu() {
                   placeholder="Buscar por SKU, Producto o Descripción"
                 />
               </div>
-              <DialogFooter className="h-auto w-full bg-gray-200 overflow-hidden overflow-x-scroll">
+              <DialogFooter className="max-h-[300px] w-full bg-gray-100 overflow-hidden overflow-y-scroll">
                 {loading ? (
                   <p className="text-center text-gray-500">Cargando...</p>
                 ) : filteredProducts.length > 0 ? (
-                  <ul className="flex gap-x-1 p-1">
+                  <ul className="flex flex-col gap-y-2 p-2">
                     {filteredProducts.map((product) => (
                       <li
                         key={product.id}
-                        className="p-2 w-[230px] cursor-pointer flex flex-col gap-y-3 border rounded-md bg-white text-black hover:bg-gray-100"
+                        className="p-2 w-full cursor-pointer gap-y-3 border rounded-md bg-white text-black hover:bg-gray-100"
                       >
-                        <Link href={`/shop/${product.slug}`}>
+                        <Link href={`/shop/${product.slug}`} className="flex items-center gap-8 p-4">
                           <Image
                             src={product.imagenes?.imagen_01?.img || "/default-product.png"}
                             alt={product.producto || "Producto"}
-                            width={160}
-                            height={160}
+                            width={120}
+                            height={120}
                             quality={100}
-                            className="w-[160px] h-[160px] m-auto hover:scale-105 transition-transform"
+                            className="w-[120px] h-[120px] hover:scale-105 transition-transform"
                           />
-                          <div className="flex flex-col gap-y-2">
-                            <p className="font-semibold text-[15px] leading-5 tracking-[-0.4px]">{product.producto}</p>
+                          <div className="flex flex-col gap-y-2 w-[60%]">
+                            <p className="font-semibold text-[18px] leading-5 tracking-[-0.4px]">{product.producto}</p>
                             <p className="text-gray-600 font-bold">{product.sku}</p>
                           </div>
                         </Link>

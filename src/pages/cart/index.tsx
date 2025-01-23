@@ -1,7 +1,7 @@
 import NavbarMenu from "@/components/navbarmenu/page";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import PayPalButton from "@/components/PayPalButton/page";
+// import PayPalButton from "@/components/PayPalButton/page";
 import Head from "next/head";
 import { Separator } from "@/components/ui/separator";
 
