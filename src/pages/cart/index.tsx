@@ -1,7 +1,7 @@
 import NavbarMenu from "@/components/navbarmenu/page";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import PayPalButton from "@/components/PayPalButton/page";
+// import PayPalButton from "@/components/PayPalButton/page";
 import Head from "next/head";
 import { Separator } from "@/components/ui/separator";
 
@@ -49,9 +49,155 @@ const CartPage = () => {
     return cart.reduce((total, item) => total + (item.precio || 0) * item.quantity, 0)
   };
 
-  const handlePayment = async () => {
-   
-  };
+  // const handlePayment = async () => {
+  //   const orderData = {
+  //     settings: {
+  //       endpoint: "https://pixel-pay.com",
+  //       credentials: {
+  //         username: "FHI372717363",
+  //         password: "b36aa20b0010f042b5bf788a4793b902",
+  //       },
+  //     },
+  //     card: {
+  //       number: "4111111111111111",
+  //       cvv2: "2512",
+  //       expire_month: 9,
+  //       expire_year: 2027,
+  //       cardholder: "Aerley Keller Lopez Ramos",
+  //     },
+  //     billing: {
+  //       address: "9 avenida",
+  //       country: "HN",
+  //       state: "HN-CR",
+  //       city: "San Pedro Sula",
+  //       phone: "98007330",
+  //     },
+  //     order: {
+  //       id: `ORDER-${Date.now()}`,
+  //       currency: "HNL",
+  //       customer_name: "Aerley Lopez",
+  //       customer_email: "example@gmail.com",
+  //       items: cart.map((item) => ({
+  //         code: item.sku || "00000",
+  //         title: item.producto || "Producto sin nombre",
+  //         price: item.precio || 0,
+  //         qty: item.quantity,
+  //       })),
+  //     },
+  //   };
+
+  //   try {
+  //     const response = await fetch("/api/transaction/sale", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(orderData),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`Error al procesar la solicitud. Status: ${response.status}`);
+  //     }
+
+  //     const result = await response.json();
+  //     console.log("Resultado de la respuesta:", result);
+
+  //     const isValidPayment = result.is_valid_payment;
+  //     if (isValidPayment) {
+  //       alert("Pago realizado con éxito");
+  //     } else {
+  //       alert("El pago no fue válido");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error al realizar el pago:", error);
+  //     alert("Hubo un error al procesar el pago.");
+  //   }
+  // };
+
+  const handlepayment = async () => {
+    const settings = new Settings()
+    // settings.setupEndpoint("https://hn.ficoposonline.com/")
+    // settings.setupCredentials("FHI372717363", "b36aa20b0010f042b5bf788a4793b902")
+    settings.setupSandbox()
+
+    const card = new Card()
+    card.number = "4111111111111111"
+    card.cvv2 = "999"
+    card.expire_month = 7
+    card.expire_year = 2027
+    card.cardholder = "SERGIO PEREZ"
+
+    const billing = new Billing()
+    billing.address = "Ave Circunvalacion"
+    billing.country = "HN"
+    billing.state = "HN-CR"
+    billing.city = "San Pedro Sula"
+    billing.phone = "99999999"
+
+    const item = new Item()
+    item.code = "00001"
+    item.title = "Videojuego"
+    item.price = 8
+    item.qty = 1
+
+    const order = new Order()
+    order.id = "ORDER-88888"
+    order.currency = "HNL"
+    order.customer_name = "SERGIO PEREZ"
+    order.customer_email = "sergio.perez@gmail.com"
+    order.addItem(item)
+
+    const sale = new SaleTransaction()
+    sale.setOrder(order)
+    sale.setCard(card)
+    sale.setBilling(billing)
+
+    const service = new Transaction(settings)
+
+    // Con async / await
+    try {
+      const response = await service.doSale(sale)
+      console.log(response)
+
+      if (TransactionResult.validateResponse(response)) {
+        const result = TransactionResult.fromResponse(response)
+
+        const is_valid_payment = service.verifyPaymentHash(
+          result.payment_hash,
+          order.id,
+          "abc...", // secret
+        )
+
+        if (is_valid_payment) {
+          alert(response)
+        }
+      }
+    } catch (error) {
+      // ERROR
+      console.error("Ocurrio un error al realizar el pago", error)
+    }
+
+    // Con callback
+    service.doSale(sale).then((response) => {
+      if (TransactionResult.validateResponse(response)) {
+        const result = TransactionResult.fromResponse(response)
+
+        const is_valid_payment = service.verifyPaymentHash(
+          result.payment_hash,
+          order.id,
+          "abc...", // secret
+        )
+
+        if (result) {
+          alert("pago realizado con exito")
+          // SUCCESS Valid Payment
+        }
+      }
+    }).catch((error) => {
+      // ERROR
+    })
+  }
+
 
   return (
     <>
@@ -142,14 +288,14 @@ const CartPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-6 pr-12 overflow-hidden overflow-y-scroll">
-          <PayPalButton
+        <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
+          {/* <PayPalButton
             total={getTotal()}
             onSuccess={(details) => console.log("Pago exitoso", details)}
-          />
+          /> */}
 
           <button
-            onClick={handlePayment}
+            onClick={handlepayment}
             className="px-4 py-2 bg-blue-500 text-white rounded-md size-fit">
             pagar
           </button>
