@@ -45,9 +45,9 @@ const CartPage = () => {
 
   // Calcular el total de la compra
 
-  const getTotal = () => {
-    return cart.reduce((total, item) => total + (item.precio || 0) * item.quantity, 0)
-  };
+  // const getTotal = () => {
+  //   return cart.reduce((total, item) => total + (item.precio || 0) * item.quantity, 0)
+  // };
 
   // const handlePayment = async () => {
   //   const orderData = {
@@ -182,11 +182,11 @@ const CartPage = () => {
       if (TransactionResult.validateResponse(response)) {
         const result = TransactionResult.fromResponse(response)
 
-        const is_valid_payment = service.verifyPaymentHash(
-          result.payment_hash,
-          order.id,
-          "abc...", // secret
-        )
+        // const is_valid_payment = service.verifyPaymentHash(
+        //   result.payment_hash,
+        //   order.id,
+        //   "abc...", // secret
+        // )
 
         if (result) {
           alert("pago realizado con exito")
@@ -195,6 +195,7 @@ const CartPage = () => {
       }
     }).catch((error) => {
       // ERROR
+      console.error("Ocurrio un error al realizar el pago", error)
     })
   }
 
