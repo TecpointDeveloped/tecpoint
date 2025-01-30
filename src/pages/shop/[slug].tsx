@@ -389,12 +389,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <div className="mt-3">
             {Number(product.precio.detalle) > 1200 ?
               (
-                <span className="flex items-center justify-center gap-4 w-fit border px-6 py-3 select-none">
-                  <Image className="aspect-square" height={30} width={30} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
-                  <span>
-                    <p className="font-bold">Envio Gratis</p>
-                    <p className="leading-3">Incluye Envio Gratis a todo el pais al comprar</p>
-                  </span>
+                <span className="flex items-center justify-center gap-2 w-fit">
+                  <Image className="aspect-square" height={24} width={24} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <p>Incluye entrega Gratis al comprar</p>
                 </span>
               )
               : (
@@ -412,7 +409,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         style={{ backgroundColor: `#${banner.color}` }}
         className="overflow-hidden px-8 w-full h-24 md:h-36 grid place-content-center relative mt-12"
       >
-        <h2 className="md:text-[28px] font-semibold text-[20px] text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]">
+        <h2 className="md:text-[28px] text-[20px] font-normal text-center text-white tracking-[-0.2px] md:leading-[28px] z-[1] md:w-[500px]">
           {product.producto}
         </h2>
 
