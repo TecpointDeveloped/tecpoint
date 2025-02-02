@@ -79,25 +79,16 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   return (
     <>
-      <NavbarMenu />
-
       <Head>
         <title>Tienda Tecpoint | Todo en accesorios Tecnológicos</title>
-        <meta
-          name="description"
-          content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad."
-        />
-        <meta
-          property="og:title"
-          content="Tienda Tecpoint | Todo en accesorios Tecnológicos"
-        />
-        <meta
-          property="og:description"
-          content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad."
-        />
+        <meta name="description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
+        <meta property="og:title" content="Tienda Tecpoint | Todo en accesorios Tecnológicos" />
+        <meta property="og:description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
         <meta property="og:url" content="https://tecpoint.ws/shop" />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
       </Head>
+
+      <NavbarMenu />
 
       <main className="w-full mx-auto p-2 md:p-4 mt-12">
         <h1 className="text-2xl font-bold mb-6 text-center">Bienvenido a la tienda Tecpoint</h1>

@@ -69,10 +69,8 @@ export default function Home({ logos, products }: HomeProps) {
 
   return (
     <>
-      <NavbarMenu />
-
       <Head>
-        <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
+        {/* <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title> */}
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
@@ -92,6 +90,8 @@ export default function Home({ logos, products }: HomeProps) {
         <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
       </Head>
+
+      <NavbarMenu />
 
       <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12 -z-10">
         <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">

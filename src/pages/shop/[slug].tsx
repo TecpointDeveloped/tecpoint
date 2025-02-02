@@ -248,8 +248,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       <NavbarMenu />
 
-      <h1>{product.id}</h1>
-
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
 
