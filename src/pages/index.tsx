@@ -11,11 +11,7 @@ import Footer from "@/components/Footer/page";
 import Head from "next/head";
 import Autoplay from "embla-carousel-autoplay"
 import { useRef } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 
 export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -50,19 +46,6 @@ interface HomeProps {
 }
 
 export default function Home({ logos, products }: HomeProps) {
-  // const [offsetY, setOffsetY] = useState(0);
-
-  // const handleScroll = () => {
-  //   setOffsetY(window.scrollY);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScro l);
-  //   };
-  // }, []);
   const plugin = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: false })
   )
@@ -70,7 +53,7 @@ export default function Home({ logos, products }: HomeProps) {
   return (
     <>
       <Head>
-        {/* <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title> */}
+        <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
