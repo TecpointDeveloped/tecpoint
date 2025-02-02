@@ -1,4 +1,3 @@
-# *
 User-agent: *
 Allow: /
 
@@ -14,5 +13,7 @@ Allow: /blog
 User-agent: *
 Allow: /my-account
 
-# Sitemaps
+User-agent: *
+Allow: /checkout
+
 Sitemap: https://tecpoint.vercel.app/sitemap.xml
