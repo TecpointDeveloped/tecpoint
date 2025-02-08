@@ -1,13 +1,15 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { db } from "@/database/Config";
 import { Product } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "@/components/ui/pagination";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from "@/components/ui/select";
 
 interface ShopProps {
   products: Product[];
@@ -48,9 +50,23 @@ export async function getStaticProps() {
 }
 
 const Shop = ({ products = [] }: ShopProps) => {
+  const router = useRouter();
+  const { page } = router.query;
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
   const productsPerPage = 9;
+
+  useEffect(() => {
+    if (page) {
+      setCurrentPage(Number(page));
+    }
+  }, [page]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1); // Reset to first page on search
+    router.push(`/shop?page=1`);
+  };
 
   const filteredProducts = products.filter((product) =>
     product.producto.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -61,12 +77,13 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfFirstProduct + productsPerPage);
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    router.push(`/shop?page=${page}`);
   };
 
   if (!products || products.length === 0) {
@@ -93,14 +110,30 @@ const Shop = ({ products = [] }: ShopProps) => {
       <main className="w-full mx-auto p-2 md:p-4 mt-12">
         <h1 className="text-2xl font-bold mb-6 text-center">Bienvenido a la tienda Tecpoint</h1>
 
-        <form onSubmit={(e) => e.preventDefault()} className="w-full md:py-8 md:px-12 mb-2">
+        <form onSubmit={(e) => e.preventDefault()} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
           <input
             className="border w-full py-3 px-6 rounded-full"
             type="text"
             placeholder="Buscar por SKU, Producto o Descripción"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
           />
+
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </form>
 
         {/* Paginación */}
