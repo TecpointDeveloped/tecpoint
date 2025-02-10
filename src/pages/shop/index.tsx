@@ -120,32 +120,40 @@ const Shop = ({ products = [] }: ShopProps) => {
           />
 
           <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
+            <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
+              <SelectValue placeholder="Marca" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectLabel>Marcas</SelectLabel>
+                <SelectItem value="Apple">Apple</SelectItem>
+                <SelectItem value="Appacs">Appacs</SelectItem>
+                <SelectItem value="Deken">Deken</SelectItem>
+                <SelectItem value="Ghostek">Ghostek</SelectItem>
+                <SelectItem value="Hypergear">Hypergear</SelectItem>
+                <SelectItem value="Krieg">Krieg</SelectItem>
+                <SelectItem value="Naztech">Naztech</SelectItem>
+                <SelectItem value="Powerpeak">Powerpeak</SelectItem>
+                <SelectItem value="Rockspace">Rockspace</SelectItem>
+                <SelectItem value="Samsung">Samsung</SelectItem>
+                <SelectItem value="USG">USG</SelectItem>
+                <SelectItem value="XBase">XBase</SelectItem>
+                <SelectItem value="XO">XO</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </form>
 
         {/* Paginación */}
-        <div className="flex gap-3 mb-8">
-          <Pagination className="flex gap-4">
+        <div className="flex justify-center mb-8">
+          <Pagination className="flex flex-wrap gap-2 md:gap-4">
             <PaginationPrevious
               onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
               className="cursor-pointer select-none"
             >
               Anterior
             </PaginationPrevious>
-            <PaginationContent>
+            <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
               {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
                 <PaginationItem key={page}>
                   <PaginationLink
@@ -167,14 +175,14 @@ const Shop = ({ products = [] }: ShopProps) => {
           </Pagination>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:w-[1100px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 md:w-[1100px] mx-auto">
           {currentProducts.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
               <div
                 key={product.id}
-                className="border rounded-[26px] p-4 flex flex-col w-[190px] sm:w-[300px] md:w-[340px] md:h-[450px] relative justify-between"
+                className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
               >
                 <div className="flex flex-col">
                   <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
