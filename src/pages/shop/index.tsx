@@ -191,7 +191,7 @@ const Shop = ({ products = [] }: ShopProps) => {
                       alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
                       width={240}
                       height={240}
-                      className="m-auto sm:size-[240px] size-[180px] aspect-square object-cover mb-4"
+                      className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
                       quality={100}
                       priority
                     />

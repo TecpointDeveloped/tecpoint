@@ -63,7 +63,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
                   download={false}
                 >
                   <Image
-                    src={product.imagenes?.[3]?.img || "/default-product.png"}
+                    src={product.imagenes?.[0]?.img || "/default-product.png"}
                     alt={
                       product.producto
                         ? `Imagen de ${product.producto}`
@@ -79,7 +79,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
 
                 <div>
                   <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                    {product.producto.slice(0, 55)}
+                    {product.producto.slice(0, 50)} wey
                   </h2>
                   <p className="text-sm text-gray-500 mt-2">
                     SKU: {product.sku}
