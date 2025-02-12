@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import NavbarMenu from "@/components/navbarmenu/page";
 import LogosImages from "@/data/logos.json";
-import CategoryCards from "@/components/CategoryCards/page";
 import { Product } from "@/types/ProductTypes";
 import { Logo } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
@@ -76,44 +75,43 @@ export default function Home({ logos, products }: HomeProps) {
 
       <NavbarMenu />
 
-      <div className="relative w-full h-[85dvh] sm:h-[75dvh] md:h-[80vh] bg-[#010101] flex flex-col items-center justify-center overflow-hidden md:gap-y-6 2xl:gap-y-12 -z-10">
-        <div className="flex-1 flex-col w-full items-center justify-center flex md:items-center md:justify-end gap-y-2">
-          <h3 className="text-center text-white opacity-55 2xl:text-[20px]">
-            iPhone 16 series
-          </h3>
-          <h2 className="text-white text-4xl tracking-[-1.2px] text-center leading-[30px] 2xl:text-[50px]">
-            Nuevos Cobertores Ghostek
-          </h2>
-        </div>
+      <Carousel
+        className="w-full h-auto z-10"
+        // onMouseEnter={() => plugin.current.stop()}
+        // onMouseLeave={() => plugin.current.reset()}
+        plugins={[plugin.current]}
+        opts={{
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          <CarouselItem className="w-full h-[85vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.jpg" alt="Active 8 hypergear" />
+            <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
+              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Nuevos cargadores <span className="block text-[60px]">Carga Rapida</span></h6>
+            </div>
+          </CarouselItem>
 
-        <div className="px-4 md:px-12 flex items-center justify-center relative">
-          <Image
-            alt="cobertores iPhone 16 marca ghostek"
-            src="/banner_cobertores_ghostek.png"
-            width={340}
-            height={340}
-            quality={80}
-            priority={true}
-            sizes="(min-width: 1536px) 390px, (min-width: 768px) 390px, 340px"
-            className="w-fit h-[340px] z-[1] md:h-[390px] 2xl:h-[390px] object-cover hover:scale-105 transition-transform"
-          />
+          <CarouselItem className="w-full h-[85vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.jpg" alt="Active 8 hypergear" />
+            <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
+              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Cables USB de<span className="block text-[60px]">Marcas Certificadas</span></h6>
+            </div>
+          </CarouselItem>
 
-          <Image
-            alt="cobertores iPhone 16 marca ghostek"
-            src="/banner_cobertores_ghostek.png"
-            width={390}
-            height={390}
-            priority={true}
-            sizes="(min-width: 1536px) 480px, (min-width: 768px) 390px, 340px"
-            className="blur-2xl grayscale select-none -mb-7 opacity-75 scale-110 absolute w-[390px] md:h-[390px] 2xl:h-[480px] object-cover"
-          />
-        </div>
+          <CarouselItem className="w-full h-[85vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.jpg" alt="Active 8 hypergear" />
+            <div className="relative size-full flex items-start pt-10 justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
+              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Cobertores <span className="block text-[60px]">iPhone 16 series</span></h6>
+            </div>
+          </CarouselItem>
 
-        {/* <video className="w-full h-full object-cover object-center" controls={false} muted loop autoPlay>
-          <source src="/video/HyperGearActiv8Smartwatch.mp4" type="video/mp4" />
-          Tu navegador no soporta el elemento de video.
-        </video> */}
-      </div>
+          {/* <CarouselItem className="w-full h-[85vh]">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer  w-full h-full object-cover" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
+          </CarouselItem> */}
+        </CarouselContent>
+      </Carousel>
+
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
@@ -144,7 +142,7 @@ export default function Home({ logos, products }: HomeProps) {
 
         <section className="md:max-w-[1500px] m-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {products.slice(0, 8).map((product: Product) => {
+            {products.slice(0, 4).map((product: Product) => {
               const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
               return (
@@ -212,26 +210,6 @@ export default function Home({ logos, products }: HomeProps) {
         </section>
       </section>
 
-      <Carousel
-        className="w-full h-auto"
-        // onMouseEnter={() => plugin.current.stop()}
-        // onMouseLeave={() => plugin.current.reset()}
-        plugins={[plugin.current]}
-        opts={{
-          loop: true,
-        }}
-      >
-        <CarouselContent>
-          <CarouselItem className="w-[1200px]">
-            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_act8.png" alt="Active 8 hypergear" />
-          </CarouselItem>
-
-          <CarouselItem className="w-[1200px]">
-            <Image height={690} width={1600} className="cursor-pointer" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-
       <section className="w-full h-[180px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
           <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
@@ -264,11 +242,83 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <section className="mt-12 p-4 flex gap-x-4 overflow-hidden gap-4 flex-wrap justify-center">
-        <CategoryCards alt="Accesorios de la mas alta calidad en San Pedro Sula Honduras" imagen="/images/marcas-de-alta-calidad.webp" />
-        <CategoryCards alt="Lo mejor en Audio con precios excelentes en San Pedro Sula Honduras" imagen="/images/audio-de-alta-calidad.webp" />
-        <CategoryCards alt="cargadores de calidad en San Pedro Sula Honduras" imagen="/images/cargadores-de-alta-calidad.webp" />
-      </section>
+      <main className='flex w-full gap-6 py-16'>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
+
+          <Link href="/shop" className='flex flex-col items-center gap-y-2'>
+            <h3 className='text-[18px] font-semibold'>Audifonos</h3>
+            <Image
+              alt="Audifonos de alta calidad para todas tus necesidades de audio"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/audifonos__categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+          <Link href="/shop" className="flex flex-col items-center gap-y-2">
+            <h2 className='text-[18px] font-semibold'>Auriculares</h2>
+            <Image
+              alt="Auriculares cómodos y duraderos para uso diario"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/auriculares__categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+          <Link href="/shop" className="flex flex-col items-center gap-y-2">
+            <h3 className='text-[18px] font-semibold'>Cables</h3>
+            <Image
+              alt="Cables resistentes y de alta velocidad para todos tus dispositivos"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/cables__categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+          <Link href="/shop" className="flex flex-col items-center gap-y-2">
+            <h3 className='text-[18px] font-semibold'>Cargadores</h3>
+            <Image
+              alt="Cargadores rápidos y eficientes para mantener tus dispositivos siempre encendidos"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/cargadores__categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+          <Link href="/shop" className="flex flex-col items-center gap-y-2">
+            <h3 className='text-[18px] font-semibold'>Cobertores</h3>
+            <Image
+              alt="Cobertores protectores para mantener tus dispositivos seguros"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/cobertores_categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+          <Link href="/shop" className="flex flex-col items-center gap-y-2">
+            <h3 className='text-[18px] font-semibold'>Audio</h3>
+            <Image
+              alt="Parlantes de alta fidelidad para una experiencia de audio superior"
+              quality={100}
+              width={140}
+              height={140}
+              src="/images/categorias/minis/parlantes_categoria.png"
+              className="aspect-square object-contain"
+            />
+          </Link>
+
+        </div>
+      </main>
 
       <section className="flex flex-col md:flex-row">
         <div className="relative w-full h-[300px] md:h-[500px]">
@@ -283,39 +333,14 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row">
-        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
+      <section className="flex flex-col md:flex-row p-2 gap-2">
+        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
           <Image
             className="aspect-square object-cover"
             width={800}
             height={800}
             src={"/images/rockspace/zc1max.png"}
-            alt="zc1max"
-          />
-          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Image
-              width={240}
-              height={285}
-              alt="logo rock space"
-              src="/logos/rock-space-white.png"
-              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            />
-
-            <p
-              className="text-center hover:underline md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            >
-              Plotter ZC1 MAX
-            </p>
-          </span>
-        </picture>
-
-        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group">
-          <Image
-            className="aspect-square object-cover"
-            width={800}
-            height={800}
-            src={"/images/rockspace/zc3.png"}
-            alt="zc3"
+            alt="plotter - maquina de corte zc1 max rock space"
           />
           <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Image
@@ -329,7 +354,57 @@ export default function Home({ logos, products }: HomeProps) {
             <p
               className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
             >
-              Plotter ZV1 MINI
+              Plotter ZC1 MAX
+            </p>
+          </span>
+        </picture>
+
+        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
+          <Image
+            className="aspect-square object-cover"
+            width={800}
+            height={800}
+            src={"/images/rockspace/zv2.png"}
+            alt="plotter - maquina de corte zv2 mini rock space"
+          />
+          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Image
+              width={240}
+              height={285}
+              alt="logo rock space"
+              src="/logos/rock-space-white.png"
+              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            />
+
+            <p
+              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            >
+              Plotter MINI ZV2
+            </p>
+          </span>
+        </picture>
+
+        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
+          <Image
+            className="aspect-square object-cover"
+            width={800}
+            height={800}
+            src={"/images/rockspace/zc3.png"}
+            alt="plooter - maquina de corte zv1 mini rock space"
+          />
+          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Image
+              width={240}
+              height={285}
+              alt="logo rock space"
+              src="/logos/rock-space-white.png"
+              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            />
+
+            <p
+              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+            >
+              Plotter MINI ZV1
             </p>
           </span>
         </picture>
