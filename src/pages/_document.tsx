@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      {/* <Head>
+      <Head>
         <meta name="google-site-verification" content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
@@ -28,8 +28,8 @@ export default function Document() {
         <meta property="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
 
         <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta name="robots" content="index, follow"/>
-      </Head> */}
+        <meta name="robots" content="index, follow" />
+      </Head>
       <body>
         <Main />
         <NextScript />
