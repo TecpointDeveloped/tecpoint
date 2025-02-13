@@ -86,29 +86,25 @@ export default function Home({ logos, products }: HomeProps) {
       >
         <CarouselContent>
           <CarouselItem className="w-full h-[85vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.jpg" alt="Active 8 hypergear" />
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="Active 8 hypergear" />
             <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Nuevos cargadores <span className="block text-[60px]">Carga Rapida</span></h6>
             </div>
           </CarouselItem>
 
           <CarouselItem className="w-full h-[85vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.jpg" alt="Active 8 hypergear" />
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.webp" alt="Active 8 hypergear" />
             <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Cables USB de<span className="block text-[60px]">Marcas Certificadas</span></h6>
             </div>
           </CarouselItem>
 
           <CarouselItem className="w-full h-[85vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.jpg" alt="Active 8 hypergear" />
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.webp" alt="Active 8 hypergear" />
             <div className="relative size-full flex items-start pt-10 justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Cobertores <span className="block text-[60px]">iPhone 16 series</span></h6>
             </div>
           </CarouselItem>
-
-          {/* <CarouselItem className="w-full h-[85vh]">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer  w-full h-full object-cover" src="/images/banner_anc2.png" alt="Active 8 hypergear" />
-          </CarouselItem> */}
         </CarouselContent>
       </Carousel>
 
