@@ -238,7 +238,7 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <main className='flex w-full gap-6 py-16'>
+      {/* <main className='flex w-full gap-6 py-16'>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
 
           <Link href="/shop" className='flex flex-col items-center gap-y-2'>
@@ -314,7 +314,59 @@ export default function Home({ logos, products }: HomeProps) {
           </Link>
 
         </div>
-      </main>
+      </main> */}
+
+      <section className="md:p-4 flex justify-center flex-wrap gap-4 p-2">
+
+        <div className="relative overflow-hidden rounded-[40px] w-[550px] h-[280px] bg-black flex flex-col">
+          <div className="z-[1] absolute w-full md:w-fit h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
+            <div>
+              <p className="text-white/60 mix-blend-difference text-center md:text-start">Audifonos Inalambricos</p>
+              <h5 className="text-white font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">Audifonos BT 5.0</h5>
+            </div>
+
+            <div className="flex gap-4">
+              <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
+              <button className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</button>
+            </div>
+          </div>
+
+          <Image
+            width={280}
+            height={280}
+            quality={100}
+            alt="Audifonos Inalambricos en san pedro sula a buen precio marca xo"
+            src="/images/categorias/productos/X0 AUDIFONOS Q5.png"
+            className="select-none aspect-square object-cover object-center p-3 relative md:absolute md:right-0 m-auto -mb-20 md:mb-0"
+            priority={false}
+          />
+        </div>
+
+        <div className="relative overflow-hidden rounded-[40px] w-[550px] h-[280px] bg-[#FFDDE4] flex flex-col">
+          <div className="z-[1] absolute w-full md:w-fit h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
+            <div>
+              <p className="text-black/60 mix-blend-difference text-center md:text-start">Relojes Inteligentes</p>
+              <h5 className="text-black font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">SmartWatch</h5>
+            </div>
+
+            <div className="flex gap-4">
+              <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
+              <button className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</button>
+            </div>
+          </div>
+
+          <Image
+            width={280}
+            height={280}
+            quality={100}
+            alt="Audifonos Q5 marca xo"
+            src="/images/categorias/productos/SMARTWATCH XO.png"
+            className="select-none aspect-square md:p-3 object-cover object-center relative md:absolute md:right-0 m-auto -mb-28 md:mb-0 rotate-[86deg] md:rotate-0"
+            priority={false}
+          />
+        </div>
+
+      </section>
 
       <section className="flex flex-col md:flex-row">
         <div className="relative w-full h-[300px] md:h-[500px]">
