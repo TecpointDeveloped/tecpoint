@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RecommendedProducts } from "../../components/RecomendProducts/page";
 import { useRouter } from "next/router";
+import { useCartStore } from "../../lib/cartStore";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -99,58 +100,44 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [showRemaining, setShowRemaining] = useState(false);
   const [added, setAdded] = useState(false);
   const route = useRouter();
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const handleAddToCart = () => {
+    if (product && product.imagenes && Object.keys(product.imagenes).length > 0) {
+      addToCart({
+        id: product.id,
+        quantity: 1,
+        sku: product.sku,
+        imagenes: Object(product.imagenes),
+        precio: Number(product.precio.detalle),
+        producto: product.producto,
+      });
+    }
+  };
 
   useEffect(() => {
     if (product) {
       const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+      if (!Array.isArray(cart)) {
+        setIsAddedToCart(false);
+        return;
+      }
       const isProductInCart = cart.some((item) => item.id === product.id);
       setIsAddedToCart(isProductInCart);
     }
   }, [product]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
-
-      const existingItem = cart.find((item) => item.id === product.id);
-      if (existingItem) {
-        existingItem.quantity += quantity;
-      } else {
-        cart.push({
-          id: product.id,
-          quantity,
-          sku: product.sku,
-          precio: parseFloat(product.precio.detalle?.toString() || "0"),
-          imagenes: product.imagenes || {},
-          producto: product.producto || "Producto no Encontrado"
-        });
-      }
-
-      localStorage.setItem("cart_tecpoint", JSON.stringify(cart));
-      setIsAddedToCart(true);
-    }
-  };
-
   const handlePayNow = () => {
     if (product) {
-      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
+      addToCart({
+        id: product.id,
+        quantity,
+        sku: product.sku,
+        imagenes: Object(product.imagenes),
+        precio: parseFloat(product.precio.detalle?.toString() || "0"),
+        producto: product.producto || "Producto no Encontrado"
+      });
       route.push("/cart");
-
-      if (!cart.some((item) => item.id === product.id)) {
-        cart.push({
-          id: product.id,
-          quantity,
-          sku: product.sku,
-          precio: parseFloat(product.precio.detalle?.toString() || "0"),
-          imagenes: product.imagenes || {},
-          producto: product.producto || "Producto no Encontrado"
-        });
-      } else {
-        cart.forEach((item) => {
-          if (item.id === product.id) item.quantity += quantity;
-        });
-      }
-      localStorage.setItem("cart_tecpoint", JSON.stringify(cart));
       setIsAddedToCart(true);
     }
   };
@@ -372,6 +359,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
               {isAddedToCart ? "Agregar otra vez" : "Agregar al carrito"}
             </button>
+
+
 
             <button
               onClick={handlePayNow}

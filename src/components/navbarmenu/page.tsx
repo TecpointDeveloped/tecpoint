@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -14,18 +12,10 @@ import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useAuth } from "@/context/useAuth";
+import { useCartStore } from "@/lib/cartStore";
 
 interface ImageData {
   img: string;
-}
-
-interface CartItem {
-  id: string;
-  quantity: number;
-  sku?: string;
-  imagenes?: { imagen_01?: ImageData; imagen_02?: ImageData };
-  precio?: number;
-  producto?: string;
 }
 
 function NavbarMenu() {
@@ -33,10 +23,10 @@ function NavbarMenu() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
   const route = useRouter();
 
   const { currentUser } = useAuth();
+  const { cart, removeFromCart } = useCartStore();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -59,17 +49,6 @@ function NavbarMenu() {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    const storedCart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
-
-    const updatedCart = storedCart.map((item: CartItem) => ({
-      ...item,
-      imagenes: item.imagenes || {},
-    }));
-
-    setCart(updatedCart);
-  }, []);
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -90,9 +69,7 @@ function NavbarMenu() {
   };
 
   const handleRemoveFromCart = (id: string) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
+    removeFromCart(id);
   };
 
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -179,7 +156,7 @@ function NavbarMenu() {
                       >
                         <Link href={`/shop/${product.slug}`} className="flex items-center gap-8 p-4">
                           <Image
-                            src={product.imagenes?.imagen_01?.img || "/default-product.png"}
+                            src={(product.imagenes as { imagen_01?: ImageData })?.imagen_01?.img || "/default-product.png"}
                             alt={product.producto || "Producto"}
                             width={120}
                             height={120}
@@ -239,7 +216,7 @@ function NavbarMenu() {
                     {cart.map((item) => (
                       <li key={item.id} className="flex items-center gap-4 border-b pb-4">
                         <Image
-                          src={item.imagenes?.imagen_01?.img || "/default-product.png"}  // Accedemos correctamente al objeto de imágenes
+                          src={typeof item.imagenes === 'string' ? item.imagenes : (item.imagenes as unknown as { imagen_01?: ImageData }).imagen_01?.img || "/default-product.png"}
                           alt={item.producto || "Producto"}
                           width={80}
                           height={80}

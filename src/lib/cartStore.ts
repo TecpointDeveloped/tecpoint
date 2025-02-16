@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface CartItem {
   id: string;
@@ -17,47 +18,40 @@ interface CartStore {
   clearCart: () => void;
 }
 
-export const useCartStore = create<CartStore>((set) => ({
-  cart: typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("cart_tecpoint") || "[]")
-    : [],
-  addToCart: (item) =>
-    set((state) => {
-      const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
+export const useCartStore = create<CartStore>()(
+  persist(
+    (set) => ({
+      cart: [],
+      addToCart: (item) =>
+        set((state) => {
+          const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
 
-      if (existingItem) {
-        // Incrementar cantidad si el producto ya existe
-        const updatedCart = state.cart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-            : cartItem
-        );
-        localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
-        return { cart: updatedCart };
-      }
+          if (existingItem) {
+            // Si el producto ya está en el carrito, actualiza la cantidad
+            return {
+              cart: state.cart.map((cartItem) =>
+                cartItem.id === item.id
+                  ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+                  : cartItem
+              ),
+            };
+          }
 
-      // Agregar nuevo producto
-      const newCart = [...state.cart, item];
-      localStorage.setItem("cart_tecpoint", JSON.stringify(newCart));
-      return { cart: newCart };
+          // Agrega el producto si no está en el carrito
+          return { cart: [...state.cart, item] };
+        }),
+      removeFromCart: (id) =>
+        set((state) => ({
+          cart: state.cart.filter((item) => item.id !== id),
+        })),
+      updateQuantity: (id, quantity) =>
+        set((state) => ({
+          cart: state.cart.map((item) =>
+            item.id === id ? { ...item, quantity } : item
+          ),
+        })),
+      clearCart: () => set({ cart: [] }),
     }),
-  removeFromCart: (id) =>
-    set((state) => {
-      const updatedCart = state.cart.filter((item) => item.id !== id);
-      localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
-      return { cart: updatedCart };
-    }),
-  updateQuantity: (id, quantity) =>
-    set((state) => {
-      const updatedCart = state.cart.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      );
-      localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
-      return { cart: updatedCart };
-    }),
-  clearCart: () =>
-    set(() => {
-      localStorage.removeItem("cart_tecpoint");
-      return { cart: [] };
-    }),
-}));
+    { name: "cart_tecpoint" } // 🔥 Almacenar automáticamente en localStorage
+  )
+);
