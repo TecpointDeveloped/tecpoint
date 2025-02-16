@@ -6,7 +6,7 @@ export interface Product {
   Subcategorias: string;
   descripcion: string;
   fecha_agregado: string | null;
-  imagenes: { [key: string]: { id: string; img: string } } | object;
+  imagenes: { [key: string]: { id: string; img: string } };
   marca_producto: {
     logo: string;
     marca: string;
