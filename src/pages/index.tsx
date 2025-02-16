@@ -238,96 +238,121 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <section className="md:p-4 flex justify-center flex-wrap gap-6 p-2 h-[100%]">
-        <div className="h-[585px] w-full overflow-hidden relative md:w-[550px] bg-[linear-gradient(102.49deg,#e8f5ff_0%,#afdeff_100%)] rounded-[40px]">
-          <div className="w-full p-4 flex flex-col items-center pt-20 gap-10">
-            <div className="text-center">
-              <h6 className="text-lg tracking-[-0.2px]">Accesorios Premium</h6>
-              <h6 className="text-[38px] font-extrabold tracking-[-0.2px]">iPhone 16 series</h6>
-            </div>
+      <section className="md:p-4 p-2 flex justify-center items-center flex-wrap gap-6">
 
-            <section className="flex gap-4">
-              <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-              <button className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</button>
-            </section>
-          </div>
-
-          <picture className="absolute bottom-0 w-full">
-            <Image
-              src="/images/categorias/productos/iphone_16_series.png"
-              alt="Accesorios para iPhone 16 Pro Max en San Pedro Sula"
-              width={500}
-              height={294}
-              quality={100}
-              priority={true}
-              className="object-cover m-auto scale-115"
-            />
-          </picture>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <div className="relative overflow-hidden rounded-[40px] w-[500px] h-[280px] bg-black flex flex-col">
-            <div className="z-[1] absolute w-full md:w-fit h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
-              <div>
-                <p className="text-white/60 mix-blend-difference text-center md:text-start">Audifonos Inalambricos</p>
-                <h5 className="text-white font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">Audifonos BT</h5>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:w-fit">
+          <div className="h-[450px] md:h-[585px] md:w-[550px] w-full overflow-hidden relative bg-[linear-gradient(102.49deg,#e8f5ff_0%,#afdeff_100%)] rounded-[40px]">
+            <div className="w-full p-4 flex flex-col items-center pt-8 gap-6 md:pt-20 md:gap-10">
+              <div className="text-center">
+                <h6 className="text-lg tracking-[-0.2px]">Accesorios Premium</h6>
+                <h6 className="text-[38px] font-extrabold tracking-[-0.2px]">iPhone 16 series</h6>
               </div>
 
-              <div className="flex gap-4">
+              <section className="flex gap-4">
                 <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                <button className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</button>
-              </div>
+                <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+              </section>
             </div>
 
-            <Image
-              width={280}
-              height={280}
-              quality={100}
-              alt="Audifonos Inalambricos en san pedro sula a buen precio marca xo"
-              src="/images/categorias/productos/X0 AUDIFONOS Q5.png"
-              className="select-none aspect-square object-cover object-center p-3 relative md:absolute md:right-0 m-auto -mb-20 md:mb-0"
-              priority={false}
-            />
+            <picture className="absolute bottom-0 w-full">
+              <Image
+                src="/images/categorias/productos/iphone_16_series.png"
+                alt="Accesorios para iPhone 16 Pro Max en San Pedro Sula"
+                width={500}
+                height={294}
+                quality={100}
+                priority={true}
+                className="object-cover m-auto scale-115"
+              />
+            </picture>
           </div>
 
-          <div className="relative overflow-hidden rounded-[40px] w-[500px] h-[280px] bg-[linear-gradient(102.49deg,#ffe2e7_0%,#ffbfce_100%)] flex flex-col">
-            <div className="z-[1] absolute w-full md:w-fit h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
-              <div>
-                <p className="text-black/60 mix-blend-difference text-center md:text-start">Relojes Inteligentes</p>
-                <h5 className="text-black font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">SmartWatch</h5>
+          <div className="grid grid-rows-2 gap-6 w-full">
+            <div className="relative overflow-hidden rounded-[40px] w-full h-[280px] bg-black flex flex-col">
+              <div className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
+                <div>
+                  <p className="text-white/60 mix-blend-difference text-center md:text-start">Audifonos Inalambricos</p>
+                  <h5 className="text-white font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">Audifonos BT</h5>
+                </div>
+
+                <div className="flex gap-4">
+                  <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
+                  <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+                </div>
               </div>
 
-              <div className="flex gap-4">
+              <Image
+                width={280}
+                height={280}
+                quality={100}
+                alt="Audifonos Inalambricos en san pedro sula a buen precio marca xo"
+                src="/images/categorias/productos/X0 AUDIFONOS Q5.png"
+                className="select-none aspect-square object-cover object-center p-3 relative md:absolute md:right-0 m-auto -mb-20 md:mb-0"
+                priority={false}
+              />
+            </div>
+
+            <div className="relative overflow-hidden rounded-[40px] w-full h-[280px] bg-[linear-gradient(102.49deg,#ffe2e7_0%,#ffbfce_100%)] flex flex-col">
+              <div className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
+                <div>
+                  <p className="text-black/60 mix-blend-difference text-center md:text-start">Relojes Inteligentes</p>
+                  <h5 className="text-black font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">SmartWatch</h5>
+                </div>
+
+                <div className="flex gap-4">
+                  <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
+                  <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+                </div>
+              </div>
+
+              <Image
+                width={280}
+                height={280}
+                quality={100}
+                alt="Audifonos Q5 marca xo"
+                src="/images/categorias/productos/SMARTWATCH XO.png"
+                className="select-none aspect-square md:p-3 object-cover object-center relative md:absolute md:right-0 m-auto -mb-28 md:mb-0 rotate-[86deg] md:rotate-0"
+                priority={false}
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* <div className="flex gap-6 md:w-[1120px]">
+          <figure className="h-[300px] md:w-[780px] w-full overflow-hidden bg-[linear-gradient(102.49deg,#e3fff0_0%,#b8ffd4_100%)] rounded-[40px] relative">
+            <figcaption className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-start">
+              <p className="text-black/60 mix-blend-difference">Accesorios Premium</p>
+              <h5 className="text-black font-black text-[36px] tracking-[-0.4px] mix-blend-difference">S24 Series</h5>
+
+              <section className="flex gap-4 mt-6">
                 <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                <button className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</button>
-              </div>
-            </div>
+                <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+              </section>
+            </figcaption>
 
-            <Image
-              width={280}
-              height={280}
-              quality={100}
-              alt="Audifonos Q5 marca xo"
-              src="/images/categorias/productos/SMARTWATCH XO.png"
-              className="select-none aspect-square md:p-3 object-cover object-center relative md:absolute md:right-0 m-auto -mb-28 md:mb-0 rotate-[86deg] md:rotate-0"
-              priority={false}
-            />
-          </div>
-        </div>
+            <picture className="absolute bottom-0 md:right-0 md:w-fit w-full grid place-content-center">
+              <Image
+                height={250}
+                width={250}
+                alt="Cobertores para s24 Ultra"
+                src="/images/categorias/productos/samsung s24 ultra.png"
+                className="scale-115 -mb-16"
+              />
+            </picture>
+          </figure>
 
-      </section>
-
-      <section className="flex flex-col md:flex-row">
-        <div className="relative w-full h-[300px] md:h-[500px]">
-          <Image
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="zc1max.png"
-            src="/images/rockspace/Portada-RockSpace.webp"
-            className="object-center"
-          />
-        </div>
+          <figure className="h-[300px] w-full overflow-hidden bg-[linear-gradient(102.68deg,#fef4e0_0%,#ffdead_99.61%)] rounded-[40px] relative">
+            <picture className="absolute bottom-0 right-0">
+              <Image
+                height={250}
+                width={250}
+                alt="Cobertores para s24 Ultra"
+                src="/images/categorias/productos/samsung s24 ultra.png"
+                className="scale-115 -mb-16"
+              />
+            </picture>
+          </figure>
+        </div> */}
       </section>
 
       <section className="flex flex-col md:flex-row p-2 gap-2">
