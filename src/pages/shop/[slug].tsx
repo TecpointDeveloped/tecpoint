@@ -127,20 +127,20 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     }
   }, [product]);
 
-  const handlePayNow = () => {
-    if (product) {
-      addToCart({
-        id: product.id,
-        quantity,
-        sku: product.sku,
-        imagenes: Object(product.imagenes),
-        precio: parseFloat(product.precio.detalle?.toString() || "0"),
-        producto: product.producto || "Producto no Encontrado"
-      });
-      route.push("/cart");
-      setIsAddedToCart(true);
-    }
-  };
+  // const handlePayNow = () => {
+  //   if (product) {
+  //     addToCart({
+  //       id: product.id,
+  //       quantity,
+  //       sku: product.sku,
+  //       imagenes: Object(product.imagenes),
+  //       precio: parseFloat(product.precio.detalle?.toString() || "0"),
+  //       producto: product.producto || "Producto no Encontrado"
+  //     });
+  //     route.push("/cart");
+  //     setIsAddedToCart(true);
+  //   }
+  // };
 
   const handleQuantityChange = (operation: "increase" | "decrease") => {
     setQuantity((prev) => {
