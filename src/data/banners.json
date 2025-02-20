@@ -51,7 +51,7 @@
     "BannerID": "9",
     "marca": "USG",
     "ImageBanner": "/logos/usg.png",
-    "color": "000"
+    "color": "555"
   },
   {
     "BannerID": "10",
@@ -75,6 +75,6 @@
     "BannerID": "11",
     "marca": "XO",
     "ImageBanner": "/logos/xo.png",
-    "color": "FFF"
+    "color": "FF5252"
   }
 ]
