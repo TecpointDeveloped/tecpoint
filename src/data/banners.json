@@ -70,5 +70,11 @@
     "marca": "Appacs",
     "ImageBanner": "/logos/appacs.png",
     "color": "76D660"
+  },
+  {
+    "BannerID": "11",
+    "marca": "XO",
+    "ImageBanner": "/logos/xo.png",
+    "color": "FFF"
   }
 ]
