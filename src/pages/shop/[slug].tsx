@@ -12,7 +12,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RecommendedProducts } from "../../components/RecomendProducts/page";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useCartStore } from "../../lib/cartStore";
 
 interface ProductDetailProps {
@@ -99,7 +99,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
   const [added, setAdded] = useState(false);
-  const route = useRouter();
+  // const route = useRouter();
   const addToCart = useCartStore((state) => state.addToCart);
 
   const handleAddToCart = () => {
