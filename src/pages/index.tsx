@@ -8,8 +8,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
-import Autoplay from "embla-carousel-autoplay"
-import { useRef } from "react";
+// import Autoplay from "embla-carousel-autoplay"
+// import { useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 
 export async function getServerSideProps() {
@@ -45,9 +45,9 @@ interface HomeProps {
 }
 
 export default function Home({ logos, products }: HomeProps) {
-  const plugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false })
-  )
+  // const plugin = useRef(
+  //   Autoplay({ delay: 2000, stopOnInteraction: false })
+  // )
 
   return (
     <>
@@ -76,38 +76,70 @@ export default function Home({ logos, products }: HomeProps) {
       <NavbarMenu />
 
       <Carousel
-        className="w-full h-auto z-10"
+        className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        plugins={[plugin.current]}
+        // plugins={[plugin.current]}
         opts={{
           loop: true,
         }}
       >
         <CarouselContent>
-          <CarouselItem className="w-full h-[85vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="Active 8 hypergear" />
-            <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Nuevos cargadores <span className="block text-[60px]">Carga Rapida</span></h6>
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <video
+              className="cursor-pointer absolute w-full h-full md:h-fit object-cover"
+              src="/video/samsung_s25_ultra.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+
+            <div className="relative size-full flex items-center justify-center bg-[#00000011] pb-10 flex-col gap-12">
+              <h6 className="text-white mix-blend-difference text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Accesorios <span className="block text-[40px] md:text-[60px]">Samsung S25 Ultra</span></h6>
+              <section className="flex gap-4">
+                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+              </section>
             </div>
           </CarouselItem>
 
-          <CarouselItem className="w-full h-[85vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.webp" alt="Active 8 hypergear" />
-            <div className="relative size-full flex items-center justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px] mix-blend-difference">Cables USB de<span className="block text-[60px]">Marcas Certificadas</span></h6>
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="cargadores carga rapida usb c" />
+            <div className="relative size-full flex items-center justify-center pb-10 bg-[#00000018] flex-col gap-12">
+              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos cargadores <span className="block text-[50px] md:text-[60px]">Carga Rapida</span></h6>
+              <section className="flex gap-4">
+                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+              </section>
             </div>
           </CarouselItem>
 
-          <CarouselItem className="w-full h-[85vh] relative flex">
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.webp" alt="cable usb para samsung y iphone" />
+            <div className="relative size-full flex items-center justify-center pb-10 flex-col gap-12">
+              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Cables USB de<span className="block text-[40px] md:text-[60px]">Marcas Certificadas</span></h6>
+              <section className="flex gap-4">
+                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+              </section>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.webp" alt="Active 8 hypergear" />
-            <div className="relative size-full flex items-start pt-10 justify-center bg-[#00000011] backdrop-blur-[0px] pb-10">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Cobertores <span className="block text-[60px]">iPhone 16 series</span></h6>
+
+            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
+              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Cobertores <span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
+
+              <section className="flex gap-4">
+                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+              </section>
             </div>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
@@ -239,7 +271,6 @@ export default function Home({ logos, products }: HomeProps) {
       </section>
 
       <section className="md:p-4 p-2 flex justify-center items-center flex-wrap gap-6">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:w-fit">
           <div className="h-[450px] md:h-[585px] md:w-[550px] w-full overflow-hidden relative bg-[linear-gradient(102.49deg,#e8f5ff_0%,#afdeff_100%)] rounded-[40px]">
             <div className="w-full p-4 flex flex-col items-center pt-8 gap-6 md:pt-20 md:gap-10">
@@ -318,7 +349,7 @@ export default function Home({ logos, products }: HomeProps) {
           </div>
         </div>
 
-        {/* <div className="flex gap-6 md:w-[1120px]">
+        {/* <div className="flex flex-col md:flex-row gap-6 w-full md:w-[1120px]">
           <figure className="h-[300px] md:w-[780px] w-full overflow-hidden bg-[linear-gradient(102.49deg,#e3fff0_0%,#b8ffd4_100%)] rounded-[40px] relative">
             <figcaption className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-start">
               <p className="text-black/60 mix-blend-difference">Accesorios Premium</p>

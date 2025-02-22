@@ -238,7 +238,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
 
-          <Carousel className="border rounded-md flex-1 sm:size-[480px] md:size-[500px]">
+          <Carousel className="border rounded-md flex-1 sm:size-[480px] md:size-[500px]" opts={{ loop: true }}>
             <CarouselContent className="">
               {imagenesArray?.map((img, index) => (
                 <CarouselItem key={index}>
