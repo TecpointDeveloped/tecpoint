@@ -317,7 +317,7 @@ export default function Home({ logos, products }: HomeProps) {
             </div>
           </div>
         </div>
-        
+
         {/* <div className="flex gap-6 md:w-[1120px]">
           <figure className="h-[300px] md:w-[780px] w-full overflow-hidden bg-[linear-gradient(102.49deg,#e3fff0_0%,#b8ffd4_100%)] rounded-[40px] relative">
             <figcaption className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-start">

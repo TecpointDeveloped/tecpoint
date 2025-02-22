@@ -183,7 +183,10 @@ function NavbarMenu() {
           {/* Carrito */}
           <Sheet>
             <SheetTrigger asChild>
-              <button className="block">
+              <button className="block relative">
+                {cart.length > 0 && (
+                  <div className="absolute top-0 -right-1 border-black border-2 size-3 bg-green-300 rounded-full"></div>
+                )}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
