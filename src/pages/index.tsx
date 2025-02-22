@@ -11,7 +11,6 @@ import Head from "next/head";
 // import Autoplay from "embla-carousel-autoplay"
 // import { useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
-import { Separator } from "@radix-ui/react-separator";
 
 export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
