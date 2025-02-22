@@ -11,6 +11,7 @@ import Head from "next/head";
 // import Autoplay from "embla-carousel-autoplay"
 // import { useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { Separator } from "@radix-ui/react-separator";
 
 export async function getServerSideProps() {
   const fetchProducts = async (): Promise<Product[]> => {
@@ -164,6 +165,61 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
+
+      <article className="p-2 flex gap-16 w-full items-center justify-center md:py-12 flex-wrap">
+
+        <section className="flex flex-col gap-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
+            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"></path>
+            <path d="M3 9l4 0"></path>
+          </svg>
+
+          <div className="flex flex-col items-center gap-2">
+            <p className="font-bold md:text-xl">Envios Seguros</p>
+            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Envios a nivel nacional de<span className="block text-center">forma rapida y segura.</span></p>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
+            <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+          </svg>
+
+          <div className="flex flex-col items-center gap-2">
+            <p className="font-bold md:text-xl">Soporte Tecnico</p>
+            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Recibe Soporte tecnico en<span className="block text-center">nuestras marcas.</span></p>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
+            <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+            <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+            <path d="M12 12l0 .01"></path>
+            <path d="M3 13a20 20 0 0 0 18 0"></path>
+          </svg>
+
+          <div className="flex flex-col items-center gap-2">
+            <p className="font-bold md:text-xl">Venta corporativa</p>
+            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Recibe atención personalizada<span className="block text-center">a la medida de tu negocio.</span></p>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#646a75" className="size-[60px]">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+          </svg>
+
+          <div className="flex flex-col items-center gap-2">
+            <p className="font-bold md:text-xl">Tienda Tecpoint</p>
+            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Vive la experiencia tecnologica<span className="block text-center">en la tienda tecpoint.</span></p>
+          </div>
+        </section>
+
+      </article>
 
       <section className="py-8 px-4 flex flex-col gap-y-6">
         <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Explora Nuestros Productos</h1>
