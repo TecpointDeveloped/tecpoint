@@ -64,8 +64,8 @@ function Footer() {
 
         <div className='text-white'>
           <h4>Contacto</h4>
-          <p>Dirección: Barrio el San Pedro Sula, Barrio el enque 9 avenida entre 5 y 6 calle</p>
-          <p>Teléfono: +123 456 7890</p>
+          <p>Dirección: San Pedro Sula, Barrio el Benque 9 avenida entre 5 y 6 calle</p>
+          <p>Teléfono: +504 9715-7784</p>
           <p>Email: tecpointdistribucion@gmail.com</p>
         </div>
 
