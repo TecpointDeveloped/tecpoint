@@ -8,8 +8,8 @@ import { Product } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "@/components/ui/pagination";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from "@/components/ui/select";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ShopProps {
   products: Product[];
@@ -51,8 +51,9 @@ export async function getStaticProps() {
 
 const Shop = ({ products = [] }: ShopProps) => {
   const router = useRouter();
-  const { page } = router.query;
-  const [searchTerm, setSearchTerm] = useState("");
+  const { page, brand, search } = router.query;
+  const [searchTerm, setSearchTerm] = useState(search || "");
+  const [selectedBrand, setSelectedBrand] = useState<string | undefined>(Array.isArray(brand) ? brand[0] : brand || "");
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
   const productsPerPage = 9;
 
@@ -60,19 +61,34 @@ const Shop = ({ products = [] }: ShopProps) => {
     if (page) {
       setCurrentPage(Number(page));
     }
-  }, [page]);
+    if (brand) {
+      setSelectedBrand(brand as string);
+    }
+    if (search) {
+      setSearchTerm(search as string);
+    }
+  }, [page, brand, search]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Reset to first page on search
-    router.push(`/shop?page=1`);
+  };
+
+  const handleBrandChange = (value: string) => {
+    setSelectedBrand(value);
+    setCurrentPage(1); // Reset to first page on brand change
+    router.push(`/shop?page=1&brand=${value}&search=${searchTerm}`);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push(`/shop?page=1&brand=${selectedBrand}&search=${searchTerm}`);
   };
 
   const filteredProducts = products.filter((product) =>
-    product.producto.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.descripcion.toUpperCase().includes(searchTerm.toUpperCase()) ||
-    product.marca_producto.marca.toLowerCase().includes(searchTerm.toLowerCase())
+    (selectedBrand ? product.marca_producto.marca.toLowerCase() === selectedBrand.toLowerCase() : true) &&
+    (product.producto.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
+      product.sku.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
+      product.descripcion.toUpperCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toUpperCase()))
   );
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -83,7 +99,7 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    router.push(`/shop?page=${page}`);
+    router.push(`/shop?page=${page}&brand=${selectedBrand}&search=${searchTerm}`);
   };
 
   if (!products || products.length === 0) {
@@ -110,7 +126,7 @@ const Shop = ({ products = [] }: ShopProps) => {
       <main className="w-full mx-auto p-2 md:p-4 mt-12">
         <h1 className="text-2xl font-bold mb-6 text-center">Bienvenido a la tienda Tecpoint</h1>
 
-        <form onSubmit={(e) => e.preventDefault()} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
+        <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
           <input
             className="border w-full py-3 px-6 rounded-full"
             type="text"
@@ -119,7 +135,7 @@ const Shop = ({ products = [] }: ShopProps) => {
             onChange={handleSearchChange}
           />
 
-          <Select>
+          <Select onValueChange={handleBrandChange} value={selectedBrand}>
             <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
               <SelectValue placeholder="Marca" />
             </SelectTrigger>
@@ -218,7 +234,6 @@ const Shop = ({ products = [] }: ShopProps) => {
             );
           })}
         </div>
-
       </main>
 
       <Footer />
