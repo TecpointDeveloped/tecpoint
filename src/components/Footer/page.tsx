@@ -71,6 +71,13 @@ function Footer() {
 
       </section>
 
+      <section className='flex justify-center gap-4 mt-4'>
+        <Link href='/garantia' className='text-white'>Garantia</Link>
+        <Link href='/terminos-y-condiciones' className='text-white'>Terminos y Condiciones</Link>
+        <Link href='/preguntas-frecuentes' className='text-white'>Preguntas Frecuentes</Link>
+        <Link href='/politica-privacidad' className='text-white'>Politica de Privacidad</Link>
+      </section>
+
       <section className='text-center text-white'>
         <p>&copy; {new Date().getFullYear()} Tecpoint. Todos los derechos reservados.</p>
       </section>
