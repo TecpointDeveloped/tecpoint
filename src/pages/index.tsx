@@ -8,8 +8,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import Footer from "@/components/Footer/page";
 import Head from "next/head";
-// import Autoplay from "embla-carousel-autoplay"
-// import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay"
+import { useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 
 export async function getServerSideProps() {
@@ -45,9 +45,9 @@ interface HomeProps {
 }
 
 export default function Home({ logos, products }: HomeProps) {
-  // const plugin = useRef(
-  //   Autoplay({ delay: 2000, stopOnInteraction: false })
-  // )
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false })
+  )
 
   return (
     <>
@@ -79,7 +79,7 @@ export default function Home({ logos, products }: HomeProps) {
         className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        // plugins={[plugin.current]}
+        plugins={[plugin.current]}
         opts={{
           loop: true,
         }}
