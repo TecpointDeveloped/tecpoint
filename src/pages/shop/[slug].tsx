@@ -106,7 +106,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     if (product && product.imagenes && Object.keys(product.imagenes).length > 0) {
       addToCart({
         id: product.id,
-        quantity: 1,
+        quantity: quantity,
         sku: product.sku,
         imagenes: Object(product.imagenes),
         precio: Number(product.precio.detalle),
@@ -198,8 +198,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     color: "000000",
     ImageBanner: "/default-banner.png",
   };
-
-  console.log(product.Subcategorias);
 
   return (
     <>
@@ -323,12 +321,21 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <p className="text-md font-bold 2xl:text-[20px]">{product.sku}</p>
             </span>
 
-            <span className="flex flex-col">
-              <p className="text-[#696969]">Precio</p>
-              <p className="text-2xl font-bold leading-4">
-                {product.precio.detalle}.00
-              </p>
-            </span>
+            <div className="flex gap-x-12 md:py-4">
+              <span className="flex flex-col">
+                <i className="text-[#696969]">Precio Detalle</i>
+                <i className="text-2xl font-bold leading-4">
+                  {product.precio.detalle}.00
+                </i>
+              </span>
+
+              <span className="flex flex-col">
+                <i className="text-[#696969]">Precio Mayoreo</i>
+                <i className="text-2xl font-bold leading-4 text-[#42c928]">
+                  {product.precio.mayoreo}.00
+                </i>
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center gap-x-2 mt-6">

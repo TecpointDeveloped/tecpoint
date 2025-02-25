@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useAuth } from "@/context/useAuth";
 import { useCartStore } from "@/lib/cartStore";
+import Avvvatars from 'avvvatars-react';
 
 interface ImageData {
   img: string;
@@ -275,17 +276,21 @@ function NavbarMenu() {
           </Sheet>
 
           {currentUser ? (
-            <div className="size-[36px] rounded-full overflow-hidden grid place-content-center hover:bg-[#ffffff2a] transition-colors">
-              <Image
-                src={currentUser.photoURL || "/default-user.png"}
-                alt={currentUser.displayName || "Usuario tecpoint distribucion"}
-                quality={100}
-                priority={true}
-                width={26}
-                height={26}
-                className="cursor-pointer aspect-square rounded-full"
-              />
-            </div>
+            <Link href="/my-account" className="size-[36px] rounded-full overflow-hidden grid place-content-center hover:bg-[#ffffff2a] transition-colors">
+              {currentUser.photoURL ? (
+                <Image
+                  src={currentUser.photoURL}
+                  alt={currentUser.displayName || "Usuario tecpoint distribucion"}
+                  quality={100}
+                  priority={true}
+                  width={26}
+                  height={26}
+                  className="cursor-pointer aspect-square rounded-full"
+                />
+              ) : (
+                <Avvvatars value={currentUser.email || "user"} />
+              )}
+            </Link>
           ) : (
             <Link href="/my-account" className="size-[36px] cursor-pointer rounded-full overflow-hidden grid place-content-center hover:bg-[#ffffff2a] transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-[26px]">
