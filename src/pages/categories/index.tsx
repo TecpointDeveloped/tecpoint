@@ -24,7 +24,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
         <meta name="author" content="Tecpoint Distribucion" />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tecpoint.vercel.app/categories" />
+        <meta property="og:url" content="https://tecpoint.ws/categories" />
         <meta property="og:description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>

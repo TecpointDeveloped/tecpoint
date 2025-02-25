@@ -69,7 +69,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
         <meta name="author" content="Tecpoint Distribucion" />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tecpoint.vercel.app/my-account" />
+        <meta property="og:url" content="https://tecpoint.ws/my-account" />
         <meta property="og:description" content={description} />
       </Head>
 

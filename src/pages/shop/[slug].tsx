@@ -214,7 +214,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.producto} />
         <meta property="og:description" content={product.descripcion || ""} />
-        <meta property="og:url" content={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+        <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
         <meta property="og:image" content={primaryImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
@@ -228,7 +228,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta name="twitter:image" content={primaryImage} />
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
-        <link rel="canonical" href={`https://tecpoint.vercel.app/shop/${product.slug}`} />
+        <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
       </Head>
 
       <NavbarMenu />
@@ -381,7 +381,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
             <button
               onClick={() => {
-                const message = `https://tecpoint.vercel.app/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
+                const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
                 const whatsappUrl = `https://wa.me/50497157784?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, "_blank");
               }}

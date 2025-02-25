@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function generateSitemap() {
-  const baseUrl = "https://tecpoint.vercel.app";  // Cambia a tu dominio
+  const baseUrl = "https://tecpoint.ws";
   const productCollection = collection(db, 'Products');
 
   try {
