@@ -23,7 +23,6 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [loading,] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const route = useRouter()
