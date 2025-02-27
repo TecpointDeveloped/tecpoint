@@ -236,22 +236,25 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       <main className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
         <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
 
-          <Carousel className="border rounded-md flex-1 sm:size-[480px] md:size-[500px]" opts={{ loop: true }}>
+          <Carousel className="border rounded-xl flex-1 sm:size-[480px] md:size-[500px]" opts={{ loop: true }}>
             <CarouselContent className="">
-              {imagenesArray?.map((img, index) => (
-                <CarouselItem key={index}>
-                  <Image
-                    rel="noopener noreferrer"
-                    quality={100}
-                    priority={true}
-                    src={img.img || "/default-product.png"}
-                    alt={product.producto || `Imagen ${index + 1}`}
-                    className="flex-1 sm:size-[480px] md:size-[500px] aspect-square object-cover"
-                    width={1100}
-                    height={1100}
-                  />
-                </CarouselItem>
-              ))}
+              {imagenesArray.length > 0 ?
+                imagenesArray.map((img: { img: string }, index: number) => (
+                  <CarouselItem key={index}>
+                    <Image
+                      rel="noopener noreferrer"
+                      quality={100}
+                      priority={true}
+                      src={img.img || "/default-product.png"}
+                      alt={product.producto || `Imagen ${index + 1}`}
+                      className="flex-1 sm:size-[480px] md:size-[500px] aspect-square object-contain rounded-xl"
+                      width={1100}
+                      height={1100}
+                    />
+                  </CarouselItem>
+                )) :
+                <Image width={1100} height={1100} src="/default-product.png" className="flex-1 sm:size-[480px] md:size-[500px] aspect-square object-contain rounded-xl" alt="Default product image" />
+              }
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
@@ -323,18 +326,18 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
             <div className="flex gap-x-12 md:py-4">
               <span className="flex flex-col">
-                <i className="text-[#696969]">Precio Detalle</i>
-                <i className="text-2xl font-bold leading-4">
+                <p className="text-[#696969]">Precio Detalle</p>
+                <p className="text-2xl font-bold leading-4">
                   {product.precio.detalle}.00
-                </i>
+                </p>
               </span>
 
-              <span className="flex flex-col">
-                <i className="text-[#696969]">Precio Mayoreo</i>
-                <i className="text-2xl font-bold leading-4 text-[#42c928]">
+              {/* <span className="flex flex-col">
+                <p className="text-[#696969]">Precio Mayoreo</p>
+                <p className="text-2xl font-bold leading-4 text-[#42c928]">
                   {product.precio.mayoreo}.00
-                </i>
-              </span>
+                </p>
+              </span> */}
             </div>
           </div>
 

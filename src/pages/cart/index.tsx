@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 // import PayPalButton from "@/components/PayPalButton/page";
 import Head from "next/head";
 import { Separator } from "@/components/ui/separator";
-
-import Settings from "@pixelpay/sdk-core/lib/models/Settings";
-import Card from "@pixelpay/sdk-core/lib/models/Card";
-import Billing from "@pixelpay/sdk-core/lib/models/Billing";
-import Item from "@pixelpay/sdk-core/lib/models/Item";
-import Order from "@pixelpay/sdk-core/lib/models/Order";
-import SaleTransaction from "@pixelpay/sdk-core/lib/requests/SaleTransaction";
-import Transaction from "@pixelpay/sdk-core/lib/services/Transaction";
-import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
+// import Settings from "@pixelpay/sdk-core/lib/models/Settings";
+// import Card from "@pixelpay/sdk-core/lib/models/Card";
+// import Billing from "@pixelpay/sdk-core/lib/models/Billing";
+// import Item from "@pixelpay/sdk-core/lib/models/Item";
+// import Order from "@pixelpay/sdk-core/lib/models/Order";
+// import SaleTransaction from "@pixelpay/sdk-core/lib/requests/SaleTransaction";
+// import Transaction from "@pixelpay/sdk-core/lib/services/Transaction";
+// import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
 import { useCartStore } from "../../lib/cartStore"
+import { useAuth } from "@/context/useAuth";
 
 interface CartItem {
   id: string;
@@ -26,8 +26,8 @@ interface CartItem {
 
 const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
-
   const { cart: storedCart } = useCartStore();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const updatedCart = storedCart.map((item: CartItem) => {
@@ -47,89 +47,96 @@ const CartPage = () => {
     localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
   };
 
-  const handlepayment = async () => {
-    const settings = new Settings()
-    // settings.setupEndpoint("https://hn.ficoposonline.com/")
-    // settings.setupCredentials("FHI372717363", "b36aa20b0010f042b5bf788a4793b902")
-    settings.setupSandbox()
+  // const handlepayment = async () => {
+  //   const settings = new Settings()
+  //   // settings.setupEndpoint("https://hn.ficoposonline.com/")
+  //   // settings.setupCredentials("FHI372717363", "b36aa20b0010f042b5bf788a4793b902")
+  //   settings.setupSandbox()
 
-    const card = new Card()
-    card.number = "4111111111111111"
-    card.cvv2 = "999"
-    card.expire_month = 7
-    card.expire_year = 2027
-    card.cardholder = "SERGIO PEREZ"
+  //   const card = new Card()
+  //   card.number = "4111111111111111"
+  //   card.cvv2 = "999"
+  //   card.expire_month = 7
+  //   card.expire_year = 2027
+  //   card.cardholder = "SERGIO PEREZ"
 
-    const billing = new Billing()
-    billing.address = "Ave Circunvalacion"
-    billing.country = "HN"
-    billing.state = "HN-CR"
-    billing.city = "San Pedro Sula"
-    billing.phone = "99999999"
+  //   const billing = new Billing()
+  //   billing.address = "Ave Circunvalacion"
+  //   billing.country = "HN"
+  //   billing.state = "HN-CR"
+  //   billing.city = "San Pedro Sula"
+  //   billing.phone = "99999999"
 
-    const item = new Item()
-    item.code = "00001"
-    item.title = "Videojuego"
-    item.price = 8
-    item.qty = 1
+  //   const item = new Item()
+  //   item.code = "00001"
+  //   item.title = "Videojuego"
+  //   item.price = 8
+  //   item.qty = 1
 
-    const order = new Order()
-    order.id = "ORDER-88888"
-    order.currency = "HNL"
-    order.customer_name = "SERGIO PEREZ"
-    order.customer_email = "sergio.perez@gmail.com"
-    order.addItem(item)
+  //   const order = new Order()
+  //   order.id = "ORDER-88888"
+  //   order.currency = "HNL"
+  //   order.customer_name = "SERGIO PEREZ"
+  //   order.customer_email = "sergio.perez@gmail.com"
+  //   order.addItem(item)
 
-    const sale = new SaleTransaction()
-    sale.setOrder(order)
-    sale.setCard(card)
-    sale.setBilling(billing)
+  //   const sale = new SaleTransaction()
+  //   sale.setOrder(order)
+  //   sale.setCard(card)
+  //   sale.setBilling(billing)
 
-    const service = new Transaction(settings)
+  //   const service = new Transaction(settings)
 
-    // Con async / await
-    try {
-      const response = await service.doSale(sale)
-      console.log(response)
+  //   // Con async / await
+  //   try {
+  //     const response = await service.doSale(sale)
+  //     console.log(response)
 
-      if (TransactionResult.validateResponse(response)) {
-        const result = TransactionResult.fromResponse(response)
+  //     if (TransactionResult.validateResponse(response)) {
+  //       const result = TransactionResult.fromResponse(response)
 
-        // const is_valid_payment = service.verifyPaymentHash(
-        //   result.payment_hash,
-        //   order.id,
-        //   "abc...", // secret
-        // )
+  //       // const is_valid_payment = service.verifyPaymentHash(
+  //       //   result.payment_hash,
+  //       //   order.id,
+  //       //   "abc...", // secret
+  //       // )
 
-        if (result) {
-          alert(response.message)
-        }
-      }
-    } catch (error) {
-      // ERROR
-      console.error("Ocurrio un error al realizar el pago", error)
-    }
+  //       if (result) {
+  //         alert(response.message)
+  //       }
+  //     }
+  //   } catch (error) {
+  //     // ERROR
+  //     console.error("Ocurrio un error al realizar el pago", error)
+  //   }
 
-    // // Con callback
-    // service.doSale(sale).then((response) => {
-    //   if (TransactionResult.validateResponse(response)) {
-    //     const result = TransactionResult.fromResponse(response)
+  //   // // Con callback
+  //   // service.doSale(sale).then((response) => {
+  //   //   if (TransactionResult.validateResponse(response)) {
+  //   //     const result = TransactionResult.fromResponse(response)
 
-    //     // const is_valid_payment = service.verifyPaymentHash(
-    //     //   result.payment_hash,
-    //     //   order.id,
-    //     //   "abc...", // secret
-    //     // )
+  //   //     // const is_valid_payment = service.verifyPaymentHash(
+  //   //     //   result.payment_hash,
+  //   //     //   order.id,
+  //   //     //   "abc...", // secret
+  //   //     // )
 
-    //     if (result) {
-    //       alert("pago realizado con exito")
-    //     }
-    //   }
-    // }).catch((error) => {
-    //   console.error("Ocurrio un error al realizar el pago", error)
-    // })
-  }
+  //   //     if (result) {
+  //   //       alert("pago realizado con exito")
+  //   //     }
+  //   //   }
+  //   // }).catch((error) => {
+  //   //   console.error("Ocurrio un error al realizar el pago", error)
+  //   // })
+  // }
 
+  const handleWhatsAppOrder = () => {
+    const phoneNumber = "97157784";
+    const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}`;
+    const encodedMessage = encodeURIComponent(message);
+    const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(waLink, "_blank");
+  };
 
   return (
     <>
@@ -156,12 +163,19 @@ const CartPage = () => {
       </Head>
       <NavbarMenu />
 
-      <main className="p-4 flex flex-col lg:flex-row gap-4 md:justify-between lg:justify-evenly">
-        <div className="py-4 px-6 bg-white w-full lg:w-fit h-fit">
+      <main className="flex flex-col md:h-[87dvh] lg:flex-row gap-4 md:justify-between lg:justify-evenly">
+        <div className="py-4 px-6 w-full md:w-1/2 md:h-auto overflow-hidden overflow-y-scroll
+        [&::-webkit-scrollbar]:w-2
+      [&::-webkit-scrollbar-track]:bg-transparent
+      [&::-webkit-scrollbar-thumb]:rounded-full
+      [&::-webkit-scrollbar-thumb]:bg-gray-300
+      dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+      dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500
+        ">
           {cart.length > 0 ? (
             <ul className="space-y-4 flex flex-col gap-y-3">
               {cart.map((item) => (
-                <li key={item.id} className="flex items-center gap-4 w-[480px] relative">
+                <li key={item.id} className="flex items-center gap-4 w-full relative">
                   <Image
                     priority
                     src={typeof item.imagenes !== 'string' ? item.imagenes?.imagen_01?.img ?? "/default-product.png" : "/default-product.png"}
@@ -169,7 +183,7 @@ const CartPage = () => {
                     width={100}
                     height={100}
                     quality={100}
-                    className="object-cover aspect-square bg-gray-100"
+                    className="object-cover aspect-square"
                   />
                   <div className="w-[340px] flex flex-col gap-2">
                     <h3 className="text-[17px] font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>
@@ -192,45 +206,33 @@ const CartPage = () => {
           )}
         </div>
 
-        <div className="w-1/2 flex-col flex gap-2">
-          {/* <h1>Selecciona un Metodo de Pago</h1> */}
+        <div className="py-4 px-6 w-full md:w-1/2 bg-gray-100">
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-4">Resumen del pedido</h2>
 
-          <div className="w-[290px] p-2 h-fit bg-gray-100 rounded-lg flex gap-x-3 items-center cursor-pointer">
-            <div className="size-12 rounded-full bg-gray-200 grid place-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                <path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
-                <path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
-                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-              </svg>
+            <div className="flex justify-between mb-2">
+              <span className="text-gray-700">Cuenta:</span>
+              <span className="font-bold">{currentUser?.displayName ?? "Invitado"}</span>
             </div>
-
-            <p className="text-[17px] tracking-[-0.3px]">Envio a tu Residencia</p>
-          </div>
-
-          <div className="w-[290px] p-2 h-fit bg-gray-100 rounded-lg flex gap-x-3 items-center cursor-pointer">
-            <div className="size-12 rounded-full bg-gray-200 grid place-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                <path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
-                <path fillRule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clipRule="evenodd" />
-              </svg>
-
+            <div className="flex justify-between mb-2">
+              <span className="text-gray-700">Subtotal:</span>
+              <span className="font-bold">HNL. {cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0).toFixed(2)}</span>
             </div>
-
-            <p className="text-[17px] tracking-[-0.3px]">Recojer en Tienda</p>
+            <div className="flex justify-between mb-2">
+              <span className="text-gray-700">ISV (15%):</span>
+              <span className="font-bold">HNL. 0.00</span>
+            </div>
+            <div className="flex justify-between mb-4">
+              <span className="text-gray-700">Total:</span>
+              <span className="font-bold">HNL. {cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0).toFixed(2)}</span>
+            </div>
+            <button
+              onClick={handleWhatsAppOrder}
+              className="w-full bg-black text-white py-2 rounded-lg hover:bg-black/80 transition duration-300"
+            >
+              Realizar Pedido
+            </button>
           </div>
-        </div>
-
-        <div className="flex justify-center mt-6 pr-12 h-[80vh] overflow-hidden overflow-y-scroll">
-          {/* <PayPalButton
-            total={getTotal()}
-            onSuccess={(details) => console.log("Pago exitoso", details)}
-          /> */}
-
-          <button
-            onClick={handlepayment}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md size-fit">
-            pagar
-          </button>
         </div>
       </main>
     </>
