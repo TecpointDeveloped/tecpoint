@@ -82,6 +82,7 @@ export default function Home({ logos, products }: HomeProps) {
         plugins={[plugin.current]}
         opts={{
           loop: true,
+          duration: 20,
         }}
       >
         <CarouselContent>
@@ -98,8 +99,8 @@ export default function Home({ logos, products }: HomeProps) {
             <div className="relative size-full flex items-center justify-center bg-[#00000011] pb-10 flex-col gap-12">
               <h6 className="text-white mix-blend-difference text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Accesorios <span className="block text-[40px] md:text-[60px]">Samsung S25 Ultra</span></h6>
               <section className="flex gap-4">
-                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+                <Link href="/shop?page=1&brand=&search=s25" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop?page=1&brand=&search=s25" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
               </section>
             </div>
           </CarouselItem>
@@ -109,8 +110,8 @@ export default function Home({ logos, products }: HomeProps) {
             <div className="relative size-full flex items-center justify-center pb-10 bg-[#00000018] flex-col gap-12">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos cargadores <span className="block text-[50px] md:text-[60px]">Carga Rapida</span></h6>
               <section className="flex gap-4">
-                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+                <Link href="/shop?page=1&brand=&search=cargador" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop?page=1&brand=&search=cargador" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
               </section>
             </div>
           </CarouselItem>
@@ -120,8 +121,8 @@ export default function Home({ logos, products }: HomeProps) {
             <div className="relative size-full flex items-center justify-center pb-10 flex-col gap-12">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Cables USB de<span className="block text-[40px] md:text-[60px]">Marcas Certificadas</span></h6>
               <section className="flex gap-4">
-                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+                <Link href="/shop?page=1&brand=&search=cable" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop?page=1&brand=&search=cable" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
               </section>
             </div>
           </CarouselItem>
@@ -130,11 +131,11 @@ export default function Home({ logos, products }: HomeProps) {
             <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.webp" alt="Active 8 hypergear" />
 
             <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Cobertores <span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
+              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Accesorios<span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
 
               <section className="flex gap-4">
-                <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+                <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop?page=1&brand=Apple&search=" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
               </section>
             </div>
           </CarouselItem>
@@ -335,8 +336,8 @@ export default function Home({ logos, products }: HomeProps) {
               </div>
 
               <section className="flex gap-4">
-                <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+                <Link href="/shop?page=1&brand=&search=iphone" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
+                <Link href="/shop?page=1&brand=&search=iphone" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
               </section>
             </div>
 
@@ -362,8 +363,8 @@ export default function Home({ logos, products }: HomeProps) {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                  <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+                  <Link href="/shop?page=3&brand=&search=auriculares" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
+                  <Link href="/shop?page=3&brand=&search=auriculares" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
                 </div>
               </div>
 
@@ -386,8 +387,8 @@ export default function Home({ logos, products }: HomeProps) {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                  <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
+                  <Link href="/shop?page=1&brand=&search=smartwatch" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
+                  <Link href="/shop?page=1&brand=&search=smartwatch" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
                 </div>
               </div>
 
