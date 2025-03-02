@@ -1,6 +1,6 @@
 {
   "name": "tecpoint-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",
+    "@heroui/checkbox": "^2.3.14",
+    "@heroui/system": "^2.4.11",
+    "@heroui/theme": "^2.4.11",
     "@paypal/checkout-server-sdk": "^1.0.3",
     "@paypal/paypal-server-sdk": "^0.6.1",
     "@paypal/react-paypal-js": "^8.7.0",
@@ -33,6 +36,7 @@
     "embla-carousel-react": "^8.5.1",
     "firebase": "^11.1.0",
     "flexsearch": "^0.7.43",
+    "framer-motion": "^12.4.7",
     "lucide-react": "^0.456.0",
     "next": "15.1.4",
     "next-seo": "^6.6.0",

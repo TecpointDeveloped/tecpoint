@@ -196,41 +196,42 @@ const Shop = ({ products = [] }: ShopProps) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
-              <div
+                <div
                 key={product.id}
                 className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
-              >
+                >
+
                 <div className="flex flex-col">
                   <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
-                    <Image
-                      src={imagen_01}
-                      alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
-                      width={240}
-                      height={240}
-                      className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
-                      quality={100}
-                      priority
-                    />
+                  <Image
+                    src={imagen_01}
+                    alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
+                    width={240}
+                    height={240}
+                    className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
+                    quality={100}
+                    priority
+                  />
                   </Link>
 
                   <div>
-                    <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
-                    <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+                  <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
+                  <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
 
-                    <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                      {(product.categorias || []).map((cat: string, index: number) => (
-                        <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                    {(product.categorias || []).map((cat: string, index: number) => (
+                    <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
+                      {cat}
+                    </span>
+                    ))}
+                  </div>
                   </div>
                 </div>
 
                 <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
                   <Link href={`/shop/${product.slug}`}>Ver Producto</Link>
                 </button>
-              </div>
+                </div>
             );
           })}
         </div>

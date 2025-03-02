@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator";
 // import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
 import { useCartStore } from "../../lib/cartStore"
 import { useAuth } from "@/context/useAuth";
+import { Checkbox } from "@heroui/checkbox";
 
 interface CartItem {
   id: string;
@@ -28,6 +29,28 @@ const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const { cart: storedCart } = useCartStore();
   const { currentUser } = useAuth();
+  const [selectedUserIndex, setSelectedUserIndex] = useState<number | null>(null);
+
+  const users = [
+    {
+      name: "Kiosco Plaza Carolina",
+      username: "plaza carolina",
+      role: "Kiosco Plaza Carolina",
+      status: "Active",
+    },
+    {
+      name: "Kiosco City Mall",
+      username: "city mall",
+      role: "Kiosco City Mall",
+      status: "Active",
+    },
+    {
+      name: "Tienda Barrio el Benque",
+      username: "tienda bario el benque",
+      role: "Tienda Barrio el Benque",
+      status: "Active",
+    }
+  ];
 
   useEffect(() => {
     const updatedCart = storedCart.map((item: CartItem) => {
@@ -131,7 +154,25 @@ const CartPage = () => {
   // }
 
   const handleWhatsAppOrder = () => {
-    const phoneNumber = "97157784";
+    const phoneNumberCityMall = "97157784";
+    const phoneNumberCarolina = "95200523";
+    const phoneNumberPrincipal = "97157784";
+
+    let phoneNumber = phoneNumberPrincipal;
+    
+    if (selectedUserIndex !== null) {
+      switch (users[selectedUserIndex].username) {
+        case "city mall":
+          phoneNumber = phoneNumberCityMall;
+          break;
+        case "plaza carolina":
+          phoneNumber = phoneNumberCarolina;
+          break;
+        default:
+          phoneNumber = phoneNumberPrincipal;
+      }
+    }
+
     const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}`;
     const encodedMessage = encodeURIComponent(message);
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -161,6 +202,7 @@ const CartPage = () => {
         <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
         <meta name="twitter:image:alt" content="Carrito de compras | Tecpoint" />
       </Head>
+
       <NavbarMenu />
 
       <main className="flex flex-col md:h-[87dvh] lg:flex-row gap-4 md:justify-between lg:justify-evenly">
@@ -206,7 +248,25 @@ const CartPage = () => {
           )}
         </div>
 
-        <div className="py-4 px-6 w-full md:w-1/2 bg-gray-100">
+        <div className="py-4 px-6 flex flex-col gap-4 w-full md:w-1/2 bg-gray-100">
+          <div className="flex flex-wrap w-full bg-white rounded-lg p-2">
+            {users.map((user, index) => (
+              <Checkbox
+                key={index}
+                aria-label={user.name}
+                isSelected={selectedUserIndex === index}
+                onValueChange={() => setSelectedUserIndex(index)}
+                className="border rounded-lg p-4 w-[280px] m-2"
+              >
+                <div className="flex justify-between gap-2 w-[280px]">
+                  <div className="flex flex-col items-start gap-1">
+                    <span className="text-lg text-default-500">{user.role}</span>
+                  </div>
+                </div>
+              </Checkbox>
+            ))}
+          </div>
+
           <div className="bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Resumen del pedido</h2>
 
