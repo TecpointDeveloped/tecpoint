@@ -1,18 +1,9 @@
 import NavbarMenu from "@/components/navbarmenu/page";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-// import PayPalButton from "@/components/PayPalButton/page";
 import Head from "next/head";
 import { Separator } from "@/components/ui/separator";
-// import Settings from "@pixelpay/sdk-core/lib/models/Settings";
-// import Card from "@pixelpay/sdk-core/lib/models/Card";
-// import Billing from "@pixelpay/sdk-core/lib/models/Billing";
-// import Item from "@pixelpay/sdk-core/lib/models/Item";
-// import Order from "@pixelpay/sdk-core/lib/models/Order";
-// import SaleTransaction from "@pixelpay/sdk-core/lib/requests/SaleTransaction";
-// import Transaction from "@pixelpay/sdk-core/lib/services/Transaction";
-// import TransactionResult from "@pixelpay/sdk-core/lib/entities/TransactionResult";
-import { useCartStore } from "../../lib/cartStore"
+import { useCartStore } from "../../lib/cartStore";
 import { useAuth } from "@/context/useAuth";
 import { Checkbox } from "@heroui/checkbox";
 
@@ -70,88 +61,13 @@ const CartPage = () => {
     localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
   };
 
-  // const handlepayment = async () => {
-  //   const settings = new Settings()
-  //   // settings.setupEndpoint("https://hn.ficoposonline.com/")
-  //   // settings.setupCredentials("FHI372717363", "b36aa20b0010f042b5bf788a4793b902")
-  //   settings.setupSandbox()
-
-  //   const card = new Card()
-  //   card.number = "4111111111111111"
-  //   card.cvv2 = "999"
-  //   card.expire_month = 7
-  //   card.expire_year = 2027
-  //   card.cardholder = "SERGIO PEREZ"
-
-  //   const billing = new Billing()
-  //   billing.address = "Ave Circunvalacion"
-  //   billing.country = "HN"
-  //   billing.state = "HN-CR"
-  //   billing.city = "San Pedro Sula"
-  //   billing.phone = "99999999"
-
-  //   const item = new Item()
-  //   item.code = "00001"
-  //   item.title = "Videojuego"
-  //   item.price = 8
-  //   item.qty = 1
-
-  //   const order = new Order()
-  //   order.id = "ORDER-88888"
-  //   order.currency = "HNL"
-  //   order.customer_name = "SERGIO PEREZ"
-  //   order.customer_email = "sergio.perez@gmail.com"
-  //   order.addItem(item)
-
-  //   const sale = new SaleTransaction()
-  //   sale.setOrder(order)
-  //   sale.setCard(card)
-  //   sale.setBilling(billing)
-
-  //   const service = new Transaction(settings)
-
-  //   // Con async / await
-  //   try {
-  //     const response = await service.doSale(sale)
-  //     console.log(response)
-
-  //     if (TransactionResult.validateResponse(response)) {
-  //       const result = TransactionResult.fromResponse(response)
-
-  //       // const is_valid_payment = service.verifyPaymentHash(
-  //       //   result.payment_hash,
-  //       //   order.id,
-  //       //   "abc...", // secret
-  //       // )
-
-  //       if (result) {
-  //         alert(response.message)
-  //       }
-  //     }
-  //   } catch (error) {
-  //     // ERROR
-  //     console.error("Ocurrio un error al realizar el pago", error)
-  //   }
-
-  //   // // Con callback
-  //   // service.doSale(sale).then((response) => {
-  //   //   if (TransactionResult.validateResponse(response)) {
-  //   //     const result = TransactionResult.fromResponse(response)
-
-  //   //     // const is_valid_payment = service.verifyPaymentHash(
-  //   //     //   result.payment_hash,
-  //   //     //   order.id,
-  //   //     //   "abc...", // secret
-  //   //     // )
-
-  //   //     if (result) {
-  //   //       alert("pago realizado con exito")
-  //   //     }
-  //   //   }
-  //   // }).catch((error) => {
-  //   //   console.error("Ocurrio un error al realizar el pago", error)
-  //   // })
-  // }
+  const handleQuantityChange = (id: string, quantity: number) => {
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity } : item
+    );
+    setCart(updatedCart);
+    localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
+  };
 
   const handleWhatsAppOrder = () => {
     const phoneNumberCityMall = "97157784";
@@ -159,7 +75,7 @@ const CartPage = () => {
     const phoneNumberPrincipal = "97157784";
 
     let phoneNumber = phoneNumberPrincipal;
-    
+
     if (selectedUserIndex !== null) {
       switch (users[selectedUserIndex].username) {
         case "city mall":
@@ -229,8 +145,19 @@ const CartPage = () => {
                   />
                   <div className="w-[340px] flex flex-col gap-2">
                     <h3 className="text-[17px] font-semibold tracking-[-0.2px] leading-5">{item.producto}</h3>
+                    <span className="flex gap-2">
+                      <p className="bg-black text-white rounded-md py-1 px-2 size-fit text-[13px]">{item.sku}</p>
+                    </span>
                     <span className="flex items-center gap-4">
-                      <p className="text-gray-500">Cantidad: <span className="font-bold">{item.quantity}</span></p>
+                      <p className="text-gray-500">Cantidad:
+                        <input
+                          type="number"
+                          value={item.quantity}
+                          onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                          className="ml-2 w-14 text-center border rounded p-1"
+                          min="1"
+                        />
+                      </p>
                       <p className="text-gray-500">HNL. <span className="font-bold">{item.precio?.toFixed(2)}</span></p>
                     </span>
                   </div>
@@ -294,7 +221,7 @@ const CartPage = () => {
             </button>
           </div>
         </div>
-      </main>
+      </main >
     </>
   );
 };
