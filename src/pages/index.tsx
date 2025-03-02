@@ -46,7 +46,7 @@ interface HomeProps {
 
 export default function Home({ logos, products }: HomeProps) {
   const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
+    Autoplay({ delay: 5000, stopOnInteraction: false })
   )
 
   return (
