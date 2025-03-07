@@ -161,80 +161,123 @@ const Shop = ({ products = [] }: ShopProps) => {
         </form>
 
         {/* Paginación */}
-        <div className="flex justify-center mb-8">
-          <Pagination className="flex flex-wrap gap-2 md:gap-4">
-            <PaginationPrevious
-              onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-              className="cursor-pointer select-none"
-            >
-              Anterior
-            </PaginationPrevious>
-            <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
-              {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-                <PaginationItem key={page}>
-                  <PaginationLink
-                    onClick={() => handlePageChange(page)}
-                    isActive={currentPage === page}
-                    className="cursor-pointer select-none"
-                  >
-                    {page}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
-            </PaginationContent>
-            <PaginationNext
-              onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-              className="cursor-pointer select-none"
-            >
-              Siguiente
-            </PaginationNext>
-          </Pagination>
-        </div>
+        <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center">
+          <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
+            <Pagination className="flex flex-wrap gap-2 md:gap-4">
+              <PaginationPrevious
+                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                Anterior
+              </PaginationPrevious>
+              <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
+                {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
+                  const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
+                  const page = startPage + index;
+                  return (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        onClick={() => handlePageChange(page)}
+                        isActive={currentPage === page}
+                        className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                })}
+              </PaginationContent>
+              <PaginationNext
+                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                Siguiente
+              </PaginationNext>
+            </Pagination>
+          </div>
+        </section>
 
         <div className="grid grid-cols-2 md:grid-cols-3 md:w-[1100px] mx-auto">
           {currentProducts.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
-                <div
+              <div
                 key={product.id}
                 className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
-                >
-
+              >
                 <div className="flex flex-col">
                   <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
-                  <Image
-                    src={imagen_01}
-                    alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
-                    width={240}
-                    height={240}
-                    className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
-                    quality={100}
-                    priority
-                  />
+                    <Image
+                      src={imagen_01}
+                      alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
+                      width={240}
+                      height={240}
+                      className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
+                      quality={100}
+                      priority
+                    />
                   </Link>
 
                   <div>
-                  <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
-                  <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+                    <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
+                    <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
 
-                  <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                    {(product.categorias || []).map((cat: string, index: number) => (
-                    <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
-                      {cat}
-                    </span>
-                    ))}
-                  </div>
+                    <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                      {(product.categorias || []).map((cat: string, index: number) => (
+                        <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
                   <Link href={`/shop/${product.slug}`}>Ver Producto</Link>
                 </button>
-                </div>
+              </div>
             );
           })}
         </div>
+
+        {currentProducts.length !== 0 && (
+          <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center mt-12">
+            <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
+              <Pagination className="flex flex-wrap gap-2 md:gap-4">
+                <PaginationPrevious
+                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  Anterior
+                </PaginationPrevious>
+                <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
+                  {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
+                    const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
+                    const page = startPage + index;
+                    return (
+                      <PaginationItem key={page}>
+                        <PaginationLink
+                          onClick={() => handlePageChange(page)}
+                          isActive={currentPage === page}
+                          className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
+                        >
+                          {page}
+                        </PaginationLink>
+                      </PaginationItem>
+                    );
+                  })}
+                </PaginationContent>
+                <PaginationNext
+                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  Siguiente
+                </PaginationNext>
+              </Pagination>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />
