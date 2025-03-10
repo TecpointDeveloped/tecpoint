@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       {/* <Head /> */}
       <Head>
-        <meta name="google-site-verification" content="0N-x9qwwAQ5jAjiyDKeG7YY08OW2m_FfKJXmqvOC33w" />
+        <meta name="google-site-verification" content="rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
