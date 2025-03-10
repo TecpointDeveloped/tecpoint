@@ -70,7 +70,7 @@ const CartPage = () => {
   };
 
   const handleWhatsAppOrder = () => {
-    const phoneNumberCityMall = "97157784";
+    const phoneNumberCityMall = "95200523";
     const phoneNumberCarolina = "95200523";
     const phoneNumberPrincipal = "97157784";
 
