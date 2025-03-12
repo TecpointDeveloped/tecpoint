@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   output: "standalone",
   images: {
+    minimumCacheTTL: 2678400,
+    contentDispositionType: 'inline',
+    formats: ['image/webp'],
+
     remotePatterns: [
       {
         protocol: "https",
@@ -16,14 +20,6 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/api/transaction/sale",
-        destination: "https://pixel-pay.com/api/v2/transaction/sale",
-      },
-    ];
   },
 };
 

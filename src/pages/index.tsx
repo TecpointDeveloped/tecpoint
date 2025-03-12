@@ -463,7 +463,7 @@ export default function Home({ logos, products }: HomeProps) {
         </div> */}
       </section>
 
-      <section className="flex flex-col md:flex-row p-2 gap-2">
+      {/* <section className="flex flex-col md:flex-row p-2 gap-2">
         <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
           <Image
             className="aspect-square object-cover"
@@ -538,6 +538,22 @@ export default function Home({ logos, products }: HomeProps) {
             </p>
           </span>
         </picture>
+      </section> */}
+
+      <section className="w-full h-fit bg-gray-100 flex items-center justify-between gap-4 p-4">
+        <div className="md:w-1/2">
+          <h5 className="md:text-[50px] font-bold md:tracking-[-1.6px]">Distribuidores Autorizados</h5>
+          <p className="text-lg md:text-xl text-gray-700">
+            Somos distribuidores exclusivos de la marca Rockspace, una empresa líder en la protección de pantallas. Ofrecemos una amplia gama de productos diseñados para proteger y prolongar la vida útil de tus dispositivos electrónicos. Con Rockspace, puedes estar seguro de que tus pantallas estarán siempre protegidas contra golpes, arañazos y otros daños.
+          </p>
+        </div>
+        <Image
+          className="aspect-square object-cover"
+          width={700}
+          height={700}
+          src={"/images/rockspace/zv1max.png"}
+          alt="plotter - maquina de corte zc1 max rock space"
+        />
       </section>
 
       <div className="py-8 px-4 flex flex-col gap-y-6">

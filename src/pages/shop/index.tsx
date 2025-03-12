@@ -104,9 +104,12 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   if (!products || products.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-xl font-bold">No se encontraron productos.</p>
-      </div>
+      <>
+        <NavbarMenu />
+        <main className="grid place-content-center fixed inset-0 -z-10">
+          <p className="text-xl font-bold text-center">Ups... no se encontraron productos.</p>
+        </main>
+      </>
     );
   }
 
