@@ -547,13 +547,16 @@ export default function Home({ logos, products }: HomeProps) {
             Somos distribuidores exclusivos de la marca Rockspace, una empresa líder en la protección de pantallas. Ofrecemos una amplia gama de productos diseñados para proteger y prolongar la vida útil de tus dispositivos electrónicos. Con Rockspace, puedes estar seguro de que tus pantallas estarán siempre protegidas contra golpes, arañazos y otros daños.
           </p>
         </div>
-        <Image
-          className="aspect-square object-cover"
-          width={700}
-          height={700}
-          src={"/images/rockspace/zv1max.png"}
-          alt="plotter - maquina de corte zc1 max rock space"
-        />
+        
+        <picture>
+          <Image
+            className="aspect-square object-cover"
+            width={700}
+            height={700}
+            src={"/images/rockspace/zc1max.png"}
+            alt="plotter - maquina de corte zc1 max rock space"
+          />
+        </picture>
       </section>
 
       <div className="py-8 px-4 flex flex-col gap-y-6">
