@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         {/* Google Site Verification */}
         <meta name="google-site-verification" content="rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc" />
-        
+
         {/* Favicon */}
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
 
@@ -50,6 +50,16 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+
+        {/* Evento de conversión para venta en el sitio web */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11071480891/aFf1CKL36ogYELvIpZ8p',
+                'transaction_id': ''
+            });
+          `
+        }} />
       </body>
     </Html>
   );
