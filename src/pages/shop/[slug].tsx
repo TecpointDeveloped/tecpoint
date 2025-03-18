@@ -306,7 +306,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               height={28}
               width={150}
               priority
-              // unoptimized={true}
+              unoptimized={true}
               className="h-[28px] w-[150px] aspect-[28/150] object-contain object-left"
             />
             <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
@@ -411,7 +411,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {Number(product.precio.detalle) > 1200 ?
               (
                 <span className="flex items-center justify-center gap-4 w-fit border px-6 py-3 select-none">
-                  <Image className="aspect-square" height={30} width={30} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <Image unoptimized={true} className="aspect-square" height={30} width={30} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
                   <span>
                     <p className="font-bold">Envio Gratis</p>
                     <p className="leading-3">Incluye Envio Gratis a todo el pais al comprar</p>
@@ -420,7 +420,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               )
               : (
                 <span className="flex items-center justify-center gap-1 w-fit">
-                  <Image className="aspect-square" height={24} width={24} src="/icons/info.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <Image unoptimized={true} className="aspect-square" height={24} width={24} src="/icons/info.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
                   <p>Faltan Lps {1200 - Number(product.precio.detalle)} para entrega gratis</p>
                 </span>
               )
@@ -444,6 +444,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             alt="Banner del producto"
             width={700}
             height={700}
+            unoptimized={true}
           />
         </span>
       </section>
@@ -497,6 +498,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                   className="flex-1 w-full aspect-square object-cover"
                   width={800}
                   height={800}
+                  unoptimized={true}
                   src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
                   alt="Imagen de la segunda sección"
                 />
