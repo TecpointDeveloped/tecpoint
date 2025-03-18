@@ -306,7 +306,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               height={28}
               width={150}
               priority
-              unoptimized={true}
+              // unoptimized={true}
               className="h-[28px] w-[150px] aspect-[28/150] object-contain object-left"
             />
             <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">

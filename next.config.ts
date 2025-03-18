@@ -4,10 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   output: "standalone",
   images: {
-    // minimumCacheTTL: 2678400,
+    minimumCacheTTL: 2678400,
     contentDispositionType: 'inline',
-    // formats: ['image/webp'],
-    unoptimized: true,
+    formats: ['image/webp'],
+    // unoptimized: true,
 
     remotePatterns: [
       {
