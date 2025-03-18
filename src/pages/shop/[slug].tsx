@@ -11,7 +11,6 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { RecommendedProducts } from "../../components/RecomendProducts/page";
 // import { useRouter } from "next/router";
 import { useCartStore } from "../../lib/cartStore";
 
@@ -268,7 +267,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 priority={true}
                 src={img.img || "/default-product.png"}
                 alt={product.producto || `Imagen ${index + 1}`}
-                className="size-[110px] md:size-[110px] aspect-square object-cover border cursor-pointer"
+                className="size-[110px] md:size-[110px] aspect-square object-cover border cursor-pointer rounded-lg"
                 width={110}
                 height={110}
               />
@@ -277,7 +276,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {/* Cuadro adicional para alternar entre las primeras y las restantes imágenes */}
             {imagenesArray.length > 3 && !showRemaining && (
               <div
-                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                className="size-[110px] md:size-[110px] rounded-lg aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
                 onClick={handleToggleImages}
               >
                 <span className="text-sm font-medium text-gray-600">
@@ -289,7 +288,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             {/* Botón para volver a las primeras imágenes */}
             {showRemaining && (
               <div
-                className="size-[110px] md:size-[110px] aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
+                className="size-[110px] md:size-[110px] rounded-lg aspect-square flex items-center justify-center border bg-gray-200 cursor-pointer"
                 onClick={handleToggleImages}
               >
                 <span className="text-sm font-medium text-gray-600">Ver menos</span>
@@ -307,6 +306,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               height={28}
               width={150}
               priority
+              unoptimized={true}
               className="h-[28px] w-[150px] aspect-[28/150] object-contain object-left"
             />
             <h1 className="text-[26px] font-semibold md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl">
@@ -453,9 +453,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4">
+        <div className="grid grid-cols-1 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full">
           {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-            <Accordion type="single" collapsible key={key} className="w-[300px] sm:w-[260px] md:w-[800px]">
+            <Accordion type="single" collapsible key={key} className="w-full sm:w-[260px] md:w-[800px]">
               <AccordionItem value={key}>
                 <AccordionTrigger className="font-bold text-[20px] md:text-[24px]">{key}</AccordionTrigger>
                 <AccordionContent className="md:w-[70%]">
@@ -545,7 +545,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
       </article>
 
-      <RecommendedProducts currentProduct={product} />
       <Footer />
     </>
   );
