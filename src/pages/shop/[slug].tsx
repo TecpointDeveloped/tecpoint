@@ -455,7 +455,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
         <div className="grid grid-cols-1 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full">
           {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-            <Accordion type="single" collapsible key={key} className="w-full sm:w-[260px] md:w-[800px]">
+            <Accordion type="single" collapsible key={key} className="md:w-[800px] m-auto w-full">
               <AccordionItem value={key}>
                 <AccordionTrigger className="font-bold text-[20px] md:text-[24px]">{key}</AccordionTrigger>
                 <AccordionContent className="md:w-[70%]">
