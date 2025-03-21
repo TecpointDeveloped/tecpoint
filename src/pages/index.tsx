@@ -45,6 +45,7 @@ interface HomeProps {
 }
 
 export default function Home({ logos, products }: HomeProps) {
+  const SizeIcon = 40;
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false })
   )
@@ -187,56 +188,64 @@ export default function Home({ logos, products }: HomeProps) {
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
 
-      <article className="p-2 flex gap-16 w-full items-center justify-center md:py-12 flex-wrap">
+      <article className="p-4 flex gap-6 md:gap-24 w-full md:w-[90%] m-auto items-center justify-center md:py-10 flex-wrap bg-gradient-to-b from-gray-50 to-gray-100 rounded-xl shadow-lg">
 
-        <section className="flex flex-col gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
-            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-            <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"></path>
-            <path d="M3 9l4 0"></path>
-          </svg>
+        <section className="flex flex-col gap-4 items-center text-center">
+          <span className="rounded-full bg-[#000000] p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
+              <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+              <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+              <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"></path>
+              <path d="M3 9l4 0"></path>
+            </svg>
+          </span>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="font-bold md:text-xl">Envios Seguros</p>
-            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Envios a nivel nacional de<span className="block text-center">forma rapida y segura.</span></p>
+            <p className="font-semibold text-lg text-gray-900">Envios Seguros</p>
+            <p className="text-gray-600 leading-5 tracking-tight">Envios a nivel nacional de<span className="block">forma rápida y segura.</span></p>
           </div>
         </section>
 
-        <section className="flex flex-col gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
-            <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-          </svg>
+        <section className="flex flex-col gap-4 items-center text-center">
+          <span className="rounded-full bg-[#000000] p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
+              <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+            </svg>
+          </span>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="font-bold md:text-xl">Soporte Tecnico</p>
-            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Recibe Soporte tecnico en<span className="block text-center">nuestras marcas.</span></p>
+            <p className="font-semibold text-lg text-gray-900">Soporte Técnico</p>
+            <p className="text-gray-600 leading-5 tracking-tight">Recibe soporte técnico en<span className="block">nuestras marcas.</span></p>
           </div>
         </section>
 
-        <section className="flex flex-col gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#646a75" strokeLinecap="round" strokeLinejoin="round" width={60} height={60} strokeWidth={1.5}>
-            <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-            <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-            <path d="M12 12l0 .01"></path>
-            <path d="M3 13a20 20 0 0 0 18 0"></path>
-          </svg>
+        <section className="flex flex-col gap-4 items-center text-center">
+          <span className="rounded-full bg-[#000000] p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
+              <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+              <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+              <path d="M12 12l0 .01"></path>
+              <path d="M3 13a20 20 0 0 0 18 0"></path>
+            </svg>
+          </span>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="font-bold md:text-xl">Venta corporativa</p>
-            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Recibe atención personalizada<span className="block text-center">a la medida de tu negocio.</span></p>
+            <p className="font-semibold text-lg text-gray-900">Venta Corporativa</p>
+            <p className="text-gray-600 leading-5 tracking-tight">Recibe atención personalizada<span className="block">a la medida de tu negocio.</span></p>
           </div>
         </section>
 
-        <section className="flex flex-col gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#646a75" className="size-[60px]">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-          </svg>
+        <section className="flex flex-col gap-4 items-center text-center">
+          <span className="rounded-full bg-[#000000] p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#fff" width={SizeIcon} height={SizeIcon}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+            </svg>
+          </span>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="font-bold md:text-xl">Tienda Tecpoint</p>
-            <p className="text-[#646a75] leading-4 tracking-[-0.2px]">Vive la experiencia tecnologica<span className="block text-center">en la tienda tecpoint.</span></p>
+            <p className="font-semibold text-lg text-gray-900">Tienda Tecpoint</p>
+            <p className="text-gray-600 leading-5 tracking-tight">Vive la experiencia tecnológica<span className="block">en la tienda Tecpoint.</span></p>
           </div>
         </section>
 
@@ -253,7 +262,7 @@ export default function Home({ logos, products }: HomeProps) {
               return (
                 <div
                   key={product.id}
-                  className="border rounded-[26px] p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                  className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
                 >
 
                   <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
@@ -263,7 +272,7 @@ export default function Home({ logos, products }: HomeProps) {
                   <div className="flex flex-col">
                     <Link
                       href={`/shop/${product.slug}`}
-                      className="hover:scale-105 transition-transform"
+                      className="hover:scale-105 transition-transform duration-100"
                       rel="noopener noreferrer"
                       download={false}
                     >
@@ -276,15 +285,14 @@ export default function Home({ logos, products }: HomeProps) {
                         }
                         width={240}
                         height={240}
-                        className="m-auto size-[240px] aspect-square object-cover mb-4"
                         quality={100}
-                        priority
+                        className="m-auto w-[240px] h-[240px] aspect-square object-cover mb-4"
                       />
                     </Link>
 
                     <div>
                       <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                        {product.producto.slice(0, 55)}
+                        {product.producto.slice(0, 50)}
                       </h2>
                       <p className="text-sm text-gray-500 mt-2">
                         SKU: {product.sku}
@@ -540,32 +548,36 @@ export default function Home({ logos, products }: HomeProps) {
         </picture>
       </section> */}
 
-      <section className="w-full h-fit bg-gray-100 flex items-center justify-between gap-4 p-4">
-        <div className="md:w-1/2">
-          <h5 className="md:text-[50px] font-bold md:tracking-[-1.6px]">Distribuidores Autorizados</h5>
-          <p className="text-lg md:text-xl text-gray-700">
+      <section className="w-full h-fit bg-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-12">
+        <div className="md:w-1/2 text-center md:text-left">
+          <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">
+            Distribuidores Autorizados
+          </h5>
+          <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
             Somos distribuidores exclusivos de la marca Rockspace, una empresa líder en la protección de pantallas. Ofrecemos una amplia gama de productos diseñados para proteger y prolongar la vida útil de tus dispositivos electrónicos. Con Rockspace, puedes estar seguro de que tus pantallas estarán siempre protegidas contra golpes, arañazos y otros daños.
           </p>
         </div>
-        
-        <picture>
+
+        <div className="w-full md:w-1/2 flex justify-center">
           <Image
-            className="aspect-square object-cover"
+            className="aspect-square object-cover rounded-lg"
             width={700}
             height={700}
             src={"/images/rockspace/zc1max.png"}
             alt="plotter - maquina de corte zc1 max rock space"
           />
-        </picture>
+        </div>
       </section>
 
       <div className="py-8 px-4 flex flex-col gap-y-6">
-        <h3 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Productos Recomendados</h3>
+        <h3 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Lo Mejor en SmartWatch</h3>
 
         <section className="md:max-w-[1500px] m-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {products
-              .sort((a, b) => Number(b.precio.detalle) - Number(a.precio.detalle))
+              .filter((product) =>
+                product.categorias?.some((cat) => cat.toLowerCase() === "reloj")
+              )
               .slice(0, 4)
               .map((product: Product) => {
                 const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
@@ -573,7 +585,7 @@ export default function Home({ logos, products }: HomeProps) {
                 return (
                   <div
                     key={product.id}
-                    className="border rounded-[26px] p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
                   >
 
                     <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">

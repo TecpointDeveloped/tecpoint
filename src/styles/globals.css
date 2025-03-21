@@ -131,7 +131,7 @@ body {
 
 .marquee-inner {
   display: flex;
-  animation: marquee 150s linear infinite;
+  animation: marquee 50s linear infinite;
 }
 
 @keyframes marquee {
