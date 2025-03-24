@@ -82,7 +82,7 @@ export default function Home({ logos, products }: HomeProps) {
         // onMouseLeave={() => plugin.current.reset()}
         plugins={[plugin.current]}
         opts={{
-          loop: false,
+          loop: true,
           duration: 20,
         }}
       >
