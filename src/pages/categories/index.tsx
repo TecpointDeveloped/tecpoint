@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import NavbarMenu from '@/components/navbarmenu/page'
 import Head from 'next/head'
+import Link from 'next/link'
 
 export async function getServerSideProps() {
   return {
@@ -34,7 +35,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
         <section className="w-full h-fit py-12 flex p-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 m-auto place-items-center">
 
-            <span className='flex flex-col items-center gap-y-2'>
+            <Link href="/shop?page=1&brand=&search=audifonos" className='flex flex-col items-center gap-y-2'>
               <h3 className='text-[18px] font-semibold'>Audifonos</h3>
               <Image
                 alt="Audifonos de alta calidad para todas tus necesidades de audio"
@@ -44,9 +45,9 @@ function Categories({ title, description, keywords, robots }: { title: string, d
                 src="/images/categorias/minis/audifonos__categoria.png"
                 className="aspect-square object-contain"
               />
-            </span>
+            </Link>
 
-            <span className="flex flex-col items-center gap-y-2">
+            <Link href="/shop?page=1&brand=&search=Auriculares" className="flex flex-col items-center gap-y-2">
               <h2 className='text-[18px] font-semibold'>Auriculares</h2>
               <Image
                 alt="Auriculares cómodos y duraderos para uso diario"
@@ -56,9 +57,9 @@ function Categories({ title, description, keywords, robots }: { title: string, d
                 src="/images/categorias/minis/auriculares__categoria.png"
                 className="aspect-square object-contain"
               />
-            </span>
+            </Link>
 
-            <span className="flex flex-col items-center gap-y-2">
+            <Link href="/shop?page=1&brand=&search=cable" className="flex flex-col items-center gap-y-2">
               <h3 className='text-[18px] font-semibold'>Cables</h3>
               <Image
                 alt="Cables resistentes y de alta velocidad para todos tus dispositivos"
@@ -68,7 +69,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
                 src="/images/categorias/minis/cables__categoria.png"
                 className="aspect-square object-contain"
               />
-            </span>
+            </Link>
 
             <span className="flex flex-col items-center gap-y-2">
               <h3 className='text-[18px] font-semibold'>Cargadores</h3>
