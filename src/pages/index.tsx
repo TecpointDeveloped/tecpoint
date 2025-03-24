@@ -82,11 +82,24 @@ export default function Home({ logos, products }: HomeProps) {
         // onMouseLeave={() => plugin.current.reset()}
         plugins={[plugin.current]}
         opts={{
-          loop: true,
+          loop: false,
           duration: 20,
         }}
       >
         <CarouselContent>
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_semana_santa.webp" alt="Active 8 hypergear" />
+
+            <div className="relative size-full flex items-center md:items-end md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
+              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Cobertores<span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
+
+              <section className="flex gap-4">
+                <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
+                <Link href="/shop?page=1&brand=Apple&search=" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+              </section>
+            </div>
+          </CarouselItem>
+
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <video
               className="cursor-pointer absolute w-full h-full md:h-fit object-cover"
