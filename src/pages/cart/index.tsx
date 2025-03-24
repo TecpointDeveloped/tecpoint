@@ -71,7 +71,7 @@ const CartPage = () => {
 
   const handleWhatsAppOrder = () => {
     const phoneNumberCityMall = "95200523";
-    const phoneNumberCarolina = "95200523";
+    const phoneNumberCarolina = "93385732";
     const phoneNumberPrincipal = "97157784";
 
     let phoneNumber = phoneNumberPrincipal;
@@ -171,19 +171,21 @@ const CartPage = () => {
               ))}
             </ul>
           ) : (
-            <p className="text-center text-gray-600">No tienes productos en el carrito.</p>
+            <div className="size-full grid place-content-center">
+              <p className="text-center text-gray-600">No tienes productos en el carrito.</p>
+            </div>
           )}
         </div>
 
         <div className="py-4 px-6 flex flex-col gap-4 w-full md:w-1/2 bg-gray-100">
-          <div className="flex flex-wrap w-full bg-white rounded-lg p-2">
+          <div className="flex flex-wrap w-full bg-white p-2">
             {users.map((user, index) => (
               <Checkbox
                 key={index}
                 aria-label={user.name}
                 isSelected={selectedUserIndex === index}
                 onValueChange={() => setSelectedUserIndex(index)}
-                className="border rounded-lg p-4 w-[280px] m-2"
+                className="border p-4 w-[280px] m-2"
               >
                 <div className="flex justify-between gap-2 w-[280px]">
                   <div className="flex flex-col items-start gap-1">
@@ -194,7 +196,7 @@ const CartPage = () => {
             ))}
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-md">
+          <div className="bg-white p-4">
             <h2 className="text-xl font-semibold mb-4">Resumen del pedido</h2>
 
             <div className="flex justify-between mb-2">
@@ -215,7 +217,7 @@ const CartPage = () => {
             </div>
             <button
               onClick={handleWhatsAppOrder}
-              className="w-full bg-black text-white py-2 rounded-lg hover:bg-black/80 transition duration-300"
+              className="w-full bg-black text-white py-3 hover:bg-black/80 transition duration-300"
             >
               Realizar Pedido
             </button>

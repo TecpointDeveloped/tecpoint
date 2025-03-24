@@ -157,7 +157,16 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   };
 
   if (!product) {
-    return <p className="text-center">Producto no encontrado</p>;
+    return (
+      <div>
+        <NavbarMenu />
+
+        <div className="h-[70vh] w-full grid place-content-center">
+          <p className="text-center">Producto no encontrado</p>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);

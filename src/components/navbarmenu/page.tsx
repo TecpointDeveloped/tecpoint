@@ -14,6 +14,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { useAuth } from "@/context/useAuth";
 import { useCartStore } from "@/lib/cartStore";
 import Avvvatars from 'avvvatars-react';
+import { Separator } from "@radix-ui/react-separator";
 
 interface ImageData {
   img: string;
@@ -145,7 +146,7 @@ function NavbarMenu() {
                   placeholder="Buscar por SKU, Producto o Descripción"
                 />
               </div>
-              <DialogFooter className="max-h-[300px] w-full bg-gray-100 overflow-hidden overflow-y-scroll">
+              <DialogFooter className="max-h-[300px] w-full overflow-hidden overflow-y-scroll">
                 {loading ? (
                   <p className="text-center text-gray-500">Cargando...</p>
                 ) : filteredProducts.length > 0 ? (
@@ -214,7 +215,7 @@ function NavbarMenu() {
                   Tu Carrito ({totalQuantity} productos)
                 </SheetTitle>
               </SheetHeader>
-              <div className="p-4">
+              <div className="p-4 overflow-hidden overflow-y-scroll md:max-h-[78%]">
                 {cart.length > 0 ? (
                   <ul className="space-y-4">
                     {cart.map((item) => (
@@ -226,6 +227,7 @@ function NavbarMenu() {
                           height={80}
                           quality={90}
                           className="object-cover aspect-square"
+                          loading="lazy"
                         />
                         <div className="flex-1">
                           <h3 className="text-sm font-semibold">{item.producto}</h3>
@@ -251,20 +253,22 @@ function NavbarMenu() {
 
               <SheetFooter className="absolute w-full bottom-0 left-0">
                 <div className="p-4 mt-4 w-full">
-                  <p className="text-right text-lg font-semibold">
-                    Total: L. {totalPrice}
-                  </p>
+                  <span className="w-full flex justify-between">
+                    <p className="text-right text-lg font-semibold">Total</p>
+                    <p className="text-right text-lg font-semibold">Lps. {totalPrice}</p>
+                  </span>
+                  <Separator className="m-2 border" />
 
                   <div className="flex gap-x-2">
                     <button
-                      className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-red-600"
+                      className="w-full mt-2 bg-black text-white py-3 hover:bg-red-600"
                       onClick={() => route.push("/cart")}
                     >
-                      Proceder al pago
+                      Realizar Pedido
                     </button>
 
                     <button
-                      className="w-full mt-2 bg-black text-white py-3 rounded-md hover:bg-transparent border-[1.7px] border-black hover:text-black"
+                      className="w-full mt-2 bg-black text-white py-3 hover:bg-transparent border-[1.7px] border-black hover:text-black"
                       onClick={() => route.push("/shop")}
                     >
                       comprar mas
