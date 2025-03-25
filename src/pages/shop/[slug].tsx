@@ -11,7 +11,6 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-// import { useRouter } from "next/router";
 import { useCartStore } from "../../lib/cartStore";
 
 interface ProductDetailProps {

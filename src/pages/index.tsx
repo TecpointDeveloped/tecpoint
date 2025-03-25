@@ -92,7 +92,7 @@ export default function Home({ logos, products }: HomeProps) {
 
             <div className="relative size-full flex items-center md:items-end md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
               <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-[#78a727] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Semana Santa de Descuentos<span className="block text-[40px] md:text-[60px]">Hasta un 30%</span></h6>
+                <h6 className="text-[#78a727] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Descuentos de Verano<span className="block text-[40px] md:text-[60px]">Hasta un 30%</span></h6>
 
                 <section className="flex gap-4">
                   <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>

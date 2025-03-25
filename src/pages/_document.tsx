@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Image from "next/image";
 
 export default function Document() {
   return (
@@ -97,7 +98,8 @@ export default function Document() {
           }}
         />
         <noscript>
-          <img
+          <Image
+            priority
             height="1"
             width="1"
             style={{ display: "none" }}

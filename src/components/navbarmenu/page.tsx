@@ -15,6 +15,7 @@ import { useAuth } from "@/context/useAuth";
 import { useCartStore } from "@/lib/cartStore";
 import Avvvatars from 'avvvatars-react';
 import { Separator } from "@radix-ui/react-separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 interface ImageData {
   img: string;
@@ -78,7 +79,7 @@ function NavbarMenu() {
   const totalPrice = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0).toFixed(2);
 
   return (
-    <nav className="flex flex-col h-fit items-center px-2 justify-between bg-[#010101] backdrop-blur text-white w-full py-2 m-auto z-10">
+    <nav className="flex flex-col h-fit items-center justify-between bg-[#010101] backdrop-blur text-white w-full px-4 md:px-2 md:py-2 m-auto z-10">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
           <Link href="/">
@@ -121,12 +122,180 @@ function NavbarMenu() {
             Categorías
           </Link>
         </div>
-        <div className="flex items-center justify-center gap-x-8">
+        
+        <div className="flex items-center justify-center gap-x-6 md:hidden">
+           <Sheet>
+            <SheetTrigger asChild>
+              <button className="block relative">
+                {cart.length > 0 && (
+                  <div className="absolute top-0 -right-1 border-black border-2 size-3 bg-green-300 rounded-full"></div>
+                )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="white"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+              </button>
+            </SheetTrigger>
+
+            <SheetContent
+              side="right"
+              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent z-[999]"
+            >
+              <SheetHeader>
+                <SheetTitle className="text-center text-lg font-semibold">
+                  Tu Carrito ({totalQuantity} productos)
+                </SheetTitle>
+              </SheetHeader>
+              <div className="p-4 overflow-hidden overflow-y-scroll md:max-h-[78%]">
+                {cart.length > 0 ? (
+                  <ul className="space-y-4">
+                    {cart.map((item) => (
+                      <li key={item.id} className="flex items-center gap-4 border-b pb-4">
+                        <Image
+                          src={typeof item.imagenes === 'string' ? item.imagenes : (item.imagenes as unknown as { imagen_01?: ImageData }).imagen_01?.img || "/default-product.png"}
+                          alt={item.producto || "Producto"}
+                          width={80}
+                          height={80}
+                          quality={90}
+                          className="object-cover aspect-square"
+                          loading="lazy"
+                        />
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold">{item.producto}</h3>
+                          <p className="text-gray-600 text-sm font-bold">{item.sku}</p>
+                          <p className="text-gray-800 text-sm">Cantidad: {item.quantity}</p>
+                          <p className="text-gray-800 text-sm">Precio: L. {item.precio?.toFixed(2)}</p>
+                        </div>
+                        <button
+                          onClick={() => handleRemoveFromCart(item.id)}
+                          className="text-red-500 text-sm hover:underline"
+                        >
+                          Quitar
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-center text-sm text-black/80">
+                    Tu carrito está vacío.
+                  </p>
+                )}
+              </div>
+
+              <SheetFooter className="absolute w-full bottom-0 left-0">
+                <div className="p-4 mt-4 w-full">
+                  <span className="w-full flex justify-between">
+                    <p className="text-right text-lg font-semibold">Total</p>
+                    <p className="text-right text-lg font-semibold">Lps. {totalPrice}</p>
+                  </span>
+                  <Separator className="m-2 border" />
+
+                  <div className="flex gap-x-2">
+                    <button
+                      className="w-full mt-2 bg-black text-white py-3 hover:bg-red-600"
+                      onClick={() => route.push("/cart")}
+                    >
+                      Realizar Pedido
+                    </button>
+
+                    <button
+                      className="w-full mt-2 bg-black text-white py-3 hover:bg-transparent border-[1.7px] border-black hover:text-black"
+                      onClick={() => route.push("/shop")}
+                    >
+                      comprar mas
+                    </button>
+                  </div>
+                </div>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                </svg>
+              </button>
+            </SheetTrigger>
+            <SheetContent side="top" className="w-full bg-[#010101] text-white border-transparent z-[999]">
+              <SheetHeader className="flex items-center justify-between relative">
+                <Image height={690} width={1600} className="w-full h-[120px] aspect-auto object-cover object-center rounded-xl" priority quality={100} src="/images/banner_semana_santa.webp" alt="descuentos de verano 2025 en tecpoint" />
+              </SheetHeader>
+              <nav className="flex flex-col gap-4 mt-4">
+                <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
+                  Inicio
+                </Link>
+                <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
+                  Tienda
+                </Link>
+                <Link href="/blog" className="text-[14px] font-[500] font-[Poppins]">
+                  Blog
+                </Link>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="categories" className="border-transparent">
+                    <AccordionTrigger className="text-[14px] font-[500] font-[Poppins] p-0">
+                      Categorías
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="flex flex-col gap-2 ml-4 pt-4">
+                        <li>
+                          <Link href="/categories/audifonos" className="text-[14px] font-[500] font-[Poppins]">
+                            Audífonos
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/shop?page=1&brand=&category=auriculares&search=" className="text-[14px] font-[500] font-[Poppins]">
+                            Auriculares
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="shop?page=1&brand=&category=cable&search" className="text-[14px] font-[500] font-[Poppins]">
+                            Cables
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/shop?page=1&brand=&category=cargadores&search" className="text-[14px] font-[500] font-[Poppins]">
+                            Cargadores
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/shop?page=1&brand=&category=cobertor&search" className="text-[14px] font-[500] font-[Poppins]">
+                            Cobertores
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/shop?page=1&brand=&category=sonido&search" className="text-[14px] font-[500] font-[Poppins]">
+                            Sonido
+                          </Link>
+                        </li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                <Link href="/cart" className="text-[14px] font-[500] font-[Poppins]">
+                  Mi Carrito
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        <div className="hidden md:flex items-center justify-center gap-x-8">
           {/* Búsqueda */}
           <Dialog>
-            <DialogTrigger asChild className="cursor-pointer">
-              <Search color="white" strokeWidth={1.8} />
-            </DialogTrigger>
+            <DialogTrigger asChild className="cursor-pointer"></DialogTrigger>
+            <Search color="white" strokeWidth={1.8} />
             <DialogContent className="sm:max-w-[425px] md:max-w-[850px] h-auto">
               <DialogHeader>
                 <DialogTitle className="sm:text-[18px] md:text-[24px]">
@@ -302,10 +471,9 @@ function NavbarMenu() {
               </svg>
             </Link>
           )}
-
         </div>
       </section>
-    </nav>
+    </nav >
   );
 }
 
