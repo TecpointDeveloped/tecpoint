@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import Footer from '@/components/Footer/page';
 import NavbarMenu from '@/components/navbarmenu/page';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const TerminosYCondiciones = () => {
   return (
