@@ -73,19 +73,29 @@ const Shop = ({ products = [] }: ShopProps) => {
     setSearchTerm(e.target.value);
   };
 
+
   const handleBrandChange = (value: string) => {
     setSelectedBrand(value);
     setCurrentPage(1); // Reset to first page on brand change
     router.push(`/shop?page=1&brand=${value}&search=${searchTerm}`);
   };
 
+  // const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   router.push(`/shop?page=1&brand=${selectedBrand}&search=${searchTerm}`);
+  // };
+
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/shop?page=1&brand=${selectedBrand}&search=${searchTerm}`);
+    router.push(`/shop?page=1&brand=${selectedBrand}&category=${router.query.category || "all"}&search=${searchTerm}`);
   };
 
+
   const filteredProducts = products.filter((product) =>
-    (selectedBrand ? product.marca_producto.marca.toLowerCase() === selectedBrand.toLowerCase() : true) &&
+    (selectedBrand ? product.marca_producto.marca.toLowerCase() === (typeof selectedBrand === "string" ? selectedBrand.toLowerCase() : "") : true) &&
+    (router.query.category && router.query.category !== "all"
+      ? (product.categorias ?? []).some((cat) => cat.toLowerCase() === (Array.isArray(router.query.category) ? router.query.category[0]?.toLowerCase() : (router.query.category ?? "all").toLowerCase()))
+      : true) &&
     (product.producto.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
       product.sku.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
       product.descripcion.toUpperCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toUpperCase()))
@@ -158,6 +168,34 @@ const Shop = ({ products = [] }: ShopProps) => {
                 <SelectItem value="USG">USG</SelectItem>
                 <SelectItem value="XBase">XBase</SelectItem>
                 <SelectItem value="XO">XO</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
+          <Select
+            onValueChange={(value) => {
+              router.push(`/shop?page=1&brand=${selectedBrand}&category=${value}&search=${searchTerm}`);
+            }}
+            value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
+          >
+            <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
+              <SelectValue placeholder="Categorías" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Categorías</SelectLabel>
+                <SelectItem value="all">Todas</SelectItem>
+                <SelectItem value="Audifonos">Audífonos</SelectItem>
+                <SelectItem value="Auriculares">Auriculares</SelectItem>
+                <SelectItem value="Audio">Audio</SelectItem>
+                <SelectItem value="Accesorios">Accesorios</SelectItem>
+                <SelectItem value="Cobertores">Cobertores</SelectItem>
+                <SelectItem value="cable">Cables</SelectItem>
+                <SelectItem value="Cargadores">Cargadores</SelectItem>
+                <SelectItem value="Memorias">Memorias</SelectItem>
+                <SelectItem value="power bank">Power Banks</SelectItem>
+                <SelectItem value="hub">HUB</SelectItem>
+                <SelectItem value="reloj">SmartWatch</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
