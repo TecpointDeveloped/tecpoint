@@ -122,9 +122,9 @@ function NavbarMenu() {
             Categorías
           </Link>
         </div>
-        
+
         <div className="flex items-center justify-center gap-x-6 md:hidden">
-           <Sheet>
+          <Sheet>
             <SheetTrigger asChild>
               <button className="block relative">
                 {cart.length > 0 && (
@@ -294,8 +294,9 @@ function NavbarMenu() {
         <div className="hidden md:flex items-center justify-center gap-x-8">
           {/* Búsqueda */}
           <Dialog>
-            <DialogTrigger asChild className="cursor-pointer"></DialogTrigger>
-            <Search color="white" strokeWidth={1.8} />
+            <DialogTrigger asChild className="cursor-pointer">
+              <Search color="white" strokeWidth={1.8} />
+            </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] md:max-w-[850px] h-auto">
               <DialogHeader>
                 <DialogTitle className="sm:text-[18px] md:text-[24px]">
@@ -384,7 +385,7 @@ function NavbarMenu() {
                   Tu Carrito ({totalQuantity} productos)
                 </SheetTitle>
               </SheetHeader>
-              <div className="p-4 overflow-hidden overflow-y-scroll md:max-h-[78%]">
+              <div className="p-4 overflow-hidden overflow-y-scroll max-h-[78%] md:max-h-[78%]">
                 {cart.length > 0 ? (
                   <ul className="space-y-4">
                     {cart.map((item) => (
