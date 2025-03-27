@@ -11,7 +11,7 @@ export async function getServerSideProps() {
   return {
     props: {
       title: 'Inicio de Sesion | Tecpoint',
-      description: 'Inicia sesion en tu cuenta de Tecpoint',
+      description: 'Inicia sesion en tu cuenta de Tecpoint y recibe los mejores beneficios',
       keywords: 'inicio, sesion, cuenta, tecpoint, distribucion',
       robots: 'index, follow'
     }
@@ -115,7 +115,17 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
       ) :
         (
           <div className="bg-[#f7f7f7] h-screen p-4 flex justify-between items-start gap-4">
-            <div className="bg-gray-200 h-full md:w-[60%] rounded-2xl"></div>
+            <div className="bg-gray-200 h-full md:w-[60%] rounded-2xl flex overflow-hidden">
+              <Image
+                alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint"
+                height={1080}
+                width={2440}
+                quality={100}
+                priority
+                className="cursor-pointer w-full h-full object-cover object-left"
+                src="/images/banner_semana_santa.webp"
+              />
+            </div>
 
             <section className="flex-1 grid place-items-center h-full bg-white rounded-2xl">
               <Tabs defaultValue="account" className="w-[400px] h-fit flex flex-col items-center">

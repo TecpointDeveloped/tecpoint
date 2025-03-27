@@ -54,7 +54,7 @@ export default function Home({ logos, products }: HomeProps) {
     <>
       <Head>
         <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
         <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
         <meta property="og:url" content="https://tecpoint.ws" />

@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import Image from "next/image";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -17,10 +17,6 @@ export default function Document() {
         {/* SEO Meta Tags */}
         <meta
           name="keywords"
-          content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
-        />
-        <meta
-          name="description"
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
         />
         <meta name="robots" content="index, follow" />
@@ -63,43 +59,42 @@ export default function Document() {
           name="twitter:image:alt"
           content="Distribuidores de Accesorios Tecnológicos | Tecpoint"
         />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
 
-        {/* Google Ads Tag */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11071480891"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-11071480891');
-            `,
-          }}
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-43E14570X3"
         />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-43E14570X3');
+          `}
+        </Script>
 
         {/* Facebook Pixel */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
-              n.callMethod.apply(n, arguments) : n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '516288913383243');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '516288913383243');
+            fbq('track', 'PageView');
+          `}
+        </Script>
         <noscript>
-          <Image
-            priority
+          <img
             height="1"
             width="1"
             style={{ display: "none" }}
@@ -107,22 +102,16 @@ export default function Document() {
             alt=""
           />
         </noscript>
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
 
-        {/* Evento de conversión para venta en el sitio web */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              gtag('event', 'conversion', {
-                  'send_to': 'AW-11071480891/aFf1CKL36ogYELvIpZ8p',
-                  'transaction_id': ''
-              });
-            `,
-          }}
-        />
+        {/* Google Ads Conversion */}
+        <Script id="google-ads-conversion" strategy="afterInteractive">
+          {`
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11071480891/aFf1CKL36ogYELvIpZ8p',
+                'transaction_id': ''
+            });
+          `}
+        </Script>
       </body>
     </Html>
   );
