@@ -50,12 +50,31 @@ export interface Product {
   objectID?: string;
 }
 
+export interface GiftCode {
+  benefit: {
+    type: string;
+    value: number | string | null;
+  }
+  code: string;
+  created_at: string;
+  expiration_date: string;
+  is_active: boolean;
+}
+
 export type Logo = {
   key: string;
   logo: string;
   color?: string;
 };
 
+export interface CartItem {
+  id: string;
+  quantity: number;
+  sku?: string;
+  imagenes?: { imagen_01?: { id?: string, img?: string } } | string;
+  precio?: number;
+  producto?: string;
+}
 
 export interface BannerInterface {
   BannerID: string;

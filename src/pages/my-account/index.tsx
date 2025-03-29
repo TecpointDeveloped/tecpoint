@@ -115,7 +115,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
       ) :
         (
           <div className="bg-[#f7f7f7] h-screen p-4 flex justify-between items-start gap-4">
-            <div className="bg-gray-200 h-full md:w-[60%] rounded-2xl flex overflow-hidden">
+            <div className="bg-gray-200 h-full md:w-[60%] rounded-2xl flex overflow-hidden relative">
               <Image
                 alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint"
                 height={1080}
@@ -125,6 +125,9 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
                 className="cursor-pointer w-full h-full object-cover object-left"
                 src="/images/banner_semana_santa.webp"
               />
+              <div className="size-full absolute">
+                <h1 className="font-black md:text-[40px] float-end mt-12 mr-12">Verano de Descuentos</h1>
+              </div>
             </div>
 
             <section className="flex-1 grid place-items-center h-full bg-white rounded-2xl">
