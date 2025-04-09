@@ -326,10 +326,22 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
           <div className="flex flex-col gap-y-3 mt-3">
             <span className="flex justify-center items-center gap-x-2 w-fit">
-              <p className="bg-black w-fit h-fit md:text-[12px] 2xl:text-[17px] px-3 py-1 text-white rounded-[4px]">
+              <p className="bg-black tracking-[-0.4px] w-fit h-fit md:text-[12px] 2xl:text-[17px] px-3 py-1 text-white rounded-[6px]">
                 SKU
               </p>
               <p className="text-md font-bold 2xl:text-[20px]">{product.sku}</p>
+            </span>
+
+            <span>
+              {product.extradata?.stock ? (
+                <div className="bg-[#72ff56] w-fit px-4 py-1 rounded-[8px]">
+                  <p className="font-bold text-[14px] text-[#287518]">Disponible</p>
+                </div>
+              ) : (
+                <div className="bg-[#fcb9b9] w-fit px-4 py-1 rounded-[8px]">
+                  <p className="text-[#b51d1d] font-bold text-[14px]">Agotado</p>
+                </div>
+              )}
             </span>
 
             <div className="flex gap-x-12 md:py-4">

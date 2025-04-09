@@ -6,13 +6,10 @@ import { Separator } from "@/components/ui/separator";
 import { useCartStore } from "../../lib/cartStore";
 import { useAuth } from "@/context/useAuth";
 import { Checkbox } from "@heroui/checkbox";
-import { GiftCode, CartItem } from "@/types/ProductTypes";
+import { CartItem } from "@/types/ProductTypes";
 
 const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [giftCode, setGiftCode] = useState<string>("");
-  const [giftCodeMessage, setGiftCodeMessage] = useState<string | null>(null);
-  const [giftCodeValid, setGiftCodeValid] = useState<boolean>(false);
 
   const { cart: storedCart } = useCartStore();
   const { currentUser } = useAuth();

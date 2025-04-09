@@ -247,6 +247,14 @@ const Shop = ({ products = [] }: ShopProps) => {
                 key={product.id}
                 className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
               >
+                <span className="absolute top-4 left-4 z-10">
+                  {product.extradata?.stock !== true && (
+                    <div className="bg-[#fcb9b9] w-fit px-4 py-1 rounded-full">
+                      <p className="text-[#b51d1d] font-bold text-[14px]">Agotado</p>
+                    </div>
+                  )}
+                </span>
+
                 <div className="flex flex-col">
                   <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
                     <Image
