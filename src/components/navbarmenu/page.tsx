@@ -382,7 +382,7 @@ function NavbarMenu() {
 
             <SheetContent
               side="right"
-              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent z-[999]"
+              className="w-full md:w-[34%] bg-[#ffffff] text-black border-transparent z-[999] "
             >
               <SheetHeader>
                 <SheetTitle className="text-center text-lg font-semibold">

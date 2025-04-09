@@ -14,17 +14,6 @@ const CartPage = () => {
   const [giftCodeMessage, setGiftCodeMessage] = useState<string | null>(null);
   const [giftCodeValid, setGiftCodeValid] = useState<boolean>(false);
 
-  const handleGiftCodeVerification = async () => {
-    // Simulate gift code verification logic
-    if (giftCode === "DISCOUNT10") {
-      setGiftCodeValid(true);
-      setGiftCodeMessage("¡Código válido! Se ha aplicado un descuento.");
-    } else {
-      setGiftCodeValid(false);
-      setGiftCodeMessage("Código inválido. Por favor, inténtalo de nuevo.");
-    }
-  };
-
   const { cart: storedCart } = useCartStore();
   const { currentUser } = useAuth();
   const [selectedUserIndex, setSelectedUserIndex] = useState<number | null>(null);
@@ -202,30 +191,6 @@ const CartPage = () => {
               </Checkbox>
             ))}
           </div>
-
-          <section className="bg-white p-4">
-            <h2 className="text-xl font-semibold mb-4">Código de regalo</h2>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Ingresa tu código de regalo"
-                className="w-full border rounded p-2"
-                value={giftCode}
-                onChange={(e) => setGiftCode(e.target.value)}
-              />
-              <button
-                onClick={handleGiftCodeVerification}
-                className="bg-black text-white px-4 py-2 rounded hover:bg-black/80 transition duration-300"
-              >
-                Aplicar
-              </button>
-            </div>
-            {giftCodeMessage && (
-              <p className={`mt-2 text-sm ${giftCodeValid ? "text-green-500" : "text-red-500"}`}>
-                {giftCodeMessage}
-              </p>
-            )}
-          </section>
 
           <div className="bg-white p-4">
             <h2 className="text-xl font-semibold mb-4">Resumen del pedido</h2>
