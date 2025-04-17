@@ -271,69 +271,74 @@ export default function Home({ logos, products }: HomeProps) {
 
         <section className="md:max-w-[1500px] m-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {products.slice(0, 4).map((product: Product) => {
-              const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
+            {products
+              .filter((product) =>
+                ["XO-30104", "XO-30106", "XO-30102", "XO-30101"].includes(product.sku)
+              )
+              .slice(0, 4)
+              .map((product: Product) => {
+                const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
-              return (
-                <div
-                  key={product.id}
-                  className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
-                >
+                return (
+                  <div
+                    key={product.id}
+                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                  >
 
-                  <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
-                    <p className="text-[12px] font-semibold text-white">Nuevo</p>
-                  </span>
+                    <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
+                      <p className="text-[12px] font-semibold text-white">Nuevo</p>
+                    </span>
 
-                  <div className="flex flex-col">
-                    <Link
-                      href={`/shop/${product.slug}`}
-                      className="hover:scale-105 transition-transform duration-100"
-                      rel="noopener noreferrer"
-                      download={false}
-                    >
-                      <Image
-                        src={imagen_01}
-                        alt={
-                          product.producto
-                            ? `Imagen de ${product.producto}`
-                            : "Imagen del producto"
-                        }
-                        width={240}
-                        height={240}
-                        quality={100}
-                        className="m-auto w-[240px] h-[240px] aspect-square object-cover mb-4"
-                      />
-                    </Link>
+                    <div className="flex flex-col">
+                      <Link
+                        href={`/shop/${product.slug}`}
+                        className="hover:scale-105 transition-transform duration-100"
+                        rel="noopener noreferrer"
+                        download={false}
+                      >
+                        <Image
+                          src={imagen_01}
+                          alt={
+                            product.producto
+                              ? `Imagen de ${product.producto}`
+                              : "Imagen del producto"
+                          }
+                          width={240}
+                          height={240}
+                          quality={100}
+                          className="m-auto w-[240px] h-[240px] aspect-square object-cover mb-4"
+                        />
+                      </Link>
 
-                    <div>
-                      <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                        {product.producto.slice(0, 50)}
-                      </h2>
-                      <p className="text-sm text-gray-500 mt-2">
-                        SKU: {product.sku}
-                      </p>
+                      <div>
+                        <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
+                          {product.producto.slice(0, 50)}
+                        </h2>
+                        <p className="text-sm text-gray-500 mt-2">
+                          SKU: {product.sku}
+                        </p>
 
-                      <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                        {(product.categorias || []).map((cat: string, index: number) => (
-                          <span
-                            key={index}
-                            className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
-                          >
-                            {cat}
-                          </span>
-                        ))}
+                        <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                          {(product.categorias || []).map((cat: string, index: number) => (
+                            <span
+                              key={index}
+                              className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
+                            >
+                              {cat}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
-                    <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
-                      Ver Producto
-                    </Link>
-                  </button>
-                </div>
-              );
-            })}
+                    <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
+                      <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
+                        Ver Producto
+                      </Link>
+                    </button>
+                  </div>
+                );
+              })}
           </div>
         </section>
       </section>
@@ -485,83 +490,6 @@ export default function Home({ logos, products }: HomeProps) {
           </figure>
         </div> */}
       </section>
-
-      {/* <section className="flex flex-col md:flex-row p-2 gap-2">
-        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
-          <Image
-            className="aspect-square object-cover"
-            width={800}
-            height={800}
-            src={"/images/rockspace/zc1max.png"}
-            alt="plotter - maquina de corte zc1 max rock space"
-          />
-          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Image
-              width={240}
-              height={285}
-              alt="logo rock space"
-              src="/logos/rock-space-white.png"
-              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            />
-
-            <p
-              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            >
-              Plotter ZC1 MAX
-            </p>
-          </span>
-        </picture>
-
-        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
-          <Image
-            className="aspect-square object-cover"
-            width={800}
-            height={800}
-            src={"/images/rockspace/zv2.png"}
-            alt="plotter - maquina de corte zv2 mini rock space"
-          />
-          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Image
-              width={240}
-              height={285}
-              alt="logo rock space"
-              src="/logos/rock-space-white.png"
-              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            />
-
-            <p
-              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            >
-              Plotter MINI ZV2
-            </p>
-          </span>
-        </picture>
-
-        <picture className="flex items-center justify-center relative cursor-pointer overflow-hidden group md:rounded-[60px]">
-          <Image
-            className="aspect-square object-cover"
-            width={800}
-            height={800}
-            src={"/images/rockspace/zc3.png"}
-            alt="plooter - maquina de corte zv1 mini rock space"
-          />
-          <span className="bg-[#23b7ce8f] inset-0 backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Image
-              width={240}
-              height={285}
-              alt="logo rock space"
-              src="/logos/rock-space-white.png"
-              className="mb-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            />
-
-            <p
-              className="text-center md:font-black md:text-3xl tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-            >
-              Plotter MINI ZV1
-            </p>
-          </span>
-        </picture>
-      </section> */}
 
       <section className="w-full h-fit bg-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-12">
         <div className="md:w-1/2 text-center md:text-left">
