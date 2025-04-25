@@ -55,7 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      route.push("/")
+      route.push("/scan")
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
     }

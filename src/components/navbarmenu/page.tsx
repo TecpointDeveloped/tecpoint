@@ -10,7 +10,7 @@ import { Product } from "../../types/ProductTypes";
 import { useState, useEffect, forwardRef } from "react";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import {  NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { useAuth } from "@/context/useAuth";
 import { useCartStore } from "@/lib/cartStore";
 import Avvvatars from 'avvvatars-react';
@@ -95,13 +95,16 @@ function NavbarMenu() {
           </Link>
         </div>
         <div className="hidden md:flex items-center justify-center gap-12">
-          <Link href="/" className="text-[14px] font-[500] font-[Poppins]">
+          <Link href="/" className="text-[14px] font-[500] font-[Poppins] hover:underline ">
             Inicio
           </Link>
-          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins]">
+          <Link href="/shop" className="text-[14px] font-[500] font-[Poppins] hover:underline ">
             Tienda
           </Link>
-          <NavigationMenu>
+          <Link href="/scan" className="text-[14px] font-[500] font-[Poppins] hover:underline hover:text-[#ffe607]">
+            Sorteo
+          </Link>
+          {/* <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
@@ -117,8 +120,8 @@ function NavbarMenu() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
-          </NavigationMenu>
-          <Link href="/categories" className="text-[14px] font-[500] font-[Poppins]">
+          </NavigationMenu> */}
+          <Link href="/categories" className="text-[14px] font-[500] font-[Poppins] hover:underline ">
             Categorías
           </Link>
         </div>

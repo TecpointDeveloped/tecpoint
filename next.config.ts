@@ -24,6 +24,16 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.macstation.com.ar",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.tecpoint.ws",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tecpoint.ws",
+        pathname: "/**",
       }
     ],
   },
