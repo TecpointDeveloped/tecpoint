@@ -77,9 +77,9 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
 
       {currentUser ? (
         <div className="w-full h-full flex flex-col">
-          <NavbarMenu />
+          <NavbarMenu bgColor="black" />
 
-          <section className="p-4 md:w-[1200px] mx-auto">
+          <section className="p-4 md:w-[1200px] mx-auto mt-[70px]">
             <article className="border rounded-3xl p-4 flex justify-between items-center gap-4">
               <div className="flex gap-4 items-center">
                 {currentUser.photoURL ? (

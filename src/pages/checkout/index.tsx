@@ -4,14 +4,14 @@ import React from 'react'
 function index() {
   return (
     <>
-      <NavbarMenu />
+      <NavbarMenu bgColor="black" />
 
       <div className='p-8 max-w-xl mx-auto bg-white shadow-md rounded-lg'>
         <h2 className='text-2xl font-bold mb-6 text-center'>Checkout</h2>
 
         <form className='space-y-4'>
 
-        
+
 
           <section className='flex gap-4'>
             <div className='w-full'>

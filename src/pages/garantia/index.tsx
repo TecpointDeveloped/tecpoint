@@ -17,9 +17,9 @@ const Garantia = () => {
         <meta property="og:site_name" content="TECPOINT" />
       </Head>
 
-      <NavbarMenu />
+      <NavbarMenu bgColor="black" />
 
-      <main className="p-4 w-full md:w-[90%] m-auto">
+      <main className="p-4 w-full md:w-[90%] m-auto mt-[70px]">
         <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">Garantia</h1>
 
         <p className="mb-2">El cliente puede optar a cambio de su producto por las siguientes condiciones:</p>

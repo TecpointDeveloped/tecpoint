@@ -23,9 +23,9 @@ function Page() {
 
   return (
     <>
-      <NavbarMenu />
+      <NavbarMenu bgColor="black" />
 
-      <main className="flex flex-col relative h-fit sm:mt-[60px] lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
+      <main className="flex mt-[70px] flex-col relative h-fit sm:mt-[60px] lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
 
           {currentUser && (

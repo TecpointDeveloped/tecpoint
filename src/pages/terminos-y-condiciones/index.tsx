@@ -24,8 +24,9 @@ const TerminosYCondiciones = () => {
         <meta name="twitter:description" content="Consulta los términos y condiciones de uso del sitio web de Tecpoint." />
       </Head>
 
-      <NavbarMenu />
-      <main className="p-4 flex flex-col gap-6 md:w-[90%] m-auto">
+      <NavbarMenu bgColor="black" />
+
+      <main className="p-4 flex flex-col gap-6 md:w-[90%] m-auto mt-[70px]">
         <h1 className="text-2xl md:text-4xl font-bold text-center m-auto">Términos y Condiciones</h1>
 
         <section>

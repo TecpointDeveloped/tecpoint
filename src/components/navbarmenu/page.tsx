@@ -21,11 +21,12 @@ interface ImageData {
   img: string;
 }
 
-function NavbarMenu() {
+function NavbarMenu({ bgColor }: { bgColor?: "black" | null }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [color, setcolor] = useState("transparent");
   const route = useRouter();
 
   const { currentUser } = useAuth();
@@ -78,8 +79,24 @@ function NavbarMenu() {
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0).toFixed(2);
 
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 490) {
+      setcolor("#010101");
+    } else {
+      setcolor("transparent");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="flex flex-col h-fit items-center justify-between bg-[#010101] backdrop-blur text-white w-full px-4 md:px-2 md:py-2 m-auto z-10">
+    <nav style={{ backgroundColor: bgColor ?? color }} className="flex top-0 flex-col h-fit items-center justify-between bg-transparent fixed text-white w-full px-4 md:px-2 md:py-2 m-auto z-50">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
           <Link href="/">

@@ -15,9 +15,10 @@ function PoliticaPrivacidad() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.tecpoint.ws/politica-privacidad" />
       </Head>
-      <NavbarMenu />
 
-      <main className="md:px-12 md:py-8 p-2 bg-[#fdfdfd] flex flex-col gap-4">
+      <NavbarMenu bgColor="black" />
+
+      <main className="md:px-12 md:py-8 p-2 bg-[#fdfdfd] flex flex-col gap-4 mt-[70px]">
         <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center m-auto">Politicas de Privacidad Tecpoint</h1>
 
         <section className="bg-white py-3 px-6 shadow-lg rounded-xl">

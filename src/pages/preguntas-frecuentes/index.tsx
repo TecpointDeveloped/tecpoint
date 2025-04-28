@@ -4,9 +4,9 @@ import NavbarMenu from "@/components/navbarmenu/page";
 const PreguntasFrecuentes = () => {
   return (
     <>
-      <NavbarMenu />
+      <NavbarMenu bgColor="black" />
 
-      <div className="p-4">
+      <main className="p-4 mt-[70px]">
         <div className="box">
           <h1>Preguntas frecuentes</h1>
           <div className="box">
@@ -30,7 +30,7 @@ const PreguntasFrecuentes = () => {
             <p>La mayoría de los pedidos se procesan y envían dentro de 1 a 3 días hábiles a partir de la fecha del pedido. Atendiendo de lunes a viernes de 8:00 am a 5:00 p.m.</p>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </>
