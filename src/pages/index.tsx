@@ -80,13 +80,35 @@ export default function Home({ logos, products }: HomeProps) {
         className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        plugins={[plugin.current]}
+        // plugins={[plugin.current]}
         opts={{
           loop: true,
           duration: 20,
         }}
       >
         <CarouselContent>
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/gran_sorteo.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
+
+            <div className="relative size-full flex items-center justify-center md:items-end md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[2px] bg-[#ffffff0d] md:bg-transparent md:backdrop-blur-0">
+              <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
+                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Gran Sorteo<span className="block text-[40px] md:text-[60px]">Raspa y Gana!</span></h6>
+
+                <section className="flex gap-4">
+                  <Link href="/scan" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#fff] hover:border-white">
+                    Participar
+                  </Link>
+                  <Link href="/scan" className="text-white py-2 px-5 hover:underline flex items-center gap-2">
+                    Probar Suerte
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                </section>
+              </div>
+            </div>
+          </CarouselItem>
+
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/banner_semana_santa.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
 

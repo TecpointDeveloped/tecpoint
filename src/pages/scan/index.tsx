@@ -25,7 +25,7 @@ function Page() {
     <>
       <NavbarMenu />
 
-      <main className="flex flex-col mt-[60px] sm:mt-[60px] md:mt-0 lg:flex-row items-center justify-center md:h-screen bg-gray-100 fixed top-0 w-full -z-10">
+      <main className="flex flex-col relative h-fit sm:mt-[60px] lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
 
           {currentUser && (
@@ -39,7 +39,7 @@ function Page() {
           )}
 
           <h1 className="text-2xl lg:text-4xl font-bold mt-10 sm:mt-10 md:mb-4 md:mt-0 text-center tracking-[-1.2px]">
-            Ingresa el Codigo del <br /> Bolante
+            Ingresa el Codigo del <br /> Volante
           </h1>
           <form
             onSubmit={async (e) => {

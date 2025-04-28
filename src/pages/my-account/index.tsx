@@ -114,23 +114,20 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
         </div>
       ) :
         (
-          <div className="bg-[#f7f7f7] h-screen p-4 flex justify-between items-start gap-4">
-            <div className="bg-gray-200 h-full md:w-[60%] rounded-2xl flex overflow-hidden relative">
+          <div className="bg-transparent h-screen flex justify-between items-start">
+            <div className="h-full md:w-[60%] flex overflow-hidden select-none fixed md:relative">
               <Image
                 alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint"
                 height={1080}
                 width={2440}
                 quality={100}
                 priority
-                className="cursor-pointer w-full h-full object-cover object-left"
-                src="/images/banner_semana_santa.webp"
+                className="cursor-pointer w-full h-full object-cover object-left select-none"
+                src="/images/gran_sorteo.webp"
               />
-              <div className="size-full absolute">
-                <h1 className="font-black md:text-[40px] float-end mt-12 mr-12">Verano de Descuentos</h1>
-              </div>
             </div>
 
-            <section className="flex-1 grid place-items-center h-full bg-white rounded-2xl">
+            <section className="flex-1 grid place-items-center h-full bg-transparent md:bg-white z-10">
               <Tabs defaultValue="account" className="w-[400px] h-fit flex flex-col items-center">
                 <TabsList className="bg-[#eeeeee] w-fit h-fit">
                   <TabsTrigger className="py-[10px] px-12" value="account">Iniciar sesion</TabsTrigger>
@@ -141,8 +138,8 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
                   <section className="flex flex-col items-center justify-center gap-8">
 
                     <div className="flex flex-col justify-center items-center">
-                      <h1 className="font-[Poppins] font-[600] text-3xl text-center tracking-[-1.1px]">Bienvenido de Nuevo!</h1>
-                      <h2 className="text-[15px]">Iniciar sesión con los siguientes proveedores</h2>
+                      <h1 className="font-[Poppins] font-[600] text-3xl text-center tracking-[-1.1px] text-white md:text-black">Bienvenido de Nuevo!</h1>
+                      <h2 className="text-[15px] text-white md:text-black">Iniciar sesión con los siguientes proveedores</h2>
                     </div>
 
                     <div className="flex flex-col gap-y-2 w-full items-center">
