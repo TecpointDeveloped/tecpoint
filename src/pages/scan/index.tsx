@@ -21,6 +21,60 @@ function Page() {
   const { currentUser } = useAuth();
   const { signInWithGoogle } = useAuth();
 
+  async function OnSubmitForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const input = (e.target as HTMLFormElement).elements[0] as HTMLInputElement;
+    const upcCode = input.value;
+
+    const gift = giftData.find((gift: Gift) => gift.upc === upcCode);
+
+    if (gift) {
+      setImage(gift.ImageGift);
+      setName(gift.NameGift);
+      setLocation(gift.location);
+      setError(null);
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false)
+        alert('Gracias por Participar, revisa tu correo y sigue los pasos para reclamar tu premio!!.');
+      }, 20000);
+
+      try {
+        const response = await fetch('/api/send-email/route', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: currentUser?.email,
+            name: currentUser?.displayName,
+            gift: gift.NameGift,
+            location: gift.location,
+          }),
+        });
+
+        if (!response.ok) {
+          try {
+            const errorData = await response.json();
+            console.log('Failed to send email: ' + (errorData.message || response.statusText));
+          } catch {
+            console.warn('Failed to send email: Unexpected response format');
+          }
+        } else {
+          console.log('Email sent successfully!');
+        }
+      } catch (error) {
+        console.error('Error sending email:' + error);
+      }
+    } else {
+      setError('Upss.. Gracias por Participar Intenta nuevamente.');
+      setImage(null);
+      setName(null);
+      setLocation(null);
+      setShowConfetti(false);
+    }
+  }
+
   return (
     <>
       <NavbarMenu bgColor="black" />
@@ -42,28 +96,7 @@ function Page() {
             Ingresa el Codigo del <br /> Volante
           </h1>
           <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const input = (e.target as HTMLFormElement).elements[0] as HTMLInputElement;
-              const upcCode = input.value;
-
-              const gift = giftData.find((gift: Gift) => gift.upc === upcCode);
-
-              if (gift) {
-                setImage(gift.ImageGift);
-                setName(gift.NameGift);
-                setLocation(gift.location);
-                setError(null);
-                setShowConfetti(true); // Mostrar confeti
-                setTimeout(() => setShowConfetti(false), 20000); // Ocultar confeti después de 20 segundos
-              } else {
-                setError('Upss.. Gracias por Participar Intenta nuevamente.');
-                setImage(null);
-                setName(null);
-                setLocation(null);
-                setShowConfetti(false); // Asegurarse de que el confeti no se muestre
-              }
-            }}
+            onSubmit={OnSubmitForm}
             className="flex flex-col items-center justify-center gap-4 w-full"
           >
             <input
@@ -74,7 +107,7 @@ function Page() {
               placeholder="092947182633"
               required
               pattern="\d{12}"
-              disabled={!currentUser} // Deshabilitar el input si no hay usuario actual
+              disabled={!currentUser}
             />
 
             {currentUser ? (
@@ -119,6 +152,8 @@ function Page() {
           </div>
         </div>
       </main>
+
+
 
       {showConfetti && <Confetti className="fixed top-0 size-full" gravity={0.1} />}
     </>

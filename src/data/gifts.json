@@ -3,24 +3,28 @@
     "ImageGift": "https://tecpoint.ws/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Ftecpoint-2024.appspot.com%2Fo%2Fproductos%252FUSG%252FUSG-AUDBOOM%252Fusg%2520sound%2520strom%25202.png_1%3Falt%3Dmedia%26token%3Df5b3d437-a2e5-4f01-9c6e-c9d6895d19f2&w=640&q=100",
     "NameGift": "Parlante SoundStrom2 marca USG",
     "location": "Tecpoint City Mall",
-    "upc": "814621018845"
+    "upc": "814621018845",
+    "brand": "USG"
   },
   {
     "ImageGift": "https://tecpoint.ws/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Ftecpoint-2024.appspot.com%2Fo%2Fproductos%252FUSG%252FUSG-AUDPLAY3%252FUSG%2520Play%25203.webp%3Falt%3Dmedia%26token%3De17bad91-6e1d-4c94-8f21-1f485eeed9a1&w=640&q=100",
     "NameGift": "Parlante Play 3 marca USG",
     "location": "Plaz carolina Blvd. Mackey San Pedro Sula, Segundo Nivel",
-    "upc": "814621018852"
+    "upc": "814621018852",
+    "brand": "USG"
   },
   {
     "ImageGift": "https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/Recurso%201.png?alt=media&token=4c11b6f8-e19d-4dd2-9559-443425d21223",
     "NameGift": "10% de Descuento",
     "location": "Tecpoint Plaza Carolina",
-    "upc": "000123456789"
+    "upc": "000123456789",
+    "brand": ""
   },
   {
     "ImageGift": "https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/Recurso%201.png?alt=media&token=4c11b6f8-e19d-4dd2-9559-443425d21223",
     "NameGift": "20% de Descuento",
     "location": "Tecpoint City Mall",
-    "upc": "023012346789"
+    "upc": "023012346789",
+    "brand": ""
   }
 ]

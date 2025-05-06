@@ -11,5 +11,6 @@ namespace NodeJS {
     NEXT_PUBLIC_ALGOLIA_APP_ID: string;
     NEXT_PUBLIC_ALGOLIA_ADMIN_KEY: string;
     NEXT_PUBLIC_ALGOLIA_INDEX_NAME: string;
+    RESEND_API_KEY: string;
   }
 }
