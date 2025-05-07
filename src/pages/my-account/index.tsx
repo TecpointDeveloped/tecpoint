@@ -78,7 +78,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
         <div className="w-full h-full flex flex-col">
           <NavbarMenu />
 
-          <section className="p-4 md:w-[1200px] mx-auto">
+          <section className="p-4 lg:w-[1200px] mx-auto">
             <article className="border rounded-3xl p-4 flex justify-between items-center gap-4">
               <div className="flex gap-4 items-center">
                 {currentUser.photoURL ? (
@@ -105,9 +105,32 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
               <button onClick={signOut} className=" bg-black text-white py-2 px-6 rounded-full size-fit">salir</button>
             </article>
 
-            <h2>creacion de la cuenta : {currentUser.metadata.creationTime}</h2>
-            <h3>ultimo inicio de sesion : {currentUser.metadata.lastSignInTime}</h3>
-            <h3>{currentUser.phoneNumber}</h3>
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-4">Información de la Cuenta</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold">Nombre</h3>
+                  <p>{currentUser.displayName || "No disponible"}</p>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold">Correo Electrónico</h3>
+                  <p>{currentUser.email || "No disponible"}</p>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold">Teléfono</h3>
+                  <p>{currentUser.phoneNumber || "No disponible"}</p>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold">Fecha de Creación</h3>
+                  <p>{currentUser.metadata.creationTime || "No disponible"}</p>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold">Último Inicio de Sesión</h3>
+                  <p>{currentUser.metadata.lastSignInTime || "No disponible"}</p>
+                </div>
+
+              </div>
+            </div>
 
           </section>
         </div>
