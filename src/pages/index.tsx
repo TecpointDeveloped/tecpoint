@@ -125,46 +125,6 @@ export default function Home({ logos, products }: HomeProps) {
           </CarouselItem>
 
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <video
-              className="cursor-pointer absolute w-full h-full md:h-fit object-cover"
-              src="/video/samsung_s25_ultra.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/images/banner_samsung.webp"
-            />
-
-            <div className="relative size-full flex items-center justify-center bg-[#00000011] pb-10 flex-col gap-12">
-              <h6 className="text-white mix-blend-difference text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Accesorios <span className="block text-[40px] md:text-[60px]">Samsung S25 Ultra</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=s25" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=s25" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <video
-              className="cursor-pointer absolute w-full h-full md:h-fit object-cover"
-              src="/video/iPhone_16_series.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/images/banner_apple.webp"
-            />
-
-            <div className="relative size-full flex items-center justify-center bg-[#00000011] pb-10 flex-col gap-12">
-              <h6 className="text-white mix-blend-difference text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos Accesorios <span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=apple" className="bg-white py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-white hover:text-white">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=apple" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="cargadores carga rapida usb c" />
             <div className="relative size-full flex items-center justify-center pb-10 bg-[#00000018] flex-col gap-12">
               <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos cargadores <span className="block text-[50px] md:text-[60px]">Carga Rapida</span></h6>
