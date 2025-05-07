@@ -125,21 +125,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     }
   }, [product]);
 
-  // const handlePayNow = () => {
-  //   if (product) {
-  //     addToCart({
-  //       id: product.id,
-  //       quantity,
-  //       sku: product.sku,
-  //       imagenes: Object(product.imagenes),
-  //       precio: parseFloat(product.precio.detalle?.toString() || "0"),
-  //       producto: product.producto || "Producto no Encontrado"
-  //     });
-  //     route.push("/cart");
-  //     setIsAddedToCart(true);
-  //   }
-  // };
-
   const handleQuantityChange = (operation: "increase" | "decrease") => {
     setQuantity((prev) => {
       if (operation === "increase") {
@@ -238,9 +223,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
       </Head>
 
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
-      <main className="mt-[70px]">
+      <main>
         <section className="flex flex-col lg:flex-row h-fit w-full gap-x-28 justify-center items-center overflow-hidden">
           <div className="flex flex-col gap-y-3 p-2 sm:pt-4">
 

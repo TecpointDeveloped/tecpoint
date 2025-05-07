@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Confetti from "react-confetti";
 import { useAuth } from '@/context/useAuth';
+import { InputOTP, InputOTPGroup, InputOTPSlot, } from "@/components/ui/input-otp"
+import Head from 'next/head';
 
 type Gift = {
   ImageGift: string;
@@ -37,7 +39,7 @@ function Page() {
       setTimeout(() => {
         setShowConfetti(false)
         alert('Gracias por Participar, revisa tu correo y sigue los pasos para reclamar tu premio!!.');
-      }, 20000);
+      }, 12000);
 
       try {
         const response = await fetch('/api/send-email/route', {
@@ -77,9 +79,34 @@ function Page() {
 
   return (
     <>
+      <Head>
+        <title>Raspa y Gana con Tecpoint</title>
+        <meta name="description" content="Scan page for gifts" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Scan Page" />
+        <meta property="og:description" content="Scan page for gifts" />
+        <meta property="og:image" content="/images/og-image.png" />
+        <meta property="og:url" content="https://tecpoint.ws/scan" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Tecpoint Distribucion" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Scan Page" />
+        <meta name="twitter:description" content="Scan page for gifts" />
+        <meta name="twitter:image" content="/images/og-image.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="canonical" href="https://tecpoint.ws/scan" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="description" content="Scan page for gifts" />
+        <meta name="keywords" content="scan, gifts, prizes" />
+        <meta name="author" content="Your Name" />
+        <meta name="language" content="en" />
+      </Head>
+
       <NavbarMenu bgColor="black" />
 
-      <main className="flex mt-[70px] flex-col relative h-fit sm:mt-[60px] lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
+      <main className="flex flex-col relative h-fit lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
 
           {currentUser && (
@@ -99,19 +126,30 @@ function Page() {
             onSubmit={OnSubmitForm}
             className="flex flex-col items-center justify-center gap-4 w-full"
           >
-            <input
-              type="text"
-              minLength={12}
-              maxLength={12}
-              className="py-3 px-6 rounded-xl text-xl w-full lg:w-[200px] h-fit mt-8 text-center border-2 border-gray-300"
-              placeholder="092947182633"
-              required
-              pattern="\d{12}"
-              disabled={!currentUser}
-            />
+
+            <InputOTP maxLength={12} minLength={12} disabled={!currentUser}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+              </InputOTPGroup>
+              <InputOTPGroup>
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+                <InputOTPSlot index={6} />
+                <InputOTPSlot index={7} />
+              </InputOTPGroup>
+              <InputOTPGroup>
+                <InputOTPSlot index={8} />
+                <InputOTPSlot index={9} />
+                <InputOTPSlot index={10} />
+                <InputOTPSlot index={11} />
+              </InputOTPGroup>
+            </InputOTP>
 
             {currentUser ? (
-              <button type="submit" className="py-3 px-6 bg-blue-500 text-white rounded-xl w-full lg:w-auto">
+              <button type="submit" className="py-3 px-6 bg-black text-white rounded-xl w-full lg:w-auto">
                 Probar Suerte !!!
               </button>
             ) : (
@@ -126,6 +164,7 @@ function Page() {
               </div>
             )}
           </form>
+
           <div id="result" className="mt-8 text-center">
             {error && <p className="text-red-500">{error}</p>}
           </div>
@@ -152,8 +191,6 @@ function Page() {
           </div>
         </div>
       </main>
-
-
 
       {showConfetti && <Confetti className="fixed top-0 size-full" gravity={0.1} />}
     </>

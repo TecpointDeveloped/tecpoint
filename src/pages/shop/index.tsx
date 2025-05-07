@@ -134,9 +134,9 @@ const Shop = ({ products = [] }: ShopProps) => {
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
       </Head>
 
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
-      <main className="w-full mx-auto p-2 md:p-4 mt-[80px]">
+      <main className="w-full mx-auto p-2 md:p-4">
         <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
           <input
             className="border w-full py-3 px-6 rounded-full"

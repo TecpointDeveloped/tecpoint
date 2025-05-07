@@ -96,7 +96,7 @@ function NavbarMenu({ bgColor }: { bgColor?: "black" | null }) {
   }, []);
 
   return (
-    <nav style={{ backgroundColor: bgColor ?? color }} className="flex top-0 flex-col h-fit items-center justify-between bg-transparent fixed text-white w-full px-4 md:px-2 md:py-2 m-auto z-50">
+    <nav className="bg-[#000] flex top-0 flex-col h-fit items-center justify-between text-white w-full px-4 md:px-2 md:py-2 m-auto z-50">
       <section className="flex items-center justify-between w-full l:w-[1900px] md:px-28">
         <div className="flex items-center justify-center gap-8">
           <Link href="/">

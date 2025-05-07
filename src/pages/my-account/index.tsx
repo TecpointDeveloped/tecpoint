@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 }
 
 function My_Acoount({ title, description, keywords, robots }: { title: string, description: string, keywords: string, robots: string }) {
-  const { signInWithGoogle, signInWithEmailAndPassword } = useAuth();
+  const { signInWithGoogle, signInWithEmailAndPassword, signOut } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -40,7 +40,6 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
       setLoading(true);
       route.push("/")
     } catch (error) {
-      // Tipar el error como FirebaseError
       const firebaseError = error as { code: string };
       setLoading(false);
 
@@ -77,9 +76,9 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
 
       {currentUser ? (
         <div className="w-full h-full flex flex-col">
-          <NavbarMenu bgColor="black" />
+          <NavbarMenu />
 
-          <section className="p-4 md:w-[1200px] mx-auto mt-[70px]">
+          <section className="p-4 md:w-[1200px] mx-auto">
             <article className="border rounded-3xl p-4 flex justify-between items-center gap-4">
               <div className="flex gap-4 items-center">
                 {currentUser.photoURL ? (
@@ -103,7 +102,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
 
               </div>
 
-              <button className=" bg-black text-white py-2 px-6 rounded-full size-fit">salir</button>
+              <button onClick={signOut} className=" bg-black text-white py-2 px-6 rounded-full size-fit">salir</button>
             </article>
 
             <h2>creacion de la cuenta : {currentUser.metadata.creationTime}</h2>
