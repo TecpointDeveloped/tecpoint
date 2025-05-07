@@ -4,7 +4,7 @@ import NavbarMenu from "@/components/navbarmenu/page";
 const PreguntasFrecuentes = () => {
   return (
     <>
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <main className="p-4 mt-[70px]">
         <div className="box">

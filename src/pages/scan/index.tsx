@@ -104,7 +104,7 @@ function Page() {
         <meta name="language" content="en" />
       </Head>
 
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <main className="flex flex-col relative h-fit lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">

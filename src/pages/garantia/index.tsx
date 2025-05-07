@@ -17,7 +17,7 @@ const Garantia = () => {
         <meta property="og:site_name" content="TECPOINT" />
       </Head>
 
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <main className="p-4 w-full md:w-[90%] m-auto mt-[70px]">
         <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">Garantia</h1>
