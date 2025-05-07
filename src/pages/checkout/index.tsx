@@ -4,7 +4,7 @@ import React from 'react'
 function index() {
   return (
     <>
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <div className='p-8 max-w-xl mx-auto bg-white shadow-md rounded-lg'>
         <h2 className='text-2xl font-bold mb-6 text-center'>Checkout</h2>

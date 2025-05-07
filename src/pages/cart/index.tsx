@@ -112,7 +112,7 @@ const CartPage = () => {
         <meta name="twitter:image:alt" content="Carrito de compras | Tecpoint" />
       </Head>
 
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <main className="flex flex-col md:h-[87dvh] lg:flex-row gap-4 md:justify-between lg:justify-evenly mt-[80px]">
         <div className="py-4 px-6 w-full md:w-1/2 md:h-auto overflow-hidden overflow-y-scroll

@@ -30,7 +30,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
         <meta property="og:description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavbarMenu bgColor="black" />
+      <NavbarMenu />
 
       <main className='flex flex-col w-full gap-4'>
         <section className='flex w-full flex-col gap-4'>
