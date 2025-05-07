@@ -21,12 +21,11 @@ interface ImageData {
   img: string;
 }
 
-function NavbarMenu({ bgColor }: { bgColor?: "black" | null }) {
+function NavbarMenu() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [color, setcolor] = useState("transparent");
   const route = useRouter();
 
   const { currentUser } = useAuth();
