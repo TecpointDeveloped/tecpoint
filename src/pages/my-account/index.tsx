@@ -262,7 +262,6 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
           </div>
         )
       }
-
     </main>
   );
 }

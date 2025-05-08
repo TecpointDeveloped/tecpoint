@@ -92,7 +92,7 @@ export default function Home({ logos, products }: HomeProps) {
 
             <div className="relative size-full flex items-center justify-center md:items-end md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[2px] bg-[#ffffff0d] md:bg-transparent md:backdrop-blur-0">
               <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Gran Sorteo<span className="block text-[40px] md:text-[60px]">Raspa y Gana!</span></h6>
+                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Gran Sorteo<span className="block text-[40px] md:text-[60px]">Escanea y Gana!</span></h6>
 
                 <section className="flex gap-4">
                   <Link href="/scan" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#fff] hover:border-white">
