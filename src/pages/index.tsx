@@ -80,7 +80,7 @@ export default function Home({ logos, products }: HomeProps) {
         className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        // plugins={[plugin.current]}
+        plugins={[plugin.current]}
         opts={{
           loop: true,
           duration: 20,
