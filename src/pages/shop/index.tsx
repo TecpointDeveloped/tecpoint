@@ -109,7 +109,8 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    router.push(`/shop?page=${page}&brand=${selectedBrand}&search=${searchTerm}`);
+    const category = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
+    router.push(`/shop?page=${page}&brand=${selectedBrand}&category=${category}&search=${searchTerm}`);
   };
 
   if (!products || products.length === 0) {
@@ -146,57 +147,59 @@ const Shop = ({ products = [] }: ShopProps) => {
             onChange={handleSearchChange}
           />
 
-          <Select onValueChange={handleBrandChange} value={selectedBrand}>
-            <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
-              <SelectValue placeholder="Marca" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Marcas</SelectLabel>
-                <SelectItem value="Apple">Apple</SelectItem>
-                <SelectItem value="Appacs">Appacs</SelectItem>
-                <SelectItem value="Deken">Deken</SelectItem>
-                <SelectItem value="Ghostek">Ghostek</SelectItem>
-                <SelectItem value="Hypergear">Hypergear</SelectItem>
-                <SelectItem value="Krieg">Krieg</SelectItem>
-                <SelectItem value="Naztech">Naztech</SelectItem>
-                <SelectItem value="Powerpeak">Powerpeak</SelectItem>
-                <SelectItem value="Rockspace">Rockspace</SelectItem>
-                <SelectItem value="Samsung">Samsung</SelectItem>
-                <SelectItem value="USG">USG</SelectItem>
-                <SelectItem value="XBase">XBase</SelectItem>
-                <SelectItem value="XO">XO</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="flex gap-4">
+            <Select onValueChange={handleBrandChange} value={selectedBrand}>
+              <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
+                <SelectValue placeholder="Marca" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Marcas</SelectLabel>
+                  <SelectItem value="Apple">Apple</SelectItem>
+                  <SelectItem value="Appacs">Appacs</SelectItem>
+                  <SelectItem value="Deken">Deken</SelectItem>
+                  <SelectItem value="Ghostek">Ghostek</SelectItem>
+                  <SelectItem value="Hypergear">Hypergear</SelectItem>
+                  <SelectItem value="Krieg">Krieg</SelectItem>
+                  <SelectItem value="Naztech">Naztech</SelectItem>
+                  <SelectItem value="Powerpeak">Powerpeak</SelectItem>
+                  <SelectItem value="Rockspace">Rockspace</SelectItem>
+                  <SelectItem value="Samsung">Samsung</SelectItem>
+                  <SelectItem value="USG">USG</SelectItem>
+                  <SelectItem value="XBase">XBase</SelectItem>
+                  <SelectItem value="XO">XO</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
 
-          <Select
-            onValueChange={(value) => {
-              router.push(`/shop?page=1&brand=${selectedBrand}&category=${value}&search=${searchTerm}`);
-            }}
-            value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
-          >
-            <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
-              <SelectValue placeholder="Categorías" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Categorías</SelectLabel>
-                <SelectItem value="all">Todas</SelectItem>
-                <SelectItem value="Audifonos">Audífonos</SelectItem>
-                <SelectItem value="Auriculares">Auriculares</SelectItem>
-                <SelectItem value="Audio">Audio</SelectItem>
-                <SelectItem value="Accesorios">Accesorios</SelectItem>
-                <SelectItem value="Cobertores">Cobertores</SelectItem>
-                <SelectItem value="cable">Cables</SelectItem>
-                <SelectItem value="Cargadores">Cargadores</SelectItem>
-                <SelectItem value="Memorias">Memorias</SelectItem>
-                <SelectItem value="power bank">Power Banks</SelectItem>
-                <SelectItem value="hub">HUB</SelectItem>
-                <SelectItem value="reloj">SmartWatch</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+            <Select
+              onValueChange={(value) => {
+                router.push(`/shop?page=1&brand=${selectedBrand}&category=${value}&search=${searchTerm}`);
+              }}
+              value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
+            >
+              <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
+                <SelectValue placeholder="Categorías" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Categorías</SelectLabel>
+                  <SelectItem value="all">Todas</SelectItem>
+                  <SelectItem value="Audifonos">Audífonos</SelectItem>
+                  <SelectItem value="Auriculares">Auriculares</SelectItem>
+                  <SelectItem value="Audio">Audio</SelectItem>
+                  <SelectItem value="Accesorios">Accesorios</SelectItem>
+                  <SelectItem value="Cobertores">Cobertores</SelectItem>
+                  <SelectItem value="cable">Cables</SelectItem>
+                  <SelectItem value="Cargadores">Cargadores</SelectItem>
+                  <SelectItem value="Memorias">Memorias</SelectItem>
+                  <SelectItem value="power bank">Power Banks</SelectItem>
+                  <SelectItem value="hub">HUB</SelectItem>
+                  <SelectItem value="reloj">SmartWatch</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
         </form>
 
         {/* Paginación */}
@@ -236,7 +239,7 @@ const Shop = ({ products = [] }: ShopProps) => {
           </div>
         </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 md:w-[1100px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto">
           {currentProducts.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
@@ -288,7 +291,37 @@ const Shop = ({ products = [] }: ShopProps) => {
           })}
         </div>
 
-        {currentProducts.length !== 0 && (
+        {currentProducts.length === 0 ? (
+          <section className="w-full h-[50vh] flex flex-col gap-6 items-center justify-center pb-20">
+            <h1 className="text-gray-600 text-center">Ups... Actualmente no hay Productos con los filtros seleccionados</h1>
+
+            <div className="flex flex-col items-center mt-4 gap-2">
+              <span className="text-sm text-gray-600">
+                <strong>Filtros seleccionados:</strong>
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {selectedBrand && (
+                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    Marca: {selectedBrand}
+                  </span>
+                )}
+                {(router.query.category && router.query.category !== "all") && (
+                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    Categoría: {Array.isArray(router.query.category) ? router.query.category[0] : router.query.category}
+                  </span>
+                )}
+                {searchTerm && (
+                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    Búsqueda: {searchTerm}
+                  </span>
+                )}
+                {!selectedBrand && (!router.query.category || router.query.category === "all") && !searchTerm && (
+                  <span className="text-xs text-gray-400">Ningún filtro seleccionado</span>
+                )}
+              </div>
+            </div>
+          </section>
+        ) : (
           <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center mt-12">
             <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
               <Pagination className="flex flex-wrap gap-2 md:gap-4">

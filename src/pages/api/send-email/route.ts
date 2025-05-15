@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // const emailHtml = readFileSync(emailHtmlPath, 'utf8');
 
     const data = await resend.emails.send({
-      from: 'Tecpoint Distribución <tecpoint@tecpoint.ws>',
+      from: 'Tecpoint Distribución <tecpointdistribucion@tecpoint.ws>',
       to: [email],
       subject: 'RASPA Y GANA CON TECPOINT',
       html: `
@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 4px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);">
     
     <div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://tecpoint.ws/_next/image?url=%2Fimages%2Fgran_sorteo.webp&w=3840&q=100" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+      <img src="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/EMAIL%2Fbanner_sorteo_mes_mayo.webp?alt=media&token=880374d5-4f99-4cb3-9659-6721024a2236" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
     </div>
 
     <p style="color: #000;">Hola ${name}</p>
@@ -58,6 +58,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <p>¡Gracias por confiar en nosotros!<br />
       Y prepárate… vienen más sorpresas muy pronto 😉</p>
 
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="https://tecpoint.ws" style="display: inline-block; background-color: #000; color: #fff; text-decoration: none; padding: 10px 50px; border-radius: 12px; font-size: 16px;">
+          Contactar con la tienda
+        </a>
+      </div>
+
     <hr style="margin: 30px 0;" />
 
     <p style="text-align: center; font-weight: bold;">GRACIAS ${name} POR PARTICIPAR</p>
@@ -68,19 +74,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Haz clic aquí: <a href="https://tecpoint.ws" style="color: #09f;">tienda online Tecpoint</a>
     </p>
 
-    <p style="font-size: 12px; color: #777;">
+    <p style="font-size: 12px; color: #000;">
       <strong>Tecpoint City Mall, S.P.S</strong><br />
       Segundo nivel frente a tiendas Carrion<br />
       📞 +504 9520-0523
     </p>
 
-    <p style="font-size: 12px; color: #777;">
+    <p style="font-size: 12px; color: #000;">
       <strong>Tecpoint Plaza Carolina</strong><br />
       Plaza Carolina Boulevard Mackey, Segundo Nivel<br />
       📞 +504 9338-5732
     </p>
 
-    <p style="font-size: 12px; color: #777;">
+    <p style="font-size: 12px; color: #000;">
       <strong>Tecpoint Barrio el Benque</strong><br />
       9 avenida S.O. entre 5 y 6 calle a la par de BM Textiles<br />
       📞 +504 9715-7784

@@ -39,7 +39,7 @@ function Page() {
       setTimeout(() => {
         setShowConfetti(false)
         alert('Gracias por Participar, revisa tu correo y sigue los pasos para reclamar tu premio!!.');
-      }, 12000);
+      }, 10000);
 
       try {
         const response = await fetch('/api/send-email/route', {
@@ -82,7 +82,7 @@ function Page() {
       <Head>
         <title>Raspa y Gana con Tecpoint</title>
         <meta name="description" content="Scan page for gifts" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content="Scan Page" />
         <meta property="og:description" content="Scan page for gifts" />
@@ -171,7 +171,7 @@ function Page() {
         </div>
 
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col bg-white px-4 lg:px-0">
-          <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-center">Tu Premio es :</h2>
+          <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-center tracking-[-1.2px]">Tu Premio es :</h2>
 
           {image ? (
             <Image
@@ -182,7 +182,11 @@ function Page() {
               className="rounded-xl border-2"
             />
           ) : (
-            <div id="result" className="w-[380px] h-[380px] bg-gray-100 rounded-xl flex items-center justify-center"></div>
+            <div
+              id="result"
+              className="w-[380px] h-[380px] bg-gray-100 rounded-xl flex items-center justify-center animate-pulse"
+            >
+            </div>
           )}
 
           <div className='mt-4 flex flex-col items-center justify-center'>
