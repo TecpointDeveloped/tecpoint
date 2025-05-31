@@ -6,6 +6,7 @@ import Confetti from "react-confetti";
 import { useAuth } from '@/context/useAuth';
 import { InputOTP, InputOTPGroup, InputOTPSlot, } from "@/components/ui/input-otp"
 import Head from 'next/head';
+import CameraVideoUPC from '@/components/CameraVideoUPC/CameraVideoUPC';
 
 type Gift = {
   ImageGift: string;
@@ -80,7 +81,7 @@ function Page() {
   return (
     <>
       <Head>
-        <title>Raspa y Gana con Tecpoint</title>
+        <title>Escanea y Gana con Tecpoint</title>
         <meta name="description" content="Scan page for gifts" />
         <link rel="icon" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -106,8 +107,9 @@ function Page() {
 
       <NavbarMenu />
 
-      <main className="flex flex-col relative h-fit lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
-        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
+      <main className="flex flex-col relative h-screen lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
+        <CameraVideoUPC />
+        {/* <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
 
           {currentUser && (
             <section className="flex items-center justify-center gap-3 size-fit bg-white rounded-2xl py-3 px-4 shadow-lg md:mb-6">
@@ -193,7 +195,7 @@ function Page() {
             {name && <p className="text-lg lg:text-xl font-bold text-center">{name}</p>}
             {location && <p className="text-lg lg:text-xl font-bold text-center">Valido: {location}</p>}
           </div>
-        </div>
+        </div> */}
       </main>
 
       {showConfetti && <Confetti className="fixed top-0 size-full" gravity={0.1} />}
