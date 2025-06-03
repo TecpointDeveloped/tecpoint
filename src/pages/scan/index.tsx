@@ -125,7 +125,7 @@ function Page() {
             className="flex flex-col items-center justify-center gap-4 w-full"
           >
 
-            <InputOTP maxLength={12} minLength={12} disabled={!currentUser}>
+            <InputOTP maxLength={13} minLength={12} disabled={!currentUser}>
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
@@ -143,6 +143,7 @@ function Page() {
                 <InputOTPSlot index={9} />
                 <InputOTPSlot index={10} />
                 <InputOTPSlot index={11} />
+                <InputOTPSlot index={12} />
               </InputOTPGroup>
             </InputOTP>
 
