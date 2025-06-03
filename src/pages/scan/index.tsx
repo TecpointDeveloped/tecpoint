@@ -1,12 +1,13 @@
 import NavbarMenu from '@/components/navbarmenu/page'
-import giftData from '@/data/gifts.json'
 import { useState } from 'react'
 import Image from 'next/image'
 import Confetti from "react-confetti";
 import { useAuth } from '@/context/useAuth';
 import { InputOTP, InputOTPGroup, InputOTPSlot, } from "@/components/ui/input-otp"
 import Head from 'next/head';
-import CameraVideoUPC from '@/components/CameraVideoUPC/CameraVideoUPC';
+import { getFirestore, collection, query, where, getDocs, deleteDoc } from "firebase/firestore";
+import { app } from "../../database/Config";
+// import CameraVideoUPC from '@/components/CameraVideoUPC/CameraVideoUPC';
 
 type Gift = {
   ImageGift: string;
@@ -27,27 +28,31 @@ function Page() {
   async function OnSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const input = (e.target as HTMLFormElement).elements[0] as HTMLInputElement;
-    const upcCode = input.value;
+    const upcCode = input.value.trim();
+    const db = getFirestore(app);
 
-    const gift = giftData.find((gift: Gift) => gift.upc === upcCode);
+    const q = query(collection(db, "regalos_tecpoint"), where("upc", "==", upcCode));
+    const querySnapshot = await getDocs(q);
 
-    if (gift) {
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      const gift = doc.data() as Gift;
+
       setImage(gift.ImageGift);
       setName(gift.NameGift);
       setLocation(gift.location);
       setError(null);
       setShowConfetti(true);
+
       setTimeout(() => {
-        setShowConfetti(false)
+        setShowConfetti(false);
         alert('Gracias por Participar, revisa tu correo y sigue los pasos para reclamar tu premio!!.');
       }, 10000);
 
       try {
-        const response = await fetch('/api/send-email/route', {
+        const res = await fetch('/api/send-email/route', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: currentUser?.email,
             name: currentUser?.displayName,
@@ -55,22 +60,13 @@ function Page() {
             location: gift.location,
           }),
         });
-
-        if (!response.ok) {
-          try {
-            const errorData = await response.json();
-            console.log('Failed to send email: ' + (errorData.message || response.statusText));
-          } catch {
-            console.warn('Failed to send email: Unexpected response format');
-          }
-        } else {
-          console.log('Email sent successfully!');
-        }
-      } catch (error) {
-        console.error('Error sending email:' + error);
+        if (!res.ok) console.warn('Error enviando email');
+        await deleteDoc(doc.ref);
+      } catch (err) {
+        console.error('Error enviando email:', err);
       }
     } else {
-      setError('Upss.. Gracias por Participar Intenta nuevamente.');
+      setError('Ups... El código ingresado ya fue utilizado.');
       setImage(null);
       setName(null);
       setLocation(null);
@@ -106,10 +102,10 @@ function Page() {
       </Head>
 
       <NavbarMenu />
+      {/* <CameraVideoUPC /> */}
 
       <main className="flex flex-col relative h-screen lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
-        <CameraVideoUPC />
-        {/* <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
+        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
 
           {currentUser && (
             <section className="flex items-center justify-center gap-3 size-fit bg-white rounded-2xl py-3 px-4 shadow-lg md:mb-6">
@@ -195,7 +191,7 @@ function Page() {
             {name && <p className="text-lg lg:text-xl font-bold text-center">{name}</p>}
             {location && <p className="text-lg lg:text-xl font-bold text-center">Valido: {location}</p>}
           </div>
-        </div> */}
+        </div>
       </main>
 
       {showConfetti && <Confetti className="fixed top-0 size-full" gravity={0.1} />}

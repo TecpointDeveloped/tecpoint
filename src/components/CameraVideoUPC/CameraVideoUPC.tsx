@@ -26,7 +26,7 @@ export default function CameraVideoUPC() {
         setResult(text);
         console.log('✅ Código UPC detectado:', text);
         // Detener escaneo (opcional)
-        (codeReader as any).reset();
+        // (codeReader as any).reset();
       }
 
       if (err && err.name !== 'NotFoundException') {
@@ -44,7 +44,7 @@ export default function CameraVideoUPC() {
     <div>
       <video
         ref={videoRef}
-        style={{ width: '100%', border: '2px dashed #888', borderRadius: '10px' }}
+        style={{ width: '300px', height: '230px', border: '2px dashed #888', borderRadius: '10px' }}
       />
       {result && (
         <p style={{ marginTop: '1rem', fontWeight: 'bold' }}>
