@@ -222,7 +222,7 @@ function Page() {
             </div>
           )}
 
-          <div className="mt-4 flex flex-col items-center z-10">
+          <div className="mt-10 flex flex-col items-center z-10">
             {name && <span className="text-base lg:text-lg font-medium text-white">{name}</span>}
             {
               location && <span className="text-md text-white mt-1 flex items-center gap-2">
