@@ -7,7 +7,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot, } from "@/components/ui/input-ot
 import Head from 'next/head';
 import { getFirestore, collection, query, where, getDocs, deleteDoc } from "firebase/firestore";
 import { app } from "../../database/Config";
-// import CameraVideoUPC from '@/components/CameraVideoUPC/CameraVideoUPC';
+import Link from 'next/link';
 
 type Gift = {
   ImageGift: string;
@@ -102,7 +102,6 @@ function Page() {
       </Head>
 
       <NavbarMenu />
-      {/* <CameraVideoUPC /> */}
 
       <main className="flex flex-col relative h-screen lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
@@ -148,9 +147,30 @@ function Page() {
             </InputOTP>
 
             {currentUser ? (
-              <button type="submit" className="py-3 px-6 bg-black text-white rounded-xl w-full lg:w-auto">
-                Probar Suerte !!!
-              </button>
+              <span className='flex flex-col items-center justify-center gap-4 w-full mt-4'>
+                <button type="submit" className="inline-flex gap-2 h-12 animate-background-shine items-center justify-center rounded-full border border-gray-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-gray-300 hover:text-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                    <path d="M11.25 3v4.046a3 3 0 0 0-4.277 4.204H1.5v-6A2.25 2.25 0 0 1 3.75 3h7.5ZM12.75 3v4.011a3 3 0 0 1 4.239 4.239H22.5v-6A2.25 2.25 0 0 0 20.25 3h-7.5ZM22.5 12.75h-8.983a4.125 4.125 0 0 0 4.108 3.75.75.75 0 0 1 0 1.5 5.623 5.623 0 0 1-4.875-2.817V21h7.5a2.25 2.25 0 0 0 2.25-2.25v-6ZM11.25 21v-5.817A5.623 5.623 0 0 1 6.375 18a.75.75 0 0 1 0-1.5 4.126 4.126 0 0 0 4.108-3.75H1.5v6A2.25 2.25 0 0 0 3.75 21h7.5Z" />
+                    <path d="M11.085 10.354c.03.297.038.575.036.805a7.484 7.484 0 0 1-.805-.036c-.833-.084-1.677-.325-2.195-.843a1.5 1.5 0 0 1 2.122-2.12c.517.517.759 1.36.842 2.194ZM12.877 10.354c-.03.297-.038.575-.036.805.23.002.508-.006.805-.036.833-.084 1.677-.325 2.195-.843A1.5 1.5 0 0 0 13.72 8.16c-.518.518-.76 1.362-.843 2.194Z" />
+                  </svg>
+
+                  Probar Suerte
+                </button>
+
+                {name && image && (
+                  <Link
+                    href={`https://wa.me/50497157784?text=${encodeURIComponent(
+                      `Hola Tecpoint, acabo de participar en Escanea y Gana y mi premio fue *${name}* con el código *${(document.querySelector('input') as HTMLInputElement)?.value || '[código]'}*.`
+                    )}`}
+                    className="h-12 bg-green-500 text-white px-6 rounded-full flex items-center justify-center gap-2 leading-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image src="/images/social/whatsapp.svg" alt="Send Icon" width={24} height={24} />
+                    Enviar comprobante
+                  </Link>
+                )}
+              </span>
             ) : (
               <div className="flex flex-col gap-y-2 w-full items-center">
                 <button
@@ -165,32 +185,50 @@ function Page() {
           </form>
 
           <div id="result" className="mt-8 text-center">
-            {error && <p className="text-red-500">{error}</p>}
+            {error && (
+              <p className="text-red-500">
+                {error}
+                {setTimeout(() => setError(null), 3600) && null}
+              </p>
+            )}
           </div>
         </div>
 
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col bg-white px-4 lg:px-0">
-          <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-center tracking-[-1.2px]">Tu Premio es :</h2>
+          <Image
+            src="/scan/scanbg.svg"
+            alt="Scan Gift"
+            width={400}
+            height={400}
+            className='object-cover absolute h-1/2 w-full lg:w-1/2 lg:h-full select-none'
+          />
+          <h2 className="text-white text-2xl lg:text-4xl font-bold mb-4 text-center tracking-[-1.2px] z-10">Tu Premio es :</h2>
 
           {image ? (
             <Image
               src={image || ''}
+              quality={90}
               width={380}
               height={380}
               alt="Gift"
-              className="rounded-xl border-2"
+              className="rounded-xl z-10 shadow-xl border-1 border-[#ff2e2e] shadow-black/10 select-none"
             />
           ) : (
             <div
               id="result"
-              className="w-[380px] h-[380px] bg-gray-100 rounded-xl flex items-center justify-center animate-pulse"
+              className="w-[380px] h-[380px] bg-white rounded-xl flex items-center justify-center z-10 "
             >
             </div>
           )}
 
-          <div className='mt-4 flex flex-col items-center justify-center'>
-            {name && <p className="text-lg lg:text-xl font-bold text-center">{name}</p>}
-            {location && <p className="text-lg lg:text-xl font-bold text-center">Valido: {location}</p>}
+          <div className="mt-4 flex flex-col items-center z-10">
+            {name && <span className="text-base lg:text-lg font-medium text-white">{name}</span>}
+            {
+              location && <span className="text-md text-white mt-1 flex items-center gap-2">
+                <span className='bg-gray-200 py-1 px-3 rounded-full text-gray-600 font-semibold'>Válido en :</span>
+                {location}
+              </span>
+            }
           </div>
         </div>
       </main>

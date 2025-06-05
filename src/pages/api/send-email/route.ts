@@ -59,9 +59,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Y prepárate… vienen más sorpresas muy pronto 😉</p>
 
       <div style="text-align: center; margin-top: 20px;">
-        <a href="https://tecpoint.ws" style="display: inline-block; background-color: #000; color: #fff; text-decoration: none; padding: 10px 50px; border-radius: 12px; font-size: 16px;">
-          Contactar con la tienda
-        </a>
+      <a href="https://wa.me/50497157784" style="display: inline-block; background-color: #25D366; color: #fff; text-decoration: none; padding: 10px 50px; border-radius: 12px; font-size: 16px;">
+        Contactar por WhatsApp
+      </a>
       </div>
 
     <hr style="margin: 30px 0;" />
