@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { getFirestore, collection, query, where, getDocs, deleteDoc } from "firebase/firestore";
 import { app } from "../../database/Config";
 import Link from 'next/link';
+import Footer from '@/components/Footer/page';
 
 type Gift = {
   ImageGift: string;
@@ -103,8 +104,8 @@ function Page() {
 
       <NavbarMenu />
 
-      <main className="flex flex-col relative h-screen lg:flex-row items-center justify-center md:h-screen bg-gray-100 md:fixed top-0 w-full md:-z-10">
-        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col px-4 lg:px-0 p-6">
+      <main className="flex flex-col relative lg:h-[90vh] lg:flex-row items-center justify-center bg-gray-100">
+        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col ">
 
           {currentUser && (
             <section className="flex items-center justify-center gap-3 size-fit bg-white rounded-2xl py-3 px-4 shadow-lg md:mb-6">
@@ -194,13 +195,13 @@ function Page() {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col bg-white px-4 lg:px-0">
+        <div className="lg:w-1/2 h-full flex items-center justify-center flex-col bg-white px-4 overflow-hidden relative">
           <Image
             src="/scan/scanbg.svg"
             alt="Scan Gift"
             width={400}
             height={400}
-            className='object-cover absolute h-1/2 w-full lg:w-1/2 lg:h-full select-none'
+            className='object-cover absolute w-full h-full select-none'
           />
           <h2 className="text-white text-2xl lg:text-4xl font-bold mb-4 text-center tracking-[-1.2px] z-10">Tu Premio es :</h2>
 
@@ -234,6 +235,8 @@ function Page() {
       </main>
 
       {showConfetti && <Confetti className="fixed top-0 size-full" gravity={0.1} />}
+
+      <Footer />
     </>
   );
 }
