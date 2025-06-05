@@ -104,8 +104,8 @@ function Page() {
 
       <NavbarMenu />
 
-      <main className="flex flex-col relative lg:h-[90vh] lg:flex-row items-center justify-center bg-gray-100">
-        <div className="w-full lg:w-1/2 h-full flex items-center justify-center flex-col ">
+      <main className="flex w-full h-fit flex-col relative lg:h-[90vh] lg:flex-row items-center justify-center bg-gray-100">
+        <div className="w-full h-fit lg:w-1/2 flex items-center justify-center flex-col ">
 
           {currentUser && (
             <section className="flex items-center justify-center gap-3 size-fit bg-white rounded-2xl py-3 px-4 shadow-lg md:mb-6">
@@ -195,7 +195,7 @@ function Page() {
           </div>
         </div>
 
-        <div className="lg:w-1/2 h-full flex items-center justify-center flex-col bg-white px-4 overflow-hidden relative">
+        <div className="lg:w-1/2 h-[90vh] w-full md:h-full flex items-center justify-center flex-col bg-white px-4 overflow-hidden relative">
           <Image
             src="/scan/scanbg.svg"
             alt="Scan Gift"
@@ -223,10 +223,10 @@ function Page() {
           )}
 
           <div className="mt-10 flex flex-col items-center z-10">
-            {name && <span className="text-base lg:text-lg font-medium text-white">{name}</span>}
+            {name && <span className="text-base text-[22px] text-center mb-4 lg:text-lg font-medium text-white">{name}</span>}
             {
-              location && <span className="text-md text-white mt-1 flex items-center gap-2">
-                <span className='bg-gray-200 py-1 px-3 rounded-full text-gray-600 font-semibold'>Válido en :</span>
+              location && <span className="text-md text-white mt-1 flex items-center gap-2 flex-wrap justify-center text-center">
+                <span className='bg-gray-200 py-1 px-3 rounded-full text-gray-600 font-semibold text-nowrap'>Válido en :</span>
                 {location}
               </span>
             }
