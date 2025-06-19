@@ -47,7 +47,7 @@ function Page() {
 
       setTimeout(() => {
         setShowConfetti(false);
-        alert('Gracias por Participar, revisa tu correo y sigue los pasos para reclamar tu premio!!.');
+        alert('Gracias por Participar, envia el comprobante al whatsapp para reclamar tu premio!!.');
       }, 10000);
 
       try {
@@ -62,7 +62,9 @@ function Page() {
           }),
         });
         if (!res.ok) console.warn('Error enviando email');
-        await deleteDoc(doc.ref);
+        if(upcCode !== "8392746153082") {
+          await deleteDoc(doc.ref);
+        }
       } catch (err) {
         console.error('Error enviando email:', err);
       }
@@ -161,7 +163,7 @@ function Page() {
                 {name && image && (
                   <Link
                     href={`https://wa.me/50497157784?text=${encodeURIComponent(
-                      `Hola Tecpoint, acabo de participar en Escanea y Gana y mi premio fue *${name}* con el código *${(document.querySelector('input') as HTMLInputElement)?.value || '[código]'}*.`
+                      `Hola Tecpoint soy ${currentUser.displayName}, acabo de participar en Escanea y Gana y mi premio fue \n *${name}* con el código *${(document.querySelector('input') as HTMLInputElement)?.value || '[código]'}* y el correo: *${currentUser.email}*.`
                     )}`}
                     className="h-12 bg-green-500 text-white px-6 rounded-full flex items-center justify-center gap-2 leading-4"
                     target="_blank"
