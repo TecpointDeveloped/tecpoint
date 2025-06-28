@@ -76,5 +76,11 @@
     "marca": "XO",
     "ImageBanner": "/logos/xo.png",
     "color": "FF5252"
+  },
+  {
+    "BannerID": "12",
+    "marca": "Lagnsdom",
+    "ImageBanner": "/logos/Lagnsdom.svg",
+    "color": "FF5252"
   }
 ]
