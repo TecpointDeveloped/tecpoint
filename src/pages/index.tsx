@@ -88,6 +88,73 @@ export default function Home({ logos, products }: HomeProps) {
       >
         <CarouselContent>
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <video
+              className="absolute w-full h-full object-cover"
+              width="100%"
+              height="100%"
+              autoPlay
+              muted
+              loop
+              preload="none"
+            // poster="/images/langsdom_banner.jpg"
+            >
+              <source src="/video/langsdom_video.mp4" type="video/mp4" />
+              <track
+                src="/path/to/captions.vtt"
+                kind="subtitles"
+                srcLang="en"
+                label="English"
+              />
+              Your browser does not support the video tag.
+            </video>
+
+            <div className="relative size-full flex items-center justify-center md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[0px] bg-[#0000005e]">
+              <div className="flex flex-col gap-4 md:gap-16 items-center">
+                <i className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">
+                  Nueva
+                  <span className="not-italic text-white block text-[40px] md:text-[60px]">
+                    Marca Langsdom
+                  </span>
+                </i>
+
+                <section className="flex gap-4">
+                  <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
+                    ver mas
+                  </Link>
+                  <Link href="/shop?page=1&brand=Lagnsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
+                    comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                </section>
+              </div>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/langsdom_banner.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
+
+            <div className="relative size-full flex items-center justify-center md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[0px] bg-[#0000005e]">
+              <div className="flex flex-col gap-4 md:gap-16 items-center">
+                <h6 className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos<span className="text-white block text-[40px] md:text-[60px]">Auriculares BH20</span></h6>
+
+                <section className="flex gap-4">
+                  <Link href="/scan" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
+                    ver mas
+                  </Link>
+                  <Link href="/scan" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
+                    Probar Suerte
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                </section>
+              </div>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/gran_sorteo.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
 
             <div className="relative size-full flex items-center justify-center md:items-end md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[2px] bg-[#ffffff0d] md:bg-transparent md:backdrop-blur-0">
@@ -100,28 +167,6 @@ export default function Home({ logos, products }: HomeProps) {
                   </Link>
                   <Link href="/scan" className="text-white py-2 px-5 hover:underline flex items-center gap-2">
                     Probar Suerte
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/banner_mes_de_las_madres.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center justify-center lg:items-end md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[10px] bg-[#ffffff0d] lg:bg-transparent lg:backdrop-blur-0">
-              <div className="flex flex-col gap-4 md:gap-8 items-center lg:items-start">
-                <h6 className="md:text-[#CF244E] text-[#ff4a4a] text-[20px] font-[900] text-center lg:text-start leading-10 tracking-[-0.3px]">Mes de las Madres<span className="block text-[40px] md:text-[60px]">Regala a Mamá</span></h6>
-
-                <section className="flex gap-4">
-                  <Link href="/shop" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#fff] hover:border-white">
-                    ver mas
-                  </Link>
-                  <Link href="/shop" className="text-[#CF244E] py-2 px-5 hover:underline flex items-center gap-2">
-                    explorar
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
@@ -343,6 +388,99 @@ export default function Home({ logos, products }: HomeProps) {
                   </div>
                 );
               })}
+          </div>
+        </section>
+      </section>
+
+      <section id="#LagnsdomItems" className="w-full h-fit p-4 gap-4 justify-center bg-black">
+        <section className="">
+          <h2 className="text-white text-[40px] font-semibold text-center mb-4">
+            Lo nuevo de
+            <span>
+              <Image
+                className="inline-block w-fit h-[30px] object-cover ml-2"
+                src="/logos/lagnsdom.svg"
+                alt="Langsdom Logo"
+                width={240}
+                height={60}
+                quality={100}
+                priority={true}
+              />
+            </span>
+          </h2>
+        </section>
+
+        <section className="flex gap-4 justify-center">
+          <div className="size-fit overflow-hidden rounded-2xl group relative">
+            <Image
+              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
+              src="/images/categorias/productos/1.png"
+              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
+              width={790}
+              height={1370}
+              quality={100}
+              priority={true}
+            />
+            <Link
+              href="/shop?page=1&brand=&search="
+              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
+            >
+              Ver producto
+            </Link>
+          </div>
+
+          <div className="size-fit overflow-hidden rounded-2xl group relative">
+            <Image
+              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
+              src="/images/categorias/productos/BE20.jpg"
+              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
+              width={790}
+              height={1370}
+              quality={100}
+              priority={true}
+            />
+            <Link
+              href="/shop?page=1&brand=&search="
+              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
+            >
+              Ver producto
+            </Link>
+          </div>
+
+          <div className="size-fit overflow-hidden rounded-2xl group relative">
+            <Image
+              className="w-[340px] h-[560px] object-cover scale-[1.05] hover:scale-[1.07] transition-transform duration-150"
+              src="/images/categorias/productos/TS09.jpg"
+              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
+              width={790}
+              height={1370}
+              quality={100}
+              priority={true}
+            />
+            <Link
+              href="/shop?page=1&brand=&search="
+              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
+            >
+              Ver producto
+            </Link>
+          </div>
+
+          <div className="size-fit overflow-hidden rounded-2xl group relative">
+            <Image
+              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
+              src="/images/categorias/productos/TS28.jpg"
+              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
+              width={790}
+              height={1370}
+              quality={100}
+              priority={true}
+            />
+            <Link
+              href="/shop?page=1&brand=&search="
+              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
+            >
+              Ver producto
+            </Link>
           </div>
         </section>
       </section>

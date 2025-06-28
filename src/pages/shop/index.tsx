@@ -137,7 +137,47 @@ const Shop = ({ products = [] }: ShopProps) => {
 
       <NavbarMenu />
 
+      <section className="bg-gray-900 h-[200px] relative">
+        <video
+          className="absolute w-full h-full object-cover object-center"
+          width="100%"
+          height="100%"
+          autoPlay
+          muted
+          loop
+          preload="none"
+        >
+          <source src="/video/langsdom_video.mp4" type="video/mp4" />
+          <track
+            src="/path/to/captions.vtt"
+            kind="subtitles"
+            srcLang="en"
+            label="English"
+          />
+          Your browser does not support the video tag.
+        </video>
+
+        <div className="relative size-full flex items-center justify-center flex-col backdrop-blur-[2px] bg-[#0000005e]">
+          <div className="flex flex-col gap-8 items-center pb-6">
+            <i className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">
+              Nueva
+              <span className="not-italic text-white block text-[30px] md:text-[50px]">
+                Marca
+                <Image
+                  src="/logos/lagnsdom.svg"
+                  alt="Langsdom Logo"
+                  width={220}
+                  height={80}
+                  className="inline-block ml-2"
+                />
+              </span>
+            </i>
+          </div>
+        </div>
+      </section>
+
       <main className="w-full mx-auto p-2 md:p-4">
+
         <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
           <input
             className="border w-full py-3 px-6 rounded-full"
@@ -161,6 +201,7 @@ const Shop = ({ products = [] }: ShopProps) => {
                   <SelectItem value="Ghostek">Ghostek</SelectItem>
                   <SelectItem value="Hypergear">Hypergear</SelectItem>
                   <SelectItem value="Krieg">Krieg</SelectItem>
+                  <SelectItem value="Lagnsdom">Lagnsdom</SelectItem>
                   <SelectItem value="Naztech">Naztech</SelectItem>
                   <SelectItem value="Powerpeak">Powerpeak</SelectItem>
                   <SelectItem value="Rockspace">Rockspace</SelectItem>

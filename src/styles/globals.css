@@ -39,6 +39,7 @@ body {
   background: var(--background);
   font-family: 'Poppins';
   /* overflow: hidden; */
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
