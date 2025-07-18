@@ -121,7 +121,7 @@ export default function Home({ logos, products }: HomeProps) {
                   <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
                     ver mas
                   </Link>
-                  <Link href="/shop?page=1&brand=Lagnsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
+                  <Link href="/shop?page=1&brand=Langsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
                     comprar
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -140,11 +140,11 @@ export default function Home({ logos, products }: HomeProps) {
                 <h6 className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos<span className="text-white block text-[40px] md:text-[60px]">Auriculares BH20</span></h6>
 
                 <section className="flex gap-4">
-                  <Link href="/scan" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
+                  <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
                     ver mas
                   </Link>
-                  <Link href="/scan" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
-                    Probar Suerte
+                  <Link href="/shop?page=1&brand=Langsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
+                    comprar
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
@@ -646,7 +646,7 @@ export default function Home({ logos, products }: HomeProps) {
               priority={true}
             />
           </div>
-          
+
           <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">
             Distribuidores Autorizados
           </h5>
