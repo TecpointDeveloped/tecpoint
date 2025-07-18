@@ -201,7 +201,7 @@ const Shop = ({ products = [] }: ShopProps) => {
                   <SelectItem value="Ghostek">Ghostek</SelectItem>
                   <SelectItem value="Hypergear">Hypergear</SelectItem>
                   <SelectItem value="Krieg">Krieg</SelectItem>
-                  <SelectItem value="Lagnsdom">Lagnsdom</SelectItem>
+                  <SelectItem value="Langsdom">Langsdom</SelectItem>
                   <SelectItem value="Naztech">Naztech</SelectItem>
                   <SelectItem value="Powerpeak">Powerpeak</SelectItem>
                   <SelectItem value="Rockspace">Rockspace</SelectItem>

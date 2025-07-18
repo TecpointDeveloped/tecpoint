@@ -410,7 +410,7 @@ export default function Home({ logos, products }: HomeProps) {
           </h2>
         </section>
 
-        <section className="flex gap-4 justify-center">
+        <section className="flex gap-4 justify-center flex-wrap">
           <div className="size-fit overflow-hidden rounded-2xl group relative">
             <Image
               className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
@@ -635,6 +635,18 @@ export default function Home({ logos, products }: HomeProps) {
 
       <section className="w-full h-fit bg-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-12">
         <div className="md:w-1/2 text-center md:text-left">
+          <div className="w-full flex justify-center md:justify-start mb-6">
+            <Image
+              className="w-full max-w-[280px] h-auto aspect-auto object-contain"
+              width={400}
+              height={100}
+              src="/logos/rock-space.png"
+              alt="Rockspace Logo"
+              quality={100}
+              priority={true}
+            />
+          </div>
+          
           <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">
             Distribuidores Autorizados
           </h5>
