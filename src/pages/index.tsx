@@ -80,7 +80,7 @@ export default function Home({ logos, products }: HomeProps) {
         className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        plugins={[plugin.current]}
+        // plugins={[plugin.current]}
         opts={{
           loop: true,
           duration: 20,
@@ -177,15 +177,14 @@ export default function Home({ logos, products }: HomeProps) {
           </CarouselItem>
 
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/banner_semana_santa.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
+            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-right" src="/images/jumper_carrro_hoco.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
 
-            <div className="relative size-full flex items-center md:items-end md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
+            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-center pb-10 flex-col gap-12">
               <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-[#78a727] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Descuentos de Verano<span className="block text-[40px] md:text-[60px]">Hasta un 30%</span></h6>
+                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevo<span className="block text-[40px] md:text-[60px]">Jumper para Carro</span></h6>
 
                 <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                  <Link href="/shop?page=1&brand=Apple&search=" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
+                  <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Ordena YA!</Link>
                 </section>
               </div>
             </div>
@@ -316,13 +315,13 @@ export default function Home({ logos, products }: HomeProps) {
       </article>
 
       <section className="py-8 px-4 flex flex-col gap-y-6">
-        <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Explora Nuestros Productos</h1>
+        <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Nuevos Cobertores iPhone 16e</h1>
 
         <section className="md:max-w-[1500px] m-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {products
               .filter((product) =>
-                ["XO-30104", "XO-30106", "XO-30102", "XO-30101"].includes(product.sku)
+                ["BS-DH16EBL", "BS-S16EGS", "BS-PI16EBL", "BS-S16EIR"].includes(product.sku)
               )
               .slice(0, 4)
               .map((product: Product) => {
@@ -355,7 +354,7 @@ export default function Home({ logos, products }: HomeProps) {
                           width={240}
                           height={240}
                           quality={100}
-                          className="m-auto w-[240px] h-[240px] aspect-square object-cover mb-4"
+                          className="m-auto w-[240px] h-[240px] aspect-square object-contain mb-4"
                         />
                       </Link>
 
