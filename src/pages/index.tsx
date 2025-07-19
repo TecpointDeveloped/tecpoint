@@ -430,7 +430,7 @@ export default function Home({ logos, products }: HomeProps) {
             Lo nuevo de
             <span>
               <Image
-                className="inline-block w-fit h-[30px] object-cover ml-2"
+                className="inline-block w-[240px] h-[30px] object-contain ml-2"
                 src="/logos/lagnsdom.svg"
                 alt="Langsdom Logo"
                 width={240}

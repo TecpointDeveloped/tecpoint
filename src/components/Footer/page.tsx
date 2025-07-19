@@ -7,8 +7,8 @@ function Footer() {
     <footer className="bg-[#0a0a0a] w-full h-fit flex flex-col gap-y-10 py-12 px-6 md:px-12">
       <section className="flex flex-col m-auto lg:m-0 lg:flex-row gap-8 md:justify-between items-center">
         <h4 className="text-white text-center lg:text-start text-2xl font-semibold tracking-wide">
-          Distribuidores de marcas y accesorios{" "}
-          <span className="block">Tecnológicos a nivel Nacional</span>
+          Distribuidores de marcas originales{" "}
+          <span className="block">y accesorios tecnológicos</span>
         </h4>
 
         <form
