@@ -80,7 +80,7 @@ export default function Home({ logos, products }: HomeProps) {
         className="w-full h-auto"
         // onMouseEnter={() => plugin.current.stop()}
         // onMouseLeave={() => plugin.current.reset()}
-        // plugins={[plugin.current]}
+        plugins={[plugin.current]}
         opts={{
           loop: true,
           duration: 20,
@@ -226,6 +226,39 @@ export default function Home({ logos, products }: HomeProps) {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
+
+      {/* <section className="w-full">
+        <Carousel
+          className="w-full h-auto py-8"
+          // onMouseEnter={() => plugin.current.stop()}
+          // onMouseLeave={() => plugin.current.reset()}
+          plugins={[plugin.current]}
+          opts={{
+            loop: true,
+            duration: 4000,
+            slidesToScroll: "auto",
+          }}>
+          <CarouselContent className="-ml-4">
+            {logos.map((logo, index) => (
+              <CarouselItem
+                key={index}
+                className="bg-white basis-1/2 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-4 flex items-center justify-center"
+              >
+                <Image
+                  src={logo.logo || ""}
+                  alt={logo.key || `Logo ${index}`}
+                  width={100}
+                  height={26}
+                  className="w-[180px] h-[30px] select-none aspect-auto object-contain"
+                  quality={100}
+                  priority
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+      </section> */}
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
