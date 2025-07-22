@@ -12,6 +12,14 @@
     "logo": "/logos/deken.png"
   },
   {
+    "key": "13",
+    "logo": "/logos/langsdom.png"
+  },
+  {
+    "key": "14",
+    "logo": "/logos/hoco.png"
+  },
+  {
     "key": "3",
     "logo": "/logos/ghostek.png",
     "color": "#000000"
@@ -51,9 +59,5 @@
   {
     "key": "12",
     "logo": "/logos/appacs.png"
-  },
-  {
-    "key": "13",
-    "logo": "/logos/langsdom.png"
   }
 ]

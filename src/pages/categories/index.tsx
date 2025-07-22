@@ -28,7 +28,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tecpoint.ws/categories" />
         <meta property="og:description" content={description} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <NavbarMenu />
 

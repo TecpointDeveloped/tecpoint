@@ -82,5 +82,11 @@
     "marca": "Langsdom",
     "ImageBanner": "/logos/langsdom.png",
     "color": "000"
+  },
+  {
+    "BannerID": "13",
+    "marca": "Hoco",
+    "ImageBanner": "/logos/hoco.png",
+    "color": "333"
   }
 ]

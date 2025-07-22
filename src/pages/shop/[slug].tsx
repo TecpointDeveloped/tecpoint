@@ -257,11 +257,11 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               {imagesToShow.map((img, index) => (
                 <Image
                   key={index}
-                  quality={100}
+                  quality={90}
                   priority={true}
                   src={img.img || "/default-product.png"}
                   alt={product.producto || `Imagen ${index + 1}`}
-                  className="size-[110px] md:size-[110px] aspect-square object-cover border cursor-pointer rounded-lg"
+                  className="size-[110px] md:size-[110px] aspect-square object-contain border cursor-pointer rounded-lg"
                   width={110}
                   height={110}
                 />
@@ -376,18 +376,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 {isAddedToCart ? "Agregar otra vez" : "Agregar al carrito"}
               </button>
 
-              {/* <button
-              onClick={handlePayNow}
-              className={`flex gap-x-3 mt-1 px-16 items-center justify-center py-3 rounded-[6px] w-full 
-                bg-black text-white hover:bg-transparent border-black border-[1.4px] hover:text-black transition-colors
-                `}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
-              </svg>
-              pagar ahora
-            </button> */}
-
               <button
                 onClick={() => {
                   const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
@@ -460,12 +448,12 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full mb-4">
+          <div className="grid grid-cols-2 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full mb-4">
             {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-              <Accordion type="single" collapsible key={key} className="md:w-[800px] m-auto w-full">
+              <Accordion type="single" collapsible key={key} className=" m-auto w-full">
                 <AccordionItem value={key}>
                   <AccordionTrigger className="font-bold text-[20px] md:text-[24px]">{key}</AccordionTrigger>
-                  <AccordionContent className="bg-gray-100 p-5 rounded-lg">
+                  <AccordionContent className="">
                     <p className="md:w-[70%] text-gray-500 text-[18px] md:text-[17px] tracking-[-0.4px]">{value}</p>
                   </AccordionContent>
                 </AccordionItem>
