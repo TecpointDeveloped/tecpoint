@@ -705,7 +705,8 @@ export default function Home({ logos, products }: HomeProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {products
               .filter((product) =>
-                product.categorias?.some((cat) => cat.toLowerCase() === "reloj")
+                Array.isArray(product.categorias) &&
+                product.categorias.some((cat) => typeof cat === "string" && cat.toLowerCase() === "reloj")
               )
               .slice(0, 4)
               .map((product: Product) => {
