@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { db } from "@/database/Config";
-import { Product } from "@/types/ProductTypes";
+import { Product } from "@/types/ProductTypes"; // Asumiendo que esta es la ruta correcta
 import { collection, getDocs } from "firebase/firestore";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
@@ -28,6 +28,10 @@ export async function getStaticProps() {
         id: doc.id,
         ...data,
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+        // --- CORRECCIÓN APLICADA AQUÍ ---
+        // Aseguramos que 'categorias' siempre sea un array.
+        // Si data.categorias no es un array, se inicializa como un array vacío.
+        categorias: Array.isArray(data.categorias) ? data.categorias : [],
       };
     }) as Product[];
 
@@ -53,7 +57,9 @@ const Shop = ({ products = [] }: ShopProps) => {
   const router = useRouter();
   const { page, brand, search } = router.query;
   const [searchTerm, setSearchTerm] = useState(search || "");
-  const [selectedBrand, setSelectedBrand] = useState<string | undefined>(Array.isArray(brand) ? brand[0] : brand || "");
+  const [selectedBrand, setSelectedBrand] = useState<string | undefined>(
+    Array.isArray(brand) ? brand[0] : (brand || undefined) as string | undefined
+  );
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
   const productsPerPage = 9;
 
@@ -62,10 +68,10 @@ const Shop = ({ products = [] }: ShopProps) => {
       setCurrentPage(Number(page));
     }
     if (brand) {
-      setSelectedBrand(brand as string);
+      setSelectedBrand(Array.isArray(brand) ? brand[0] : brand);
     }
     if (search) {
-      setSearchTerm(search as string);
+      setSearchTerm(Array.isArray(search) ? search[0] : search);
     }
   }, [page, brand, search]);
 
@@ -73,33 +79,42 @@ const Shop = ({ products = [] }: ShopProps) => {
     setSearchTerm(e.target.value);
   };
 
-
   const handleBrandChange = (value: string) => {
     setSelectedBrand(value);
     setCurrentPage(1); // Reset to first page on brand change
-    router.push(`/shop?page=1&brand=${value}&search=${searchTerm}`);
+    const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
+    router.push(`/shop?page=1&brand=${value}&category=${currentCategory}&search=${currentSearch}`);
   };
-
-  // const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   router.push(`/shop?page=1&brand=${selectedBrand}&search=${searchTerm}`);
-  // };
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/shop?page=1&brand=${selectedBrand}&category=${router.query.category || "all"}&search=${searchTerm}`);
+    const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
+    const currentBrand = selectedBrand || "";
+    router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&search=${currentSearch}`);
   };
 
+  const filteredProducts = products.filter((product) => {
+    const matchesBrand = selectedBrand
+      ? (product.marca_producto?.marca || "").toLowerCase() === selectedBrand.toLowerCase()
+      : true;
 
-  const filteredProducts = products.filter((product) =>
-    (selectedBrand ? product.marca_producto.marca.toLowerCase() === (typeof selectedBrand === "string" ? selectedBrand.toLowerCase() : "") : true) &&
-    (router.query.category && router.query.category !== "all"
-      ? (product.categorias ?? []).some((cat) => cat.toLowerCase() === (Array.isArray(router.query.category) ? router.query.category[0]?.toLowerCase() : (router.query.category ?? "all").toLowerCase()))
-      : true) &&
-    (product.producto.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
-      product.sku.toLowerCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toLowerCase()) ||
-      product.descripcion.toUpperCase().includes((Array.isArray(searchTerm) ? searchTerm[0] : searchTerm).toUpperCase()))
-  );
+    const categoryQuery = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category;
+    const matchesCategory = (categoryQuery && categoryQuery !== "all")
+      // product.categorias ya es garantizado como un array gracias a getStaticProps
+      ? (product.categorias || []).some((cat) => cat.toLowerCase() === categoryQuery.toLowerCase())
+      : true;
+
+    const currentSearchTerm = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    const matchesSearch = currentSearchTerm
+      ? (product.producto || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+      (product.sku || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+      (product.descripcion || "").toLowerCase().includes(currentSearchTerm.toLowerCase())
+      : true;
+
+    return matchesBrand && matchesCategory && matchesSearch;
+  });
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -110,7 +125,9 @@ const Shop = ({ products = [] }: ShopProps) => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     const category = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
-    router.push(`/shop?page=${page}&brand=${selectedBrand}&category=${category}&search=${searchTerm}`);
+    const currentBrand = selectedBrand || "";
+    const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&search=${currentSearch}`);
   };
 
   if (!products || products.length === 0) {
@@ -120,6 +137,7 @@ const Shop = ({ products = [] }: ShopProps) => {
         <main className="grid place-content-center fixed inset-0 -z-10">
           <p className="text-xl font-bold text-center">Ups... no se encontraron productos.</p>
         </main>
+        <Footer />
       </>
     );
   }
@@ -216,7 +234,9 @@ const Shop = ({ products = [] }: ShopProps) => {
 
             <Select
               onValueChange={(value) => {
-                router.push(`/shop?page=1&brand=${selectedBrand}&category=${value}&search=${searchTerm}`);
+                const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+                const currentBrand = selectedBrand || "";
+                router.push(`/shop?page=1&brand=${currentBrand}&category=${value}&search=${currentSearch}`);
               }}
               value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
             >
@@ -316,6 +336,7 @@ const Shop = ({ products = [] }: ShopProps) => {
                     <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
 
                     <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
+                      {/* Aquí product.categorias ya es garantizado como un array por getStaticProps */}
                       {(product.categorias || []).map((cat: string, index: number) => (
                         <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
                           {cat}

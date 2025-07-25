@@ -56,6 +56,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
+import BannersData from "@/data/banners.json";
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
@@ -74,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       };
 
-      const productBanner = Banners.find((banner) => banner.marca === data.marca_producto?.marca);
+      const productBanner = BannersData.find((banner) => banner.marca === data.marca_producto?.marca);
 
       return {
         props: {
@@ -448,7 +450,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full mb-4">
             {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
               <Accordion type="single" collapsible key={key} className=" m-auto w-full">
                 <AccordionItem value={key}>
