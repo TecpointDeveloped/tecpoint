@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Banners from "@/data/banners.json";
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
 import { GetStaticPaths, GetStaticProps } from "next";
