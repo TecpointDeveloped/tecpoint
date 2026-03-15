@@ -23,9 +23,9 @@ const CartPage = () => {
       status: "Active",
     },
     {
-      name: "Tienda Barrio Los Andes",
-      username: "tienda barrio los andes",
-      role: "Tienda Barrio Los Andes",
+      name: "Oficina Principal Los Andes",
+      username: "oficina principal los andes",
+      role: "Oficina Principal Los Andes",
       status: "Active",
     }
   ];
