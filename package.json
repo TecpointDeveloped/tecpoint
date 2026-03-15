@@ -7,7 +7,7 @@
     "host": "",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",
