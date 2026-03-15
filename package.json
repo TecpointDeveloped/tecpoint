@@ -44,7 +44,7 @@
     "lucide-react": "^0.456.0",
     "next": "^15.3.3",
     "next-seo": "^6.6.0",
-    "quagga": "^0.12.1",
+    "quagga": "^0.6.16",
     "react": "18.2.0",
     "react-confetti": "^6.4.0",
     "react-dom": "18.2.0",
