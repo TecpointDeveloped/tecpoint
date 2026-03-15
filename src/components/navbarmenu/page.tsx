@@ -101,9 +101,6 @@ function NavbarMenu() {
           <Link href="/shop" className="text-[14px] font-[500] font-[Poppins] hover:underline ">
             Tienda
           </Link>
-          <Link href="/scan" className="text-[14px] font-[500] font-[Poppins] hover:underline hover:text-[#ffe607]">
-            Sorteo
-          </Link>
           {/* <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>

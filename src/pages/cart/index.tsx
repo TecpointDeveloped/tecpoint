@@ -23,15 +23,9 @@ const CartPage = () => {
       status: "Active",
     },
     {
-      name: "Kiosco City Mall",
-      username: "city mall",
-      role: "Kiosco City Mall",
-      status: "Active",
-    },
-    {
-      name: "Tienda Barrio el Benque",
-      username: "tienda bario el benque",
-      role: "Tienda Barrio el Benque",
+      name: "Tienda Barrio Los Andes",
+      username: "tienda barrio los andes",
+      role: "Tienda Barrio Los Andes",
       status: "Active",
     }
   ];

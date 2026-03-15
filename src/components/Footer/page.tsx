@@ -91,10 +91,9 @@ function Footer() {
 
         <div className="text-white text-sm leading-relaxed">
           <h4 className="text-lg font-semibold mb-2">Contacto</h4>
-          <p>Dirección: San Pedro Sula, Barrio el Benque 9 avenida entre 5 y 6 calle</p>
-          <p>Dirección: City Mall S.P.S, segundo nivel frente a tiendas Carrion</p>
+          <p>Direccion: San Pedro Sula, Barrio Los Andes. 7 Calle A - 14 Avenida N.O</p>
           <p>Dirección: Plaza Carolina, Boulevard Mackey, segundo nivel</p>
-          <p>Teléfono: +504 9715-7784</p>
+          <p>Teléfono: +504 9465-9287 </p>
           <p>Email: tecpointdistribucion@gmail.com</p>
         </div>
       </section>
