@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { db } from "@/database/Config";
-import { Product } from "@/types/ProductTypes"; // Asumiendo que esta es la ruta correcta
+import { Product } from "@/types/ProductTypes";
 import { collection, getDocs } from "firebase/firestore";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
@@ -28,27 +28,18 @@ export async function getStaticProps() {
         id: doc.id,
         ...data,
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-        // --- CORRECCIÓN APLICADA AQUÍ ---
-        // Aseguramos que 'categorias' siempre sea un array.
-        // Si data.categorias no es un array, se inicializa como un array vacío.
         categorias: Array.isArray(data.categorias) ? data.categorias : [],
       };
     }) as Product[];
 
     return {
-      props: {
-        products,
-        totalProducts,
-      },
+      props: { products, totalProducts },
       revalidate: 60,
     };
   } catch (error) {
     console.error("Error al cargar los productos:", error);
     return {
-      props: {
-        products: [],
-        totalProducts: 0,
-      },
+      props: { products: [], totalProducts: 0 },
     };
   }
 }
@@ -61,18 +52,12 @@ const Shop = ({ products = [] }: ShopProps) => {
     Array.isArray(brand) ? brand[0] : (brand || undefined) as string | undefined
   );
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
-  const productsPerPage = 9;
+  const productsPerPage = 12;
 
   useEffect(() => {
-    if (page) {
-      setCurrentPage(Number(page));
-    }
-    if (brand) {
-      setSelectedBrand(Array.isArray(brand) ? brand[0] : brand);
-    }
-    if (search) {
-      setSearchTerm(Array.isArray(search) ? search[0] : search);
-    }
+    if (page) setCurrentPage(Number(page));
+    if (brand) setSelectedBrand(Array.isArray(brand) ? brand[0] : brand);
+    if (search) setSearchTerm(Array.isArray(search) ? search[0] : search);
   }, [page, brand, search]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +66,7 @@ const Shop = ({ products = [] }: ShopProps) => {
 
   const handleBrandChange = (value: string) => {
     setSelectedBrand(value);
-    setCurrentPage(1); // Reset to first page on brand change
+    setCurrentPage(1);
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     router.push(`/shop?page=1&brand=${value}&category=${currentCategory}&search=${currentSearch}`);
@@ -102,15 +87,14 @@ const Shop = ({ products = [] }: ShopProps) => {
 
     const categoryQuery = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category;
     const matchesCategory = (categoryQuery && categoryQuery !== "all")
-      // product.categorias ya es garantizado como un array gracias a getStaticProps
       ? (product.categorias || []).some((cat) => cat.toLowerCase() === categoryQuery.toLowerCase())
       : true;
 
     const currentSearchTerm = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const matchesSearch = currentSearchTerm
       ? (product.producto || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-      (product.sku || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-      (product.descripcion || "").toLowerCase().includes(currentSearchTerm.toLowerCase())
+        (product.sku || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+        (product.descripcion || "").toLowerCase().includes(currentSearchTerm.toLowerCase())
       : true;
 
     return matchesBrand && matchesCategory && matchesSearch;
@@ -119,7 +103,6 @@ const Shop = ({ products = [] }: ShopProps) => {
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfFirstProduct + productsPerPage);
-
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const handlePageChange = (page: number) => {
@@ -128,14 +111,24 @@ const Shop = ({ products = [] }: ShopProps) => {
     const currentBrand = selectedBrand || "";
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&search=${currentSearch}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const activeCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category;
+  const hasActiveFilters = selectedBrand || (activeCategory && activeCategory !== "all") || searchTerm;
+
+  const clearFilters = () => {
+    setSelectedBrand(undefined);
+    setSearchTerm("");
+    router.push("/shop?page=1&brand=&search=");
   };
 
   if (!products || products.length === 0) {
     return (
       <>
         <NavbarMenu />
-        <main className="grid place-content-center fixed inset-0 -z-10">
-          <p className="text-xl font-bold text-center">Ups... no se encontraron productos.</p>
+        <main className="grid place-content-center h-[70vh]">
+          <p className="text-xl font-bold text-center text-gray-500">Ups... no se encontraron productos.</p>
         </main>
         <Footer />
       </>
@@ -155,59 +148,41 @@ const Shop = ({ products = [] }: ShopProps) => {
 
       <NavbarMenu />
 
-      <section className="bg-gray-900 h-[200px] relative">
+      {/* Hero */}
+      <section className="bg-black relative h-[180px] md:h-[220px] flex items-center justify-center overflow-hidden">
         <video
-          className="absolute w-full h-full object-cover object-center"
-          width="100%"
-          height="100%"
-          autoPlay
-          muted
-          loop
-          preload="none"
+          className="absolute w-full h-full object-cover opacity-30"
+          autoPlay muted loop preload="none"
         >
           <source src="/video/langsdom_video.mp4" type="video/mp4" />
-          <track
-            src="/path/to/captions.vtt"
-            kind="subtitles"
-            srcLang="en"
-            label="English"
-          />
-          Your browser does not support the video tag.
         </video>
-
-        <div className="relative size-full flex items-center justify-center flex-col backdrop-blur-[2px] bg-[#0000005e]">
-          <div className="flex flex-col gap-8 items-center pb-6">
-            <i className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">
-              Nueva
-              <span className="not-italic text-white block text-[30px] md:text-[50px]">
-                Marca
-                <Image
-                  src="/logos/lagnsdom.svg"
-                  alt="Langsdom Logo"
-                  width={220}
-                  height={80}
-                  className="inline-block ml-2"
-                />
-              </span>
-            </i>
-          </div>
+        <div className="relative z-10 text-center px-4">
+          <p className="text-[#CCFD03] text-xs font-bold uppercase tracking-widest mb-2">Tecpoint</p>
+          <h1 className="text-white text-3xl md:text-5xl font-black tracking-tight">Tienda</h1>
         </div>
       </section>
 
-      <main className="w-full mx-auto p-2 md:p-4">
+      <main className="max-w-[1400px] mx-auto px-4 py-8">
 
-        <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
-          <input
-            className="border w-full py-3 px-6 rounded-full"
-            type="text"
-            placeholder="Buscar por SKU, Producto o Descripción"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+        {/* Barra de búsqueda y filtros */}
+        <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-3 mb-8">
+          {/* Buscador */}
+          <div className="relative flex-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+            <input
+              className="w-full h-11 bg-gray-50 border border-gray-200 pl-10 pr-4 rounded-full text-sm placeholder-gray-400 focus:outline-none focus:border-black transition-colors"
+              type="text"
+              placeholder="Buscar por SKU, producto o descripción..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <Select onValueChange={handleBrandChange} value={selectedBrand}>
-              <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
+              <SelectTrigger className="h-11 rounded-full px-5 bg-gray-50 border-gray-200 text-sm min-w-[150px]">
                 <SelectValue placeholder="Marca" />
               </SelectTrigger>
               <SelectContent>
@@ -240,8 +215,8 @@ const Shop = ({ products = [] }: ShopProps) => {
               }}
               value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
             >
-              <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
-                <SelectValue placeholder="Categorías" />
+              <SelectTrigger className="h-11 rounded-full px-5 bg-gray-50 border-gray-200 text-sm min-w-[150px]">
+                <SelectValue placeholder="Categoría" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
@@ -261,31 +236,75 @@ const Shop = ({ products = [] }: ShopProps) => {
                 </SelectGroup>
               </SelectContent>
             </Select>
+
+            <button
+              type="submit"
+              className="h-11 px-5 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors whitespace-nowrap"
+            >
+              Buscar
+            </button>
           </div>
         </form>
 
-        {/* Paginación */}
-        <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center">
-          <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
-            <Pagination className="flex flex-wrap gap-2 md:gap-4">
+        {/* Filtros activos + contador */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+              {hasActiveFilters && (
+              <>
+                <span className="text-gray-300">|</span>
+                {selectedBrand && (
+                  <span className="flex items-center gap-1.5 bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    Marca: {selectedBrand}
+                  </span>
+                )}
+                {activeCategory && activeCategory !== "all" && (
+                  <span className="flex items-center gap-1.5 bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {activeCategory}
+                  </span>
+                )}
+                {searchTerm && (
+                  <span className="flex items-center gap-1.5 bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    &quot;{searchTerm}&quot;
+                  </span>
+                )}
+                <button
+                  onClick={clearFilters}
+                  className="text-xs text-gray-400 hover:text-black underline transition-colors"
+                >
+                  Limpiar filtros
+                </button>
+              </>
+            )}
+          </div>
+          <p className="text-xs text-gray-400">
+            Página {currentPage} de {totalPages}
+          </p>
+        </div>
+
+        {/* Paginación superior */}
+        {currentProducts.length > 0 && (
+          <div className="flex items-center justify-center mb-8">
+            <Pagination>
               <PaginationPrevious
                 onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                Anterior
-              </PaginationPrevious>
-              <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
+                className={`cursor-pointer select-none rounded-full border border-gray-200 hover:bg-gray-100 transition-colors ${currentPage === 1 ? 'opacity-40 pointer-events-none' : ''}`}
+              />
+              <PaginationContent className="flex gap-1.5">
                 {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
                   const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
-                  const page = startPage + index;
+                  const p = startPage + index;
                   return (
-                    <PaginationItem key={page}>
+                    <PaginationItem key={p}>
                       <PaginationLink
-                        onClick={() => handlePageChange(page)}
-                        isActive={currentPage === page}
-                        className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
+                        onClick={() => handlePageChange(p)}
+                        isActive={currentPage === p}
+                        className={`rounded-full cursor-pointer size-9 flex items-center justify-center font-medium text-sm transition-colors ${
+                          currentPage === p
+                            ? 'bg-black text-white border-black'
+                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100'
+                        }`}
                       >
-                        {page}
+                        {p}
                       </PaginationLink>
                     </PaginationItem>
                   );
@@ -293,133 +312,124 @@ const Shop = ({ products = [] }: ShopProps) => {
               </PaginationContent>
               <PaginationNext
                 onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                Siguiente
-              </PaginationNext>
+                className={`cursor-pointer select-none rounded-full border border-gray-200 hover:bg-gray-100 transition-colors ${currentPage === totalPages ? 'opacity-40 pointer-events-none' : ''}`}
+              />
             </Pagination>
           </div>
-        </section>
+        )}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto">
-          {currentProducts.map((product: Product) => {
-            const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
+        {/* Grid de productos */}
+        {currentProducts.length === 0 ? (
+          <section className="w-full h-[50vh] flex flex-col gap-4 items-center justify-center">
+            <div className="size-16 rounded-full bg-gray-100 grid place-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 text-gray-400">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+            </div>
+            <div className="text-center">
+              <h2 className="font-semibold text-gray-800 mb-1">Sin resultados</h2>
+              <p className="text-sm text-gray-500">No encontramos productos con los filtros seleccionados.</p>
+            </div>
+            <button
+              onClick={clearFilters}
+              className="mt-2 px-6 py-2.5 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
+            >
+              Ver todos los productos
+            </button>
+          </section>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {currentProducts.map((product: Product) => {
+              const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
+              const inStock = product.extradata?.stock === true;
 
-            return (
-              <div
-                key={product.id}
-                className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
-              >
-                <span className="absolute top-4 left-4 z-10">
-                  {product.extradata?.stock !== true && (
-                    <div className="bg-[#fcb9b9] w-fit px-4 py-1 rounded-full">
-                      <p className="text-[#b51d1d] font-bold text-[14px]">Agotado</p>
-                    </div>
-                  )}
-                </span>
-
-                <div className="flex flex-col">
-                  <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
+              return (
+                <Link
+                  key={product.id}
+                  href={`/shop/${product.slug}`}
+                  className="group flex flex-col border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 bg-white"
+                >
+                  {/* Imagen */}
+                  <div className="relative bg-gray-50 aspect-square flex items-center justify-center p-4">
+                    {!inStock && (
+                      <span className="absolute top-3 left-3 z-10 flex items-center gap-1 bg-red-50 border border-red-200 rounded-full px-2.5 py-0.5">
+                        <span className="size-1.5 rounded-full bg-red-500 shrink-0" />
+                        <span className="text-[11px] font-semibold text-red-600">Agotado</span>
+                      </span>
+                    )}
                     <Image
                       src={imagen_01}
                       alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
                       width={240}
                       height={240}
-                      className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
-                      quality={100}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      quality={90}
                       priority
                     />
-                  </Link>
-
-                  <div>
-                    <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
-                    <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
-
-                    <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                      {/* Aquí product.categorias ya es garantizado como un array por getStaticProps */}
-                      {(product.categorias || []).map((cat: string, index: number) => (
-                        <span key={index} className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit">
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
                   </div>
-                </div>
 
-                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
-                  <Link href={`/shop/${product.slug}`}>Ver Producto</Link>
-                </button>
-              </div>
-            );
-          })}
-        </div>
+                  {/* Info */}
+                  <div className="flex flex-col flex-1 justify-between p-3 gap-3">
+                    <div className="flex flex-col gap-1.5">
+                      <h2 className="text-[13px] md:text-[14px] font-semibold leading-snug text-gray-900 line-clamp-2">
+                        {product.producto}
+                      </h2>
+                      <p className="text-[11px] text-gray-400 font-medium">SKU: {product.sku}</p>
 
-        {currentProducts.length === 0 ? (
-          <section className="w-full h-[50vh] flex flex-col gap-6 items-center justify-center pb-20">
-            <h1 className="text-gray-600 text-center">Ups... Actualmente no hay Productos con los filtros seleccionados</h1>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {(product.categorias || []).slice(0, 2).map((cat: string, index: number) => (
+                          <span key={index} className="bg-gray-100 text-gray-500 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-            <div className="flex flex-col items-center mt-4 gap-2">
-              <span className="text-sm text-gray-600">
-                <strong>Filtros seleccionados:</strong>
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {selectedBrand && (
-                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
-                    Marca: {selectedBrand}
-                  </span>
-                )}
-                {(router.query.category && router.query.category !== "all") && (
-                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
-                    Categoría: {Array.isArray(router.query.category) ? router.query.category[0] : router.query.category}
-                  </span>
-                )}
-                {searchTerm && (
-                  <span className="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
-                    Búsqueda: {searchTerm}
-                  </span>
-                )}
-                {!selectedBrand && (!router.query.category || router.query.category === "all") && !searchTerm && (
-                  <span className="text-xs text-gray-400">Ningún filtro seleccionado</span>
-                )}
-              </div>
-            </div>
-          </section>
-        ) : (
-          <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center mt-12">
-            <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
-              <Pagination className="flex flex-wrap gap-2 md:gap-4">
-                <PaginationPrevious
-                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                  className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  Anterior
-                </PaginationPrevious>
-                <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
-                  {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
-                    const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
-                    const page = startPage + index;
-                    return (
-                      <PaginationItem key={page}>
-                        <PaginationLink
-                          onClick={() => handlePageChange(page)}
-                          isActive={currentPage === page}
-                          className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
-                        >
-                          {page}
-                        </PaginationLink>
-                      </PaginationItem>
-                    );
-                  })}
-                </PaginationContent>
-                <PaginationNext
-                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                  className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  Siguiente
-                </PaginationNext>
-              </Pagination>
-            </div>
-          </section>
+                    <span className="w-full flex items-center justify-center bg-black text-white text-sm font-semibold py-2 rounded-full group-hover:bg-gray-800 transition-colors">
+                      Ver producto
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Paginación */}
+        {currentProducts.length > 0 && (
+          <div className="flex items-center justify-center mt-12">
+            <Pagination>
+              <PaginationPrevious
+                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                className={`cursor-pointer select-none rounded-full border border-gray-200 hover:bg-gray-100 transition-colors ${currentPage === 1 ? 'opacity-40 pointer-events-none' : ''}`}
+              />
+              <PaginationContent className="flex gap-1.5">
+                {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
+                  const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
+                  const p = startPage + index;
+                  return (
+                    <PaginationItem key={p}>
+                      <PaginationLink
+                        onClick={() => handlePageChange(p)}
+                        isActive={currentPage === p}
+                        className={`rounded-full cursor-pointer size-9 flex items-center justify-center font-medium text-sm transition-colors ${
+                          currentPage === p
+                            ? 'bg-black text-white border-black'
+                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        {p}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                })}
+              </PaginationContent>
+              <PaginationNext
+                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                className={`cursor-pointer select-none rounded-full border border-gray-200 hover:bg-gray-100 transition-colors ${currentPage === totalPages ? 'opacity-40 pointer-events-none' : ''}`}
+              />
+            </Pagination>
+          </div>
         )}
       </main>
 

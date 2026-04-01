@@ -15,6 +15,72 @@ export async function getServerSideProps() {
   }
 }
 
+const categories = [
+  {
+    label: 'Auriculares',
+    sub: 'True Wireless & con cable',
+    bg: 'bg-black',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=auriculares',
+    image: '/images/categorias/productos/X0 AUDIFONOS Q5.png',
+    imgSize: 320,
+  },
+  {
+    label: 'Audifonos BT',
+    sub: 'Bluetooth & Over-ear',
+    bg: 'bg-[#d2bfb8]',
+    textColor: 'text-black',
+    href: '/shop?page=1&brand=&search=audifonos',
+    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15860%2FHG-15860_01?alt=media&token=e61a72f8-9df8-4ce7-91e4-d96f2b4bc973',
+    imgSize: 340,
+  },
+  {
+    label: 'Car Charger',
+    sub: 'Carga rápida para tu vehículo',
+    bg: 'bg-[#ff5e00]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=cargador+carro',
+    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15785%2FFrame%20364.png_1?alt=media&token=c941567c-e1aa-423a-9753-d6236b80d5ea',
+    imgSize: 480,
+  },
+  {
+    label: 'Power Banks',
+    sub: 'Batería portátil de alta capacidad',
+    bg: 'bg-[#195eff]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=power+bank',
+    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15827%2F15827_01%201.png_1?alt=media&token=862363e6-e11b-4b60-a2ba-1c461bb3f3e5',
+    imgSize: 400,
+  },
+  {
+    label: 'Cobertores',
+    sub: 'Protección para tu dispositivo',
+    bg: 'bg-[#1c1c1e]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=cobertor',
+    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FGhostek%2FGHOCAS3605%2Fcobertor%20ghostek%20iPhone%2015%20Pro%20Max%20Gray.webp?alt=media&token=35e65c15-fcd3-4fa3-8957-86e0c30a63ac',
+    imgSize: 280,
+  },
+  {
+    label: 'Cables',
+    sub: 'USB-C, Lightning, HDMI y más',
+    bg: 'bg-[#2c3e50]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=cable',
+    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FAppacs%2FEL-10113%2FABUIABACGAAglZ27igYozNXO5AYwhAc4hAc.jpg_1?alt=media&token=067f2c71-180c-4f6d-871e-4f951a9bce69',
+    imgSize: 300,
+  },
+  {
+    label: 'Accesorios',
+    sub: 'Todo lo que tu equipo necesita',
+    bg: 'bg-[#f5f5f0]',
+    textColor: 'text-black',
+    href: '/shop?page=1&brand=&search=accesorios',
+    image: '/images/categorias/minis/cargadores__categoria.png',
+    imgSize: 260,
+  },
+]
+
 function Categories({ title, description, keywords, robots }: { title: string, description: string, keywords: string, robots: string }) {
   return (
     <>
@@ -32,108 +98,72 @@ function Categories({ title, description, keywords, robots }: { title: string, d
       </Head>
       <NavbarMenu />
 
-      <main className='flex flex-col w-full gap-4'>
-        <section className='flex w-full flex-col gap-4'>
-          <div className="w-full md:h-[75vh] bg-black relative flex flex-col justify-between">
-            <div className="flex-1 grid place-content-center">
-              <h4 className='md:text-4xl font-bold tracking-[-0.4px] text-white text-center'>Explorar la Experiencia Apple con todo lo <br /> nuevo de iPhone 16 series</h4>
+      <main className="flex flex-col w-full">
 
-            </div>
+        {/* Hero */}
+        <section className="w-full bg-black flex flex-col items-center justify-center text-center py-20 px-6 gap-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/50">Tecpoint — Catálogo</p>
+          <h1 className="text-white text-3xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl">
+            Explora todo lo que <span className="text-[#CCFD03]">tenemos para ti</span>
+          </h1>
+          <p className="text-white/60 text-base md:text-lg max-w-xl leading-relaxed">
+            Accesorios tecnológicos de las mejores marcas, al mayor y al detalle.
+          </p>
+          <Link
+            href="/shop?page=1&brand=&search="
+            className="mt-2 bg-[#CCFD03] text-black font-semibold py-3 px-8 rounded-full hover:bg-white transition-colors"
+          >
+            Ver todos los productos
+          </Link>
+        </section>
 
-            <picture>
-              <Image
-                alt="Audifonos de alta calidad para todas tus necesidades de audio"
-                quality={100}
-                width={1400}
-                height={800}
-                src="https://www.macstation.com.ar/theme_macstation/static/src/img/banners/home-black.png"
-                className="md:w-fit h-[250px] object-cover object-center m-auto"
-              />
-            </picture>
+        {/* Grid de categorías */}
+        <section className="p-4 md:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {categories.map((cat) => (
+              <Link
+                key={cat.label}
+                href={cat.href}
+                className={`group relative overflow-hidden rounded-2xl ${cat.bg} h-[340px] md:h-[420px] flex flex-col justify-between p-8`}
+              >
+                {/* Texto siempre visible */}
+                <div className="flex flex-col gap-1 z-10 relative">
+                  <p className={`text-sm font-medium opacity-60 ${cat.textColor}`}>{cat.sub}</p>
+                  <h2 className={`text-4xl md:text-5xl font-black tracking-tight leading-none ${cat.textColor}`}>
+                    {cat.label}
+                  </h2>
+                </div>
+
+                {/* Imagen centrada */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Image
+                    alt={cat.label}
+                    quality={100}
+                    width={cat.imgSize}
+                    height={cat.imgSize}
+                    src={cat.image}
+                    className="object-contain group-hover:scale-110 transition-transform duration-500 ease-out"
+                  />
+                </div>
+
+                {/* CTA siempre visible abajo */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <span className={`text-sm font-semibold flex items-center gap-1 ${cat.textColor} opacity-80 group-hover:opacity-100 group-hover:gap-2 transition-all`}>
+                    Explorar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </span>
+
+                  <span className={`text-xs px-3 py-1 rounded-full border ${cat.textColor} border-current opacity-40 group-hover:opacity-70 transition-opacity`}>
+                    Ver colección
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-0 p-3">
-          <div className="h-[500px] overflow-hidden cursor-pointer flex items-center justify-center md:h-[560px] bg-black relative group">
-            <Image
-              alt="Audifonos de alta calidad para todas tus necesidades de audio"
-              quality={100}
-              width={380}
-              height={380}
-              src="/images/categorias/productos/X0 AUDIFONOS Q5.png"
-              className="object-cover object-center m-auto z-10 group-hover:scale-110 group-hover:rotate-[10deg] transition-all duration-300"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-50 opacity-0 translate-y-10 group-hover:backdrop-blur-md group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <h2 className="text-white text-[64px] tracking-[-3px] font-semibold">Auriculares</h2>
-              <Link href="/shop?page=1&brand=&category=all&search=auriculares" className="text-white flex items-center md:text-[20px] hover:underline">
-                Explorar
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="h-[500px] overflow-hidden cursor-pointer flex items-center justify-center md:h-[560px] bg-[#d2bfb8] relative group">
-            <Image
-              alt="Audifonos de alta calidad para todas tus necesidades de audio"
-              quality={100}
-              width={380}
-              height={380}
-              src="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15860%2FHG-15860_01?alt=media&token=e61a72f8-9df8-4ce7-91e4-d96f2b4bc973"
-              className="object-cover object-center m-auto z-10 group-hover:scale-125 group-hover:rotate-[10deg] transition-all duration-300"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-50 opacity-0 translate-y-10 group-hover:backdrop-blur-md group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <h2 className="text-black text-[64px] tracking-[-3px] font-semibold">Audifonos BT</h2>
-              <Link href="/shop?page=1&brand=&category=all&search=audifonos" className="text-black flex items-center md:text-[20px] hover:underline">
-                Explorar
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="h-[500px] overflow-hidden cursor-pointer flex items-center justify-center md:h-[560px] bg-[#ff5e00] relative group">
-            <Image
-              alt="Audifonos de alta calidad para todas tus necesidades de audio"
-              quality={100}
-              width={560}
-              height={560}
-              src="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15785%2FFrame%20364.png_1?alt=media&token=c941567c-e1aa-423a-9753-d6236b80d5ea"
-              className="object-cover object-center m-auto z-10 group-hover:scale-110 group-hover:rotate-[10deg] transition-all duration-300"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-50 opacity-0 translate-y-10 group-hover:backdrop-blur-md group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <h2 className="text-white text-[64px] tracking-[-3px] font-semibold">Car Charger</h2>
-              <Link href="/shop?page=1&brand=&category=all&search=auriculares" className="text-white flex items-center md:text-[20px] hover:underline">
-                Explorar
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="h-[500px] overflow-hidden cursor-pointer flex items-center justify-center md:h-[560px] bg-[#195eff] relative group">
-            <Image
-              alt="Audifonos de alta calidad para todas tus necesidades de audio"
-              quality={100}
-              width={480}
-              height={480}
-              src="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15827%2F15827_01%201.png_1?alt=media&token=862363e6-e11b-4b60-a2ba-1c461bb3f3e5"
-              className="object-cover object-center m-auto z-10 group-hover:scale-110 group-hover:rotate-[10deg] transition-all duration-300"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-50 opacity-0 translate-y-10 group-hover:backdrop-blur-md group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <h2 className="text-white text-[64px] tracking-[-3px] font-semibold">Power Banks</h2>
-              <Link href="/shop?page=1&brand=&category=all&search=audifonos" className="text-white flex items-center md:text-[20px] hover:underline">
-                Explorar
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

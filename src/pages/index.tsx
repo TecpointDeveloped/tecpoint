@@ -132,20 +132,22 @@ export default function Home({ logos, products }: HomeProps) {
             </div>
           </CarouselItem>
 
+          {/* HOCO — texto izquierda, gradiente de izquierda a derecha */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/langsdom_banner.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center justify-center md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[0px] bg-[#0000005e]">
-              <div className="flex flex-col gap-4 md:gap-16 items-center">
-                <h6 className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos<span className="text-white block text-[40px] md:text-[60px]">Auriculares BH20</span></h6>
-
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE HOCO.png" alt="Banner Hoco" />
+            <div className="relative size-full flex items-center justify-start md:p-16 p-6 bg-gradient-to-r from-black/70 via-black/30 to-transparent">
+              <div className="flex flex-col gap-6 md:gap-10 items-start">
+                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
+                  Accesorios
+                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">Hoco</span>
+                </h6>
                 <section className="flex gap-4">
-                  <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
-                    ver mas
+                  <Link href="/shop?page=1&brand=Hoco&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
+                    Ver más
                   </Link>
-                  <Link href="/shop?page=1&brand=Langsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
-                    comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <Link href="/shop?page=1&brand=Hoco&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
+                    Comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                   </Link>
@@ -154,89 +156,79 @@ export default function Home({ logos, products }: HomeProps) {
             </div>
           </CarouselItem>
 
+          {/* HYPERGEAR — texto derecha, gradiente de derecha a izquierda */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-right" src="/images/jumper_carrro_hoco.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-center pb-10 flex-col gap-12">
-              <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevo<span className="block text-[40px] md:text-[60px]">Jumper para Carro</span></h6>
-
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE HYPERGEAR.png" alt="Banner Hypergear" />
+            <div className="relative size-full flex items-center justify-end md:p-16 p-6 bg-gradient-to-l from-black/70 via-black/30 to-transparent">
+              <div className="flex flex-col gap-6 md:gap-10 items-end">
+                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase text-right">
+                  Lo nuevo de
+                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case text-right">Hypergear</span>
+                </h6>
                 <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Ordena YA!</Link>
+                  <Link href="/shop?page=1&brand=Hypergear&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
+                    Comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                  <Link href="/shop?page=1&brand=Hypergear&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
+                    Ver más
+                  </Link>
                 </section>
               </div>
             </div>
           </CarouselItem>
 
+          {/* KRIEG — texto izquierda, gradiente de izquierda a derecha */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="cargadores carga rapida usb c" />
-            <div className="relative size-full flex items-center justify-center pb-10 bg-[#00000018] flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos cargadores <span className="block text-[50px] md:text-[60px]">Carga Rapida</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=cargador" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=cargador" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE KRIEG.png" alt="Banner Krieg" />
+            <div className="relative size-full flex items-center justify-start md:p-16 p-6 bg-gradient-to-r from-black/70 via-black/30 to-transparent">
+              <div className="flex flex-col gap-6 md:gap-10 items-start">
+                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
+                  Gaming & Tech
+                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">Krieg</span>
+                </h6>
+                <section className="flex gap-4">
+                  <Link href="/shop?page=1&brand=Krieg&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
+                    Ver más
+                  </Link>
+                  <Link href="/shop?page=1&brand=Krieg&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
+                    Comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                </section>
+              </div>
             </div>
           </CarouselItem>
 
+          {/* X0 — texto centro, overlay suave */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.webp" alt="cable usb para samsung y iphone" />
-            <div className="relative size-full flex items-center justify-center pb-10 flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Cables USB de<span className="block text-[40px] md:text-[60px]">Marcas Certificadas</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=cable" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=cable" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.webp" alt="Active 8 hypergear" />
-
-            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Cobertores<span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
-
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=Apple&search=" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE X0.png" alt="Banner X0" />
+            <div className="relative size-full flex items-center justify-center md:p-16 p-6 bg-black/40">
+              <div className="flex flex-col gap-6 md:gap-10 items-center text-center">
+                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
+                  Accesorios Premium
+                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">XO</span>
+                </h6>
+                <section className="flex gap-4">
+                  <Link href="/shop?page=1&brand=XO&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
+                    Ver más
+                  </Link>
+                  <Link href="/shop?page=1&brand=XO&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
+                    Comprar
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                </section>
+              </div>
             </div>
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-
-      {/* <section className="w-full">
-        <Carousel
-          className="w-full h-auto py-8"
-          // onMouseEnter={() => plugin.current.stop()}
-          // onMouseLeave={() => plugin.current.reset()}
-          plugins={[plugin.current]}
-          opts={{
-            loop: true,
-            duration: 4000,
-            slidesToScroll: "auto",
-          }}>
-          <CarouselContent className="-ml-4">
-            {logos.map((logo, index) => (
-              <CarouselItem
-                key={index}
-                className="bg-white basis-1/2 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-4 flex items-center justify-center"
-              >
-                <Image
-                  src={logo.logo || ""}
-                  alt={logo.key || `Logo ${index}`}
-                  width={100}
-                  height={26}
-                  className="w-[180px] h-[30px] select-none aspect-auto object-contain"
-                  quality={100}
-                  priority
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-
-      </section> */}
 
       <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
         <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
@@ -262,10 +254,10 @@ export default function Home({ logos, products }: HomeProps) {
         <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
       </div>
 
-      <article className="p-4 flex gap-6 md:gap-24 w-full md:w-[90%] m-auto items-center justify-center md:py-10 flex-wrap bg-gradient-to-b from-gray-50 to-gray-100 rounded-xl shadow-lg">
+      <article className="px-6 py-8 flex gap-8 md:gap-20 w-full md:w-[90%] m-auto items-center justify-center md:py-12 flex-wrap bg-white border border-gray-100 rounded-2xl shadow-sm my-6">
 
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
+        <section className="flex flex-col gap-3 items-center text-center">
+          <span className="rounded-2xl bg-black p-4">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
               <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
               <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -274,28 +266,28 @@ export default function Home({ logos, products }: HomeProps) {
             </svg>
           </span>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Envios Seguros</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Envios a nivel nacional de<span className="block">forma rápida y segura.</span></p>
+          <div className="flex flex-col items-center gap-1">
+            <p className="font-bold text-base text-gray-900">Envios Seguros</p>
+            <p className="text-gray-500 text-sm leading-5 tracking-tight">Envios a nivel nacional de<span className="block">forma rápida y segura.</span></p>
           </div>
         </section>
 
         <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
+          <span className="rounded-2xl bg-black p-4">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
               <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
               <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
             </svg>
           </span>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Soporte Técnico</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Recibe soporte técnico en<span className="block">nuestras marcas.</span></p>
+          <div className="flex flex-col items-center gap-1">
+            <p className="font-bold text-base text-gray-900">Soporte Técnico</p>
+            <p className="text-gray-500 text-sm leading-5 tracking-tight">Recibe soporte técnico en<span className="block">nuestras marcas.</span></p>
           </div>
         </section>
 
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
+        <section className="flex flex-col gap-3 items-center text-center">
+          <span className="rounded-2xl bg-black p-4">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
               <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
               <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
@@ -304,32 +296,35 @@ export default function Home({ logos, products }: HomeProps) {
             </svg>
           </span>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Venta Corporativa</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Recibe atención personalizada<span className="block">a la medida de tu negocio.</span></p>
+          <div className="flex flex-col items-center gap-1">
+            <p className="font-bold text-base text-gray-900">Venta Corporativa</p>
+            <p className="text-gray-500 text-sm leading-5 tracking-tight">Recibe atención personalizada<span className="block">a la medida de tu negocio.</span></p>
           </div>
         </section>
 
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
+        <section className="flex flex-col gap-3 items-center text-center">
+          <span className="rounded-2xl bg-black p-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#fff" width={SizeIcon} height={SizeIcon}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
             </svg>
           </span>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Tienda Tecpoint</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Vive la experiencia tecnológica<span className="block">en la tienda Tecpoint.</span></p>
+          <div className="flex flex-col items-center gap-1">
+            <p className="font-bold text-base text-gray-900">Tienda Tecpoint</p>
+            <p className="text-gray-500 text-sm leading-5 tracking-tight">Vive la experiencia tecnológica<span className="block">en la tienda Tecpoint.</span></p>
           </div>
         </section>
 
       </article>
 
-      <section className="py-8 px-4 flex flex-col gap-y-6">
-        <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Nuevos Cobertores iPhone 16e</h1>
+      <section className="py-12 px-4 flex flex-col gap-y-6">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#118cff] mb-1">Nuevos</p>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-[-0.3px]">Cobertores iPhone 16e</h1>
+        </div>
 
         <section className="md:max-w-[1500px] m-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {products
               .filter((product) =>
                 ["BS-DH16EBL", "BS-S16EGS", "BS-PI16EBL", "BS-S16EIR"].includes(product.sku)
@@ -341,7 +336,7 @@ export default function Home({ logos, products }: HomeProps) {
                 return (
                   <div
                     key={product.id}
-                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                    className="border border-gray-100 rounded-2xl p-4 flex flex-col w-[300px] h-[460px] relative justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
                   >
 
                     <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
@@ -402,9 +397,9 @@ export default function Home({ logos, products }: HomeProps) {
         </section>
       </section>
 
-      <section id="#LagnsdomItems" className="w-full h-fit p-4 gap-4 justify-center bg-black">
+      <section id="#LagnsdomItems" className="w-full h-fit py-12 px-4 gap-4 justify-center bg-black">
         <section className="">
-          <h2 className="text-white text-[40px] font-semibold text-center mb-4">
+          <h2 className="text-white text-[40px] font-semibold text-center mb-8">
             Lo nuevo de
             <span>
               <Image
@@ -495,15 +490,15 @@ export default function Home({ logos, products }: HomeProps) {
         </section>
       </section>
 
-      <section className="w-full h-[180px] bg-black relative overflow-hidden">
+      <section className="w-full h-[220px] bg-black relative overflow-hidden">
         <div className="grid place-content-center absolute w-full h-full z-10">
-          <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
+          <h4 className="text-[#ffffff] cursor-pointer leading-7 md:text-[32px] font-bold text-center m-auto tracking-tight">
             Revoluciona tu Teléfono con Accesorios
-            <span className="block">de Calidad</span>
+            <span className="block text-[#CCFD03]">de Calidad</span>
           </h4>
         </div>
 
-        <div className="flex items-end justify-center w-full h-[180px] bg-black">
+        <div className="flex items-end justify-center w-full h-[220px] bg-black">
           <Image
             className="m-auto aspect-square object-cover object-top"
             height={250}
@@ -605,45 +600,9 @@ export default function Home({ logos, products }: HomeProps) {
             </div>
           </div>
         </div>
-
-        {/* <div className="flex flex-col md:flex-row gap-6 w-full md:w-[1120px]">
-          <figure className="h-[300px] md:w-[780px] w-full overflow-hidden bg-[linear-gradient(102.49deg,#e3fff0_0%,#b8ffd4_100%)] rounded-[40px] relative">
-            <figcaption className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-start">
-              <p className="text-black/60 mix-blend-difference">Accesorios Premium</p>
-              <h5 className="text-black font-black text-[36px] tracking-[-0.4px] mix-blend-difference">S24 Series</h5>
-
-              <section className="flex gap-4 mt-6">
-                <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
-              </section>
-            </figcaption>
-
-            <picture className="absolute bottom-0 md:right-0 md:w-fit w-full grid place-content-center">
-              <Image
-                height={250}
-                width={250}
-                alt="Cobertores para s24 Ultra"
-                src="/images/categorias/productos/samsung s24 ultra.png"
-                className="scale-115 -mb-16"
-              />
-            </picture>
-          </figure>
-
-          <figure className="h-[300px] w-full overflow-hidden bg-[linear-gradient(102.68deg,#fef4e0_0%,#ffdead_99.61%)] rounded-[40px] relative">
-            <picture className="absolute bottom-0 right-0">
-              <Image
-                height={250}
-                width={250}
-                alt="Cobertores para s24 Ultra"
-                src="/images/categorias/productos/samsung s24 ultra.png"
-                className="scale-115 -mb-16"
-              />
-            </picture>
-          </figure>
-        </div> */}
       </section>
 
-      <section className="w-full h-fit bg-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-12">
+      <section className="w-full h-fit bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-16">
         <div className="md:w-1/2 text-center md:text-left">
           <div className="w-full flex justify-center md:justify-start mb-6">
             <Image
@@ -676,11 +635,14 @@ export default function Home({ logos, products }: HomeProps) {
         </div>
       </section>
 
-      <div className="py-8 px-4 flex flex-col gap-y-6">
-        <h3 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Lo Mejor en SmartWatch</h3>
+      <div className="py-12 px-4 flex flex-col gap-y-6">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#118cff] mb-1">Colección</p>
+          <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.3px]">Lo Mejor en SmartWatch</h3>
+        </div>
 
         <section className="md:max-w-[1500px] m-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {products
               .filter((product) =>
                 Array.isArray(product.categorias) &&
@@ -693,7 +655,7 @@ export default function Home({ logos, products }: HomeProps) {
                 return (
                   <div
                     key={product.id}
-                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
+                    className="border border-gray-100 rounded-2xl p-4 flex flex-col w-[300px] h-[460px] relative justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
                   >
 
                     <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">

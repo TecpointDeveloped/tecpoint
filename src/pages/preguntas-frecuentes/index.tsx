@@ -11,7 +11,7 @@ const PreguntasFrecuentes = () => {
           <h1>Preguntas frecuentes</h1>
           <div className="box">
             <h2>¿OFRECEN ENVIO GRATIS?</h2>
-            <p>Sí, los pedidos de LPS. 1,200.00 o más califican para el envío gratuito en el casco urbano de San Pedro Sula.</p>
+            <p>Sí, los pedidos de LPS. 1,500.00 o más califican para el envío gratuito en el casco urbano de San Pedro Sula.</p>
           </div>
           <div className="box">
             <h2>¿RECIBÍ UN PRODUCTO DEFECTUOSO, ¿CÓMO HAGO PARA OBTENER UN REEMPLAZO?</h2>
