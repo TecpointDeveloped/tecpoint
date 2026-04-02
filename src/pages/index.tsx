@@ -53,25 +53,38 @@ export default function Home({ logos, products }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
+        <title>Tecpoint - Distribuidor #1 de Accesorios Tecnológicos en Honduras</title>
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
-        <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <meta name="description" content="Tecpoint: Distribuidor oficial de accesorios tecnológicos en Honduras. Apple, Hoco, Krieg, Hypergear. Envío 24-48h, pago al recibir. ¡Compra ahora!" />
+        <meta name="keywords" content="distribuidor accesorios tecnológicos Honduras, cargadores, audífonos, cables USB, cobertores, power banks, smartwatch, envío gratis" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="es-HN" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta name="copyright" content="© 2024 Tecpoint Distribucion. Todos los derechos reservados." />
+        <link rel="canonical" href="https://tecpoint.ws" />
+
         <meta property="og:url" content="https://tecpoint.ws" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Tecpoint - Distribuidor de Accesorios Tecnológicos Honduras" />
+        <meta property="og:description" content="Tienda online de accesorios tech. Apple, Hoco, Krieg, Hypergear y más. Envío a todo Honduras 24-48h. Pago al recibir." />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
-        <meta property="og:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta property="og:description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
         <meta property="og:locale" content="es_HN" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta name="twitter:description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <meta name="twitter:site" content="@tecpointhn" />
+        <meta name="twitter:title" content="Tecpoint - Distribuidor Accesorios Tech Honduras" />
+        <meta name="twitter:description" content="Compra accesorios tecnológicos premium. Marcas oficiales, envío 24-48h, pago al recibir." />
         <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
-        <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
+        <meta name="twitter:image:alt" content="Tecpoint Distribucion Honduras" />
+
+        <meta name="geo.region" content="HN" />
+        <meta name="geo.placename" content="Honduras" />
+        <meta name="geo.position" content="17.2427;-88.7589" />
       </Head>
 
       <NavbarMenu />

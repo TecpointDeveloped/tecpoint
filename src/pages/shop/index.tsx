@@ -138,12 +138,30 @@ const Shop = ({ products = [] }: ShopProps) => {
   return (
     <>
       <Head>
-        <title>Tienda Tecpoint | Todo en accesorios Tecnológicos</title>
-        <meta name="description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
-        <meta property="og:title" content="Tienda Tecpoint | Todo en accesorios Tecnológicos" />
-        <meta property="og:description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
+        <title>Tienda Online | Accesorios Tecnológicos | Tecpoint Honduras</title>
+        <meta name="description" content="Tienda Tecpoint: Cargadores, audífonos, cables, cobertores y más accesorios tech. Envío gratis mayores a Lps. 1,500. Pago al recibir. ¡Compra ahora!" />
+        <meta name="keywords" content="tienda accesorios tecnológicos Honduras, comprar cargadores, audífonos, cables, cobertores iPhone, power banks, smartwatch" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="language" content="es-HN" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <link rel="canonical" href="https://tecpoint.ws/shop" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Tienda Tecpoint | Accesorios Tecnológicos al Mejor Precio" />
+        <meta property="og:description" content="Descubre nuestro catálogo completo. Apple, Hoco, Krieg y más marcas. Envío a Honduras, pago al recibir." />
         <meta property="og:url" content="https://tecpoint.ws/shop" />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tecpointhn" />
+        <meta name="twitter:title" content="Tienda Tecpoint - Accesorios Tech Honduras" />
+        <meta name="twitter:description" content="Compra accesorios tech premium con envío gratis. Pago al recibir. Miles de productos." />
+        <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
       </Head>
 
       <NavbarMenu />

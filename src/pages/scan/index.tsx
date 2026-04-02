@@ -80,28 +80,30 @@ function Page() {
   return (
     <>
       <Head>
-        <title>Escanea y Gana con Tecpoint</title>
-        <meta name="description" content="Scan page for gifts" />
+        <title>Escanea Código QR | Tecpoint Sorteo Honduras</title>
+        <meta name="description" content="Escanea el código QR en tus compras Tecpoint para participar en nuestro sorteo y ganar premios. ¡Suerte!" />
+        <meta name="keywords" content="escanear QR, sorteo Tecpoint, código QR, premios, Honduras" />
         <link rel="icon" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="Scan Page" />
-        <meta property="og:description" content="Scan page for gifts" />
-        <meta property="og:image" content="/images/og-image.png" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta name="language" content="es-HN" />
+
+        <meta property="og:title" content="Participa en Nuestro Sorteo | Tecpoint" />
+        <meta property="og:description" content="Escanea el código QR en tu compra y participa para ganar premios." />
+        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
         <meta property="og:url" content="https://tecpoint.ws/scan" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Tecpoint Distribucion" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Scan Page" />
-        <meta name="twitter:description" content="Scan page for gifts" />
-        <meta name="twitter:image" content="/images/og-image.png" />
+        <meta name="twitter:title" content="Participa en el Sorteo Tecpoint" />
+        <meta name="twitter:description" content="Escanea QR y gana premios en Tecpoint" />
+        <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
+
         <link rel="manifest" href="/manifest.json" />
         <link rel="canonical" href="https://tecpoint.ws/scan" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta name="description" content="Scan page for gifts" />
-        <meta name="keywords" content="scan, gifts, prizes" />
-        <meta name="author" content="Your Name" />
-        <meta name="language" content="en" />
       </Head>
 
       <NavbarMenu />

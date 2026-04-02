@@ -6,14 +6,19 @@ function PoliticaPrivacidad() {
   return (
     <>
       <Head>
-        <title>Política de Privacidad - Tecpoint</title>
-        <meta name="description" content="Política de privacidad de Tecpoint, garantizando la protección de derechos como el Habeas Data, la privacidad, la intimidad, el buen nombre, la imagen y la autonomía." />
-        <meta name="keywords" content="Política de privacidad, Tecpoint, protección de datos, Habeas Data, privacidad, intimidad, buen nombre, imagen, autonomía" />
-        <meta name="author" content="Tecpoint" />
-        <meta property="og:title" content="Política de Privacidad - Tecpoint" />
-        <meta property="og:description" content="Política de privacidad de Tecpoint, garantizando la protección de derechos como el Habeas Data, la privacidad, la intimidad, el buen nombre, la imagen y la autonomía." />
+        <title>Política de Privacidad | Tecpoint Honduras</title>
+        <meta name="description" content="Política de privacidad Tecpoint: Protegemos tus datos personales conforme a Habeas Data. Privacidad e intimidad garantizada." />
+        <meta name="keywords" content="política privacidad, protección datos, Habeas Data, privacidad, seguridad datos Honduras" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://tecpoint.ws/politica-privacidad" />
+
+        <meta property="og:title" content="Política de Privacidad | Tecpoint" />
+        <meta property="og:description" content="Protección de datos y privacidad en Tecpoint. Conoce cómo cuidamos tu información." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tecpoint.ws/politica-privacidad" />
+        <meta property="og:url" content="https://tecpoint.ws/politica-privacidad" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
       </Head>
 
       <NavbarMenu />

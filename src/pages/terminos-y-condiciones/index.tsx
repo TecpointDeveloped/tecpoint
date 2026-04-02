@@ -7,21 +7,23 @@ const TerminosYCondiciones = () => {
   return (
     <>
       <Head>
-        <title>Términos y Condiciones</title>
-        <meta name="description" content="Consulta los términos y condiciones de uso del sitio web de Tecpoint." />
-        <meta name="keywords" content="Términos y Condiciones, Tecpoint, Política de Privacidad, Devoluciones" />
-        <meta name="author" content="Tecpoint" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Términos y Condiciones | Tecpoint Honduras</title>
+        <meta name="description" content="Términos y condiciones de Tecpoint. Lee nuestras políticas de compra, devoluciones y servicio al cliente. Compra segura garantizada." />
+        <meta name="keywords" content="términos condiciones, política devoluciones, garantía compra, servicio cliente Honduras" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://tecpoint.ws/terminos-y-condiciones" />
 
-        <meta property="og:title" content="Términos y Condiciones - Tecpoint" />
-        <meta property="og:description" content="Consulta los términos y condiciones de uso del sitio web de Tecpoint." />
+        <meta property="og:title" content="Términos y Condiciones | Tecpoint" />
+        <meta property="og:description" content="Conoce nuestros términos, condiciones, garantía y política de devoluciones." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tecpoint.com/terminos-y-condiciones" />
-        <meta property="og:image" content="https://www.tecpoint.com/images/og-image.jpg" />
+        <meta property="og:url" content="https://tecpoint.ws/terminos-y-condiciones" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Términos y Condiciones - Tecpoint" />
-        <meta name="twitter:description" content="Consulta los términos y condiciones de uso del sitio web de Tecpoint." />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Términos y Condiciones | Tecpoint" />
+        <meta name="twitter:description" content="Términos y condiciones de compra en Tecpoint Honduras." />
       </Head>
 
       <NavbarMenu />

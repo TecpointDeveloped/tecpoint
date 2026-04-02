@@ -1,9 +1,17 @@
 import NavbarMenu from '@/components/navbarmenu/page'
 import React from 'react'
+import Head from 'next/head'
 
 function index() {
   return (
     <>
+      <Head>
+        <title>Checkout | Completa tu Compra | Tecpoint</title>
+        <meta name="description" content="Finaliza tu compra en Tecpoint. Ingresa tus datos y realiza tu pedido. Pago al recibir, envío 24-48h Honduras." />
+        <meta name="keywords" content="checkout, pagar, compra online, pedido, accesorios tecnológicos Honduras" />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://tecpoint.ws/checkout" />
+      </Head>
       <NavbarMenu />
 
       <div className='p-8 max-w-xl mx-auto bg-white shadow-md rounded-lg'>

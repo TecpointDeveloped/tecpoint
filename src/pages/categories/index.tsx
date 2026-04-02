@@ -7,9 +7,9 @@ import Footer from '@/components/Footer/page'
 export async function getServerSideProps() {
   return {
     props: {
-      title: 'Categorias | Tecpoint Distribucion',
-      description: 'Explora todas nuestras categorias y marcas con la mejor calidad',
-      keywords: 'audifonos, cables, cargadores, cobertores, parlantes, marcas, categorias',
+      title: 'Categorías | Accesorios Tecnológicos | Tecpoint Honduras',
+      description: 'Explora nuestras categorías: audífonos, cables, cargadores, cobertores, power banks, smartwatch. Envío 24-48h, pago al recibir.',
+      keywords: 'categorías accesorios tecnológicos, audífonos, cables USB-C, cargadores rápidos, cobertores iPhone, power banks, smartwatch, Honduras',
       robots: 'index, follow',
     }
   }

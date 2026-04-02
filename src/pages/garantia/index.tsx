@@ -6,15 +6,18 @@ const Garantia = () => {
   return (
     <>
       <Head>
-        <title>Politica de Garantia</title>
-        <meta name="description" content="Tecpoint garantiza que todos los productos comprados estarán libres de defectos relacionados con la calidad en los materiales cuando el producto se utilice para el propósito previsto en condiciones normales durante el período indicado en cada producto." />
-        <meta name="keywords" content="TECPOINT, garantía, productos, calidad, servicio al cliente" />
-        <meta name="author" content="TECPOINT" />
-        <meta property="og:title" content="Politica de Garantia" />
-        <meta property="og:description" content="Información sobre la garantía de los productos de TECPOINT." />
+        <title>Política de Garantía | Tecpoint Honduras</title>
+        <meta name="description" content="Política de garantía Tecpoint: 90 días en productos electrónicos. Cambios por defectos de fábrica. Conoce nuestras condiciones de garantía." />
+        <meta name="keywords" content="garantía productos, cobertura garantía, cambio defectuoso, servicio técnico Honduras, Tecpoint" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <link rel="canonical" href="https://tecpoint.ws/garantia" />
+
+        <meta property="og:title" content="Política de Garantía | Tecpoint" />
+        <meta property="og:description" content="Información sobre la garantía de productos en Tecpoint. 90 días en electrónica, cambios incluidos." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tecpoint.com/garantia" />
-        <meta property="og:site_name" content="TECPOINT" />
+        <meta property="og:url" content="https://tecpoint.ws/garantia" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
       </Head>
 
       <NavbarMenu />

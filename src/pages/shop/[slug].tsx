@@ -190,22 +190,35 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   };
 
   const inStock = product.extradata?.stock === true;
-  const hasFreeShipping = Number(product.precio.detalle) > 1200;
-  const remainingForFreeShipping = 1200 - Number(product.precio.detalle);
+  const hasFreeShipping = Number(product.precio.detalle) > 1500;
+  const remainingForFreeShipping = 1500 - Number(product.precio.detalle);
 
   return (
     <>
       <Head>
-        <title>{product.producto || "Producto no Encontrado"}</title>
-        <meta name="keywords" content={product.descripcion || "keywords no generad"} />
-        <meta name="description" content={product.descripcion || "descripcion no generada"} />
+        <title>{`${product.producto} | Compra en Tecpoint - Distribuidor #1 en Honduras`}</title>
+        <meta
+          name="description"
+          content={`${product.producto} en Tecpoint. ${product.descripcion?.slice(0, 100)} Entrega 24-48h, pago al recibir. ¡Compra ahora!`}
+        />
+        <meta
+          name="keywords"
+          content={`${product.producto}, ${product.marca_producto?.marca || ""}, Tecpoint Honduras, comprar online, distribuidor, envío a todo país`}
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="es-HN" />
+        <meta name="author" content="Tecpoint Distribucion" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={product.producto} />
-        <meta property="og:description" content={product.descripcion || ""} />
+        <meta property="og:title" content={`${product.producto} | Tecpoint Honduras`} />
+        <meta
+          property="og:description"
+          content={`${product.descripcion?.slice(0, 120) || "Producto disponible en Tecpoint"} Envío gratis en compras mayores a Lps. 1,500.`}
+        />
         <meta property="og:url" content={`https://tecpoint.ws/shop/${product.slug}`} />
         <meta property="og:image" content={primaryImage} />
         <meta property="og:image:type" content="image/png" />
@@ -214,11 +227,17 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
         <meta property="og:locale" content="es_HN" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.producto} />
-        <meta name="twitter:description" content={product.descripcion || ""} />
+        <meta name="twitter:title" content={`${product.producto} | Tecpoint`} />
+        <meta
+          name="twitter:description"
+          content={`Compra ${product.producto} en Tecpoint. Entrega 24-48h a todo Honduras. Pago al recibir.`}
+        />
         <meta name="twitter:image" content={primaryImage} />
-        <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
+        <meta name="twitter:image:alt" content={product.producto || "Producto Tecpoint"} />
+        <meta name="twitter:creator" content="@tecpointhn" />
         <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
+        <meta name="geo.region" content="HN" />
+        <meta name="geo.placename" content="Honduras" />
       </Head>
 
       <NavbarMenu />
@@ -361,6 +380,29 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               </div>
             </div>
 
+            <div className="bg-[#FF3B01] py-2.5 px-4 rounded-xl w-max text-white">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Image
+                  quality={96}
+                  src="/logos/forzaDelivery.png"
+                  alt="Envio mendiante Forza Delivery"
+                  width={80}
+                  height={32}
+                  className="h-[32px] w-auto"
+                />
+              </div>
+              <div className="flex flex-col gap-1 text-xs font-semibold">
+                <p className="flex items-center gap-1.5">
+                  <span>✓</span>
+                  Pago al recibir
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <span>✓</span>
+                  24 a 48 horas (días hábiles)
+                </p>
+              </div>
+            </div>
+
             {/* CTAs */}
             <div className="flex flex-col gap-2 w-full max-w-[480px]">
               <button
@@ -463,12 +505,11 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
           {/* ── Secciones de imagen ── */}
           <section
-            className={`bg-gray-50 rounded-2xl overflow-hidden flex flex-col gap-2 mt-4 ${
-              (!product.secciones?.seccion_01.imagenUrl || typeof product.secciones?.seccion_01.imagenUrl !== 'string' || !product.secciones?.seccion_01.imagenUrl.trim()) &&
-              (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
-              (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim())
+            className={`bg-gray-50 rounded-2xl overflow-hidden flex flex-col gap-2 mt-4 ${(!product.secciones?.seccion_01.imagenUrl || typeof product.secciones?.seccion_01.imagenUrl !== 'string' || !product.secciones?.seccion_01.imagenUrl.trim()) &&
+                (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
+                (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim())
                 ? 'hidden' : ''
-            }`}
+              }`}
           >
             <div className="flex flex-col sm:flex-row gap-2">
               {product.secciones?.seccion_01.imagenUrl && typeof product.secciones?.seccion_01.imagenUrl === 'string' && product.secciones?.seccion_01.imagenUrl.trim() && product.secciones?.seccion_01.title?.trim() ? (

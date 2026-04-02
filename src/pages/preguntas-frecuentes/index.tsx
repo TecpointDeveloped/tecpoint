@@ -1,9 +1,23 @@
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
+import Head from "next/head";
 
 const PreguntasFrecuentes = () => {
   return (
     <>
+      <Head>
+        <title>Preguntas Frecuentes | Tecpoint Honduras</title>
+        <meta name="description" content="Preguntas frecuentes Tecpoint: envío gratis, garantía, cambios, procesamiento de pedidos. Resolvemos tus dudas sobre compras." />
+        <meta name="keywords" content="preguntas frecuentes, FAQ, envío gratis, garantía, cambios, soporte cliente Honduras" />
+        <link rel="canonical" href="https://tecpoint.ws/preguntas-frecuentes" />
+
+        <meta property="og:title" content="Preguntas Frecuentes | Tecpoint" />
+        <meta property="og:description" content="Encuentra respuestas a tus preguntas sobre envío, garantía y compras en Tecpoint." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tecpoint.ws/preguntas-frecuentes" />
+        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:locale" content="es_HN" />
+      </Head>
       <NavbarMenu />
 
       <main className="p-4 mt-[70px]">
