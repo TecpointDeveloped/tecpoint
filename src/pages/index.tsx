@@ -158,10 +158,6 @@ export default function Home({ logos, products }: HomeProps) {
           </CarouselItem>
 
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/ROCKSPACE BANNER HEAT.png" alt="Banner Rockspace" />
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
             <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 1.png" alt="Banner Hoco Nuevos Ingresos 1" />
           </CarouselItem>
 
