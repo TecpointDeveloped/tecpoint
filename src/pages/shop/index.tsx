@@ -240,17 +240,16 @@ const Shop = ({ products = [] }: ShopProps) => {
                 <SelectGroup>
                   <SelectLabel>Categorías</SelectLabel>
                   <SelectItem value="all">Todas</SelectItem>
-                  <SelectItem value="Audifonos">Audífonos</SelectItem>
-                  <SelectItem value="Auriculares">Auriculares</SelectItem>
-                  <SelectItem value="Audio">Audio</SelectItem>
-                  <SelectItem value="Accesorios">Accesorios</SelectItem>
-                  <SelectItem value="Cobertores">Cobertores</SelectItem>
-                  <SelectItem value="cable">Cables</SelectItem>
-                  <SelectItem value="Cargadores">Cargadores</SelectItem>
-                  <SelectItem value="Memorias">Memorias</SelectItem>
-                  <SelectItem value="power bank">Power Banks</SelectItem>
-                  <SelectItem value="hub">HUB</SelectItem>
-                  <SelectItem value="reloj">SmartWatch</SelectItem>
+                  <SelectItem value="vidrio">Protección de Pantalla Premium</SelectItem>
+                  <SelectItem value="cobertor">Fundas & Cobertores Premium</SelectItem>
+                  <SelectItem value="carga">Carga Inteligente</SelectItem>
+                  <SelectItem value="cable">Cables Premium</SelectItem>
+                  <SelectItem value="audio">Audio & Sonido</SelectItem>
+                  <SelectItem value="smartwatch">Smartwatch & Wearables</SelectItem>
+                  <SelectItem value="carro">Accesorios para Auto</SelectItem>
+                  <SelectItem value="soporte">Soportes & Creación de Contenido</SelectItem>
+                  <SelectItem value="oficina">Productividad & Oficina</SelectItem>
+                  <SelectItem value="Lifestyle & Organización Tech">Lifestyle & Organización Tech</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

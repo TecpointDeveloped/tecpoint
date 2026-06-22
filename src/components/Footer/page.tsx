@@ -142,7 +142,19 @@ function Footer() {
               <div>
                 <p className="text-gray-300 text-sm leading-snug">Barrio Los Andes, San Pedro Sula</p>
                 <p className="text-gray-500 text-xs mt-0.5">7 Calle A - 14 Avenida N.O</p>
-                <p className="text-gray-500 text-xs">Plaza Carolina, Boulevard Mackey</p>
+              </div>
+            </li>
+
+            <li className="flex items-start gap-3">
+              <span className="size-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#CCFD03" className="size-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+              </span>
+              <div>
+                <p className="text-gray-300 text-sm leading-snug">Boulevard Mackey, San Pedro Sula</p>
+                <p className="text-gray-500 text-xs">Plaza Carolina, Segundo Nivel</p>
               </div>
             </li>
 

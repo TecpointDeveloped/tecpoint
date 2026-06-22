@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import NavbarMenu from '@/components/navbarmenu/page'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -17,65 +16,88 @@ export async function getServerSideProps() {
 
 const categories = [
   {
-    label: 'Auriculares',
-    sub: 'True Wireless & con cable',
-    bg: 'bg-black',
+    label: 'Protección de Pantalla Premium',
+    sub: 'Cristales templados de alta definición',
+    bg: 'bg-[#1a1a2e]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&search=auriculares',
-    image: '/images/categorias/productos/X0 AUDIFONOS Q5.png',
-    imgSize: 320,
+    href: '/shop?page=1&brand=&category=all&search=vidrio',
   },
   {
-    label: 'Audifonos BT',
-    sub: 'Bluetooth & Over-ear',
-    bg: 'bg-[#d2bfb8]',
-    textColor: 'text-black',
-    href: '/shop?page=1&brand=&search=audifonos',
-    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15860%2FHG-15860_01?alt=media&token=e61a72f8-9df8-4ce7-91e4-d96f2b4bc973',
-    imgSize: 340,
+    label: 'Fundas & Cobertores Premium',
+    sub: 'Protección estilo y resistencia',
+    bg: 'bg-[#2d2d2d]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&category=all&search=cobertor',
   },
   {
-    label: 'Car Charger',
-    sub: 'Carga rápida para tu vehículo',
+    label: 'Carga Inteligente',
+    sub: 'Cargadores rápidos y wireless',
     bg: 'bg-[#ff5e00]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&search=cargador+carro',
-    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15785%2FFrame%20364.png_1?alt=media&token=c941567c-e1aa-423a-9753-d6236b80d5ea',
-    imgSize: 480,
+    href: '/shop?page=1&brand=&category=all&search=carga',
   },
   {
-    label: 'Power Banks',
-    sub: 'Batería portátil de alta capacidad',
-    bg: 'bg-[#195eff]',
+    label: 'Cables Premium',
+    sub: 'USB-C, Lightning, HDMI y más',
+    bg: 'bg-[#0f3460]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&search=power+bank',
-    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FHypergear%2FHG-15827%2F15827_01%201.png_1?alt=media&token=862363e6-e11b-4b60-a2ba-1c461bb3f3e5',
-    imgSize: 400,
+    href: '/shop?page=1&brand=&category=all&search=cable',
   },
   {
-    label: 'Cobertores',
-    sub: 'Protección para tu dispositivo',
+    label: 'Audio & Sonido',
+    sub: 'Auriculares y speakers premium',
+    bg: 'bg-[#d2bfb8]',
+    textColor: 'text-black',
+    href: '/shop?page=1&brand=&category=all&search=audio',
+  },
+  {
+    label: 'Smartwatch & Wearables',
+    sub: 'Relojes inteligentes y accesorios',
+    bg: 'bg-[#16213e]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&category=all&search=smartwatch',
+  },
+  {
+    label: 'Accesorios para Auto',
+    sub: 'Carga y conectividad vehicular',
     bg: 'bg-[#1c1c1e]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&search=cobertor',
-    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FGhostek%2FGHOCAS3605%2Fcobertor%20ghostek%20iPhone%2015%20Pro%20Max%20Gray.webp?alt=media&token=35e65c15-fcd3-4fa3-8957-86e0c30a63ac',
-    imgSize: 280,
+    href: '/shop?page=1&brand=&category=all&search=carro',
   },
   {
-    label: 'Cables',
-    sub: 'USB-C, Lightning, HDMI y más',
-    bg: 'bg-[#2c3e50]',
+    label: 'Soportes & Creación',
+    sub: 'Trípodes y brazos de soporte',
+    bg: 'bg-[#e94560]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&search=cable',
-    image: 'https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/productos%2FAppacs%2FEL-10113%2FABUIABACGAAglZ27igYozNXO5AYwhAc4hAc.jpg_1?alt=media&token=067f2c71-180c-4f6d-871e-4f951a9bce69',
-    imgSize: 300,
+    href: '/shop?page=1&brand=&category=all&search=soporte',
   },
   {
-    label: 'Accesorios',
-    sub: 'Todo lo que tu equipo necesita',
+    label: 'Productividad & Oficina',
+    sub: 'Escritorios y organización tech',
     bg: 'bg-[#f5f5f0]',
     textColor: 'text-black',
-    href: '/shop?page=1&brand=&search=accesorios',
+    href: '/shop?page=1&brand=&category=all&search=oficina',
+  },
+  {
+    label: 'Lifestyle & Organización',
+    sub: 'Organiza tu vida digital',
+    bg: 'bg-[#195eff]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&category=all&search=Lifestyle & Organización Tech',
+  },
+  {
+    label: 'Iluminación & Herramientas',
+    sub: 'Luces LED y herramientas tech',
+    bg: 'bg-[#00d9ff]',
+    textColor: 'text-black',
+    href: '/shop?page=1&brand=&category=all&search=iluminación',
+  },
+  {
+    label: 'Equipos Tech',
+    sub: 'Profesionales de alto rendimiento',
+    bg: 'bg-black',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&category=all&search=Equipos Tech Profesionales',
     image: '/images/categorias/minis/cargadores__categoria.png',
     imgSize: 260,
   },
@@ -119,7 +141,7 @@ function Categories({ title, description, keywords, robots }: { title: string, d
 
         {/* Grid de categorías */}
         <section className="p-4 md:p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
             {categories.map((cat) => (
               <Link
                 key={cat.label}
@@ -132,18 +154,6 @@ function Categories({ title, description, keywords, robots }: { title: string, d
                   <h2 className={`text-4xl md:text-5xl font-black tracking-tight leading-none ${cat.textColor}`}>
                     {cat.label}
                   </h2>
-                </div>
-
-                {/* Imagen centrada */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    alt={cat.label}
-                    quality={100}
-                    width={cat.imgSize}
-                    height={cat.imgSize}
-                    src={cat.image}
-                    className="object-contain group-hover:scale-110 transition-transform duration-500 ease-out"
-                  />
                 </div>
 
                 {/* CTA siempre visible abajo */}

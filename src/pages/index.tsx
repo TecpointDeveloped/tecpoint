@@ -145,100 +145,44 @@ export default function Home({ logos, products }: HomeProps) {
             </div>
           </CarouselItem>
 
-          {/* HOCO — texto izquierda, gradiente de izquierda a derecha */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE HOCO.png" alt="Banner Hoco" />
-            <div className="relative size-full flex items-center justify-start md:p-16 p-6 bg-gradient-to-r from-black/70 via-black/30 to-transparent">
-              <div className="flex flex-col gap-6 md:gap-10 items-start">
-                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
-                  Accesorios
-                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">Hoco</span>
-                </h6>
-                <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Hoco&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
-                    Ver más
-                  </Link>
-                  <Link href="/shop?page=1&brand=Hoco&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
-                    Comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
-            </div>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/XO BANNER NUEVO.png" alt="Banner XO Nuevo" />
           </CarouselItem>
 
-          {/* HYPERGEAR — texto derecha, gradiente de derecha a izquierda */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE HYPERGEAR.png" alt="Banner Hypergear" />
-            <div className="relative size-full flex items-center justify-end md:p-16 p-6 bg-gradient-to-l from-black/70 via-black/30 to-transparent">
-              <div className="flex flex-col gap-6 md:gap-10 items-end">
-                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase text-right">
-                  Lo nuevo de
-                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case text-right">Hypergear</span>
-                </h6>
-                <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Hypergear&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
-                    Comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                  <Link href="/shop?page=1&brand=Hypergear&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
-                    Ver más
-                  </Link>
-                </section>
-              </div>
-            </div>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/XO BANNER NUEVO 2.png" alt="Banner XO Nuevo 2" />
           </CarouselItem>
 
-          {/* KRIEG — texto izquierda, gradiente de izquierda a derecha */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE KRIEG.png" alt="Banner Krieg" />
-            <div className="relative size-full flex items-center justify-start md:p-16 p-6 bg-gradient-to-r from-black/70 via-black/30 to-transparent">
-              <div className="flex flex-col gap-6 md:gap-10 items-start">
-                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
-                  Gaming & Tech
-                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">Krieg</span>
-                </h6>
-                <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Krieg&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
-                    Ver más
-                  </Link>
-                  <Link href="/shop?page=1&brand=Krieg&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
-                    Comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
-            </div>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/XO BANNER NUEVO 3.png" alt="Banner XO Nuevo 3" />
           </CarouselItem>
 
-          {/* X0 — texto centro, overlay suave */}
           <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/BANNER DE X0.png" alt="Banner X0" />
-            <div className="relative size-full flex items-center justify-center md:p-16 p-6 bg-black/40">
-              <div className="flex flex-col gap-6 md:gap-10 items-center text-center">
-                <h6 className="text-white/80 text-[18px] font-[700] leading-none tracking-widest uppercase">
-                  Accesorios Premium
-                  <span className="block text-white text-[42px] md:text-[64px] font-[900] leading-none tracking-tight normal-case">XO</span>
-                </h6>
-                <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=XO&search=" className="bg-white py-2 px-6 rounded-full text-black font-semibold size-fit hover:bg-transparent border-2 border-white hover:text-white transition-colors">
-                    Ver más
-                  </Link>
-                  <Link href="/shop?page=1&brand=XO&search=" className="text-white py-2 px-4 hover:underline flex items-center gap-2 font-medium">
-                    Comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
-            </div>
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/ROCKSPACE BANNER HEAT.png" alt="Banner Rockspace" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 1.png" alt="Banner Hoco Nuevos Ingresos 1" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 2.png" alt="Banner Hoco Nuevos Ingresos 2" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 3.png" alt="Banner Hoco Nuevos Ingresos 3" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 4.png" alt="Banner Hoco Nuevos Ingresos 4" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/HOCO NUEVOS INGRESOS 5.png" alt="Banner Hoco Nuevos Ingresos 5" />
+          </CarouselItem>
+
+          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
+            <Image height={690} width={1600} priority quality={100} className="absolute w-full h-full object-cover" src="/images/ho-10132 banner hoco prooducto nuevo.png" alt="Banner Hoco Producto Nuevo" />
           </CarouselItem>
         </CarouselContent>
       </Carousel>
