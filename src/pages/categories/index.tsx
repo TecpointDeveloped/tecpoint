@@ -2,6 +2,7 @@ import NavbarMenu from '@/components/navbarmenu/page'
 import Head from 'next/head'
 import Link from 'next/link'
 import Footer from '@/components/Footer/page'
+import Image from 'next/image'
 
 export async function getServerSideProps() {
   return {
@@ -16,90 +17,60 @@ export async function getServerSideProps() {
 
 const categories = [
   {
-    label: 'Protección de Pantalla Premium',
-    sub: 'Cristales templados de alta definición',
-    bg: 'bg-[#1a1a2e]',
-    textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=vidrio',
-  },
-  {
-    label: 'Fundas & Cobertores Premium',
-    sub: 'Protección estilo y resistencia',
-    bg: 'bg-[#2d2d2d]',
-    textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=cobertor',
-  },
-  {
-    label: 'Carga Inteligente',
-    sub: 'Cargadores rápidos y wireless',
+    label: 'Power & Charge',
+    sub: 'Cargadores, power banks y soluciones de energía',
+    image: '/images/categorias/minis/POWER & CHARGE.png',
     bg: 'bg-[#ff5e00]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=carga',
+    href: '/shop?page=1&brand=&search=carga',
   },
   {
-    label: 'Cables Premium',
-    sub: 'USB-C, Lightning, HDMI y más',
-    bg: 'bg-[#0f3460]',
+    label: 'Screen Protection',
+    sub: 'Protectores de pantalla y cristales templados',
+    image: '/images/categorias/minis/Screen Protection_.png',
+    bg: 'bg-[#1a1a2e]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=cable',
+    href: '/shop?page=1&brand=&search=vidrio',
   },
   {
-    label: 'Audio & Sonido',
-    sub: 'Auriculares y speakers premium',
+    label: 'Sound Essentials',
+    sub: 'Audífonos, speakers y equipos de audio',
+    image: '/images/categorias/minis/Sound Essentials.png',
     bg: 'bg-[#d2bfb8]',
     textColor: 'text-black',
-    href: '/shop?page=1&brand=&category=all&search=audio',
+    href: '/shop?page=1&brand=&search=audio',
   },
   {
-    label: 'Smartwatch & Wearables',
-    sub: 'Relojes inteligentes y accesorios',
+    label: 'Smart Tech',
+    sub: 'Smartwatch, wearables y dispositivos inteligentes',
+    image: '/images/categorias/minis/Smart Tech.png',
     bg: 'bg-[#16213e]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=smartwatch',
+    href: '/shop?page=1&brand=&search=smartwatch',
   },
   {
-    label: 'Accesorios para Auto',
-    sub: 'Carga y conectividad vehicular',
+    label: 'Travel & Carry',
+    sub: 'Mochilas, estuches y organizadores portátiles',
+    image: '/images/categorias/minis/Travel & Carry.png',
+    bg: 'bg-[#2d2d2d]',
+    textColor: 'text-white',
+    href: '/shop?page=1&brand=&search=mochila',
+  },
+  {
+    label: 'Smart Drive',
+    sub: 'Accesorios para vehículos y conectividad vehicular',
+    image: '/images/categorias/minis/Smart Drive.png',
     bg: 'bg-[#1c1c1e]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=carro',
+    href: '/shop?page=1&brand=&search=carro',
   },
   {
-    label: 'Soportes & Creación',
-    sub: 'Trípodes y brazos de soporte',
-    bg: 'bg-[#e94560]',
+    label: 'Outdoor Pro',
+    sub: 'Equipos para exterior, iluminación y herramientas',
+    image: '/images/categorias/minis/Outdoor Pro.png',
+    bg: 'bg-[#0f3460]',
     textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=soporte',
-  },
-  {
-    label: 'Productividad & Oficina',
-    sub: 'Escritorios y organización tech',
-    bg: 'bg-[#f5f5f0]',
-    textColor: 'text-black',
-    href: '/shop?page=1&brand=&category=all&search=oficina',
-  },
-  {
-    label: 'Lifestyle & Organización',
-    sub: 'Organiza tu vida digital',
-    bg: 'bg-[#195eff]',
-    textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=Lifestyle & Organización Tech',
-  },
-  {
-    label: 'Iluminación & Herramientas',
-    sub: 'Luces LED y herramientas tech',
-    bg: 'bg-[#00d9ff]',
-    textColor: 'text-black',
-    href: '/shop?page=1&brand=&category=all&search=iluminación',
-  },
-  {
-    label: 'Equipos Tech',
-    sub: 'Profesionales de alto rendimiento',
-    bg: 'bg-black',
-    textColor: 'text-white',
-    href: '/shop?page=1&brand=&category=all&search=Equipos Tech Profesionales',
-    image: '/images/categorias/minis/cargadores__categoria.png',
-    imgSize: 260,
+    href: '/shop?page=1&brand=&search=outdoor',
   },
 ]
 
@@ -148,6 +119,17 @@ function Categories({ title, description, keywords, robots }: { title: string, d
                 href={cat.href}
                 className={`group relative overflow-hidden rounded-2xl ${cat.bg} h-[340px] md:h-[420px] flex flex-col justify-between p-8`}
               >
+                {/* Imagen con blur frente a la card */}
+                {cat.image && (
+                  <Image
+                    src={cat.image}
+                    alt={cat.label}
+                    fill
+                    className="object-contain absolute inset-0 opacity-30 group-hover:opacity-40 transition-opacity pointer-events-none"
+                    quality={100}
+                  />
+                )}
+
                 {/* Texto siempre visible */}
                 <div className="flex flex-col gap-1 z-10 relative">
                   <p className={`text-sm font-medium opacity-60 ${cat.textColor}`}>{cat.sub}</p>
