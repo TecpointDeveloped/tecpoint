@@ -74,7 +74,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       };
 
-      const productBanner = BannersData.find((banner) => banner.marca === data.marca_producto?.marca);
+      const productBrand = typeof data.marca_producto?.marca === "string"
+        ? data.marca_producto.marca.trim().toLowerCase()
+        : "";
+
+      const productBanner = BannersData.find((banner) =>
+        typeof banner.marca === "string" &&
+        banner.marca.trim().toLowerCase() === productBrand
+      );
 
       return {
         props: {
@@ -184,7 +191,14 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   const imagesToShow = showRemaining ? imagenesArray.slice(2) : imagenesArray.slice(0, 3);
 
-  const banner = Banners.find((banner) => banner.marca === product.marca_producto?.marca) || {
+  const productBrand = typeof product.marca_producto?.marca === "string"
+    ? product.marca_producto.marca.trim().toLowerCase()
+    : "";
+
+  const banner = Banners.find((banner) =>
+    typeof banner.marca === "string" &&
+    banner.marca.trim().toLowerCase() === productBrand
+  ) || {
     color: "000000",
     ImageBanner: "/default-banner.png",
   };
@@ -506,9 +520,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           {/* ── Secciones de imagen ── */}
           <section
             className={`bg-gray-50 rounded-2xl overflow-hidden flex flex-col gap-2 mt-4 ${(!product.secciones?.seccion_01.imagenUrl || typeof product.secciones?.seccion_01.imagenUrl !== 'string' || !product.secciones?.seccion_01.imagenUrl.trim()) &&
-                (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
-                (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim())
-                ? 'hidden' : ''
+              (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
+              (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim())
+              ? 'hidden' : ''
               }`}
           >
             <div className="flex flex-col sm:flex-row gap-2">
