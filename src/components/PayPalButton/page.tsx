@@ -9,7 +9,7 @@ const PayPalButton = ({ total, onSuccess }: PayPalButtonProps) => {
   return (
     <PayPalScriptProvider
       options={{
-        clientId: "AWLXP5vCA1FjayLx8uiKQK_tqCIYX8JASMsGyc5Jw2NCuTxtWjJG89GJgfIsW2j6B-G7aIteNuF71Y-m",
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
         currency: "USD",
       }}
     >

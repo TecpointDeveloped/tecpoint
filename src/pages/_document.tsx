@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
 
 export default function Document() {
   return (
@@ -8,7 +7,10 @@ export default function Document() {
         {/* Google Site Verification */}
         <meta
           name="google-site-verification"
-          content="rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc"
+          content={
+            process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+            "rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc"
+          }
         />
 
         {/* Favicon */}
@@ -63,30 +65,6 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-43E14570X3"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-43E14570X3');
-          `}
-        </Script>
-
-        {/* Google Ads Conversion */}
-        <Script id="google-ads-conversion" strategy="afterInteractive">
-          {`
-            gtag('event', 'conversion', {
-                'send_to': 'AW-11071480891/aFf1CKL36ogYELvIpZ8p',
-                'transaction_id': ''
-            });
-          `}
-        </Script>
       </body>
     </Html>
   );

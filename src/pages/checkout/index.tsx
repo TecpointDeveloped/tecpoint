@@ -1,59 +1,61 @@
-import NavbarMenu from '@/components/navbarmenu/page'
-import React from 'react'
+import Head from "next/head";
+import Link from "next/link";
+import NavbarMenu from "@/components/navbarmenu/page";
 
-function index() {
+export default function CheckoutPage() {
   return (
     <>
+      <Head>
+        <title>Finalizar compra | TECPOINT</title>
+        <meta
+          name="description"
+          content="Finalice su pedido TECPOINT con la orientación de un asesor."
+        />
+        <meta name="robots" content="noindex,follow" />
+      </Head>
+
       <NavbarMenu />
 
-      <div className='p-8 max-w-xl mx-auto bg-white shadow-md rounded-lg'>
-        <h2 className='text-2xl font-bold mb-6 text-center'>Checkout</h2>
+      <main className="min-h-[75vh] bg-[#f4f6f7] px-5 pb-16 pt-28">
+        <section className="mx-auto max-w-2xl overflow-hidden rounded-[28px] bg-white shadow-[0_24px_80px_rgba(19,24,23,.10)]">
+          <div className="h-2 bg-[#cf2c28]" />
+          <div className="p-8 md:p-12">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-[#cf2c28]">
+              Compra segura
+            </p>
+            <h1 className="max-w-xl text-4xl font-bold tracking-[-0.04em] text-[#131817] md:text-5xl">
+              Finalice su pedido con un asesor TECPOINT.
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#5a6260]">
+              Por ahora confirmamos disponibilidad, compatibilidad, entrega y
+              método de pago directamente por WhatsApp. No solicitamos datos de
+              tarjeta dentro de esta página.
+            </p>
 
-        <form className='space-y-4'>
-
-
-
-          <section className='flex gap-4'>
-            <div className='w-full'>
-              <label htmlFor="firstName" className='block text-sm font-medium text-gray-700'>Nombres del Cliente:</label>
-              <input type="text" id="firstName" name="firstName" required className='mt-1 block w-full flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <Link
+                href="/cart"
+                className="rounded-full bg-[#cf2c28] px-6 py-4 text-center font-bold text-white transition hover:bg-[#a7192f]"
+              >
+                Revisar mi carrito
+              </Link>
+              <a
+                href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20finalizar%20mi%20compra."
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-[#131817] px-6 py-4 text-center font-bold text-[#131817] transition hover:bg-[#131817] hover:text-white"
+              >
+                Hablar con un asesor
+              </a>
             </div>
 
-            <div className='w-full'>
-              <label htmlFor="lastName" className='block text-sm font-medium text-gray-700'>Apellidos del Cliente:</label>
-              <input type="text" id="lastName" name="lastName" required className='mt-1 block w-full flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
-            </div>
-          </section>
-
-          <section className='flex gap-4'>
-            <div className='w-full gap-4'>
-              <label htmlFor="email" className='block text-sm font-medium text-gray-700'>Correo Electrónico:</label>
-              <input type="email" id="email" name="email" required className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
-            </div>
-
-            <div className='w-[280px] gap-4'>
-              <label htmlFor="phone" className='block text-sm font-medium text-gray-700'>Número de Teléfono:</label>
-              <input type="tel" id="phone" name="phone" required className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
-            </div>
-          </section>
-
-          <div>
-            <label htmlFor="address" className='block text-sm font-medium text-gray-700'>Dirección Completa:</label>
-            <input type="text" id="address" name="address" required className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+            <p className="mt-8 border-t border-[#e2e6e7] pt-6 text-sm leading-6 text-[#737b79]">
+              El pago en línea se habilitará únicamente después de completar la
+              configuración segura del proveedor y validar el flujo de compra.
+            </p>
           </div>
-          <div>
-            <label htmlFor="cardNumber" className='block text-sm font-medium text-gray-700'>Número de Tarjeta:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
-          </div>
-          <div>
-            <label htmlFor="notes" className='block text-sm font-medium text-gray-700'>Notas del Pedido:</label>
-            <textarea id="notes" name="notes" className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'></textarea>
-          </div>
-          <button type="submit" className='w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Enviar</button>
-        </form>
-      </div>
+        </section>
+      </main>
     </>
-  )
+  );
 }
-
-export default index

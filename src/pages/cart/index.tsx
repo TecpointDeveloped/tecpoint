@@ -7,6 +7,7 @@ import { useCartStore } from "../../lib/cartStore";
 import { useAuth } from "@/context/useAuth";
 import { Checkbox } from "@heroui/checkbox";
 import { CartItem } from "@/types/ProductTypes";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -83,6 +84,16 @@ const CartPage = () => {
     }
 
     const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}`;
+    const total = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0);
+    trackInitiateCheckout(
+      cart.map((item) => ({
+        id: item.sku || item.id,
+        name: item.producto || "Producto TECPOINT",
+        price: item.precio || 0,
+        quantity: item.quantity,
+      })),
+      total,
+    );
     const encodedMessage = encodeURIComponent(message);
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(waLink, "_blank");

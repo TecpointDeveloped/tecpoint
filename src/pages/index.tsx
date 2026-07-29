@@ -1,781 +1,383 @@
-import Link from "next/link";
+import Head from "next/head";
 import Image from "next/image";
-import NavbarMenu from "@/components/navbarmenu/page";
-import LogosImages from "@/data/logos.json";
-import { Product } from "@/types/ProductTypes";
-import { Logo } from "@/types/ProductTypes";
+import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
+import { Product } from "@/types/ProductTypes";
+import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
-import Head from "next/head";
-import Autoplay from "embla-carousel-autoplay"
-import { useRef } from "react";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import styles from "@/styles/home2026.module.css";
+import currentCatalog from "@/data/current-catalog-w31.json";
 
 export async function getServerSideProps() {
-  const fetchProducts = async (): Promise<Product[]> => {
-    const productsCollection = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME);
-    const productDocs = await getDocs(productsCollection);
+  const productDocs = await getDocs(
+    collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string),
+  );
 
-    return productDocs.docs.map((doc) => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        ...data,
-        fecha_agregado: data.fecha_agregado?.toDate
-          ? data.fecha_agregado.toDate().toISOString()
-          : null,
-      };
-    }) as Product[];
-  };
+  const inventoryBySku = new Map(
+    currentCatalog.records.map((item) => [item.sku, item]),
+  );
 
-  const products = await fetchProducts();
+  const products = productDocs.docs.map<Product>((doc) => {
+    const data = doc.data();
+    const inventory = inventoryBySku.get(String(data.sku || "").trim());
+    return {
+      id: doc.id,
+      ...data,
+      precio: {
+        ...data.precio,
+        detalle: inventory?.detailPrice || data.precio?.detalle || 0,
+      },
+      extradata: {
+        ...data.extradata,
+        stock: Boolean(inventory && inventory.stock > 0),
+      },
+      fecha_agregado: data.fecha_agregado?.toDate
+        ? data.fecha_agregado.toDate().toISOString()
+        : null,
+    } as Product;
+  })
+    .filter((product) => inventoryBySku.has(String(product.sku || "").trim()))
+    .sort((a, b) => {
+      const dateA = a.fecha_agregado
+        ? new Date(a.fecha_agregado).getTime()
+        : 0;
+      const dateB = b.fecha_agregado
+        ? new Date(b.fecha_agregado).getTime()
+        : 0;
+      return dateB - dateA;
+    });
 
-  return {
-    props: {
-      logos: LogosImages as Logo[],
-      products,
-    },
-  };
+  return { props: { products } };
 }
 
-interface HomeProps {
-  logos: Logo[];
-  products: Product[];
+const categories = [
+  {
+    number: "01",
+    title: "Power & Charge",
+    copy: "Carga, energía y adaptadores para mantener todo en movimiento.",
+    href: "/shop?page=1&brand=&category=cargadores&search=",
+  },
+  {
+    number: "02",
+    title: "Sound Essentials",
+    copy: "Audio seleccionado para trabajo, llamadas y entretenimiento.",
+    href: "/shop?page=1&brand=&category=sonido&search=",
+  },
+  {
+    number: "03",
+    title: "Screen Protection",
+    copy: "Protección compatible para los dispositivos que más utiliza.",
+    href: "/shop?page=1&brand=&category=protector&search=",
+  },
+  {
+    number: "04",
+    title: "Smart Tech",
+    copy: "Tecnología inteligente que se integra naturalmente a su rutina.",
+    href: "/shop?page=1&brand=&category=reloj&search=",
+  },
+];
+
+const locations = [
+  {
+    city: "San Pedro Sula",
+    name: "Plaza Carolina",
+    detail: "Segundo nivel, bulevar Mackay",
+    phone: "50493385732",
+  },
+  {
+    city: "Tegucigalpa",
+    name: "Portal de Viera",
+    detail: "Tercer nivel, km 3 carretera a El Hatillo",
+    phone: "50495200523",
+  },
+  {
+    city: "San Pedro Sula",
+    name: "Mayoreo & Pick Up",
+    detail: "Barrio Los Andes, 7 calle, 14 avenida",
+    phone: "50498191003",
+  },
+];
+
+function imageFor(product: Product) {
+  return (
+    product.imagenes?.imagen_01?.img ||
+    Object.values(product.imagenes || {})[0]?.img ||
+    "/default-product.png"
+  );
 }
 
-export default function Home({ logos, products }: HomeProps) {
-  const SizeIcon = 40;
-  const plugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false })
-  )
+function priceFor(product: Product) {
+  const value = Number(product.precio?.detalle || 0);
+  return new Intl.NumberFormat("es-HN", {
+    style: "currency",
+    currency: "HNL",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+export default function Home({ products }: { products: Product[] }) {
+  const selectedProducts = products
+    .filter(
+      (product) =>
+        product.producto &&
+        product.slug &&
+        product.precio?.detalle &&
+        product.extradata?.stock &&
+        imageFor(product) !== "/default-product.png",
+    )
+    .slice(0, 8);
 
   return (
     <>
       <Head>
-        <title>Distribuidores de Accesorios Tecnológicos | Tecpoint</title>
-        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
-        <meta name="keywords" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta name="description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
+        <title>TECPOINT | Tecnología bien elegida</title>
+        <meta
+          name="description"
+          content="Accesorios tecnológicos seleccionados, compatibilidad clara y atención cercana. Compra al detalle y al mayoreo en Honduras."
+        />
+        <meta
+          name="keywords"
+          content="accesorios tecnológicos Honduras, cargadores, audífonos, power banks, protección de pantalla, TECPOINT"
+        />
         <meta property="og:url" content="https://tecpoint.ws" />
-        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
-        <meta property="og:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta property="og:description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tecpoint Distribucion - Honduras" />
+        <meta property="og:title" content="TECPOINT | Tecnología bien elegida" />
+        <meta
+          property="og:description"
+          content="Productos seleccionados y una experiencia cuidada para comprar tecnología con confianza."
+        />
+        <meta property="og:image" content="https://tecpoint.ws/images/og_image.png" />
         <meta property="og:locale" content="es_HN" />
-
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
-        <meta name="twitter:description" content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle." />
-        <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/og_scan_and_win.webp?alt=media&token=35a959d1-f004-4dba-a565-9eb3ef9f04fa" />
-        <meta name="twitter:image:alt" content="Distribuidores de Accesorios Tecnológicos | Tecpoint" />
+        <link rel="icon" href="/brand/isologo.svg" />
       </Head>
+
+      <div className={styles.announcement}>
+        <span>ENVÍO GRATIS EN COMPRAS MAYORES A L 1,500</span>
+        <span>ENVÍOS NACIONALES · PICK UP DISPONIBLE</span>
+      </div>
 
       <NavbarMenu />
 
-      <Carousel
-        className="w-full h-auto"
-        // onMouseEnter={() => plugin.current.stop()}
-        // onMouseLeave={() => plugin.current.reset()}
-        plugins={[plugin.current]}
-        opts={{
-          loop: true,
-          duration: 20,
-        }}
-      >
-        <CarouselContent>
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <video
-              className="absolute w-full h-full object-cover"
-              width="100%"
-              height="100%"
-              autoPlay
-              muted
-              loop
-              preload="none"
-            // poster="/images/langsdom_banner.jpg"
-            >
-              <source src="/video/langsdom_video.mp4" type="video/mp4" />
-              <track
-                src="/path/to/captions.vtt"
-                kind="subtitles"
-                srcLang="en"
-                label="English"
-              />
-              Your browser does not support the video tag.
-            </video>
-
-            <div className="relative size-full flex items-center justify-center md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[0px] bg-[#0000005e]">
-              <div className="flex flex-col gap-4 md:gap-16 items-center">
-                <i className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">
-                  Nueva
-                  <span className="not-italic text-white block text-[40px] md:text-[60px]">
-                    Marca Langsdom
-                  </span>
-                </i>
-
-                <section className="flex gap-4">
-                  <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
-                    ver mas
-                  </Link>
-                  <Link href="/shop?page=1&brand=Langsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
-                    comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>EL PUNTO DE LA TECNOLOGÍA</p>
+            <h1>
+              Tecnología
+              <br />
+              <span>bien elegida.</span>
+            </h1>
+            <p className={styles.lead}>
+              Productos seleccionados, compatibilidad clara y una experiencia
+              cuidada para comprar con confianza.
+            </p>
+            <div className={styles.actions}>
+              <Link className={styles.primaryButton} href="/shop">
+                Explorar productos
+              </Link>
+              <a className={styles.secondaryButton} href="#experiencia">
+                Conocer TECPOINT
+              </a>
             </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/langsdom_banner.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center justify-center md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[0px] bg-[#0000005e]">
-              <div className="flex flex-col gap-4 md:gap-16 items-center">
-                <h6 className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos<span className="text-white block text-[40px] md:text-[60px]">Auriculares BH20</span></h6>
-
-                <section className="flex gap-4">
-                  <Link href="#LagnsdomItems" className="bg-[#CCFD03] py-2 px-5 rounded-full text-black size-fit hover:bg-transparent border-2 border-[#CCFD03] hover:text-[#fff] hover:border-white">
-                    ver mas
-                  </Link>
-                  <Link href="/shop?page=1&brand=Langsdom&search=" className="text-[#CCFD03] py-2 px-5 hover:underline flex items-center gap-2">
-                    comprar
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
+            <div className={styles.proof}>
+              <div><strong>3</strong><span>puntos de atención</span></div>
+              <div><strong>HN</strong><span>cobertura nacional</span></div>
+              <div><strong>+680</strong><span>productos registrados</span></div>
             </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-left" src="/images/gran_sorteo.webp" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center justify-center md:items-end md:p-12 pt-10 pb-10 flex-col gap-12 backdrop-blur-[2px] bg-[#ffffff0d] md:bg-transparent md:backdrop-blur-0">
-              <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Gran Sorteo<span className="block text-[40px] md:text-[60px]">Escanea y Gana!</span></h6>
-
-                <section className="flex gap-4">
-                  <Link href="/scan" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#fff] hover:border-white">
-                    Participar
-                  </Link>
-                  <Link href="/scan" className="text-white py-2 px-5 hover:underline flex items-center gap-2">
-                    Probar Suerte
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </Link>
-                </section>
-              </div>
+          </div>
+          <div className={styles.heroVisual}>
+            <Image
+              src="/images/producto-editorial-2026.png"
+              alt="Accesorios tecnológicos seleccionados por TECPOINT"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            <div className={styles.heroSeal}>
+              <Image src="/brand/isologo.svg" alt="" width={62} height={62} />
+              <span>SELECCIÓN TECPOINT</span>
             </div>
-          </CarouselItem>
+            <span className={styles.heroNote}>PRECISIÓN · UTILIDAD · DISEÑO</span>
+          </div>
+        </section>
 
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover object-right" src="/images/jumper_carrro_hoco.jpg" alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint" />
-
-            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-center pb-10 flex-col gap-12">
-              <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
-                <h6 className="text-white text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevo<span className="block text-[40px] md:text-[60px]">Jumper para Carro</span></h6>
-
-                <section className="flex gap-4">
-                  <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Ordena YA!</Link>
-                </section>
-              </div>
+        <section className={styles.categories}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>ENCUENTRE SU PUNTO</p>
+              <h2>Comprar por necesidad.</h2>
             </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/banner_chargers_powerpeak_grey.webp" alt="cargadores carga rapida usb c" />
-            <div className="relative size-full flex items-center justify-center pb-10 bg-[#00000018] flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Nuevos cargadores <span className="block text-[50px] md:text-[60px]">Carga Rapida</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=cargador" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=cargador" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/bannersite_usb100w-3.webp" alt="cable usb para samsung y iphone" />
-            <div className="relative size-full flex items-center justify-center pb-10 flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] leading-10 text-center tracking-[-0.3px]">Cables USB de<span className="block text-[40px] md:text-[60px]">Marcas Certificadas</span></h6>
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=cable" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=&search=cable" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="w-full h-[50vh] md:h-[74vh] relative flex">
-            <Image height={690} width={1600} priority quality={100} className="cursor-pointer absolute w-full h-full object-cover" src="/images/new_bannersiteboulder.webp" alt="Active 8 hypergear" />
-
-            <div className="relative size-full flex items-center md:items-start md:p-12 pt-10 justify-start md:justify-center pb-10 flex-col gap-12">
-              <h6 className="text-white text-[30px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">Nuevos Cobertores<span className="block text-[40px] md:text-[60px]">iPhone 16 series</span></h6>
-
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=Apple&search=" className="bg-[#118cff] py-2 px-5 rounded-full text-white size-fit hover:bg-transparent border-2 border-[#118cff] hover:text-[#118cff]">Explorar</Link>
-                <Link href="/shop?page=1&brand=Apple&search=" className="text-white py-2 px-5 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-
-      {/* <section className="w-full">
-        <Carousel
-          className="w-full h-auto py-8"
-          // onMouseEnter={() => plugin.current.stop()}
-          // onMouseLeave={() => plugin.current.reset()}
-          plugins={[plugin.current]}
-          opts={{
-            loop: true,
-            duration: 4000,
-            slidesToScroll: "auto",
-          }}>
-          <CarouselContent className="-ml-4">
-            {logos.map((logo, index) => (
-              <CarouselItem
-                key={index}
-                className="bg-white basis-1/2 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-4 flex items-center justify-center"
+            <p>
+              Una navegación sencilla que comienza por lo que usted necesita
+              resolver.
+            </p>
+          </div>
+          <div className={styles.categoryGrid}>
+            {categories.map((category) => (
+              <Link
+                className={styles.categoryCard}
+                href={category.href}
+                key={category.number}
               >
-                <Image
-                  src={logo.logo || ""}
-                  alt={logo.key || `Logo ${index}`}
-                  width={100}
-                  height={26}
-                  className="w-[180px] h-[30px] select-none aspect-auto object-contain"
-                  quality={100}
-                  priority
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-
-      </section> */}
-
-      <div className="relative overflow-hidden w-full md:w-full lg:max-w-[1900px] py-4 m-auto">
-        <div className="bg-gradient-to-r from-white to-transparent h-full w-24 absolute top-0 left-0 z-10" />
-        <div className="marquee">
-          <div className="marquee-inner flex">
-            {logos.map((logo, index) => (
-              <div
-                key={index}
-                className={`hover:bg-[#f3f3f3] w-[260px] h-[70px] 2xl:h-[80px] hover:scale-105 rounded-[8px] grid place-content-center cursor-pointer transition-all mx-4`}
-              >
-                <Image
-                  height={30}
-                  width={180}
-                  quality={95}
-                  src={logo.logo || ""}
-                  alt={`Logo ${index}`}
-                  className="w-[180px] h-[30px] select-none aspect-auto object-contain"
-                />
-              </div>
+                <span>{category.number}</span>
+                <b>↘</b>
+                <h3>{category.title}</h3>
+                <p>{category.copy}</p>
+                <strong>Explorar →</strong>
+              </Link>
             ))}
           </div>
-        </div>
-        <div className="bg-gradient-to-r from-transparent to-white h-full w-24 absolute top-0 right-0 z-10" />
-      </div>
-
-      <article className="p-4 flex gap-6 md:gap-24 w-full md:w-[90%] m-auto items-center justify-center md:py-10 flex-wrap bg-gradient-to-b from-gray-50 to-gray-100 rounded-xl shadow-lg">
-
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
-              <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-              <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-              <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"></path>
-              <path d="M3 9l4 0"></path>
-            </svg>
-          </span>
-
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Envios Seguros</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Envios a nivel nacional de<span className="block">forma rápida y segura.</span></p>
-          </div>
         </section>
 
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
-              <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-            </svg>
-          </span>
-
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Soporte Técnico</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Recibe soporte técnico en<span className="block">nuestras marcas.</span></p>
+        <section className={styles.products}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>SELECCIÓN ACTUAL</p>
+              <h2>Productos que elevan su día.</h2>
+            </div>
+            <Link className={styles.darkButton} href="/shop">
+              Ver catálogo completo
+            </Link>
           </div>
-        </section>
-
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" width={SizeIcon} height={SizeIcon} strokeWidth={1.5}>
-              <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-              <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-              <path d="M12 12l0 .01"></path>
-              <path d="M3 13a20 20 0 0 0 18 0"></path>
-            </svg>
-          </span>
-
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Venta Corporativa</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Recibe atención personalizada<span className="block">a la medida de tu negocio.</span></p>
-          </div>
-        </section>
-
-        <section className="flex flex-col gap-4 items-center text-center">
-          <span className="rounded-full bg-[#000000] p-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#fff" width={SizeIcon} height={SizeIcon}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-            </svg>
-          </span>
-
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-semibold text-lg text-gray-900">Tienda Tecpoint</p>
-            <p className="text-gray-600 leading-5 tracking-tight">Vive la experiencia tecnológica<span className="block">en la tienda Tecpoint.</span></p>
-          </div>
-        </section>
-
-      </article>
-
-      <section className="py-8 px-4 flex flex-col gap-y-6">
-        <h1 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Nuevos Cobertores iPhone 16e</h1>
-
-        <section className="md:max-w-[1500px] m-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {products
-              .filter((product) =>
-                ["BS-DH16EBL", "BS-S16EGS", "BS-PI16EBL", "BS-S16EIR"].includes(product.sku)
-              )
-              .slice(0, 4)
-              .map((product: Product) => {
-                const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
-
-                return (
-                  <div
-                    key={product.id}
-                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
-                  >
-
-                    <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
-                      <p className="text-[12px] font-semibold text-white">Nuevo</p>
-                    </span>
-
-                    <div className="flex flex-col">
-                      <Link
-                        href={`/shop/${product.slug}`}
-                        className="hover:scale-105 transition-transform duration-100"
-                        rel="noopener noreferrer"
-                        download={false}
-                      >
-                        <Image
-                          src={imagen_01}
-                          alt={
-                            product.producto
-                              ? `Imagen de ${product.producto}`
-                              : "Imagen del producto"
-                          }
-                          width={240}
-                          height={240}
-                          quality={100}
-                          className="m-auto w-[240px] h-[240px] aspect-square object-contain mb-4"
-                        />
-                      </Link>
-
-                      <div>
-                        <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                          {product.producto.slice(0, 50)}
-                        </h2>
-                        <p className="text-sm text-gray-500 mt-2">
-                          SKU: {product.sku}
-                        </p>
-
-                        <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                          {(product.categorias || []).map((cat: string, index: number) => (
-                            <span
-                              key={index}
-                              className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
-                            >
-                              {cat}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
-                      <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
-                        Ver Producto
-                      </Link>
-                    </button>
+          <div className={styles.productGrid}>
+            {selectedProducts.map((product, index) => (
+              <article className={styles.productCard} key={product.id}>
+                <Link className={styles.productImage} href={`/shop/${product.slug}`}>
+                  {index < 2 && <span>Selección</span>}
+                  <Image
+                    src={imageFor(product)}
+                    alt={product.producto}
+                    fill
+                    sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                  />
+                </Link>
+                <div className={styles.productInfo}>
+                  <small>
+                    {product.marca_producto?.marca || "TECPOINT"} · {product.sku}
+                  </small>
+                  <h3>{product.producto}</h3>
+                  <div>
+                    <strong>{priceFor(product)}</strong>
+                    <Link href={`/shop/${product.slug}`}>Ver producto +</Link>
                   </div>
-                );
-              })}
+                </div>
+              </article>
+            ))}
           </div>
         </section>
-      </section>
 
-      <section id="#LagnsdomItems" className="w-full h-fit p-4 gap-4 justify-center bg-black">
-        <section className="">
-          <h2 className="text-white text-[40px] font-semibold text-center mb-4">
-            Lo nuevo de
-            <span>
-              <Image
-                className="inline-block w-[240px] h-[30px] object-contain ml-2"
-                src="/logos/lagnsdom.svg"
-                alt="Langsdom Logo"
-                width={240}
-                height={60}
-                quality={100}
-                priority={true}
-              />
-            </span>
-          </h2>
+        <section className={styles.experience} id="experiencia">
+          <div className={styles.experienceImage}>
+            <Image
+              src="/images/experiencia-tecpoint-2026.png"
+              alt="Experiencia TECPOINT"
+              fill
+              sizes="(max-width: 900px) 100vw, 54vw"
+            />
+          </div>
+          <div className={styles.experienceCopy}>
+            <p className={`${styles.eyebrow} ${styles.light}`}>EXPERIENCIA TECPOINT</p>
+            <h2>Tecnología que se siente.</h2>
+            <p>
+              Comprar tecnología debería sentirse claro desde el primer
+              vistazo: entender la compatibilidad, reconocer el beneficio y
+              recibir orientación sin presión.
+            </p>
+            <ol>
+              <li><span>01</span><div><strong>Selección con criterio</strong><p>Productos elegidos por utilidad, calidad y diseño.</p></div></li>
+              <li><span>02</span><div><strong>Confianza al elegir</strong><p>Información y compatibilidad presentadas con claridad.</p></div></li>
+              <li><span>03</span><div><strong>Experiencia cuidada</strong><p>Atención cercana antes, durante y después de la compra.</p></div></li>
+            </ol>
+          </div>
         </section>
 
-        <section className="flex gap-4 justify-center flex-wrap">
-          <div className="size-fit overflow-hidden rounded-2xl group relative">
-            <Image
-              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
-              src="/images/categorias/productos/1.png"
-              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
-              width={790}
-              height={1370}
-              quality={100}
-              priority={true}
-            />
-            <Link
-              href="/shop?page=1&brand=&search="
-              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
-            >
-              Ver producto
-            </Link>
+        <section className={styles.advisor}>
+          <div>
+            <p className={`${styles.eyebrow} ${styles.light}`}>COMPATIBILIDAD PRIMERO</p>
+            <h2>¿No sabe cuál elegir?</h2>
+            <p>
+              Envíenos el modelo exacto de su dispositivo. Un asesor le ayudará
+              a identificar la opción adecuada.
+            </p>
           </div>
-
-          <div className="size-fit overflow-hidden rounded-2xl group relative">
-            <Image
-              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
-              src="/images/categorias/productos/BE20.jpg"
-              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
-              width={790}
-              height={1370}
-              quality={100}
-              priority={true}
-            />
-            <Link
-              href="/shop?page=1&brand=&search="
-              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
-            >
-              Ver producto
-            </Link>
-          </div>
-
-          <div className="size-fit overflow-hidden rounded-2xl group relative">
-            <Image
-              className="w-[340px] h-[560px] object-cover scale-[1.05] hover:scale-[1.07] transition-transform duration-150"
-              src="/images/categorias/productos/TS09.jpg"
-              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
-              width={790}
-              height={1370}
-              quality={100}
-              priority={true}
-            />
-            <Link
-              href="/shop?page=1&brand=&search="
-              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
-            >
-              Ver producto
-            </Link>
-          </div>
-
-          <div className="size-fit overflow-hidden rounded-2xl group relative">
-            <Image
-              className="w-[340px] h-[560px] object-cover hover:scale-[1.02] transition-transform duration-150"
-              src="/images/categorias/productos/TS28.jpg"
-              alt="Participa en nuestro gran sorteo escaneando el codigo QR"
-              width={790}
-              height={1370}
-              quality={100}
-              priority={true}
-            />
-            <Link
-              href="/shop?page=1&brand=&search="
-              className="absolute font-semibold text-sm bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#CCFD03] text-black px-6 py-2 rounded-"
-            >
-              Ver producto
-            </Link>
-          </div>
+          <a
+            className={styles.whiteButton}
+            href="https://wa.me/50494659287?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20accesorio%20compatible."
+            target="_blank"
+            rel="noreferrer"
+          >
+            Consultar compatibilidad
+          </a>
         </section>
-      </section>
 
-      <section className="w-full h-[180px] bg-black relative overflow-hidden">
-        <div className="grid place-content-center absolute w-full h-full z-10">
-          <h4 className="text-[#ffffff] cursor-pointer text-gradient leading-7 md:text-[28px] font-bold text-center m-auto">
-            Revoluciona tu Teléfono con Accesorios
-            <span className="block">de Calidad</span>
-          </h4>
-        </div>
-
-        <div className="flex items-end justify-center w-full h-[180px] bg-black">
-          <Image
-            className="m-auto aspect-square object-cover object-top"
-            height={250}
-            width={250}
-            // style={{ transform: `translateY(${offsetY * 0.024}px)` }}
-            src="/images/iphone_16_pro_max.webp"
-            alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
-            quality={100}
-            priority={true}
-          />
-          <Image
-            className="m-auto aspect-square object-cover object-top"
-            height={280}
-            width={280}
-            // style={{ transform: `translateY(${offsetY * 0.024}px)` }}
-            src="/images/samsung_s24_ultra.webp"
-            alt="accesorios para iPhone y Samsung de la más alta calidad en San Pedro Sula - Honduras"
-            quality={100}
-            priority={true}
-          />
-        </div>
-      </section>
-
-      <section className="md:p-4 p-2 flex justify-center items-center flex-wrap gap-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full md:w-fit">
-          <div className="h-[450px] md:h-[585px] md:w-[550px] w-full overflow-hidden relative bg-[linear-gradient(102.49deg,#e8f5ff_0%,#afdeff_100%)] rounded-[40px]">
-            <div className="w-full p-4 flex flex-col items-center pt-8 gap-6 md:pt-20 md:gap-10">
-              <div className="text-center">
-                <h6 className="text-lg tracking-[-0.2px]">Accesorios Premium</h6>
-                <h6 className="text-[38px] font-extrabold tracking-[-0.2px]">iPhone 16 series</h6>
-              </div>
-
-              <section className="flex gap-4">
-                <Link href="/shop?page=1&brand=&search=iphone" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
-                <Link href="/shop?page=1&brand=&search=iphone" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
-              </section>
-            </div>
-
-            <picture className="absolute bottom-0 w-full">
-              <Image
-                src="/images/categorias/productos/iphone_16_series.png"
-                alt="Accesorios para iPhone 16 Pro Max en San Pedro Sula"
-                width={500}
-                height={294}
-                quality={100}
-                priority={true}
-                className="object-cover m-auto scale-115"
-              />
-            </picture>
+        <section className={styles.wholesale}>
+          <div className={styles.wholesaleCopy}>
+            <p className={styles.eyebrow}>TECPOINT MAYOREO</p>
+            <h2>Inventario que impulsa su negocio.</h2>
+            <p>
+              Atención especializada para comercios y distribuidores que buscan
+              variedad, disponibilidad y acompañamiento comercial.
+            </p>
+            <div><span>Asesoría comercial</span><span>Catálogo amplio</span><span>Pick up en SPS</span></div>
+            <a
+              className={styles.darkButton}
+              href="https://wa.me/50498191003?text=Hola%2C%20deseo%20información%20sobre%20ventas%20al%20mayoreo."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hablar con mayoreo
+            </a>
           </div>
-
-          <div className="grid grid-rows-2 gap-6 w-full">
-            <div className="relative overflow-hidden rounded-[40px] w-full h-[280px] bg-black flex flex-col">
-              <div className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
-                <div>
-                  <p className="text-white/60 mix-blend-difference text-center md:text-start">Audifonos Inalambricos</p>
-                  <h5 className="text-white font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">Audifonos BT</h5>
-                </div>
-
-                <div className="flex gap-4">
-                  <Link href="/shop?page=3&brand=&search=auriculares" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
-                  <Link href="/shop?page=3&brand=&search=auriculares" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
-                </div>
-              </div>
-
-              <Image
-                width={280}
-                height={280}
-                quality={100}
-                alt="Audifonos Inalambricos en san pedro sula a buen precio marca xo"
-                src="/images/categorias/productos/X0 AUDIFONOS Q5.png"
-                className="select-none aspect-square object-cover object-center p-3 relative md:absolute md:right-0 m-auto -mb-20 md:mb-0"
-                priority={false}
-              />
-            </div>
-
-            <div className="relative overflow-hidden rounded-[40px] w-full h-[280px] bg-[linear-gradient(102.49deg,#ffe2e7_0%,#ffbfce_100%)] flex flex-col">
-              <div className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start gap-6">
-                <div>
-                  <p className="text-black/60 mix-blend-difference text-center md:text-start">Relojes Inteligentes</p>
-                  <h5 className="text-black font-black text-[36px] tracking-[-0.4px] leading-10 mix-blend-difference text-center md:text-start">SmartWatch</h5>
-                </div>
-
-                <div className="flex gap-4">
-                  <Link href="/shop?page=1&brand=&search=smartwatch" className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</Link>
-                  <Link href="/shop?page=1&brand=&search=smartwatch" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
-                </div>
-              </div>
-
-              <Image
-                width={280}
-                height={280}
-                quality={100}
-                alt="Audifonos Q5 marca xo"
-                src="/images/categorias/productos/SMARTWATCH XO.png"
-                className="select-none aspect-square md:p-3 object-cover object-center relative md:absolute md:right-0 m-auto -mb-28 md:mb-0 rotate-[86deg] md:rotate-0"
-                priority={false}
-              />
+          <div className={styles.wholesaleVisual}>
+            <Image src="/brand/signal-field.svg" alt="" fill />
+            <div>
+              <Image src="/brand/isologo.svg" alt="" width={84} height={84} />
+              <span>CANAL MAYORISTA</span>
+              <strong>+504 9819-1003</strong>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* <div className="flex flex-col md:flex-row gap-6 w-full md:w-[1120px]">
-          <figure className="h-[300px] md:w-[780px] w-full overflow-hidden bg-[linear-gradient(102.49deg,#e3fff0_0%,#b8ffd4_100%)] rounded-[40px] relative">
-            <figcaption className="z-[1] absolute w-full h-full p-6 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-start">
-              <p className="text-black/60 mix-blend-difference">Accesorios Premium</p>
-              <h5 className="text-black font-black text-[36px] tracking-[-0.4px] mix-blend-difference">S24 Series</h5>
-
-              <section className="flex gap-4 mt-6">
-                <button className="bg-[#118cff] py-2 px-4 rounded-full text-white size-fit">Comprar</button>
-                <Link href="/shop" className="text-[#118cff] py-2 px-4 hover:underline">Ver mas</Link>
-              </section>
-            </figcaption>
-
-            <picture className="absolute bottom-0 md:right-0 md:w-fit w-full grid place-content-center">
-              <Image
-                height={250}
-                width={250}
-                alt="Cobertores para s24 Ultra"
-                src="/images/categorias/productos/samsung s24 ultra.png"
-                className="scale-115 -mb-16"
-              />
-            </picture>
-          </figure>
-
-          <figure className="h-[300px] w-full overflow-hidden bg-[linear-gradient(102.68deg,#fef4e0_0%,#ffdead_99.61%)] rounded-[40px] relative">
-            <picture className="absolute bottom-0 right-0">
-              <Image
-                height={250}
-                width={250}
-                alt="Cobertores para s24 Ultra"
-                src="/images/categorias/productos/samsung s24 ultra.png"
-                className="scale-115 -mb-16"
-              />
-            </picture>
-          </figure>
-        </div> */}
-      </section>
-
-      <section className="w-full h-fit bg-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-12">
-        <div className="md:w-1/2 text-center md:text-left">
-          <div className="w-full flex justify-center md:justify-start mb-6">
-            <Image
-              className="w-full max-w-[280px] h-auto aspect-auto object-contain"
-              width={400}
-              height={100}
-              src="/logos/rock-space.png"
-              alt="Rockspace Logo"
-              quality={100}
-              priority={true}
-            />
+        <section className={styles.locations}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>CERCA DE USTED</p>
+              <h2>Tres puntos de atención.</h2>
+            </div>
+            <p>
+              Visítenos, solicite pick up o reciba su pedido en cualquier lugar
+              de Honduras.
+            </p>
           </div>
-
-          <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">
-            Distribuidores Autorizados
-          </h5>
-          <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-            Somos distribuidores exclusivos de la marca Rockspace, una empresa líder en la protección de pantallas. Ofrecemos una amplia gama de productos diseñados para proteger y prolongar la vida útil de tus dispositivos electrónicos. Con Rockspace, puedes estar seguro de que tus pantallas estarán siempre protegidas contra golpes, arañazos y otros daños.
-          </p>
-        </div>
-
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Image
-            className="aspect-square object-cover rounded-lg"
-            width={700}
-            height={700}
-            src={"/images/rockspace/zc1max.png"}
-            alt="plotter - maquina de corte zc1 max rock space"
-          />
-        </div>
-      </section>
-
-      <div className="py-8 px-4 flex flex-col gap-y-6">
-        <h3 className="text-center md:text-3xl font-semibold tracking-[-0.3px]">Lo Mejor en SmartWatch</h3>
-
-        <section className="md:max-w-[1500px] m-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {products
-              .filter((product) =>
-                Array.isArray(product.categorias) &&
-                product.categorias.some((cat) => typeof cat === "string" && cat.toLowerCase() === "reloj")
-              )
-              .slice(0, 4)
-              .map((product: Product) => {
-                const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
-
-                return (
-                  <div
-                    key={product.id}
-                    className="border p-4 flex flex-col w-[300px] h-[460px] relative justify-between"
-                  >
-
-                    <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
-                      <p className="text-[12px] font-semibold text-white">Nuevo</p>
-                    </span>
-
-                    <div className="flex flex-col">
-                      <Link
-                        href={`/shop/${product.slug}`}
-                        className="hover:scale-105 transition-transform"
-                        rel="noopener noreferrer"
-                        download={false}
-                      >
-                        <Image
-                          src={imagen_01}
-                          alt={
-                            product.producto
-                              ? `Imagen de ${product.producto}`
-                              : "Imagen del producto"
-                          }
-                          width={240}
-                          height={240}
-                          className="m-auto size-[240px] aspect-square object-cover mb-4"
-                          quality={100}
-                          priority
-                        />
-                      </Link>
-
-                      <div>
-                        <h2 className="text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">
-                          {product.producto.slice(0, 55)}
-                        </h2>
-                        <p className="text-lg font-bold mt-2 text-[#666666]">
-                          Lps: {product.precio.detalle}.00
-                        </p>
-
-                        <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
-                          {(product.categorias || []).map((cat: string, index: number) => (
-                            <span
-                              key={index}
-                              className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded w-fit h-fit"
-                            >
-                              {cat}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
-                      <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
-                        Ver Producto
-                      </Link>
-                    </button>
-                  </div>
-                );
-              })}
+          <div className={styles.locationGrid}>
+            {locations.map((location, index) => (
+              <article key={location.name}>
+                <span>0{index + 1}</span>
+                <small>{location.city}</small>
+                <h3>{location.name}</h3>
+                <p>{location.detail}</p>
+                <a
+                  href={`https://wa.me/${location.phone}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Contactar por WhatsApp →
+                </a>
+              </article>
+            ))}
           </div>
         </section>
-      </div>
+
+        <section className={styles.closing}>
+          <Image src="/brand/isologo.svg" alt="" width={96} height={96} />
+          <div>
+            <p className={`${styles.eyebrow} ${styles.light}`}>TECNOLOGÍA QUE SE SIENTE</p>
+            <h2>Encuentre la opción adecuada para usted.</h2>
+          </div>
+          <Link className={styles.whiteButton} href="/shop">Comprar ahora</Link>
+        </section>
+      </main>
 
       <Footer />
     </>

@@ -1,13 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import paypal from "@paypal/checkout-server-sdk";
 
-const environment = new paypal.core.SandboxEnvironment(
-  process.env.PAYPAL_CLIENT_ID || "AWLXP5vCA1FjayLx8uiKQK_tqCIYX8JASMsGyc5Jw2NCuTxtWjJG89GJgfIsW2j6B-G7aIteNuF71Y-m",
-  process.env.PAYPAL_CLIENT_SECRET || "EP7JoqAt8D-Bqk5BVz5IVuMCPUhUXaxEYED-h8lWFadQFSlgRehIUZsE9l69b18XPXumoIQxe-A39mwP"
-);
-
-const paypalClient = new paypal.core.PayPalHttpClient(environment);
-
 // Handler para capturar un pedido
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -20,6 +13,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: "Falta el ID del pedido" });
   }
 
+  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    return res.status(503).json({
+      error: "El pago en línea aún no está habilitado.",
+    });
+  }
+
+  const environment = new paypal.core.SandboxEnvironment(clientId, clientSecret);
+  const paypalClient = new paypal.core.PayPalHttpClient(environment);
   const request = new paypal.orders.OrdersCaptureRequest(orderID);
   request.requestBody({});
 

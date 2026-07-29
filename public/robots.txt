@@ -1,19 +1,8 @@
 User-agent: *
 Allow: /
-
-User-agent: *
-Allow: /shop
-
-User-agent: *
-Allow: /categories
-
-User-agent: *
-Allow: /blog
-
-User-agent: *
-Allow: /my-account
-
-User-agent: *
-Allow: /checkout
+Disallow: /admin/
+Disallow: /api/
+Disallow: /my-account/
+Disallow: /checkout/
 
 Sitemap: https://tecpoint.ws/sitemap.xml

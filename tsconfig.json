@@ -18,5 +18,10 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/lib/algolia.js"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "Crud-Tecpoint",
+    "Tecpoint",
+    "Fotos de Sistema"
+  ]
 }

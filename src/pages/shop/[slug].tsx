@@ -11,6 +11,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useCartStore } from "../../lib/cartStore";
+import { trackAddToCart, trackViewContent } from "@/lib/tracking";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -111,11 +112,22 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         precio: Number(product.precio.detalle),
         producto: product.producto,
       });
+      trackAddToCart({
+        id: product.sku || product.id,
+        name: product.producto,
+        price: Number(product.precio.detalle),
+        quantity,
+      });
     }
   };
 
   useEffect(() => {
     if (product) {
+      trackViewContent({
+        id: product.sku || product.id,
+        name: product.producto,
+        price: Number(product.precio.detalle),
+      });
       const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
       if (!Array.isArray(cart)) {
         setIsAddedToCart(false);

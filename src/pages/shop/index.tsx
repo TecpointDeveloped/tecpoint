@@ -10,19 +10,19 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import type { GetServerSidePropsContext } from "next";
 
 interface ShopProps {
   products: Product[];
   totalProducts: number;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const querySnapshot = await getDocs(productsRef);
 
-    const totalProducts = querySnapshot.size;
-    const products = querySnapshot.docs.map((doc) => {
+    const allProducts = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
         id: doc.id,
@@ -35,12 +35,39 @@ export async function getStaticProps() {
       };
     }) as Product[];
 
+    const queryValue = (value: string | string[] | undefined) =>
+      Array.isArray(value) ? value[0] : value || "";
+    const page = Math.max(1, Number(queryValue(context.query.page)) || 1);
+    const brand = queryValue(context.query.brand).trim().toLowerCase();
+    const category = queryValue(context.query.category).trim().toLowerCase();
+    const search = queryValue(context.query.search).trim().toLowerCase();
+    const productsPerPage = 9;
+
+    const filteredProducts = allProducts.filter((product) => {
+      const matchesBrand = brand
+        ? (product.marca_producto?.marca || "").toLowerCase() === brand
+        : true;
+      const matchesCategory = category && category !== "all"
+        ? (product.categorias || []).some((item) => item.toLowerCase() === category)
+        : true;
+      const matchesSearch = search
+        ? [product.producto, product.sku, product.descripcion]
+            .some((value) => (value || "").toLowerCase().includes(search))
+        : true;
+
+      return matchesBrand && matchesCategory && matchesSearch;
+    });
+    const totalProducts = filteredProducts.length;
+    const products = filteredProducts.slice(
+      (page - 1) * productsPerPage,
+      page * productsPerPage,
+    );
+
     return {
       props: {
         products,
         totalProducts,
       },
-      revalidate: 60,
     };
   } catch (error) {
     console.error("Error al cargar los productos:", error);
@@ -53,7 +80,7 @@ export async function getStaticProps() {
   }
 }
 
-const Shop = ({ products = [] }: ShopProps) => {
+const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
   const router = useRouter();
   const { page, brand, search } = router.query;
   const [searchTerm, setSearchTerm] = useState(search || "");
@@ -95,32 +122,8 @@ const Shop = ({ products = [] }: ShopProps) => {
     router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&search=${currentSearch}`);
   };
 
-  const filteredProducts = products.filter((product) => {
-    const matchesBrand = selectedBrand
-      ? (product.marca_producto?.marca || "").toLowerCase() === selectedBrand.toLowerCase()
-      : true;
-
-    const categoryQuery = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category;
-    const matchesCategory = (categoryQuery && categoryQuery !== "all")
-      // product.categorias ya es garantizado como un array gracias a getStaticProps
-      ? (product.categorias || []).some((cat) => cat.toLowerCase() === categoryQuery.toLowerCase())
-      : true;
-
-    const currentSearchTerm = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
-    const matchesSearch = currentSearchTerm
-      ? (product.producto || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-      (product.sku || "").toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-      (product.descripcion || "").toLowerCase().includes(currentSearchTerm.toLowerCase())
-      : true;
-
-    return matchesBrand && matchesCategory && matchesSearch;
-  });
-
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfFirstProduct + productsPerPage);
-
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentProducts = products;
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
