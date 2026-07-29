@@ -21,6 +21,7 @@ import {
   OFFICIAL_CATEGORIES,
   productColor,
 } from "@/lib/catalog";
+import shopStyles from "@/styles/shopHero2026.module.css";
 
 interface ShopProps {
   products: Product[];
@@ -215,15 +216,37 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
 
       <NavbarMenu />
 
-      <section className="min-h-[300px] px-6 py-16 md:px-[7vw] flex items-end bg-[#cf2c28] bg-[url('/brand/signal-band.svg')] bg-no-repeat bg-right bg-contain text-white">
-        <div className="max-w-[920px]">
-          <p className="mb-4 text-[10px] font-extrabold tracking-[.2em]">CATÁLOGO ACTUAL TECPOINT</p>
-          <h1 className="m-0 text-[48px] md:text-[76px] font-semibold leading-[.92] tracking-[-.055em]">
-            Encuentre su tecnología por necesidad.
+      <section className={shopStyles.hero}>
+        <div className={shopStyles.copy}>
+          <p className={shopStyles.eyebrow}>CATÁLOGO ACTUAL TECPOINT</p>
+          <h1>
+            Encuentre su tecnología
+            <span>por necesidad.</span>
           </h1>
-          <p className="mt-5 max-w-[650px] text-sm md:text-base text-white/80">
-            Explore productos actuales, filtre por categoría, marca o color y confirme compatibilidad con un asesor.
+          <p className={shopStyles.summary}>
+            Explore productos actuales, filtre por categoría, marca o color y
+            confirme compatibilidad con un asesor.
           </p>
+          <div className={shopStyles.guide} aria-label="Formas de explorar el catálogo">
+            <span>01 · BUSQUE</span>
+            <span>02 · COMPARE</span>
+            <span>03 · ELIJA</span>
+          </div>
+        </div>
+
+        <div className={shopStyles.visual} aria-hidden="true">
+          <div className={shopStyles.grid} />
+          <div className={shopStyles.orbit}>
+            <div className={shopStyles.mark}>
+              <Image src="/brand/isologo.svg" alt="" width={210} height={210} priority />
+            </div>
+          </div>
+          <p className={shopStyles.signalCopy}>TECNOLOGÍA QUE SE SIENTE</p>
+          <div className={shopStyles.rail}>
+            <span>CARGA</span>
+            <span>PROTEGE</span>
+            <span>CONECTA</span>
+          </div>
         </div>
       </section>
 

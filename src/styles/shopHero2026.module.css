@@ -1,0 +1,215 @@
+.hero {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(430px, .82fr);
+  overflow: hidden;
+  border-bottom: 1px solid #dfe3e4;
+  background: #fff;
+  color: #131817;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  padding: clamp(70px, 7vw, 112px) clamp(30px, 7vw, 110px) 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.copy::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(19, 24, 23, .12);
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: #c8102e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .21em;
+}
+
+.copy h1 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(56px, 6.2vw, 96px);
+  font-weight: 600;
+  line-height: .88;
+  letter-spacing: -.065em;
+}
+
+.copy h1 span {
+  display: block;
+  color: #c8102e;
+}
+
+.summary {
+  max-width: 670px;
+  margin: 30px 0 0;
+  color: #59605f;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.65;
+}
+
+.guide {
+  margin-top: 42px;
+  padding-top: 18px;
+  display: flex;
+  gap: clamp(18px, 3vw, 44px);
+  border-top: 1px solid #dfe3e4;
+  color: #6b7271;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.visual {
+  position: relative;
+  min-height: 510px;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(145deg, #a90d28 0%, #d51033 58%, #e12a43 100%);
+}
+
+.grid {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  opacity: .32;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .18) 1px, transparent 1px);
+  background-size: 66px 66px;
+  mask-image: linear-gradient(135deg, transparent 4%, #000 80%);
+}
+
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(33vw, 430px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit 16s linear infinite;
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, .27);
+  border-radius: 50%;
+}
+
+.orbit::before { inset: 13%; }
+.orbit::after { inset: 29%; }
+
+.mark {
+  width: clamp(150px, 14vw, 210px);
+  aspect-ratio: 1;
+  padding: clamp(18px, 2vw, 28px);
+  display: grid;
+  place-items: center;
+  border-radius: 30%;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 30px 80px rgba(74, 0, 16, .28);
+  animation: markFloat 4s ease-in-out infinite;
+}
+
+.mark img {
+  width: 100%;
+  height: 100%;
+}
+
+.signalCopy {
+  position: absolute;
+  left: 34px;
+  top: 30px;
+  margin: 0;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 58px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, .4);
+  background: rgba(115, 5, 26, .38);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.rail span::before {
+  content: "↗";
+  margin-right: 12px;
+}
+
+@keyframes orbit {
+  from { transform: translate(-50%, -50%) rotate(0); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes markFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(-2deg); }
+}
+
+@media (max-width: 1020px) {
+  .hero { grid-template-columns: 1fr; }
+  .visual { min-height: 430px; }
+  .orbit { width: 360px; }
+  .copy::after { display: none; }
+}
+
+@media (max-width: 620px) {
+  .hero { min-height: 0; }
+  .copy { padding: 64px 22px 48px; }
+  .copy h1 {
+    font-size: clamp(46px, 14.2vw, 60px);
+    overflow-wrap: normal;
+  }
+  .summary { margin-top: 24px; }
+  .guide {
+    margin-top: 30px;
+    gap: 16px;
+    justify-content: space-between;
+    font-size: 7px;
+  }
+  .visual { min-height: 360px; }
+  .orbit { width: 300px; }
+  .mark { width: 142px; }
+  .signalCopy { left: 22px; }
+  .rail {
+    min-height: 50px;
+    padding: 0 20px;
+    font-size: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit,
+  .mark { animation: none; }
+}
