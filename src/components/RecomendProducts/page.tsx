@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Link from "next/link";
+import { preferredProductSlug } from "@/lib/catalog";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
@@ -57,7 +58,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
 
               <div className="flex flex-col">
                 <Link
-                  href={`/shop/${product.slug}`}
+                  href={`/shop/${preferredProductSlug(product)}`}
                   className="hover:scale-105 transition-transform"
                   rel="noopener noreferrer"
                   download={false}
@@ -99,7 +100,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
               </div>
 
               <button className="flex mt-4 w-full bg-black text-white rounded-full hover:bg-black/80">
-                <Link className="w-full h-full py-[10px] px-4" href={`/shop/${product.slug}`}>
+                <Link className="w-full h-full py-[10px] px-4" href={`/shop/${preferredProductSlug(product)}`}>
                   Ver Producto
                 </Link>
               </button>

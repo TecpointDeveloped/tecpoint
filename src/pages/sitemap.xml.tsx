@@ -1,6 +1,8 @@
 import type { GetServerSideProps } from "next";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
+import { preferredProductSlug } from "@/lib/catalog";
+import { Product } from "@/types/ProductTypes";
 
 const BASE_URL = "https://tecpoint.ws";
 
@@ -32,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     if (databaseName) {
       const snapshot = await getDocs(collection(db, databaseName));
       productUrls = snapshot.docs
-        .map((item) => item.data().slug as string | undefined)
+        .map((item) => preferredProductSlug(item.data() as Product))
         .filter((slug): slug is string => Boolean(slug))
         .map((slug) => ({
           loc: `${BASE_URL}/shop/${encodeURIComponent(slug)}`,

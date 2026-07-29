@@ -20,19 +20,19 @@ const CartPage = () => {
     {
       name: "Kiosco Plaza Carolina",
       username: "plaza carolina",
-      role: "Kiosco Plaza Carolina",
+      role: "Plaza Carolina · San Pedro Sula",
       status: "Active",
     },
     {
-      name: "Kiosco City Mall",
-      username: "city mall",
-      role: "Kiosco City Mall",
+      name: "Portal de Viera",
+      username: "portal de viera",
+      role: "Portal de Viera · Tegucigalpa",
       status: "Active",
     },
     {
-      name: "Tienda Barrio el Benque",
-      username: "tienda bario el benque",
-      role: "Tienda Barrio el Benque",
+      name: "Mayoreo y Pick Up",
+      username: "mayoreo",
+      role: "Mayoreo y Pick Up · Barrio Los Andes",
       status: "Active",
     }
   ];
@@ -64,19 +64,23 @@ const CartPage = () => {
   };
 
   const handleWhatsAppOrder = () => {
-    const phoneNumberCityMall = "95200523";
+    const phoneNumberTegucigalpa = "95200523";
     const phoneNumberCarolina = "93385732";
     const phoneNumberPrincipal = "97157784";
+    const phoneNumberWholesale = "98191003";
 
     let phoneNumber = phoneNumberPrincipal;
 
     if (selectedUserIndex !== null) {
       switch (users[selectedUserIndex].username) {
-        case "city mall":
-          phoneNumber = phoneNumberCityMall;
+        case "portal de viera":
+          phoneNumber = phoneNumberTegucigalpa;
           break;
         case "plaza carolina":
           phoneNumber = phoneNumberCarolina;
+          break;
+        case "mayoreo":
+          phoneNumber = phoneNumberWholesale;
           break;
         default:
           phoneNumber = phoneNumberPrincipal;

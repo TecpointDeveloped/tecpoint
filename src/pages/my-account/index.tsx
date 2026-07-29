@@ -139,13 +139,13 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
           <div className="bg-transparent h-screen flex justify-between items-start">
             <div className="h-full md:w-[60%] flex overflow-hidden select-none fixed md:relative">
               <Image
-                alt="los mejores decuentos de semana santa en tecnologia los encuetras aqui en tecpoint"
+                alt="Experiencia de compra TECPOINT"
                 height={1080}
                 width={2440}
                 quality={100}
                 priority
                 className="cursor-pointer w-full h-full object-cover object-left select-none"
-                src="/images/gran_sorteo.webp"
+                src="/images/experiencia-tecpoint-2026.png"
               />
             </div>
 

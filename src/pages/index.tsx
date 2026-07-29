@@ -8,6 +8,7 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import styles from "@/styles/home2026.module.css";
 import currentCatalog from "@/data/current-catalog-w31.json";
+import { enrichProduct, OFFICIAL_CATEGORIES, preferredProductSlug } from "@/lib/catalog";
 
 export async function getServerSideProps() {
   const productDocs = await getDocs(
@@ -21,7 +22,7 @@ export async function getServerSideProps() {
   const products = productDocs.docs.map<Product>((doc) => {
     const data = doc.data();
     const inventory = inventoryBySku.get(String(data.sku || "").trim());
-    return {
+    return enrichProduct({
       id: doc.id,
       ...data,
       precio: {
@@ -35,7 +36,7 @@ export async function getServerSideProps() {
       fecha_agregado: data.fecha_agregado?.toDate
         ? data.fecha_agregado.toDate().toISOString()
         : null,
-    } as Product;
+    } as Product);
   })
     .filter((product) => inventoryBySku.has(String(product.sku || "").trim()))
     .sort((a, b) => {
@@ -50,33 +51,6 @@ export async function getServerSideProps() {
 
   return { props: { products } };
 }
-
-const categories = [
-  {
-    number: "01",
-    title: "Power & Charge",
-    copy: "Carga, energía y adaptadores para mantener todo en movimiento.",
-    href: "/shop?page=1&brand=&category=cargadores&search=",
-  },
-  {
-    number: "02",
-    title: "Sound Essentials",
-    copy: "Audio seleccionado para trabajo, llamadas y entretenimiento.",
-    href: "/shop?page=1&brand=&category=sonido&search=",
-  },
-  {
-    number: "03",
-    title: "Screen Protection",
-    copy: "Protección compatible para los dispositivos que más utiliza.",
-    href: "/shop?page=1&brand=&category=protector&search=",
-  },
-  {
-    number: "04",
-    title: "Smart Tech",
-    copy: "Tecnología inteligente que se integra naturalmente a su rutina.",
-    href: "/shop?page=1&brand=&category=reloj&search=",
-  },
-];
 
 const locations = [
   {
@@ -183,7 +157,7 @@ export default function Home({ products }: { products: Product[] }) {
             <div className={styles.proof}>
               <div><strong>3</strong><span>puntos de atención</span></div>
               <div><strong>HN</strong><span>cobertura nacional</span></div>
-              <div><strong>+680</strong><span>productos registrados</span></div>
+              <div><strong>+1,400</strong><span>productos registrados</span></div>
             </div>
           </div>
           <div className={styles.heroVisual}>
@@ -214,16 +188,16 @@ export default function Home({ products }: { products: Product[] }) {
             </p>
           </div>
           <div className={styles.categoryGrid}>
-            {categories.map((category) => (
+            {OFFICIAL_CATEGORIES.map((category, index) => (
               <Link
                 className={styles.categoryCard}
-                href={category.href}
-                key={category.number}
+                href={`/shop?page=1&category=${category.slug}`}
+                key={category.slug}
               >
-                <span>{category.number}</span>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <b>↘</b>
-                <h3>{category.title}</h3>
-                <p>{category.copy}</p>
+                <h3>{category.name}</h3>
+                <p>{category.description}</p>
                 <strong>Explorar →</strong>
               </Link>
             ))}
@@ -243,7 +217,7 @@ export default function Home({ products }: { products: Product[] }) {
           <div className={styles.productGrid}>
             {selectedProducts.map((product, index) => (
               <article className={styles.productCard} key={product.id}>
-                <Link className={styles.productImage} href={`/shop/${product.slug}`}>
+                <Link className={styles.productImage} href={`/shop/${preferredProductSlug(product)}`}>
                   {index < 2 && <span>Selección</span>}
                   <Image
                     src={imageFor(product)}
@@ -259,7 +233,7 @@ export default function Home({ products }: { products: Product[] }) {
                   <h3>{product.producto}</h3>
                   <div>
                     <strong>{priceFor(product)}</strong>
-                    <Link href={`/shop/${product.slug}`}>Ver producto +</Link>
+                    <Link href={`/shop/${preferredProductSlug(product)}`}>Ver producto +</Link>
                   </div>
                 </div>
               </article>
@@ -339,7 +313,7 @@ export default function Home({ products }: { products: Product[] }) {
           </div>
         </section>
 
-        <section className={styles.locations}>
+        <section className={styles.locations} id="ubicaciones">
           <div className={styles.sectionHeading}>
             <div>
               <p className={styles.eyebrow}>CERCA DE USTED</p>

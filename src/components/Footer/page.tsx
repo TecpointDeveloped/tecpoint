@@ -1,124 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Separator } from "../ui/separator";
+import styles from "@/styles/footer2026.module.css";
 
-function Footer() {
+const orderPoints = [
+  {
+    city: "San Pedro Sula",
+    name: "Plaza Carolina",
+    detail: "Segundo nivel, bulevar Mackay",
+    phone: "50493385732",
+  },
+  {
+    city: "Tegucigalpa",
+    name: "Portal de Viera",
+    detail: "Tercer nivel, km 3 carretera a El Hatillo",
+    phone: "50495200523",
+  },
+  {
+    city: "San Pedro Sula",
+    name: "Mayoreo y Pick Up",
+    detail: "Barrio Los Andes, 7 calle, 14 avenida",
+    phone: "50498191003",
+  },
+];
+
+export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] w-full h-fit flex flex-col gap-y-10 py-12 px-6 md:px-12">
-      <section className="flex flex-col m-auto lg:m-0 lg:flex-row gap-8 md:justify-between items-center">
-        <h4 className="text-white text-center lg:text-start text-2xl font-semibold tracking-wide">
-          Distribuidores de marcas originales{" "}
-          <span className="block">y accesorios tecnológicos</span>
-        </h4>
-
-        <form
-          className="flex flex-col sm:flex-row gap-4 items-center"
-          onSubmit={(e) => e.preventDefault()}
+    <footer className={styles.footer}>
+      <section className={styles.top}>
+        <div>
+          <Image src="/brand/logo-reserva.svg" alt="TECPOINT" width={205} height={46} />
+          <p>Tecnología seleccionada y atención cercana en Honduras.</p>
+        </div>
+        <a
+          className={styles.mainOrder}
+          href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido."
+          target="_blank"
+          rel="noreferrer"
         >
-          <input
-            className="w-full h-12 md:w-[400px] bg-[#1c1c1c] text-white py-3 px-6 rounded-full text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Introduce tu correo electrónico..."
-            type="email"
-            name="correo"
-            id="correo"
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-3 px-8 text-sm h-12 rounded-full hover:bg-blue-600 transition-colors"
-          >
-            Suscríbete
-          </button>
-        </form>
+          Hacer un pedido
+        </a>
       </section>
 
-      <Separator className="mt-8 border-gray-700" />
+      <section className={styles.locations}>
+        {orderPoints.map((point) => (
+          <article key={point.name}>
+            <small>{point.city}</small>
+            <strong>{point.name}</strong>
+            <p>{point.detail}</p>
+            <a
+              href={`https://wa.me/${point.phone}?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido%20con%20${encodeURIComponent(point.name)}.`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Pedir aquí →
+            </a>
+          </article>
+        ))}
+      </section>
 
-      <section className="flex flex-col md:flex-row justify-between gap-8">
-        <div className="flex flex-col gap-y-6">
-          <h4 className="text-white text-lg font-semibold">Únete a la comunidad</h4>
-          <div className="flex gap-x-6 items-center">
-            <Link href="https://www.facebook.com/Tecpoint.Distribucion/">
-              <Image
-                className="cursor-pointer aspect-square object-contain"
-                src="/images/social/facebook.svg"
-                alt="Facebook de Tecpoint"
-                height={26}
-                width={26}
-              />
-            </Link>
-
-            <Link href="https://www.instagram.com/tecpoint_distribucion/">
-              <Image
-                className="cursor-pointer aspect-square object-contain"
-                src="/images/social/instagram.svg"
-                alt="Instagram de Tecpoint"
-                height={26}
-                width={26}
-              />
-            </Link>
-
-            <Link href="https://www.tiktok.com/@tecpoint.ws">
-              <Image
-                className="cursor-pointer aspect-square object-contain"
-                src="/images/social/tiktok.svg"
-                alt="TikTok de Tecpoint"
-                height={30}
-                width={30}
-              />
-            </Link>
-
-            <Link href="https://www.tiktok.com/@tecpoint.ws">
-              <Image
-                className="cursor-pointer aspect-square object-contain grayscale hover:grayscale-0 transition-all"
-                src="/images/social/whatsapp.svg"
-                alt="WhatsApp de Tecpoint"
-                height={26}
-                width={26}
-              />
-            </Link>
-
-            <Link href="https://linktr.ee/tecpoint.ws">
-              <Image
-                className="cursor-pointer aspect-auto object-contain grayscale hover:grayscale-0 transition-all"
-                src="/images/social/Linktree.svg"
-                alt="WhatsApp de Tecpoint"
-                width={96}
-                height={26}
-              />
-            </Link>
-          </div>
+      <section className={styles.bottom}>
+        <nav>
+          <Link href="/shop">Tienda</Link>
+          <Link href="/categories">Categorías</Link>
+          <Link href="/garantia">Garantía</Link>
+          <Link href="/preguntas-frecuentes">Preguntas frecuentes</Link>
+          <Link href="/terminos-y-condiciones">Términos</Link>
+          <Link href="/politica-privacidad">Privacidad</Link>
+        </nav>
+        <div className={styles.social}>
+          <a href="https://www.instagram.com/tecpoint_distribucion/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/Tecpoint.Distribucion/" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://www.tiktok.com/@tecpoint.ws" target="_blank" rel="noreferrer">TikTok</a>
         </div>
-
-        <div className="text-white text-sm leading-relaxed">
-          <h4 className="text-lg font-semibold mb-2">Contacto</h4>
-          <p>Dirección: San Pedro Sula, Barrio el Benque 9 avenida entre 5 y 6 calle</p>
-          <p>Dirección: City Mall S.P.S, segundo nivel frente a tiendas Carrion</p>
-          <p>Dirección: Plaza Carolina, Boulevard Mackey, segundo nivel</p>
-          <p>Teléfono: +504 9715-7784</p>
-          <p>Email: tecpointdistribucion@gmail.com</p>
-        </div>
-      </section>
-
-      <section className="flex flex-wrap justify-center gap-6 mt-6">
-        <Link href="/garantia" className="text-gray-400 hover:text-white text-sm">
-          Garantía
-        </Link>
-        <Link href="/terminos-y-condiciones" className="text-gray-400 hover:text-white text-sm">
-          Términos y Condiciones
-        </Link>
-        <Link href="/preguntas-frecuentes" className="text-gray-400 hover:text-white text-sm">
-          Preguntas Frecuentes
-        </Link>
-        <Link href="/politica-privacidad" className="text-gray-400 hover:text-white text-sm">
-          Política de Privacidad
-        </Link>
-      </section>
-
-      <section className="text-center text-gray-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Tecpoint. Todos los derechos reservados.</p>
+        <p>© {new Date().getFullYear()} TECPOINT. Todos los derechos reservados.</p>
       </section>
     </footer>
   );
 }
-
-export default Footer;

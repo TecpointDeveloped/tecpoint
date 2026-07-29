@@ -11,10 +11,19 @@ import Footer from "@/components/Footer/page";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { GetServerSidePropsContext } from "next";
+import {
+  categorySlug,
+  enrichProduct,
+  normalizeText,
+  OFFICIAL_CATEGORIES,
+  productColor,
+} from "@/lib/catalog";
 
 interface ShopProps {
   products: Product[];
   totalProducts: number;
+  brands: string[];
+  colors: string[];
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -24,7 +33,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const allProducts = querySnapshot.docs.map((doc) => {
       const data = doc.data();
-      return {
+      return enrichProduct({
         id: doc.id,
         ...data,
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
@@ -32,7 +41,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         // Aseguramos que 'categorias' siempre sea un array.
         // Si data.categorias no es un array, se inicializa como un array vacío.
         categorias: Array.isArray(data.categorias) ? data.categorias : [],
-      };
+      } as Product);
     }) as Product[];
 
     const queryValue = (value: string | string[] | undefined) =>
@@ -40,22 +49,30 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const page = Math.max(1, Number(queryValue(context.query.page)) || 1);
     const brand = queryValue(context.query.brand).trim().toLowerCase();
     const category = queryValue(context.query.category).trim().toLowerCase();
+    const color = queryValue(context.query.color).trim().toLowerCase();
     const search = queryValue(context.query.search).trim().toLowerCase();
     const productsPerPage = 9;
+    const brands = [...new Set(allProducts.map((product) => product.marca_producto?.marca).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b)) as string[];
+    const colors = [...new Set(allProducts.map((product) => productColor(product)).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b));
 
     const filteredProducts = allProducts.filter((product) => {
       const matchesBrand = brand
-        ? (product.marca_producto?.marca || "").toLowerCase() === brand
+        ? normalizeText(product.marca_producto?.marca || "") === normalizeText(brand)
         : true;
       const matchesCategory = category && category !== "all"
-        ? (product.categorias || []).some((item) => item.toLowerCase() === category)
+        ? (product.categorias || []).some((item) => categorySlug(item) === category)
+        : true;
+      const matchesColor = color
+        ? normalizeText(productColor(product)) === normalizeText(color)
         : true;
       const matchesSearch = search
-        ? [product.producto, product.sku, product.descripcion]
-            .some((value) => (value || "").toLowerCase().includes(search))
+        ? [product.producto, product.sku, product.descripcion, product.Subcategorias]
+            .some((value) => normalizeText(value || "").includes(normalizeText(search)))
         : true;
 
-      return matchesBrand && matchesCategory && matchesSearch;
+      return matchesBrand && matchesCategory && matchesColor && matchesSearch;
     });
     const totalProducts = filteredProducts.length;
     const products = filteredProducts.slice(
@@ -67,6 +84,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: {
         products,
         totalProducts,
+        brands,
+        colors,
       },
     };
   } catch (error) {
@@ -75,12 +94,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: {
         products: [],
         totalProducts: 0,
+        brands: [],
+        colors: [],
       },
     };
   }
 }
 
-const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
+const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: ShopProps) => {
   const router = useRouter();
   const { page, brand, search } = router.query;
   const [searchTerm, setSearchTerm] = useState(search || "");
@@ -111,7 +132,8 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
     setCurrentPage(1); // Reset to first page on brand change
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
-    router.push(`/shop?page=1&brand=${value}&category=${currentCategory}&search=${currentSearch}`);
+    const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
+    router.push(`/shop?page=1&brand=${value}&category=${currentCategory}&color=${currentColor}&search=${currentSearch}`);
   };
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -119,7 +141,8 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     const currentBrand = selectedBrand || "";
-    router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&search=${currentSearch}`);
+    const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
+    router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&color=${currentColor}&search=${currentSearch}`);
   };
 
   const currentProducts = products;
@@ -130,7 +153,8 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
     const category = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     const currentBrand = selectedBrand || "";
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
-    router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&search=${currentSearch}`);
+    const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
+    router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&color=${currentColor}&search=${currentSearch}`);
   };
 
   if (!products || products.length === 0) {
@@ -158,57 +182,30 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
 
       <NavbarMenu />
 
-      <section className="bg-gray-900 h-[200px] relative">
-        <video
-          className="absolute w-full h-full object-cover object-center"
-          width="100%"
-          height="100%"
-          autoPlay
-          muted
-          loop
-          preload="none"
-        >
-          <source src="/video/langsdom_video.mp4" type="video/mp4" />
-          <track
-            src="/path/to/captions.vtt"
-            kind="subtitles"
-            srcLang="en"
-            label="English"
-          />
-          Your browser does not support the video tag.
-        </video>
-
-        <div className="relative size-full flex items-center justify-center flex-col backdrop-blur-[2px] bg-[#0000005e]">
-          <div className="flex flex-col gap-8 items-center pb-6">
-            <i className="text-[#CCFD03] text-[20px] font-[900] text-center md:text-start leading-10 tracking-[-0.3px]">
-              Nueva
-              <span className="not-italic text-white block text-[30px] md:text-[50px]">
-                Marca
-                <Image
-                  src="/logos/lagnsdom.svg"
-                  alt="Langsdom Logo"
-                  width={220}
-                  height={80}
-                  className="inline-block ml-2"
-                />
-              </span>
-            </i>
-          </div>
+      <section className="min-h-[300px] px-6 py-16 md:px-[7vw] flex items-end bg-[#cf2c28] bg-[url('/brand/signal-band.svg')] bg-no-repeat bg-right bg-contain text-white">
+        <div className="max-w-[920px]">
+          <p className="mb-4 text-[10px] font-extrabold tracking-[.2em]">CATÁLOGO ACTUAL TECPOINT</p>
+          <h1 className="m-0 text-[48px] md:text-[76px] font-semibold leading-[.92] tracking-[-.055em]">
+            Encuentre su tecnología por necesidad.
+          </h1>
+          <p className="mt-5 max-w-[650px] text-sm md:text-base text-white/80">
+            Explore productos actuales, filtre por categoría, marca o color y confirme compatibilidad con un asesor.
+          </p>
         </div>
       </section>
 
-      <main className="w-full mx-auto p-2 md:p-4">
+      <main className="w-full mx-auto p-2 md:p-4 bg-[#f5f7f8]">
 
-        <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center">
+        <form onSubmit={handleSearchSubmit} className="w-full md:max-w-[1200px] md:m-auto md:py-8 md:px-12 mb-2 flex flex-col gap-4 md:flex-row items-center bg-white">
           <input
             className="border w-full py-3 px-6 rounded-full"
             type="text"
-            placeholder="Buscar por SKU, Producto o Descripción"
+            placeholder="Buscar por producto, compatibilidad, marca o SKU"
             value={searchTerm}
             onChange={handleSearchChange}
           />
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
             <Select onValueChange={handleBrandChange} value={selectedBrand}>
               <SelectTrigger className="w-[190px] h-[50px] rounded-full px-6">
                 <SelectValue placeholder="Marca" />
@@ -216,21 +213,9 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Marcas</SelectLabel>
-                  <SelectItem value="Apple">Apple</SelectItem>
-                  <SelectItem value="Appacs">Appacs</SelectItem>
-                  <SelectItem value="Deken">Deken</SelectItem>
-                  <SelectItem value="Ghostek">Ghostek</SelectItem>
-                  <SelectItem value="Hypergear">Hypergear</SelectItem>
-                  <SelectItem value="Hoco">Hoco</SelectItem>
-                  <SelectItem value="Krieg">Krieg</SelectItem>
-                  <SelectItem value="Langsdom">Langsdom</SelectItem>
-                  <SelectItem value="Naztech">Naztech</SelectItem>
-                  <SelectItem value="Powerpeak">Powerpeak</SelectItem>
-                  <SelectItem value="Rockspace">Rockspace</SelectItem>
-                  <SelectItem value="Samsung">Samsung</SelectItem>
-                  <SelectItem value="USG">USG</SelectItem>
-                  <SelectItem value="XBase">XBase</SelectItem>
-                  <SelectItem value="XO">XO</SelectItem>
+                  {brands.map((brandName) => (
+                    <SelectItem key={brandName} value={brandName}>{brandName}</SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -239,7 +224,8 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
               onValueChange={(value) => {
                 const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
                 const currentBrand = selectedBrand || "";
-                router.push(`/shop?page=1&brand=${currentBrand}&category=${value}&search=${currentSearch}`);
+                const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
+                router.push(`/shop?page=1&brand=${currentBrand}&category=${value}&color=${currentColor}&search=${currentSearch}`);
               }}
               value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
             >
@@ -250,17 +236,31 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
                 <SelectGroup>
                   <SelectLabel>Categorías</SelectLabel>
                   <SelectItem value="all">Todas</SelectItem>
-                  <SelectItem value="Audifonos">Audífonos</SelectItem>
-                  <SelectItem value="Auriculares">Auriculares</SelectItem>
-                  <SelectItem value="Audio">Audio</SelectItem>
-                  <SelectItem value="Accesorios">Accesorios</SelectItem>
-                  <SelectItem value="Cobertores">Cobertores</SelectItem>
-                  <SelectItem value="cable">Cables</SelectItem>
-                  <SelectItem value="Cargadores">Cargadores</SelectItem>
-                  <SelectItem value="Memorias">Memorias</SelectItem>
-                  <SelectItem value="power bank">Power Banks</SelectItem>
-                  <SelectItem value="hub">HUB</SelectItem>
-                  <SelectItem value="reloj">SmartWatch</SelectItem>
+                  {OFFICIAL_CATEGORIES.map((category) => (
+                    <SelectItem key={category.slug} value={category.slug}>{category.name}</SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
+            <Select
+              onValueChange={(value) => {
+                const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+                const currentBrand = selectedBrand || "";
+                const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
+                router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&color=${value}&search=${currentSearch}`);
+              }}
+              value={Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || ""}
+            >
+              <SelectTrigger className="w-[170px] h-[50px] rounded-full px-6">
+                <SelectValue placeholder="Color" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Colores</SelectLabel>
+                  {colors.map((colorName) => (
+                    <SelectItem key={colorName} value={normalizeText(colorName)}>{colorName}</SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -304,14 +304,14 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
           </div>
         </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-2">
           {currentProducts.map((product: Product) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
               <div
                 key={product.id}
-                className="border p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
+                className="border border-[#dfe3e4] bg-white p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
               >
                 <span className="absolute top-4 left-4 z-10">
                   {product.extradata?.stock !== true && (
@@ -337,6 +337,11 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
                   <div>
                     <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
                     <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
+                    {productColor(product) && (
+                      <p className="text-xs text-[#cf2c28] mt-1 font-semibold">
+                        Color: {productColor(product)}
+                      </p>
+                    )}
 
                     <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
                       {/* Aquí product.categorias ya es garantizado como un array por getStaticProps */}
@@ -349,7 +354,7 @@ const Shop = ({ products = [], totalProducts = 0 }: ShopProps) => {
                   </div>
                 </div>
 
-                <button className="mt-4 w-full bg-black text-white py-2 px-4 rounded-full hover:bg-black/80">
+                <button className="mt-4 w-full bg-[#cf2c28] text-white py-2 px-4 rounded-full hover:bg-[#a7192f]">
                   <Link href={`/shop/${product.slug}`}>Ver Producto</Link>
                 </button>
               </div>

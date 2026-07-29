@@ -1,0 +1,4499 @@
+{
+  "source": "productos-web-tecpoint.xlsx",
+  "records": {
+    "GHOCAS4326": {
+      "name": "Forro Ghostek Nautical Slim Apple para iPhone 17 Pro Max en color negro",
+      "slug": "forro-ghostek-nautical-slim-apple-para-iphone-17-pro-max-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-SS26UIR": {
+      "name": "Forro XBASE Sparkle con MagSafe para Samsung S26 Ultra color iridiscente",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-samsung-s26-ultra-color-iridiscente-bs-ss26uir",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30142": {
+      "name": "Power bank XO 10,000 mAh en color negro",
+      "slug": "power-bank-xo-10000-mah-en-color-negro",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "DK-PVSS25U": {
+      "name": "Protector de pantalla DEKEN con privacidad 3D para Samsung Galaxy S25 Ultra",
+      "slug": "protector-de-pantalla-deken-con-privacidad-3d-para-samsung-galaxy-s25-ultra",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "PP-LT90WU": {
+      "name": "Cargador para laptop PowerPeak 100W en color negro",
+      "slug": "cargador-para-laptop-powerpeak-100w-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores para laptop"
+    },
+    "HG-15642": {
+      "name": "Soporte para celular HyperGear en color negro",
+      "slug": "soporte-para-celular-hypergear-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "DK-3HX8": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X8",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x8",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10114": {
+      "name": "Soporte para celular HOCO magnético en color gris",
+      "slug": "soporte-para-celular-hoco-magnetico-en-color-gris",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "XO-30122": {
+      "name": "Ventilador portátil XO Recargable de 400 mAh en color rosado",
+      "slug": "ventilador-portatil-xo-recargable-de-400-mah-en-color-rosado",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "HO-10140": {
+      "name": "Reloj inteligente HOCO Ultra con llamadas en color negro",
+      "slug": "reloj-inteligente-hoco-ultra-con-llamadas-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "AS-36425": {
+      "name": "Cargador inalámbrico Samsung Original 3 en 1",
+      "slug": "cargador-inalambrico-samsung-original-3-en-1",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "PP-QIWS3": {
+      "name": "Estación de carga PowerPeak Estación de carga inalámbrica 3 en 1 en color negro",
+      "slug": "estacion-de-carga-powerpeak-estacion-de-carga-inalambrica-3-en-1-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Estaciones de carga inalámbrica"
+    },
+    "HG-15544": {
+      "name": "Cargador de pared Naztech 30W de pared USB C a MFI Cable 2 metros",
+      "slug": "cargador-de-pared-naztech-30w-de-pared-usb-c-a-mfi-cable-2-metros",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15395": {
+      "name": "Cargador para automóvil Naztech 20W USB C a 12W USB en color blanco",
+      "slug": "cargador-para-automovil-naztech-20w-usb-c-a-12w-usb-en-color-blanco",
+      "brand": "Naztech",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "BS-L17DG": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 color oro desierto",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-color-oro-desierto",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3SMA06": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A06",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a06",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-L16EPK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 16 E en color rosado",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-16-e-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-LS26UBK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-samsung-s26-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHOCAS4310": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro Max en color negro",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-max-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30111": {
+      "name": "Dispositivo inteligente XO Detector y Localizador Infrarrojo Anti espias",
+      "slug": "dispositivo-inteligente-xo-detector-y-localizador-infrarrojo-anti-espias",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "BS-MGRS-BK": {
+      "name": "Soporte para celular XBASE Magnetic Phone negro en color negro",
+      "slug": "soporte-para-celular-xbase-magnetic-phone-negro-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "BS-L15PMBL": {
+      "name": "Forro XBASE para iPhone 15 Pro Max de silicona Series con MagSafe en color azul",
+      "slug": "forro-xbase-para-iphone-15-pro-max-de-silicona-series-con-magsafe-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHS25UBK": {
+      "name": "Forro XBASE Duo Hybrid Samsung Galaxy Ultra en color negro",
+      "slug": "forro-xbase-duo-hybrid-samsung-galaxy-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10132": {
+      "name": "Audífonos inalámbricos APPACS Inalámbricos TWS Estilo Pro",
+      "slug": "audifonos-inalambricos-appacs-inalambricos-tws-estilo-pro",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10198": {
+      "name": "Audífonos APPACS AirPlus Pro",
+      "slug": "audifonos-appacs-airplus-pro",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10183": {
+      "name": "Cargador para automóvil APPACS carga rápida set de Micro USB",
+      "slug": "cargador-para-automovil-appacs-carga-rapida-set-de-micro-usb",
+      "brand": "APPACS",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "BS-L17PRODG": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 Pro color oro desierto",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-pro-color-oro-desierto",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "LD-40110": {
+      "name": "Audífonos inalámbricos Langsdom Bluetooth Estilo Aretes con cancelación de ruido",
+      "slug": "audifonos-inalambricos-langsdom-bluetooth-estilo-aretes-con-cancelacion-de-ruido",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-3HX5CP": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X5c Plus",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x5c-plus",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10138": {
+      "name": "Cable HOCO Primero PD 240W Type C a Type C 1.8 m en color gris",
+      "slug": "cable-hoco-primero-pd-240w-type-c-a-type-c-18-m-en-color-gris",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30188": {
+      "name": "Cargador XO rápido 20W con cable Lightning en color blanco",
+      "slug": "cargador-xo-rapido-20w-con-cable-lightning-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15626": {
+      "name": "Cargador de pared HyperGear Speed Boost Paquete 25W USB C",
+      "slug": "cargador-de-pared-hypergear-speed-boost-paquete-25w-usb-c",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15706": {
+      "name": "Cable HyperGear extensión Cube Multi Port",
+      "slug": "cable-hypergear-extension-cube-multi-port",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "PP-KEYTBW": {
+      "name": "Accesorio tecnológico PowerPeak Keyboard Mini Tablet Wireless en color blanco",
+      "slug": "accesorio-tecnologico-powerpeak-keyboard-mini-tablet-wireless-en-color-blanco",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHONRG030": {
+      "name": "Cargador para automóvil Ghostek para carro 40W doble puerto en color negro",
+      "slug": "cargador-para-automovil-ghostek-para-carro-40w-doble-puerto-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "EL-10122": {
+      "name": "Adaptador APPACS Adaptador de Micro USB a USB C",
+      "slug": "adaptador-appacs-adaptador-de-micro-usb-a-usb-c",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "BS-BCSS26UB": {
+      "name": "Forro XBASE Boulder con MagSafe para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-samsung-s26-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "USG-AUDPLAY3": {
+      "name": "Accesorio para exteriores USG Altavoz inalámbrico Impermeable con Luces",
+      "slug": "accesorio-para-exteriores-usg-altavoz-inalambrico-impermeable-con-luces",
+      "brand": "USG",
+      "category": "Outdoor Pro",
+      "subcategory": "Accesorios para exteriores"
+    },
+    "HG-16004": {
+      "name": "Cable HyperGear USB C a Lightning 6 ft en color blanco",
+      "slug": "cable-hypergear-usb-c-a-lightning-6-ft-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-S17PRMIR": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro Max color iridiscente",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-max-color-iridiscente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-IP143D": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 14",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-14",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30114": {
+      "name": "Luz tecnológica XO Palo de Selfie Metalico con Aro de Luz",
+      "slug": "luz-tecnologica-xo-palo-de-selfie-metalico-con-aro-de-luz",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Iluminación tecnológica"
+    },
+    "HO-10134": {
+      "name": "Cable HOCO Kit de Carga USB C PD de 20W con Cable Lightning en color blanco",
+      "slug": "cable-hoco-kit-de-carga-usb-c-pd-de-20w-con-cable-lightning-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-DHK17PRC": {
+      "name": "Forro XBASE DuoHybrid con base para iPhone 17 Pro color transparente",
+      "slug": "forro-xbase-duohybrid-con-base-para-iphone-17-pro-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "USG-AUDBOOM": {
+      "name": "Accesorio tecnológico USG Altavoz inalámbrico Party BOX con Luces",
+      "slug": "accesorio-tecnologico-usg-altavoz-inalambrico-party-box-con-luces",
+      "brand": "USG",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30195": {
+      "name": "Accesorio tecnológico XO CAR INVERTER 220V/500W SILVER",
+      "slug": "accesorio-tecnologico-xo-car-inverter-220v-500w-silver",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCAS4214": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Air color transparente",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-air-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-SS25UIR": {
+      "name": "Forro XBASE Sparkleline Samsung Galaxy Ultra Ultra en color rosado",
+      "slug": "forro-xbase-sparkleline-samsung-galaxy-ultra-ultra-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36414": {
+      "name": "Cargador de pared Apple Original de Puerto Dual USB C de 35W",
+      "slug": "cargador-de-pared-apple-original-de-puerto-dual-usb-c-de-35w",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "PP-TCPD65B": {
+      "name": "Cargador PowerPeak rápido 65W triple puerto con cable USB C GaN en color negro",
+      "slug": "cargador-powerpeak-rapido-65w-triple-puerto-con-cable-usb-c-gan-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-IP16PRM": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 16 Pro Max",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-16-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10149": {
+      "name": "Adaptador de audio APPACS Adaptador MFi de audio con aluminio y nylon en color negro",
+      "slug": "adaptador-de-audio-appacs-adaptador-mfi-de-audio-con-aluminio-y-nylon-en-color-negro",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Accesorios de audio"
+    },
+    "PP-PB5KBK": {
+      "name": "Power bank PowerPeak portable de 5,000 mAh con doble puerto USB en color negro",
+      "slug": "power-bank-powerpeak-portable-de-5000-mah-con-doble-puerto-usb-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "KR20133": {
+      "name": "Audífonos KRIEG auxiliares de 3.5mm alambricos",
+      "slug": "audifonos-krieg-auxiliares-de-35mm-alambricos",
+      "brand": "KRIEG",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "XO-30190": {
+      "name": "Soporte para celular XO magnético con succión en color gris",
+      "slug": "soporte-para-celular-xo-magnetico-con-succion-en-color-gris",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "HO-10102": {
+      "name": "Micrófono HOCO Micrófono Inalámbrico Doble con Clip Magnético",
+      "slug": "microfono-hoco-microfono-inalambrico-doble-con-clip-magnetico",
+      "brand": "HOCO",
+      "category": "Sound Essentials",
+      "subcategory": "Micrófonos"
+    },
+    "HG-15389": {
+      "name": "Cargador de pared HyperGear 20W USB C en color blanco",
+      "slug": "cargador-de-pared-hypergear-20w-usb-c-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3SMA17": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A17",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a17",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15859": {
+      "name": "Audífonos inalámbricos HyperGear ANC inalámbrico en color negro",
+      "slug": "audifonos-inalambricos-hypergear-anc-inalambrico-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "AS-36430": {
+      "name": "Adaptador Apple Adaptador Original para Macbook de 96W USB C",
+      "slug": "adaptador-apple-adaptador-original-para-macbook-de-96w-usb-c",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-PVIP15PLS": {
+      "name": "Protector de pantalla DEKEN con privacidad 3D para iPhone 15 Plus",
+      "slug": "protector-de-pantalla-deken-con-privacidad-3d-para-iphone-15-plus",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "HG-15584": {
+      "name": "Cargador inalámbrico HyperGear Battle Cargador inalámbrico Gaming Pad en color negro",
+      "slug": "cargador-inalambrico-hypergear-battle-cargador-inalambrico-gaming-pad-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "GHOCAS4312": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro Max en color rojo",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-max-en-color-rojo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "RS-FAHE20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina auto reparable pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-auto-reparable-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36428": {
+      "name": "Adaptador Apple Adaptador Original para Macbook de 67W USB C",
+      "slug": "adaptador-apple-adaptador-original-para-macbook-de-67w-usb-c",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "XO-30152": {
+      "name": "Soporte para fotografía XO Selfie stick bluetooth con trípode en color negro",
+      "slug": "soporte-para-fotografia-xo-selfie-stick-bluetooth-con-tripode-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "DK-ABIP153D": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 15",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-15",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-PVSS24U": {
+      "name": "Protector de pantalla DEKEN con privacidad 3D para Samsung Galaxy S24 Ultra",
+      "slug": "protector-de-pantalla-deken-con-privacidad-3d-para-samsung-galaxy-s24-ultra",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "DK-3IP12": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 12 / 12 Pro",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-12-12-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30202": {
+      "name": "Power bank XO 5,000 mAh TYPE C en color negro",
+      "slug": "power-bank-xo-5000-mah-type-c-en-color-negro",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "XO-30124": {
+      "name": "Ventilador portátil XO en color azul",
+      "slug": "ventilador-portatil-xo-en-color-azul",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "DK-3MOG54": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G54",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g54",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10101": {
+      "name": "Cable APPACS USB C de de 65W",
+      "slug": "cable-appacs-usb-c-de-de-65w",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HO-10121": {
+      "name": "Accesorio tecnológico HOCO Phoenix wireless game controller blanco en color blanco",
+      "slug": "accesorio-tecnologico-hoco-phoenix-wireless-game-controller-blanco-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-CKS26UC": {
+      "name": "Forro XBASE Crystal Skin con MagSafe para Samsung S26 Ultra color transparente",
+      "slug": "forro-xbase-crystal-skin-con-magsafe-para-samsung-s26-ultra-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30192": {
+      "name": "Soporte para celular XO metálico para tablet en color negro",
+      "slug": "soporte-para-celular-xo-metalico-para-tablet-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "DK-3SMA05S": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A05S",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a05s",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3IP13PM": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 13 Pro Max",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-13-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10162": {
+      "name": "Audífonos inalámbricos APPACS inalámbricos Dark en color azul",
+      "slug": "audifonos-inalambricos-appacs-inalambricos-dark-en-color-azul",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-ABIP15PLS": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 15 Plus",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-15-plus",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15614": {
+      "name": "Soporte para celular HyperGear enfriamiento UpRite Air",
+      "slug": "soporte-para-celular-hypergear-enfriamiento-uprite-air",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "XO-30209": {
+      "name": "Cable XO trenzado USB C a USB C 60W 3M en color blanco",
+      "slug": "cable-xo-trenzado-usb-c-a-usb-c-60w-3m-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30185": {
+      "name": "Power bank XO 278W en color negro",
+      "slug": "power-bank-xo-278w-en-color-negro",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HO-10130": {
+      "name": "Cable HOCO USB C a USB C de Silicona 60W | 2 m en color negro",
+      "slug": "cable-hoco-usb-c-a-usb-c-de-silicona-60w-2-m-en-color-negro",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30215": {
+      "name": "Soporte para fotografía XO Selfie stick Bluetooth con soporte para cámara tomas pro sin complicarte",
+      "slug": "soporte-para-fotografia-xo-selfie-stick-bluetooth-con-soporte-para-camara-tomas-pro-sin-complicarte",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "EL-10192": {
+      "name": "Accesorio tecnológico APPACS Memoria USB de metal con capacidad de 64G",
+      "slug": "accesorio-tecnologico-appacs-memoria-usb-de-metal-con-capacidad-de-64g",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCAS2836": {
+      "name": "Forro Ghostek Exec 5 con MagSafe iPhone 13 Pro en color negro",
+      "slug": "forro-ghostek-exec-5-con-magsafe-iphone-13-pro-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15870": {
+      "name": "Accesorio tecnológico Naztech Aura 360 ANC Wireless Headphones Moondust",
+      "slug": "accesorio-tecnologico-naztech-aura-360-anc-wireless-headphones-moondust",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10109": {
+      "name": "Ventilador portátil HOCO en color negro",
+      "slug": "ventilador-portatil-hoco-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "EL-10153": {
+      "name": "Cargador APPACS Cubo para cargador carga rápida USB C de 20W",
+      "slug": "cargador-appacs-cubo-para-cargador-carga-rapida-usb-c-de-20w",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30106": {
+      "name": "Audífonos inalámbricos XO Bluetooth Pods Blancos",
+      "slug": "audifonos-inalambricos-xo-bluetooth-pods-blancos-xo-30106",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "RS-FUVAR10S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina UV Armor HD pack de 10",
+      "slug": "accesorio-tecnologico-rockspace-lamina-uv-armor-hd-pack-de-10",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30138": {
+      "name": "Cargador para automóvil XO Carga Rápida 30W en color blanco",
+      "slug": "cargador-para-automovil-xo-carga-rapida-30w-en-color-blanco",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "XO-30125": {
+      "name": "Soporte para celular XO escritorio en color negro",
+      "slug": "soporte-para-celular-xo-escritorio-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "GHOCAS2853": {
+      "name": "Forro Ghostek Atomic Slim 4 iPhone 13 Pro en color negro",
+      "slug": "forro-ghostek-atomic-slim-4-iphone-13-pro-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30154": {
+      "name": "Accesorio tecnológico XO Volcano Portable Digital Organizer negro en color negro",
+      "slug": "accesorio-tecnologico-xo-volcano-portable-digital-organizer-negro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-CL17PCL": {
+      "name": "Forro XBASE Crystalline Pro con MagSafe para iPhone 17 Pro color transparente",
+      "slug": "forro-xbase-crystalline-pro-con-magsafe-para-iphone-17-pro-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-BSS25UB": {
+      "name": "Forro XBASE Boulder con MagSafe para Samsung S25 Ultra en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-samsung-s25-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20129": {
+      "name": "Cable KRIEG carga de Micro USB de 1 metro",
+      "slug": "cable-krieg-carga-de-micro-usb-de-1-metro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30103": {
+      "name": "Audífonos inalámbricos XO bluetooth en color blanco",
+      "slug": "audifonos-inalambricos-xo-bluetooth-en-color-blanco-xo-30103",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10119": {
+      "name": "Adaptador APPACS Adaptador USB C a 3.5mm para auxiliar de carro de 1 metro",
+      "slug": "adaptador-appacs-adaptador-usb-c-a-35mm-para-auxiliar-de-carro-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "BS-S16ESL": {
+      "name": "Forro XBASE con brillos Sparkleline para iPhone 16E Silver",
+      "slug": "forro-xbase-con-brillos-sparkleline-para-iphone-16e-silver",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-13852": {
+      "name": "Cable Naztech USB C a USB C 2.0 Chg/Snc .5 metro en color negro",
+      "slug": "cable-naztech-usb-c-a-usb-c-20-chg-snc-5-metro-en-color-negro",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "AS-36401": {
+      "name": "Cable Samsung Original Galaxy de Micro USB",
+      "slug": "cable-samsung-original-galaxy-de-micro-usb",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOCAS4327": {
+      "name": "Forro Ghostek Nautical Slim Apple para iPhone 17 Pro Max color transparente",
+      "slug": "forro-ghostek-nautical-slim-apple-para-iphone-17-pro-max-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHOCAS3170": {
+      "name": "Forro Ghostek para iPhone 14 Pro Max Covert 6 Clear",
+      "slug": "forro-ghostek-para-iphone-14-pro-max-covert-6-clear",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DH17PMPK": {
+      "name": "Forro XBASE DuoHybrid para iPhone 17 Pro Max en color rosado",
+      "slug": "forro-xbase-duohybrid-para-iphone-17-pro-max-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15162": {
+      "name": "Adaptador Naztech Adaptador de USB C a 3.5mm para Audio en color negro",
+      "slug": "adaptador-naztech-adaptador-de-usb-c-a-35mm-para-audio-en-color-negro",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "XO-30135": {
+      "name": "Cargador para automóvil XO para carro en color negro",
+      "slug": "cargador-para-automovil-xo-para-carro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "DK-3IP17AR": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 17 Air",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-17-air",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10121": {
+      "name": "Adaptador APPACS Adaptador Micro a Lightning Convert Lightning a Micro USB",
+      "slug": "adaptador-appacs-adaptador-micro-a-lightning-convert-lightning-a-micro-usb",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "HG-15425": {
+      "name": "Cargador para automóvil Naztech inalámbrico de Carro Smart Grip de 15W",
+      "slug": "cargador-para-automovil-naztech-inalambrico-de-carro-smart-grip-de-15w",
+      "brand": "Naztech",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "DK-3IFH40I": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Infinix Hot 40i",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-infinix-hot-40i",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-16285": {
+      "name": "Power bank HyperGear magnética en color negro",
+      "slug": "power-bank-hypergear-magnetica-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "AS-36435": {
+      "name": "Cargador Apple rápido 40W / 60W",
+      "slug": "cargador-apple-rapido-40w-60w",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30104": {
+      "name": "Audífonos inalámbricos XO Bluetooth Pods Blancos",
+      "slug": "audifonos-inalambricos-xo-bluetooth-pods-blancos",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "GHOCAS4215": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Air color transparente matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-air-color-transparente-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHK17C": {
+      "name": "Forro XBASE DuoHybrid con base para iPhone 17 color transparente",
+      "slug": "forro-xbase-duohybrid-con-base-para-iphone-17-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20130": {
+      "name": "Cable KRIEG carga de Lightning de 2 metro en color negro",
+      "slug": "cable-krieg-carga-de-lightning-de-2-metro-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "RS-TRV4-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15864": {
+      "name": "Audífonos inalámbricos HyperGear inalámbrico Bunny Tracks en color rosado",
+      "slug": "audifonos-inalambricos-hypergear-inalambrico-bunny-tracks-en-color-rosado",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-DHKS26UBK": {
+      "name": "Forro XBASE DuoHybrid con base para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-duohybrid-con-base-para-samsung-s26-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DH16EBL": {
+      "name": "Forro XBASE DuoHybrid para iPhone 16E en color azul",
+      "slug": "forro-xbase-duohybrid-para-iphone-16e-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3XRA5": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Xiaomi Redmi A5",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-xiaomi-redmi-a5",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-S23FEUG": {
+      "name": "Protector de pantalla DEKEN HD 3D para Samsung Galaxy S23 FE",
+      "slug": "protector-de-pantalla-deken-hd-3d-para-samsung-galaxy-s23-fe",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-CL17CL": {
+      "name": "Forro XBASE Crystalline Pro con MagSafe para iPhone 17 color transparente",
+      "slug": "forro-xbase-crystalline-pro-con-magsafe-para-iphone-17-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16314": {
+      "name": "Cargador HyperGear rápido 43W en color blanco",
+      "slug": "cargador-hypergear-rapido-43w-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3HX7C": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X7c",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x7c",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3SMA265": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A26 5G",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a26-5g",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15546": {
+      "name": "Soporte para celular Naztech Magnético MagBuddy Elite Dash en color negro",
+      "slug": "soporte-para-celular-naztech-magnetico-magbuddy-elite-dash-en-color-negro",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "BS-DHK17PMC": {
+      "name": "Forro XBASE DuoHybrid con base para iPhone 17 Pro Max color transparente",
+      "slug": "forro-xbase-duohybrid-con-base-para-iphone-17-pro-max-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15163": {
+      "name": "Cargador Naztech Adaptador USB C a 3.5mm Audio + cargador en color negro",
+      "slug": "cargador-naztech-adaptador-usb-c-a-35mm-audio-cargador-en-color-negro",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "KR20170": {
+      "name": "Cable KRIEG KC 19 Cable Estereo 3RCA a 3RCA de 1.5 Metros 3×3 Negr",
+      "slug": "cable-krieg-kc-19-cable-estereo-3rca-a-3rca-de-15-metros-3-3-negr",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15605": {
+      "name": "Accesorio tecnológico Naztech MagUP Anillo MagSafe magnético paquete de 2 en color negro",
+      "slug": "accesorio-tecnologico-naztech-magup-anillo-magsafe-magnetico-paquete-de-2-en-color-negro",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36394": {
+      "name": "Cargador Apple Cable para cargador de USB C 2M (Nuevo Modelo)",
+      "slug": "cargador-apple-cable-para-cargador-de-usb-c-2m-nuevo-modelo",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "RS-TRP2-5M": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trp2-5m",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3HX7": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X7",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x7",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-TRB4-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trb4-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "GHOCBL038": {
+      "name": "Cable Ghostek carga rápida NRGline Lightning de 3 pies en color gris",
+      "slug": "cable-ghostek-carga-rapida-nrgline-lightning-de-3-pies-en-color-gris",
+      "brand": "Ghostek",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOCAS4218": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro color transparente",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36417": {
+      "name": "Cable Apple Original USB C a USB C de 60W",
+      "slug": "cable-apple-original-usb-c-a-usb-c-de-60w",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15705": {
+      "name": "Accesorio tecnológico HyperGear Extensor de salida Multi Plug",
+      "slug": "accesorio-tecnologico-hypergear-extensor-de-salida-multi-plug",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "LD-40105": {
+      "name": "Audífonos inalámbricos Langsdom Fitness de Diadema con Conexión Bluetooth",
+      "slug": "audifonos-inalambricos-langsdom-fitness-de-diadema-con-conexion-bluetooth",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos deportivos"
+    },
+    "BS-S17SL": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 color plateado",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-color-plateado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-ABIP15PRM": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 15 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-15-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10119": {
+      "name": "Accesorio tecnológico HOCO Maddy portable smart air pump(5,000 mAh) en color negro",
+      "slug": "accesorio-tecnologico-hoco-maddy-portable-smart-air-pump-5000-mah-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCBL037": {
+      "name": "Cable Ghostek carga rápida NRGline Lightning de 6 pies en color gris",
+      "slug": "cable-ghostek-carga-rapida-nrgline-lightning-de-6-pies-en-color-gris",
+      "brand": "Ghostek",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30110": {
+      "name": "Reloj inteligente XO Ultra con pantalla curva en color negro",
+      "slug": "reloj-inteligente-xo-ultra-con-pantalla-curva-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "KR20173": {
+      "name": "Cable KRIEG KC 22 Cable Estereo 2RCA a 2RCA de 3 Metros 2×2 en color negro",
+      "slug": "cable-krieg-kc-22-cable-estereo-2rca-a-2rca-de-3-metros-2-2-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HO-10116": {
+      "name": "Reloj inteligente HOCO AMOLED con llamadas en color negro",
+      "slug": "reloj-inteligente-hoco-amoled-con-llamadas-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "DK-3MOG56": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G56",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g56",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3SMA05": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A05",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a05",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-AADTEZC1": {
+      "name": "Accesorio tecnológico ROCKSPACE Adaptador de Corriente / / / A Plotter negro en color negro",
+      "slug": "accesorio-tecnologico-rockspace-adaptador-de-corriente-a-plotter-negro-en-color-negro",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-3XRA3": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Xiaomi Redmi A3",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-xiaomi-redmi-a3",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-ADISZC1MX": {
+      "name": "Soporte para celular ROCKSPACE Derecho de pantalla Max Smart Plotter Right shell",
+      "slug": "soporte-para-celular-rockspace-derecho-de-pantalla-max-smart-plotter-right-shell",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "XO-30119": {
+      "name": "Accesorio tecnológico XO Bag 15.6 inch computer backpack negro en color negro",
+      "slug": "accesorio-tecnologico-xo-bag-156-inch-computer-backpack-negro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10175": {
+      "name": "Cable APPACS carga USB a USB C Verde",
+      "slug": "cable-appacs-carga-usb-a-usb-c-verde",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-V17PRMBK": {
+      "name": "Forro XBASE cuero vegano con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-cuero-vegano-con-magsafe-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10148": {
+      "name": "Adaptador de audio APPACS Adaptador auxiliar para audio de macho a hembra (2M)",
+      "slug": "adaptador-de-audio-appacs-adaptador-auxiliar-para-audio-de-macho-a-hembra-2m-el-10148",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Accesorios de audio"
+    },
+    "EL-10111": {
+      "name": "Cable APPACS carga USB C con largo de 1 metro",
+      "slug": "cable-appacs-carga-usb-c-con-largo-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-CL17PMCL": {
+      "name": "Forro XBASE Crystalline Pro con MagSafe para iPhone 17 Pro Max color transparente",
+      "slug": "forro-xbase-crystalline-pro-con-magsafe-para-iphone-17-pro-max-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30121": {
+      "name": "Ventilador portátil XO Recargable de 400 mAh en color blanco",
+      "slug": "ventilador-portatil-xo-recargable-de-400-mah-en-color-blanco",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "BS-SS26UGS": {
+      "name": "Forro XBASE Sparkle con MagSafe para Samsung S26 Ultra color franja dorada",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-samsung-s26-ultra-color-franja-dorada",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15785": {
+      "name": "Cargador para automóvil HyperGear Speedboost con cuatro puertos",
+      "slug": "cargador-para-automovil-hypergear-speedboost-con-cuatro-puertos",
+      "brand": "HyperGear",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "DK-3HX5PL": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X5 Plus",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x5-plus",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30201": {
+      "name": "Power bank XO LIGTNING (TYPE C CABLE) 5,000 mAh en color negro",
+      "slug": "power-bank-xo-ligtning-type-c-cable-5000-mah-en-color-negro",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HG-15701": {
+      "name": "Soporte para celular HyperGear Kit de Montaje MagGrip para Magsafe",
+      "slug": "soporte-para-celular-hypergear-kit-de-montaje-maggrip-para-magsafe",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "BS-BSS24UB": {
+      "name": "Forro XBASE Boulder con MagSafe para Samsung S24 Ultra en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-samsung-s24-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36387": {
+      "name": "Cargador Samsung rápido 25W en color negro",
+      "slug": "cargador-samsung-rapido-25w-en-color-negro",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "BS-L17PROPK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 Pro en color rosado",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-pro-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30134": {
+      "name": "Accesorio tecnológico XO Bluetooth Transmitter Support TF card en color gris",
+      "slug": "accesorio-tecnologico-xo-bluetooth-transmitter-support-tf-card-en-color-gris",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-DHS25UBL": {
+      "name": "Forro XBASE Duo Hybrid Samsung Galaxy Ultra en color azul",
+      "slug": "forro-xbase-duo-hybrid-samsung-galaxy-ultra-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-PI17PB": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 17 Pro en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-17-pro-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30194": {
+      "name": "Soporte vehicular XO para visera de carro en color negro",
+      "slug": "soporte-vehicular-xo-para-visera-de-carro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Soportes vehiculares"
+    },
+    "BS-CK16PRM": {
+      "name": "Forro XBASE Crystal Skin con MagSafe para iPhone 16 Pro Max color transparente",
+      "slug": "forro-xbase-crystal-skin-con-magsafe-para-iphone-16-pro-max-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36411": {
+      "name": "Accesorio tecnológico Samsung Cubo carga rápida original 45W USB C en color negro",
+      "slug": "accesorio-tecnologico-samsung-cubo-carga-rapida-original-45w-usb-c-en-color-negro",
+      "brand": "Samsung",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10116": {
+      "name": "Adaptador APPACS Adaptador Lightning a Lightning con 3.5mm de audio",
+      "slug": "adaptador-appacs-adaptador-lightning-a-lightning-con-35mm-de-audio",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "BS-CS16PRM": {
+      "name": "Forro XBASE Crystal Slim con MagSafe para iPhone 16 Pro Max color transparente",
+      "slug": "forro-xbase-crystal-slim-con-magsafe-para-iphone-16-pro-max-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30150": {
+      "name": "Soporte para fotografía XO Selfie stick bluetooth en color negro",
+      "slug": "soporte-para-fotografia-xo-selfie-stick-bluetooth-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "BS-B17PRMB": {
+      "name": "Forro XBASE Boulder con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16235": {
+      "name": "Cargador HyperGear rápido 30W",
+      "slug": "cargador-hypergear-rapido-30w",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HO-10101": {
+      "name": "Cámara HOCO Cámara deportiva 4K",
+      "slug": "camara-hoco-camara-deportiva-4k",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Cámaras"
+    },
+    "DK-ABIP11PR": {
+      "name": "Protector de pantalla DEKEN 3D Antiblue Light para iPhone 11 Pro",
+      "slug": "protector-de-pantalla-deken-3d-antiblue-light-para-iphone-11-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-CSS24UC": {
+      "name": "Forro XBASE Crystal Slim con MagSafe para Samsung S24 Ultra color transparente",
+      "slug": "forro-xbase-crystal-slim-con-magsafe-para-samsung-s24-ultra-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15868": {
+      "name": "Soporte para celular HyperGear Kit de montaje para teléfono Roller Grip",
+      "slug": "soporte-para-celular-hypergear-kit-de-montaje-para-telefono-roller-grip",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "EL-10203": {
+      "name": "Cable APPACS Angular Lightning (Gris)",
+      "slug": "cable-appacs-angular-lightning-gris",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15910": {
+      "name": "Cable HyperGear USB C a USB C 10 ft en color negro",
+      "slug": "cable-hypergear-usb-c-a-usb-c-10-ft-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-3HMG8L": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor Magic 8 Lite",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-magic-8-lite",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "GHOCBL043": {
+      "name": "Cable Ghostek carga rápida NRGline USB C a USB C de 3 pies en color gris",
+      "slug": "cable-ghostek-carga-rapida-nrgline-usb-c-a-usb-c-de-3-pies-en-color-gris",
+      "brand": "Ghostek",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30153": {
+      "name": "Bolso XO Bolso para laptop de 13 pulgadas en color negro",
+      "slug": "bolso-xo-bolso-para-laptop-de-13-pulgadas-en-color-negro",
+      "brand": "XO",
+      "category": "Travel & Carry",
+      "subcategory": "Transporte para laptop"
+    },
+    "DK-3HX5B": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X5b",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x5b",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "LD-40106": {
+      "name": "Audífonos inalámbricos Langsdom Fitness de Diadema con Conexión Bluetooth",
+      "slug": "audifonos-inalambricos-langsdom-fitness-de-diadema-con-conexion-bluetooth-ld-40106",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos deportivos"
+    },
+    "GHOCAS2861": {
+      "name": "Forro Ghostek Atomic Slim 4 iPhone 13 Pro Max en color rojo",
+      "slug": "forro-ghostek-atomic-slim-4-iphone-13-pro-max-en-color-rojo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3MOE15": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola E15",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-e15",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30116": {
+      "name": "Bolso XO Bolso para laptop de 13 pulgadas en color negro",
+      "slug": "bolso-xo-bolso-para-laptop-de-13-pulgadas-en-color-negro-xo-30116",
+      "brand": "XO",
+      "category": "Travel & Carry",
+      "subcategory": "Transporte para laptop"
+    },
+    "BS-DHS24UMG": {
+      "name": "Forro XBASE DuoHybrid para Samsung S24 Ultra color magenta",
+      "slug": "forro-xbase-duohybrid-para-samsung-s24-ultra-color-magenta",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HO-10118": {
+      "name": "Accesorio tecnológico HOCO Idol multifunctional magnetic card holder negro en color negro",
+      "slug": "accesorio-tecnologico-hoco-idol-multifunctional-magnetic-card-holder-negro-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-3H400P": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor 400 Pro",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-400-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-LS26UBL": {
+      "name": "Forro XBASE silicona líquida con MagSafe para Samsung S26 Ultra en color azul",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-samsung-s26-ultra-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHP17PMSB": {
+      "name": "Forro XBASE DuoHybrid para iPhone 17 Pro Max color plateado con en color negro",
+      "slug": "forro-xbase-duohybrid-para-iphone-17-pro-max-color-plateado-con-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10165": {
+      "name": "Cargador APPACS 65W con carga rápida",
+      "slug": "cargador-appacs-65w-con-carga-rapida",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30126": {
+      "name": "Accesorio tecnológico XO Proyector con base en color negro",
+      "slug": "accesorio-tecnologico-xo-proyector-con-base-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30136": {
+      "name": "Cargador para automóvil XO para carro 30W / 60W en color negro",
+      "slug": "cargador-para-automovil-xo-para-carro-30w-60w-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "AS-36405": {
+      "name": "Cargador Apple MagSafe de original con cable USB C",
+      "slug": "cargador-apple-magsafe-de-original-con-cable-usb-c",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3SS24FE": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung Galaxy S24 FE",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-galaxy-s24-fe",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-14588": {
+      "name": "Bocina HyperGear inalámbrico HyperSonic",
+      "slug": "bocina-hypergear-inalambrico-hypersonic",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Bocinas"
+    },
+    "EL-10135": {
+      "name": "Cargador APPACS con cable Micro USB de 1 metro",
+      "slug": "cargador-appacs-con-cable-micro-usb-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30130": {
+      "name": "Soporte para celular XO en color negro",
+      "slug": "soporte-para-celular-xo-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "GHOCAS4151": {
+      "name": "Forro Ghostek Covert 7 con MagSafe para iPhone 16e color transparente matte",
+      "slug": "forro-ghostek-covert-7-con-magsafe-para-iphone-16e-color-transparente-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-S17PRMWG": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro Max en color blanco con dorado",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-max-en-color-blanco-con-dorado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16032": {
+      "name": "Audífonos HyperGear open ear en color negro",
+      "slug": "audifonos-hypergear-open-ear-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "AS-36388": {
+      "name": "Cargador Apple original 20W con adaptador USB C (Nuevo modelo)",
+      "slug": "cargador-apple-original-20w-con-adaptador-usb-c-nuevo-modelo",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3SS25FE": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung Galaxy S25 FE",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-galaxy-s25-fe",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10124": {
+      "name": "Adaptador APPACS Adaptador Micro USB OTG a Micro USB",
+      "slug": "adaptador-appacs-adaptador-micro-usb-otg-a-micro-usb",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "BS-PI16EBL": {
+      "name": "Forro XBASE ProTech para iPhone 16E en color azul",
+      "slug": "forro-xbase-protech-para-iphone-16e-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30204": {
+      "name": "Cargador XO rápido 20W / 18W USB A + USB C con cable Lightning en color blanco",
+      "slug": "cargador-xo-rapido-20w-18w-usb-a-usb-c-con-cable-lightning-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "BS-B17PRMA": {
+      "name": "Forro XBASE Boulder con MagSafe para iPhone 17 Pro Max en color azul",
+      "slug": "forro-xbase-boulder-con-magsafe-para-iphone-17-pro-max-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30131": {
+      "name": "Soporte vehicular XO para retrovisor en color negro",
+      "slug": "soporte-vehicular-xo-para-retrovisor-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Soportes vehiculares"
+    },
+    "GHOCAS4229": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro Max color transparente matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-max-color-transparente-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16350": {
+      "name": "Cargador para automóvil HyperGear para carro 77W en color negro",
+      "slug": "cargador-para-automovil-hypergear-para-carro-77w-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "RS-TRP1-5M": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trp1-5m",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-14295": {
+      "name": "Cable Naztech PD MFI Lightning a USB C 2 metros en color blanco",
+      "slug": "cable-naztech-pd-mfi-lightning-a-usb-c-2-metros-en-color-blanco",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "PP-DVPCPD": {
+      "name": "Cargador para automóvil PowerPeak con puerto doble de 38W PD en color negro",
+      "slug": "cargador-para-automovil-powerpeak-con-puerto-doble-de-38w-pd-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "DK-S24FPUG": {
+      "name": "Protector de pantalla DEKEN HD 3D para Samsung Galaxy S24 Plus",
+      "slug": "protector-de-pantalla-deken-hd-3d-para-samsung-galaxy-s24-plus",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-16181": {
+      "name": "Audífonos inalámbricos HyperGear Bocina 2 en 1 inalámbrico Blancos",
+      "slug": "audifonos-inalambricos-hypergear-bocina-2-en-1-inalambrico-blancos",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HG-15543": {
+      "name": "Cargador de pared Naztech con Cable USB C de pared de 30W",
+      "slug": "cargador-de-pared-naztech-con-cable-usb-c-de-pared-de-30w",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HO-10142": {
+      "name": "Cargador inalámbrico HOCO Magnético Pro .2 25W en color blanco",
+      "slug": "cargador-inalambrico-hoco-magnetico-pro-2-25w-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "XO-30140": {
+      "name": "Micrófono XO Micrófono inalámbrico 2 en 1 en color negro",
+      "slug": "microfono-xo-microfono-inalambrico-2-en-1-en-color-negro",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Micrófonos"
+    },
+    "GHOCAS4210": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 color transparente",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHOCAS4311": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro Max color prismático",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-max-color-prismatico",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36431": {
+      "name": "Cargador Apple magnético Original para Watch de cable USB C",
+      "slug": "cargador-apple-magnetico-original-para-watch-de-cable-usb-c",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15437": {
+      "name": "Soporte para fotografía HyperGear Palo trípode de selfie inalámbrico SnapShot en color negro",
+      "slug": "soporte-para-fotografia-hypergear-palo-tripode-de-selfie-inalambrico-snapshot-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "PP-IPTRACK": {
+      "name": "Accesorio tecnológico PowerPeak Rastreador iTrack",
+      "slug": "accesorio-tecnologico-powerpeak-rastreador-itrack",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10135": {
+      "name": "Cable HOCO Kit de Carga USB C PD de 20W con Cable USB C en color blanco",
+      "slug": "cable-hoco-kit-de-carga-usb-c-pd-de-20w-con-cable-usb-c-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30102": {
+      "name": "Audífonos inalámbricos XO Bluetooth Blancos",
+      "slug": "audifonos-inalambricos-xo-bluetooth-blancos",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "GHOCAS4213": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 color humo matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-color-humo-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10164": {
+      "name": "Cargador APPACS Micro de de 2 metros",
+      "slug": "cargador-appacs-micro-de-de-2-metros",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15483": {
+      "name": "Cargador de pared Naztech 68W GaN Dual Cargador de pared en color blanco",
+      "slug": "cargador-de-pared-naztech-68w-gan-dual-cargador-de-pared-en-color-blanco",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "PP-MS2WH": {
+      "name": "Accesorio tecnológico PowerPeak Wireless Optical Mouse 2.4GHz en color blanco",
+      "slug": "accesorio-tecnologico-powerpeak-wireless-optical-mouse-24ghz-en-color-blanco",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36396": {
+      "name": "Cargador Samsung rápido 45W",
+      "slug": "cargador-samsung-rapido-45w",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "RS-ASPZC1MX": {
+      "name": "Soporte para celular ROCKSPACE Cuchilla / A Plotter Purple color morado",
+      "slug": "soporte-para-celular-rockspace-cuchilla-a-plotter-purple-color-morado",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "BS-L15PMGR": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 15 Pro Max color verde",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-15-pro-max-color-verde",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHKP17PMB": {
+      "name": "Forro XBASE DuoHybrid con base para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-duohybrid-con-base-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "LD-40108": {
+      "name": "Audífonos inalámbricos Langsdom Bluetooth Estilo Aretes con Cancelación de Ruido",
+      "slug": "audifonos-inalambricos-langsdom-bluetooth-estilo-aretes-con-cancelacion-de-ruido-ld-40108",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HO-10141": {
+      "name": "Cargador inalámbrico HOCO Magnético Pole .2 3 en 1 en color negro",
+      "slug": "cargador-inalambrico-hoco-magnetico-pole-2-3-en-1-en-color-negro",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "DK-3HX6C": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X6c",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x6c",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10112": {
+      "name": "Lápiz táctil HOCO recargable en color blanco",
+      "slug": "lapiz-tactil-hoco-recargable-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "BS-B15PRMA": {
+      "name": "Forro XBASE Boulder con MagSafe para iPhone 15 Pro Max en color azul",
+      "slug": "forro-xbase-boulder-con-magsafe-para-iphone-15-pro-max-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16299": {
+      "name": "Cargador HyperGear rápido 65W en color negro",
+      "slug": "cargador-hypergear-rapido-65w-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-PVIP143D": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 14",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-14",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "XO-30198": {
+      "name": "Luz tecnológica XO Lámpara recargable en color negro",
+      "slug": "luz-tecnologica-xo-lampara-recargable-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Iluminación tecnológica"
+    },
+    "LD-40103": {
+      "name": "Audífonos Langsdom para natacion de Diadema",
+      "slug": "audifonos-langsdom-para-natacion-de-diadema",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos deportivos"
+    },
+    "XO-30109": {
+      "name": "Reloj inteligente XO en color negro",
+      "slug": "reloj-inteligente-xo-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "RS-TRB5-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trb5-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15351": {
+      "name": "Audífonos inalámbricos Naztech inalámbricos Xpods PRO con Case recargable en color negro",
+      "slug": "audifonos-inalambricos-naztech-inalambricos-xpods-pro-con-case-recargable-en-color-negro",
+      "brand": "Naztech",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "PP-MS2BK": {
+      "name": "Accesorio tecnológico PowerPeak Wireless Optical Mouse 2.4ghz en color negro",
+      "slug": "accesorio-tecnologico-powerpeak-wireless-optical-mouse-24ghz-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-15652": {
+      "name": "Cargador inalámbrico HyperGear ChargePad Pro de 15W",
+      "slug": "cargador-inalambrico-hypergear-chargepad-pro-de-15w",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "DK-3XRA2": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Xiaomi Redmi A2",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-xiaomi-redmi-a2",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10178": {
+      "name": "Adaptador APPACS Cable adaptador de macho USB 3.0 de 2 Metros",
+      "slug": "adaptador-appacs-cable-adaptador-de-macho-usb-30-de-2-metros",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "USG-AUDAIROPL": {
+      "name": "Audífonos inalámbricos USG Inalámbricos AIROPLAY con Estuche",
+      "slug": "audifonos-inalambricos-usg-inalambricos-airoplay-con-estuche",
+      "brand": "USG",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HG-15448": {
+      "name": "Cargador inalámbrico Naztech MagLock 15W Vent Mount",
+      "slug": "cargador-inalambrico-naztech-maglock-15w-vent-mount",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "EL-10134": {
+      "name": "Cargador APPACS con cable USB C de 1 metro",
+      "slug": "cargador-appacs-con-cable-usb-c-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "EL-10182": {
+      "name": "Cargador para automóvil APPACS carga rápida set de USB C",
+      "slug": "cargador-para-automovil-appacs-carga-rapida-set-de-usb-c",
+      "brand": "APPACS",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "AS-36390": {
+      "name": "Cable Apple USB C a Lightning 2 m",
+      "slug": "cable-apple-usb-c-a-lightning-2-m",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HO-10137": {
+      "name": "Accesorio tecnológico HOCO Mini Teclado Inalámbrico 2.4G en color negro",
+      "slug": "accesorio-tecnologico-hoco-mini-teclado-inalambrico-24g-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-EFS26UBK": {
+      "name": "Forro XBASE tipo wallet con MagSafe para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-tipo-wallet-con-magsafe-para-samsung-s26-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "RS-PLOTZV2": {
+      "name": "Accesorio tecnológico ROCKSPACE Plotter inteligente para láminas",
+      "slug": "accesorio-tecnologico-rockspace-plotter-inteligente-para-laminas",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-BSS23UB": {
+      "name": "Forro XBASE Boulder para Samsung S23 Ultra en color negro",
+      "slug": "forro-xbase-boulder-para-samsung-s23-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3MOG75": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G75",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g75",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10122": {
+      "name": "Soporte para celular HOCO en color negro",
+      "slug": "soporte-para-celular-hoco-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "BS-PSS24UB": {
+      "name": "Forro XBASE ProTech con MagSafe para Samsung S24 Ultra en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-samsung-s24-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-PVIP11PR": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 11 Pro",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-11-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "HG-15610": {
+      "name": "Audífonos inalámbricos HyperGear inalámbrico VIBE",
+      "slug": "audifonos-inalambricos-hypergear-inalambrico-vibe",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-3H90L": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor 90 Lite",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-90-lite",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "AS-36389": {
+      "name": "Cable Apple USB C a Lightning 1 m",
+      "slug": "cable-apple-usb-c-a-lightning-1-m",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "AS-36393": {
+      "name": "Cargador Apple Cable para cargador de USB C (Nuevo Modelo)",
+      "slug": "cargador-apple-cable-para-cargador-de-usb-c-nuevo-modelo",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "GHOCAS4217": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Air color humo matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-air-color-humo-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36433": {
+      "name": "Cable Samsung Original USB C de 5A",
+      "slug": "cable-samsung-original-usb-c-de-5a",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "KR20155": {
+      "name": "Adaptador KRIEG Adaptador HDMI M a HDMI H 270° en color negro",
+      "slug": "adaptador-krieg-adaptador-hdmi-m-a-hdmi-h-270-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Smart Tech",
+      "subcategory": "Hubs y conectividad"
+    },
+    "HO-10136": {
+      "name": "Cargador para automóvil HOCO Inalámbrico para Rejilla de Auto en color negro",
+      "slug": "cargador-para-automovil-hoco-inalambrico-para-rejilla-de-auto-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "HG-16180": {
+      "name": "Audífonos inalámbricos HyperGear Bluetooth 2 en 1 negros",
+      "slug": "audifonos-inalambricos-hypergear-bluetooth-2-en-1-negros",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HG-16074": {
+      "name": "Audífonos inalámbricos HyperGear TWS para dormir en color blanco",
+      "slug": "audifonos-inalambricos-hypergear-tws-para-dormir-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "PP-QIMS-WH": {
+      "name": "Cargador inalámbrico PowerPeak 15W magnético en color blanco",
+      "slug": "cargador-inalambrico-powerpeak-15w-magnetico-en-color-blanco",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "BS-S16EIR": {
+      "name": "Forro XBASE Sparkleline para iPhone 16E Iridescent",
+      "slug": "forro-xbase-sparkleline-para-iphone-16e-iridescent",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10170": {
+      "name": "Adaptador APPACS Adaptador Lightning a HDMI+USB entrada hembra+lector de tarjetas SD",
+      "slug": "adaptador-appacs-adaptador-lightning-a-hdmi-usb-entrada-hembra-lector-de-tarjetas-sd",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-PVIP113D": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 11",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-11",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "KR20104": {
+      "name": "Cable KRIEG Auxiliar Angular de 3.5mm a 3.5mm en color negro",
+      "slug": "cable-krieg-auxiliar-angular-de-35mm-a-35mm-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-3SMA57": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A57",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a57",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15860": {
+      "name": "Audífonos inalámbricos HyperGear ANC inalámbrico Bone",
+      "slug": "audifonos-inalambricos-hypergear-anc-inalambrico-bone",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HG-16106": {
+      "name": "Audífonos inalámbricos HyperGear TWS para dormir en color negro",
+      "slug": "audifonos-inalambricos-hypergear-tws-para-dormir-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "AS-36423": {
+      "name": "Cargador inalámbrico Samsung Original Duo Pack",
+      "slug": "cargador-inalambrico-samsung-original-duo-pack",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "EL-10117": {
+      "name": "Adaptador APPACS Adaptador USB C a USB C and 3.5 audio Jack en color blanco",
+      "slug": "adaptador-appacs-adaptador-usb-c-a-usb-c-and-35-audio-jack-en-color-blanco",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "EL-10120": {
+      "name": "Accesorio tecnológico APPACS Adaptador Lightining a 3.5mm para auxiliar de carro",
+      "slug": "accesorio-tecnologico-appacs-adaptador-lightining-a-35mm-para-auxiliar-de-carro",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30137": {
+      "name": "Accesorio tecnológico XO intelligent transparent metal car charging A+C=95W (MAX) en color gris",
+      "slug": "accesorio-tecnologico-xo-intelligent-transparent-metal-car-charging-a-c-95w-max-en-color-gris",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-16313": {
+      "name": "Cargador HyperGear rápido 30W en color blanco",
+      "slug": "cargador-hypergear-rapido-30w-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "BS-DHS25UPK": {
+      "name": "Forro XBASE Duo Hybrid Samsung Galaxy Ultra en color rosado",
+      "slug": "forro-xbase-duo-hybrid-samsung-galaxy-ultra-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-PSS26UA": {
+      "name": "Forro XBASE ProTech con MagSafe para Samsung S26 Ultra en color azul",
+      "slug": "forro-xbase-protech-con-magsafe-para-samsung-s26-ultra-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15643": {
+      "name": "Cargador para automóvil HyperGear Hybrid Cargador USB Carro/Pared en color negro",
+      "slug": "cargador-para-automovil-hypergear-hybrid-cargador-usb-carro-pared-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "HO-10127": {
+      "name": "Cable HOCO USB C a Lightning de Silicona 27W | 1 m en color blanco",
+      "slug": "cable-hoco-usb-c-a-lightning-de-silicona-27w-1-m-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-3SMA36": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A36",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a36",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10133": {
+      "name": "Cargador APPACS con cable Lightning de 1 metro",
+      "slug": "cargador-appacs-con-cable-lightning-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-ABIP14MAX": {
+      "name": "Protector de pantalla DEKEN Dekën Antiblue Light para iPhone 14 Max 3D",
+      "slug": "protector-de-pantalla-deken-deken-antiblue-light-para-iphone-14-max-3d",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-EFS26UBR": {
+      "name": "Forro XBASE tipo wallet con MagSafe para Samsung S26 Ultra color café",
+      "slug": "forro-xbase-tipo-wallet-con-magsafe-para-samsung-s26-ultra-color-cafe",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-GSCG-WH": {
+      "name": "Accesorio tecnológico XBASE Octobuddy de solicona redondo con magsafe en color blanco",
+      "slug": "accesorio-tecnologico-xbase-octobuddy-de-solicona-redondo-con-magsafe-en-color-blanco",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-S17IR": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 color iridiscente",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-color-iridiscente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20142": {
+      "name": "Audífonos KRIEG Lightning KA 02 con Micrófono",
+      "slug": "audifonos-krieg-lightning-ka-02-con-microfono",
+      "brand": "KRIEG",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "PP-TCAW": {
+      "name": "Cable PowerPeak Watch Charging Apple Cable USB C en color blanco",
+      "slug": "cable-powerpeak-watch-charging-apple-cable-usb-c-en-color-blanco",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10191": {
+      "name": "Accesorio tecnológico APPACS Memoria USB de Metal con Capacidad de 32G",
+      "slug": "accesorio-tecnologico-appacs-memoria-usb-de-metal-con-capacidad-de-32g",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-16356": {
+      "name": "Accesorio tecnológico HyperGear 3 in 1 Wireless Charging Stand RGB en color negro",
+      "slug": "accesorio-tecnologico-hypergear-3-in-1-wireless-charging-stand-rgb-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-16123": {
+      "name": "Power bank HyperGear 5,000 mAh inalámbrica magnética en color blanco",
+      "slug": "power-bank-hypergear-5000-mah-inalambrica-magnetica-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks inalámbricas"
+    },
+    "DK-3SMA07": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A07",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a07",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10105": {
+      "name": "Reloj inteligente HOCO Ultra con llamadas en color negro",
+      "slug": "reloj-inteligente-hoco-ultra-con-llamadas-en-color-negro-ho-10105",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "EL-10163": {
+      "name": "Cable APPACS braided de aluminio para USB C a Lightning",
+      "slug": "cable-appacs-braided-de-aluminio-para-usb-c-a-lightning",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-16379": {
+      "name": "Cargador para automóvil HyperGear para carro 38W en color negro",
+      "slug": "cargador-para-automovil-hypergear-para-carro-38w-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "RS-TRD5-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trd5-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "AS-36395": {
+      "name": "Cargador Apple magnético AppleWatch Original de 2 metros",
+      "slug": "cargador-apple-magnetico-applewatch-original-de-2-metros",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HO-10124": {
+      "name": "Cable HOCO carga para smartwatch en color blanco",
+      "slug": "cable-hoco-carga-para-smartwatch-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10157": {
+      "name": "Cargador APPACS Cable USB C a Lightning con cargador magnetico en color negro",
+      "slug": "cargador-appacs-cable-usb-c-a-lightning-con-cargador-magnetico-en-color-negro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "EL-10127": {
+      "name": "Cable APPACS Mini microfono 3.5MM para celular Con cable de 2 metros",
+      "slug": "cable-appacs-mini-microfono-35mm-para-celular-con-cable-de-2-metros",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-3SMA25": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A25",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a25",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "AS-36432": {
+      "name": "Accesorio tecnológico Apple Pencil (2da generación)",
+      "slug": "accesorio-tecnologico-apple-pencil-2da-generacion",
+      "brand": "Apple",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10103": {
+      "name": "Cámara HOCO Cámara para carro con GPS",
+      "slug": "camara-hoco-camara-para-carro-con-gps",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Cámaras"
+    },
+    "XO-30151": {
+      "name": "Soporte para fotografía XO Selfie stick bluetooth en color negro",
+      "slug": "soporte-para-fotografia-xo-selfie-stick-bluetooth-en-color-negro-xo-30151",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "XO-30211": {
+      "name": "Audífonos inalámbricos XO TWS Bluetooth negro, sonido premium para tu día",
+      "slug": "audifonos-inalambricos-xo-tws-bluetooth-negro-sonido-premium-para-tu-dia",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "LD-40109": {
+      "name": "Audífonos inalámbricos Langsdom Bluetooth Estilo Aretes con cancelación de ruido",
+      "slug": "audifonos-inalambricos-langsdom-bluetooth-estilo-aretes-con-cancelacion-de-ruido-ld-40109",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "XO-30208": {
+      "name": "Cable XO trenzado USB C a USB C 60W 1.5 m en color blanco",
+      "slug": "cable-xo-trenzado-usb-c-a-usb-c-60w-15-m-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOLP014": {
+      "name": "Accesorio tecnológico Ghostek Correa para teléfono Loop 1 en color negro",
+      "slug": "accesorio-tecnologico-ghostek-correa-para-telefono-loop-1-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10143": {
+      "name": "Soporte vehicular HOCO Vehicular con Carga Inalámbrica Magnética en color negro",
+      "slug": "soporte-vehicular-hoco-vehicular-con-carga-inalambrica-magnetica-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Drive",
+      "subcategory": "Soportes vehiculares"
+    },
+    "XO-30120": {
+      "name": "Accesorio tecnológico XO Bag 17 inch computer backpack negro en color negro",
+      "slug": "accesorio-tecnologico-xo-bag-17-inch-computer-backpack-negro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-U17PRMBK": {
+      "name": "Forro XBASE Suede con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-suede-con-magsafe-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3SMA56": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A56",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a56",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-ACIADEZC3": {
+      "name": "Accesorio tecnológico ROCKSPACE Cinta Adhesiva de Goma / B Plotter",
+      "slug": "accesorio-tecnologico-rockspace-cinta-adhesiva-de-goma-b-plotter",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30206": {
+      "name": "Cargador XO rápido 30W en color blanco",
+      "slug": "cargador-xo-rapido-30w-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30123": {
+      "name": "Ventilador portátil XO recargable de 1200 mAh en color blanco",
+      "slug": "ventilador-portatil-xo-recargable-de-1200-mah-en-color-blanco",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "GHOCAS4228": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro Max color transparente",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-max-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20143": {
+      "name": "Audífonos KRIEG USB C KA 02 con Micrófono",
+      "slug": "audifonos-krieg-usb-c-ka-02-con-microfono",
+      "brand": "KRIEG",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "PP-DVPC48": {
+      "name": "Cargador para automóvil PowerPeak doble puerto para auto de 48W",
+      "slug": "cargador-para-automovil-powerpeak-doble-puerto-para-auto-de-48w",
+      "brand": "PowerPeak",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "HO-10115": {
+      "name": "Cámara HOCO Cámara deportiva en color negro",
+      "slug": "camara-hoco-camara-deportiva-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Cámaras"
+    },
+    "HG-15991": {
+      "name": "Cable HyperGear USB C a USB C 4 ft en color negro",
+      "slug": "cable-hypergear-usb-c-a-usb-c-4-ft-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "LD-40104": {
+      "name": "Audífonos Langsdom para natacion de Diadema",
+      "slug": "audifonos-langsdom-para-natacion-de-diadema-ld-40104",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos deportivos"
+    },
+    "HG-15866": {
+      "name": "Audífonos inalámbricos HyperGear inalámbrico Bunny Tracks en color blanco",
+      "slug": "audifonos-inalambricos-hypergear-inalambrico-bunny-tracks-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-PI17BK": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 17 en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-17-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-SS25USS": {
+      "name": "Forro XBASE Sparkleline Samsung Galaxy Ultra Silver",
+      "slug": "forro-xbase-sparkleline-samsung-galaxy-ultra-silver",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HO-10131": {
+      "name": "Cargador de pared HOCO USB C PD de 40W en color blanco",
+      "slug": "cargador-de-pared-hoco-usb-c-pd-de-40w-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-ABIP113D": {
+      "name": "Protector de pantalla DEKEN 3D Antiblue Light para iPhone 11",
+      "slug": "protector-de-pantalla-deken-3d-antiblue-light-para-iphone-11",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-S17PRMSL": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro Max color plateado",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-max-color-plateado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10154": {
+      "name": "Cargador para automóvil APPACS carga rápida de metal con luz",
+      "slug": "cargador-para-automovil-appacs-carga-rapida-de-metal-con-luz",
+      "brand": "APPACS",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "HG-15539": {
+      "name": "Cámara HyperGear Camara Web HyperStream de 1080P en color negro",
+      "slug": "camara-hypergear-camara-web-hyperstream-de-1080p-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Cámaras"
+    },
+    "BS-PSS25UB": {
+      "name": "Forro XBASE ProTech con MagSafe para Samsung S25 Ultra en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-samsung-s25-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHOCAS4301": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro color prismático",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-color-prismatico",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30117": {
+      "name": "Bolso XO Bolso para laptop de 14 pulgadas en color gris",
+      "slug": "bolso-xo-bolso-para-laptop-de-14-pulgadas-en-color-gris",
+      "brand": "XO",
+      "category": "Travel & Carry",
+      "subcategory": "Transporte para laptop"
+    },
+    "GHOCAS2822": {
+      "name": "Forro Ghostek Covert 6 con MagSafe iPhone 13 Pro en color rosado",
+      "slug": "forro-ghostek-covert-6-con-magsafe-iphone-13-pro-en-color-rosado",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHKS25UBK": {
+      "name": "Forro XBASE DuoHybrid con base para Samsung S25 Ultra en color negro",
+      "slug": "forro-xbase-duohybrid-con-base-para-samsung-s25-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10140": {
+      "name": "Adaptador APPACS Adaptador 2 en 1 USB C a HDTV+VGA",
+      "slug": "adaptador-appacs-adaptador-2-en-1-usb-c-a-hdtv-vga",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-IP12PRM": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 12 Pro Max",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-12-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30182": {
+      "name": "Soporte para fotografía XO Selfie stick 4 en 1 en color negro",
+      "slug": "soporte-para-fotografia-xo-selfie-stick-4-en-1-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Trípodes y selfie sticks"
+    },
+    "RS-APATZC2": {
+      "name": "Accesorio tecnológico ROCKSPACE Pantalla de ZC1 A/ MINI 5.5 inch full lamination IPS HD",
+      "slug": "accesorio-tecnologico-rockspace-pantalla-de-zc1-a-mini-55-inch-full-lamination-ips-hd",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10104": {
+      "name": "Accesorio tecnológico HOCO Jumper para carro / bomba de aire infladora",
+      "slug": "accesorio-tecnologico-hoco-jumper-para-carro-bomba-de-aire-infladora",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36416": {
+      "name": "Cargador para automóvil Samsung con Puerto DUAL 45W USB C & 15W USB",
+      "slug": "cargador-para-automovil-samsung-con-puerto-dual-45w-usb-c-15w-usb",
+      "brand": "Samsung",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "XO-30118": {
+      "name": "Bolso XO Bolso para laptop de 14 pulgadas en color negro",
+      "slug": "bolso-xo-bolso-para-laptop-de-14-pulgadas-en-color-negro",
+      "brand": "XO",
+      "category": "Travel & Carry",
+      "subcategory": "Transporte para laptop"
+    },
+    "HG-16104": {
+      "name": "Cable Naztech USB C a USB C 6 ft en color negro",
+      "slug": "cable-naztech-usb-c-a-usb-c-6-ft-en-color-negro",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-S24FUG": {
+      "name": "Protector de pantalla DEKEN HD 3D para Samsung Galaxy S24",
+      "slug": "protector-de-pantalla-deken-hd-3d-para-samsung-galaxy-s24",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-PI17PMA": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 17 Pro Max en color azul",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-17-pro-max-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHONRL011": {
+      "name": "Cargador Ghostek rápido 45W doble puerto en color blanco",
+      "slug": "cargador-ghostek-rapido-45w-doble-puerto-en-color-blanco",
+      "brand": "Ghostek",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "GHOCAS2862": {
+      "name": "Forro Ghostek Atomic Slim 4 iPhone 13 Pro Max en color rosado",
+      "slug": "forro-ghostek-atomic-slim-4-iphone-13-pro-max-en-color-rosado",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-IPXI3D": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 11",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-11",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-DHS26UPK": {
+      "name": "Forro XBASE DuoHybrid para Samsung S26 Ultra en color rosado",
+      "slug": "forro-xbase-duohybrid-para-samsung-s26-ultra-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-13295": {
+      "name": "Cargador Naztech USB C a USB C Cable 1 metro en color negro",
+      "slug": "cargador-naztech-usb-c-a-usb-c-cable-1-metro-en-color-negro",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30113": {
+      "name": "Accesorio tecnológico XO Estabilizador Antivibracion para telefono en color gris",
+      "slug": "accesorio-tecnologico-xo-estabilizador-antivibracion-para-telefono-en-color-gris",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10186": {
+      "name": "Accesorio tecnológico APPACS Memoria TF SD Flash Micro con capacidad de 32G",
+      "slug": "accesorio-tecnologico-appacs-memoria-tf-sd-flash-micro-con-capacidad-de-32g",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HO-10129": {
+      "name": "Cable HOCO USB C a USB C de Silicona 60W | 1 m en color negro",
+      "slug": "cable-hoco-usb-c-a-usb-c-de-silicona-60w-1-m-en-color-negro",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HO-10123": {
+      "name": "Reloj inteligente HOCO Ultra con llamadas Titanium Gold",
+      "slug": "reloj-inteligente-hoco-ultra-con-llamadas-titanium-gold",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "PP-CMVTM": {
+      "name": "Cargador para automóvil PowerPeak inalámbrico de carro carga rápida en color negro",
+      "slug": "cargador-para-automovil-powerpeak-inalambrico-de-carro-carga-rapida-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "DK-3HX8B": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X8b",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x8b",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-SS25UGS": {
+      "name": "Forro XBASE Sparkleline Samsung Galaxy Ultra Dorado",
+      "slug": "forro-xbase-sparkleline-samsung-galaxy-ultra-dorado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30132": {
+      "name": "Soporte vehicular XO para retrovisor en color negro",
+      "slug": "soporte-vehicular-xo-para-retrovisor-en-color-negro-xo-30132",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Soportes vehiculares"
+    },
+    "HG-15289": {
+      "name": "Soporte para celular HyperGear magnético en color negro",
+      "slug": "soporte-para-celular-hypergear-magnetico-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "DK-3IP14PM": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 14 Pro Max",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-14-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3MOG05": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G05",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g05",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3MOG84": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G84",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g84",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-TRD6-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trd6-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-PVIP12PRM": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 12 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-12-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "XO-30139": {
+      "name": "Cargador para automóvil XO Carga Rápida 30W en color negro",
+      "slug": "cargador-para-automovil-xo-carga-rapida-30w-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "BS-BSS26UB": {
+      "name": "Forro XBASE Boulder con MagSafe para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-samsung-s26-ultra-en-color-negro-bs-bss26ub",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30196": {
+      "name": "Accesorio para videojuegos XO Bluetooth with Cradle Compatible with Gamepad negro/azul en color azul",
+      "slug": "accesorio-para-videojuegos-xo-bluetooth-with-cradle-compatible-with-gamepad-negro-azul-en-color-azul",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Videojuegos"
+    },
+    "BS-S17PROIR": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro color iridiscente",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-color-iridiscente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20217": {
+      "name": "Cargador KRIEG KC 31 18W con cable Type C 2 m carga rápida para Android",
+      "slug": "cargador-krieg-kc-31-18w-con-cable-type-c-2-m-carga-rapida-para-android",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "RS-TRD7-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trd7-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-S16PRMGS": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 16 Pro Max color franja dorada",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-16-pro-max-color-franja-dorada",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15404": {
+      "name": "Cable HyperGear MFI Lightning USB Braided de 1.5 metros",
+      "slug": "cable-hypergear-mfi-lightning-usb-braided-de-15-metros",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-16160": {
+      "name": "Power bank HyperGear 10,000 mAh en color negro",
+      "slug": "power-bank-hypergear-10000-mah-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "DK-3SMA15": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A15",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a15",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30216": {
+      "name": "Accesorio tecnológico XO Luz magnética plegable para celular iluminación premium para tus fotos",
+      "slug": "accesorio-tecnologico-xo-luz-magnetica-plegable-para-celular-iluminacion-premium-para-tus-fotos",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-PI16PMB": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 16 Pro Max en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-16-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3IP13": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 13 / 13 Pro",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-13-13-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3IP15": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 15",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-15",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10106": {
+      "name": "Cable APPACS Micro USB de con indicador LED",
+      "slug": "cable-appacs-micro-usb-de-con-indicador-led",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-PSS26UB": {
+      "name": "Forro XBASE ProTech con MagSafe para Samsung S26 Ultra en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-samsung-s26-ultra-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-ABIP15PRO": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 15 Pro",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-15-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15865": {
+      "name": "Audífonos inalámbricos HyperGear inalámbrico Bunny Tracks en color negro",
+      "slug": "audifonos-inalambricos-hypergear-inalambrico-bunny-tracks-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "KR20171": {
+      "name": "Cable KRIEG KC 19 Cable Estereo 3RCA a 3RCA de 3 Metros 3×3 en color negro",
+      "slug": "cable-krieg-kc-19-cable-estereo-3rca-a-3rca-de-3-metros-3-3-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10112": {
+      "name": "Cable APPACS carga Micro USB con largo de 1 metro",
+      "slug": "cable-appacs-carga-micro-usb-con-largo-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10158": {
+      "name": "Accesorio tecnológico APPACS Exhibidor promocional de productos de 360 visibilidad",
+      "slug": "accesorio-tecnologico-appacs-exhibidor-promocional-de-productos-de-360-visibilidad",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCAS3521": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 15 Pro color prismático",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-15-pro-color-prismatico",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-DHK16PMB": {
+      "name": "Forro XBASE DuoHybrid con base para iPhone 16 Pro Max en color negro",
+      "slug": "forro-xbase-duohybrid-con-base-para-iphone-16-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-PI17PA": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 17 Pro en color azul",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-17-pro-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-ABIP143D": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Anti‑azul Light para iPhone 14",
+      "slug": "protector-de-pantalla-deken-deken-3d-anti-azul-light-para-iphone-14",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10132": {
+      "name": "Cable HOCO Kit de Carga USB C PD de 40W con Cable USB C en color blanco",
+      "slug": "cable-hoco-kit-de-carga-usb-c-pd-de-40w-con-cable-usb-c-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HO-10125": {
+      "name": "Reloj inteligente HOCO AMOLED con llamadas Silver",
+      "slug": "reloj-inteligente-hoco-amoled-con-llamadas-silver",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "PP-TCINTL": {
+      "name": "Adaptador PowerPeak Adaptador de corriente internacional USB C 18W PD",
+      "slug": "adaptador-powerpeak-adaptador-de-corriente-internacional-usb-c-18w-pd",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "HO-10110": {
+      "name": "Accesorio tecnológico HOCO Producto de ejemplo",
+      "slug": "accesorio-tecnologico-hoco-producto-de-ejemplo-ho-10110",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30207": {
+      "name": "Cargador XO rápido 20W en color blanco",
+      "slug": "cargador-xo-rapido-20w-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "EL-10141": {
+      "name": "Accesorio tecnológico APPACS Adaptador 3 en 1 con HDMI USB PD",
+      "slug": "accesorio-tecnologico-appacs-adaptador-3-en-1-con-hdmi-usb-pd",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-3IP17": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 17",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-17",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10195": {
+      "name": "Adaptador APPACS Adaptador de HDMI a Extender",
+      "slug": "adaptador-appacs-adaptador-de-hdmi-a-extender-el-10195",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Hubs y conectividad"
+    },
+    "HO-10120": {
+      "name": "Dispositivo inteligente HOCO Localizador inteligente en color negro",
+      "slug": "dispositivo-inteligente-hoco-localizador-inteligente-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "GHOCAS4302": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro en color rojo",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-en-color-rojo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-B17PROB": {
+      "name": "Forro XBASE Boulder con MagSafe para iPhone 17 Pro en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-iphone-17-pro-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10211": {
+      "name": "Cargador APPACS 20W USB C Quick Charger 3.0",
+      "slug": "cargador-appacs-20w-usb-c-quick-charger-30",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "EL-10174": {
+      "name": "Cable APPACS carga USB a Micro USB Verde",
+      "slug": "cable-appacs-carga-usb-a-micro-usb-verde",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30155": {
+      "name": "Accesorio tecnológico XO Dyson Hairdryer Curler Storage Bag negro en color negro",
+      "slug": "accesorio-tecnologico-xo-dyson-hairdryer-curler-storage-bag-negro-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "SCGM-BK": {
+      "name": "Accesorio tecnológico XBASE Octobuddy de solicona redondo con magsafe",
+      "slug": "accesorio-tecnologico-xbase-octobuddy-de-solicona-redondo-con-magsafe",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "LD-40101": {
+      "name": "Lentes inteligentes Langsdom Lentes con IA Fitness AIRNOVA con Audio Inalámbrico y Protección Solar",
+      "slug": "lentes-inteligentes-langsdom-lentes-con-ia-fitness-airnova-con-audio-inalambrico-y-proteccion-solar",
+      "brand": "Langsdom",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "KR20131": {
+      "name": "Cable KRIEG carga de USB C de 2 metro en color negro",
+      "slug": "cable-krieg-carga-de-usb-c-de-2-metro-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-V17PRMBR": {
+      "name": "Forro XBASE cuero vegano con MagSafe para iPhone 17 Pro Max color café",
+      "slug": "forro-xbase-cuero-vegano-con-magsafe-para-iphone-17-pro-max-color-cafe",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36392": {
+      "name": "Cable Apple Original de USB a Lightning de 2 Metro",
+      "slug": "cable-apple-original-de-usb-a-lightning-de-2-metro",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOCAS4231": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro Max color humo matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-max-color-humo-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-IP16PRO": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 16 Pro",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-16-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3TECM30": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Tecno Camon 30",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-tecno-camon-30",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10139": {
+      "name": "Cargador inalámbrico HOCO Magnético Pro .2 25W en color negro",
+      "slug": "cargador-inalambrico-hoco-magnetico-pro-2-25w-en-color-negro",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "DK-3SMA55": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A55",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a55",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-IP133D": {
+      "name": "Protector de pantalla DEKEN 3D para iPhone 13",
+      "slug": "protector-de-pantalla-deken-3d-para-iphone-13",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30210": {
+      "name": "Accesorio tecnológico XO Inversor para carro 200W energía premium en el camino",
+      "slug": "accesorio-tecnologico-xo-inversor-para-carro-200w-energia-premium-en-el-camino",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-15758": {
+      "name": "Cargador de pared HyperGear Carga rápida de 30W USB C",
+      "slug": "cargador-de-pared-hypergear-carga-rapida-de-30w-usb-c",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "AS-36434": {
+      "name": "Adaptador Samsung Adaptador Original de 65W USB C Trio",
+      "slug": "adaptador-samsung-adaptador-original-de-65w-usb-c-trio",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "AS-36426": {
+      "name": "Accesorio tecnológico Apple EarPods Originales con puerto USB C",
+      "slug": "accesorio-tecnologico-apple-earpods-originales-con-puerto-usb-c",
+      "brand": "Apple",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10181": {
+      "name": "Cargador para automóvil APPACS carga rápida set de Lightning",
+      "slug": "cargador-para-automovil-appacs-carga-rapida-set-de-lightning",
+      "brand": "APPACS",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "EL-10179": {
+      "name": "Accesorio tecnológico APPACS Cubo USB C para carga rápida con puerto dual",
+      "slug": "accesorio-tecnologico-appacs-cubo-usb-c-para-carga-rapida-con-puerto-dual",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-PVIP14PRM": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 14 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-14-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "HG-15183": {
+      "name": "Audífonos Naztech BT con micrófono largo y ajustable",
+      "slug": "audifonos-naztech-bt-con-microfono-largo-y-ajustable",
+      "brand": "Naztech",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-DHKS26UCL": {
+      "name": "Forro XBASE DuoHybrid con base para Samsung S26 Ultra color transparente",
+      "slug": "forro-xbase-duohybrid-con-base-para-samsung-s26-ultra-color-transparente",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HO-10133": {
+      "name": "Cargador de pared HOCO USB C PD de 20W en color blanco",
+      "slug": "cargador-de-pared-hoco-usb-c-pd-de-20w-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15827": {
+      "name": "Power bank HyperGear 20,000 mAh Transparent en color negro",
+      "slug": "power-bank-hypergear-20000-mah-transparent-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HO-10117": {
+      "name": "Adaptador CarPlay HOCO Way car wireless CarPlay adapter Metal en color gris",
+      "slug": "adaptador-carplay-hoco-way-car-wireless-carplay-adapter-metal-en-color-gris",
+      "brand": "HOCO",
+      "category": "Smart Drive",
+      "subcategory": "CarPlay y conectividad"
+    },
+    "HG-15857": {
+      "name": "Transmisor para automóvil HyperGear Transmisor FM IntelliCast Road con cargador de carro",
+      "slug": "transmisor-para-automovil-hypergear-transmisor-fm-intellicast-road-con-cargador-de-carro",
+      "brand": "HyperGear",
+      "category": "Smart Drive",
+      "subcategory": "Transmisores y conectividad"
+    },
+    "PP-TCSAMW": {
+      "name": "Cargador PowerPeak USB C para Samsung Watch",
+      "slug": "cargador-powerpeak-usb-c-para-samsung-watch",
+      "brand": "PowerPeak",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15593": {
+      "name": "Adaptador Naztech Adaptador Universal USB C Hub",
+      "slug": "adaptador-naztech-adaptador-universal-usb-c-hub",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "RS-FUVPV10S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina UV de privacidad pack de 10",
+      "slug": "accesorio-tecnologico-rockspace-lamina-uv-de-privacidad-pack-de-10",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-15592": {
+      "name": "Micrófono HyperGear Microfono con sonido Pro Audio avanzado",
+      "slug": "microfono-hypergear-microfono-con-sonido-pro-audio-avanzado",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Micrófonos"
+    },
+    "GHOCAS4220": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro color humo",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-color-humo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10161": {
+      "name": "Cable APPACS Auriculares inalámbricos con cable de carga en color negro",
+      "slug": "cable-appacs-auriculares-inalambricos-con-cable-de-carga-en-color-negro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30105": {
+      "name": "Audífonos inalámbricos XO Bluetooth Pods Blancos",
+      "slug": "audifonos-inalambricos-xo-bluetooth-pods-blancos-xo-30105",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "XO-30149": {
+      "name": "Accesorio tecnológico XO Bluetooth anti loss locator bidirectional search to Apple/Android blanco en color blanco",
+      "slug": "accesorio-tecnologico-xo-bluetooth-anti-loss-locator-bidirectional-search-to-apple-android-blanco-en-color-blanco",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30203": {
+      "name": "Power bank XO 10,000 mAh en color blanco",
+      "slug": "power-bank-xo-10000-mah-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "DK-PVIP16PRM": {
+      "name": "Protector de pantalla DEKEN con privacidad 3D para iPhone 16 Pro Max",
+      "slug": "protector-de-pantalla-deken-con-privacidad-3d-para-iphone-16-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "EL-10190": {
+      "name": "Accesorio tecnológico APPACS Memoria USB de metal con capacidad de 16G",
+      "slug": "accesorio-tecnologico-appacs-memoria-usb-de-metal-con-capacidad-de-16g",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10176": {
+      "name": "Cable APPACS USB C 3.0 de carga rápida de 2 Metros",
+      "slug": "cable-appacs-usb-c-30-de-carga-rapida-de-2-metros",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-L17PROMPK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 Pro Max en color rosado",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-pro-max-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36427": {
+      "name": "Adaptador Apple Adaptador Original para Macbook de 61W USB C",
+      "slug": "adaptador-apple-adaptador-original-para-macbook-de-61w-usb-c",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "HG-15350": {
+      "name": "Audífonos inalámbricos Naztech inalámbricos Xpods PRO con Case recargable",
+      "slug": "audifonos-inalambricos-naztech-inalambricos-xpods-pro-con-case-recargable",
+      "brand": "Naztech",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "XO-30205": {
+      "name": "Cargador XO rápido 20W / 18W USB A + USB C con cable USB C en color blanco",
+      "slug": "cargador-xo-rapido-20w-18w-usb-a-usb-c-con-cable-usb-c-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "AS-36413": {
+      "name": "Audífonos Apple Originales EarPods con Conector Lightning",
+      "slug": "audifonos-apple-originales-earpods-con-conector-lightning",
+      "brand": "Apple",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "RS-FMP20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina matte de privacidad pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-matte-de-privacidad-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36408": {
+      "name": "Adaptador Apple Adaptador Jack original de Lightning a 3.5 mm para audífonos",
+      "slug": "adaptador-apple-adaptador-jack-original-de-lightning-a-35-mm-para-audifonos",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-3OPR12F": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para OPPO Reno 12 F",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-oppo-reno-12-f",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "KR20169": {
+      "name": "Cable KRIEG KC 20 Cable Estereo 3.5mm a 2RCA de 3 Metros 1×2 en color negro",
+      "slug": "cable-krieg-kc-20-cable-estereo-35mm-a-2rca-de-3-metros-1-2-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOCAS2679": {
+      "name": "Forro Ghostek Covert 4 para Airpod Pro Smoke",
+      "slug": "forro-ghostek-covert-4-para-airpod-pro-smoke",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-PI17PMB": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20168": {
+      "name": "Cable KRIEG KC 20 Cable Estereo 3.5mm a 2RCA de 1.5 Metros 1×2 en color negro",
+      "slug": "cable-krieg-kc-20-cable-estereo-35mm-a-2rca-de-15-metros-1-2-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15812": {
+      "name": "Power bank HyperGear 10,000 mAh Transparent en color negro",
+      "slug": "power-bank-hypergear-10000-mah-transparent-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "XO-30200": {
+      "name": "Accesorio tecnológico XO Dedales gaming para celular 3 pares color plateado",
+      "slug": "accesorio-tecnologico-xo-dedales-gaming-para-celular-3-pares-color-plateado",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-L14PMPK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 14 Pro Max en color rosado",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-14-pro-max-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "RS-TRB1-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trb1-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10114": {
+      "name": "Adaptador APPACS Adaptador Lightning a USB",
+      "slug": "adaptador-appacs-adaptador-lightning-a-usb",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "BS-DHS26UBL": {
+      "name": "Forro XBASE DuoHybrid para Samsung S26 Ultra en color azul",
+      "slug": "forro-xbase-duohybrid-para-samsung-s26-ultra-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15422": {
+      "name": "Cable HyperGear Flexi USB C a Lightning Flat de 2 metros",
+      "slug": "cable-hypergear-flexi-usb-c-a-lightning-flat-de-2-metros",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-3H400S": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor 400 Smart",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-400-smart",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3SMA37": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A37",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a37",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-BC17PRMB": {
+      "name": "Forro XBASE Boulder con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-boulder-con-magsafe-para-iphone-17-pro-max-en-color-negro-bs-bc17prmb",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15871": {
+      "name": "Accesorio tecnológico Naztech Aura 360 ANC Wireless Headphones Vintage",
+      "slug": "accesorio-tecnologico-naztech-aura-360-anc-wireless-headphones-vintage",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-L15PMBK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 15 Pro Max en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-15-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3IFGT20P": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Infinix GT 20 Pro",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-infinix-gt-20-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-S17PROSL": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro color plateado",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-color-plateado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16031": {
+      "name": "Reloj inteligente HyperGear Reloj SmartWatch + Fitness Tracker",
+      "slug": "reloj-inteligente-hypergear-reloj-smartwatch-fitness-tracker",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "EL-10110": {
+      "name": "Cable APPACS Lightning de 1 metro",
+      "slug": "cable-appacs-lightning-de-1-metro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15842": {
+      "name": "Power bank HyperGear 10,000 mAh 20W en color gris",
+      "slug": "power-bank-hypergear-10000-mah-20w-en-color-gris",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HO-10111": {
+      "name": "Lápiz táctil HOCO recargable en color blanco",
+      "slug": "lapiz-tactil-hoco-recargable-en-color-blanco-ho-10111",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "KR20218": {
+      "name": "Cargador KRIEG KC 31 18W con cable Micro USB 2 m carga práctica y confiable",
+      "slug": "cargador-krieg-kc-31-18w-con-cable-micro-usb-2-m-carga-practica-y-confiable",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3IP12PM": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 12 Pro Max",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-12-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-FAME20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina matte auto reparable pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-matte-auto-reparable-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-16001": {
+      "name": "Cable HyperGear USB C a Lightning 4 ft en color blanco",
+      "slug": "cable-hypergear-usb-c-a-lightning-4-ft-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-16290": {
+      "name": "Cargador HyperGear rápido 30W",
+      "slug": "cargador-hypergear-rapido-30w-hg-16290",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30186": {
+      "name": "Power bank XO 278W en color blanco",
+      "slug": "power-bank-xo-278w-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HG-14164": {
+      "name": "Cargador Naztech Super Cargador con Protección de Voltaje de USB",
+      "slug": "cargador-naztech-super-cargador-con-proteccion-de-voltaje-de-usb",
+      "brand": "Naztech",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3HX8C": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X8c",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x8c",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15455": {
+      "name": "Accesorio tecnológico HyperGear Banco de poder magnético de 5,000 mAh en color negro",
+      "slug": "accesorio-tecnologico-hypergear-banco-de-poder-magnetico-de-5000-mah-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36415": {
+      "name": "Cargador de pared Apple Original de USB de 5W",
+      "slug": "cargador-de-pared-apple-original-de-usb-de-5w",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-16414": {
+      "name": "Cargador HyperGear rápido 65W GaN en color blanco",
+      "slug": "cargador-hypergear-rapido-65w-gan-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "BS-P16EBL": {
+      "name": "Forro XBASE ProTech para iPhone 16E en color negro",
+      "slug": "forro-xbase-protech-para-iphone-16e-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "RS-APLACZV2": {
+      "name": "Accesorio tecnológico ROCKSPACE Placa de Base ZC1 A/ MINI Android",
+      "slug": "accesorio-tecnologico-rockspace-placa-de-base-zc1-a-mini-android",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-3SMA26": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A26",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a26",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30184": {
+      "name": "Power bank XO 5,000 mAh en color azul",
+      "slug": "power-bank-xo-5000-mah-en-color-azul",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "XO-30108": {
+      "name": "Reloj inteligente XO Watch Ultra con Pantalla Amoled en color negro",
+      "slug": "reloj-inteligente-xo-watch-ultra-con-pantalla-amoled-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "DK-ABIP12PRM": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Anti‑azul Light para iPhone 12 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-3d-anti-azul-light-para-iphone-12-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10166": {
+      "name": "Adaptador APPACS Adaptador HUB 4 en 1 USB C +3.0 USB",
+      "slug": "adaptador-appacs-adaptador-hub-4-en-1-usb-c-30-usb",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "GHOCAS4221": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro color humo matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-color-humo-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3MOG04": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola Moto G04",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-moto-g04",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "KR20216": {
+      "name": "Cargador KRIEG KC 31 18W con cable Lightning 2 m carga rápida para iPhone",
+      "slug": "cargador-krieg-kc-31-18w-con-cable-lightning-2-m-carga-rapida-para-iphone",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15485": {
+      "name": "Cargador para automóvil Naztech SpeedMax Cargador 65W de carro carga rápida",
+      "slug": "cargador-para-automovil-naztech-speedmax-cargador-65w-de-carro-carga-rapida",
+      "brand": "Naztech",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "HG-15869": {
+      "name": "Accesorio tecnológico Naztech Aura 360 ANC Wireless Headphones Midnight",
+      "slug": "accesorio-tecnologico-naztech-aura-360-anc-wireless-headphones-midnight",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-CSS25UC": {
+      "name": "Forro XBASE Samsung Galaxy Ultra Cristal",
+      "slug": "forro-xbase-samsung-galaxy-ultra-cristal",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-SS26USS": {
+      "name": "Forro XBASE Sparkle con MagSafe para Samsung S26 Ultra color franja plateada",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-samsung-s26-ultra-color-franja-plateada",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-15843": {
+      "name": "Power bank HyperGear PowerPack PRO+ 20,000 mAh de 53W",
+      "slug": "power-bank-hypergear-powerpack-pro-20000-mah-de-53w",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks"
+    },
+    "HO-10113": {
+      "name": "Dispositivo inteligente HOCO Localizador inteligente en color blanco",
+      "slug": "dispositivo-inteligente-hoco-localizador-inteligente-en-color-blanco",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "KR20134": {
+      "name": "Audífonos inalámbricos KRIEG TWS Bluetooth KA 22 Blancos",
+      "slug": "audifonos-inalambricos-krieg-tws-bluetooth-ka-22-blancos",
+      "brand": "KRIEG",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "XO-30107": {
+      "name": "Audífonos inalámbricos XO Audífono bluetooth de un lado en color negro",
+      "slug": "audifonos-inalambricos-xo-audifono-bluetooth-de-un-lado-en-color-negro",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-S24FUUG": {
+      "name": "Protector de pantalla DEKEN HD 3D para Samsung Galaxy S24 Ultra",
+      "slug": "protector-de-pantalla-deken-hd-3d-para-samsung-galaxy-s24-ultra",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3IFH20": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Infinix Hot 20",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-infinix-hot-20",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-B16EBK": {
+      "name": "Forro XBASE Boulder para iPhone 16E en color azul",
+      "slug": "forro-xbase-boulder-para-iphone-16e-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30199": {
+      "name": "Luz tecnológica XO Lámpara LED solar con gancho en color negro",
+      "slug": "luz-tecnologica-xo-lampara-led-solar-con-gancho-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Iluminación tecnológica"
+    },
+    "HO-10106": {
+      "name": "Reloj inteligente HOCO AMOLED con llamadas en color negro",
+      "slug": "reloj-inteligente-hoco-amoled-con-llamadas-en-color-negro-ho-10106",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "DK-PVIP13PRO": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 13 / 13 Pro",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-13-13-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "XO-30212": {
+      "name": "Audífonos inalámbricos XO TWS Bluetooth blanco, estilo limpio y sonido premium",
+      "slug": "audifonos-inalambricos-xo-tws-bluetooth-blanco-estilo-limpio-y-sonido-premium",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-3SMA16": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A16",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a16",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10144": {
+      "name": "Accesorio para videojuegos HOCO Consola Portátil Brilliant con Pantalla Vertical en color gris",
+      "slug": "accesorio-para-videojuegos-hoco-consola-portatil-brilliant-con-pantalla-vertical-en-color-gris",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Videojuegos"
+    },
+    "EL-10144": {
+      "name": "Cargador APPACS Cable para cargador Lightning de 2 metros",
+      "slug": "cargador-appacs-cable-para-cargador-lightning-de-2-metros",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "XO-30187": {
+      "name": "Cargador XO rápido 30W con cable USB C en color blanco",
+      "slug": "cargador-xo-rapido-30w-con-cable-usb-c-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-ABIP14PRM": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 14 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-14-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HO-10145": {
+      "name": "Accesorio tecnológico HOCO Mouse Inalámbrico Platino 2.4G en color negro",
+      "slug": "accesorio-tecnologico-hoco-mouse-inalambrico-platino-24g-en-color-negro",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "RS-ATORNIAJ": {
+      "name": "Soporte para celular ROCKSPACE Tornillo Ajustable de Soporte de Cuchilla",
+      "slug": "soporte-para-celular-rockspace-tornillo-ajustable-de-soporte-de-cuchilla",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "GHOCAS4300": {
+      "name": "Forro Ghostek Atomic Slim 4 Apple para iPhone 17 Pro en color negro",
+      "slug": "forro-ghostek-atomic-slim-4-apple-para-iphone-17-pro-en-color-negro",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3HX5C": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor X5c",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-x5c",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "KR20128": {
+      "name": "Cable KRIEG carga rápida usb c blanco 1 metro",
+      "slug": "cable-krieg-carga-rapida-usb-c-blanco-1-metro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-BSS26UA": {
+      "name": "Forro XBASE Boulder con MagSafe para Samsung S26 Ultra en color azul",
+      "slug": "forro-xbase-boulder-con-magsafe-para-samsung-s26-ultra-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10171": {
+      "name": "Accesorio tecnológico APPACS Exhibidor Promocional de Carton",
+      "slug": "accesorio-tecnologico-appacs-exhibidor-promocional-de-carton",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-15637": {
+      "name": "Cargador para automóvil Naztech para Carro de USB C a Lightning",
+      "slug": "cargador-para-automovil-naztech-para-carro-de-usb-c-a-lightning",
+      "brand": "Naztech",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "EL-10173": {
+      "name": "Cable APPACS carga USB a Lightning Verde",
+      "slug": "cable-appacs-carga-usb-a-lightning-verde",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-S16PRMSS": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 16 Pro Max color franja plateada",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-16-pro-max-color-franja-plateada",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10130": {
+      "name": "Audífonos APPACS deportivos B.l batería con capacidad de 70 mAh",
+      "slug": "audifonos-appacs-deportivos-b-l-bateria-con-capacidad-de-70-mah",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos deportivos"
+    },
+    "XO-30191": {
+      "name": "Cargador XO rápido 18W / 12W doble puerto con cable Lightning en color negro",
+      "slug": "cargador-xo-rapido-18w-12w-doble-puerto-con-cable-lightning-en-color-negro",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "EL-10197": {
+      "name": "Audífonos APPACS AirPlus de 2nd Generación",
+      "slug": "audifonos-appacs-airplus-de-2nd-generacion",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "GHOCAS4219": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Pro color transparente matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-pro-color-transparente-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10200": {
+      "name": "Audífonos APPACS AirPlus Pro de 2nd Generacion",
+      "slug": "audifonos-appacs-airplus-pro-de-2nd-generacion",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10185": {
+      "name": "Accesorio tecnológico APPACS Memoria TF SD Flash Micro con capacidad de 16G",
+      "slug": "accesorio-tecnologico-appacs-memoria-tf-sd-flash-micro-con-capacidad-de-16g",
+      "brand": "APPACS",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCAS4212": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 color humo",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-color-humo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-ABIP11PRM": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Anti‑azul Light para iPhone 11 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-3d-anti-azul-light-para-iphone-11-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "DK-3MOG72": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G72",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g72",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "GHOCAS3605": {
+      "name": "Forro Ghostek Exec 6 con MagSafe para 15 Pro Max en color gris",
+      "slug": "forro-ghostek-exec-6-con-magsafe-para-15-pro-max-en-color-gris",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30213": {
+      "name": "Audífonos inalámbricos XO TWS Bluetooth beige, sonido premium con look elegante",
+      "slug": "audifonos-inalambricos-xo-tws-bluetooth-beige-sonido-premium-con-look-elegante",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-S17PRMGS": {
+      "name": "Forro XBASE Sparkle con MagSafe para iPhone 17 Pro Max color franja dorada",
+      "slug": "forro-xbase-sparkle-con-magsafe-para-iphone-17-pro-max-color-franja-dorada",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10205": {
+      "name": "Cable APPACS Angular Micro USB Eco( Negro)",
+      "slug": "cable-appacs-angular-micro-usb-eco-negro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30181": {
+      "name": "Cargador para automóvil XO para carro 30W en color blanco",
+      "slug": "cargador-para-automovil-xo-para-carro-30w-en-color-blanco",
+      "brand": "XO",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "EL-10210": {
+      "name": "Cargador APPACS 20W Lightning Quick Charger 3.0",
+      "slug": "cargador-appacs-20w-lightning-quick-charger-30",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15518": {
+      "name": "Cargador HyperGear Soporte para cargador MagView de MagSafe Space",
+      "slug": "cargador-hypergear-soporte-para-cargador-magview-de-magsafe-space",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "LD-40102": {
+      "name": "Lentes inteligentes Langsdom Lentes con IA Fitness AIRNOVA con Audio Inalámbrico y Protección Solar",
+      "slug": "lentes-inteligentes-langsdom-lentes-con-ia-fitness-airnova-con-audio-inalambrico-y-proteccion-solar-ld-40102",
+      "brand": "Langsdom",
+      "category": "Smart Tech",
+      "subcategory": "Dispositivos inteligentes"
+    },
+    "BS-L17BK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10167": {
+      "name": "Adaptador APPACS Adaptador 5 en 1 de USB C a USB Gris Plata",
+      "slug": "adaptador-appacs-adaptador-5-en-1-de-usb-c-a-usb-gris-plata",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-3SMA06S": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A06S",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a06s",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-U17PRMBR": {
+      "name": "Forro XBASE Suede con MagSafe para iPhone 17 Pro Max color café",
+      "slug": "forro-xbase-suede-con-magsafe-para-iphone-17-pro-max-color-cafe",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-ABIP14PRO": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Antiblue Light para iPhone 14 Pro",
+      "slug": "protector-de-pantalla-deken-deken-3d-antiblue-light-para-iphone-14-pro",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "RS-TRP3-5M": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trp3-5m",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "EL-10145": {
+      "name": "Cable APPACS Tipo C de carga de 2 metros de Nylon y Aluminio",
+      "slug": "cable-appacs-tipo-c-de-carga-de-2-metros-de-nylon-y-aluminio",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "GHOCAS4211": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 color transparente matte",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-color-transparente-matte",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-S16EGS": {
+      "name": "Forro XBASE con brillos Sparkleline para iPhone 16E Gold Stripe",
+      "slug": "forro-xbase-con-brillos-sparkleline-para-iphone-16e-gold-stripe",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "RS-FUVAN10S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina UV anti reflejo pack de 10",
+      "slug": "accesorio-tecnologico-rockspace-lamina-uv-anti-reflejo-pack-de-10",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-DH17PMBL": {
+      "name": "Forro XBASE DuoHybrid para iPhone 17 Pro Max en color azul",
+      "slug": "forro-xbase-duohybrid-para-iphone-17-pro-max-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3IP15PM": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 15 Pro Max",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-15-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30193": {
+      "name": "Accesorio tecnológico XO Base giratoria para laptop en color negro",
+      "slug": "accesorio-tecnologico-xo-base-giratoria-para-laptop-en-color-negro",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-PVIP14MAX": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 14 Max",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-14-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "HO-10128": {
+      "name": "Cable HOCO USB C a Lightning de Silicona 27W | 2 m en color negro",
+      "slug": "cable-hoco-usb-c-a-lightning-de-silicona-27w-2-m-en-color-negro",
+      "brand": "HOCO",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10204": {
+      "name": "Cable APPACS Angular Lightning (Rojo)",
+      "slug": "cable-appacs-angular-lightning-rojo",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-ABIP13PRM": {
+      "name": "Protector de pantalla DEKEN Dekën 3D Anti‑azul Light para iPhone 13 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-3d-anti-azul-light-para-iphone-13-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30197": {
+      "name": "Accesorio para videojuegos XO Bluetooth with Cradle Compatible with Gamepad negro/rojo en color rojo",
+      "slug": "accesorio-para-videojuegos-xo-bluetooth-with-cradle-compatible-with-gamepad-negro-rojo-en-color-rojo",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Videojuegos"
+    },
+    "HG-16251": {
+      "name": "Power bank HyperGear 5,000 mAh inalámbrica magnética en color negro",
+      "slug": "power-bank-hypergear-5000-mah-inalambrica-magnetica-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Power banks inalámbricas"
+    },
+    "DK-3H400": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Honor 400",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-honor-400",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-V14PRMB": {
+      "name": "Forro XBASE cuero vegano con MagSafe negro para iPhone 14 Pro Max en color negro",
+      "slug": "forro-xbase-cuero-vegano-con-magsafe-negro-para-iphone-14-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "KR20103": {
+      "name": "Cable KRIEG Auxiliar de 1 metro de 3.5mm a 3.5mm",
+      "slug": "cable-krieg-auxiliar-de-1-metro-de-35mm-a-35mm",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "BS-DH16EBK": {
+      "name": "Forro XBASE Reforzado DuoHybrid para iPhone 16E",
+      "slug": "forro-xbase-reforzado-duohybrid-para-iphone-16e",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10160": {
+      "name": "Audífonos inalámbricos APPACS inalámbricos en color negro",
+      "slug": "audifonos-inalambricos-appacs-inalambricos-en-color-negro",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10202": {
+      "name": "Cable APPACS Angular Lightning Eco",
+      "slug": "cable-appacs-angular-lightning-eco",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15861": {
+      "name": "Audífonos HyperGear Audio Essentials Duo",
+      "slug": "audifonos-hypergear-audio-essentials-duo",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "EL-10199": {
+      "name": "Audífonos APPACS AirPlus de 3rd Generación",
+      "slug": "audifonos-appacs-airplus-de-3rd-generacion",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "RS-FUVHDP20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina UV HD premium pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-uv-hd-premium-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "AS-36424": {
+      "name": "Cargador inalámbrico Samsung Original 2 en 1",
+      "slug": "cargador-inalambrico-samsung-original-2-en-1",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Carga inalámbrica"
+    },
+    "PP-DVC48C": {
+      "name": "Cargador para automóvil PowerPeak para carro 48W en color negro",
+      "slug": "cargador-para-automovil-powerpeak-para-carro-48w-en-color-negro",
+      "brand": "PowerPeak",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "EL-10131": {
+      "name": "Audífonos inalámbricos APPACS inalámbricos en color blanco",
+      "slug": "audifonos-inalambricos-appacs-inalambricos-en-color-blanco",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-L17PK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 en color rosado",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-en-color-rosado",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10177": {
+      "name": "Cable APPACS extension USB 3.0 para Smart TV PS4 Xbox One SSD",
+      "slug": "cable-appacs-extension-usb-30-para-smart-tv-ps4-xbox-one-ssd",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "HG-15886": {
+      "name": "Accesorio tecnológico HyperGear Altavoz LED inalámbrico Halo XL en color negro",
+      "slug": "accesorio-tecnologico-hypergear-altavoz-led-inalambrico-halo-xl-en-color-negro",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-PVSS24FE": {
+      "name": "Protector de pantalla DEKEN con privacidad 3D para Samsung Galaxy S24 FE",
+      "slug": "protector-de-pantalla-deken-con-privacidad-3d-para-samsung-galaxy-s24-fe",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "BS-DH16PMBL": {
+      "name": "Forro XBASE DuoHybrid para iPhone 16 Pro Max en color azul",
+      "slug": "forro-xbase-duohybrid-para-iphone-16-pro-max-en-color-azul",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "XO-30128": {
+      "name": "Accesorio tecnológico XO Inflador de Llantas de Carro Recargable y Portátil",
+      "slug": "accesorio-tecnologico-xo-inflador-de-llantas-de-carro-recargable-y-portatil",
+      "brand": "XO",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "HG-15624": {
+      "name": "Audífonos HyperGear Soporte para auriculares Gamer con luces RGB con USB",
+      "slug": "audifonos-hypergear-soporte-para-auriculares-gamer-con-luces-rgb-con-usb",
+      "brand": "HyperGear",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "BS-L16PROMB": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 16 Pro Max en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-16-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10138": {
+      "name": "Cargador APPACS magnetico de 2W cable 1 metro en color blanco",
+      "slug": "cargador-appacs-magnetico-de-2w-cable-1-metro-en-color-blanco",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "BS-L17PROBK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 Pro en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-pro-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "HG-16239": {
+      "name": "Cargador HyperGear rápido 45W en color blanco",
+      "slug": "cargador-hypergear-rapido-45w-en-color-blanco",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "RS-TRD8-5S": {
+      "name": "Protector de pantalla ROCKSPACE trasera pack de 5",
+      "slug": "protector-de-pantalla-rockspace-trasera-pack-de-5-rs-trd8-5s",
+      "brand": "ROCKSPACE",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "KR20172": {
+      "name": "Cable KRIEG KC 21 Cable Estereo 3.5mm a 3RCA de 3 Metros 3×3 en color negro",
+      "slug": "cable-krieg-kc-21-cable-estereo-35mm-a-3rca-de-3-metros-3-3-en-color-negro",
+      "brand": "KRIEG",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10115": {
+      "name": "Adaptador APPACS Adaptador USB C a USB",
+      "slug": "adaptador-appacs-adaptador-usb-c-a-usb",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "HG-15522": {
+      "name": "Soporte para celular Naztech Magnético MagBuddy Elite Cup en color negro",
+      "slug": "soporte-para-celular-naztech-magnetico-magbuddy-elite-cup-en-color-negro",
+      "brand": "Naztech",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "HG-15982": {
+      "name": "Soporte para celular HyperGear MagSafe Vent",
+      "slug": "soporte-para-celular-hypergear-magsafe-vent",
+      "brand": "HyperGear",
+      "category": "Smart Tech",
+      "subcategory": "Soportes para celular"
+    },
+    "LD-40107": {
+      "name": "Audífonos Langsdom estilo aretes con cancelación de ruido",
+      "slug": "audifonos-langsdom-estilo-aretes-con-cancelacion-de-ruido",
+      "brand": "Langsdom",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-3SMA365": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A36 5G",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a36-5g",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30101": {
+      "name": "Audífonos inalámbricos XO Bluetooth con Cancelación de Ruido",
+      "slug": "audifonos-inalambricos-xo-bluetooth-con-cancelacion-de-ruido",
+      "brand": "XO",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "PP-QIWC-FC": {
+      "name": "Accesorio tecnológico PowerPeak Almohadilla de carga inalámbrica adaptable de carga rápida para 15W",
+      "slug": "accesorio-tecnologico-powerpeak-almohadilla-de-carga-inalambrica-adaptable-de-carga-rapida-para-15w",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "BS-L17PROMBK": {
+      "name": "Forro XBASE silicona líquida con MagSafe para iPhone 17 Pro Max en color negro",
+      "slug": "forro-xbase-silicona-liquida-con-magsafe-para-iphone-17-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "EL-10113": {
+      "name": "Cable APPACS Audiolink auxiliar de 1 metro con TPE+aluminio",
+      "slug": "cable-appacs-audiolink-auxiliar-de-1-metro-con-tpe-aluminio",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "XO-30141": {
+      "name": "Cargador XO para Mac con puerto MagSafe 3 NB287",
+      "slug": "cargador-xo-para-mac-con-puerto-magsafe-3-nb287",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "HG-15822": {
+      "name": "Adaptador HyperGear Adaptador de viaje universal WorldCharge con USB C",
+      "slug": "adaptador-hypergear-adaptador-de-viaje-universal-worldcharge-con-usb-c",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "DK-3ZTEA36": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para ZTE A36",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-zte-a36",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "HG-15700": {
+      "name": "Cargador de pared HyperGear USB C de 45W",
+      "slug": "cargador-de-pared-hypergear-usb-c-de-45w",
+      "brand": "HyperGear",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3MOG35": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Motorola G35",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-motorola-g35",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "AS-36429": {
+      "name": "Cargador Apple rápido 87W",
+      "slug": "cargador-apple-rapido-87w",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "AS-36391": {
+      "name": "Cable Apple Original de USB a Lightning de 1 Metro",
+      "slug": "cable-apple-original-de-usb-a-lightning-de-1-metro",
+      "brand": "Apple",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "DK-PVIP13PRM": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 13 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-13-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "HG-14659": {
+      "name": "Accesorio solar HyperGear Banco de poder inalámbrico Solar de 10,000 mAh",
+      "slug": "accesorio-solar-hypergear-banco-de-poder-inalambrico-solar-de-10000-mah",
+      "brand": "HyperGear",
+      "category": "Outdoor Pro",
+      "subcategory": "Energía solar"
+    },
+    "GHOCAS4216": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 17 Air color humo",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-17-air-color-humo",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36412": {
+      "name": "Cargador Samsung rápido 25W en color negro",
+      "slug": "cargador-samsung-rapido-25w-en-color-negro-as-36412",
+      "brand": "Samsung",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "DK-3SMA565": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Samsung A56 5G",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-samsung-a56-5g",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-DHP17PSB": {
+      "name": "Forro XBASE DuoHybrid para iPhone 17 Pro color plateado con en color negro",
+      "slug": "forro-xbase-duohybrid-para-iphone-17-pro-color-plateado-con-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "DK-3IFH11S": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para Infinix Hot 11s",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-infinix-hot-11s",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "BS-PI15PMB": {
+      "name": "Forro XBASE ProTech con MagSafe para iPhone 15 Pro Max en color negro",
+      "slug": "forro-xbase-protech-con-magsafe-para-iphone-15-pro-max-en-color-negro",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "AS-36419": {
+      "name": "Audífonos Samsung manos libres originales / /",
+      "slug": "audifonos-samsung-manos-libres-originales",
+      "brand": "Samsung",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "HG-15636": {
+      "name": "Cargador para automóvil Naztech para Carro de USB C a USB C",
+      "slug": "cargador-para-automovil-naztech-para-carro-de-usb-c-a-usb-c",
+      "brand": "Naztech",
+      "category": "Smart Drive",
+      "subcategory": "Carga para automóvil"
+    },
+    "RS-FHDP10L": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina premium HD pack de 10",
+      "slug": "accesorio-tecnologico-rockspace-lamina-premium-hd-pack-de-10",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10147": {
+      "name": "Adaptador de audio APPACS Adaptador auxiliar para audio de macho a hembra",
+      "slug": "adaptador-de-audio-appacs-adaptador-auxiliar-para-audio-de-macho-a-hembra",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Accesorios de audio"
+    },
+    "RS-ACIADEZC1": {
+      "name": "Accesorio tecnológico ROCKSPACE Cinta Adhesiva de Goma ZC1 A Plotter",
+      "slug": "accesorio-tecnologico-rockspace-cinta-adhesiva-de-goma-zc1-a-plotter",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "DK-PVIP11PRM": {
+      "name": "Protector de pantalla DEKEN Dekën con privacidad 3D para iPhone 11 Pro Max",
+      "slug": "protector-de-pantalla-deken-deken-con-privacidad-3d-para-iphone-11-pro-max",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Protectores de privacidad"
+    },
+    "RS-FMT20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina matte gaming pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-matte-gaming-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "EL-10172": {
+      "name": "Cable APPACS USB 3 en 1 de 1 metro en color negro",
+      "slug": "cable-appacs-usb-3-en-1-de-1-metro-en-color-negro",
+      "brand": "APPACS",
+      "category": "Power & Charge",
+      "subcategory": "Cables"
+    },
+    "EL-10159": {
+      "name": "Audífonos inalámbricos APPACS inalámbricos en color rosado",
+      "slug": "audifonos-inalambricos-appacs-inalambricos-en-color-rosado",
+      "brand": "APPACS",
+      "category": "Sound Essentials",
+      "subcategory": "Audífonos y manos libres"
+    },
+    "DK-3IP16": {
+      "name": "Protector de pantalla DEKEN 3 en 1 para iPhone 16",
+      "slug": "protector-de-pantalla-deken-3-en-1-para-iphone-16",
+      "brand": "DEKEN",
+      "category": "Screen Protection",
+      "subcategory": "Vidrios y protectores"
+    },
+    "XO-30189": {
+      "name": "Cargador XO rápido 20W con cable USB C en color blanco",
+      "slug": "cargador-xo-rapido-20w-con-cable-usb-c-en-color-blanco",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Cargadores y adaptadores"
+    },
+    "RS-FPP20S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina de privacidad HD pack de 20",
+      "slug": "accesorio-tecnologico-rockspace-lamina-de-privacidad-hd-pack-de-20",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "XO-30214": {
+      "name": "Adaptador XO Adaptador para micrófono Type C y Lightning audio claro para grabar",
+      "slug": "adaptador-xo-adaptador-para-microfono-type-c-y-lightning-audio-claro-para-grabar",
+      "brand": "XO",
+      "category": "Power & Charge",
+      "subcategory": "Adaptadores de conexión"
+    },
+    "HO-10107": {
+      "name": "Reloj inteligente HOCO AMOLED con llamadas color plateado",
+      "slug": "reloj-inteligente-hoco-amoled-con-llamadas-color-plateado-ho-10107",
+      "brand": "HOCO",
+      "category": "Smart Tech",
+      "subcategory": "Relojes inteligentes"
+    },
+    "RS-FHDP50S": {
+      "name": "Accesorio tecnológico ROCKSPACE Lámina premium HD pack de 50",
+      "slug": "accesorio-tecnologico-rockspace-lamina-premium-hd-pack-de-50",
+      "brand": "ROCKSPACE",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    },
+    "GHOCAS3950": {
+      "name": "Forro Ghostek Covert 7 con con MagSafe para iPhone 16 color transparente",
+      "slug": "forro-ghostek-covert-7-con-con-magsafe-para-iphone-16-color-transparente",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "GHOCAS2856": {
+      "name": "Forro Ghostek Atomic Slim 4 iPhone 13 Pro Prismatic",
+      "slug": "forro-ghostek-atomic-slim-4-iphone-13-pro-prismatic",
+      "brand": "Ghostek",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "BS-IP17PRM": {
+      "name": "Forro XBASE Transparente para iPhone 17 con Protección Antigolpes y Diseño Ultrafino",
+      "slug": "forro-xbase-transparente-para-iphone-17-con-proteccion-antigolpes-y-diseno-ultrafino",
+      "brand": "XBASE",
+      "category": "Smart Tech",
+      "subcategory": "Forros para celular"
+    },
+    "PP-PENPR": {
+      "name": "Accesorio tecnológico PowerPeak Pencil Pro blanco en color blanco",
+      "slug": "accesorio-tecnologico-powerpeak-pencil-pro-blanco-en-color-blanco",
+      "brand": "PowerPeak",
+      "category": "Smart Tech",
+      "subcategory": "Otros accesorios tecnológicos"
+    }
+  }
+}

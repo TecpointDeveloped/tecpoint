@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useCartStore } from "../../lib/cartStore";
 import { trackAddToCart, trackViewContent } from "@/lib/tracking";
+import { enrichProduct, preferredProductSlug } from "@/lib/catalog";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -33,15 +34,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
     );
 
-    const paths = querySnapshot.docs
-      .map((doc) => {
-        const data = doc.data();
-        if (data.slug) {
-          return { params: { slug: data.slug } };
-        }
-        return null;
-      })
-      .filter(Boolean);
+    const paths = querySnapshot.docs.map((doc) => {
+      const data = doc.data() as Product;
+      return { params: { slug: preferredProductSlug(data) } };
+    });
 
     return {
       paths: paths as { params: { slug: string } }[],
@@ -65,16 +61,34 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const q = query(productsRef, where("slug", "==", slug));
     const querySnapshot = await getDocs(q);
+    let productDoc = querySnapshot.docs.length ? querySnapshot.docs[0] : null;
 
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
+    if (!productDoc) {
+      const allProducts = await getDocs(productsRef);
+      productDoc = allProducts.docs.find((item) =>
+        preferredProductSlug(item.data() as Product) === slug
+      ) || null;
+    }
+
+    if (productDoc) {
+      const doc = productDoc;
       const data = doc.data();
 
-      const serializedData = {
+      const serializedData = enrichProduct({
         ...data,
         id: doc.id,
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-      };
+      } as Product);
+      const canonicalSlug = preferredProductSlug(serializedData);
+
+      if (slug !== canonicalSlug) {
+        return {
+          redirect: {
+            destination: `/shop/${canonicalSlug}`,
+            permanent: true,
+          },
+        };
+      }
 
       const productBanner = BannersData.find((banner) => banner.marca === data.marca_producto?.marca);
 
