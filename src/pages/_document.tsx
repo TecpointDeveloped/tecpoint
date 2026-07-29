@@ -21,8 +21,6 @@ export default function Document() {
           name="keywords"
           content="Distribuidor de accesorios tecnológicos en Honduras. Cargadores, adaptadores, audífonos, periféricos y más, al por mayor y al detalle."
         />
-        <meta name="robots" content="index, follow" />
-
         {/* Open Graph (Facebook) */}
         <meta property="og:url" content="https://tecpoint.ws" />
         <meta

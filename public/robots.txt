@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /my-account/
-Disallow: /checkout/
+Disallow: /checkout
+Disallow: /my-account
 
 Sitemap: https://tecpoint.ws/sitemap.xml

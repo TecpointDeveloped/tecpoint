@@ -38,8 +38,40 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Poppins';
-  /* overflow: hidden; */
+  overflow-x: clip;
   scroll-behavior: smooth;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #c8102e;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {

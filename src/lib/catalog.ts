@@ -1,5 +1,6 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
+import currentCatalog from "@/data/current-catalog-w31.json";
 
 export const OFFICIAL_CATEGORIES = [
   {
@@ -44,6 +45,8 @@ type CatalogProduct = Pick<
   "sku" | "producto" | "slug" | "descripcion" | "categorias" | "Subcategorias"
 > & {
   marca_producto?: { marca?: string };
+  precio?: Product["precio"];
+  extradata?: Product["extradata"];
 };
 
 type ValidatedEntry = {
@@ -55,6 +58,9 @@ type ValidatedEntry = {
 };
 
 const records = validatedCatalog.records as Record<string, ValidatedEntry>;
+const currentInventory = new Map(
+  currentCatalog.records.map((item) => [String(item.sku).trim(), item]),
+);
 
 export function normalizeText(value: string) {
   return value
@@ -62,6 +68,85 @@ export function normalizeText(value: string) {
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
+}
+
+const SEARCH_ALIASES: Array<[RegExp, string]> = [
+  [/\b(rock\s*space|rockspace|rok\s*space|rokspace)\b/g, " rock space rockspace "],
+  [/\b(celular|telefono|movil|smartphone)\b/g, " celular telefono movil smartphone "],
+  [/\b(audifono|audifonos|auricular|auriculares|headset|earbuds)\b/g, " audifono audifonos auricular auriculares headset earbuds "],
+  [/\b(cargador|cargadores|charger|carga)\b/g, " cargador cargadores charger carga "],
+  [/\b(lamina|laminas|vidrio|protector|proteccion|film)\b/g, " lamina laminas vidrio protector proteccion film "],
+  [/\b(forro|funda|case|cobertor)\b/g, " forro funda case cobertor "],
+  [/\b(bateria|powerbank|power bank)\b/g, " bateria powerbank power bank "],
+  [/\b(reloj|smartwatch|watch)\b/g, " reloj smartwatch watch "],
+  [/\b(carro|vehiculo|auto|automovil)\b/g, " carro vehiculo auto automovil "],
+];
+
+export function normalizeSearchText(value: string) {
+  return SEARCH_ALIASES.reduce(
+    (text, [pattern, replacement]) => text.replace(pattern, replacement),
+    normalizeText(value).replace(/[^a-z0-9]+/g, " "),
+  )
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function editDistance(left: string, right: string) {
+  const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= left.length; i += 1) {
+    let diagonal = previous[0];
+    previous[0] = i;
+    for (let j = 1; j <= right.length; j += 1) {
+      const above = previous[j];
+      previous[j] = Math.min(
+        previous[j] + 1,
+        previous[j - 1] + 1,
+        diagonal + (left[i - 1] === right[j - 1] ? 0 : 1),
+      );
+      diagonal = above;
+    }
+  }
+  return previous[right.length];
+}
+
+function tokenMatches(queryToken: string, candidateToken: string) {
+  if (
+    queryToken.length >= 3 &&
+    candidateToken.length >= 3 &&
+    (candidateToken.includes(queryToken) || queryToken.includes(candidateToken))
+  ) {
+    return true;
+  }
+  if (queryToken.length < 4 || candidateToken.length < 4) return false;
+  const tolerance = queryToken.length >= 8 ? 2 : 1;
+  return editDistance(queryToken, candidateToken) <= tolerance;
+}
+
+export function matchesProductSearch(product: CatalogProduct, query: string) {
+  const normalizedQuery = normalizeSearchText(query);
+  if (!normalizedQuery) return true;
+
+  const haystack = normalizeSearchText(
+    [
+      preferredProductName(product),
+      product.sku,
+      product.descripcion,
+      product.Subcategorias,
+      product.marca_producto?.marca,
+      ...(product.categorias || []),
+    ].join(" "),
+  );
+
+  if (haystack.includes(normalizedQuery)) return true;
+  const candidateTokens = [...new Set(haystack.split(" ").filter(Boolean))];
+  return normalizedQuery
+    .split(" ")
+    .filter(Boolean)
+    .every((queryToken) =>
+      candidateTokens.some((candidateToken) =>
+        tokenMatches(queryToken, candidateToken),
+      ),
+    );
 }
 
 export function slugify(value: string) {
@@ -100,21 +185,41 @@ export function getValidatedEntry(sku?: string) {
   return sku ? records[String(sku).trim()] : undefined;
 }
 
+export function getCurrentInventory(sku?: string) {
+  return sku ? currentInventory.get(String(sku).trim()) : undefined;
+}
+
+function cleanProductName(value: string) {
+  return value
+    .replace(/^accesorio tecnol[oó]gico\s+/i, "")
+    .replace(/\s*\/\s*\/(?:\s*\/)*/g, " / ")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([,.;:])/g, "$1")
+    .trim();
+}
+
 export function preferredProductName(product: CatalogProduct) {
   if (product.sku === "HO-10110") {
     return "Soporte universal HOCO Flying para bicicleta y motocicleta";
   }
-  return getValidatedEntry(product.sku)?.name || product.producto;
+  const validatedName = getValidatedEntry(product.sku)?.name || "";
+  const inventoryName = getCurrentInventory(product.sku)?.description || "";
+  const source =
+    /(?:\/\s*){2,}/.test(validatedName) && inventoryName
+      ? inventoryName
+      : validatedName || inventoryName || product.producto;
+  return cleanProductName(source);
 }
 
 export function preferredProductSlug(product: CatalogProduct) {
   const validated = getValidatedEntry(product.sku)?.slug;
   if (validated) {
-    const source =
-      product.sku === "HO-10110"
-        ? "soporte-universal-hoco-flying-para-bicicleta-y-motocicleta"
-        : validated;
-    return cleanProductSlug(source);
+    const base = cleanProductSlug(preferredProductName(product));
+    const skuSlug = slugify(product.sku || "");
+    const validatedSlug = slugify(validated);
+    const preservesCollisionSuffix =
+      skuSlug && validatedSlug.endsWith(`-${skuSlug}`);
+    return preservesCollisionSuffix ? `${base}-${skuSlug}` : base;
   }
 
   const sku = normalizeText(product.sku || "");
@@ -195,6 +300,7 @@ export function productColor(product: CatalogProduct & { extradata?: { color?: s
 
 export function enrichProduct<T extends CatalogProduct>(product: T) {
   const category = officialCategory(product);
+  const inventory = getCurrentInventory(product.sku);
   return {
     ...product,
     producto: preferredProductName(product),
@@ -202,5 +308,38 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     categorias: [category],
     Subcategorias:
       getValidatedEntry(product.sku)?.subcategory || product.Subcategorias || "",
+    precio: {
+      ...(product.precio || {}),
+      detalle:
+        inventory ? inventory.detailPrice : product.precio?.detalle || 0,
+    },
+    extradata: {
+      ...(product.extradata || {}),
+      upc: inventory?.upc || product.extradata?.upc || "",
+      stock: inventory ? inventory.stock > 0 : product.extradata?.stock,
+    },
   };
+}
+
+function completenessScore(product: Product) {
+  return [
+    product.producto,
+    product.descripcion,
+    product.slug,
+    product.marca_producto?.marca,
+    product.imagenes && Object.keys(product.imagenes).length,
+    Number(product.precio?.detalle) > 0,
+  ].filter(Boolean).length;
+}
+
+export function deduplicateProducts<T extends Product>(products: T[]) {
+  const bySku = new Map<string, T>();
+  for (const product of products) {
+    const key = normalizeText(product.sku || "") || product.id;
+    const existing = bySku.get(key);
+    if (!existing || completenessScore(product) > completenessScore(existing)) {
+      bySku.set(key, product);
+    }
+  }
+  return [...bySku.values()];
 }

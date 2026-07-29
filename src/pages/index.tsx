@@ -8,37 +8,33 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import styles from "@/styles/home2026.module.css";
 import currentCatalog from "@/data/current-catalog-w31.json";
-import { enrichProduct, OFFICIAL_CATEGORIES, preferredProductSlug } from "@/lib/catalog";
+import {
+  deduplicateProducts,
+  enrichProduct,
+  OFFICIAL_CATEGORIES,
+  preferredProductSlug,
+} from "@/lib/catalog";
 
 export async function getServerSideProps() {
   const productDocs = await getDocs(
     collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string),
   );
 
-  const inventoryBySku = new Map(
-    currentCatalog.records.map((item) => [item.sku, item]),
-  );
-
-  const products = productDocs.docs.map<Product>((doc) => {
+  const products = deduplicateProducts(productDocs.docs.map<Product>((doc) => {
     const data = doc.data();
-    const inventory = inventoryBySku.get(String(data.sku || "").trim());
     return enrichProduct({
       id: doc.id,
       ...data,
-      precio: {
-        ...data.precio,
-        detalle: inventory?.detailPrice || data.precio?.detalle || 0,
-      },
-      extradata: {
-        ...data.extradata,
-        stock: Boolean(inventory && inventory.stock > 0),
-      },
       fecha_agregado: data.fecha_agregado?.toDate
         ? data.fecha_agregado.toDate().toISOString()
         : null,
     } as Product);
-  })
-    .filter((product) => inventoryBySku.has(String(product.sku || "").trim()))
+  }))
+    .filter((product) =>
+      currentCatalog.records.some(
+        (item) => item.sku === String(product.sku || "").trim(),
+      ),
+    )
     .sort((a, b) => {
       const dateA = a.fecha_agregado
         ? new Date(a.fecha_agregado).getTime()
@@ -49,7 +45,14 @@ export async function getServerSideProps() {
       return dateB - dateA;
     });
 
-  return { props: { products } };
+  return {
+    props: {
+      products,
+      rockSpaceCount: currentCatalog.records.filter(
+        (item) => item.brand === "Rock Space" && item.stock > 0,
+      ).length,
+    },
+  };
 }
 
 const locations = [
@@ -90,7 +93,13 @@ function priceFor(product: Product) {
   }).format(value);
 }
 
-export default function Home({ products }: { products: Product[] }) {
+export default function Home({
+  products,
+  rockSpaceCount,
+}: {
+  products: Product[];
+  rockSpaceCount: number;
+}) {
   const selectedProducts = products
     .filter(
       (product) =>
@@ -123,7 +132,69 @@ export default function Home({ products }: { products: Product[] }) {
         <meta property="og:image" content="https://tecpoint.ws/images/og_image.png" />
         <meta property="og:locale" content="es_HN" />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://tecpoint.ws/" />
         <link rel="icon" href="/brand/isologo.svg" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://tecpoint.ws/#organization",
+                  name: "TECPOINT",
+                  url: "https://tecpoint.ws/",
+                  logo: "https://tecpoint.ws/brand/logo-horizontal.svg",
+                  sameAs: [
+                    "https://www.instagram.com/tecpoint_distribucion/",
+                    "https://www.facebook.com/Tecpoint.Distribucion/",
+                    "https://www.tiktok.com/@tecpoint.ws",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://tecpoint.ws/#website",
+                  url: "https://tecpoint.ws/",
+                  name: "TECPOINT",
+                  publisher: { "@id": "https://tecpoint.ws/#organization" },
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: {
+                      "@type": "EntryPoint",
+                      urlTemplate: "https://tecpoint.ws/shop?search={search_term_string}",
+                    },
+                    "query-input": "required name=search_term_string",
+                  },
+                },
+                {
+                  "@type": "Store",
+                  name: "TECPOINT Plaza Carolina",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "San Pedro Sula",
+                    streetAddress: "Plaza Carolina, segundo nivel, bulevar Mackay",
+                    addressCountry: "HN",
+                  },
+                  telephone: "+50493385732",
+                  parentOrganization: { "@id": "https://tecpoint.ws/#organization" },
+                },
+                {
+                  "@type": "Store",
+                  name: "TECPOINT Portal de Viera",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Tegucigalpa",
+                    streetAddress: "Portal de Viera, tercer nivel, km 3 carretera a El Hatillo",
+                    addressCountry: "HN",
+                  },
+                  telephone: "+50495200523",
+                  parentOrganization: { "@id": "https://tecpoint.ws/#organization" },
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
 
       <div className={styles.announcement}>
@@ -238,6 +309,50 @@ export default function Home({ products }: { products: Product[] }) {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className={styles.rockSpace} aria-labelledby="rock-space-title">
+          <div className={styles.rockSpaceCopy}>
+            <Image
+              src="/logos/rock-space-white.png"
+              alt="Rock Space"
+              width={210}
+              height={76}
+            />
+            <p className={`${styles.eyebrow} ${styles.light}`}>
+              CENTRO AUTORIZADO DE PROTECCIÓN
+            </p>
+            <h2 id="rock-space-title">
+              Protección hecha
+              <br />
+              <span>para su dispositivo.</span>
+            </h2>
+            <p>
+              Láminas, plotters y suministros Rock Space para una instalación
+              precisa. Actualmente contamos con {rockSpaceCount} referencias
+              disponibles.
+            </p>
+            <Link
+              className={styles.rockSpaceButton}
+              href="/shop?page=1&brand=Rock%20Space&search="
+            >
+              Explorar Rock Space
+            </Link>
+          </div>
+          <div className={styles.rockSpaceMotion} aria-hidden="true">
+            <div className={styles.motionOrb} />
+            <div className={styles.motionFilm}>
+              <span>SELF HEALING</span>
+              <span>PRIVACY</span>
+              <span>MATTE</span>
+              <span>UV HD</span>
+              <span>SELF HEALING</span>
+            </div>
+            <div className={styles.motionPhone}>
+              <div />
+            </div>
+            <div className={styles.motionGrid} />
           </div>
         </section>
 

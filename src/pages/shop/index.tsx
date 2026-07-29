@@ -13,7 +13,10 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import type { GetServerSidePropsContext } from "next";
 import {
   categorySlug,
+  deduplicateProducts,
   enrichProduct,
+  getCurrentInventory,
+  matchesProductSearch,
   normalizeText,
   OFFICIAL_CATEGORIES,
   productColor,
@@ -31,7 +34,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const querySnapshot = await getDocs(productsRef);
 
-    const allProducts = querySnapshot.docs.map((doc) => {
+    const allProducts = deduplicateProducts(querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return enrichProduct({
         id: doc.id,
@@ -42,7 +45,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         // Si data.categorias no es un array, se inicializa como un array vacío.
         categorias: Array.isArray(data.categorias) ? data.categorias : [],
       } as Product);
-    }) as Product[];
+    }) as Product[])
+      .filter((product) => Boolean(getCurrentInventory(product.sku)))
+      .sort((left, right) => {
+        const stockDifference =
+          Number(Boolean(right.extradata?.stock)) -
+          Number(Boolean(left.extradata?.stock));
+        if (stockDifference) return stockDifference;
+        return left.producto.localeCompare(right.producto, "es");
+      });
 
     const queryValue = (value: string | string[] | undefined) =>
       Array.isArray(value) ? value[0] : value || "";
@@ -67,10 +78,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       const matchesColor = color
         ? normalizeText(productColor(product)) === normalizeText(color)
         : true;
-      const matchesSearch = search
-        ? [product.producto, product.sku, product.descripcion, product.Subcategorias]
-            .some((value) => normalizeText(value || "").includes(normalizeText(search)))
-        : true;
+      const matchesSearch = matchesProductSearch(product, search);
 
       return matchesBrand && matchesCategory && matchesColor && matchesSearch;
     });
@@ -110,6 +118,13 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
   );
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
   const productsPerPage = 9;
+  const hasActiveFilters = Boolean(
+    router.query.search ||
+      router.query.brand ||
+      router.query.color ||
+      (router.query.category && router.query.category !== "all") ||
+      (router.query.page && router.query.page !== "1"),
+  );
 
   useEffect(() => {
     if (page) {
@@ -172,12 +187,17 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
   return (
     <>
       <Head>
-        <title>Tienda Tecpoint | Todo en accesorios Tecnológicos</title>
-        <meta name="description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
-        <meta property="og:title" content="Tienda Tecpoint | Todo en accesorios Tecnológicos" />
-        <meta property="og:description" content="Descubre nuestra tienda online con lo último en accesorios tecnológicos de la mejor calidad." />
+        <title>Tienda TECPOINT | Accesorios tecnológicos en Honduras</title>
+        <meta name="description" content="Encuentre cargadores, audífonos, protectores, cases, power banks y accesorios tecnológicos en Honduras. Busque por necesidad, marca, color o compatibilidad." />
+        <meta property="og:title" content="Tienda TECPOINT | Accesorios tecnológicos en Honduras" />
+        <meta property="og:description" content="Productos tecnológicos actuales, filtros claros y asesoría para confirmar compatibilidad." />
         <meta property="og:url" content="https://tecpoint.ws/shop" />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
+        <link rel="canonical" href="https://tecpoint.ws/shop" />
+        <meta
+          name="robots"
+          content={hasActiveFilters ? "noindex,follow" : "index,follow"}
+        />
       </Head>
 
       <NavbarMenu />
@@ -267,51 +287,38 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
           </div>
         </form>
 
-        {/* Paginación */}
-        <section className="z-10 bottom-0 left-0 w-full flex items-center justify-center">
-          <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
-            <Pagination className="flex flex-wrap gap-2 md:gap-4">
-              <PaginationPrevious
-                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        <section className="w-full md:max-w-[1200px] mx-auto mb-6 px-4 md:px-12 py-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white text-[#111516]">
+          <p className="text-sm leading-6">
+            <strong>{totalProducts}</strong>{" "}
+            {totalProducts === 1 ? "producto encontrado" : "productos encontrados"}.
+            La búsqueda reconoce tildes, sinónimos y errores de escritura comunes.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/shop?page=1&brand=Rock%20Space&category=all&color=&search="
+              className="inline-flex min-h-10 items-center rounded-full bg-[#111516] px-5 text-[11px] font-bold uppercase tracking-[.08em] text-white hover:bg-[#c8102e]"
+            >
+              Rock Space
+            </Link>
+            {hasActiveFilters && (
+              <Link
+                href="/shop"
+                className="inline-flex min-h-10 items-center rounded-full border border-[#cfd5d7] bg-white px-5 text-[11px] font-bold uppercase tracking-[.08em] text-[#111516] hover:border-[#c8102e] hover:text-[#c8102e]"
               >
-                Anterior
-              </PaginationPrevious>
-              <PaginationContent className="flex flex-wrap gap-2 md:gap-4">
-                {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
-                  const startPage = Math.max(1, Math.min(currentPage - 5, totalPages - 9));
-                  const page = startPage + index;
-                  return (
-                    <PaginationItem key={page}>
-                      <PaginationLink
-                        onClick={() => handlePageChange(page)}
-                        isActive={currentPage === page}
-                        className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
-                      >
-                        {page}
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                })}
-              </PaginationContent>
-              <PaginationNext
-                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                Siguiente
-              </PaginationNext>
-            </Pagination>
+                Limpiar filtros
+              </Link>
+            )}
           </div>
         </section>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-2">
-          {currentProducts.map((product: Product) => {
+          {currentProducts.map((product: Product, productIndex: number) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
             return (
-              <div
+              <article
                 key={product.id}
-                className="border border-[#dfe3e4] bg-white p-4 flex flex-col sm:w-full md:w-full md:h-[450px] relative justify-between"
+                className="border border-[#dfe3e4] bg-white p-4 flex flex-col min-w-0 sm:w-full md:w-full min-h-[430px] relative justify-between overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <span className="absolute top-4 left-4 z-10">
                   {product.extradata?.stock !== true && (
@@ -330,12 +337,12 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                       height={240}
                       className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
                       quality={100}
-                      priority
+                      priority={productIndex < 3}
                     />
                   </Link>
 
                   <div>
-                    <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[18px]">{product.producto}</h2>
+                    <h2 className="text-[13px] md:text-[17px] font-semibold tracking-[-0.2px] leading-[1.35] break-words [overflow-wrap:anywhere]">{product.producto}</h2>
                     <p className="text-sm text-gray-500 mt-2">SKU: {product.sku}</p>
                     {productColor(product) && (
                       <p className="text-xs text-[#cf2c28] mt-1 font-semibold">
@@ -354,10 +361,13 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                   </div>
                 </div>
 
-                <button className="mt-4 w-full bg-[#cf2c28] text-white py-2 px-4 rounded-full hover:bg-[#a7192f]">
-                  <Link href={`/shop/${product.slug}`}>Ver Producto</Link>
-                </button>
-              </div>
+                <Link
+                  href={`/shop/${product.slug}`}
+                  className="mt-4 min-h-11 w-full inline-flex items-center justify-center bg-[#c8102e] text-white py-2 px-4 rounded-full hover:bg-[#981027] focus-visible:bg-[#981027]"
+                >
+                  Ver producto
+                </Link>
+              </article>
             );
           })}
         </div>
