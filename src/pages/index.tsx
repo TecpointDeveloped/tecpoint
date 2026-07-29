@@ -240,11 +240,24 @@ export default function Home({
               priority
               sizes="(max-width: 900px) 100vw, 50vw"
             />
+            <div className={styles.heroSignal} aria-hidden="true">
+              <Image src="/brand/isologo.svg" alt="" width={190} height={190} />
+            </div>
+            <div className={styles.heroMotion} aria-hidden="true">
+              <span>CARGA</span>
+              <span>PROTEGE</span>
+              <span>CONECTA</span>
+            </div>
             <div className={styles.heroSeal}>
               <Image src="/brand/isologo.svg" alt="" width={62} height={62} />
               <span>SELECCIÓN TECPOINT</span>
             </div>
-            <span className={styles.heroNote}>PRECISIÓN · UTILIDAD · DISEÑO</span>
+            <div className={styles.heroTicker} aria-hidden="true">
+              <span>PRECISIÓN</span>
+              <span>UTILIDAD</span>
+              <span>DISEÑO</span>
+              <span>TECNOLOGÍA QUE SE SIENTE</span>
+            </div>
           </div>
         </section>
 

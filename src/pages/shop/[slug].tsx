@@ -9,9 +9,28 @@ import { Product, BannerInterface } from "../../types/ProductTypes";
 import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useCartStore } from "../../lib/cartStore";
 import { trackAddToCart, trackViewContent } from "@/lib/tracking";
+import {
+  BatteryCharging,
+  Bluetooth,
+  Cable,
+  Camera,
+  CarFront,
+  CheckCircle2,
+  Cpu,
+  Headphones,
+  Palette,
+  Package,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Watch,
+  Wifi,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import detailStyles from "@/styles/productDetail2026.module.css";
 import {
   deduplicateProducts,
   enrichProduct,
@@ -64,14 +83,35 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 import BannersData from "@/data/banners.json";
 
-function readableTextColor(hexColor?: string) {
-  const value = String(hexColor || "000000").replace("#", "");
-  if (!/^[0-9a-f]{6}$/i.test(value)) return "#ffffff";
-  const [red, green, blue] = [0, 2, 4].map((index) =>
-    parseInt(value.slice(index, index + 2), 16),
+const FEATURE_ICONS: Array<[RegExp, LucideIcon]> = [
+  [/(carga|watt|volt|bater|power|energia|usb)/i, BatteryCharging],
+  [/(bluetooth|inalambr|wireless)/i, Bluetooth],
+  [/(cable|conector|lightning|tipo c|type c)/i, Cable],
+  [/(audio|audif|sonido|parlante|microfono)/i, Headphones],
+  [/(prote|resisten|durab|garantia|seguridad)/i, ShieldCheck],
+  [/(carro|vehiculo|auto)/i, CarFront],
+  [/(reloj|watch|hora)/i, Watch],
+  [/(color|acabado|material)/i, Palette],
+  [/(tripode|selfie|fotografia|camara)/i, Camera],
+  [/(compact|portatil|ligero|viaj)/i, Package],
+  [/(telefono|celular|smartphone|iphone|samsung|pantalla|compatib)/i, Smartphone],
+  [/(wifi|red|conexion)/i, Wifi],
+  [/(chip|procesador|memoria|capacidad)/i, Cpu],
+  [/(rapido|velocidad|potencia)/i, Zap],
+];
+
+function featureIcon(label: string, value: string) {
+  const normalize = (text: string) =>
+    text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  const normalizedLabel = normalize(label);
+  const text = normalize(`${label} ${value}`);
+  return (
+    FEATURE_ICONS.find(([pattern]) => pattern.test(normalizedLabel))?.[1] ||
+    FEATURE_ICONS.find(([pattern]) => pattern.test(text))?.[1] ||
+    Sparkles
   );
-  const luminance = (red * 299 + green * 587 + blue * 114) / 255000;
-  return luminance > 0.58 ? "#111516" : "#ffffff";
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -204,6 +244,82 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const primaryImage = imagenesArray[0]?.img || "https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338";
   const canAddToCart =
     product.extradata?.stock === true && Number(product.precio?.detalle) > 0;
+  const specificationEntries = Object.entries(
+    product.extradata?.especificaciones || {},
+  )
+    .map(([label, value]) => ({
+      label: String(label).trim(),
+      value: String(value || "").trim(),
+    }))
+    .filter((item) => item.label && item.value);
+  const genericFeatureLabels = new Set([
+    "marca",
+    "sku",
+    "upc",
+    "categoria",
+    "subcategoria",
+  ]);
+  const featureFallbacks = [
+    {
+      label: "Categoría",
+      value: product.categorias?.[0] || "",
+    },
+    {
+      label: "Compatibilidad",
+      value: product.Subcategorias || "",
+    },
+    {
+      label: "Color",
+      value: product.extradata?.color || "",
+    },
+    {
+      label: "Marca",
+      value: product.marca_producto?.marca || "",
+    },
+  ].filter((item) => item.value);
+  const featureEntries = [...specificationEntries, ...featureFallbacks]
+    .filter(
+      (item) =>
+        !genericFeatureLabels.has(
+          item.label
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase(),
+        ) ||
+        specificationEntries.filter(
+          (specification) =>
+            !genericFeatureLabels.has(
+              specification.label
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase(),
+            ),
+        ).length < 3,
+    )
+    .filter(
+      (item, index, list) =>
+        list.findIndex(
+          (candidate) =>
+            candidate.label.toLowerCase() === item.label.toLowerCase(),
+        ) === index,
+    )
+    .slice(0, 3);
+  const technicalEntries = [
+    ...specificationEntries,
+    { label: "SKU", value: product.sku || "" },
+    { label: "UPC", value: product.extradata?.upc || "" },
+    { label: "Categoría", value: product.categorias?.[0] || "" },
+    { label: "Subcategoría", value: product.Subcategorias || "" },
+    { label: "Color", value: product.extradata?.color || "" },
+  ]
+    .filter((item) => item.value)
+    .filter(
+      (item, index, list) =>
+        list.findIndex(
+          (candidate) =>
+            candidate.label.toLowerCase() === item.label.toLowerCase(),
+        ) === index,
+    );
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -495,85 +611,118 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           </div>
         </section>
 
-        <section
-          style={{ backgroundColor: `#${banner.color}` }}
-          className="overflow-hidden px-8 w-full h-24 md:h-36 grid place-content-center relative mt-12"
-        >
-          <h2
-            style={{ color: readableTextColor(banner.color) }}
-            className="md:text-[28px] font-semibold text-[20px] text-center tracking-[-0.2px] leading-tight z-[1] md:w-[500px] break-words [overflow-wrap:anywhere]"
-          >
-            {product.producto}
-          </h2>
-
-          <span className="w-full h-fit flex items-center justify-center absolute bottom-[-28px]">
-            <Image
-              className="h-[100%] opacity-30 select-none"
-              src={banner.ImageBanner || ""}
-              alt="Banner del producto"
-              width={700}
-              height={700}
-              unoptimized={true}
-            />
-          </span>
+        <section className={detailStyles.motionBanner}>
+          <div className={detailStyles.motionGrid} aria-hidden="true" />
+          <div className={detailStyles.motionOrbit} aria-hidden="true">
+            <Image src="/brand/isologo.svg" alt="" width={190} height={190} />
+          </div>
+          <Image
+            className={detailStyles.brandWatermark}
+            src={banner.ImageBanner || product.marca_producto?.logo || "/brand/isologo.svg"}
+            alt=""
+            width={760}
+            height={280}
+            unoptimized
+          />
+          <div className={detailStyles.motionCopy}>
+            <p>{product.marca_producto?.marca} · SELECCIÓN TECPOINT</p>
+            <h2>{product.producto}</h2>
+            <span>Diseñado para conectar con su día.</span>
+          </div>
+          <div className={detailStyles.motionRail} aria-hidden="true">
+            <span>TECNOLOGÍA QUE SE SIENTE</span>
+            <span>CALIDAD</span>
+            <span>COMPATIBILIDAD</span>
+            <span>EXPERIENCIA</span>
+          </div>
         </section>
 
-        <article className="flex flex-col">
-          <div className="w-full p-3 py-6">
-            <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-[-0.5px]">Especificaciones</h2>
-          </div>
+        <article className={detailStyles.productStory}>
+          <section className={detailStyles.features} aria-labelledby="feature-title">
+            <div className={detailStyles.sectionIntro}>
+              <p>LO ESENCIAL</p>
+              <h2 id="feature-title">Tres razones para elegirlo.</h2>
+            </div>
+            <div className={detailStyles.featureGrid}>
+              {featureEntries.map((feature, index) => {
+                const Icon = featureIcon(feature.label, feature.value);
+                return (
+                  <div className={detailStyles.featureCard} key={`${feature.label}-${index}`}>
+                    <span>
+                      <Icon aria-hidden="true" strokeWidth={1.8} />
+                    </span>
+                    <small>0{index + 1}</small>
+                    <h3>{feature.label}</h3>
+                    <p>{feature.value}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8 max-w-[1200px] m-auto px-4 w-full mb-4">
-            {Object.entries(product.extradata?.especificaciones || {}).map(([key, value]) => (
-              <Accordion type="single" collapsible key={key} className=" m-auto w-full">
-                <AccordionItem value={key}>
-                  <AccordionTrigger className="font-bold text-[20px] md:text-[24px]">{key}</AccordionTrigger>
-                  <AccordionContent className="">
-                    <p className="md:w-[70%] text-gray-500 text-[18px] md:text-[17px] tracking-[-0.4px]">{value}</p>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ))}
-          </div>
+          <section className={detailStyles.technical} aria-labelledby="technical-title">
+            <div className={detailStyles.description}>
+              <p>DESCRIPCIÓN</p>
+              <h2>Conozca el producto.</h2>
+              <div className={detailStyles.descriptionRule} />
+              <p>{product.descripcion}</p>
+              <div className={detailStyles.verified}>
+                <CheckCircle2 aria-hidden="true" />
+                Información verificada con el catálogo TECPOINT.
+              </div>
+            </div>
+            <div className={detailStyles.specificationPanel}>
+              <p>DATOS DEL PRODUCTO</p>
+              <h2 id="technical-title">Ficha técnica.</h2>
+              <dl>
+                {technicalEntries.map((entry) => (
+                  <div key={entry.label}>
+                    <dt>{entry.label}</dt>
+                    <dd>{entry.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
 
           <section
-            className={`bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10 ${(!product.secciones?.seccion_01.imagenUrl || typeof product.secciones?.seccion_01.imagenUrl !== 'string' || !product.secciones?.seccion_01.imagenUrl.trim()) &&
-              (!product.secciones?.seccion_02.imagenUrl || typeof product.secciones?.seccion_02.imagenUrl !== 'string' || !product.secciones?.seccion_02.imagenUrl.trim()) &&
+            className={`bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10 ${(!product.secciones?.seccion_01?.imagenUrl || typeof product.secciones?.seccion_01?.imagenUrl !== 'string' || !product.secciones?.seccion_01?.imagenUrl.trim()) &&
+              (!product.secciones?.seccion_02?.imagenUrl || typeof product.secciones?.seccion_02?.imagenUrl !== 'string' || !product.secciones?.seccion_02?.imagenUrl.trim()) &&
               (!product.secciones?.ficha_descriptiva?.ficha_image || typeof product.secciones?.ficha_descriptiva?.ficha_image !== 'string' || !product.secciones?.ficha_descriptiva?.ficha_image.trim()) ? 'hidden' : ''}`}
           >
             <div className="flex flex-col sm:flex-row gap-2 p-3 justify-center m-auto w-full max-w-[1600px]">
               {/* Primera Sección */}
-              {product.secciones?.seccion_01.imagenUrl && typeof product.secciones?.seccion_01.imagenUrl === 'string' && product.secciones?.seccion_01.imagenUrl.trim() && product.secciones?.seccion_01.title?.trim() ? (
+              {product.secciones?.seccion_01?.imagenUrl && typeof product.secciones?.seccion_01?.imagenUrl === 'string' && product.secciones?.seccion_01?.imagenUrl.trim() && product.secciones?.seccion_01?.title?.trim() ? (
                 <div className="flex size-full sm:size-1/2 md:w-1/2 lg:h-1/2 items-center justify-center relative cursor-pointer overflow-hidden group">
                   <Image
                     className="flex-1 size-full aspect-square object-cover"
                     width={800}
                     height={800}
-                    src={product.secciones?.seccion_01.imagenUrl || "/default-product.png"}
+                    src={product.secciones?.seccion_01?.imagenUrl || "/default-product.png"}
                     alt="Imagen de la primera sección"
                   />
                   <span className="flex-1 inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="text-center md:font-black text-3xl w-[300px] md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                      {product.secciones?.seccion_01.title}
+                      {product.secciones?.seccion_01?.title}
                     </p>
                   </span>
                 </div>
               ) : null}
 
               {/* Segunda Sección */}
-              {product.secciones?.seccion_02.imagenUrl && typeof product.secciones?.seccion_02.imagenUrl === 'string' && product.secciones?.seccion_02.imagenUrl.trim() && product.secciones?.seccion_02.title?.trim() ? (
+              {product.secciones?.seccion_02?.imagenUrl && typeof product.secciones?.seccion_02?.imagenUrl === 'string' && product.secciones?.seccion_02?.imagenUrl.trim() && product.secciones?.seccion_02?.title?.trim() ? (
                 <div className="flex size-full sm:size-1/2 md:w-1/2 lg:h-1/2 items-center justify-center relative cursor-pointer overflow-hidden group">
                   <Image
                     className="flex-1 w-full aspect-square object-cover"
                     width={800}
                     height={800}
                     unoptimized={true}
-                    src={product.secciones?.seccion_02.imagenUrl || "/default-product.png"}
+                    src={product.secciones?.seccion_02?.imagenUrl || "/default-product.png"}
                     alt="Imagen de la segunda sección"
                   />
                   <span className="flex-1 inset-0 bg-[#000000a4] backdrop-blur-sm absolute grid place-content-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="text-center md:font-black text-3xl w-[300px] md:w-[280px] tracking-[-0.17px] text-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                      {product.secciones?.seccion_02.title}
+                      {product.secciones?.seccion_02?.title}
                     </p>
                   </span>
                 </div>
