@@ -63,8 +63,21 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const color = queryValue(context.query.color).trim().toLowerCase();
     const search = queryValue(context.query.search).trim().toLowerCase();
     const productsPerPage = 9;
-    const brands = [...new Set(allProducts.map((product) => product.marca_producto?.marca).filter(Boolean))]
-      .sort((a, b) => a.localeCompare(b)) as string[];
+    const brandLabels = new Map<string, string>();
+    allProducts.forEach((product) => {
+      const label = product.marca_producto?.marca?.trim();
+      if (!label) return;
+      const key = normalizeText(label);
+      const current = brandLabels.get(key);
+      const isAllCaps = (value: string) =>
+        value === value.toLocaleUpperCase("es") &&
+        value !== value.toLocaleLowerCase("es");
+      if (!current || (isAllCaps(current) && !isAllCaps(label))) {
+        brandLabels.set(key, label);
+      }
+    });
+    const brands = [...brandLabels.values()]
+      .sort((a, b) => a.localeCompare(b, "es"));
     const colors = [...new Set(allProducts.map((product) => productColor(product)).filter(Boolean))]
       .sort((a, b) => a.localeCompare(b));
 
