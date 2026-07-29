@@ -17,6 +17,7 @@ import {
   enrichProduct,
   preferredProductSlug,
 } from "@/lib/catalog";
+import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -240,10 +241,16 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
   const imagesToShow = showRemaining ? imagenesArray.slice(2) : imagenesArray.slice(0, 3);
 
-  const banner = Banners.find((banner) => banner.marca === product.marca_producto?.marca) || {
-    color: "000000",
-    ImageBanner: "/default-banner.png",
-  };
+  const banner =
+    Banners.find(
+      (item) =>
+        canonicalBrandName(item.marca) ===
+        canonicalBrandName(product.marca_producto?.marca),
+    ) || {
+      color: "000000",
+      ImageBanner:
+        brandLogo(product.marca_producto?.marca) || "/default-product.png",
+    };
 
   return (
     <>

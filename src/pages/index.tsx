@@ -14,6 +14,7 @@ import {
   OFFICIAL_CATEGORIES,
   preferredProductSlug,
 } from "@/lib/catalog";
+import { brandAssets } from "@/lib/brands";
 
 export async function getServerSideProps() {
   const productDocs = await getDocs(
@@ -270,6 +271,35 @@ export default function Home({
                 <h3>{category.name}</h3>
                 <p>{category.description}</p>
                 <strong>Explorar →</strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.brands} aria-labelledby="brands-title">
+          <div className={styles.brandIntro}>
+            <p className={styles.eyebrow}>MARCAS SELECCIONADAS</p>
+            <h2 id="brands-title">Tecnología con respaldo.</h2>
+            <p>
+              Explore el catálogo por marca y encuentre opciones compatibles
+              con su dispositivo y su forma de usar la tecnología.
+            </p>
+          </div>
+          <div className={styles.brandGrid}>
+            {brandAssets.map((brand) => (
+              <Link
+                href={`/shop?page=1&brand=${encodeURIComponent(brand.name)}`}
+                className={styles.brandCard}
+                key={brand.name}
+                data-brand={brand.name}
+                aria-label={`Ver productos ${brand.name}`}
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={180}
+                  height={70}
+                />
               </Link>
             ))}
           </div>

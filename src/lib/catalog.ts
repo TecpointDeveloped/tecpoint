@@ -1,6 +1,7 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
 import currentCatalog from "@/data/current-catalog-w31.json";
+import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
 export const OFFICIAL_CATEGORIES = [
   {
@@ -301,13 +302,24 @@ export function productColor(product: CatalogProduct & { extradata?: { color?: s
 export function enrichProduct<T extends CatalogProduct>(product: T) {
   const category = officialCategory(product);
   const inventory = getCurrentInventory(product.sku);
+  const brand = canonicalBrandName(
+    inventory?.brand || product.marca_producto?.marca,
+  );
   return {
     ...product,
     producto: preferredProductName(product),
     slug: preferredProductSlug(product),
     categorias: [category],
     Subcategorias:
-      getValidatedEntry(product.sku)?.subcategory || product.Subcategorias || "",
+      getValidatedEntry(product.sku)?.subcategory ||
+      inventory?.subcategory ||
+      product.Subcategorias ||
+      "",
+    marca_producto: {
+      ...(product.marca_producto || {}),
+      marca: brand,
+      logo: brandLogo(brand),
+    },
     precio: {
       ...(product.precio || {}),
       detalle:
