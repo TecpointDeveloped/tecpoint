@@ -425,7 +425,7 @@ export default function Home({
         </section>
 
         <section className={styles.advisor}>
-          <div>
+          <div className={styles.advisorCopy}>
             <p className={`${styles.eyebrow} ${styles.light}`}>COMPATIBILIDAD PRIMERO</p>
             <h2>¿No sabe cuál elegir?</h2>
             <p>
@@ -433,14 +433,21 @@ export default function Home({
               a identificar la opción adecuada.
             </p>
           </div>
-          <a
-            className={styles.whiteButton}
-            href="https://wa.me/50494659287?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20accesorio%20compatible."
-            target="_blank"
-            rel="noreferrer"
-          >
-            Consultar compatibilidad
-          </a>
+          <div className={styles.advisorAction}>
+            <div className={styles.advisorMark}>
+              <Image src="/brand/isologo.svg" alt="" width={120} height={120} />
+            </div>
+            <span>ASESORÍA PERSONALIZADA</span>
+            <strong>Confirme antes de comprar.</strong>
+            <a
+              className={styles.advisorButton}
+              href="https://wa.me/50494659287?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20accesorio%20compatible."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Consultar compatibilidad <b>↗</b>
+            </a>
+          </div>
         </section>
 
         <section className={styles.wholesale}>
