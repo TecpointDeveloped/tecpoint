@@ -16,6 +16,33 @@ a un asesor, atendido y medido sin compartir contraseñas personales.
 
 ## Colecciones
 
+### `referral_codes`
+
+- El identificador del documento es el código normalizado en mayúsculas.
+- `ownerName`: empleado, influencer o responsable del código.
+- `ownerType`: `employee`, `influencer` o `tecpoint`.
+- `discountPercent`: actualmente fijo en `15`.
+- `active`: permite pausar el código sin eliminar su historial.
+- `uses`: contador acumulado de usos registrados.
+- `updatedAt`: timestamp del servidor.
+
+Los códigos iniciales son `JORGE15`, `BENJAMIN15`, `EDGAR15`, `JOHANNA15`,
+`GLADIS15`, `ANGELO15`, `IRANIA15` y `SANDY15`. Se inicializan desde
+`/admin/codigos`; repetir la inicialización no reinicia los contadores.
+
+### `referral_redemptions`
+
+- `code`, `ownerName` y `ownerType`.
+- `discountPercent`, `subtotal`, `discount` y `total` calculados en el servidor.
+- `items`: nombre, SKU, cantidad y precio verificados contra el catálogo actual.
+- `channel` y `location`.
+- `status`: inicialmente `ordered`.
+- `timezone`: `America/Tegucigalpa`.
+- `createdAt`: fecha y hora del servidor.
+
+La pantalla `/admin/codigos` permite crear, activar o pausar códigos y consultar
+los últimos 100 usos. Solamente acepta cuentas con el claim `role: admin`.
+
 ### `sales_conversations`
 
 - `channel`: `whatsapp`, `instagram`, `messenger` o `web`.

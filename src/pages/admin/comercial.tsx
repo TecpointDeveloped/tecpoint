@@ -136,6 +136,7 @@ export default function CommercialAdmin() {
           <div>
             <small>ASESOR ACTIVO</small>
             <strong>{currentUser.displayName || currentUser.email}</strong>
+            <Link href="/admin/codigos">Códigos y referidos →</Link>
           </div>
         </header>
 

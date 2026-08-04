@@ -40,6 +40,7 @@
     "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "firebase": "^11.1.0",
+    "firebase-admin": "^13.5.0",
     "flexsearch": "^0.7.43",
     "framer-motion": "^12.4.7",
     "html5-qrcode": "^2.3.8",

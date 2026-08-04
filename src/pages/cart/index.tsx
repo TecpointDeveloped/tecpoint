@@ -11,6 +11,11 @@ import { trackInitiateCheckout } from "@/lib/tracking";
 
 const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [referralInput, setReferralInput] = useState("");
+  const [referralError, setReferralError] = useState("");
+  const [referralLoading, setReferralLoading] = useState(false);
+  const [orderSubmitting, setOrderSubmitting] = useState(false);
+  const [appliedReferral, setAppliedReferral] = useState<null | { code: string; ownerName: string; discountPercent: number; subtotal: number; discount: number; total: number }>(null);
 
   const { cart: storedCart } = useCartStore();
   const { currentUser } = useAuth();
@@ -53,6 +58,7 @@ const CartPage = () => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
     localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
+    setAppliedReferral(null);
   };
 
   const handleQuantityChange = (id: string, quantity: number) => {
@@ -61,9 +67,28 @@ const CartPage = () => {
     );
     setCart(updatedCart);
     localStorage.setItem("cart_tecpoint", JSON.stringify(updatedCart));
+    setAppliedReferral(null);
   };
 
-  const handleWhatsAppOrder = () => {
+  const referralItems = () => cart.map((item) => ({ sku: item.sku, quantity: item.quantity }));
+
+  const applyReferral = async () => {
+    setReferralLoading(true);
+    setReferralError("");
+    try {
+      const response = await fetch("/api/referrals/validate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: referralInput, items: referralItems() }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "No fue posible aplicar el código.");
+      setAppliedReferral(data);
+      setReferralInput(data.code);
+    } catch (error) {
+      setAppliedReferral(null);
+      setReferralError(error instanceof Error ? error.message : "Código inválido.");
+    } finally { setReferralLoading(false); }
+  };
+
+  const handleWhatsAppOrder = async () => {
+    if (orderSubmitting) return;
     const phoneNumberTegucigalpa = "95200523";
     const phoneNumberCarolina = "93385732";
     const phoneNumberPrincipal = "97157784";
@@ -87,7 +112,20 @@ const CartPage = () => {
       }
     }
 
-    const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}`;
+    if (appliedReferral) {
+      setOrderSubmitting(true);
+      try {
+        const response = await fetch("/api/referrals/redeem", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: appliedReferral.code, items: referralItems(), channel: "web_whatsapp", location: selectedUserIndex === null ? "online" : users[selectedUserIndex].name }) });
+        if (!response.ok) { setReferralError("No fue posible registrar el código. Inténtelo nuevamente o contacte a un asesor."); return; }
+      } catch {
+        setReferralError("No fue posible registrar el código. Revise su conexión e inténtelo nuevamente.");
+        return;
+      } finally {
+        setOrderSubmitting(false);
+      }
+    }
+    const referralSummary = appliedReferral ? `\nCódigo: ${appliedReferral.code}\nDescuento: L ${appliedReferral.discount.toFixed(2)}\nTotal con descuento: L ${appliedReferral.total.toFixed(2)}\n` : "";
+    const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}${referralSummary}`;
     const total = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0);
     trackInitiateCheckout(
       cart.map((item) => ({
@@ -96,7 +134,7 @@ const CartPage = () => {
         price: item.precio || 0,
         quantity: item.quantity,
       })),
-      total,
+      appliedReferral?.total ?? total,
     );
     const encodedMessage = encodeURIComponent(message);
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -214,21 +252,32 @@ const CartPage = () => {
             </div>
             <div className="flex justify-between mb-2">
               <span className="text-gray-700">Subtotal:</span>
-              <span className="font-bold">HNL. {cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0).toFixed(2)}</span>
+              <span className="font-bold">HNL. {(appliedReferral?.subtotal ?? cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0)).toFixed(2)}</span>
             </div>
+            <div className="my-5 rounded-2xl border border-[#dfe3e4] p-4">
+              <label htmlFor="referral-code" className="mb-2 block text-xs font-bold uppercase tracking-[.12em] text-[#c8102e]">Código de empleado, influencer o promoción</label>
+              <div className="flex gap-2">
+                <input id="referral-code" value={referralInput} onChange={(event) => { setReferralInput(event.target.value.toUpperCase()); setReferralError(""); }} placeholder="EJ. JORGE15" className="min-w-0 flex-1 rounded-xl border px-4 py-3 uppercase outline-none focus:border-[#c8102e]" />
+                <button type="button" onClick={applyReferral} disabled={referralLoading || !cart.length || !referralInput.trim()} className="rounded-xl bg-[#c8102e] px-5 text-sm font-bold text-white disabled:opacity-50">{referralLoading ? "Validando…" : "Aplicar"}</button>
+              </div>
+              {referralError && <p className="mt-2 text-sm text-[#a90d28]">{referralError}</p>}
+              {appliedReferral && <p className="mt-3 rounded-xl bg-[#fff1f3] p-3 text-sm text-[#8f0b24]"><strong>{appliedReferral.code}</strong> aplicado · 15% de descuento · Referido por {appliedReferral.ownerName}</p>}
+            </div>
+            {appliedReferral && <div className="flex justify-between mb-2 text-[#c8102e]"><span>Descuento ({appliedReferral.discountPercent}%):</span><span className="font-bold">− HNL. {appliedReferral.discount.toFixed(2)}</span></div>}
             <div className="flex justify-between mb-2">
               <span className="text-gray-700">ISV (15%):</span>
               <span className="font-bold">HNL. 0.00</span>
             </div>
             <div className="flex justify-between mb-4">
               <span className="text-gray-700">Total:</span>
-              <span className="font-bold">HNL. {cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0).toFixed(2)}</span>
+              <span className="font-bold">HNL. {(appliedReferral?.total ?? cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0)).toFixed(2)}</span>
             </div>
             <button
               onClick={handleWhatsAppOrder}
-              className="w-full bg-black text-white py-3 hover:bg-black/80 transition duration-300"
+              disabled={orderSubmitting}
+              className="w-full bg-black text-white py-3 hover:bg-black/80 transition duration-300 disabled:cursor-wait disabled:opacity-60"
             >
-              Realizar Pedido
+              {orderSubmitting ? "Registrando código…" : "Realizar Pedido"}
             </button>
           </div>
         </div>
