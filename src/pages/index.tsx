@@ -15,6 +15,7 @@ import {
   preferredProductSlug,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
+import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
 
 export async function getServerSideProps() {
   const productDocs = await getDocs(
@@ -62,18 +63,21 @@ const locations = [
     name: "Plaza Carolina",
     detail: "Segundo nivel, bulevar Mackay",
     phone: "50493385732",
+    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Plaza%20Carolina%20San%20Pedro%20Sula",
   },
   {
     city: "Tegucigalpa",
     name: "Portal de Viera",
     detail: "Tercer nivel, km 3 carretera a El Hatillo",
     phone: "50495200523",
+    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Portal%20de%20Viera%20Tegucigalpa",
   },
   {
     city: "San Pedro Sula",
     name: "Mayoreo & Pick Up",
     detail: "Barrio Los Andes, 7 calle, 14 avenida",
     phone: "50498191003",
+    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Barrio%20Los%20Andes%207%20Calle%2014%20Avenida%20San%20Pedro%20Sula",
   },
 ];
 
@@ -402,8 +406,8 @@ export default function Home({
         <section className={styles.experience} id="experiencia">
           <div className={styles.experienceImage}>
             <Image
-              src="/images/experiencia-tecpoint-2026.png"
-              alt="Experiencia TECPOINT"
+              src="/images/locations/plaza-carolina-real.png"
+              alt="Exterior real de Plaza Carolina, ubicación de TECPOINT en San Pedro Sula"
               fill
               sizes="(max-width: 900px) 100vw, 54vw"
             />
@@ -492,18 +496,45 @@ export default function Home({
           <div className={styles.locationGrid}>
             {locations.map((location, index) => (
               <article key={location.name}>
-                <span>0{index + 1}</span>
-                <small>{location.city}</small>
-                <h3>{location.name}</h3>
-                <p>{location.detail}</p>
-                <a
-                  href={`https://wa.me/${location.phone}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Contactar por WhatsApp →
-                </a>
+                <div className={styles.locationVisual} aria-hidden="true">
+                  <strong>0{index + 1}</strong>
+                  <Image src="/brand/isologo.svg" alt="" width={58} height={58} />
+                </div>
+                <div className={styles.locationContent}>
+                  <small><MapPin size={13} />{location.city}</small>
+                  <h3>{location.name}</h3>
+                  <p>{location.detail}</p>
+                  <div className={styles.locationActions}>
+                    <a href={location.maps} target="_blank" rel="noreferrer">
+                      <MapPin size={16} /> Cómo llegar
+                    </a>
+                    <a href={`https://wa.me/${location.phone}`} target="_blank" rel="noreferrer">
+                      <MessageCircle size={16} /> WhatsApp
+                    </a>
+                  </div>
+                </div>
               </article>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.opinions} aria-labelledby="opiniones-title">
+          <div className={styles.opinionIntro}>
+            <p className={`${styles.eyebrow} ${styles.light}`}>OPINIONES REALES</p>
+            <h2 id="opiniones-title">Su experiencia también cuenta.</h2>
+            <p>Consulte lo que otras personas comparten en Google o deje su opinión después de visitarnos.</p>
+            <div className={styles.opinionStars} aria-label="Opiniones disponibles en Google">
+              {[0, 1, 2, 3, 4].map((star) => <Star key={star} size={18} fill="currentColor" />)}
+              <span>Opiniones en Google</span>
+            </div>
+          </div>
+          <div className={styles.opinionLinks}>
+            {locations.slice(0, 2).map((location) => (
+              <a key={location.name} href={location.maps} target="_blank" rel="noreferrer">
+                <span>{location.city}</span>
+                <strong>{location.name}</strong>
+                <small>Ver ubicación y opiniones <ArrowUpRight size={16} /></small>
+              </a>
             ))}
           </div>
         </section>

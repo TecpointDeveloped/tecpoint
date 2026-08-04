@@ -119,7 +119,7 @@ export default function MyAccount({ title, description, keywords, robots }: Prop
       ) : (
         <div className={styles.accountPage}>
           <section className={styles.visual} aria-label="Experiencia TECPOINT">
-            <Image src="/images/experiencia-tecpoint-2026.png" alt="Cliente eligiendo tecnología en TECPOINT" fill priority sizes="(max-width: 860px) 0vw, 52vw" />
+            <Image src="/images/locations/plaza-carolina-real.png" alt="Exterior real de Plaza Carolina, ubicación de TECPOINT en San Pedro Sula" fill priority sizes="(max-width: 860px) 0vw, 52vw" />
             <div className={styles.visualOverlay} />
             <Link className={styles.brand} href="/" aria-label="Volver a TECPOINT">
               <Image src="/brand/isologo.svg" alt="" width={42} height={42} />
