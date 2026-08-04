@@ -509,7 +509,9 @@ export default function Home({
         </section>
 
         <section className={styles.closing}>
-          <Image src="/brand/isologo.svg" alt="" width={96} height={96} />
+          <div className={styles.closingMark} aria-hidden="true">
+            <Image src="/brand/isologo.svg" alt="" width={96} height={96} />
+          </div>
           <div>
             <p className={`${styles.eyebrow} ${styles.light}`}>TECNOLOGÍA QUE SE SIENTE</p>
             <h2>Encuentre la opción adecuada para usted.</h2>
