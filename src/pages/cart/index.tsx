@@ -167,7 +167,8 @@ const CartPage = () => {
 
       <NavbarMenu />
 
-      <main className="flex flex-col md:h-[87dvh] lg:flex-row gap-4 md:justify-between lg:justify-evenly mt-[80px]">
+      <main className="flex min-h-[calc(100vh-80px)] flex-col lg:flex-row gap-4 md:justify-between lg:justify-evenly mt-[80px]">
+        <h1 className="sr-only">Carrito de compras TECPOINT</h1>
         <div className="py-4 px-6 w-full md:w-1/2 md:h-auto overflow-hidden overflow-y-scroll
         [&::-webkit-scrollbar]:w-2
       [&::-webkit-scrollbar-track]:bg-transparent

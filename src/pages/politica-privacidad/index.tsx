@@ -19,7 +19,7 @@ function PoliticaPrivacidad() {
       <NavbarMenu />
 
       <main className="md:px-12 md:py-8 p-2 bg-[#fdfdfd] flex flex-col gap-4 mt-[70px]">
-        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center m-auto">Politicas de Privacidad Tecpoint</h1>
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center m-auto">Política de privacidad de TECPOINT</h1>
 
         <section className="bg-white py-3 px-6 shadow-lg rounded-xl">
           <h2 className="text-2xl font-semibold mb-3">Principios generales</h2>

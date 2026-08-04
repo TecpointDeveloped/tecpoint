@@ -1,9 +1,15 @@
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
+import Head from "next/head";
 
 const PreguntasFrecuentes = () => {
   return (
     <>
+      <Head>
+        <title>Preguntas frecuentes | TECPOINT Honduras</title>
+        <meta name="description" content="Respuestas sobre envíos, pedidos, garantías, cambios y atención de TECPOINT Honduras." />
+        <link rel="canonical" href="https://tecpoint.ws/preguntas-frecuentes" />
+      </Head>
       <NavbarMenu />
 
       <main className="p-4 mt-[70px]">
@@ -11,7 +17,7 @@ const PreguntasFrecuentes = () => {
           <h1>Preguntas frecuentes</h1>
           <div className="box">
             <h2>¿OFRECEN ENVIO GRATIS?</h2>
-            <p>Sí, los pedidos de LPS. 1,200.00 o más califican para el envío gratuito en el casco urbano de San Pedro Sula.</p>
+            <p>Sí, las compras mayores a L 1,500 califican para envío gratuito según la cobertura y condiciones vigentes.</p>
           </div>
           <div className="box">
             <h2>¿RECIBÍ UN PRODUCTO DEFECTUOSO, ¿CÓMO HAGO PARA OBTENER UN REEMPLAZO?</h2>

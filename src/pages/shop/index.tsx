@@ -186,6 +186,14 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
     router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&color=${currentColor}&search=${currentSearch}`);
   };
 
+  const pageHref = (pageNumber: number) => {
+    const category = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
+    const currentBrand = selectedBrand || "";
+    const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
+    return `/shop?page=${pageNumber}&brand=${encodeURIComponent(currentBrand)}&category=${encodeURIComponent(category)}&color=${encodeURIComponent(currentColor)}&search=${encodeURIComponent(currentSearch)}`;
+  };
+
   if (!products || products.length === 0) {
     return (
       <>
@@ -444,7 +452,9 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
             <div className="flex justify-center mb-8 bg-white w-full md:w-[60%]">
               <Pagination className="flex flex-wrap gap-2 md:gap-4">
                 <PaginationPrevious
+                  href={pageHref(Math.max(1, currentPage - 1))}
                   onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  aria-disabled={currentPage === 1}
                   className={`cursor-pointer select-none rounded-full ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   Anterior
@@ -456,6 +466,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                     return (
                       <PaginationItem key={page}>
                         <PaginationLink
+                          href={pageHref(page)}
                           onClick={() => handlePageChange(page)}
                           isActive={currentPage === page}
                           className={currentPage ? page === currentPage ? 'bg-black text-white rounded-full' : 'bg-white text-black  rounded-full' : 'bg-white text-black  rounded-full'}
@@ -467,7 +478,9 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                   })}
                 </PaginationContent>
                 <PaginationNext
+                  href={pageHref(Math.min(totalPages, currentPage + 1))}
                   onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  aria-disabled={currentPage === totalPages}
                   className={`cursor-pointer select-none rounded-full ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   Siguiente

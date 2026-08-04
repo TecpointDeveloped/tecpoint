@@ -6,21 +6,22 @@ const Garantia = () => {
   return (
     <>
       <Head>
-        <title>Politica de Garantia</title>
+        <title>Política de garantía | TECPOINT Honduras</title>
         <meta name="description" content="Tecpoint garantiza que todos los productos comprados estarán libres de defectos relacionados con la calidad en los materiales cuando el producto se utilice para el propósito previsto en condiciones normales durante el período indicado en cada producto." />
         <meta name="keywords" content="TECPOINT, garantía, productos, calidad, servicio al cliente" />
         <meta name="author" content="TECPOINT" />
-        <meta property="og:title" content="Politica de Garantia" />
+        <meta property="og:title" content="Política de garantía | TECPOINT Honduras" />
         <meta property="og:description" content="Información sobre la garantía de los productos de TECPOINT." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tecpoint.com/garantia" />
+        <meta property="og:url" content="https://tecpoint.ws/garantia" />
+        <link rel="canonical" href="https://tecpoint.ws/garantia" />
         <meta property="og:site_name" content="TECPOINT" />
       </Head>
 
       <NavbarMenu />
 
       <main className="p-4 w-full md:w-[90%] m-auto mt-[70px]">
-        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">Garantia</h1>
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">Garantía</h1>
 
         <p className="mb-2">El cliente puede optar a cambio de su producto por las siguientes condiciones:</p>
         <ul className="list-disc list-inside mb-4">

@@ -121,7 +121,11 @@
   display: grid;
   place-items: center;
   border-radius: 30%;
-  background: rgba(255, 255, 255, .96);
+  background-color: rgba(255, 255, 255, .96);
+  background-image: url('/brand/isologo.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: calc(100% - clamp(36px, 4vw, 56px));
   box-shadow: 0 30px 80px rgba(74, 0, 16, .28);
   animation: markFloat 4s ease-in-out infinite;
 }
