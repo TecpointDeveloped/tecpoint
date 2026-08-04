@@ -406,19 +406,19 @@ export default function Home({
         <section className={styles.experience} id="experiencia">
           <div className={styles.experienceImage}>
             <Image
-              src="/images/locations/plaza-carolina-real.png"
-              alt="Exterior real de Plaza Carolina, ubicación de TECPOINT en San Pedro Sula"
+              src="/images/campaign-next-generation-devices.png"
+              alt="Dispositivos móviles premium de nueva generación en un ambiente lifestyle"
               fill
               sizes="(max-width: 900px) 100vw, 54vw"
             />
           </div>
           <div className={styles.experienceCopy}>
-            <p className={`${styles.eyebrow} ${styles.light}`}>EXPERIENCIA TECPOINT</p>
-            <h2>Tecnología que se siente.</h2>
+            <p className={`${styles.eyebrow} ${styles.light}`}>SIEMPRE ACTUALIZADOS</p>
+            <h2>Accesorios para todos.</h2>
             <p>
-              Comprar tecnología debería sentirse claro desde el primer
-              vistazo: entender la compatibilidad, reconocer el beneficio y
-              recibir orientación sin presión.
+              Desde los formatos clásicos hasta los plegables más recientes:
+              encuentre protección, energía y audio para acompañar su tecnología.
+              Si no está seguro de la compatibilidad, un asesor le orientará sin presión.
             </p>
             <ol>
               <li><span>01</span><div><strong>Selección con criterio</strong><p>Productos elegidos por utilidad, calidad y diseño.</p></div></li>

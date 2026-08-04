@@ -114,6 +114,26 @@ function featureIcon(label: string, value: string) {
   );
 }
 
+function explainBenefit(label: string, value: string) {
+  const normalized = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (normalized.includes("compat")) return `Le permite confirmar si ${value} corresponde exactamente a su dispositivo antes de comprar.`;
+  if (normalized.includes("carga") || normalized.includes("potencia") || normalized.includes("watt")) return "Esta capacidad ayuda a entregar la energía adecuada y evita comprar una solución más lenta de lo necesario.";
+  if (normalized.includes("bateria") || normalized.includes("capacidad")) return "Una mayor capacidad puede extender el tiempo de uso y reducir la necesidad de recargar durante el día.";
+  if (normalized.includes("material") || normalized.includes("proteccion")) return "El material y el nivel de protección influyen directamente en la durabilidad y el uso cotidiano.";
+  if (normalized.includes("conexion") || normalized.includes("bluetooth") || normalized.includes("puerto")) return "El tipo de conexión determina con qué equipos puede utilizarlo y si necesitará un adaptador adicional.";
+  if (normalized.includes("color")) return "Le ayuda a elegir una variante que combine con su dispositivo y estilo personal.";
+  return `Este dato le ayuda a comparar ${value} con lo que realmente necesita antes de tomar una decisión.`;
+}
+
+function explainSpecification(label: string) {
+  const normalized = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (normalized.includes("sku") || normalized.includes("upc")) return "Identificador útil para confirmar el producto exacto con un asesor.";
+  if (normalized.includes("compat")) return "Revise también el modelo, año, tamaño y tipo de conector de su dispositivo.";
+  if (normalized.includes("categoria") || normalized.includes("subcategoria")) return "Clasificación utilizada para encontrar alternativas y productos relacionados.";
+  if (normalized.includes("color")) return "La disponibilidad de esta variante puede cambiar según la sucursal.";
+  return "Compare este valor con las especificaciones oficiales de su dispositivo.";
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
 
@@ -321,6 +341,10 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             candidate.label.toLowerCase() === item.label.toLowerCase(),
         ) === index,
     );
+  const explicitCompatibility = specificationEntries.find((entry) =>
+    entry.label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes("compat"),
+  )?.value;
+  const compatibleWith = explicitCompatibility || product.Subcategorias || "Compatibilidad no especificada en el catálogo";
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -594,18 +618,18 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <div className="mt-3">
               {Number(product.precio.detalle) > 1200 ?
                 (
-                  <span className="flex items-center justify-center gap-4 w-fit border px-6 py-3 select-none">
-                    <Image unoptimized={true} className="aspect-square" height={30} width={30} src="/icons/truck.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
+                  <span className={detailStyles.shippingStatus}>
+                    <span className={detailStyles.truckDrive}><Image unoptimized={true} height={30} width={30} src="/icons/truck.svg" alt="" /></span>
                     <span>
-                      <p className="font-bold">Envio Gratis</p>
-                      <p className="leading-3">Incluye Envio Gratis a todo el pais al comprar</p>
+                      <p className="font-bold">Envío gratis</p>
+                      <p className="leading-3">Este producto califica para envío gratis.</p>
                     </span>
                   </span>
                 )
                 : (
-                  <span className="flex items-center justify-center gap-1 w-fit">
-                    <Image unoptimized={true} className="aspect-square" height={24} width={24} src="/icons/info.svg" alt="entrega gratis en tu compra - tecpoint distribucion" />
-                    <p>Faltan Lps {1200 - Number(product.precio.detalle)} para entrega gratis</p>
+                  <span className={detailStyles.shippingStatus}>
+                    <span className={detailStyles.truckProgress}><Image unoptimized={true} height={28} width={28} src="/icons/truck.svg" alt="" /></span>
+                    <p>Le faltan L {1200 - Number(product.precio.detalle)} para obtener envío gratis.</p>
                   </span>
                 )
               }
@@ -676,7 +700,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           {activeInfoTab === "features" && <section id="product-features" role="tabpanel" className={detailStyles.features} aria-labelledby="feature-title">
             <div className={detailStyles.sectionIntro}>
               <p>LO ESENCIAL</p>
-              <h2 id="feature-title">Tres razones para elegirlo.</h2>
+              <div><h2 id="feature-title">Tres razones para elegirlo.</h2><span>Entienda qué aporta cada característica y por qué puede ser útil en su día a día.</span></div>
             </div>
             <div className={detailStyles.featureGrid}>
               {featureEntries.map((feature, index) => {
@@ -689,6 +713,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     <small>0{index + 1}</small>
                     <h3>{feature.label}</h3>
                     <p>{feature.value}</p>
+                    <p className={detailStyles.featureBenefit}>{explainBenefit(feature.label, feature.value)}</p>
                   </div>
                 );
               })}
@@ -701,6 +726,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <h2 id="description-title">Conozca el producto.</h2>
               <div className={detailStyles.descriptionRule} />
               <p>{product.descripcion}</p>
+              <p className={detailStyles.descriptionSupport}>Antes de comprar, compare el tipo de conexión, las dimensiones y el modelo exacto de su dispositivo. Una coincidencia visual no garantiza compatibilidad.</p>
               <div className={detailStyles.verified}>
                 <CheckCircle2 aria-hidden="true" />
                 Información verificada con el catálogo TECPOINT.
@@ -712,14 +738,20 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             <div className={detailStyles.specificationPanel}>
               <p>DATOS DEL PRODUCTO</p>
               <h2 id="technical-title">Ficha técnica.</h2>
+              <p className={detailStyles.specificationLead}>Información para comparar el producto con su equipo y elegir con mayor seguridad.</p>
               <dl>
                 {technicalEntries.map((entry) => (
                   <div key={entry.label}>
                     <dt>{entry.label}</dt>
-                    <dd>{entry.value}</dd>
+                    <dd><strong>{entry.value}</strong><small>{explainSpecification(entry.label)}</small></dd>
                   </div>
                 ))}
               </dl>
+              <div className={detailStyles.compatibilityGuide}>
+                <div><span>Compatible con</span><strong>{compatibleWith}</strong></div>
+                <div><span>No asuma compatibilidad con</span><strong>Modelos, tamaños, generaciones o conectores que no aparezcan expresamente en esta ficha.</strong></div>
+                <a href={`https://wa.me/50497157784?text=${encodeURIComponent(`Hola TECPOINT, necesito confirmar la compatibilidad de ${product.producto} (SKU ${product.sku}) con mi dispositivo.`)}`} target="_blank" rel="noreferrer">¿No está seguro? Hablar con un asesor →</a>
+              </div>
             </div>
           </section>}
 
