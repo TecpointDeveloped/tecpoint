@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2678400,
     contentDispositionType: 'inline',
     formats: ['image/webp'],
+    qualities: [65, 70, 75, 80, 82, 85, 95, 96, 100],
     // unoptimized: true,
 
     remotePatterns: [

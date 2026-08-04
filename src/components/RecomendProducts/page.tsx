@@ -73,8 +73,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
                     width={240}
                     height={240}
                     className="m-auto size-[240px] aspect-square object-cover mb-4"
-                    quality={100}
-                    priority
+                    quality={75}
                   />
                 </Link>
 

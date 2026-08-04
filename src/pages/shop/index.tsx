@@ -372,8 +372,9 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                       width={240}
                       height={240}
                       className="m-auto sm:size-[240px] size-[180px] aspect-square object-contain mb-4"
-                      quality={100}
+                      quality={75}
                       priority={productIndex < 3}
+                      sizes="(max-width: 640px) 180px, 240px"
                     />
                   </Link>
 

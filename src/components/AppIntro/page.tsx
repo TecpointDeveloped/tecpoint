@@ -7,8 +7,15 @@ export default function AppIntro() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 1050);
-    const removeTimer = window.setTimeout(() => setVisible(false), 1550);
+    const hasPlayed = window.sessionStorage.getItem("tecpoint-intro-played");
+    if (hasPlayed) {
+      setVisible(false);
+      return;
+    }
+
+    window.sessionStorage.setItem("tecpoint-intro-played", "true");
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 650);
+    const removeTimer = window.setTimeout(() => setVisible(false), 980);
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(removeTimer);

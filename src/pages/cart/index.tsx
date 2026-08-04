@@ -148,7 +148,8 @@ const CartPage = () => {
                     alt={item.producto || "Producto"}
                     width={100}
                     height={100}
-                    quality={100}
+                    quality={70}
+                    sizes="100px"
                     className="object-cover aspect-square"
                   />
                   <div className="w-[340px] flex flex-col gap-2">

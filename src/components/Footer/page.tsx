@@ -28,7 +28,13 @@ export default function Footer() {
     <footer className={styles.footer}>
       <section className={styles.top}>
         <div>
-          <Image src="/brand/logo-reserva.svg" alt="TECPOINT" width={205} height={46} />
+          <Image
+            src="/brand/logo-reserva.svg"
+            alt="TECPOINT"
+            width={205}
+            height={46}
+            style={{ width: "205px", height: "auto" }}
+          />
           <p>Tecnología seleccionada y atención cercana en Honduras.</p>
         </div>
         <a

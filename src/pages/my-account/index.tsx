@@ -85,7 +85,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
                   <Image
                     src={currentUser.photoURL}
                     alt={currentUser.displayName || "Usuario tecpoint distribucion"}
-                    quality={100}
+                    quality={80}
                     priority={true}
                     width={70}
                     height={70}
@@ -142,7 +142,7 @@ function My_Acoount({ title, description, keywords, robots }: { title: string, d
                 alt="Experiencia de compra TECPOINT"
                 height={1080}
                 width={2440}
-                quality={100}
+                quality={85}
                 priority
                 className="cursor-pointer w-full h-full object-cover object-left select-none"
                 src="/images/experiencia-tecpoint-2026.png"

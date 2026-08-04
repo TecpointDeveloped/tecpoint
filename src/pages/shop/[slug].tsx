@@ -173,6 +173,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
   const [added, setAdded] = useState(false);
+  const [activeInfoTab, setActiveInfoTab] = useState<"features" | "description" | "specs">("features");
   // const route = useRouter();
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -415,13 +416,14 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     <CarouselItem key={index}>
                       <Image
                         rel="noopener noreferrer"
-                        quality={100}
-                        priority={true}
+                        quality={82}
+                        priority={index === 0}
                         src={img.img || "/default-product.png"}
                         alt={product.producto || `Imagen ${index + 1}`}
                         className="flex-1 sm:size-[480px] md:size-[500px] aspect-square object-contain rounded-xl"
                         width={1100}
                         height={1100}
+                        sizes="(max-width: 640px) 100vw, 500px"
                       />
                     </CarouselItem>
                   )) :
@@ -436,13 +438,13 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               {imagesToShow.map((img, index) => (
                 <Image
                   key={index}
-                  quality={90}
-                  priority={true}
+                  quality={65}
                   src={img.img || "/default-product.png"}
                   alt={product.producto || `Imagen ${index + 1}`}
                   className="size-[110px] md:size-[110px] aspect-square object-contain border cursor-pointer rounded-lg"
                   width={110}
                   height={110}
+                  sizes="110px"
                 />
               ))}
 
@@ -638,7 +640,40 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         </section>
 
         <article className={detailStyles.productStory}>
-          <section className={detailStyles.features} aria-labelledby="feature-title">
+          <nav className={detailStyles.infoTabs} role="tablist" aria-label="Información del producto">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeInfoTab === "features"}
+              aria-controls="product-features"
+              className={activeInfoTab === "features" ? detailStyles.activeTab : ""}
+              onClick={() => setActiveInfoTab("features")}
+            >
+              <span>01</span> Tres razones para elegirlo
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeInfoTab === "description"}
+              aria-controls="product-description"
+              className={activeInfoTab === "description" ? detailStyles.activeTab : ""}
+              onClick={() => setActiveInfoTab("description")}
+            >
+              <span>02</span> Conozca el producto
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeInfoTab === "specs"}
+              aria-controls="product-specs"
+              className={activeInfoTab === "specs" ? detailStyles.activeTab : ""}
+              onClick={() => setActiveInfoTab("specs")}
+            >
+              <span>03</span> Ficha técnica
+            </button>
+          </nav>
+
+          {activeInfoTab === "features" && <section id="product-features" role="tabpanel" className={detailStyles.features} aria-labelledby="feature-title">
             <div className={detailStyles.sectionIntro}>
               <p>LO ESENCIAL</p>
               <h2 id="feature-title">Tres razones para elegirlo.</h2>
@@ -658,12 +693,12 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 );
               })}
             </div>
-          </section>
+          </section>}
 
-          <section className={detailStyles.technical} aria-labelledby="technical-title">
+          {activeInfoTab === "description" && <section id="product-description" role="tabpanel" className={detailStyles.singlePanel} aria-labelledby="description-title">
             <div className={detailStyles.description}>
               <p>DESCRIPCIÓN</p>
-              <h2>Conozca el producto.</h2>
+              <h2 id="description-title">Conozca el producto.</h2>
               <div className={detailStyles.descriptionRule} />
               <p>{product.descripcion}</p>
               <div className={detailStyles.verified}>
@@ -671,6 +706,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 Información verificada con el catálogo TECPOINT.
               </div>
             </div>
+          </section>}
+
+          {activeInfoTab === "specs" && <section id="product-specs" role="tabpanel" className={detailStyles.singlePanel} aria-labelledby="technical-title">
             <div className={detailStyles.specificationPanel}>
               <p>DATOS DEL PRODUCTO</p>
               <h2 id="technical-title">Ficha técnica.</h2>
@@ -683,7 +721,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 ))}
               </dl>
             </div>
-          </section>
+          </section>}
 
           <section
             className={`bg-[#ECECEC] flex flex-col md:gap-y-12 md:mt-10 ${(!product.secciones?.seccion_01?.imagenUrl || typeof product.secciones?.seccion_01?.imagenUrl !== 'string' || !product.secciones?.seccion_01?.imagenUrl.trim()) &&
@@ -716,7 +754,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     className="flex-1 w-full aspect-square object-cover"
                     width={800}
                     height={800}
-                    unoptimized={true}
                     src={product.secciones?.seccion_02?.imagenUrl || "/default-product.png"}
                     alt="Imagen de la segunda sección"
                   />
@@ -739,8 +776,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                     height={800}
                     alt="Ficha descriptiva"
                     className="hover:scale-110 transition-transform aspect-square object-cover"
-                    quality={100}
-                    priority
+                    quality={82}
                   />
                 </picture>
               ) : null}
