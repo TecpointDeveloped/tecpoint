@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../database/Config";
 import { Product } from "@/types/ProductTypes";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -9,20 +9,66 @@ import Footer from "@/components/Footer/page";
 import styles from "@/styles/home2026.module.css";
 import currentCatalog from "@/data/current-catalog-w31.json";
 import {
-  deduplicateProducts,
   enrichProduct,
+  publicCatalog,
   OFFICIAL_CATEGORIES,
   preferredProductSlug,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
+import { FlashPromotion, HomepageBannerCarousel, type MarketingAsset } from "@/components/MarketingContent/page";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
+
+type MarketingDoc = Omit<MarketingAsset, "id"> & {
+  active?: boolean;
+  sortOrder?: number;
+  startsAt?: { toDate?: () => Date };
+  endsAt?: { toDate?: () => Date };
+};
+
+const CURRENT_CAMPAIGN_BANNERS: MarketingAsset[] = [
+  ["xo-main", "XO: nuevos ingresos", "XO BANNER NUEVO.png", "XO"],
+  ["deken-june", "Deken: protección actual", "BANNER DEKEN JUNIO2026.png", "Deken"],
+  ["xo-02", "XO: tecnología para su día", "XO BANNER NUEVO 2.png", "XO"],
+  ["xo-03", "XO: conecte con lo nuevo", "XO BANNER NUEVO 3.png", "XO"],
+  ["hoco-01", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 1.png", "Hoco"],
+  ["hoco-02", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 2.png", "Hoco"],
+  ["hoco-03", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 3.png", "Hoco"],
+  ["hoco-04", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 4.png", "Hoco"],
+  ["hoco-05", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 5.png", "Hoco"],
+  ["hoco-product", "HOCO: producto nuevo", "ho-10132 banner hoco prooducto nuevo.png", "Hoco"],
+].map(([id, title, fileName, brand]) => ({
+  id,
+  title,
+  imageUrl: `/images/banners-current/${fileName}`,
+  linkUrl: `/shop?page=1&brand=${encodeURIComponent(brand)}`,
+  cta: "Ver productos",
+  alt: title,
+  artworkOnly: true,
+}));
+
+function activeMarketingAssets(docs: Awaited<ReturnType<typeof getDocs>>["docs"]) {
+  const now = Date.now();
+  return docs
+    .map((doc) => {
+      const data = doc.data() as MarketingDoc;
+      const startsAt = data.startsAt?.toDate?.()?.getTime?.() || 0;
+      const endsAt = data.endsAt?.toDate?.()?.getTime?.() || Number.MAX_SAFE_INTEGER;
+      return { id: doc.id, ...data, startsAt, endsAt };
+    })
+    .filter((item) => item.active !== false && (item.imageUrl || item.videoUrl) && item.startsAt <= now && item.endsAt >= now)
+    .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+}
 
 export async function getServerSideProps() {
-  const productDocs = await getDocs(
-    collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string),
-  );
+  const [productDocs, bannerDocs, promotionDocs, settingsDoc] = await Promise.all([
+    getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)),
+    getDocs(collection(db, "site_banners")).catch(() => null),
+    getDocs(collection(db, "flash_promotions")).catch(() => null),
+    getDoc(doc(db, "site_settings", "general")).catch(() => null),
+  ]);
 
-  const products = deduplicateProducts(productDocs.docs.map<Product>((doc) => {
+  const products = publicCatalog(productDocs.docs.map<Product>((doc) => {
     const data = doc.data();
     return enrichProduct({
       id: doc.id,
@@ -45,7 +91,9 @@ export async function getServerSideProps() {
         ? new Date(b.fecha_agregado).getTime()
         : 0;
       return dateB - dateA;
-    });
+    })
+    .filter((product) => Boolean(product.extradata?.stock))
+    .slice(0, 8);
 
   return {
     props: {
@@ -53,33 +101,15 @@ export async function getServerSideProps() {
       rockSpaceCount: currentCatalog.records.filter(
         (item) => item.brand === "Rock Space" && item.stock > 0,
       ).length,
+      homepageBanners: activeMarketingAssets(bannerDocs?.docs || []),
+      flashPromotion: activeMarketingAssets(promotionDocs?.docs || [])[0] || null,
+      googleSiteVerification:
+        settingsDoc?.data()?.googleSiteVerification ||
+        process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+        "rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc",
     },
   };
 }
-
-const locations = [
-  {
-    city: "San Pedro Sula",
-    name: "Plaza Carolina",
-    detail: "Segundo nivel, bulevar Mackay",
-    phone: "50493385732",
-    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Plaza%20Carolina%20San%20Pedro%20Sula",
-  },
-  {
-    city: "Tegucigalpa",
-    name: "Portal de Viera",
-    detail: "Tercer nivel, km 3 carretera a El Hatillo",
-    phone: "50495200523",
-    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Portal%20de%20Viera%20Tegucigalpa",
-  },
-  {
-    city: "San Pedro Sula",
-    name: "Mayoreo & Pick Up",
-    detail: "Barrio Los Andes, 7 calle, 14 avenida",
-    phone: "50498191003",
-    maps: "https://www.google.com/maps/search/?api=1&query=TECPOINT%20Barrio%20Los%20Andes%207%20Calle%2014%20Avenida%20San%20Pedro%20Sula",
-  },
-];
 
 function imageFor(product: Product) {
   return (
@@ -101,10 +131,17 @@ function priceFor(product: Product) {
 export default function Home({
   products,
   rockSpaceCount,
+  homepageBanners,
+  flashPromotion,
+  googleSiteVerification,
 }: {
   products: Product[];
   rockSpaceCount: number;
+  homepageBanners: MarketingAsset[];
+  flashPromotion: MarketingAsset | null;
+  googleSiteVerification: string;
 }) {
+  const { locations, onlineWhatsApp, wholesaleWhatsApp } = useSiteConfig();
   const selectedProducts = products
     .filter(
       (product) =>
@@ -124,6 +161,12 @@ export default function Home({
           name="description"
           content="Accesorios tecnológicos seleccionados, compatibilidad clara y atención cercana. Compra al detalle y al mayoreo en Honduras."
         />
+        {googleSiteVerification && (
+          <meta
+            name="google-site-verification"
+            content={googleSiteVerification}
+          />
+        )}
         <meta
           name="keywords"
           content="accesorios tecnológicos Honduras, cargadores, audífonos, power banks, protección de pantalla, TECPOINT"
@@ -209,6 +252,14 @@ export default function Home({
 
       <NavbarMenu />
 
+      <HomepageBannerCarousel
+        assets={[
+          ...homepageBanners,
+          ...CURRENT_CAMPAIGN_BANNERS,
+        ]}
+      />
+      <FlashPromotion asset={flashPromotion} />
+
       <main className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
@@ -242,7 +293,8 @@ export default function Home({
               alt="Accesorios tecnológicos seleccionados por TECPOINT"
               fill
               priority
-              sizes="(max-width: 900px) 100vw, 50vw"
+              quality={85}
+              sizes="(max-width: 900px) 100vw, 1200px"
             />
             <div className={styles.heroSignal} aria-hidden="true">
               <Image src="/brand/isologo.svg" alt="" width={190} height={190} />
@@ -409,7 +461,8 @@ export default function Home({
               src="/images/campaign-next-generation-devices.png"
               alt="Dispositivos móviles premium de nueva generación en un ambiente lifestyle"
               fill
-              sizes="(max-width: 900px) 100vw, 54vw"
+              quality={85}
+              sizes="(max-width: 900px) 100vw, 1200px"
             />
           </div>
           <div className={styles.experienceCopy}>
@@ -445,7 +498,7 @@ export default function Home({
             <strong>Confirme antes de comprar.</strong>
             <a
               className={styles.advisorButton}
-              href="https://wa.me/50494659287?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20accesorio%20compatible."
+              href={whatsappLink(onlineWhatsApp, "Hola, necesito ayuda para elegir un accesorio compatible.")}
               target="_blank"
               rel="noreferrer"
             >
@@ -465,7 +518,7 @@ export default function Home({
             <div><span>Asesoría comercial</span><span>Catálogo amplio</span><span>Pick up en SPS</span></div>
             <a
               className={styles.darkButton}
-              href="https://wa.me/50498191003?text=Hola%2C%20deseo%20información%20sobre%20ventas%20al%20mayoreo."
+              href={whatsappLink(wholesaleWhatsApp, "Hola, deseo información sobre ventas al mayoreo.")}
               target="_blank"
               rel="noreferrer"
             >
@@ -508,7 +561,7 @@ export default function Home({
                     <a href={location.maps} target="_blank" rel="noreferrer">
                       <MapPin size={16} /> Cómo llegar
                     </a>
-                    <a href={`https://wa.me/${location.phone}`} target="_blank" rel="noreferrer">
+                    <a href={whatsappLink(location.phone, `Hola TECPOINT, deseo comunicarme con ${location.name}.`)} target="_blank" rel="noreferrer">
                       <MessageCircle size={16} /> WhatsApp
                     </a>
                   </div>

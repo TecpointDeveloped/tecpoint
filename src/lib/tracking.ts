@@ -5,6 +5,18 @@ type CommerceItem = {
   quantity?: number;
 };
 
+export function trackSearch(searchTerm: string) {
+  const normalized = searchTerm.trim();
+  if (!normalized) return;
+
+  window.fbq?.("track", "Search", {
+    search_string: normalized,
+  });
+  window.gtag?.("event", "search", {
+    search_term: normalized,
+  });
+}
+
 export function trackViewContent(item: CommerceItem) {
   window.fbq?.("track", "ViewContent", {
     content_ids: [item.id],

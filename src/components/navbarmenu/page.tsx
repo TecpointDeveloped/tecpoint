@@ -8,17 +8,21 @@ import { useCartStore } from "@/lib/cartStore";
 import { useAuth } from "@/context/useAuth";
 import { OFFICIAL_CATEGORIES } from "@/lib/catalog";
 import styles from "@/styles/navigation2026.module.css";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
+import { trackSearch } from "@/lib/tracking";
 
 export default function NavbarMenu() {
   const router = useRouter();
   const { cart } = useCartStore();
   const { currentUser } = useAuth();
+  const { mainWhatsApp } = useSiteConfig();
   const [search, setSearch] = useState("");
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   function submitSearch(event: FormEvent) {
     event.preventDefault();
     const value = search.trim();
+    trackSearch(value);
     router.push(`/shop?page=1&category=all&search=${encodeURIComponent(value)}`);
   }
 
@@ -42,7 +46,7 @@ export default function NavbarMenu() {
           <Link href="/#ubicaciones">Ubicaciones</Link>
           <a
             className={styles.orderLink}
-            href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido."
+            href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero hacer un pedido.")}
             target="_blank"
             rel="noreferrer"
           >
@@ -112,7 +116,7 @@ export default function NavbarMenu() {
                 <Link href="/cart">Mi carrito</Link>
                 <Link href="/my-account">Mi cuenta</Link>
                 <a
-                  href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido."
+                  href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero hacer un pedido.")}
                   target="_blank"
                   rel="noreferrer"
                 >

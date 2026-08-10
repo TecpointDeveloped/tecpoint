@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: false,
   output: "standalone",
+  outputFileTracingRoot: process.cwd(),
   images: {
     minimumCacheTTL: 2678400,
     contentDispositionType: 'inline',

@@ -1,8 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import NavbarMenu from "@/components/navbarmenu/page";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 export default function CheckoutPage() {
+  const { mainWhatsApp } = useSiteConfig();
   return (
     <>
       <Head>
@@ -40,7 +42,7 @@ export default function CheckoutPage() {
                 Revisar mi carrito
               </Link>
               <a
-                href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20finalizar%20mi%20compra."
+                href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero finalizar mi compra.")}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-[#131817] px-6 py-4 text-center font-bold text-[#131817] transition hover:bg-[#131817] hover:text-white"

@@ -1,29 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/footer2026.module.css";
-
-const orderPoints = [
-  {
-    city: "San Pedro Sula",
-    name: "Plaza Carolina",
-    detail: "Segundo nivel, bulevar Mackay",
-    phone: "50493385732",
-  },
-  {
-    city: "Tegucigalpa",
-    name: "Portal de Viera",
-    detail: "Tercer nivel, km 3 carretera a El Hatillo",
-    phone: "50495200523",
-  },
-  {
-    city: "San Pedro Sula",
-    name: "Mayoreo y Pick Up",
-    detail: "Barrio Los Andes, 7 calle, 14 avenida",
-    phone: "50498191003",
-  },
-];
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 export default function Footer() {
+  const { locations: orderPoints, mainWhatsApp } = useSiteConfig();
   return (
     <footer className={styles.footer}>
       <section className={styles.top}>
@@ -39,7 +20,7 @@ export default function Footer() {
         </div>
         <a
           className={styles.mainOrder}
-          href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido."
+          href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero hacer un pedido.")}
           target="_blank"
           rel="noreferrer"
         >
@@ -54,7 +35,7 @@ export default function Footer() {
             <strong>{point.name}</strong>
             <p>{point.detail}</p>
             <a
-              href={`https://wa.me/${point.phone}?text=Hola%20TECPOINT%2C%20quiero%20hacer%20un%20pedido%20con%20${encodeURIComponent(point.name)}.`}
+              href={whatsappLink(point.phone, `Hola TECPOINT, quiero hacer un pedido con ${point.name}.`)}
               target="_blank"
               rel="noreferrer"
             >

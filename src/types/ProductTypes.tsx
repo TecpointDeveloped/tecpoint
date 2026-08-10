@@ -45,6 +45,7 @@ export interface Product {
     modelId?: string;
     especificaciones?: Record<string, string>;
     tags?: string[];
+    searchAliases?: string[] | string;
     liquidacion?: boolean;
   },
   objectID?: string;

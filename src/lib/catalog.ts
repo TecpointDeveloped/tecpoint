@@ -76,10 +76,16 @@ const SEARCH_ALIASES: Array<[RegExp, string]> = [
   [/\b(celular|telefono|movil|smartphone)\b/g, " celular telefono movil smartphone "],
   [/\b(audifono|audifonos|auricular|auriculares|headset|earbuds)\b/g, " audifono audifonos auricular auriculares headset earbuds "],
   [/\b(cargador|cargadores|charger|carga)\b/g, " cargador cargadores charger carga "],
+  [/\b(cabeza|cabezal|cubo|cubito|taco|bloque|adaptador de pared)\b/g, " cargador cabeza cabezal cubo cubito taco bloque adaptador pared charger "],
   [/\b(lamina|laminas|vidrio|protector|proteccion|film)\b/g, " lamina laminas vidrio protector proteccion film "],
   [/\b(forro|funda|case|cobertor)\b/g, " forro funda case cobertor "],
   [/\b(bateria|powerbank|power bank)\b/g, " bateria powerbank power bank "],
   [/\b(reloj|smartwatch|watch)\b/g, " reloj smartwatch watch "],
+  [/\b(forrito|cobertor|cover|protector de telefono)\b/g, " forro funda case cobertor cover protector telefono "],
+  [/\b(airpod|airpods|airdop|audifono inalambrico|audifonos inalambricos)\b/g, " airpods earbuds audifonos auriculares inalambricos bluetooth "],
+  [/\b(cable tipo c|usb c|type c|tipo-c|tipoc)\b/g, " cable usb c type c tipo c tipoc "],
+  [/\b(iphone|aifon|ifon|ayfon)\b/g, " iphone aifon ifon ayfon apple "],
+  [/\b(samsung|samsun|samsum|sansung)\b/g, " samsung samsun samsum sansung galaxy "],
   [/\b(carro|vehiculo|auto|automovil)\b/g, " carro vehiculo auto automovil "],
 ];
 
@@ -134,6 +140,8 @@ export function matchesProductSearch(product: CatalogProduct, query: string) {
       product.descripcion,
       product.Subcategorias,
       product.marca_producto?.marca,
+      Array.isArray(product.extradata?.tags) ? product.extradata?.tags.join(" ") : product.extradata?.tags,
+      Array.isArray(product.extradata?.searchAliases) ? product.extradata?.searchAliases.join(" ") : product.extradata?.searchAliases,
       ...(product.categorias || []),
     ].join(" "),
   );
@@ -148,6 +156,19 @@ export function matchesProductSearch(product: CatalogProduct, query: string) {
         tokenMatches(queryToken, candidateToken),
       ),
     );
+}
+
+export function productSearchTerms(product: CatalogProduct) {
+  const aliases = product.extradata?.searchAliases;
+  const tags = product.extradata?.tags;
+  return [...new Set([
+    preferredProductName(product),
+    product.marca_producto?.marca,
+    ...(product.categorias || []),
+    product.Subcategorias,
+    ...(Array.isArray(tags) ? tags : String(tags || "").split(",")),
+    ...(Array.isArray(aliases) ? aliases : String(aliases || "").split(",")),
+  ].map((item) => String(item || "").trim()).filter(Boolean))];
 }
 
 export function slugify(value: string) {
@@ -334,14 +355,48 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
 }
 
 function completenessScore(product: Product) {
-  return [
-    product.producto,
-    product.descripcion,
-    product.slug,
-    product.marca_producto?.marca,
-    product.imagenes && Object.keys(product.imagenes).length,
-    Number(product.precio?.detalle) > 0,
-  ].filter(Boolean).length;
+  return 12 - productQualityIssues(product).length;
+}
+
+export type ProductQualityIssue =
+  | "sku"
+  | "upc"
+  | "nombre"
+  | "slug"
+  | "descripcion"
+  | "categoria"
+  | "marca"
+  | "precio"
+  | "imagen";
+
+function usableImageUrls(product: Product) {
+  return Object.values(product.imagenes || {})
+    .map((image) => image?.img?.trim())
+    .filter((url): url is string =>
+      Boolean(
+        url &&
+          !/default-product|placeholder|sin-imagen/i.test(url) &&
+          (/^https?:\/\//i.test(url) || url.startsWith("/")),
+      ),
+    );
+}
+
+export function productQualityIssues(product: Product): ProductQualityIssue[] {
+  const issues: ProductQualityIssue[] = [];
+  if (!String(product.sku || "").trim()) issues.push("sku");
+  if (!String(product.extradata?.upc || "").trim()) issues.push("upc");
+  if (!String(product.producto || "").trim()) issues.push("nombre");
+  if (!String(product.slug || "").trim()) issues.push("slug");
+  if (String(product.descripcion || "").trim().length < 20) issues.push("descripcion");
+  if (!Array.isArray(product.categorias) || !product.categorias.some(Boolean)) issues.push("categoria");
+  if (!String(product.marca_producto?.marca || "").trim()) issues.push("marca");
+  if (!(Number(product.precio?.detalle) > 0)) issues.push("precio");
+  if (!usableImageUrls(product).length) issues.push("imagen");
+  return issues;
+}
+
+export function isPublicProduct(product: Product) {
+  return productQualityIssues(product).length === 0;
 }
 
 export function deduplicateProducts<T extends Product>(products: T[]) {
@@ -353,5 +408,18 @@ export function deduplicateProducts<T extends Product>(products: T[]) {
       bySku.set(key, product);
     }
   }
-  return [...bySku.values()];
+  const byUpc = new Map<string, T>();
+  for (const product of bySku.values()) {
+    const upc = String(product.extradata?.upc || "").replace(/\s+/g, "");
+    const key = upc || `sin-upc:${product.id}`;
+    const existing = byUpc.get(key);
+    if (!existing || completenessScore(product) > completenessScore(existing)) {
+      byUpc.set(key, product);
+    }
+  }
+  return [...byUpc.values()];
+}
+
+export function publicCatalog<T extends Product>(products: T[]) {
+  return deduplicateProducts(products).filter(isPublicProduct);
 }

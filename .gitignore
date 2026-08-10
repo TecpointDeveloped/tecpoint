@@ -28,6 +28,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.codex*.log
+gude-*.log
+
+# Local working copies and source archives
+/Crud-Tecpoint/
+/Tecpoint/
+/Fotos de Sistema/
 
 # local environment files
 .env

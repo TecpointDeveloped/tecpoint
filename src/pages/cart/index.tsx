@@ -8,6 +8,7 @@ import { useAuth } from "@/context/useAuth";
 import { Checkbox } from "@heroui/checkbox";
 import { CartItem } from "@/types/ProductTypes";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -19,6 +20,7 @@ const CartPage = () => {
 
   const { cart: storedCart } = useCartStore();
   const { currentUser } = useAuth();
+  const { locations, mainWhatsApp, wholesaleWhatsApp } = useSiteConfig();
   const [selectedUserIndex, setSelectedUserIndex] = useState<number | null>(null);
 
   const users = [
@@ -89,10 +91,10 @@ const CartPage = () => {
 
   const handleWhatsAppOrder = async () => {
     if (orderSubmitting) return;
-    const phoneNumberTegucigalpa = "95200523";
-    const phoneNumberCarolina = "93385732";
-    const phoneNumberPrincipal = "97157784";
-    const phoneNumberWholesale = "98191003";
+    const phoneNumberTegucigalpa = locations.find((item) => /portal/i.test(item.name))?.phone || mainWhatsApp;
+    const phoneNumberCarolina = locations.find((item) => /carolina/i.test(item.name))?.phone || mainWhatsApp;
+    const phoneNumberPrincipal = mainWhatsApp;
+    const phoneNumberWholesale = wholesaleWhatsApp;
 
     let phoneNumber = phoneNumberPrincipal;
 
@@ -136,8 +138,7 @@ const CartPage = () => {
       })),
       appliedReferral?.total ?? total,
     );
-    const encodedMessage = encodeURIComponent(message);
-    const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    const waLink = whatsappLink(phoneNumber, message);
     window.open(waLink, "_blank");
   };
 

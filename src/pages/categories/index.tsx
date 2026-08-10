@@ -5,8 +5,10 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import { OFFICIAL_CATEGORIES } from "@/lib/catalog";
 import styles from "@/styles/categories2026.module.css";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 export default function Categories() {
+  const { onlineWhatsApp } = useSiteConfig();
   return (
     <>
       <Head>
@@ -51,7 +53,7 @@ export default function Categories() {
             <h2>Un asesor puede confirmar compatibilidad por usted.</h2>
           </div>
           <a
-            href="https://wa.me/50497157784?text=Hola%20TECPOINT%2C%20necesito%20ayuda%20para%20encontrar%20un%20producto%20compatible."
+            href={whatsappLink(onlineWhatsApp, "Hola TECPOINT, necesito ayuda para encontrar un producto compatible.")}
             target="_blank"
             rel="noreferrer"
           >

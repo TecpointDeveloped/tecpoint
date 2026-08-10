@@ -5,7 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Link from "next/link";
-import { preferredProductSlug } from "@/lib/catalog";
+import { enrichProduct, preferredProductSlug, publicCatalog } from "@/lib/catalog";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
@@ -17,10 +17,10 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
         const q = query(productsRef, where("marca_producto.marca", "==", currentProduct.marca_producto.marca));
         const querySnapshot = await getDocs(q);
 
-        const products = querySnapshot.docs.map((doc) => ({
+        const products = publicCatalog(querySnapshot.docs.map((doc) => enrichProduct({
           ...doc.data(),
           id: doc.id,
-        })) as Product[];
+        } as Product))) as Product[];
 
         setRecommendedProducts(products);
         console.log("produtos recomendados:", products);

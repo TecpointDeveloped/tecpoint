@@ -1,6 +1,7 @@
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useSiteConfig } from "@/lib/siteConfig";
 
 declare global {
   interface Window {
@@ -11,21 +12,19 @@ declare global {
   }
 }
 
-const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-
 export default function Tracking() {
   const router = useRouter();
+  const { gaMeasurementId: measurementId, metaPixelId } = useSiteConfig();
 
   useEffect(() => {
     const trackPage = (url: string) => {
-      window.gtag?.("config", measurementId, { page_path: url });
+      if (measurementId) window.gtag?.("config", measurementId, { page_path: url });
       window.fbq?.("track", "PageView");
     };
 
     router.events.on("routeChangeComplete", trackPage);
     return () => router.events.off("routeChangeComplete", trackPage);
-  }, [router.events]);
+  }, [router.events, measurementId]);
 
   return (
     <>

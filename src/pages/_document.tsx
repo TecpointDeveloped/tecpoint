@@ -4,15 +4,6 @@ export default function Document() {
   return (
     <Html lang="es">
       <Head>
-        {/* Google Site Verification */}
-        <meta
-          name="google-site-verification"
-          content={
-            process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
-            "rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc"
-          }
-        />
-
         {/* Favicon */}
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
 

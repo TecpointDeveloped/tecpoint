@@ -13,15 +13,16 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import type { GetServerSidePropsContext } from "next";
 import {
   categorySlug,
-  deduplicateProducts,
   enrichProduct,
   getCurrentInventory,
   matchesProductSearch,
   normalizeText,
   OFFICIAL_CATEGORIES,
   productColor,
+  publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
+import { trackSearch } from "@/lib/tracking";
 
 interface ShopProps {
   products: Product[];
@@ -35,7 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const querySnapshot = await getDocs(productsRef);
 
-    const allProducts = deduplicateProducts(querySnapshot.docs.map((doc) => {
+    const allProducts = publicCatalog(querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return enrichProduct({
         id: doc.id,
@@ -168,6 +169,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+    trackSearch(currentSearch || "");
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     const currentBrand = selectedBrand || "";
     const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";

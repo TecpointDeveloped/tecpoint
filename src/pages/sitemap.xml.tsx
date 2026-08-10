@@ -2,8 +2,8 @@ import type { GetServerSideProps } from "next";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import {
-  deduplicateProducts,
   getCurrentInventory,
+  publicCatalog,
   preferredProductSlug,
 } from "@/lib/catalog";
 import { Product } from "@/types/ProductTypes";
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const databaseName = process.env.NEXT_PUBLIC_DATABASE_NAME;
     if (databaseName) {
       const snapshot = await getDocs(collection(db, databaseName));
-      productUrls = deduplicateProducts(
+      productUrls = publicCatalog(
         snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),

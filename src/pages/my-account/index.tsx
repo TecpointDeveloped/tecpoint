@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 export async function getServerSideProps() {
   return {
@@ -23,6 +24,7 @@ export async function getServerSideProps() {
 type Props = { title: string; description: string; keywords: string; robots: string };
 
 export default function MyAccount({ title, description, keywords, robots }: Props) {
+  const { wholesaleWhatsApp } = useSiteConfig();
   const { currentUser, signInWithGoogle, signInWithEmailAndPassword, signOut } = useAuth();
   const router = useRouter();
   const [mode, setMode] = useState<"customer" | "wholesale">("customer");
@@ -178,7 +180,7 @@ export default function MyAccount({ title, description, keywords, robots }: Prop
                 <div className={styles.wholesaleHelp}>
                   <div><Check size={16} /><span>Atención personalizada</span></div>
                   <div><Check size={16} /><span>Pedidos y disponibilidad</span></div>
-                  <a href="https://wa.me/50498191003?text=Hola%2C%20deseo%20solicitar%20una%20cuenta%20mayorista%20TECPOINT." target="_blank" rel="noreferrer">Solicitar cuenta mayorista <ArrowUpRight size={17} /></a>
+                  <a href={whatsappLink(wholesaleWhatsApp, "Hola, deseo solicitar una cuenta mayorista TECPOINT.")} target="_blank" rel="noreferrer">Solicitar cuenta mayorista <ArrowUpRight size={17} /></a>
                 </div>
               )}
 

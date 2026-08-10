@@ -32,11 +32,15 @@ import {
 } from "lucide-react";
 import detailStyles from "@/styles/productDetail2026.module.css";
 import {
-  deduplicateProducts,
   enrichProduct,
+  isPublicProduct,
+  officialCategory,
+  publicCatalog,
+  productSearchTerms,
   preferredProductSlug,
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -58,7 +62,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
     );
 
-    const products = deduplicateProducts(
+    const products = publicCatalog(
       querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -114,17 +118,6 @@ function featureIcon(label: string, value: string) {
   );
 }
 
-function explainBenefit(label: string, value: string) {
-  const normalized = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  if (normalized.includes("compat")) return `Le permite confirmar si ${value} corresponde exactamente a su dispositivo antes de comprar.`;
-  if (normalized.includes("carga") || normalized.includes("potencia") || normalized.includes("watt")) return "Esta capacidad ayuda a entregar la energía adecuada y evita comprar una solución más lenta de lo necesario.";
-  if (normalized.includes("bateria") || normalized.includes("capacidad")) return "Una mayor capacidad puede extender el tiempo de uso y reducir la necesidad de recargar durante el día.";
-  if (normalized.includes("material") || normalized.includes("proteccion")) return "El material y el nivel de protección influyen directamente en la durabilidad y el uso cotidiano.";
-  if (normalized.includes("conexion") || normalized.includes("bluetooth") || normalized.includes("puerto")) return "El tipo de conexión determina con qué equipos puede utilizarlo y si necesitará un adaptador adicional.";
-  if (normalized.includes("color")) return "Le ayuda a elegir una variante que combine con su dispositivo y estilo personal.";
-  return `Este dato le ayuda a comparar ${value} con lo que realmente necesita antes de tomar una decisión.`;
-}
-
 function explainSpecification(label: string) {
   const normalized = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   if (normalized.includes("sku") || normalized.includes("upc")) return "Identificador útil para confirmar el producto exacto con un asesor.";
@@ -159,6 +152,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         id: doc.id,
         fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
       } as Product);
+      if (!isPublicProduct(serializedData)) return { notFound: true };
       const canonicalSlug = preferredProductSlug(serializedData);
 
       if (slug !== canonicalSlug) {
@@ -189,6 +183,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
+  const { mainWhatsApp } = useSiteConfig();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [showRemaining, setShowRemaining] = useState(false);
@@ -273,58 +268,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       value: String(value || "").trim(),
     }))
     .filter((item) => item.label && item.value);
-  const genericFeatureLabels = new Set([
-    "marca",
-    "sku",
-    "upc",
-    "categoria",
-    "subcategoria",
-  ]);
-  const featureFallbacks = [
-    {
-      label: "Categoría",
-      value: product.categorias?.[0] || "",
-    },
-    {
-      label: "Compatibilidad",
-      value: product.Subcategorias || "",
-    },
-    {
-      label: "Color",
-      value: product.extradata?.color || "",
-    },
-    {
-      label: "Marca",
-      value: product.marca_producto?.marca || "",
-    },
-  ].filter((item) => item.value);
-  const featureEntries = [...specificationEntries, ...featureFallbacks]
-    .filter(
-      (item) =>
-        !genericFeatureLabels.has(
-          item.label
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase(),
-        ) ||
-        specificationEntries.filter(
-          (specification) =>
-            !genericFeatureLabels.has(
-              specification.label
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase(),
-            ),
-        ).length < 3,
-    )
-    .filter(
-      (item, index, list) =>
-        list.findIndex(
-          (candidate) =>
-            candidate.label.toLowerCase() === item.label.toLowerCase(),
-        ) === index,
-    )
-    .slice(0, 3);
   const technicalEntries = [
     ...specificationEntries,
     { label: "SKU", value: product.sku || "" },
@@ -345,6 +288,30 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
     entry.label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes("compat"),
   )?.value;
   const compatibleWith = explicitCompatibility || product.Subcategorias || "Compatibilidad no especificada en el catálogo";
+  const category = officialCategory(product);
+  const solutionByCategory: Record<string, { title: string; problem: string; benefit: string }> = {
+    "Power & Charge": { title: "Energía cuando la necesita", problem: "Ayuda a evitar interrupciones por batería baja o una carga poco práctica.", benefit: "Úselo como una solución de energía acorde con la potencia, el conector y el ritmo de uso de su dispositivo." },
+    "Screen Protection": { title: "Menos preocupación por la pantalla", problem: "Ayuda a reducir el impacto del roce y del uso cotidiano sobre la superficie más expuesta.", benefit: "Confirme el modelo y el tamaño exactos para lograr el ajuste y la cobertura adecuados." },
+    "Sound Essentials": { title: "Audio más cómodo en su rutina", problem: "Facilita escuchar, conversar o disfrutar contenido sin depender del altavoz del dispositivo.", benefit: "Revise conexión, autonomía y formato para elegir la experiencia que realmente necesita." },
+    "Smart Drive": { title: "Una experiencia más ordenada al conducir", problem: "Ayuda a mantener la energía, el acceso o la organización del dispositivo dentro del vehículo.", benefit: "Compruebe el tipo de instalación y la compatibilidad con su vehículo antes de comprar." },
+    "Travel & Carry": { title: "Tecnología organizada y protegida", problem: "Ayuda a transportar accesorios sin perder tiempo buscando cables, cargadores o dispositivos.", benefit: "Compare capacidad y dimensiones con lo que lleva habitualmente." },
+    "Outdoor Pro": { title: "Preparado para acompañar su ritmo", problem: "Ofrece una alternativa práctica para actividades fuera de casa y usos más exigentes.", benefit: "Revise los materiales y las certificaciones indicadas; no asuma resistencia que no figure en la ficha." },
+    "Smart Tech": { title: "Una función útil, sin complicaciones", problem: "Resuelve una necesidad concreta y amplía lo que puede hacer con sus dispositivos.", benefit: "Compare la función principal y los requisitos de conexión antes de elegir." },
+  };
+  const categorySolution = solutionByCategory[category] || solutionByCategory["Smart Tech"];
+  const purchaseReasons = [
+    categorySolution,
+    {
+      title: "Compatibilidad con mayor seguridad",
+      problem: `La referencia registrada corresponde a: ${compatibleWith}.`,
+      benefit: "Evita comprar solo por apariencia. Si su modelo, generación o conector no aparece, consulte con un asesor antes de pagar.",
+    },
+    {
+      title: "Una elección que puede verificar",
+      problem: `TECPOINT identifica esta unidad como ${product.sku}${product.extradata?.upc ? ` y UPC ${product.extradata.upc}` : ""}.`,
+      benefit: "Estos datos permiten confirmar el artículo exacto, consultar disponibilidad y recibir orientación más rápida.",
+    },
+  ];
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -357,6 +324,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       : {}),
     image: primaryImage || "",
     description: product.descripcion || "",
+    keywords: productSearchTerms(product).join(", "),
     category: product.categorias?.[0] || "",
     color: product.extradata?.color || undefined,
     brand: {
@@ -401,6 +369,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
           name="description"
           content={`${product.producto}. ${product.descripcion || "Accesorio tecnológico disponible en TECPOINT Honduras."} SKU ${product.sku}.`.slice(0, 158)}
         />
+        <meta name="keywords" content={productSearchTerms(product).join(", ")} />
 
         <script
           type="application/ld+json"
@@ -598,7 +567,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <button
                 onClick={() => {
                   const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
-                  const whatsappUrl = `https://wa.me/50497157784?text=${encodeURIComponent(message)}`;
+                  const whatsappUrl = whatsappLink(mainWhatsApp, message);
                   window.open(whatsappUrl, "_blank");
                 }}
                 className={`flex gap-x-3 mt-1 px-16 items-center justify-center py-3 rounded-[6px] w-full 
@@ -703,17 +672,17 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <div><h2 id="feature-title">Tres razones para elegirlo.</h2><span>Entienda qué aporta cada característica y por qué puede ser útil en su día a día.</span></div>
             </div>
             <div className={detailStyles.featureGrid}>
-              {featureEntries.map((feature, index) => {
-                const Icon = featureIcon(feature.label, feature.value);
+              {purchaseReasons.map((reason, index) => {
+                const Icon = featureIcon(reason.title, `${reason.problem} ${reason.benefit}`);
                 return (
-                  <div className={detailStyles.featureCard} key={`${feature.label}-${index}`}>
+                  <div className={detailStyles.featureCard} key={`${reason.title}-${index}`}>
                     <span>
                       <Icon aria-hidden="true" strokeWidth={1.8} />
                     </span>
                     <small>0{index + 1}</small>
-                    <h3>{feature.label}</h3>
-                    <p>{feature.value}</p>
-                    <p className={detailStyles.featureBenefit}>{explainBenefit(feature.label, feature.value)}</p>
+                    <h3>{reason.title}</h3>
+                    <p>{reason.problem}</p>
+                    <p className={detailStyles.featureBenefit}>{reason.benefit}</p>
                   </div>
                 );
               })}
@@ -750,7 +719,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <div className={detailStyles.compatibilityGuide}>
                 <div><span>Compatible con</span><strong>{compatibleWith}</strong></div>
                 <div><span>No asuma compatibilidad con</span><strong>Modelos, tamaños, generaciones o conectores que no aparezcan expresamente en esta ficha.</strong></div>
-                <a href={`https://wa.me/50497157784?text=${encodeURIComponent(`Hola TECPOINT, necesito confirmar la compatibilidad de ${product.producto} (SKU ${product.sku}) con mi dispositivo.`)}`} target="_blank" rel="noreferrer">¿No está seguro? Hablar con un asesor →</a>
+                <a href={whatsappLink(mainWhatsApp, `Hola TECPOINT, necesito confirmar la compatibilidad de ${product.producto} (SKU ${product.sku}) con mi dispositivo.`)} target="_blank" rel="noreferrer">¿No está seguro? Hablar con un asesor →</a>
               </div>
             </div>
           </section>}

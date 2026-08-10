@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState, ReactNode } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword, User } from 'firebase/auth';
-import { auth, db } from '../database/Config';
-import { collection, getDocs } from 'firebase/firestore';
-import { Product } from '../types/ProductTypes'
+import { auth } from '../database/Config';
 import { useRouter } from 'next/router';
 
 export interface AuthContextProps {
@@ -11,7 +9,6 @@ export interface AuthContextProps {
   signInWithGoogle: () => Promise<void>;
   signInWithEmailAndPassword: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
-  products: Product[];
 }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -23,24 +20,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
   const route = useRouter()
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
-        const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
-        setProducts(productsData);
-        // console.log(productsData);
-      } catch (error) {
-        setProducts([]);
-        console.error('Error al obtener la data', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -89,10 +69,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         signInWithGoogle,
         signInWithEmailAndPassword,
         signOut,
-        products,
       }}
     >
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };
