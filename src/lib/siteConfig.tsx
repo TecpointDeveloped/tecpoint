@@ -19,7 +19,10 @@ export const DEFAULT_SITE_CONFIG: SiteConfig = {
   onlineWhatsApp: "50494659287",
   wholesaleWhatsApp: "50498191003",
   metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || "",
-  gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
+  gaMeasurementId:
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID ||
+    "",
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc",
   searchConsoleProperty: "https://tecpoint.ws/",
   locations: [
