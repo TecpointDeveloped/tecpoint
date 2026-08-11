@@ -5,12 +5,14 @@ const nextConfig: NextConfig = {
   output: "standalone",
   outputFileTracingRoot: process.cwd(),
   images: {
+    // Vercel's image optimizer quota can return 402 and leave the catalog
+    // without product artwork. Firebase already serves optimized originals,
+    // so bypass the paid optimizer and keep images available on every device.
+    unoptimized: true,
     minimumCacheTTL: 2678400,
     contentDispositionType: 'inline',
     formats: ['image/webp'],
     qualities: [65, 70, 75, 80, 82, 85, 95, 96, 100],
-    // unoptimized: true,
-
     remotePatterns: [
       {
         protocol: "https",
