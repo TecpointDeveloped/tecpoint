@@ -22,7 +22,7 @@ import {
   publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
-import { trackSearch } from "@/lib/tracking";
+import { trackSearch, trackViewCategory } from "@/lib/tracking";
 
 interface ShopProps {
   products: Product[];
@@ -152,6 +152,14 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
       setSearchTerm(Array.isArray(search) ? search[0] : search);
     }
   }, [page, brand, search]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    const selectedCategory = Array.isArray(router.query.category)
+      ? router.query.category[0]
+      : router.query.category;
+    trackViewCategory(selectedCategory && selectedCategory !== "all" ? selectedCategory : "Catálogo TECPOINT");
+  }, [router.isReady, router.query.category]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

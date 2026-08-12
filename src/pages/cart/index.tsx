@@ -7,7 +7,7 @@ import { useCartStore } from "../../lib/cartStore";
 import { useAuth } from "@/context/useAuth";
 import { Checkbox } from "@heroui/checkbox";
 import { CartItem } from "@/types/ProductTypes";
-import { trackInitiateCheckout } from "@/lib/tracking";
+import { trackContact, trackInitiateCheckout } from "@/lib/tracking";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 const CartPage = () => {
@@ -138,6 +138,7 @@ const CartPage = () => {
       })),
       appliedReferral?.total ?? total,
     );
+    trackContact("WhatsApp pedido");
     const waLink = whatsappLink(phoneNumber, message);
     window.open(waLink, "_blank");
   };

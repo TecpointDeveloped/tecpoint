@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import { useCartStore } from "../../lib/cartStore";
-import { trackAddToCart, trackViewContent } from "@/lib/tracking";
+import { trackAddToCart, trackContact, trackViewContent } from "@/lib/tracking";
 import {
   BatteryCharging,
   Bluetooth,
@@ -567,6 +567,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <button
                 onClick={() => {
                   const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
+                  trackContact("WhatsApp producto");
                   const whatsappUrl = whatsappLink(mainWhatsApp, message);
                   window.open(whatsappUrl, "_blank");
                 }}

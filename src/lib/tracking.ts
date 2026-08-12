@@ -5,11 +5,58 @@ type CommerceItem = {
   quantity?: number;
 };
 
+type MetaEvent = {
+  event: string;
+  params?: Record<string, unknown>;
+};
+
+const META_QUEUE_KEY = "__tecpointMetaQueue";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+    gtag?: (...args: unknown[]) => void;
+    __tecpointMetaQueue?: MetaEvent[];
+  }
+}
+
+function sendMeta(event: string, params?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  if (typeof window.fbq === "function") {
+    window.fbq("track", event, params || {});
+    return;
+  }
+  window[META_QUEUE_KEY] = window[META_QUEUE_KEY] || [];
+  window[META_QUEUE_KEY]?.push({ event, params });
+}
+
+export function flushMetaQueue() {
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
+  const queue = window[META_QUEUE_KEY] || [];
+  window[META_QUEUE_KEY] = [];
+  queue.forEach(({ event, params }) => window.fbq?.("track", event, params || {}));
+}
+
+export function trackPageView() {
+  sendMeta("PageView");
+}
+
+export function trackViewCategory(category: string) {
+  const name = category.trim() || "Todos los productos";
+  sendMeta("ViewCategory", { content_name: name, content_category: name });
+  window.gtag?.("event", "view_item_list", { item_list_name: name });
+}
+
+export function trackContact(channel = "WhatsApp") {
+  sendMeta("Contact", { contact_method: channel });
+  window.gtag?.("event", "generate_lead", { method: channel });
+}
+
 export function trackSearch(searchTerm: string) {
   const normalized = searchTerm.trim();
   if (!normalized) return;
 
-  window.fbq?.("track", "Search", {
+  sendMeta("Search", {
     search_string: normalized,
   });
   window.gtag?.("event", "search", {
@@ -18,7 +65,7 @@ export function trackSearch(searchTerm: string) {
 }
 
 export function trackViewContent(item: CommerceItem) {
-  window.fbq?.("track", "ViewContent", {
+  sendMeta("ViewContent", {
     content_ids: [item.id],
     content_name: item.name,
     content_type: "product",
@@ -33,7 +80,7 @@ export function trackViewContent(item: CommerceItem) {
 }
 
 export function trackAddToCart(item: CommerceItem) {
-  window.fbq?.("track", "AddToCart", {
+  sendMeta("AddToCart", {
     content_ids: [item.id],
     content_name: item.name,
     content_type: "product",
@@ -48,7 +95,7 @@ export function trackAddToCart(item: CommerceItem) {
 }
 
 export function trackInitiateCheckout(items: CommerceItem[], total: number) {
-  window.fbq?.("track", "InitiateCheckout", {
+  sendMeta("InitiateCheckout", {
     content_ids: items.map((item) => item.id),
     content_type: "product",
     currency: "HNL",
@@ -72,7 +119,7 @@ export function trackPurchase(
   total: number,
   items: CommerceItem[],
 ) {
-  window.fbq?.("track", "Purchase", {
+  sendMeta("Purchase", {
     content_ids: items.map((item) => item.id),
     content_type: "product",
     currency: "HNL",

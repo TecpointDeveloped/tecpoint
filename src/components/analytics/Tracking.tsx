@@ -2,6 +2,7 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSiteConfig } from "@/lib/siteConfig";
+import { flushMetaQueue, trackPageView } from "@/lib/tracking";
 
 declare global {
   interface Window {
@@ -19,12 +20,25 @@ export default function Tracking() {
   useEffect(() => {
     const trackPage = (url: string) => {
       if (measurementId) window.gtag?.("config", measurementId, { page_path: url });
-      window.fbq?.("track", "PageView");
+      trackPageView();
     };
 
     router.events.on("routeChangeComplete", trackPage);
     return () => router.events.off("routeChangeComplete", trackPage);
   }, [router.events, measurementId]);
+
+  useEffect(() => {
+    if (!metaPixelId) return;
+    const flush = () => flushMetaQueue();
+    window.addEventListener("tecpoint:meta-ready", flush);
+    const timer = window.setInterval(flush, 250);
+    const timeout = window.setTimeout(() => window.clearInterval(timer), 10000);
+    return () => {
+      window.removeEventListener("tecpoint:meta-ready", flush);
+      window.clearInterval(timer);
+      window.clearTimeout(timeout);
+    };
+  }, [metaPixelId]);
 
   return (
     <>
@@ -61,6 +75,9 @@ export default function Tracking() {
               fbq('init', '${metaPixelId}');
               fbq('track', 'PageView');
             `}
+          </Script>
+          <Script id="tecpoint-meta-pixel-ready" strategy="afterInteractive">
+            {`window.dispatchEvent(new Event('tecpoint:meta-ready'));`}
           </Script>
           <noscript>
             {/* eslint-disable-next-line @next/next/no-img-element */}
