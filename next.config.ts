@@ -50,6 +50,23 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async headers() {
+    const securityHeaders = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self)" },
+      {
+        key: "Content-Security-Policy",
+        value: "frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://www.paypal.com https://www.sandbox.paypal.com; object-src 'none'; upgrade-insecure-requests",
+      },
+    ];
+
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      { source: "/api/(.*)", headers: [{ key: "Cache-Control", value: "private, no-store, max-age=0" }] },
+    ];
+  },
 };
 
 export default nextConfig;

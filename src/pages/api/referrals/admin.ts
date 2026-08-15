@@ -3,20 +3,35 @@ import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { INITIAL_REFERRAL_CODES, normalizeReferralCode, type ReferralCode, type ReferralOwnerType } from "@/lib/referrals";
 
-async function requireAdmin(req: NextApiRequest) {
-  const admin = getFirebaseAdmin();
-  if (!admin) return null;
+type AdminAuthResult =
+  | { ok: true; admin: NonNullable<ReturnType<typeof getFirebaseAdmin>> }
+  | { ok: false; status: 401 | 403 | 503; error: string };
+
+async function requireAdmin(req: NextApiRequest): Promise<AdminAuthResult> {
+  let admin: ReturnType<typeof getFirebaseAdmin>;
+  try {
+    admin = getFirebaseAdmin();
+  } catch (error) {
+    console.error("Firebase Admin initialization error", error);
+    return { ok: false, status: 503, error: "Firebase Admin no está disponible en el servidor." };
+  }
+  if (!admin) return { ok: false, status: 503, error: "Firebase Admin no está configurado en el servidor." };
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
-  if (!token) return null;
-  const decoded = await admin.auth.verifyIdToken(token);
-  if (decoded.role !== "admin") return null;
-  return admin;
+  if (!token) return { ok: false, status: 401, error: "Debe iniciar sesión." };
+  try {
+    const decoded = await admin.auth.verifyIdToken(token);
+    if (decoded.role !== "admin") return { ok: false, status: 403, error: "Esta cuenta no tiene permisos administrativos." };
+    return { ok: true, admin };
+  } catch {
+    return { ok: false, status: 401, error: "La sesión no es válida o expiró." };
+  }
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const admin = await requireAdmin(req);
-    if (!admin) return res.status(503).json({ error: "Configure Firebase Admin y acceda con una cuenta administradora." });
+    const auth = await requireAdmin(req);
+    if (!auth.ok) return res.status(auth.status).json({ error: auth.error });
+    const { admin } = auth;
 
     if (req.method === "GET") {
       const [codesSnapshot, usesSnapshot] = await Promise.all([

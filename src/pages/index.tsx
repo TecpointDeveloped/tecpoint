@@ -60,7 +60,8 @@ function activeMarketingAssets(docs: Awaited<ReturnType<typeof getDocs>>["docs"]
     .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ res }: { res: { setHeader: (name: string, value: string) => void } }) {
+  res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=900");
   const [productDocs, bannerDocs, promotionDocs, settingsDoc] = await Promise.all([
     getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)),
     getDocs(collection(db, "site_banners")).catch(() => null),
