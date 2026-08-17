@@ -23,6 +23,7 @@ import {
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
 import { trackSearch, trackViewCategory } from "@/lib/tracking";
+import { Search } from "lucide-react";
 
 interface ShopProps {
   products: Product[];
@@ -278,6 +279,12 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
             value={searchTerm}
             onChange={handleSearchChange}
           />
+          <button
+            type="submit"
+            className="flex h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#c8102e] px-6 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#a90d26] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-100 md:w-auto"
+          >
+            <Search size={17} aria-hidden="true" /> Buscar
+          </button>
 
           <div className="flex flex-wrap gap-3">
             <Select onValueChange={handleBrandChange} value={selectedBrand}>

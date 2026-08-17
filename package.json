@@ -8,9 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "catalog:audit": "tsx scripts/audit-catalog-fields.ts",
-    "catalog:fill": "tsx scripts/fill-catalog-fields.ts",
-    "catalog:fill:apply": "tsx scripts/fill-catalog-fields.ts --apply"
+    "catalog:audit": "tsx --env-file=.env.local scripts/audit-catalog-fields.ts",
+    "catalog:fill": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts",
+    "catalog:fill:apply": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts --apply"
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",
@@ -43,12 +43,10 @@
     "firebase-admin": "^13.5.0",
     "flexsearch": "^0.7.43",
     "framer-motion": "^12.4.7",
-    "html5-qrcode": "^2.3.8",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.456.0",
     "next": "^15.5.22",
     "next-seo": "^6.6.0",
-    "quagga": "^0.12.1",
     "react": "18.2.0",
     "react-confetti": "^6.4.0",
     "react-dom": "18.2.0",

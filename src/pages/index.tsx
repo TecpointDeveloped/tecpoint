@@ -47,6 +47,21 @@ const CURRENT_CAMPAIGN_BANNERS: MarketingAsset[] = [
   artworkOnly: true,
 }));
 
+const LOCATION_IMAGES = [
+  {
+    src: "/images/locations/plaza-carolina.webp",
+    alt: "Fachada del punto TECPOINT en Plaza Carolina",
+  },
+  {
+    src: "/images/locations/portal-viera.webp",
+    alt: "Fachada del punto TECPOINT en Portal de Viera",
+  },
+  {
+    src: "/brand/signal-field.svg",
+    alt: "Sistema gráfico oficial de TECPOINT",
+  },
+];
+
 function activeMarketingAssets(docs: Awaited<ReturnType<typeof getDocs>>["docs"]) {
   const now = Date.now();
   return docs
@@ -550,9 +565,17 @@ export default function Home({
           <div className={styles.locationGrid}>
             {locations.map((location, index) => (
               <article key={location.name}>
-                <div className={styles.locationVisual} aria-hidden="true">
+                <div className={styles.locationVisual}>
+                  <Image
+                    className={styles.locationPhoto}
+                    src={LOCATION_IMAGES[index].src}
+                    alt={LOCATION_IMAGES[index].alt}
+                    fill
+                    sizes="(max-width: 680px) 100vw, 33vw"
+                  />
+                  <span className={styles.locationShade} aria-hidden="true" />
                   <strong>0{index + 1}</strong>
-                  <Image src="/brand/isologo.svg" alt="" width={58} height={58} />
+                  <Image className={styles.locationMark} src="/brand/isologo.svg" alt="" width={58} height={58} />
                 </div>
                 <div className={styles.locationContent}>
                   <small><MapPin size={13} />{location.city}</small>

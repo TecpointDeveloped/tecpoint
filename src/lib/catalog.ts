@@ -72,21 +72,20 @@ export function normalizeText(value: string) {
 }
 
 const SEARCH_ALIASES: Array<[RegExp, string]> = [
-  [/\b(rock\s*space|rockspace|rok\s*space|rokspace)\b/g, " rock space rockspace "],
-  [/\b(celular|telefono|movil|smartphone)\b/g, " celular telefono movil smartphone "],
-  [/\b(audifono|audifonos|auricular|auriculares|headset|earbuds)\b/g, " audifono audifonos auricular auriculares headset earbuds "],
-  [/\b(cargador|cargadores|charger|carga)\b/g, " cargador cargadores charger carga "],
-  [/\b(cabeza|cabezal|cubo|cubito|taco|bloque|adaptador de pared)\b/g, " cargador cabeza cabezal cubo cubito taco bloque adaptador pared charger "],
-  [/\b(lamina|laminas|vidrio|protector|proteccion|film)\b/g, " lamina laminas vidrio protector proteccion film "],
-  [/\b(forro|funda|case|cobertor)\b/g, " forro funda case cobertor "],
-  [/\b(bateria|powerbank|power bank)\b/g, " bateria powerbank power bank "],
-  [/\b(reloj|smartwatch|watch)\b/g, " reloj smartwatch watch "],
-  [/\b(forrito|cobertor|cover|protector de telefono)\b/g, " forro funda case cobertor cover protector telefono "],
-  [/\b(airpod|airpods|airdop|audifono inalambrico|audifonos inalambricos)\b/g, " airpods earbuds audifonos auriculares inalambricos bluetooth "],
-  [/\b(cable tipo c|usb c|type c|tipo-c|tipoc)\b/g, " cable usb c type c tipo c tipoc "],
-  [/\b(iphone|aifon|ifon|ayfon)\b/g, " iphone aifon ifon ayfon apple "],
-  [/\b(samsung|samsun|samsum|sansung)\b/g, " samsung samsun samsum sansung galaxy "],
-  [/\b(carro|vehiculo|auto|automovil)\b/g, " carro vehiculo auto automovil "],
+  [/\b(rock\s*space|rockspace|rok\s*space|rokspace)\b/g, " rockspace "],
+  [/\b(celular|telefono|movil|smartphone)\b/g, " telefono "],
+  [/\b(audifono|audifonos|auricular|auriculares|headset|earbuds)\b/g, " audifono "],
+  [/\b(cargador|cargadores|charger|carga)\b/g, " cargador "],
+  [/\b(cabeza|cabezal|cubo|cubito|taco|bloque|adaptador de pared)\b/g, " cargador "],
+  [/\b(lamina|laminas|vidrio|protector|proteccion|film)\b/g, " protector "],
+  [/\b(forro|funda|case|cobertor|forrito|cover|protector de telefono)\b/g, " case "],
+  [/\b(bateria|powerbank|power bank)\b/g, " powerbank "],
+  [/\b(reloj|smartwatch|watch)\b/g, " smartwatch "],
+  [/\b(airpod|airpods|airdop|audifono inalambrico|audifonos inalambricos)\b/g, " audifono "],
+  [/\b(cable tipo c|usb c|type c|tipo-c|tipoc)\b/g, " usb-c "],
+  [/\b(iphone|aifon|ifon|ayfon)\b/g, " iphone "],
+  [/\b(samsung|samsun|samsum|sansung)\b/g, " samsung "],
+  [/\b(carro|vehiculo|auto|automovil)\b/g, " vehiculo "],
 ];
 
 export function normalizeSearchText(value: string) {

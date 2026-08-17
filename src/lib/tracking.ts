@@ -30,11 +30,25 @@ function sendMeta(event: string, params?: Record<string, unknown>) {
   window[META_QUEUE_KEY]?.push({ event, params });
 }
 
+function sendMetaCustom(event: string, params?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  if (typeof window.fbq === "function") {
+    window.fbq("trackCustom", event, params || {});
+    return;
+  }
+  window[META_QUEUE_KEY] = window[META_QUEUE_KEY] || [];
+  window[META_QUEUE_KEY]?.push({ event, params: { ...params, __custom: true } });
+}
+
 export function flushMetaQueue() {
   if (typeof window === "undefined" || typeof window.fbq !== "function") return;
   const queue = window[META_QUEUE_KEY] || [];
   window[META_QUEUE_KEY] = [];
-  queue.forEach(({ event, params }) => window.fbq?.("track", event, params || {}));
+  queue.forEach(({ event, params }) => {
+    const custom = Boolean(params?.__custom);
+    const cleanParams = custom ? Object.fromEntries(Object.entries(params || {}).filter(([key]) => key !== "__custom")) : params;
+    window.fbq?.(custom ? "trackCustom" : "track", event, cleanParams || {});
+  });
 }
 
 export function trackPageView() {
@@ -43,7 +57,7 @@ export function trackPageView() {
 
 export function trackViewCategory(category: string) {
   const name = category.trim() || "Todos los productos";
-  sendMeta("ViewCategory", { content_name: name, content_category: name });
+  sendMetaCustom("ViewCategory", { content_name: name, content_category: name });
   window.gtag?.("event", "view_item_list", { item_list_name: name });
 }
 
