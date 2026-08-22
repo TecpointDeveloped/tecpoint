@@ -2,6 +2,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { db } from "@/database/Config";
 
+// This is the GA4 property currently owned by TECPOINT. Keep the production
+// environment variable as the first choice so a stale Firestore value cannot
+// silently send traffic to a different Analytics property.
+export const OFFICIAL_GA_MEASUREMENT_ID = "G-3E8ZMRPD00";
+
 export type StoreLocation = { id: string; city: string; name: string; detail: string; phone: string; maps: string };
 export type SiteConfig = {
   mainWhatsApp: string;
@@ -21,8 +26,7 @@ export const DEFAULT_SITE_CONFIG: SiteConfig = {
   metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || "",
   gaMeasurementId:
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
-    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID ||
-    "",
+    OFFICIAL_GA_MEASUREMENT_ID,
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "rGu_PQAnMb87mm_8dS9oWQPpkuhg8eUwEuC8-3xKiDc",
   searchConsoleProperty: "https://tecpoint.ws/",
   locations: [
@@ -48,6 +52,9 @@ export function SiteConfigProvider({ children }: { children: ReactNode }) {
     mainWhatsApp: digits(remote.mainWhatsApp, DEFAULT_SITE_CONFIG.mainWhatsApp),
     onlineWhatsApp: digits(remote.onlineWhatsApp, DEFAULT_SITE_CONFIG.onlineWhatsApp),
     wholesaleWhatsApp: digits(remote.wholesaleWhatsApp, DEFAULT_SITE_CONFIG.wholesaleWhatsApp),
+    gaMeasurementId:
+      process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+      DEFAULT_SITE_CONFIG.gaMeasurementId,
     locations: Array.isArray(remote.locations) && remote.locations.length ? remote.locations : DEFAULT_SITE_CONFIG.locations,
   }), [remote]);
   return <SiteConfigContext.Provider value={value}>{children}</SiteConfigContext.Provider>;

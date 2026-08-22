@@ -25,6 +25,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { loc: `${BASE_URL}/shop`, priority: "0.9", frequency: "daily" },
     { loc: `${BASE_URL}/categories`, priority: "0.8", frequency: "weekly" },
     { loc: `${BASE_URL}/blog`, priority: "0.7", frequency: "weekly" },
+    { loc: `${BASE_URL}/garantia`, priority: "0.6", frequency: "monthly" },
+    { loc: `${BASE_URL}/preguntas-frecuentes`, priority: "0.6", frequency: "monthly" },
+    { loc: `${BASE_URL}/politica-privacidad`, priority: "0.3", frequency: "yearly" },
+    { loc: `${BASE_URL}/terminos-y-condiciones`, priority: "0.3", frequency: "yearly" },
   ];
 
   let productUrls: Array<{

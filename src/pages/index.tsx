@@ -197,6 +197,8 @@ export default function Home({
         <meta property="og:locale" content="es_HN" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://tecpoint.ws/" />
+        <link rel="alternate" hrefLang="es-HN" href="https://tecpoint.ws/" />
+        <link rel="alternate" hrefLang="x-default" href="https://tecpoint.ws/" />
         <link rel="icon" href="/brand/isologo.svg" />
         <script
           type="application/ld+json"

@@ -227,6 +227,8 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
         <meta property="og:url" content="https://tecpoint.ws/shop" />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338" />
         <link rel="canonical" href="https://tecpoint.ws/shop" />
+        <link rel="alternate" hrefLang="es-HN" href="https://tecpoint.ws/shop" />
+        <link rel="alternate" hrefLang="x-default" href="https://tecpoint.ws/shop" />
         <meta
           name="robots"
           content={hasActiveFilters ? "noindex,follow" : "index,follow"}

@@ -48,6 +48,46 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/en",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/en/blog",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/shop/shop/:slug*",
+        destination: "/shop/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/product-tag/:path*",
+        destination: "/shop",
+        permanent: true,
+      },
+      {
+        source: "/marcas/:path*",
+        destination: "/shop",
+        permanent: true,
+      },
+      {
+        source: "/shop/forro-xbase-sparkleline-samsung-galaxy-ultra-dorado",
+        destination: "/shop?search=XBASE%20Sparkleline%20Samsung%20Galaxy%20Ultra",
+        permanent: true,
+      },
+      {
+        source: "/shop/naztech-xpods-pro-tws-with-wireless-charging-black-case",
+        destination: "/shop?search=Naztech%20Xpods%20Pro",
+        permanent: true,
+      },
+      {
+        source: "/shop/funda-ghostek-atomic-slim-5-iphone-13-pro-black",
+        destination: "/shop?search=Ghostek%20Atomic%20Slim%20iPhone%2013%20Pro",
+        permanent: true,
+      },
     ];
   },
   async headers() {

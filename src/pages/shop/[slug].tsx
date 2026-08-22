@@ -372,6 +372,8 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         <meta name="twitter:image:alt" content={product.producto || "Imagen del producto"} />
 
         <link rel="canonical" href={`https://tecpoint.ws/shop/${product.slug}`} />
+        <link rel="alternate" hrefLang="es-HN" href={`https://tecpoint.ws/shop/${product.slug}`} />
+        <link rel="alternate" hrefLang="x-default" href={`https://tecpoint.ws/shop/${product.slug}`} />
       </Head>
 
       <NavbarMenu />
