@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/shop/shop/naztech-pd68w-gan-dual-wall-charger-white",
+        destination: "/shop?search=Naztech%20PD68W%20GaN%20cargador",
+        permanent: true,
+      },
+      {
         source: "/shop/shop/:slug*",
         destination: "/shop/:slug*",
         permanent: true,
@@ -71,6 +76,11 @@ const nextConfig: NextConfig = {
       {
         source: "/marcas/:path*",
         destination: "/shop",
+        permanent: true,
+      },
+      {
+        source: "/product/z4-display-promotional-desktop-carton-shelf",
+        destination: "/shop?search=Z4%20display%20promocional",
         permanent: true,
       },
       {
