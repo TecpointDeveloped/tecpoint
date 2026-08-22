@@ -35,7 +35,6 @@ import {
   enrichProduct,
   isPublicProduct,
   officialCategory,
-  publicCatalog,
   productSearchTerms,
   preferredProductSlug,
 } from "@/lib/catalog";
@@ -57,32 +56,11 @@ interface CartItem {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const querySnapshot = await getDocs(
-      collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)
-    );
-
-    const products = publicCatalog(
-      querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Product[],
-    );
-    const paths = products.map((product) => ({
-      params: { slug: preferredProductSlug(product) },
-    }));
-
-    return {
-      paths: paths as { params: { slug: string } }[],
-      fallback: true,
-    };
-  } catch (error) {
-    console.error("Error fetching paths:", error);
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
+  // Product pages are generated on first request and cached with ISR. Building
+  // every catalog entry made deployments unnecessarily slow and fragile as the
+  // inventory grew. `blocking` still returns complete HTML on the first visit,
+  // so customers never see a temporary "Producto no encontrado" state.
+  return { paths: [], fallback: "blocking" };
 };
 
 import BannersData from "@/data/banners.json";

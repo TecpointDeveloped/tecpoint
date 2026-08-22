@@ -305,7 +305,7 @@ export default function Home({
           </div>
           <div className={styles.heroVisual}>
             <Image
-              src="/images/producto-editorial-2026.png"
+              src="/images/producto-editorial-2026.webp"
               alt="Accesorios tecnológicos seleccionados por TECPOINT"
               fill
               priority
@@ -474,7 +474,7 @@ export default function Home({
         <section className={styles.experience} id="experiencia">
           <div className={styles.experienceImage}>
             <Image
-              src="/images/campaign-next-generation-devices.png"
+              src="/images/campaign-next-generation-devices.webp"
               alt="Dispositivos móviles premium de nueva generación en un ambiente lifestyle"
               fill
               quality={85}

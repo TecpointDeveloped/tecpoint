@@ -121,7 +121,7 @@ export default function MyAccount({ title, description, keywords, robots }: Prop
       ) : (
         <div className={styles.accountPage}>
           <section className={styles.visual} aria-label="Experiencia TECPOINT">
-            <Image src="/images/campaign-next-generation-devices.png" alt="Dispositivos móviles premium de nueva generación" fill priority sizes="(max-width: 860px) 0vw, 52vw" />
+            <Image src="/images/campaign-next-generation-devices.webp" alt="Dispositivos móviles premium de nueva generación" fill priority sizes="(max-width: 860px) 0vw, 52vw" />
             <div className={styles.visualOverlay} />
             <Link className={styles.brand} href="/" aria-label="Volver a TECPOINT">
               <Image src="/brand/isologo.svg" alt="" width={42} height={42} />
