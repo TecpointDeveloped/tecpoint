@@ -33,7 +33,7 @@ export default function Categories() {
         <section className={styles.grid}>
           {OFFICIAL_CATEGORIES.map((category, index) => (
             <Link
-              href={`/shop?page=1&category=${category.slug}`}
+              href={`/categories/${category.slug}`}
               key={category.slug}
               className={styles.card}
             >

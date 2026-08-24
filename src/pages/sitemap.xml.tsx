@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import {
   getCurrentInventory,
+  OFFICIAL_CATEGORIES,
   publicCatalog,
   preferredProductSlug,
 } from "@/lib/catalog";
@@ -29,6 +30,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { loc: `${BASE_URL}/preguntas-frecuentes`, priority: "0.6", frequency: "monthly" },
     { loc: `${BASE_URL}/politica-privacidad`, priority: "0.3", frequency: "yearly" },
     { loc: `${BASE_URL}/terminos-y-condiciones`, priority: "0.3", frequency: "yearly" },
+    ...OFFICIAL_CATEGORIES.map((category) => ({
+      loc: `${BASE_URL}/categories/${category.slug}`,
+      priority: "0.8",
+      frequency: "daily",
+    })),
   ];
 
   let productUrls: Array<{

@@ -350,7 +350,7 @@ export default function Home({
             {OFFICIAL_CATEGORIES.map((category, index) => (
               <Link
                 className={styles.categoryCard}
-                href={`/shop?page=1&category=${category.slug}`}
+                href={`/categories/${category.slug}`}
                 key={category.slug}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>

@@ -78,7 +78,7 @@ export default function NavbarMenu() {
                 {OFFICIAL_CATEGORIES.map((category) => (
                   <Link
                     key={category.slug}
-                    href={`/shop?page=1&category=${category.slug}`}
+                    href={`/categories/${category.slug}`}
                   >
                     {category.name}
                   </Link>
