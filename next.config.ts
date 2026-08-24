@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
-  output: "standalone",
   outputFileTracingRoot: process.cwd(),
   images: {
     // Vercel's image optimizer quota can return 402 and leave the catalog
