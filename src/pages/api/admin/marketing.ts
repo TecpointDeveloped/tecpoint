@@ -6,9 +6,10 @@ const collections = { banner: "site_banners", promotion: "flash_promotions" } as
 type AssetKind = keyof typeof collections;
 
 async function requireAdmin(req: NextApiRequest) {
-  const admin = getFirebaseAdmin();
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
-  if (!admin || !token) return null;
+  if (!token) return null;
+  const admin = getFirebaseAdmin();
+  if (!admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
   return decoded.role === "admin" ? admin : null;
 }

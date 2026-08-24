@@ -8,6 +8,8 @@ type AdminAuthResult =
   | { ok: false; status: 401 | 403 | 503; error: string };
 
 async function requireAdmin(req: NextApiRequest): Promise<AdminAuthResult> {
+  const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
+  if (!token) return { ok: false, status: 401, error: "Debe iniciar sesión." };
   let admin: ReturnType<typeof getFirebaseAdmin>;
   try {
     admin = getFirebaseAdmin();
@@ -16,8 +18,6 @@ async function requireAdmin(req: NextApiRequest): Promise<AdminAuthResult> {
     return { ok: false, status: 503, error: "Firebase Admin no está disponible en el servidor." };
   }
   if (!admin) return { ok: false, status: 503, error: "Firebase Admin no está configurado en el servidor." };
-  const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
-  if (!token) return { ok: false, status: 401, error: "Debe iniciar sesión." };
   try {
     const decoded = await admin.auth.verifyIdToken(token);
     if (decoded.role !== "admin") return { ok: false, status: 403, error: "Esta cuenta no tiene permisos administrativos." };
