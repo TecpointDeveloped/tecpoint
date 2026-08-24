@@ -16,7 +16,7 @@ export async function getServerSideProps() {
       title: "Iniciar sesión | TECPOINT",
       description: "Acceda a su cuenta TECPOINT o solicite atención para compras al mayoreo.",
       keywords: "iniciar sesión, cuenta, tecpoint, mayoreo, tecnología honduras",
-      robots: "index, follow",
+      robots: "noindex, nofollow",
     },
   };
 }

@@ -8,9 +8,6 @@ import Head from "next/head";
 const Tracking = dynamic(() => import("@/components/analytics/Tracking"), {
   ssr: false,
 });
-const AppIntro = dynamic(() => import("@/components/AppIntro/page"), {
-  ssr: false,
-});
 
 function DynamicSiteMeta() {
   const { googleSiteVerification } = useSiteConfig();
@@ -22,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthProvider>
       <SiteConfigProvider>
         <DynamicSiteMeta />
-        <AppIntro />
         <Tracking />
         <Component {...pageProps} />
       </SiteConfigProvider>

@@ -18,6 +18,11 @@ import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
 import { FlashPromotion, HomepageBannerCarousel, type MarketingAsset } from "@/components/MarketingContent/page";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
+import dynamic from "next/dynamic";
+
+const AppIntro = dynamic(() => import("@/components/AppIntro/page"), {
+  ssr: false,
+});
 
 type MarketingDoc = Omit<MarketingAsset, "id"> & {
   active?: boolean;
@@ -171,6 +176,7 @@ export default function Home({
 
   return (
     <>
+      <AppIntro />
       <Head>
         <title>TECPOINT | Tecnología bien elegida</title>
         <meta
