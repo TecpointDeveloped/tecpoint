@@ -204,6 +204,7 @@ const CartPage = () => {
                           type="number"
                           value={item.quantity}
                           onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                          aria-label={`Cantidad de ${item.producto}`}
                           className="ml-2 w-14 text-center border rounded p-1"
                           min="1"
                         />
@@ -211,7 +212,11 @@ const CartPage = () => {
                       <p className="text-gray-500">HNL. <span className="font-bold">{item.precio?.toFixed(2)}</span></p>
                     </span>
                   </div>
-                  <button onClick={() => handleRemoveFromCart(item.id)} className="text-red-500 hover:underline absolute right-0 top-2">
+                  <button
+                    onClick={() => handleRemoveFromCart(item.id)}
+                    className="text-red-500 hover:underline absolute right-0 top-2"
+                    aria-label={`Eliminar ${item.producto} del carrito`}
+                  >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
