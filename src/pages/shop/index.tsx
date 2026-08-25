@@ -33,6 +33,11 @@ interface ShopProps {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=300, stale-while-revalidate=900",
+  );
+
   try {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const querySnapshot = await getDocs(productsRef);
@@ -166,13 +171,16 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
     setSearchTerm(e.target.value);
   };
 
+  const navigateToShop = (query: Record<string, string | number>) =>
+    router.push({ pathname: "/shop", query });
+
   const handleBrandChange = (value: string) => {
     setSelectedBrand(value);
     setCurrentPage(1); // Reset to first page on brand change
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
-    router.push(`/shop?page=1&brand=${value}&category=${currentCategory}&color=${currentColor}&search=${currentSearch}`);
+    navigateToShop({ page: 1, brand: value, category: currentCategory, color: currentColor, search: currentSearch });
   };
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -182,7 +190,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
     const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
     const currentBrand = selectedBrand || "";
     const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
-    router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&color=${currentColor}&search=${currentSearch}`);
+    navigateToShop({ page: 1, brand: currentBrand, category: currentCategory, color: currentColor, search: currentSearch });
   };
 
   const currentProducts = products;
@@ -194,7 +202,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
     const currentBrand = selectedBrand || "";
     const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
     const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
-    router.push(`/shop?page=${page}&brand=${currentBrand}&category=${category}&color=${currentColor}&search=${currentSearch}`);
+    navigateToShop({ page, brand: currentBrand, category, color: currentColor, search: currentSearch });
   };
 
   const pageHref = (pageNumber: number) => {
@@ -308,7 +316,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                 const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
                 const currentBrand = selectedBrand || "";
                 const currentColor = Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || "";
-                router.push(`/shop?page=1&brand=${currentBrand}&category=${value}&color=${currentColor}&search=${currentSearch}`);
+                navigateToShop({ page: 1, brand: currentBrand, category: value, color: currentColor, search: currentSearch });
               }}
               value={Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || ""}
             >
@@ -331,7 +339,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                 const currentSearch = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
                 const currentBrand = selectedBrand || "";
                 const currentCategory = Array.isArray(router.query.category) ? router.query.category[0] : router.query.category || "all";
-                router.push(`/shop?page=1&brand=${currentBrand}&category=${currentCategory}&color=${value}&search=${currentSearch}`);
+                navigateToShop({ page: 1, brand: currentBrand, category: currentCategory, color: value, search: currentSearch });
               }}
               value={Array.isArray(router.query.color) ? router.query.color[0] : router.query.color || ""}
             >
