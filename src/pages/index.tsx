@@ -411,7 +411,11 @@ export default function Home({
           <div className={styles.productGrid}>
             {selectedProducts.map((product, index) => (
               <article className={styles.productCard} key={product.id}>
-                <Link className={styles.productImage} href={`/shop/${preferredProductSlug(product)}`}>
+                <Link
+                  className={styles.productImage}
+                  href={`/shop/${preferredProductSlug(product)}`}
+                  aria-label={`Ver ${product.producto}`}
+                >
                   {index < 2 && <span>Selección</span>}
                   <Image
                     src={imageFor(product)}

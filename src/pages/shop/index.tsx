@@ -382,7 +382,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
           </div>
         </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-3">
           {currentProducts.map((product: Product, productIndex: number) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
 
@@ -400,7 +400,11 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                 </span>
 
                 <div className="flex flex-col">
-                  <Link href={`/shop/${product.slug}`} className="hover:scale-105 transition-transform" rel="noopener noreferrer" download={false}>
+                  <Link
+                    href={`/shop/${product.slug}`}
+                    className="hover:scale-105 transition-transform"
+                    aria-label={`Ver ${product.producto}`}
+                  >
                     <Image
                       src={imagen_01}
                       alt={product.producto ? `Imagen de ${product.producto}` : "Imagen del producto"}
