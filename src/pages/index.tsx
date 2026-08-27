@@ -10,9 +10,11 @@ import styles from "@/styles/home2026.module.css";
 import currentCatalog from "@/data/current-catalog-w31.json";
 import {
   enrichProduct,
+  approvedCatalogProducts,
   publicCatalog,
   OFFICIAL_CATEGORIES,
   preferredProductSlug,
+  productPromotion,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
@@ -89,7 +91,7 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
     getDoc(doc(db, "site_settings", "general")).catch(() => null),
   ]);
 
-  const products = publicCatalog(productDocs.docs.map<Product>((doc) => {
+  const completeProducts = publicCatalog([...productDocs.docs.map<Product>((doc) => {
     const data = doc.data();
     return enrichProduct({
       id: doc.id,
@@ -98,7 +100,7 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
         ? data.fecha_agregado.toDate().toISOString()
         : null,
     } as Product);
-  }))
+  }), ...approvedCatalogProducts()])
     .filter((product) =>
       currentCatalog.records.some(
         (item) => item.sku === String(product.sku || "").trim(),
@@ -113,12 +115,17 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
         : 0;
       return dateB - dateA;
     })
-    .filter((product) => Boolean(product.extradata?.stock))
-    .slice(0, 8);
+    .filter((product) => Boolean(product.extradata?.stock));
+
+  const products = completeProducts.slice(0, 8);
+  const wholesalePromotions = completeProducts
+    .filter((product) => Boolean(productPromotion(product)))
+    .slice(0, 4);
 
   return {
     props: {
       products,
+      wholesalePromotions,
       rockSpaceCount: currentCatalog.records.filter(
         (item) => item.brand === "Rock Space" && item.stock > 0,
       ).length,
@@ -151,12 +158,14 @@ function priceFor(product: Product) {
 
 export default function Home({
   products,
+  wholesalePromotions,
   rockSpaceCount,
   homepageBanners,
   flashPromotion,
   googleSiteVerification,
 }: {
   products: Product[];
+  wholesalePromotions: Product[];
   rockSpaceCount: number;
   homepageBanners: MarketingAsset[];
   flashPromotion: MarketingAsset | null;
@@ -544,14 +553,12 @@ export default function Home({
               variedad, disponibilidad y acompañamiento comercial.
             </p>
             <div><span>Asesoría comercial</span><span>Catálogo amplio</span><span>Pick up en SPS</span></div>
-            <a
+            <Link
               className={styles.darkButton}
-              href={whatsappLink(wholesaleWhatsApp, "Hola, deseo información sobre ventas al mayoreo.")}
-              target="_blank"
-              rel="noreferrer"
+              href="/mayoreo"
             >
-              Hablar con mayoreo
-            </a>
+              Ver oportunidades
+            </Link>
           </div>
           <div className={styles.wholesaleVisual}>
             <Image src="/brand/signal-field.svg" alt="" fill />
@@ -561,6 +568,56 @@ export default function Home({
               <strong>+504 9819-1003</strong>
             </div>
           </div>
+        </section>
+
+        <section className={styles.wholesaleDeals} aria-labelledby="mayoreo-promociones">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>OPORTUNIDADES ACTUALES</p>
+              <h2 id="mayoreo-promociones">Productos con descuento.</h2>
+            </div>
+            <p>
+              Referencias disponibles con precio promocional visible. Para volumen,
+              disponibilidad y condiciones comerciales, confirme con Mayoreo.
+            </p>
+          </div>
+          <div className={styles.dealGrid}>
+            {wholesalePromotions.map((product) => {
+              const promotion = productPromotion(product);
+              if (!promotion) return null;
+              return (
+                <article className={styles.dealCard} key={`mayoreo-${product.id}`}>
+                  <Link className={styles.dealImage} href={`/shop/${preferredProductSlug(product)}`}>
+                    <span className={styles.discountBadge}>−{promotion.percent}%</span>
+                    <Image
+                      src={imageFor(product)}
+                      alt={product.producto}
+                      fill
+                      sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 25vw"
+                    />
+                  </Link>
+                  <div className={styles.dealInfo}>
+                    <small>{product.marca_producto?.marca || "TECPOINT"} · {product.sku}</small>
+                    <h3>{product.producto}</h3>
+                    <div className={styles.dealPrices}>
+                      <span>{priceFor({ ...product, precio: { ...product.precio, detalle: promotion.regularPrice } })}</span>
+                      <strong>{priceFor({ ...product, precio: { ...product.precio, detalle: promotion.promotionalPrice } })}</strong>
+                    </div>
+                    <a
+                      href={whatsappLink(wholesaleWhatsApp, `Hola, deseo consultar disponibilidad y precio por volumen de ${product.producto} (${product.sku}).`)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Consultar con Mayoreo ↗
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <Link className={styles.darkButton} href="/mayoreo">
+            Ver todos los descuentos
+          </Link>
         </section>
 
         <section className={styles.locations} id="ubicaciones">

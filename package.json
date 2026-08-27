@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "catalog:audit": "tsx --env-file=.env.local scripts/audit-catalog-fields.ts",
     "catalog:fill": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts",
-    "catalog:fill:apply": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts --apply"
+    "catalog:fill:apply": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts --apply",
+    "catalog:images": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts",
+    "catalog:images:apply": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts --apply"
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",

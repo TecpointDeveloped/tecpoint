@@ -1,6 +1,7 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
 import currentCatalog from "@/data/current-catalog-w31.json";
+import approvedImages from "@/data/approved-product-images.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
 export const OFFICIAL_CATEGORIES = [
@@ -208,6 +209,61 @@ export function getValidatedEntry(sku?: string) {
 
 export function getCurrentInventory(sku?: string) {
   return sku ? currentInventory.get(String(sku).trim()) : undefined;
+}
+
+export type ProductPromotion = {
+  percent: number;
+  regularPrice: number;
+  promotionalPrice: number;
+  label: string;
+};
+
+/**
+ * Reads the active commercial promotion from the inventory source of truth.
+ * We intentionally do not infer discounts from visual labels or product copy.
+ */
+export function productPromotion(product: CatalogProduct): ProductPromotion | null {
+  const inventory = getCurrentInventory(product.sku);
+  const category = String(inventory?.category || product.categorias?.[0] || "");
+  const categoryMatch = category.match(/PROMOCI(?:O|Ó)N\s*(\d{1,2})\s*%/i);
+  const explicitDiscount = Number(product.extradata?.discount || 0);
+  const percent = categoryMatch ? Number(categoryMatch[1]) : explicitDiscount;
+  const regularPrice = Number(inventory?.detailPrice || product.precio?.detalle || 0);
+
+  if (!Number.isFinite(percent) || percent <= 0 || percent >= 100 || regularPrice <= 0) {
+    return null;
+  }
+
+  return {
+    percent,
+    regularPrice,
+    promotionalPrice: Math.round(regularPrice * (1 - percent / 100) * 100) / 100,
+    label: `${percent}% DE DESCUENTO`,
+  };
+}
+
+export function approvedCatalogProducts(): Product[] {
+  return Object.entries(approvedImages).flatMap(([sku, image]) => {
+    const inventory = getCurrentInventory(sku);
+    if (!inventory || inventory.stock <= 0 || !inventory.upc || inventory.detailPrice <= 0) {
+      return [];
+    }
+    const brand = canonicalBrandName(inventory.brand);
+    return [{
+      id: `approved-${sku}`,
+      sku,
+      producto: inventory.description,
+      slug: cleanProductSlug(inventory.description, sku),
+      descripcion: inventory.description,
+      categorias: [inventory.category],
+      Subcategorias: inventory.subcategory,
+      marca_producto: { marca: brand, logo: brandLogo(brand) },
+      precio: { detalle: inventory.detailPrice, mayoreo: 0 },
+      imagenes: { imagen_01: { id: "imagen_01", img: image } },
+      extradata: { upc: inventory.upc, stock: true },
+      fecha_agregado: "2026-08-27T00:00:00.000Z",
+    } satisfies Product];
+  });
 }
 
 function cleanProductName(value: string) {

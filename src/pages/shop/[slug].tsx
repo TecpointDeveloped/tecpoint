@@ -33,6 +33,7 @@ import {
 import detailStyles from "@/styles/productDetail2026.module.css";
 import {
   enrichProduct,
+  approvedCatalogProducts,
   isPublicProduct,
   officialCategory,
   productSearchTerms,
@@ -107,6 +108,9 @@ function explainSpecification(label: string) {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
+  const approvedProduct = approvedCatalogProducts().find(
+    (item) => preferredProductSlug(item) === slug,
+  );
 
   try {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
@@ -150,6 +154,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           Banners: productBanner ? [productBanner] : [],
         },
         revalidate: 30,
+      };
+    } else if (approvedProduct && isPublicProduct(approvedProduct)) {
+      const productBanner = BannersData.find(
+        (banner) => banner.marca === approvedProduct.marca_producto?.marca,
+      );
+      return {
+        props: {
+          product: approvedProduct,
+          Banners: productBanner ? [productBanner] : [],
+        },
+        revalidate: 300,
       };
     } else {
       return { notFound: true };

@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import type { GetServerSidePropsContext } from "next";
 import {
   categorySlug,
+  approvedCatalogProducts,
   enrichProduct,
   getCurrentInventory,
   matchesProductSearch,
@@ -42,7 +43,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const productsRef = collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string);
     const querySnapshot = await getDocs(productsRef);
 
-    const allProducts = publicCatalog(querySnapshot.docs.map((doc) => {
+    const allProducts = publicCatalog([...querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return enrichProduct({
         id: doc.id,
@@ -53,7 +54,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         // Si data.categorias no es un array, se inicializa como un array vacío.
         categorias: Array.isArray(data.categorias) ? data.categorias : [],
       } as Product);
-    }) as Product[])
+    }) as Product[], ...approvedCatalogProducts()])
       .filter((product) => Boolean(getCurrentInventory(product.sku)))
       .sort((left, right) => {
         const stockDifference =

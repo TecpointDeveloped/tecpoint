@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import {
   getCurrentInventory,
+  approvedCatalogProducts,
   OFFICIAL_CATEGORIES,
   publicCatalog,
   preferredProductSlug,
@@ -47,12 +48,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const databaseName = process.env.NEXT_PUBLIC_DATABASE_NAME;
     if (databaseName) {
       const snapshot = await getDocs(collection(db, databaseName));
-      productUrls = publicCatalog(
-        snapshot.docs.map((item) => ({
+      productUrls = publicCatalog([
+        ...snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         })) as Product[],
-      )
+        ...approvedCatalogProducts(),
+      ])
         .filter((product) => Boolean(getCurrentInventory(product.sku)))
         .map((item) => preferredProductSlug(item))
         .filter((slug): slug is string => Boolean(slug))

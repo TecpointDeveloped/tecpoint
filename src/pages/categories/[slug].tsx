@@ -8,6 +8,7 @@ import NavbarMenu from "@/components/navbarmenu/page";
 import { db } from "@/database/Config";
 import {
   enrichProduct,
+  approvedCatalogProducts,
   getCurrentInventory,
   OFFICIAL_CATEGORIES,
   officialCategory,
@@ -107,7 +108,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     const databaseName = process.env.NEXT_PUBLIC_DATABASE_NAME;
     const snapshot = databaseName ? await getDocs(collection(db, databaseName)) : null;
     const products = snapshot
-      ? publicCatalog(snapshot.docs.map((item) => enrichProduct({ id: item.id, ...item.data() } as Product)))
+      ? publicCatalog([...snapshot.docs.map((item) => enrichProduct({ id: item.id, ...item.data() } as Product)), ...approvedCatalogProducts()])
           .filter((product) => Boolean(getCurrentInventory(product.sku)))
           .filter((product) => officialCategory(product) === category.name)
           .filter((product) => product.extradata?.stock === true)
