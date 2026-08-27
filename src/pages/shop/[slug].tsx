@@ -38,6 +38,7 @@ import {
   officialCategory,
   productSearchTerms,
   preferredProductSlug,
+  isNewProduct,
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -475,6 +476,11 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 unoptimized={true}
                 className="h-[28px] w-[150px] aspect-[28/150] object-contain object-left"
               />
+              {isNewProduct(product) && (
+                <span className="w-fit rounded-full bg-[#c8102e] px-4 py-2 text-[10px] font-extrabold uppercase tracking-[.12em] text-white shadow-lg">
+                  Nuevo ingreso
+                </span>
+              )}
               <h1 className="text-[26px] font-semibold max-w-full md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl break-words [overflow-wrap:anywhere]">
                 {product.producto}
               </h1>

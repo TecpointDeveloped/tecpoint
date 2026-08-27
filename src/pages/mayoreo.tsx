@@ -11,6 +11,8 @@ import {
   enrichProduct,
   preferredProductSlug,
   productPromotion,
+  isNewProduct,
+  productAddedTime,
   publicCatalog,
 } from "@/lib/catalog";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -35,6 +37,8 @@ export async function getServerSideProps({ res, query }: { res: { setHeader: (na
     ])
       .filter((product) => Boolean(product.extradata?.stock && productPromotion(product)))
       .sort((left, right) => {
+        const dateDifference = productAddedTime(right) - productAddedTime(left);
+        if (dateDifference) return dateDifference;
         const leftPromotion = productPromotion(left);
         const rightPromotion = productPromotion(right);
         return (rightPromotion?.percent || 0) - (leftPromotion?.percent || 0);
@@ -115,6 +119,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
                   <article className={styles.card} key={product.id}>
                     <Link className={styles.image} href={`/shop/${preferredProductSlug(product)}`}>
                       <b>−{promotion.percent}%</b>
+                      {isNewProduct(product) && <span>Nuevo</span>}
                       <Image
                         src={imageFor(product)}
                         alt={product.producto}

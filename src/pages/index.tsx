@@ -15,6 +15,7 @@ import {
   OFFICIAL_CATEGORIES,
   preferredProductSlug,
   productPromotion,
+  isNewProduct,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
@@ -425,7 +426,7 @@ export default function Home({
                   href={`/shop/${preferredProductSlug(product)}`}
                   aria-label={`Ver ${product.producto}`}
                 >
-                  {index < 2 && <span>Selección</span>}
+                  {isNewProduct(product) ? <span>Nuevo</span> : index < 2 && <span>Selección</span>}
                   <Image
                     src={imageFor(product)}
                     alt={product.producto}
@@ -589,6 +590,7 @@ export default function Home({
                 <article className={styles.dealCard} key={`mayoreo-${product.id}`}>
                   <Link className={styles.dealImage} href={`/shop/${preferredProductSlug(product)}`}>
                     <span className={styles.discountBadge}>−{promotion.percent}%</span>
+                    {isNewProduct(product) && <span className={styles.newBadge}>Nuevo</span>}
                     <Image
                       src={imageFor(product)}
                       alt={product.producto}

@@ -5,7 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Link from "next/link";
-import { enrichProduct, preferredProductSlug, publicCatalog } from "@/lib/catalog";
+import { enrichProduct, isNewProduct, preferredProductSlug, publicCatalog } from "@/lib/catalog";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
@@ -17,10 +17,14 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
         const q = query(productsRef, where("marca_producto.marca", "==", currentProduct.marca_producto.marca));
         const querySnapshot = await getDocs(q);
 
-        const products = publicCatalog(querySnapshot.docs.map((doc) => enrichProduct({
-          ...doc.data(),
-          id: doc.id,
-        } as Product))) as Product[];
+        const products = publicCatalog(querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return enrichProduct({
+            ...data,
+            id: doc.id,
+            fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+          } as Product);
+        })) as Product[];
 
         setRecommendedProducts(products);
         console.log("produtos recomendados:", products);
@@ -52,9 +56,11 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
               key={product.id}
               className="border rounded-[26px] p-4 flex flex-col max-w-[300px] h-[460px] relative justify-between"
             >
-              <span className="bg-[#09f] z-[2] absolute top-4 left-4 rounded-full px-3 py-1">
-                <p className="text-[12px] font-semibold text-white">Nuevo</p>
-              </span>
+              {isNewProduct(product) && (
+                <span className="bg-[#c8102e] z-[2] absolute top-4 left-4 rounded-full px-3 py-1 shadow-lg">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[.08em] text-white">Nuevo</p>
+                </span>
+              )}
 
               <div className="flex flex-col">
                 <Link
@@ -64,7 +70,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
                   download={false}
                 >
                   <Image
-                    src={product.imagenes?.[0]?.img || "/default-product.png"}
+                    src={product.imagenes?.imagen_01?.img || Object.values(product.imagenes || {})[0]?.img || "/default-product.png"}
                     alt={
                       product.producto
                         ? `Imagen de ${product.producto}`

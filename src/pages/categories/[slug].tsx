@@ -13,6 +13,8 @@ import {
   OFFICIAL_CATEGORIES,
   officialCategory,
   preferredProductSlug,
+  isNewProduct,
+  productAddedTime,
   publicCatalog,
 } from "@/lib/catalog";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -108,10 +110,18 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     const databaseName = process.env.NEXT_PUBLIC_DATABASE_NAME;
     const snapshot = databaseName ? await getDocs(collection(db, databaseName)) : null;
     const products = snapshot
-      ? publicCatalog([...snapshot.docs.map((item) => enrichProduct({ id: item.id, ...item.data() } as Product)), ...approvedCatalogProducts()])
+      ? publicCatalog([...snapshot.docs.map((item) => {
+          const data = item.data();
+          return enrichProduct({
+            id: item.id,
+            ...data,
+            fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
+          } as Product);
+        }), ...approvedCatalogProducts()])
           .filter((product) => Boolean(getCurrentInventory(product.sku)))
           .filter((product) => officialCategory(product) === category.name)
           .filter((product) => product.extradata?.stock === true)
+          .sort((left, right) => productAddedTime(right) - productAddedTime(left))
           .slice(0, 6)
       : [];
     return { props: { category, products, copy: CATEGORY_COPY[slug] }, revalidate: 300 };
@@ -176,7 +186,7 @@ export default function CategoryLanding({ category, products, copy }: Props) {
 
       <section id="productos" className={styles.products}><div className={styles.sectionHeading}><div><p>SELECCIÓN ACTUAL</p><h2>Opciones disponibles.</h2></div><Link href={`/shop?category=${category.slug}`}>Ver catálogo completo →</Link></div>
         {products.length ? <div className={styles.productGrid}>{products.map((product) => <Link href={`/shop/${preferredProductSlug(product)}`} key={product.id} className={styles.productCard}>
-          <div className={styles.imageWrap}><Image src={productImage(product)} alt={product.producto} width={520} height={520} sizes="(max-width: 760px) 90vw, 30vw" /></div>
+          <div className={styles.imageWrap}>{isNewProduct(product) && <b>Nuevo</b>}<Image src={productImage(product)} alt={product.producto} width={520} height={520} sizes="(max-width: 760px) 90vw, 30vw" /></div>
           <small>{product.marca_producto?.marca}</small><h3>{product.producto}</h3><strong>{productPrice(product)}</strong><span>Conocer producto →</span>
         </Link>)}</div> : <div className={styles.empty}>El inventario cambia constantemente. Consulte con un asesor para conocer las opciones disponibles.</div>}
       </section>

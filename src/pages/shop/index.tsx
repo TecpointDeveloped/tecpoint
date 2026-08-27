@@ -20,6 +20,8 @@ import {
   normalizeText,
   OFFICIAL_CATEGORIES,
   productColor,
+  productAddedTime,
+  isNewProduct,
   publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
@@ -57,6 +59,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }) as Product[], ...approvedCatalogProducts()])
       .filter((product) => Boolean(getCurrentInventory(product.sku)))
       .sort((left, right) => {
+        const dateDifference = productAddedTime(right) - productAddedTime(left);
+        if (dateDifference) return dateDifference;
         const stockDifference =
           Number(Boolean(right.extradata?.stock)) -
           Number(Boolean(left.extradata?.stock));
@@ -393,6 +397,11 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                 className="border border-[#dfe3e4] bg-white p-4 flex flex-col min-w-0 sm:w-full md:w-full min-h-[430px] relative justify-between overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <span className="absolute top-4 left-4 z-10">
+                  {isNewProduct(product) && (
+                    <div className="mb-2 w-fit rounded-full bg-[#c8102e] px-4 py-1 text-white shadow-lg">
+                      <p className="text-[12px] font-extrabold uppercase tracking-[.08em]">Nuevo</p>
+                    </div>
+                  )}
                   {product.extradata?.stock !== true && (
                     <div className="bg-[#fcb9b9] w-fit px-4 py-1 rounded-full">
                       <p className="text-[#b51d1d] font-bold text-[14px]">Agotado</p>

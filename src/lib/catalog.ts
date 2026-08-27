@@ -242,6 +242,21 @@ export function productPromotion(product: CatalogProduct): ProductPromotion | nu
   };
 }
 
+export function productAddedTime(product: Pick<Product, "fecha_agregado">) {
+  if (!product.fecha_agregado) return 0;
+  const time = new Date(product.fecha_agregado).getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
+/** Products keep their entry date internally, but the storefront only exposes the badge. */
+export function isNewProduct(product: Pick<Product, "fecha_agregado">, referenceTime = Date.now()) {
+  const addedAt = productAddedTime(product);
+  if (!addedAt) return false;
+  const age = referenceTime - addedAt;
+  const fortyFiveDays = 45 * 24 * 60 * 60 * 1000;
+  return age >= 0 && age <= fortyFiveDays;
+}
+
 export function approvedCatalogProducts(): Product[] {
   return Object.entries(approvedImages).flatMap(([sku, image]) => {
     const inventory = getCurrentInventory(sku);
