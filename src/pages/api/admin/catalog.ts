@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
-import { productQualityIssues } from "@/lib/catalog";
+import { approvedCatalogProducts, productQualityIssues } from "@/lib/catalog";
 import type { Product } from "@/types/ProductTypes";
 
 async function requireAdmin(req: NextApiRequest) {
@@ -54,6 +54,45 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
         items,
       });
+    }
+
+    if (req.method === "POST" && req.body?.action === "syncW34") {
+      const approved = approvedCatalogProducts();
+      const snapshot = await admin.db.collection(collectionName).get();
+      const existingBySku = new Map(
+        snapshot.docs
+          .map((document) => [text(document.data().sku).toLowerCase(), document] as const)
+          .filter(([sku]) => Boolean(sku)),
+      );
+      const batch = admin.db.batch();
+      let created = 0;
+      let updated = 0;
+
+      approved.forEach((product) => {
+        const skuKey = text(product.sku).toLowerCase();
+        const existing = existingBySku.get(skuKey);
+        const documentId = `w34-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
+        const reference = existing?.ref || admin.db.collection(collectionName).doc(documentId);
+        batch.set(reference, {
+          sku: product.sku,
+          producto: product.producto,
+          slug: product.slug,
+          descripcion: product.descripcion,
+          categorias: product.categorias,
+          Subcategorias: product.Subcategorias,
+          marca_producto: product.marca_producto,
+          precio: product.precio,
+          imagenes: product.imagenes,
+          extradata: product.extradata,
+          fecha_agregado: product.fecha_agregado,
+          updatedAt: FieldValue.serverTimestamp(),
+          ...(!existing ? { createdAt: FieldValue.serverTimestamp() } : {}),
+        }, { merge: true });
+        if (existing) updated += 1;
+        else created += 1;
+      });
+      await batch.commit();
+      return res.status(200).json({ ok: true, total: approved.length, created, updated });
     }
 
     if (req.method === "PATCH") {

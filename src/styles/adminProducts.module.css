@@ -1,5 +1,6 @@
 .page { min-height:100vh; background:#f4f6f7; color:#111817; padding:32px clamp(18px,4vw,64px) 80px; font-family:Montserrat,Arial,sans-serif; }
 .page header { display:flex; justify-content:space-between; align-items:flex-end; padding-bottom:30px; }
+.headerActions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px; }
 .page header a { color:#667071; text-decoration:none; font-weight:700; }
 .page header p { color:#c8102e; font-size:12px; font-weight:900; letter-spacing:.15em; margin:30px 0 8px; }
 .page h1 { font-size:clamp(48px,7vw,82px); line-height:.9; margin:0; letter-spacing:-.06em; }
