@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -11,7 +11,6 @@ import {
   approvedCatalogProducts,
   enrichProduct,
   preferredProductSlug,
-  productPromotion,
   isNewProduct,
   productAddedTime,
   publicCatalog,
@@ -26,7 +25,7 @@ export async function getServerSideProps({ res, query }: { res: { setHeader: (na
   res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=900");
   try {
     const snapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
-    const promotionalProducts = publicCatalog([
+    const wholesaleProducts = publicCatalog([
       ...snapshot.docs.map((document) => {
         const data = document.data();
         return enrichProduct({
@@ -37,20 +36,22 @@ export async function getServerSideProps({ res, query }: { res: { setHeader: (na
       }),
       ...approvedCatalogProducts(),
     ])
-      .filter((product) => Boolean(product.extradata?.stock && productPromotion(product)))
+      .filter((product) => Boolean(
+        product.extradata?.stock &&
+        Number(product.precio?.mayoreo) > 0 &&
+        product.extradata?.wholesaleEnabled !== false,
+      ))
       .sort((left, right) => {
         const dateDifference = productAddedTime(right) - productAddedTime(left);
         if (dateDifference) return dateDifference;
-        const leftPromotion = productPromotion(left);
-        const rightPromotion = productPromotion(right);
-        return (rightPromotion?.percent || 0) - (leftPromotion?.percent || 0);
+        return String(left.producto).localeCompare(String(right.producto));
       });
     const perPage = 16;
     const requestedPage = Array.isArray(query.page) ? query.page[0] : query.page;
-    const totalProducts = promotionalProducts.length;
+    const totalProducts = wholesaleProducts.length;
     const totalPages = Math.max(1, Math.ceil(totalProducts / perPage));
     const currentPage = Math.min(totalPages, Math.max(1, Number(requestedPage) || 1));
-    const products = promotionalProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
+    const products = wholesaleProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
     return { props: { products, totalProducts, currentPage, totalPages } };
   } catch (error) {
     console.error("No fue posible cargar las oportunidades de mayoreo:", error);
@@ -74,6 +75,11 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
   const { wholesaleWhatsApp } = useSiteConfig();
   const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
+  const [catalogUnlocked, setCatalogUnlocked] = useState(false);
+
+  useEffect(() => {
+    setCatalogUnlocked(sessionStorage.getItem("tecpoint_wholesale_access") === "granted");
+  }, []);
 
   async function submitLead(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -92,6 +98,8 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
       form.reset();
       setFormState("success");
       setFormMessage("¡Gracias! El equipo de Mayoreo recibió sus datos y podrá contactarle.");
+      sessionStorage.setItem("tecpoint_wholesale_access", "granted");
+      setCatalogUnlocked(true);
       trackContact("Formulario mayoreo");
     } catch (error) {
       setFormState("error");
@@ -111,10 +119,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
           <div>
             <p>TECPOINT MAYOREO</p>
             <h1>Más oportunidad para su negocio.</h1>
-            <span>
-              Productos con descuentos vigentes y asesoría para confirmar
-              inventario, volumen y condiciones comerciales.
-            </span>
+            <span>Registre sus datos para consultar el catálogo, precios de mayoreo, inventario y condiciones comerciales.</span>
             <a
               href={whatsappLink(wholesaleWhatsApp, "Hola, deseo recibir atención de TECPOINT Mayoreo.")}
               target="_blank"
@@ -125,8 +130,8 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
           </div>
           <div className={styles.heroMark} aria-hidden="true">
             <Image src="/brand/isologo.svg" alt="" width={190} height={190} priority />
-            <strong>15 · 20 · 30</strong>
-            <small>POR CIENTO DE DESCUENTO</small>
+            <strong>PRECIO</strong>
+            <small>EXCLUSIVO PARA NEGOCIOS REGISTRADOS</small>
           </div>
         </header>
 
@@ -168,23 +173,32 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
           </form>
         </section>
 
-        <section className={styles.catalog}>
+        {!catalogUnlocked ? (
+          <section className={styles.lockedCatalog} aria-labelledby="catalogo-protegido">
+            <Image src="/brand/isologo.svg" alt="" width={88} height={88} />
+            <p>CATÁLOGO PROTEGIDO</p>
+            <h2 id="catalogo-protegido">Complete el formulario para ver productos y precios de mayoreo.</h2>
+            <span>Los precios mayoristas no se muestran públicamente. Después de registrar sus datos, el catálogo se habilitará en esta misma página.</span>
+            <a href="#solicitud-mayoreo">Completar registro ↑</a>
+          </section>
+        ) : <section className={styles.catalog}>
           <div className={styles.heading}>
             <div>
-              <p>PRECIOS PROMOCIONALES</p>
-              <h2>Oportunidades disponibles.</h2>
+              <p>CATÁLOGO PARA NEGOCIOS</p>
+              <h2>Productos de mayoreo.</h2>
             </div>
-            <span>{totalProducts} productos completos con promoción registrada.</span>
+            <span>{totalProducts} productos completos con precio mayorista registrado.</span>
           </div>
           {products.length ? (
             <div className={styles.grid}>
               {products.map((product) => {
-                const promotion = productPromotion(product);
-                if (!promotion) return null;
+                const wholesalePrice = Number(product.precio.mayoreo);
+                const retailPrice = Number(product.precio.detalle);
+                const savings = retailPrice > wholesalePrice ? Math.round((1 - wholesalePrice / retailPrice) * 100) : 0;
                 return (
                   <article className={styles.card} key={product.id}>
                     <Link className={styles.image} href={`/shop/${preferredProductSlug(product)}`}>
-                      <b>−{promotion.percent}%</b>
+                      {savings > 0 && <b>AHORRE {savings}%</b>}
                       {isNewProduct(product) && <span>Nuevo</span>}
                       <Image
                         src={imageFor(product)}
@@ -197,10 +211,9 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
                       <small>{product.marca_producto?.marca || "TECPOINT"} · {product.sku}</small>
                       <h2>{product.producto}</h2>
                       <div className={styles.prices}>
-                        <span>{money(promotion.regularPrice)}</span>
-                        <strong>{money(promotion.promotionalPrice)}</strong>
+                        <strong>{money(wholesalePrice)}</strong>
                       </div>
-                      <p>Precio promocional calculado con el descuento vigente del catálogo.</p>
+                      <p>Precio de mayoreo. Confirme cantidad mínima, existencia y condiciones con un asesor.</p>
                       <div className={styles.actions}>
                         <Link href={`/shop/${preferredProductSlug(product)}`}>Ver producto</Link>
                         <a
@@ -229,7 +242,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
               <Link className={currentPage === totalPages ? styles.disabled : ""} href={`/mayoreo?page=${Math.min(totalPages, currentPage + 1)}`}>Siguiente</Link>
             </nav>
           )}
-        </section>
+        </section>}
       </main>
       <Footer />
     </>

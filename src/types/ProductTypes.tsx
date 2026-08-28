@@ -47,6 +47,8 @@ export interface Product {
     tags?: string[];
     searchAliases?: string[] | string;
     liquidacion?: boolean;
+    wholesaleEnabled?: boolean;
+    wholesaleCategory?: string;
   },
   objectID?: string;
 }

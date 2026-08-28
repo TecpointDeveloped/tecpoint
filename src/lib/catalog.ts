@@ -273,9 +273,14 @@ export function approvedCatalogProducts(): Product[] {
       categorias: [inventory.category],
       Subcategorias: inventory.subcategory,
       marca_producto: { marca: brand, logo: brandLogo(brand) },
-      precio: { detalle: inventory.detailPrice, mayoreo: 0 },
+      precio: { detalle: inventory.detailPrice, mayoreo: inventory.bronzePrice },
       imagenes: { imagen_01: { id: "imagen_01", img: image } },
-      extradata: { upc: inventory.upc, stock: true },
+      extradata: {
+        upc: inventory.upc,
+        stock: true,
+        wholesaleEnabled: inventory.bronzePrice > 0,
+        wholesaleCategory: inventory.category,
+      },
       fecha_agregado: "2026-08-27T00:00:00.000Z",
     } satisfies Product];
   });
@@ -391,13 +396,20 @@ export function productColor(product: CatalogProduct & { extradata?: { color?: s
 }
 
 export function enrichProduct<T extends CatalogProduct>(product: T) {
+  // Firestore agrega marcas de tiempo de auditoría que Next.js no puede
+  // serializar directamente desde getStaticProps/getServerSideProps.
+  const serializableProduct = Object.fromEntries(
+    Object.entries(product).filter(
+      ([key]) => key !== "createdAt" && key !== "updatedAt",
+    ),
+  ) as T;
   const category = officialCategory(product);
   const inventory = getCurrentInventory(product.sku);
   const brand = canonicalBrandName(
     inventory?.brand || product.marca_producto?.marca,
   );
   return {
-    ...product,
+    ...serializableProduct,
     producto: preferredProductName(product),
     slug: preferredProductSlug(product),
     categorias: [category],

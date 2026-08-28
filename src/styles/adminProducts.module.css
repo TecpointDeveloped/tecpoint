@@ -27,6 +27,8 @@
 .list form input,.list form textarea { padding:13px; border:1px solid #cbd1d3; font:inherit; text-transform:none; }
 .list form textarea { min-height:120px; resize:vertical; }
 .wide { grid-column:1/-1; }
+.checkLabel { display:flex !important; grid-template-columns:none !important; align-items:center; justify-content:flex-start; gap:10px !important; }
+.checkLabel input { width:18px; height:18px; padding:0 !important; }
 .notice { grid-column:1/-1; background:#edf0f1; padding:14px; color:#566062; font-size:13px; }
 .error { background:#ffe7e8; color:#9d1025; padding:16px; margin-bottom:20px; }
 .state { min-height:100vh; display:grid; place-content:center; text-align:center; font-family:Montserrat,Arial,sans-serif; }

@@ -51,6 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           ready: items.filter((item) => item.publicReady).length,
           incomplete: items.filter((item) => item.issues.length > 0).length,
           duplicates: items.filter((item) => item.duplicates.length > 0).length,
+          wholesale: items.filter((item) => item.extradata?.wholesaleEnabled === true || Number(item.precio?.mayoreo) > 0).length,
         },
         items,
       });
@@ -109,6 +110,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if ("color" in req.body) updates["extradata.color"] = text(req.body.color, 80);
       if ("precioDetalle" in req.body) updates["precio.detalle"] = Math.max(0, Number(req.body.precioDetalle) || 0);
       if ("precioMayoreo" in req.body) updates["precio.mayoreo"] = Math.max(0, Number(req.body.precioMayoreo) || 0);
+      if ("wholesaleEnabled" in req.body) updates["extradata.wholesaleEnabled"] = Boolean(req.body.wholesaleEnabled);
+      if ("wholesaleCategory" in req.body) updates["extradata.wholesaleCategory"] = text(req.body.wholesaleCategory, 120);
       if ("imagen" in req.body) updates["imagenes.imagen_01"] = { id: "imagen_01", img: text(req.body.imagen, 2000) };
       await admin.db.collection(collectionName).doc(id).update(updates);
       return res.status(200).json({ ok: true });
