@@ -102,6 +102,115 @@
   padding: clamp(70px, 8vw, 120px) clamp(24px, 5vw, 78px);
   background: var(--ice);
 }
+.leadSection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
+  gap: clamp(45px, 7vw, 110px);
+  padding: clamp(70px, 8vw, 118px) clamp(24px, 7vw, 110px);
+  background: var(--dark);
+  color: #fff;
+}
+.leadCopy p {
+  margin: 0 0 18px;
+  color: #ff425f;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+.leadCopy h2 {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(42px, 5.2vw, 78px);
+  font-weight: 550;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+.leadCopy span {
+  display: block;
+  max-width: 610px;
+  margin-top: 28px;
+  color: #b9c0c1;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.leadForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-self: center;
+}
+.leadForm label {
+  display: grid;
+  gap: 9px;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.leadForm input {
+  min-width: 0;
+  min-height: 56px;
+  padding: 0 17px;
+  border: 1px solid #404748;
+  border-radius: 0;
+  outline: none;
+  background: #1a1f20;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.leadForm input:focus {
+  border-color: #ff425f;
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.22);
+}
+.leadForm button {
+  min-height: 58px;
+  grid-column: 1 / -1;
+  border: 0;
+  background: var(--red);
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.2s, background 0.2s;
+}
+.leadForm button:hover {
+  transform: translateY(-2px);
+  background: #e01939;
+}
+.leadForm button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.leadForm .success,
+.leadForm .error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 13px 15px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.leadForm .success {
+  background: #18382e;
+  color: #bff5dc;
+}
+.leadForm .error {
+  background: #431a22;
+  color: #ffd2d9;
+}
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+}
 .heading {
   margin-bottom: 46px;
   display: grid;
@@ -297,6 +406,9 @@
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .leadSection {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 680px) {
   .hero > div:first-child {
@@ -328,6 +440,15 @@
   }
   .catalog {
     padding-inline: 18px;
+  }
+  .leadSection {
+    padding-inline: 23px;
+  }
+  .leadForm {
+    grid-template-columns: 1fr;
+  }
+  .leadForm button {
+    grid-column: auto;
   }
   .pagination {
     gap: 8px;

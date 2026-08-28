@@ -1,6 +1,6 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
-import currentCatalog from "@/data/current-catalog-w31.json";
+import currentCatalog from "@/data/current-catalog-w34.json";
 import approvedImages from "@/data/approved-product-images.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 

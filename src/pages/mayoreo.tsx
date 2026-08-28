@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -16,6 +17,7 @@ import {
   publicCatalog,
 } from "@/lib/catalog";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
+import { trackContact } from "@/lib/tracking";
 import styles from "@/styles/mayoreo.module.css";
 
 type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number };
@@ -70,6 +72,32 @@ function money(value: number) {
 
 export default function Mayoreo({ products, totalProducts, currentPage, totalPages }: Props) {
   const { wholesaleWhatsApp } = useSiteConfig();
+  const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formMessage, setFormMessage] = useState("");
+
+  async function submitLead(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setFormState("sending");
+    setFormMessage("");
+    const form = event.currentTarget;
+    const body = Object.fromEntries(new FormData(form).entries());
+    try {
+      const response = await fetch("/api/wholesale-leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "No fue posible enviar sus datos.");
+      form.reset();
+      setFormState("success");
+      setFormMessage("¡Gracias! El equipo de Mayoreo recibió sus datos y podrá contactarle.");
+      trackContact("Formulario mayoreo");
+    } catch (error) {
+      setFormState("error");
+      setFormMessage(error instanceof Error ? error.message : "No fue posible enviar sus datos.");
+    }
+  }
   return (
     <>
       <Head>
@@ -101,6 +129,44 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
             <small>POR CIENTO DE DESCUENTO</small>
           </div>
         </header>
+
+        <section className={styles.leadSection} aria-labelledby="solicitud-mayoreo">
+          <div className={styles.leadCopy}>
+            <p>ATENCIÓN PARA NEGOCIOS</p>
+            <h2 id="solicitud-mayoreo">Conversemos sobre su tienda.</h2>
+            <span>
+              Déjenos sus datos y un asesor podrá orientarle sobre disponibilidad,
+              compras por volumen y oportunidades vigentes.
+            </span>
+          </div>
+          <form className={styles.leadForm} onSubmit={submitLead}>
+            <label>
+              Nombre
+              <input name="name" autoComplete="name" required maxLength={90} placeholder="Su nombre" />
+            </label>
+            <label>
+              WhatsApp
+              <input name="whatsapp" autoComplete="tel" inputMode="tel" required maxLength={24} placeholder="Ej. 9819-1003" />
+            </label>
+            <label>
+              Correo
+              <input name="email" type="email" autoComplete="email" required maxLength={120} placeholder="correo@tienda.com" />
+            </label>
+            <label>
+              Nombre de tienda
+              <input name="storeName" autoComplete="organization" required maxLength={120} placeholder="Nombre de su negocio" />
+            </label>
+            <input className={styles.honeypot} name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+            <button disabled={formState === "sending"} type="submit">
+              {formState === "sending" ? "Enviando…" : "Solicitar información"}
+            </button>
+            {formMessage && (
+              <p className={formState === "success" ? styles.success : styles.error} role="status">
+                {formMessage}
+              </p>
+            )}
+          </form>
+        </section>
 
         <section className={styles.catalog}>
           <div className={styles.heading}>

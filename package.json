@@ -13,7 +13,8 @@
     "catalog:fill": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts",
     "catalog:fill:apply": "tsx --env-file=.env.local scripts/fill-catalog-fields.ts --apply",
     "catalog:images": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts",
-    "catalog:images:apply": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts --apply"
+    "catalog:images:apply": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts --apply",
+    "catalog:w34:static": "node scripts/import-w34-static-catalog.mjs"
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",
@@ -55,6 +56,7 @@
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "resend": "^4.5.1",
+    "sharp": "0.35.3",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.1"
