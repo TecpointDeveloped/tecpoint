@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { approvedCatalogProducts, productQualityIssues } from "@/lib/catalog";
+import { pendingW34DraftProducts } from "@/lib/w34Drafts";
 import type { Product } from "@/types/ProductTypes";
 
 async function requireAdmin(req: NextApiRequest) {
@@ -57,8 +58,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
-    if (req.method === "POST" && req.body?.action === "syncW34") {
-      const approved = approvedCatalogProducts();
+    if (req.method === "POST" && ["syncW34", "syncW34Drafts"].includes(req.body?.action)) {
+      const approved = req.body.action === "syncW34Drafts"
+        ? pendingW34DraftProducts()
+        : approvedCatalogProducts();
       const snapshot = await admin.db.collection(collectionName).get();
       const existingBySku = new Map(
         snapshot.docs
@@ -72,7 +75,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       approved.forEach((product) => {
         const skuKey = text(product.sku).toLowerCase();
         const existing = existingBySku.get(skuKey);
-        const documentId = `w34-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
+        const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : "w34";
+        const documentId = `${prefix}-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
         const reference = existing?.ref || admin.db.collection(collectionName).doc(documentId);
         batch.set(reference, {
           sku: product.sku,

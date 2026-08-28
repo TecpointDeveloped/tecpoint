@@ -309,6 +309,11 @@ export function preferredProductName(product: CatalogProduct) {
 }
 
 export function preferredProductSlug(product: CatalogProduct) {
+  const storedSlug = slugify(product.slug || "");
+  const storedSkuSlug = slugify(product.sku || "");
+  if (storedSlug && storedSkuSlug && storedSlug.endsWith(`-${storedSkuSlug}`)) {
+    return storedSlug;
+  }
   const validated = getValidatedEntry(product.sku)?.slug;
   if (validated) {
     const base = cleanProductSlug(preferredProductName(product));
