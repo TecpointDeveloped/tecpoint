@@ -39,7 +39,6 @@ import {
   productSearchTerms,
   preferredProductSlug,
   isNewProduct,
-  productPromotion,
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -186,8 +185,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
   const [activeInfoTab, setActiveInfoTab] = useState<"features" | "description" | "specs">("features");
   // const route = useRouter();
   const addToCart = useCartStore((state) => state.addToCart);
-  const promotion = product ? productPromotion(product) : null;
-  const effectivePrice = promotion?.promotionalPrice || Number(product?.precio.detalle || 0);
 
   const handleAddToCart = () => {
     if (product && product.imagenes && Object.keys(product.imagenes).length > 0) {
@@ -196,13 +193,13 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
         quantity: quantity,
         sku: product.sku,
         imagenes: Object(product.imagenes),
-        precio: effectivePrice,
+        precio: Number(product.precio.detalle),
         producto: product.producto,
       });
       trackAddToCart({
         id: product.sku || product.id,
         name: product.producto,
-        price: effectivePrice,
+        price: Number(product.precio.detalle),
         quantity,
       });
     }
@@ -213,7 +210,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       trackViewContent({
         id: product.sku || product.id,
         name: product.producto,
-        price: effectivePrice,
+        price: Number(product.precio.detalle),
       });
       const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
       if (!Array.isArray(cart)) {
@@ -223,12 +220,12 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       const isProductInCart = cart.some((item) => item.id === product.id);
       setIsAddedToCart(isProductInCart);
     }
-  }, [product, effectivePrice]);
+  }, [product]);
 
   const handleQuantityChange = (operation: "increase" | "decrease") => {
     setQuantity((prev) => {
       if (operation === "increase") {
-        if ((effectivePrice > 1000) && prev >= 10) {
+        if ((Number(product?.precio.detalle ?? 0) > 1000) && prev >= 10) {
           setAdded(true);
           return prev;
         }
@@ -332,7 +329,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
       "@type": "Offer",
       url: `https://tecpoint.ws/shop/${product.slug}` || "#",
       priceCurrency: "HNL",
-      price: effectivePrice,
+      price: product.precio?.detalle || 0,
       availability:
         product.extradata?.stock === true
           ? "https://schema.org/InStock"
@@ -484,11 +481,6 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                   Nuevo ingreso
                 </span>
               )}
-              {promotion && (
-                <span className="w-fit rounded-full bg-[#111516] px-4 py-2 text-[10px] font-extrabold uppercase tracking-[.12em] text-white shadow-lg">
-                  {promotion.label} · DETALLE
-                </span>
-              )}
               <h1 className="text-[26px] font-semibold max-w-full md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl break-words [overflow-wrap:anywhere]">
                 {product.producto}
               </h1>
@@ -518,10 +510,9 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
 
               <div className="flex gap-x-12 md:py-4">
                 <span className="flex flex-col">
-                  <p className="text-[#696969]">{promotion ? "Precio promocional al detalle" : "Precio Detalle"}</p>
-                  {promotion && <p className="mb-2 text-sm text-[#657074] line-through">Antes L {promotion.regularPrice.toFixed(2)}</p>}
-                  <p className={`text-2xl font-bold leading-4 ${promotion ? "text-[#c8102e]" : ""}`}>
-                    L {effectivePrice.toFixed(2)}
+                  <p className="text-[#696969]">Precio Detalle</p>
+                  <p className="text-2xl font-bold leading-4">
+                    {product.precio.detalle}.00
                   </p>
                 </span>
 
@@ -596,7 +587,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
             </div>
 
             <div className="mt-3">
-              {effectivePrice > 1200 ?
+              {Number(product.precio.detalle) > 1200 ?
                 (
                   <span className={detailStyles.shippingStatus}>
                     <span className={detailStyles.truckDrive}><Image unoptimized={true} height={30} width={30} src="/icons/truck.svg" alt="" /></span>
@@ -609,7 +600,7 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
                 : (
                   <span className={detailStyles.shippingStatus}>
                     <span className={detailStyles.truckProgress}><Image unoptimized={true} height={28} width={28} src="/icons/truck.svg" alt="" /></span>
-                    <p>Le faltan L {(1200 - effectivePrice).toFixed(2)} para obtener envío gratis.</p>
+                    <p>Le faltan L {1200 - Number(product.precio.detalle)} para obtener envío gratis.</p>
                   </span>
                 )
               }

@@ -22,7 +22,6 @@ import {
   productColor,
   productAddedTime,
   isNewProduct,
-  productPromotion,
   publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
@@ -391,7 +390,6 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-3">
           {currentProducts.map((product: Product, productIndex: number) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
-            const promotion = productPromotion(product);
 
             return (
               <article
@@ -402,11 +400,6 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                   {isNewProduct(product) && (
                     <div className="mb-2 w-fit rounded-full bg-[#c8102e] px-4 py-1 text-white shadow-lg">
                       <p className="text-[12px] font-extrabold uppercase tracking-[.08em]">Nuevo</p>
-                    </div>
-                  )}
-                  {promotion && (
-                    <div className="mb-2 w-fit rounded-full bg-[#111516] px-4 py-1 text-white shadow-lg">
-                      <p className="text-[12px] font-extrabold uppercase tracking-[.08em]">−{promotion.percent}% promoción</p>
                     </div>
                   )}
                   {product.extradata?.stock !== true && (
@@ -441,15 +434,6 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                       <p className="text-xs text-[#cf2c28] mt-1 font-semibold">
                         Color: {productColor(product)}
                       </p>
-                    )}
-                    {promotion ? (
-                      <div className="mt-3 flex flex-wrap items-end gap-x-3 gap-y-1">
-                        <span className="text-sm text-[#657074] line-through">L {promotion.regularPrice.toFixed(2)}</span>
-                        <strong className="text-xl text-[#c8102e]">L {promotion.promotionalPrice.toFixed(2)}</strong>
-                        <small className="w-full text-[11px] font-bold uppercase tracking-[.06em] text-[#c8102e]">Precio promocional al detalle</small>
-                      </div>
-                    ) : (
-                      <p className="mt-3 text-xl font-bold text-[#111516]">L {Number(product.precio.detalle).toFixed(2)}</p>
                     )}
 
                     <div className="flex flex-wrap mt-4 gap-2 overflow-hidden w-full h-[26px]">
