@@ -35,7 +35,7 @@ function payload(body: Record<string, unknown>) {
     videoUrl: safeText(body.videoUrl, 2000), mobileVideoUrl: safeText(body.mobileVideoUrl, 2000),
     posterUrl: safeText(body.posterUrl, 2000), linkUrl: safeText(body.linkUrl, 1000),
     cta: safeText(body.cta, 80), alt: safeText(body.alt, 220), artworkOnly: Boolean(body.artworkOnly),
-    active: body.active !== false, sortOrder: Number(body.sortOrder) || 0,
+    active: body.active !== false, archived: body.archived === true, sortOrder: Number(body.sortOrder) || 0,
     startsAt: timestamp(body.startsAt), endsAt: timestamp(body.endsAt), updatedAt: FieldValue.serverTimestamp(),
   };
 }
