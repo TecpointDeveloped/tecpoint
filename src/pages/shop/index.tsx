@@ -364,23 +364,31 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
           </div>
         </form>
 
-        <section className="w-full md:max-w-[1200px] mx-auto mb-6 px-4 md:px-12 py-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white text-[#111516]">
-          <p className="text-sm leading-6">
-            <strong>{totalProducts}</strong>{" "}
-            {totalProducts === 1 ? "producto disponible" : "productos disponibles"}.
-            {searchTerm ? " Mostramos las opciones más cercanas a su búsqueda." : " Explore y filtre para encontrar la opción adecuada."}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Link
-              href="/shop?page=1&brand=Rock%20Space&category=all&color=&search="
-              className="inline-flex min-h-10 items-center rounded-full bg-[#111516] px-5 text-[11px] font-bold uppercase tracking-[.08em] text-white hover:bg-[#c8102e]"
-            >
-              Rock Space
-            </Link>
+        <section className="w-[calc(100%-2rem)] md:max-w-[1200px] mx-auto mb-7 rounded-2xl border border-[#dfe3e4] bg-white px-5 py-5 md:px-7 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between text-[#111516] shadow-[0_10px_35px_rgba(17,21,22,.04)]">
+          <div className="flex min-w-0 items-center gap-4">
+            <div className="grid size-12 shrink-0 place-items-center rounded-full bg-[#f8e9ec] text-sm font-black text-[#c8102e]">{totalProducts}</div>
+            <div className="min-w-0">
+              <span className="block text-[9px] font-extrabold uppercase tracking-[.18em] text-[#c8102e]">Resultados</span>
+              <p className="mt-1 text-sm leading-5 text-[#5e686a]">
+                <strong className="font-bold text-[#111516]">{totalProducts === 1 ? "1 producto disponible" : `${totalProducts} productos disponibles`}</strong>
+                {searchTerm ? " · Opciones cercanas a su búsqueda." : " · Encuentre la opción adecuada para usted."}
+              </p>
+            </div>
+          </div>
+          <div className="flex w-full sm:w-auto flex-wrap items-center gap-2">
+            {selectedBrand && <span className="inline-flex min-h-10 items-center rounded-full bg-[#111516] px-5 text-[10px] font-bold uppercase tracking-[.08em] text-white">Marca: {selectedBrand}</span>}
+            {!hasActiveFilters && (
+              <Link
+                href="/shop?page=1&brand=Rock%20Space&category=all&color=&search="
+                className="inline-flex min-h-10 items-center rounded-full bg-[#111516] px-5 text-[10px] font-bold uppercase tracking-[.08em] text-white transition-colors hover:bg-[#c8102e]"
+              >
+                Explorar Rock Space
+              </Link>
+            )}
             {hasActiveFilters && (
               <Link
                 href="/shop"
-                className="inline-flex min-h-10 items-center rounded-full border border-[#cfd5d7] bg-white px-5 text-[11px] font-bold uppercase tracking-[.08em] text-[#111516] hover:border-[#c8102e] hover:text-[#c8102e]"
+                className="inline-flex min-h-10 items-center rounded-full border border-[#cfd5d7] bg-white px-5 text-[10px] font-bold uppercase tracking-[.08em] text-[#111516] transition-colors hover:border-[#c8102e] hover:text-[#c8102e]"
               >
                 Limpiar filtros
               </Link>
