@@ -366,8 +366,8 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
         <section className="w-full md:max-w-[1200px] mx-auto mb-6 px-4 md:px-12 py-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white text-[#111516]">
           <p className="text-sm leading-6">
             <strong>{totalProducts}</strong>{" "}
-            {totalProducts === 1 ? "producto encontrado" : "productos encontrados"}.
-            La búsqueda reconoce tildes, sinónimos y errores de escritura comunes.
+            {totalProducts === 1 ? "producto disponible" : "productos disponibles"}.
+            {searchTerm ? " Mostramos las opciones más cercanas a su búsqueda." : " Explore y filtre para encontrar la opción adecuada."}
           </p>
           <div className="flex flex-wrap gap-2">
             <Link

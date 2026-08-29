@@ -8,6 +8,7 @@ import styles from "@/styles/adminHub.module.css";
 const modules = [
   { href: "/admin/productos", label: "Catálogo", title: "Productos y calidad", copy: "Detecte fichas incompletas y duplicados antes de publicarlos." },
   { href: "/admin/marketing", label: "Contenido", title: "Banners y promociones", copy: "Suba imágenes o videos, programe fechas y controle el orden de aparición." },
+  { href: "/admin/meta", label: "Publicidad", title: "Meta Ads y publicaciones", copy: "Revise anuncios activos, identifique resultados y encuentre publicaciones con potencial para promocionar." },
   { href: "/admin/configuracion", label: "Sistema", title: "Contactos y ubicaciones", copy: "Actualice WhatsApp, Google Maps y confirme el estado de las integraciones." },
   { href: "/admin/comercial", label: "Ventas", title: "Mensajes y pedidos", copy: "Organice conversaciones, asesores y compras en seguimiento." },
   { href: "/admin/codigos", label: "Referidos", title: "Códigos", copy: "Módulo preparado para activarse después de completar el catálogo." },
