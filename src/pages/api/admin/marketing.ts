@@ -5,6 +5,42 @@ import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 const collections = { banner: "site_banners", promotion: "flash_promotions" } as const;
 type AssetKind = keyof typeof collections;
 
+const legacyBanners = [
+  ["xo-main", "XO: nuevos ingresos", "XO BANNER NUEVO.png", "XO"],
+  ["deken-june", "Deken: protección actual", "BANNER DEKEN JUNIO2026.png", "Deken"],
+  ["xo-02", "XO: tecnología para su día", "XO BANNER NUEVO 2.png", "XO"],
+  ["xo-03", "XO: conecte con lo nuevo", "XO BANNER NUEVO 3.png", "XO"],
+  ["hoco-01", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 1.png", "Hoco"],
+  ["hoco-02", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 2.png", "Hoco"],
+  ["hoco-03", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 3.png", "Hoco"],
+  ["hoco-04", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 4.png", "Hoco"],
+  ["hoco-05", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 5.png", "Hoco"],
+  ["hoco-product", "HOCO: producto nuevo", "ho-10132 banner hoco prooducto nuevo.png", "Hoco"],
+] as const;
+
+async function ensureLegacyBanners(admin: NonNullable<ReturnType<typeof getFirebaseAdmin>>) {
+  const collection = admin.db.collection(collections.banner);
+  const references = legacyBanners.map(([id]) => collection.doc(`campaign-${id}`));
+  const documents = await admin.db.getAll(...references);
+  const batch = admin.db.batch();
+  let changes = 0;
+  documents.forEach((document, index) => {
+    if (document.exists) return;
+    const [, title, fileName, brand] = legacyBanners[index];
+    batch.set(document.ref, {
+      title, subtitle: "", mediaType: "image",
+      imageUrl: `/images/banners-current/${fileName}`, mobileImageUrl: "",
+      videoUrl: "", mobileVideoUrl: "", posterUrl: "",
+      linkUrl: `/shop?page=1&brand=${encodeURIComponent(brand)}`, cta: "Ver productos",
+      alt: title, artworkOnly: true, active: true, archived: false, sortOrder: index,
+      startsAt: null, endsAt: null,
+      createdAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp(),
+    });
+    changes += 1;
+  });
+  if (changes) await batch.commit();
+}
+
 async function requireAdmin(req: NextApiRequest) {
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
   if (!token) return null;
@@ -45,6 +81,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const admin = await requireAdmin(req);
     if (!admin) return res.status(403).json({ error: "Acceso administrativo requerido." });
     if (req.method === "GET") {
+      await ensureLegacyBanners(admin);
       const read = async (kind: AssetKind) => {
         const snapshot = await admin.db.collection(collections[kind]).orderBy("sortOrder").get();
         return snapshot.docs.map((entry) => {

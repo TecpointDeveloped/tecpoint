@@ -34,27 +34,6 @@ type MarketingDoc = Omit<MarketingAsset, "id"> & {
   endsAt?: { toDate?: () => Date };
 };
 
-const CURRENT_CAMPAIGN_BANNERS: MarketingAsset[] = [
-  ["xo-main", "XO: nuevos ingresos", "XO BANNER NUEVO.png", "XO"],
-  ["deken-june", "Deken: protección actual", "BANNER DEKEN JUNIO2026.png", "Deken"],
-  ["xo-02", "XO: tecnología para su día", "XO BANNER NUEVO 2.png", "XO"],
-  ["xo-03", "XO: conecte con lo nuevo", "XO BANNER NUEVO 3.png", "XO"],
-  ["hoco-01", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 1.png", "Hoco"],
-  ["hoco-02", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 2.png", "Hoco"],
-  ["hoco-03", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 3.png", "Hoco"],
-  ["hoco-04", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 4.png", "Hoco"],
-  ["hoco-05", "HOCO: nuevos ingresos", "HOCO NUEVOS INGRESOS 5.png", "Hoco"],
-  ["hoco-product", "HOCO: producto nuevo", "ho-10132 banner hoco prooducto nuevo.png", "Hoco"],
-].map(([id, title, fileName, brand]) => ({
-  id,
-  title,
-  imageUrl: `/images/banners-current/${fileName}`,
-  linkUrl: `/shop?page=1&brand=${encodeURIComponent(brand)}`,
-  cta: "Ver productos",
-  alt: title,
-  artworkOnly: true,
-}));
-
 const LOCATION_IMAGES = [
   {
     src: "/images/locations/plaza-carolina.webp",
@@ -286,12 +265,7 @@ export default function Home({
 
       <NavbarMenu />
 
-      <HomepageBannerCarousel
-        assets={[
-          ...homepageBanners,
-          ...CURRENT_CAMPAIGN_BANNERS,
-        ]}
-      />
+      <HomepageBannerCarousel assets={homepageBanners} />
       <FlashPromotion asset={flashPromotion} />
 
       <main className={styles.page}>
