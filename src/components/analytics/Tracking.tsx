@@ -44,9 +44,9 @@ export default function Tracking() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="tecpoint-google-analytics" strategy="afterInteractive">
+          <Script id="tecpoint-google-analytics" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -60,7 +60,7 @@ export default function Tracking() {
 
       {metaPixelId && (
         <>
-          <Script id="tecpoint-meta-pixel" strategy="afterInteractive">
+          <Script id="tecpoint-meta-pixel" strategy="lazyOnload">
             {`
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -74,7 +74,7 @@ export default function Tracking() {
               fbq('track', 'PageView');
             `}
           </Script>
-          <Script id="tecpoint-meta-pixel-ready" strategy="afterInteractive">
+          <Script id="tecpoint-meta-pixel-ready" strategy="lazyOnload">
             {`window.dispatchEvent(new Event('tecpoint:meta-ready'));`}
           </Script>
           <noscript>

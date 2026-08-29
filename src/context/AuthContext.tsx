@@ -22,10 +22,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const route = useRouter()
 
   useEffect(() => {
+    const needsAuth=route.pathname.startsWith('/admin')||route.pathname.startsWith('/my-account')||route.pathname.startsWith('/cart');
+    if(!needsAuth){setLoading(false);setCurrentUser(null);return;}
+    setLoading(true);
     let unsubscribe:()=>void=()=>{};let active=true;
     import('../database/AuthConfig').then(({auth})=>{if(!active)return;unsubscribe=auth.onAuthStateChanged(user=>{setCurrentUser(user);setLoading(false);});}).catch(()=>setLoading(false));
     return()=>{active=false;unsubscribe();};
-  }, []);
+  }, [route.pathname]);
 
   const signInWithGoogle = async () => {
     try {
