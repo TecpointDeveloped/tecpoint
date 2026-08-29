@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { productImageFallback } from "@/lib/imageFallback";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { db } from "@/database/Config";
@@ -424,6 +425,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                       quality={75}
                       priority={productIndex < 3}
                       sizes="(max-width: 640px) 180px, 240px"
+                      onError={productImageFallback}
                     />
                   </Link>
 

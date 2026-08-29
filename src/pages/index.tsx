@@ -22,6 +22,7 @@ import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
 import { LiveMarketingContent, type MarketingAsset } from "@/components/MarketingContent/page";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import dynamic from "next/dynamic";
+import { productImageFallback } from "@/lib/imageFallback";
 
 const AppIntro = dynamic(() => import("@/components/AppIntro/page"), {
   ssr: false,
@@ -405,6 +406,7 @@ export default function Home({
                     alt={product.producto}
                     fill
                     sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                    onError={productImageFallback}
                   />
                 </Link>
                 <div className={styles.productInfo}>
@@ -569,6 +571,7 @@ export default function Home({
                       alt={product.producto}
                       fill
                       sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 25vw"
+                      onError={productImageFallback}
                     />
                   </Link>
                   <div className={styles.dealInfo}>

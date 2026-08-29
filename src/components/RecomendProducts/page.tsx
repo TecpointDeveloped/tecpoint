@@ -6,6 +6,7 @@ import { db } from "@/database/Config";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Link from "next/link";
 import { enrichProduct, isNewProduct, preferredProductSlug, publicCatalog } from "@/lib/catalog";
+import { productImageFallback } from "@/lib/imageFallback";
 
 export const RecommendedProducts = ({ currentProduct }: { currentProduct: Product }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
@@ -80,6 +81,7 @@ export const RecommendedProducts = ({ currentProduct }: { currentProduct: Produc
                     height={240}
                     className="m-auto size-[240px] aspect-square object-cover mb-4"
                     quality={75}
+                    onError={productImageFallback}
                   />
                 </Link>
 

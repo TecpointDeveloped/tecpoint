@@ -20,6 +20,7 @@ import {
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import styles from "@/styles/categoryLanding.module.css";
 import type { Product } from "@/types/ProductTypes";
+import { productImageFallback } from "@/lib/imageFallback";
 
 type CategoryCopy = {
   title: string;
@@ -186,7 +187,7 @@ export default function CategoryLanding({ category, products, copy }: Props) {
 
       <section id="productos" className={styles.products}><div className={styles.sectionHeading}><div><p>SELECCIÓN ACTUAL</p><h2>Opciones disponibles.</h2></div><Link href={`/shop?category=${category.slug}`}>Ver catálogo completo →</Link></div>
         {products.length ? <div className={styles.productGrid}>{products.map((product) => <Link href={`/shop/${preferredProductSlug(product)}`} key={product.id} className={styles.productCard}>
-          <div className={styles.imageWrap}>{isNewProduct(product) && <b>Nuevo</b>}<Image src={productImage(product)} alt={product.producto} width={520} height={520} sizes="(max-width: 760px) 90vw, 30vw" /></div>
+          <div className={styles.imageWrap}>{isNewProduct(product) && <b>Nuevo</b>}<Image src={productImage(product)} alt={product.producto} width={520} height={520} sizes="(max-width: 760px) 90vw, 30vw" onError={productImageFallback} /></div>
           <small>{product.marca_producto?.marca}</small><h3>{product.producto}</h3><strong>{productPrice(product)}</strong><span>Conocer producto →</span>
         </Link>)}</div> : <div className={styles.empty}>El inventario cambia constantemente. Consulte con un asesor para conocer las opciones disponibles.</div>}
       </section>

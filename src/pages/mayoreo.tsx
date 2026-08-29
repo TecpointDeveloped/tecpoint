@@ -19,6 +19,7 @@ import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import { trackContact } from "@/lib/tracking";
 import styles from "@/styles/mayoreo.module.css";
 import { validWholesaleAccess, WHOLESALE_COOKIE } from "@/lib/wholesaleAccess.server";
+import { productImageFallback } from "@/lib/imageFallback";
 
 type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number; catalogUnlocked: boolean };
 
@@ -202,6 +203,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
                         alt={product.producto}
                         fill
                         sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        onError={productImageFallback}
                       />
                     </Link>
                     <div className={styles.info}>
