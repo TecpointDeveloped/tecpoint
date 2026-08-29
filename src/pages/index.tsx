@@ -19,7 +19,7 @@ import {
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
-import { FlashPromotion, HomepageBannerCarousel, type MarketingAsset } from "@/components/MarketingContent/page";
+import { LiveMarketingContent, type MarketingAsset } from "@/components/MarketingContent/page";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import dynamic from "next/dynamic";
 
@@ -63,7 +63,7 @@ function activeMarketingAssets(docs: Awaited<ReturnType<typeof getDocs>>["docs"]
 }
 
 export async function getServerSideProps({ res }: { res: { setHeader: (name: string, value: string) => void } }) {
-  res.setHeader("Cache-Control", "public, s-maxage=5, stale-while-revalidate=5");
+  res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=900");
   const [productDocs, bannerDocs, promotionDocs, settingsDoc] = await Promise.all([
     getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)),
     getDocs(collection(db, "site_banners")).catch(() => null),
@@ -265,8 +265,7 @@ export default function Home({
 
       <NavbarMenu />
 
-      <HomepageBannerCarousel assets={homepageBanners} />
-      <FlashPromotion asset={flashPromotion} />
+      <LiveMarketingContent initialBanners={homepageBanners} initialPromotion={flashPromotion} />
 
       <main className={styles.page}>
         <section className={styles.hero}>

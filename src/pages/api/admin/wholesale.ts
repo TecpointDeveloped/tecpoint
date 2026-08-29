@@ -22,37 +22,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!collectionName) return res.status(503).json({ error: "Colección de productos no configurada." });
 
     if (req.method === "GET") {
-      const [productSnapshot, leadSnapshot] = await Promise.all([
-        admin.db.collection(collectionName).get(),
-        admin.db.collection("wholesale_leads").orderBy("createdAt", "desc").limit(250).get(),
-      ]);
+      if (req.query.view === "leads") {
+        const leadSnapshot = await admin.db.collection("wholesale_leads").orderBy("createdAt", "desc").limit(250).get();
+        const leads = leadSnapshot.docs.map((document) => {
+          const data = document.data();
+          return { id:document.id,name:data.name||"",whatsapp:data.whatsapp||"",email:data.email||"",storeName:data.storeName||"",status:data.status||"new",createdAt:data.createdAt?.toDate?.().toISOString()||null };
+        });
+        return res.status(200).json({ leads });
+      }
+      const productSnapshot = await admin.db.collection(collectionName).get();
       const products = productSnapshot.docs.map((document) => {
         const data = document.data();
+        const firstImage = Object.values(data.imagenes || {})[0] as { img?: string } | undefined;
         return {
           id: document.id,
           sku: data.sku || "",
           producto: data.producto || "",
           brand: data.marca_producto?.marca || "",
-          image: data.imagenes?.imagen_01?.img || Object.values(data.imagenes || {})[0]?.img || "",
+          image: data.imagenes?.imagen_01?.img || firstImage?.img || "",
           retailPrice: Number(data.precio?.detalle) || 0,
           wholesalePrice: Number(data.precio?.mayoreo) || 0,
           wholesaleEnabled: data.extradata?.wholesaleEnabled === true,
           wholesaleCategory: data.extradata?.wholesaleCategory || data.categorias?.[0] || "",
         };
       });
-      const leads = leadSnapshot.docs.map((document) => {
-        const data = document.data();
-        return {
-          id: document.id,
-          name: data.name || "",
-          whatsapp: data.whatsapp || "",
-          email: data.email || "",
-          storeName: data.storeName || "",
-          status: data.status || "new",
-          createdAt: data.createdAt?.toDate?.().toISOString() || null,
-        };
-      });
-      return res.status(200).json({ products, leads });
+      const search = text(req.query.query, 160).toLowerCase();
+      const filtered = products.filter((product) => !search || `${product.sku} ${product.producto} ${product.brand} ${product.wholesaleCategory}`.toLowerCase().includes(search));
+      const pageSize = 30;
+      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+      const page = Math.min(totalPages, Math.max(1, Number(req.query.page) || 1));
+      return res.status(200).json({ products:filtered.slice((page-1)*pageSize,page*pageSize),pagination:{page,pageSize,totalItems:filtered.length,totalPages},summary:{active:products.filter(product=>product.wholesaleEnabled&&product.wholesalePrice>0).length,categories:new Set(products.map(product=>product.wholesaleCategory).filter(Boolean)).size} });
     }
 
     if (req.method === "PATCH" && req.body?.target === "product") {

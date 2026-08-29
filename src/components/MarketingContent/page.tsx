@@ -154,6 +154,20 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
   );
 }
 
+export function LiveMarketingContent({ initialBanners, initialPromotion }: { initialBanners: MarketingAsset[]; initialPromotion?: MarketingAsset | null }) {
+  const [banners, setBanners] = useState(initialBanners);
+  const [promotion, setPromotion] = useState(initialPromotion || null);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/marketing", { cache: "no-store", signal: controller.signal })
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((data) => { setBanners(data.banners || []); setPromotion(data.promotion || null); })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, []);
+  return <><HomepageBannerCarousel assets={banners}/><FlashPromotion asset={promotion}/></>;
+}
+
 export function FlashPromotion({ asset }: { asset?: MarketingAsset | null }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {

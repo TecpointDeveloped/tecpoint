@@ -46,6 +46,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ];
         return { ...product, issues, duplicates, publicReady: issues.length === 0 && duplicates.length === 0 };
       });
+      const filter = text(req.query.filter, 30) || "incomplete";
+      const search = text(req.query.query, 160).toLowerCase();
+      const pageSize = Math.min(60, Math.max(10, Number(req.query.pageSize) || 30));
+      const requestedPage = Math.max(1, Number(req.query.page) || 1);
+      const filtered = items.filter((item) => {
+        const matchesFilter = filter === "all"
+          || (filter === "ready" && item.publicReady)
+          || (filter === "incomplete" && item.issues.length > 0)
+          || (filter === "duplicates" && item.duplicates.length > 0)
+          || (filter === "wholesale" && (item.extradata?.wholesaleEnabled || Number(item.precio?.mayoreo) > 0));
+        const haystack = `${item.sku || ""} ${item.producto || ""} ${item.extradata?.upc || ""} ${item.marca_producto?.marca || ""} ${item.extradata?.wholesaleCategory || ""}`.toLowerCase();
+        return matchesFilter && (!search || haystack.includes(search));
+      });
+      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+      const page = Math.min(requestedPage, totalPages);
+      const pageItems = filtered.slice((page - 1) * pageSize, page * pageSize);
       return res.status(200).json({
         summary: {
           total: items.length,
@@ -54,7 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           duplicates: items.filter((item) => item.duplicates.length > 0).length,
           wholesale: items.filter((item) => item.extradata?.wholesaleEnabled === true || Number(item.precio?.mayoreo) > 0).length,
         },
-        items,
+        items: pageItems,
+        pagination: { page, pageSize, totalItems: filtered.length, totalPages },
       });
     }
 
