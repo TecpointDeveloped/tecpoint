@@ -5,7 +5,6 @@ import { FormEvent, useState } from "react";
 import { Menu, Search, ShoppingBag, UserRound } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useCartStore } from "@/lib/cartStore";
-import { useAuth } from "@/context/useAuth";
 import { OFFICIAL_CATEGORIES } from "@/lib/catalog";
 import styles from "@/styles/navigation2026.module.css";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -14,7 +13,6 @@ import { trackSearch } from "@/lib/tracking";
 export default function NavbarMenu() {
   const router = useRouter();
   const { cart } = useCartStore();
-  const { currentUser } = useAuth();
   const { mainWhatsApp } = useSiteConfig();
   const [search, setSearch] = useState("");
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -88,7 +86,7 @@ export default function NavbarMenu() {
             </SheetContent>
           </Sheet>
 
-          <Link href="/my-account" aria-label={currentUser ? "Mi cuenta" : "Iniciar sesión"}>
+          <Link href="/my-account" aria-label="Mi cuenta o iniciar sesión">
             <UserRound size={20} />
           </Link>
 

@@ -11,6 +11,13 @@ type Kind = "banner" | "promotion";
 type Asset = { id:string; kind:Kind; title:string; subtitle?:string; mediaType?:"image"|"video"; imageUrl?:string; mobileImageUrl?:string; videoUrl?:string; mobileVideoUrl?:string; posterUrl?:string; linkUrl?:string; cta?:string; alt?:string; artworkOnly?:boolean; active?:boolean; archived?:boolean; sortOrder?:number; startsAt?:string|null; endsAt?:string|null };
 const empty = (kind:Kind):Omit<Asset,"id"> => ({ kind,title:"",subtitle:"",mediaType:"image",imageUrl:"",mobileImageUrl:"",videoUrl:"",mobileVideoUrl:"",posterUrl:"",linkUrl:"",cta:"Ver productos",alt:"",artworkOnly:false,active:true,archived:false,sortOrder:0,startsAt:null,endsAt:null });
 function localDate(value?:string|null){return value?new Date(value).toISOString().slice(0,16):"";}
+async function optimizeMarketingImage(file:File,maxWidth:number){
+  if(file.type==="image/svg+xml"||!file.type.startsWith("image/")||typeof createImageBitmap!=="function")return file;
+  const bitmap=await createImageBitmap(file);const scale=Math.min(1,maxWidth/bitmap.width);const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+  const context=canvas.getContext("2d");if(!context){bitmap.close();return file;}context.drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
+  const blob=await new Promise<Blob|null>(resolve=>canvas.toBlob(resolve,"image/webp",.84));if(!blob||blob.size>=file.size)return file;
+  return new File([blob],file.name.replace(/\.[^.]+$/,".webp"),{type:"image/webp",lastModified:Date.now()});
+}
 
 export default function AdminMarketing(){
   const {currentUser,loading}=useAuth(); const [authorized,setAuthorized]=useState<boolean|null>(null); const [tab,setTab]=useState<Kind>("banner"); const [items,setItems]=useState<Asset[]>([]); const [draft,setDraft]=useState<Omit<Asset,"id">|Asset>(empty("banner")); const [busy,setBusy]=useState(false); const [error,setError]=useState("");
@@ -24,6 +31,7 @@ export default function AdminMarketing(){
     if(file.size>limit)throw new Error(isVideo?"El video supera 40 MB.":"La imagen supera 8 MB.");
     if(isVideo&&!file.type.startsWith("video/"))throw new Error("Seleccione un archivo de video.");
     if(!isVideo&&!file.type.startsWith("image/"))throw new Error("Seleccione una imagen.");
+    if(!isVideo)file=await optimizeMarketingImage(file,field==="mobileImageUrl"?1440:2400);
     const clean=file.name.replace(/[^a-z0-9._-]+/gi,"-").toLowerCase(); const storage=getStorage(app); const target=ref(storage,`marketing/${tab}/${Date.now()}-${clean}`); await uploadBytes(target,file,{contentType:file.type}); const url=await getDownloadURL(target); setDraft(current=>({...current,[field]:url}));
   }
   async function submit(event:FormEvent){event.preventDefault();setBusy(true);try{const body={...draft,kind:tab};await request("id" in draft?"PATCH":"POST",body);await load();setDraft(empty(tab));setError("");}catch(e){setError(e instanceof Error?e.message:"No fue posible guardar.");}finally{setBusy(false);}}

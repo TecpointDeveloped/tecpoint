@@ -21,6 +21,8 @@ export type MarketingAsset = {
 };
 
 function localBannerWebp(url?: string) {
+  if (url?.includes("banner_dia_del_nino_1920x688_ajuste_slider")) return "/images/banners-current/dia-del-nino-desktop.webp";
+  if (url?.includes("banner_dia_del_nino_1080x1350_final_v3")) return "/images/banners-current/dia-del-nino-mobile.webp";
   if (!url?.startsWith("/images/banners-current/")) return "";
   return url.replace(/\.(png|jpe?g)$/i, ".webp");
 }
@@ -52,7 +54,7 @@ function ResponsiveArtwork({ asset, priority = false }: { asset: MarketingAsset;
       {asset.mobileImageUrl && <source media="(max-width: 680px)" srcSet={asset.mobileImageUrl} />}
       {desktopWebp && <source srcSet={desktopWebp} type="image/webp" />}
       <Image
-        src={asset.imageUrl}
+        src={desktopWebp || asset.imageUrl}
         alt={asset.alt || asset.title}
         fill
         priority={priority}

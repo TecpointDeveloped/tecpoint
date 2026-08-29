@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, ReactNode } from 'react';
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword, User } from 'firebase/auth';
-import { auth } from '../database/Config';
+import type { User } from 'firebase/auth';
 import { useRouter } from 'next/router';
 
 export interface AuthContextProps {
@@ -23,16 +22,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const route = useRouter()
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-
-    return unsubscribe;
+    let unsubscribe:()=>void=()=>{};let active=true;
+    import('../database/AuthConfig').then(({auth})=>{if(!active)return;unsubscribe=auth.onAuthStateChanged(user=>{setCurrentUser(user);setLoading(false);});}).catch(()=>setLoading(false));
+    return()=>{active=false;unsubscribe();};
   }, []);
 
   const signInWithGoogle = async () => {
     try {
+      const [{GoogleAuthProvider,signInWithPopup},{auth}]=await Promise.all([import('firebase/auth'),import('../database/AuthConfig')]);
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       route.push("/my-account")
@@ -43,7 +40,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signInWithEmailAndPassword = async (email: string, password: string) => {
     try {
-      await firebaseSignInWithEmailAndPassword(auth, email, password);
+      const [{signInWithEmailAndPassword},{auth}]=await Promise.all([import('firebase/auth'),import('../database/AuthConfig')]);
+      await signInWithEmailAndPassword(auth, email, password);
       console.log('Inicio de sesión exitoso con correo y contraseña');
 
     } catch (error) {
@@ -54,7 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signOut = async () => {
     try {
-      await auth.signOut();
+      const {auth}=await import('../database/AuthConfig');await auth.signOut();
       route.push("/my-account")
     } catch (error) {
       console.error('Error al cerrar sesión', error);
