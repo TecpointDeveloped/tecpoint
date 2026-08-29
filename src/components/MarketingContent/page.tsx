@@ -96,7 +96,7 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
   const previous = () => setActive((active - 1 + validAssets.length) % validAssets.length);
   const next = () => setActive((active + 1) % validAssets.length);
   const artwork = (
-    <>
+    <span key={asset.id} className={styles.bannerScene}>
       <ResponsiveArtwork key={asset.id} asset={asset} priority={active === 0} />
       {!asset.artworkOnly && <span className={styles.bannerShade} />}
       {!asset.artworkOnly && (
@@ -107,7 +107,7 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
           {asset.cta && <b>{asset.cta} →</b>}
         </span>
       )}
-    </>
+    </span>
   );
 
   return (

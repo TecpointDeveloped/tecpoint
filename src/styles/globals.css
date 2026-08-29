@@ -60,6 +60,49 @@ select {
   outline-offset: 3px;
 }
 
+/* TECPOINT motion language: calm entrances, fast feedback and no layout shifts. */
+.tp-route-progress {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #8f0b24, #ef233c 55%, #ffffff);
+}
+
+.tp-route-progress.is-active {
+  opacity: 1;
+  animation: tp-route-loading 1.1s cubic-bezier(.2,.75,.2,1) infinite;
+}
+
+.tp-motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(3px);
+  transition:
+    opacity .7s cubic-bezier(.2,.75,.2,1) var(--tp-motion-delay, 0ms),
+    transform .8s cubic-bezier(.2,.75,.2,1) var(--tp-motion-delay, 0ms),
+    filter .65s ease var(--tp-motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.tp-motion-reveal.tp-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+@keyframes tp-route-loading {
+  0% { transform: scaleX(0); }
+  55% { transform: scaleX(.72); }
+  100% { transform: scaleX(.94); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -71,6 +114,17 @@ select {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .tp-motion-reveal,
+  .tp-motion-reveal.tp-motion-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .tp-route-progress {
+    display: none;
   }
 }
 
