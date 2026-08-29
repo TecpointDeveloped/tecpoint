@@ -31,12 +31,10 @@ export default function Tracking() {
     if (!metaPixelId) return;
     const flush = () => flushMetaQueue();
     window.addEventListener("tecpoint:meta-ready", flush);
-    const timer = window.setInterval(flush, 250);
-    const timeout = window.setTimeout(() => window.clearInterval(timer), 10000);
+    const retries = [250, 1000, 3000].map((delay) => window.setTimeout(flush, delay));
     return () => {
       window.removeEventListener("tecpoint:meta-ready", flush);
-      window.clearInterval(timer);
-      window.clearTimeout(timeout);
+      retries.forEach((timer) => window.clearTimeout(timer));
     };
   }, [metaPixelId]);
 

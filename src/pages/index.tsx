@@ -299,7 +299,7 @@ export default function Home({
               src="/images/producto-editorial-2026.webp"
               alt="Accesorios tecnológicos seleccionados por TECPOINT"
               fill
-              priority
+              priority={!homepageBanners.length}
               quality={85}
               sizes="(max-width: 900px) 100vw, 1200px"
             />

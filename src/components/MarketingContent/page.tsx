@@ -20,6 +20,11 @@ export type MarketingAsset = {
   artworkOnly?: boolean;
 };
 
+function localBannerWebp(url?: string) {
+  if (!url?.startsWith("/images/banners-current/")) return "";
+  return url.replace(/\.(png|jpe?g)$/i, ".webp");
+}
+
 function ResponsiveArtwork({ asset, priority = false }: { asset: MarketingAsset; priority?: boolean }) {
   if (asset.mediaType === "video" && asset.videoUrl) {
     return (
@@ -39,9 +44,13 @@ function ResponsiveArtwork({ asset, priority = false }: { asset: MarketingAsset;
     );
   }
   if (!asset.imageUrl) return null;
+  const desktopWebp = localBannerWebp(asset.imageUrl);
+  const mobileWebp = localBannerWebp(asset.mobileImageUrl);
   return (
     <picture>
+      {mobileWebp && <source media="(max-width: 680px)" srcSet={mobileWebp} type="image/webp" />}
       {asset.mobileImageUrl && <source media="(max-width: 680px)" srcSet={asset.mobileImageUrl} />}
+      {desktopWebp && <source srcSet={desktopWebp} type="image/webp" />}
       <Image
         src={asset.imageUrl}
         alt={asset.alt || asset.title}

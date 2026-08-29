@@ -1528,3 +1528,4 @@
     transition: none;
   }
 }
+.page>section:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 760px}

@@ -14,8 +14,8 @@ export default function AppIntro() {
     }
 
     window.sessionStorage.setItem("tecpoint-intro-played", "true");
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 650);
-    const removeTimer = window.setTimeout(() => setVisible(false), 980);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 240);
+    const removeTimer = window.setTimeout(() => setVisible(false), 520);
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(removeTimer);
