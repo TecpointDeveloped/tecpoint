@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -18,11 +18,14 @@ import {
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import { trackContact } from "@/lib/tracking";
 import styles from "@/styles/mayoreo.module.css";
+import { validWholesaleAccess, WHOLESALE_COOKIE } from "@/lib/wholesaleAccess.server";
 
-type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number };
+type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number; catalogUnlocked: boolean };
 
-export async function getServerSideProps({ res, query }: { res: { setHeader: (name: string, value: string) => void }; query: { page?: string | string[] } }) {
-  res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=900");
+export async function getServerSideProps({ req, res, query }: { req: { cookies: Record<string, string> }; res: { setHeader: (name: string, value: string) => void }; query: { page?: string | string[] } }) {
+  res.setHeader("Cache-Control", "private, no-store");
+  const catalogUnlocked = validWholesaleAccess(req.cookies[WHOLESALE_COOKIE]);
+  if (!catalogUnlocked) return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: false } };
   try {
     const snapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
     const wholesaleProducts = publicCatalog([
@@ -52,10 +55,10 @@ export async function getServerSideProps({ res, query }: { res: { setHeader: (na
     const totalPages = Math.max(1, Math.ceil(totalProducts / perPage));
     const currentPage = Math.min(totalPages, Math.max(1, Number(requestedPage) || 1));
     const products = wholesaleProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
-    return { props: { products, totalProducts, currentPage, totalPages } };
+    return { props: { products, totalProducts, currentPage, totalPages, catalogUnlocked: true } };
   } catch (error) {
     console.error("No fue posible cargar las oportunidades de mayoreo:", error);
-    return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1 } };
+    return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: true } };
   }
 }
 
@@ -71,15 +74,10 @@ function money(value: number) {
   }).format(value);
 }
 
-export default function Mayoreo({ products, totalProducts, currentPage, totalPages }: Props) {
+export default function Mayoreo({ products, totalProducts, currentPage, totalPages, catalogUnlocked }: Props) {
   const { wholesaleWhatsApp } = useSiteConfig();
   const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
-  const [catalogUnlocked, setCatalogUnlocked] = useState(false);
-
-  useEffect(() => {
-    setCatalogUnlocked(sessionStorage.getItem("tecpoint_wholesale_access") === "granted");
-  }, []);
 
   async function submitLead(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -98,9 +96,8 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
       form.reset();
       setFormState("success");
       setFormMessage("¡Gracias! El equipo de Mayoreo recibió sus datos y podrá contactarle.");
-      sessionStorage.setItem("tecpoint_wholesale_access", "granted");
-      setCatalogUnlocked(true);
       trackContact("Formulario mayoreo");
+      window.location.assign("/mayoreo");
     } catch (error) {
       setFormState("error");
       setFormMessage(error instanceof Error ? error.message : "No fue posible enviar sus datos.");

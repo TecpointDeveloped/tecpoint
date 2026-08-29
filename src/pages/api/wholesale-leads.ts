@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
+import { wholesaleCookieHeader } from "@/lib/wholesaleAccess.server";
 
 function clean(value: unknown, maxLength: number) {
   return String(value || "").replace(/\s+/g, " ").trim().slice(0, maxLength);
@@ -37,5 +38,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     createdAt: FieldValue.serverTimestamp(),
   });
 
+  res.setHeader("Set-Cookie", wholesaleCookieHeader());
   return res.status(201).json({ ok: true });
 }

@@ -63,7 +63,7 @@ function activeMarketingAssets(docs: Awaited<ReturnType<typeof getDocs>>["docs"]
 }
 
 export async function getServerSideProps({ res }: { res: { setHeader: (name: string, value: string) => void } }) {
-  res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=900");
+  res.setHeader("Cache-Control", "public, s-maxage=5, stale-while-revalidate=5");
   const [productDocs, bannerDocs, promotionDocs, settingsDoc] = await Promise.all([
     getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string)),
     getDocs(collection(db, "site_banners")).catch(() => null),
