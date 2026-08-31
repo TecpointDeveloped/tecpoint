@@ -1,6 +1,6 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
-import currentCatalog from "@/data/current-catalog-w34.json";
+import currentCatalog from "@/data/current-catalog-w35.json";
 import approvedImages from "@/data/approved-product-images.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
@@ -257,18 +257,21 @@ export function isNewProduct(product: Pick<Product, "fecha_agregado">, reference
   return age >= 0 && age <= fortyFiveDays;
 }
 
-export function approvedCatalogProducts(): Product[] {
-  return Object.entries(approvedImages).flatMap(([sku, image]) => {
-    const inventory = getCurrentInventory(sku);
-    if (!inventory || inventory.stock <= 0 || !inventory.upc || inventory.detailPrice <= 0) {
+export function approvedCatalogProducts(includeMissingPrice = false): Product[] {
+  const imageMap = approvedImages as Record<string, string>;
+  return currentCatalog.records.flatMap((inventory) => {
+    const sku = String(inventory.sku || "").trim();
+    if (!sku || (!includeMissingPrice && inventory.detailPrice <= 0)) {
       return [];
     }
+    const exactImage = imageMap[sku];
+    const image = exactImage || "/brand/isologo.svg";
     const brand = canonicalBrandName(inventory.brand);
-    return [{
-      id: `approved-${sku}`,
+    const product = {
+      id: `w35-${sku}`,
       sku,
       producto: inventory.description,
-      slug: cleanProductSlug(inventory.description, sku),
+      slug: inventory.slug,
       descripcion: inventory.description,
       categorias: [inventory.category],
       Subcategorias: inventory.subcategory,
@@ -277,12 +280,15 @@ export function approvedCatalogProducts(): Product[] {
       imagenes: { imagen_01: { id: "imagen_01", img: image } },
       extradata: {
         upc: inventory.upc,
-        stock: true,
+        stock: inventory.stock > 0,
+        inventoryQuantity: inventory.stock,
+        imagePending: !exactImage,
         wholesaleEnabled: inventory.bronzePrice > 0,
         wholesaleCategory: inventory.category,
       },
-      fecha_agregado: "2026-08-27T00:00:00.000Z",
-    } satisfies Product];
+      fecha_agregado: "2026-08-31T00:00:00.000Z",
+    } satisfies Product;
+    return [enrichProduct(product)];
   });
 }
 
@@ -462,7 +468,7 @@ function usableImageUrls(product: Product) {
     .filter((url): url is string =>
       Boolean(
         url &&
-          !/default-product|placeholder|sin-imagen/i.test(url) &&
+          !/default-product|placeholder|sin-imagen|brand\/isologo/i.test(url) &&
           (/^https?:\/\//i.test(url) || url.startsWith("/")),
       ),
     );
@@ -483,7 +489,14 @@ export function productQualityIssues(product: Product): ProductQualityIssue[] {
 }
 
 export function isPublicProduct(product: Product) {
-  return productQualityIssues(product).length === 0;
+  return productBlockingIssues(product).length === 0;
+}
+
+/** UPC and photography remain visible quality tasks, but do not hide a priced SKU. */
+export function productBlockingIssues(product: Product) {
+  return productQualityIssues(product).filter(
+    (issue) => issue !== "imagen" && issue !== "upc" && issue !== "descripcion",
+  );
 }
 
 export function deduplicateProducts<T extends Product>(products: T[]) {
@@ -495,16 +508,9 @@ export function deduplicateProducts<T extends Product>(products: T[]) {
       bySku.set(key, product);
     }
   }
-  const byUpc = new Map<string, T>();
-  for (const product of bySku.values()) {
-    const upc = String(product.extradata?.upc || "").replace(/\s+/g, "");
-    const key = upc || `sin-upc:${product.id}`;
-    const existing = byUpc.get(key);
-    if (!existing || completenessScore(product) > completenessScore(existing)) {
-      byUpc.set(key, product);
-    }
-  }
-  return [...byUpc.values()];
+  // UPC is audited in the CRUD but is not a safe deduplication key: W35 contains
+  // legitimate variants that share one UPC while keeping distinct SKUs.
+  return [...bySku.values()];
 }
 
 export function publicCatalog<T extends Product>(products: T[]) {

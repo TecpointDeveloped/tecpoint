@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
-import { approvedCatalogProducts, productQualityIssues } from "@/lib/catalog";
+import { approvedCatalogProducts, productBlockingIssues, productQualityIssues } from "@/lib/catalog";
 import { pendingW34DraftProducts } from "@/lib/w34Drafts";
 import type { Product } from "@/types/ProductTypes";
 
@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           ...(sku && (skuCounts.get(sku) || 0) > 1 ? ["sku"] : []),
           ...(upc && (upcCounts.get(upc) || 0) > 1 ? ["upc"] : []),
         ];
-        return { ...product, issues, duplicates, publicReady: issues.length === 0 && duplicates.length === 0 };
+        return { ...product, issues, duplicates, publicReady: productBlockingIssues(product).length === 0 && duplicates.length === 0 };
       });
       const filter = text(req.query.filter, 30) || "incomplete";
       const search = text(req.query.query, 160).toLowerCase();
@@ -75,27 +75,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
-    if (req.method === "POST" && ["syncW34", "syncW34Drafts"].includes(req.body?.action)) {
+    if (req.method === "POST" && ["syncW34", "syncW34Drafts", "syncW35"].includes(req.body?.action)) {
       const approved = req.body.action === "syncW34Drafts"
         ? pendingW34DraftProducts()
-        : approvedCatalogProducts();
+        : approvedCatalogProducts(req.body.action === "syncW35");
       const snapshot = await admin.db.collection(collectionName).get();
       const existingBySku = new Map(
         snapshot.docs
           .map((document) => [text(document.data().sku).toLowerCase(), document] as const)
           .filter(([sku]) => Boolean(sku)),
       );
-      const batch = admin.db.batch();
       let created = 0;
       let updated = 0;
-
-      approved.forEach((product) => {
+      const operations = approved.map((product) => {
         const skuKey = text(product.sku).toLowerCase();
         const existing = existingBySku.get(skuKey);
-        const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : "w34";
+        const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : req.body.action === "syncW35" ? "w35" : "w34";
         const documentId = `${prefix}-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
         const reference = existing?.ref || admin.db.collection(collectionName).doc(documentId);
-        batch.set(reference, {
+        const payload = {
           sku: product.sku,
           producto: product.producto,
           slug: product.slug,
@@ -109,11 +107,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           fecha_agregado: product.fecha_agregado,
           updatedAt: FieldValue.serverTimestamp(),
           ...(!existing ? { createdAt: FieldValue.serverTimestamp() } : {}),
-        }, { merge: true });
+        };
         if (existing) updated += 1;
         else created += 1;
+        return { reference, payload };
       });
-      await batch.commit();
+      for (let offset = 0; offset < operations.length; offset += 400) {
+        const batch = admin.db.batch();
+        operations.slice(offset, offset + 400).forEach(({ reference, payload }) => batch.set(reference, payload, { merge: true }));
+        await batch.commit();
+      }
       return res.status(200).json({ ok: true, total: approved.length, created, updated });
     }
 

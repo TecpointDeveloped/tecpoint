@@ -39,6 +39,8 @@ export interface Product {
   }
   extradata?: {
     stock?: boolean;
+    inventoryQuantity?: number;
+    imagePending?: boolean;
     discount?: number;
     upc?: string;
     color?: string;

@@ -1,2 +1,474 @@
-.page{background:#f4f6f7;color:#101514;min-height:100vh}.hero{min-height:620px;display:grid;grid-template-columns:1.05fr .95fr;background:#c8102e;overflow:hidden}.copy{padding:clamp(70px,9vw,150px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;color:#fff}.copy p,.products header p{font-size:13px;font-weight:800;letter-spacing:.2em;margin:0 0 26px}.copy h1{font-size:clamp(64px,9vw,142px);line-height:.82;letter-spacing:-.075em;margin:0}.copy h2{font-size:clamp(28px,3.2vw,50px);line-height:1.02;max-width:640px;margin:35px 0 18px}.copy span{font-size:19px;line-height:1.65;max-width:620px}.copy a,.empty a{margin-top:32px;padding:17px 25px;background:#fff;color:#101514;font-weight:800;text-transform:uppercase;letter-spacing:.08em;border-radius:999px}.visual{position:relative;display:flex;align-items:center;justify-content:center;background:#101514;min-height:440px}.visual>img{object-fit:cover}.visual>b{position:absolute;bottom:65px;color:#fff;font-size:clamp(28px,5vw,70px);letter-spacing:.05em}.products{padding:clamp(70px,8vw,130px) clamp(24px,6vw,100px)}.products header{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:55px}.products h2{font-size:clamp(40px,5vw,76px);line-height:.95;letter-spacing:-.055em;max-width:850px;margin:0}.products header a{font-weight:800;color:#c8102e}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.card{background:#fff;padding:18px 18px 25px;display:flex;flex-direction:column;min-width:0;transition:transform .25s ease,box-shadow .25s ease}.card:hover{transform:translateY(-7px);box-shadow:0 22px 50px #10151416}.card>div{position:relative;aspect-ratio:1;background:#fff;overflow:hidden}.card img{width:100%;height:100%;object-fit:contain}.card small{margin-top:22px;color:#c8102e;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.card h3{font-size:20px;line-height:1.2;margin:9px 0 14px;min-height:48px}.card strong{font-size:20px}.card span{margin-top:18px;font-size:13px;font-weight:800;text-transform:uppercase}.empty{background:#fff;padding:70px;text-align:center}.empty h3{font-size:32px;margin:0 0 10px}.empty a{display:inline-block;background:#c8102e;color:#fff}.empty p{margin:auto;max-width:520px}
-@media(max-width:1000px){.hero{grid-template-columns:1fr}.visual{min-height:390px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.hero{min-height:0}.copy{padding:75px 25px}.copy h1{font-size:62px}.visual{min-height:320px}.products{padding:65px 18px}.products header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.empty{padding:45px 22px}}
+.page {
+  background: #f4f6f7;
+  color: #101514;
+  min-height: 100vh;
+}
+.hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  background: #c8102e;
+  overflow: hidden;
+}
+.copy {
+  padding: clamp(70px, 9vw, 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: #fff;
+}
+.copy p,
+.products header p {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  margin: 0 0 26px;
+}
+.copy h1 {
+  font-size: clamp(64px, 9vw, 142px);
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  margin: 0;
+}
+.copy h2 {
+  font-size: clamp(28px, 3.2vw, 50px);
+  line-height: 1.02;
+  max-width: 640px;
+  margin: 35px 0 18px;
+}
+.copy span {
+  font-size: 19px;
+  line-height: 1.65;
+  max-width: 620px;
+}
+.copy a,
+.empty a {
+  margin-top: 32px;
+  padding: 17px 25px;
+  background: #fff;
+  color: #101514;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+}
+.visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #101514;
+  min-height: 440px;
+}
+.visual > img {
+  object-fit: cover;
+}
+.visual > b {
+  position: absolute;
+  bottom: 65px;
+  color: #fff;
+  font-size: clamp(28px, 5vw, 70px);
+  letter-spacing: 0.05em;
+}
+.products {
+  padding: clamp(70px, 8vw, 130px) clamp(24px, 6vw, 100px);
+}
+.products header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 55px;
+}
+.products h2 {
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  max-width: 850px;
+  margin: 0;
+}
+.products header a {
+  font-weight: 800;
+  color: #c8102e;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.card {
+  background: #fff;
+  padding: 18px 18px 25px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 50px #10151416;
+}
+.card > div {
+  position: relative;
+  aspect-ratio: 1;
+  background: #fff;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.card small {
+  margin-top: 22px;
+  color: #c8102e;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.card h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 9px 0 14px;
+  min-height: 48px;
+}
+.card strong {
+  font-size: 20px;
+}
+.card span {
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.empty {
+  background: #fff;
+  padding: 70px;
+  text-align: center;
+}
+.empty h3 {
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+.empty a {
+  display: inline-block;
+  background: #c8102e;
+  color: #fff;
+}
+.empty p {
+  margin: auto;
+  max-width: 520px;
+}
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    min-height: 390px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .hero {
+    min-height: 0;
+  }
+  .copy {
+    padding: 75px 25px;
+  }
+  .copy h1 {
+    font-size: 62px;
+  }
+  .visual {
+    min-height: 320px;
+  }
+  .products {
+    padding: 65px 18px;
+  }
+  .products header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .empty {
+    padding: 45px 22px;
+  }
+}
+
+/* Play Lab: campaign-only extension for Día del Niño. */
+.childrensDay .hero {
+  position: relative;
+  background: #0073cf;
+  isolation: isolate;
+}
+.childrensDay .copy {
+  position: relative;
+  z-index: 2;
+}
+.childrensDay .copy > p {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: #101514;
+  padding: 10px 16px;
+  border-radius: 999px;
+  margin-bottom: 28px;
+}
+.childrensDay .copy > p:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #c8102e;
+  border-radius: 50%;
+}
+.childrensDay .copy h1 {
+  display: flex;
+  flex-direction: column;
+}
+.childrensDay .copy h1 span {
+  color: #fff;
+}
+.childrensDay .copy h1 em {
+  color: #ffd447;
+  font-style: normal;
+}
+.childrensDay .copy a {
+  background: #ffd447;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.childrensDay .copy a:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 12px 0 #101514;
+}
+.childrensDay .visual {
+  background: #dff3ff;
+  overflow: hidden;
+}
+.childrensDay .visual > b {
+  z-index: 3;
+  color: #101514;
+  right: 7%;
+  bottom: 30px;
+}
+.logoStage {
+  position: relative;
+  z-index: 2;
+  width: min(330px, 62vw);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 20px 0 #101514;
+}
+.logoStage img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+}
+.heroDecor i,
+.playShapes i {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+.heroDecor i:nth-child(1) {
+  width: 62px;
+  height: 62px;
+  background: #ffd447;
+  left: 5%;
+  top: 9%;
+  transform: rotate(12deg);
+  animation: playFloat 6s ease-in-out infinite;
+}
+.heroDecor i:nth-child(2) {
+  width: 92px;
+  height: 92px;
+  border: 18px solid #ff6b6b;
+  border-radius: 50%;
+  left: 38%;
+  bottom: 7%;
+  animation: playDrift 8s ease-in-out infinite;
+}
+.heroDecor i:nth-child(3) {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  right: 51%;
+  top: 11%;
+  background: #fff;
+  box-shadow:
+    24px 0 #fff,
+    48px 0 #fff,
+    0 24px #fff,
+    24px 24px #fff,
+    48px 24px #fff,
+    0 48px #fff,
+    24px 48px #fff,
+    48px 48px #fff;
+}
+.playShapes i:nth-child(1) {
+  width: 150px;
+  height: 150px;
+  border: 28px solid #2ec4b6;
+  border-radius: 50%;
+  left: -50px;
+  top: 10%;
+  animation: playDrift 8s ease-in-out infinite;
+}
+.playShapes i:nth-child(2) {
+  width: 64px;
+  height: 64px;
+  background: #ff6b6b;
+  right: 10%;
+  top: 12%;
+  transform: rotate(45deg);
+  animation: playFloat 6s ease-in-out infinite;
+}
+.playShapes i:nth-child(3) {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 31%;
+  background: #ffd447;
+}
+.playShapes i:nth-child(4) {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  right: 13%;
+  top: 45%;
+  background: #0073cf;
+  box-shadow:
+    26px 0 #0073cf,
+    52px 0 #0073cf,
+    0 26px #0073cf,
+    26px 26px #0073cf,
+    52px 26px #0073cf;
+}
+.childrensDay .products {
+  position: relative;
+  overflow: hidden;
+}
+.childrensDay .products header p {
+  color: #0073cf;
+}
+.childrensDay .products header a {
+  color: #101514;
+  border: 2px solid #101514;
+  border-radius: 999px;
+  padding: 12px 20px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+.childrensDay .products header a:hover {
+  background: #101514;
+  color: #fff;
+}
+.childrensDay .card {
+  border: 1px solid #10151418;
+}
+.childrensDay .card:nth-child(4n + 1) > div {
+  background: #dff3ff;
+}
+.childrensDay .card:nth-child(4n + 2) > div {
+  background: #fff4bb;
+}
+.childrensDay .card:nth-child(4n + 3) > div {
+  background: #ffe2e2;
+}
+.childrensDay .card:nth-child(4n) > div {
+  background: #d9f5ef;
+}
+.childrensDay .card img {
+  mix-blend-mode: multiply;
+}
+.childrensDay .card:hover {
+  transform: translateY(-8px) rotate(-0.35deg);
+  box-shadow: 0 18px 0 #0073cf22;
+}
+.childrensDay .empty {
+  border-top: 12px solid #ffd447;
+}
+@keyframes playFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(19deg);
+  }
+}
+@keyframes playDrift {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+  50% {
+    transform: translateX(13px) rotate(-8deg);
+  }
+}
+@media (max-width: 1000px) {
+  .childrensDay .heroDecor i:nth-child(3) {
+    right: 8%;
+  }
+  .childrensDay .visual {
+    min-height: 430px;
+  }
+}
+@media (max-width: 620px) {
+  .childrensDay .copy {
+    padding: 68px 25px 76px;
+  }
+  .childrensDay .copy h1 {
+    font-size: 68px;
+  }
+  .childrensDay .copy h2 {
+    font-size: 31px;
+  }
+  .childrensDay .visual {
+    min-height: 350px;
+  }
+  .logoStage {
+    width: 235px;
+  }
+  .heroDecor i:nth-child(2) {
+    left: auto;
+    right: -22px;
+    bottom: 3%;
+  }
+  .playShapes i:nth-child(1) {
+    width: 110px;
+    height: 110px;
+    border-width: 20px;
+  }
+  .childrensDay .products h2 {
+    font-size: 45px;
+  }
+  .childrensDay .products header a {
+    align-self: flex-start;
+  }
+  .childrensDay .card:hover {
+    transform: translateY(-5px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heroDecor i,
+  .playShapes i,
+  .childrensDay .copy a,
+  .childrensDay .card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
