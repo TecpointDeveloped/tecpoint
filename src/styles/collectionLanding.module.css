@@ -204,12 +204,14 @@
 /* Play Lab: campaign-only extension for Día del Niño. */
 .childrensDay .hero {
   position: relative;
+  min-height: 500px;
   background: #0073cf;
   isolation: isolate;
 }
 .childrensDay .copy {
   position: relative;
   z-index: 2;
+  padding: clamp(48px, 6vw, 92px);
 }
 .childrensDay .copy > p {
   display: inline-flex;
@@ -231,7 +233,11 @@
 .childrensDay .copy h1 {
   display: flex;
   flex-direction: column;
+  font-size: clamp(58px, 7vw, 108px);
 }
+.childrensDay .copy h2 {margin:24px 0 12px;font-size:clamp(25px,2.7vw,40px)}
+.childrensDay .copy > span {font-size:17px;line-height:1.5}
+.childrensDay .copy a {margin-top:22px}
 .childrensDay .copy h1 span {
   color: #fff;
 }
@@ -371,7 +377,9 @@
 .childrensDay .products {
   position: relative;
   overflow: hidden;
+  padding-top: clamp(46px, 5vw, 76px);
 }
+.childrensDay .products header {margin-bottom:36px}
 .childrensDay .products header p {
   color: #0073cf;
 }
@@ -410,6 +418,15 @@
 .childrensDay .empty {
   border-top: 12px solid #ffd447;
 }
+.celebration{position:fixed;inset:76px 0 0;z-index:40;overflow:hidden;pointer-events:none;contain:layout paint}
+.celebration i{position:absolute;top:-24px;width:7px;height:16px;border-radius:3px;opacity:.7;animation:confettiFall 7s linear infinite}
+.celebration i:nth-child(4n+1){background:#ffd447}.celebration i:nth-child(4n+2){background:#2ec4b6}.celebration i:nth-child(4n+3){background:#ff6b6b}.celebration i:nth-child(4n){background:#0073cf}
+.celebration i:nth-child(1){left:5%;animation-delay:-1s}.celebration i:nth-child(2){left:12%;animation-delay:-5s}.celebration i:nth-child(3){left:19%;animation-delay:-3s}.celebration i:nth-child(4){left:28%;animation-delay:-6s}.celebration i:nth-child(5){left:36%;animation-delay:-2s}.celebration i:nth-child(6){left:44%;animation-delay:-4s}.celebration i:nth-child(7){left:52%;animation-delay:-.5s}.celebration i:nth-child(8){left:61%;animation-delay:-5.5s}.celebration i:nth-child(9){left:69%;animation-delay:-2.8s}.celebration i:nth-child(10){left:76%;animation-delay:-6.4s}.celebration i:nth-child(11){left:83%;animation-delay:-1.7s}.celebration i:nth-child(12){left:90%;animation-delay:-4.6s}.celebration i:nth-child(13){left:95%;animation-delay:-3.6s}.celebration i:nth-child(14){left:2%;animation-delay:-6.8s}
+.celebration b{position:absolute;bottom:-70px;width:24px;height:30px;border-radius:52% 52% 48% 48%;opacity:.58;animation:balloonRise 13s ease-in infinite;filter:drop-shadow(0 5px 7px rgba(16,21,20,.14))}
+.celebration b:after{content:"";position:absolute;left:11px;top:29px;width:1px;height:22px;background:rgba(16,21,20,.3)}
+.celebration b:nth-of-type(1){left:7%;background:#ff6b6b;animation-delay:-3s}.celebration b:nth-of-type(2){left:31%;background:#ffd447;animation-delay:-10s}.celebration b:nth-of-type(3){left:58%;background:#2ec4b6;animation-delay:-6s}.celebration b:nth-of-type(4){left:79%;background:#5bc0ff;animation-delay:-12s}.celebration b:nth-of-type(5){left:93%;background:#ff8cc6;animation-delay:-8s}
+@keyframes confettiFall{0%{transform:translate3d(0,-30px,0) rotate(0)}50%{transform:translate3d(22px,48vh,0) rotate(240deg)}100%{transform:translate3d(-14px,105vh,0) rotate(520deg)}}
+@keyframes balloonRise{0%{transform:translate3d(0,70px,0) rotate(-4deg)}50%{transform:translate3d(15px,-52vh,0) rotate(5deg)}100%{transform:translate3d(-8px,-110vh,0) rotate(-3deg)}}
 @keyframes playFloat {
   0%,
   100% {
@@ -433,21 +450,21 @@
     right: 8%;
   }
   .childrensDay .visual {
-    min-height: 430px;
+    min-height: 360px;
   }
 }
 @media (max-width: 620px) {
   .childrensDay .copy {
-    padding: 68px 25px 76px;
+    padding: 44px 25px 50px;
   }
   .childrensDay .copy h1 {
-    font-size: 68px;
+    font-size: 60px;
   }
   .childrensDay .copy h2 {
     font-size: 31px;
   }
   .childrensDay .visual {
-    min-height: 350px;
+    min-height: 285px;
   }
   .logoStage {
     width: 235px;
@@ -471,13 +488,17 @@
   .childrensDay .card:hover {
     transform: translateY(-5px);
   }
+  .celebration{inset:68px 0 0}.celebration i{opacity:.52}.celebration b{width:20px;height:25px;opacity:.48}.celebration b:after{left:9px;top:24px}
 }
 @media (prefers-reduced-motion: reduce) {
   .heroDecor i,
   .playShapes i,
   .childrensDay .copy a,
-  .childrensDay .card {
+  .childrensDay .card,
+  .celebration i,
+  .celebration b {
     animation: none !important;
     transition: none !important;
   }
+  .celebration{display:none}
 }

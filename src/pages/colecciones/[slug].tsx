@@ -182,6 +182,12 @@ export default function CollectionLanding({ campaign, products }: Props) {
       <main
         className={`${styles.page} ${isChildrensDay ? styles.childrensDay : ""}`}
       >
+        {isChildrensDay && (
+          <div className={styles.celebration} aria-hidden="true">
+            {Array.from({ length: 14 }, (_, index) => <i key={`confetti-${index}`} />)}
+            {Array.from({ length: 5 }, (_, index) => <b key={`balloon-${index}`} />)}
+          </div>
+        )}
         <section className={styles.hero}>
           {isChildrensDay && (
             <div className={styles.heroDecor} aria-hidden="true">
