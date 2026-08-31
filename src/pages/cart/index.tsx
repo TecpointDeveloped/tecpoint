@@ -233,18 +233,18 @@ const CartPage = () => {
         </div>
 
         <div className="py-4 px-6 flex flex-col gap-4 w-full md:w-1/2 bg-gray-100">
-          <div className="flex flex-wrap w-full bg-white p-2">
+          <div className="grid w-full grid-cols-1 gap-3 bg-white p-3 xl:grid-cols-2">
             {users.map((user, index) => (
               <Checkbox
                 key={index}
                 aria-label={user.name}
                 isSelected={selectedUserIndex === index}
                 onValueChange={() => setSelectedUserIndex(index)}
-                className="border p-4 w-[280px] m-2"
+                className="min-w-0 w-full border p-4"
               >
-                <div className="flex justify-between gap-2 w-[280px]">
-                  <div className="flex flex-col items-start gap-1">
-                    <span className="text-lg text-default-500">{user.role}</span>
+                <div className="flex min-w-0 justify-between gap-2 w-full">
+                  <div className="min-w-0 flex flex-col items-start gap-1">
+                    <span className="break-words text-left text-base leading-6 text-default-500">{user.role}</span>
                   </div>
                 </div>
               </Checkbox>

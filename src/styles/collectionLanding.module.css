@@ -253,6 +253,18 @@
   background: #dff3ff;
   overflow: hidden;
 }
+.childrensDay .visual > img {
+  object-fit: cover;
+  object-position: 58% center;
+  filter: none;
+}
+.childrensDay .visual:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,115,207,.18), transparent 35%);
+  pointer-events: none;
+}
 .childrensDay .visual > b {
   z-index: 3;
   color: #101514;
@@ -379,20 +391,17 @@
 .childrensDay .card {
   border: 1px solid #10151418;
 }
-.childrensDay .card:nth-child(4n + 1) > div {
-  background: #dff3ff;
-}
-.childrensDay .card:nth-child(4n + 2) > div {
-  background: #fff4bb;
-}
-.childrensDay .card:nth-child(4n + 3) > div {
-  background: #ffe2e2;
-}
-.childrensDay .card:nth-child(4n) > div {
-  background: #d9f5ef;
-}
+.childrensDay .card > div {background:#fff;border:3px solid transparent;border-radius:18px;isolation:isolate}
+.childrensDay .card:nth-child(4n + 1) > div {box-shadow:inset 0 0 0 2px #5bc0ff,0 0 22px rgba(0,115,207,.25)}
+.childrensDay .card:nth-child(4n + 2) > div {box-shadow:inset 0 0 0 2px #ffd447,0 0 22px rgba(255,212,71,.32)}
+.childrensDay .card:nth-child(4n + 3) > div {box-shadow:inset 0 0 0 2px #ff6b6b,0 0 22px rgba(255,107,107,.25)}
+.childrensDay .card:nth-child(4n) > div {box-shadow:inset 0 0 0 2px #2ec4b6,0 0 22px rgba(46,196,182,.25)}
 .childrensDay .card img {
-  mix-blend-mode: multiply;
+  position:relative;
+  z-index:1;
+  padding:12px;
+  mix-blend-mode:normal;
+  filter:none;
 }
 .childrensDay .card:hover {
   transform: translateY(-8px) rotate(-0.35deg);

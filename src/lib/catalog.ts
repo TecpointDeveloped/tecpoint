@@ -414,7 +414,9 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
       ([key]) => key !== "createdAt" && key !== "updatedAt",
     ),
   ) as T;
-  const category = officialCategory(product);
+  const category = isInternalCatalogProduct(product)
+    ? String(product.categorias?.[0] || "Merchandising")
+    : officialCategory(product);
   const inventory = getCurrentInventory(product.sku);
   const brand = canonicalBrandName(
     inventory?.brand || product.marca_producto?.marca,
@@ -489,7 +491,14 @@ export function productQualityIssues(product: Product): ProductQualityIssue[] {
 }
 
 export function isPublicProduct(product: Product) {
-  return productBlockingIssues(product).length === 0;
+  return productBlockingIssues(product).length === 0 && !isInternalCatalogProduct(product);
+}
+
+/** Operational packaging and store displays stay in the CRUD, never in the customer catalog. */
+export function isInternalCatalogProduct(product: CatalogProduct) {
+  const category = normalizeText(product.categorias?.[0] || "");
+  const sku = normalizeText(product.sku || "");
+  return sku.startsWith("em-") || category.startsWith("empaque ") || category === "empaque" || category === "merchandising";
 }
 
 /** UPC and photography remain visible quality tasks, but do not hide a priced SKU. */

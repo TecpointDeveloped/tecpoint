@@ -162,6 +162,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 export default function CollectionLanding({ campaign, products }: Props) {
   const canonical = `https://tecpoint.ws/colecciones/${campaign.slug}`;
   const isChildrensDay = campaign.slug === "dia-del-nino";
+  const heroImage = isChildrensDay
+    ? "/images/collections/dia-del-nino-lifestyle-v2.png"
+    : campaign.heroImageUrl;
   return (
     <>
       <Head>
@@ -171,8 +174,8 @@ export default function CollectionLanding({ campaign, products }: Props) {
         <link rel="canonical" href={canonical} />
         <meta property="og:title" content={`${campaign.name} | TECPOINT`} />
         <meta property="og:description" content={campaign.description} />
-        {campaign.heroImageUrl && (
-          <meta property="og:image" content={campaign.heroImageUrl} />
+        {heroImage && (
+          <meta property="og:image" content={heroImage.startsWith("http") ? heroImage : `https://tecpoint.ws${heroImage}`} />
         )}
       </Head>
       <NavbarMenu />
@@ -204,17 +207,9 @@ export default function CollectionLanding({ campaign, products }: Props) {
             <a href="#productos">Explorar selección</a>
           </div>
           <div className={styles.visual}>
-            {isChildrensDay && (
-              <div className={styles.playShapes} aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-            )}
-            {campaign.heroImageUrl ? (
+            {heroImage ? (
               <Image
-                src={campaign.heroImageUrl}
+                src={heroImage}
                 alt={`Colección ${campaign.name}`}
                 fill
                 priority
