@@ -30,6 +30,15 @@ type CategoryCopy = {
 };
 
 const CATEGORY_COPY: Record<string, CategoryCopy> = {
+  "accesorios-genericos": {
+    title: "Accesorios genéricos prácticos y compatibles",
+    summary: "Explore accesorios funcionales sin una marca comercial asignada. Revise cuidadosamente el modelo, conector y medidas antes de comprar.",
+    guide: ["Confirme el modelo exacto del dispositivo.", "Revise conector, medidas y especificaciones del accesorio.", "Si tiene dudas, consulte a un asesor antes de realizar el pedido."],
+    questions: [
+      { question: "¿Qué significa que un accesorio sea genérico?", answer: "Significa que no tiene una marca comercial asignada. Su compatibilidad depende de las especificaciones indicadas, no de una marca." },
+      { question: "¿Cómo confirmo si funcionará con mi dispositivo?", answer: "Compare el modelo, tipo de conector, tamaño y demás datos de la ficha. Un asesor TECPOINT puede ayudarle a verificarlo." },
+    ],
+  },
   "power-and-charge": {
     title: "Cargadores, cables y energía portátil en Honduras",
     summary: "Encuentre cargadores de pared, cubos de carga, cables, adaptadores y power banks. Compare potencia, conector y compatibilidad antes de elegir.",
