@@ -9,13 +9,19 @@ import { OFFICIAL_CATEGORIES } from "@/lib/catalog";
 import styles from "@/styles/navigation2026.module.css";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import { trackSearch } from "@/lib/tracking";
+import { useAuth } from "@/context/useAuth";
+
+const CRUD_URL = "https://crud-tecpoint.vercel.app/";
+const ADMIN_EMAIL = "tecpointdistribucion2@gmail.com";
 
 export default function NavbarMenu() {
   const router = useRouter();
   const { cart } = useCartStore();
   const { mainWhatsApp } = useSiteConfig();
+  const { currentUser } = useAuth();
   const [search, setSearch] = useState("");
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const canManage = currentUser?.email?.toLowerCase() === ADMIN_EMAIL;
 
   function submitSearch(event: FormEvent) {
     event.preventDefault();
@@ -43,6 +49,7 @@ export default function NavbarMenu() {
           <Link href="/mayoreo">Mayoreo</Link>
           <Link href="/categories">Categorías</Link>
           <Link href="/#ubicaciones">Ubicaciones</Link>
+          {canManage && <a className={styles.adminLink} href={CRUD_URL}>Administrar</a>}
           <a
             className={styles.orderLink}
             href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero hacer un pedido.")}
@@ -115,6 +122,7 @@ export default function NavbarMenu() {
                 <Link href="/#ubicaciones">Ubicaciones</Link>
                 <Link href="/cart">Mi carrito</Link>
                 <Link href="/my-account">Mi cuenta</Link>
+                {canManage && <a href={CRUD_URL}>Administrar TECPOINT</a>}
                 <a
                   href={whatsappLink(mainWhatsApp, "Hola TECPOINT, quiero hacer un pedido.")}
                   target="_blank"
