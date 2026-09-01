@@ -512,13 +512,19 @@ export function isPublicProduct(product: Product) {
   return productBlockingIssues(product).length === 0 && !isInternalCatalogProduct(product);
 }
 
-/** Operational packaging and store displays stay in the CRUD, never in the customer catalog. */
+/** Operational packaging, store displays and explicitly non-sellable SKUs stay in the CRUD only. */
 export function isInternalCatalogProduct(product: CatalogProduct) {
   const inventory = getCurrentInventory(product.sku);
   const category = normalizeText(inventory?.category || product.categorias?.[0] || "");
   const subcategory = normalizeText(inventory?.subcategory || product.Subcategorias || "");
   const sku = normalizeText(inventory?.sku || product.sku || "");
-  const excludedSkus = new Set(["mipp11csrsss221"]);
+  const excludedSkus = new Set([
+    "mipa109pcmjt011",
+    "ipadpro105myjk976np",
+    "mipp129csrsss001",
+    "mipp105pcmjt011",
+    "mipp11csrsss221",
+  ]);
   return (
     excludedSkus.has(sku) ||
     sku.startsWith("em-") ||
