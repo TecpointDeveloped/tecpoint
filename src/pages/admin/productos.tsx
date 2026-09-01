@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminProducts.module.css";
 
 type Item = {
@@ -21,7 +22,7 @@ export default function AdminProducts() {
   const [authorized, setAuthorized] = useState<boolean|null>(null);
   const [items,setItems]=useState<Item[]>([]); const [summary,setSummary]=useState<Summary|null>(null); const [pagination,setPagination]=useState<Pagination>({page:1,pageSize:30,totalItems:0,totalPages:1});
   const [filter,setFilter]=useState("incomplete"); const [query,setQuery]=useState(""); const [error,setError]=useState(""); const [notice,setNotice]=useState(""); const [busy,setBusy]=useState(false);
-  useEffect(()=>{if(!currentUser)return setAuthorized(false);currentUser.getIdTokenResult().then(t=>setAuthorized(t.claims.role==="admin"));},[currentUser]);
+  useEffect(()=>{setAuthorized(isAdminEmail(currentUser?.email));},[currentUser]);
   const request=useCallback(async(method="GET",body?:object,path="/api/admin/catalog")=>{if(!currentUser)throw new Error("Sesión no disponible.");const token=await currentUser.getIdToken();const response=await fetch(path,{method,headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible cargar el catálogo.");return data;},[currentUser]);
   const load=useCallback(async(page=1,nextFilter=filter,nextQuery=query)=>{setBusy(true);try{const params=new URLSearchParams({page:String(page),pageSize:"30",filter:nextFilter,query:nextQuery});const data=await request("GET",undefined,`/api/admin/catalog?${params}`);setItems(data.items);setSummary(data.summary);setPagination(data.pagination);setError("");}catch(e){setError(e instanceof Error?e.message:"Error inesperado.");}finally{setBusy(false);}},[request,filter,query]);
   useEffect(()=>{if(!authorized)return;const timer=window.setTimeout(()=>load(1,filter,query),query?350:0);return()=>window.clearTimeout(timer);},[authorized,filter,query,load]);

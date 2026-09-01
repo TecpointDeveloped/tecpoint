@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { INITIAL_REFERRAL_CODES, normalizeReferralCode, type ReferralCode, type ReferralOwnerType } from "@/lib/referrals";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 type AdminAuthResult =
   | { ok: true; admin: NonNullable<ReturnType<typeof getFirebaseAdmin>> }
@@ -20,7 +21,7 @@ async function requireAdmin(req: NextApiRequest): Promise<AdminAuthResult> {
   if (!admin) return { ok: false, status: 503, error: "Firebase Admin no está configurado en el servidor." };
   try {
     const decoded = await admin.auth.verifyIdToken(token);
-    if (decoded.role !== "admin") return { ok: false, status: 403, error: "Esta cuenta no tiene permisos administrativos." };
+    if (!isAdminEmail(decoded.email)) return { ok: false, status: 403, error: "Esta cuenta no tiene permisos administrativos." };
     return { ok: true, admin };
   } catch {
     return { ok: false, status: 401, error: "La sesión no es válida o expiró." };

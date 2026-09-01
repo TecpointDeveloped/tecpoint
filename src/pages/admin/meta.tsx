@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminMeta.module.css";
 
 type Ad = { id: string; name?: string; campaign?: { name?: string }; creative?: { title?: string; body?: string; thumbnail_url?: string }; metrics: { impressions: number; reach: number; clicks: number; spend: number; results: number; ctr: number; costPerResult: number | null } };
@@ -18,8 +19,7 @@ export default function MetaAdmin() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (!currentUser) return setAuthorized(false);
-    currentUser.getIdTokenResult().then((token) => setAuthorized(token.claims.role === "admin"));
+    setAuthorized(isAdminEmail(currentUser?.email));
   }, [currentUser]);
 
   const load = useCallback(async () => {

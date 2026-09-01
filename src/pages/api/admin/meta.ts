@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 type MetaPage<T> = { data?: T[]; error?: { message?: string; code?: number } };
 type Insight = { ad_id?: string; impressions?: string; reach?: string; clicks?: string; spend?: string; actions?: Array<{ action_type: string; value: string }> };
@@ -12,7 +13,7 @@ async function requireAdmin(req: NextApiRequest) {
   const admin = getFirebaseAdmin();
   if (!admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
-  return decoded.role === "admin" ? admin : null;
+  return isAdminEmail(decoded.email) ? admin : null;
 }
 
 async function graph<T>(path: string, params: Record<string, string>, token: string, version: string) {

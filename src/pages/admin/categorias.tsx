@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FormEvent,useCallback,useEffect,useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminCollections.module.css";
 
 type Collection={id:string;name:string;slug:string;description:string;heroImageUrl?:string;productSkus?:string[];keywords?:string[];active?:boolean;archived?:boolean;sortOrder?:number;startsAt?:string|null;endsAt?:string|null};
@@ -10,7 +11,7 @@ function localDate(value?:string|null){return value?new Date(value).toISOString(
 
 export default function AdminCollections(){
   const{currentUser,loading}=useAuth();const[authorized,setAuthorized]=useState<boolean|null>(null);const[items,setItems]=useState<Collection[]>([]);const[draft,setDraft]=useState<Collection|Omit<Collection,"id">>(empty);const[busy,setBusy]=useState(false);const[error,setError]=useState("");
-  useEffect(()=>{if(!currentUser)return setAuthorized(false);currentUser.getIdTokenResult().then(token=>setAuthorized(token.claims.role==="admin"));},[currentUser]);
+  useEffect(()=>{setAuthorized(isAdminEmail(currentUser?.email));},[currentUser]);
   const request=useCallback(async(method="GET",body?:object)=>{if(!currentUser)throw new Error("Sesión no disponible.");const token=await currentUser.getIdToken();const response=await fetch("/api/admin/collections",{method,headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible completar la acción.");return data;},[currentUser]);
   const load=useCallback(async()=>{setBusy(true);try{const data=await request();setItems(data.items);setError("");}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar.");}finally{setBusy(false);}},[request]);
   useEffect(()=>{if(authorized)load();},[authorized,load]);

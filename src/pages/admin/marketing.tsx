@@ -5,6 +5,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { app } from "@/database/Config";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminMarketing.module.css";
 
 type Kind = "banner" | "promotion";
@@ -21,7 +22,7 @@ async function optimizeMarketingImage(file:File,maxWidth:number){
 
 export default function AdminMarketing(){
   const {currentUser,loading}=useAuth(); const [authorized,setAuthorized]=useState<boolean|null>(null); const [tab,setTab]=useState<Kind>("banner"); const [items,setItems]=useState<Asset[]>([]); const [draft,setDraft]=useState<Omit<Asset,"id">|Asset>(empty("banner")); const [busy,setBusy]=useState(false); const [error,setError]=useState("");
-  useEffect(()=>{if(!currentUser)return setAuthorized(false);currentUser.getIdTokenResult().then(t=>setAuthorized(t.claims.role==="admin"));},[currentUser]);
+  useEffect(()=>{setAuthorized(isAdminEmail(currentUser?.email));},[currentUser]);
   const request=useCallback(async(method="GET",body?:object)=>{if(!currentUser)throw new Error("Sesión no disponible.");const token=await currentUser.getIdToken();const response=await fetch("/api/admin/marketing",{method,headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible completar la acción.");return data;},[currentUser]);
   const load=useCallback(async()=>{try{const data=await request();setItems([...data.banners,...data.promotions]);setError("");}catch(e){setError(e instanceof Error?e.message:"Error inesperado.");}},[request]);
   useEffect(()=>{if(authorized)load();},[authorized,load]);

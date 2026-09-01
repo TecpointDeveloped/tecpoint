@@ -4,6 +4,7 @@ import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { approvedCatalogProducts, productBlockingIssues, productQualityIssues } from "@/lib/catalog";
 import { pendingW34DraftProducts } from "@/lib/w34Drafts";
 import type { Product } from "@/types/ProductTypes";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 async function requireAdmin(req: NextApiRequest) {
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
@@ -11,7 +12,7 @@ async function requireAdmin(req: NextApiRequest) {
   const admin = getFirebaseAdmin();
   if (!admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
-  return decoded.role === "admin" ? admin : null;
+  return isAdminEmail(decoded.email) ? admin : null;
 }
 
 function text(value: unknown, max = 5000) {

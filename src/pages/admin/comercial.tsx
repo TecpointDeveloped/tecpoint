@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/database/Config";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import {
   SalesConversation,
   SalesOrder,
@@ -29,16 +30,7 @@ export default function CommercialAdmin() {
   const [status, setStatus] = useState("all");
 
   useEffect(() => {
-    if (!currentUser) {
-      setAuthorized(false);
-      return;
-    }
-
-    currentUser.getIdTokenResult().then((token) => {
-      setAuthorized(
-        token.claims.role === "admin" || token.claims.role === "advisor",
-      );
-    });
+    setAuthorized(isAdminEmail(currentUser?.email));
   }, [currentUser]);
 
   useEffect(() => {

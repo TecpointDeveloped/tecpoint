@@ -10,9 +10,9 @@ import styles from "@/styles/navigation2026.module.css";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import { trackSearch } from "@/lib/tracking";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 const CRUD_URL = "https://crud-tecpoint.vercel.app/";
-const ADMIN_EMAIL = "tecpointdistribucion2@gmail.com";
 
 export default function NavbarMenu() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function NavbarMenu() {
   const { currentUser } = useAuth();
   const [search, setSearch] = useState("");
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const canManage = currentUser?.email?.toLowerCase() === ADMIN_EMAIL;
+  const canManage = isAdminEmail(currentUser?.email);
 
   function submitSearch(event: FormEvent) {
     event.preventDefault();

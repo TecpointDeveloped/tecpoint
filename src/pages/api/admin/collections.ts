@@ -1,13 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 async function requireAdmin(req: NextApiRequest) {
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
   const admin = getFirebaseAdmin();
   if (!token || !admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
-  return decoded.role === "admin" ? admin : null;
+  return isAdminEmail(decoded.email) ? admin : null;
 }
 
 function text(value: unknown, max = 1000) { return String(value ?? "").replace(/\s+/g, " ").trim().slice(0, max); }

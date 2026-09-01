@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 const collections = { banner: "site_banners", promotion: "flash_promotions" } as const;
 type AssetKind = keyof typeof collections;
@@ -47,7 +48,7 @@ async function requireAdmin(req: NextApiRequest) {
   const admin = getFirebaseAdmin();
   if (!admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
-  return decoded.role === "admin" ? admin : null;
+  return isAdminEmail(decoded.email) ? admin : null;
 }
 
 function safeText(value: unknown, max = 1000) {

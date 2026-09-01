@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
+import { isAdminEmail } from "@/lib/adminAccess";
 
 type StoreLocation = { id: string; city: string; name: string; detail: string; phone: string; maps: string };
 const defaults = {
@@ -20,7 +21,7 @@ async function requireAdmin(req: NextApiRequest) {
   const admin = getFirebaseAdmin();
   if (!admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
-  return decoded.role === "admin" ? admin : null;
+  return isAdminEmail(decoded.email) ? admin : null;
 }
 const text = (value: unknown, max = 1000) => String(value ?? "").trim().slice(0, max);
 const phone = (value: unknown) => text(value, 30).replace(/\D/g, "").slice(0, 15);

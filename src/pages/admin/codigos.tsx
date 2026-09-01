@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/referralAdmin.module.css";
 
 type Code = { code: string; ownerName: string; ownerType: string; discountPercent: number; active: boolean; uses: number };
@@ -17,7 +18,7 @@ export default function ReferralAdmin() {
   const [code, setCode] = useState("");
   const [ownerType, setOwnerType] = useState("employee");
 
-  useEffect(() => { if (!currentUser) return setAuthorized(false); currentUser.getIdTokenResult().then((token) => setAuthorized(token.claims.role === "admin")); }, [currentUser]);
+  useEffect(() => { setAuthorized(isAdminEmail(currentUser?.email)); }, [currentUser]);
   const request = useCallback(async (method = "GET", body?: object) => {
     if (!currentUser) throw new Error("Sesión no disponible.");
     const token = await currentUser.getIdToken();

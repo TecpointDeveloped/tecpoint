@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminHub.module.css";
 
 const modules = [
@@ -20,8 +21,7 @@ export default function AdminHub() {
   const { currentUser, loading } = useAuth();
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   useEffect(() => {
-    if (!currentUser) return setAuthorized(false);
-    currentUser.getIdTokenResult().then((token) => setAuthorized(token.claims.role === "admin"));
+    setAuthorized(isAdminEmail(currentUser?.email));
   }, [currentUser]);
   if (loading || authorized === null) return <main className={styles.state}>Verificando acceso…</main>;
   if (!authorized) return <main className={styles.state}><h1>Acceso reservado</h1><p>Ingrese con una cuenta administradora de TECPOINT.</p><Link href="/my-account">Iniciar sesión</Link></main>;

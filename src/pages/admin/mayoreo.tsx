@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/context/useAuth";
+import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminWholesale.module.css";
 
 type Product = { id:string; sku:string; producto:string; brand:string; image:string; retailPrice:number; wholesalePrice:number; wholesaleEnabled:boolean; wholesaleCategory:string };
@@ -16,7 +17,7 @@ export default function AdminWholesale() {
   const [pagination,setPagination]=useState<Pagination>({page:1,pageSize:30,totalItems:0,totalPages:1}); const [summary,setSummary]=useState({active:0,categories:0});
   const [tab,setTab]=useState<"products"|"leads">("products"); const [query,setQuery]=useState("");
   const [busy,setBusy]=useState(false); const [error,setError]=useState("");
-  useEffect(()=>{if(!currentUser)return setAuthorized(false);currentUser.getIdTokenResult().then(token=>setAuthorized(token.claims.role==="admin"));},[currentUser]);
+  useEffect(()=>{setAuthorized(isAdminEmail(currentUser?.email));},[currentUser]);
   const request=useCallback(async(method="GET",body?:object,path="/api/admin/wholesale")=>{if(!currentUser)throw new Error("Sesión no disponible.");const token=await currentUser.getIdToken();const response=await fetch(path,{method,headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible completar la acción.");return data;},[currentUser]);
   const loadProducts=useCallback(async(page=1,search=query)=>{setBusy(true);try{const data=await request("GET",undefined,`/api/admin/wholesale?view=products&page=${page}&query=${encodeURIComponent(search)}`);setProducts(data.products);setPagination(data.pagination);setSummary(data.summary);setError("");}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar Mayoreo.");}finally{setBusy(false);}},[request,query]);
   const loadLeads=useCallback(async()=>{setBusy(true);try{const data=await request("GET",undefined,"/api/admin/wholesale?view=leads");setLeads(data.leads);setError("");}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar solicitudes.");}finally{setBusy(false);}},[request]);
