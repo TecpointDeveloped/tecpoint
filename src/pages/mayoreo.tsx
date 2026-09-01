@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
@@ -21,14 +22,15 @@ import styles from "@/styles/mayoreo.module.css";
 import { validWholesaleAccess, WHOLESALE_COOKIE } from "@/lib/wholesaleAccess.server";
 import { productImageFallback } from "@/lib/imageFallback";
 
-type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number; catalogUnlocked: boolean };
+type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number; catalogUnlocked: boolean; currentSearch: string };
 
-export async function getServerSideProps({ req, res, query }: { req: { cookies: Record<string, string> }; res: { setHeader: (name: string, value: string) => void }; query: { page?: string | string[] } }) {
+export async function getServerSideProps({ req, res, query }: { req: { cookies: Record<string, string> }; res: { setHeader: (name: string, value: string) => void }; query: { page?: string | string[]; search?: string | string[] } }) {
   res.setHeader("Cache-Control", "private, no-store");
   const catalogUnlocked = validWholesaleAccess(req.cookies[WHOLESALE_COOKIE]);
-  if (!catalogUnlocked) return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: false } };
+  if (!catalogUnlocked) return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: false, currentSearch: "" } };
   try {
     const snapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
+    const currentSearch = String(Array.isArray(query.search) ? query.search[0] : query.search || "").trim();
     const wholesaleProducts = publicCatalog([
       ...snapshot.docs.map((document) => {
         const data = document.data();
@@ -41,9 +43,10 @@ export async function getServerSideProps({ req, res, query }: { req: { cookies: 
       ...approvedCatalogProducts(),
     ])
       .filter((product) => Boolean(
-        product.extradata?.stock &&
+        (product.extradata?.stock || Boolean(currentSearch)) &&
         Number(product.precio?.mayoreo) > 0 &&
-        product.extradata?.wholesaleEnabled !== false,
+        (product.extradata?.wholesaleEnabled !== false || Boolean(currentSearch)) &&
+        (!currentSearch || `${product.producto} ${product.sku} ${product.marca_producto?.marca || ""}`.toLowerCase().includes(currentSearch.toLowerCase())),
       ))
       .sort((left, right) => {
         const dateDifference = productAddedTime(right) - productAddedTime(left);
@@ -56,10 +59,10 @@ export async function getServerSideProps({ req, res, query }: { req: { cookies: 
     const totalPages = Math.max(1, Math.ceil(totalProducts / perPage));
     const currentPage = Math.min(totalPages, Math.max(1, Number(requestedPage) || 1));
     const products = wholesaleProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
-    return { props: { products, totalProducts, currentPage, totalPages, catalogUnlocked: true } };
+    return { props: { products, totalProducts, currentPage, totalPages, catalogUnlocked: true, currentSearch } };
   } catch (error) {
     console.error("No fue posible cargar las oportunidades de mayoreo:", error);
-    return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: true } };
+    return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: true, currentSearch: "" } };
   }
 }
 
@@ -75,7 +78,8 @@ function money(value: number) {
   }).format(value);
 }
 
-export default function Mayoreo({ products, totalProducts, currentPage, totalPages, catalogUnlocked }: Props) {
+export default function Mayoreo({ products, totalProducts, currentPage, totalPages, catalogUnlocked, currentSearch }: Props) {
+  const router = useRouter();
   const { wholesaleWhatsApp } = useSiteConfig();
   const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [formMessage, setFormMessage] = useState("");
@@ -98,7 +102,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
       setFormState("success");
       setFormMessage("¡Gracias! El equipo de Mayoreo recibió sus datos y podrá contactarle.");
       trackContact("Formulario mayoreo");
-      window.location.assign("/mayoreo");
+      await router.push("/mayoreo");
     } catch (error) {
       setFormState("error");
       setFormMessage(error instanceof Error ? error.message : "No fue posible enviar sus datos.");
@@ -187,6 +191,11 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
             </div>
             <span>{totalProducts} productos completos con precio mayorista registrado.</span>
           </div>
+          <form className={styles.catalogSearch} method="get">
+            <label htmlFor="mayoreo-search">Buscar producto, marca o SKU</label>
+            <div><input id="mayoreo-search" name="search" defaultValue={currentSearch} placeholder="Ej. cargador Apple o AS-36388"/><button type="submit">Buscar</button></div>
+            {currentSearch && <Link href="/mayoreo">Mostrar disponibles</Link>}
+          </form>
           {products.length ? (
             <div className={styles.grid}>
               {products.map((product) => {
@@ -198,6 +207,8 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
                     <Link className={styles.image} href={`/shop/${preferredProductSlug(product)}`}>
                       {savings > 0 && <b>AHORRE {savings}%</b>}
                       {isNewProduct(product) && <span>Nuevo</span>}
+                      {product.extradata?.stock === true && Number(product.extradata?.inventoryQuantity || 0) <= 5 && <em>Últimas piezas</em>}
+                      {product.extradata?.stock !== true && <em>Agotado</em>}
                       <Image
                         src={imageFor(product)}
                         alt={product.producto}
@@ -236,9 +247,9 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
           )}
           {totalPages > 1 && (
             <nav className={styles.pagination} aria-label="Páginas de promociones">
-              <Link className={currentPage === 1 ? styles.disabled : ""} href={`/mayoreo?page=${Math.max(1, currentPage - 1)}`}>Anterior</Link>
+              <Link className={currentPage === 1 ? styles.disabled : ""} href={`/mayoreo?page=${Math.max(1, currentPage - 1)}&search=${encodeURIComponent(currentSearch)}`}>Anterior</Link>
               <span>Página {currentPage} de {totalPages}</span>
-              <Link className={currentPage === totalPages ? styles.disabled : ""} href={`/mayoreo?page=${Math.min(totalPages, currentPage + 1)}`}>Siguiente</Link>
+              <Link className={currentPage === totalPages ? styles.disabled : ""} href={`/mayoreo?page=${Math.min(totalPages, currentPage + 1)}&search=${encodeURIComponent(currentSearch)}`}>Siguiente</Link>
             </nav>
           )}
         </section>}

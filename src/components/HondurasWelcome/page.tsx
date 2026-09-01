@@ -10,11 +10,12 @@ const STARS = Array.from({ length: 18 }, (_, index) => ({
 
 export default function HondurasWelcome() {
   return <>
+    <div className={styles.aura} aria-hidden="true" />
     <div className={styles.stars} aria-hidden="true">
       {STARS.map((star, index) => <span key={index} style={{ "--left": `${star.left}%`, "--delay": `${star.delay}s`, "--duration": `${star.duration}s`, "--size": `${star.size}px` } as CSSProperties}>★</span>)}
     </div>
     <div className={styles.flag} aria-label="TECPOINT, orgullosamente hondureño" title="Orgullosamente hondureños">
-      <span aria-hidden="true">🇭🇳</span><b>HN</b>
+      <span aria-hidden="true">🇭🇳</span><div><b>Día de la Bandera</b><small>★ ★ ★ ★ ★ · Honduras</small></div>
     </div>
   </>;
 }

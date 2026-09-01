@@ -106,8 +106,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         ? normalizeText(productColor(product)) === normalizeText(color)
         : true;
       const matchesSearch = matchesProductSearch(product, search);
+      const visibleByStock = product.extradata?.stock === true || Boolean(search);
 
-      return matchesBrand && matchesCategory && matchesColor && matchesSearch;
+      return visibleByStock && matchesBrand && matchesCategory && matchesColor && matchesSearch;
     });
     const totalProducts = filteredProducts.length;
     const products = filteredProducts.slice(
@@ -414,6 +415,11 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                   {product.extradata?.stock !== true && (
                     <div className="bg-[#fcb9b9] w-fit px-4 py-1 rounded-full">
                       <p className="text-[#b51d1d] font-bold text-[14px]">Agotado</p>
+                    </div>
+                  )}
+                  {product.extradata?.stock === true && Number(product.extradata?.inventoryQuantity || 0) <= 5 && (
+                    <div className="w-fit rounded-full bg-[#fff2d8] px-4 py-1 shadow-sm ring-1 ring-[#eaa92b]/30">
+                      <p className="text-[12px] font-extrabold uppercase tracking-[.06em] text-[#9a5a00]">Últimas piezas</p>
                     </div>
                   )}
                 </span>

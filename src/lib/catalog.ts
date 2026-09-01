@@ -440,11 +440,17 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
       ...(product.precio || {}),
       detalle:
         inventory ? inventory.detailPrice : product.precio?.detalle || 0,
+      mayoreo:
+        inventory ? inventory.bronzePrice : product.precio?.mayoreo || 0,
     },
     extradata: {
       ...(product.extradata || {}),
       upc: inventory?.upc || product.extradata?.upc || "",
       stock: inventory ? inventory.stock > 0 : product.extradata?.stock,
+      inventoryQuantity: inventory?.stock ?? product.extradata?.inventoryQuantity,
+      wholesaleEnabled: inventory
+        ? inventory.stock > 0 && inventory.bronzePrice > 0
+        : product.extradata?.wholesaleEnabled,
     },
   };
 }
