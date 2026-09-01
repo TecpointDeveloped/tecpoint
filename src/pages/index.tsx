@@ -16,6 +16,7 @@ import {
   preferredProductSlug,
   productPromotion,
   isNewProduct,
+  isGenericProduct,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
@@ -161,6 +162,7 @@ export default function Home({
         product.slug &&
         product.precio?.detalle &&
         product.extradata?.stock &&
+        !isGenericProduct(product) &&
         imageFor(product) !== "/default-product.png",
     )
     .slice(0, 8);

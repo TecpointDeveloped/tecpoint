@@ -40,6 +40,11 @@ export const OFFICIAL_CATEGORIES = [
     slug: "outdoor-pro",
     description: "Tecnología resistente para actividades y espacios exteriores.",
   },
+  {
+    name: "Accesorios Genéricos",
+    slug: "accesorios-genericos",
+    description: "Accesorios funcionales sin una marca comercial asignada.",
+  },
 ] as const;
 
 type CatalogProduct = Pick<
@@ -292,6 +297,11 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
   });
 }
 
+export function isGenericProduct(product: CatalogProduct) {
+  const inventory = getCurrentInventory(product.sku);
+  return normalizeText(inventory?.brand || product.marca_producto?.marca || "") === "varios";
+}
+
 function cleanProductName(value: string) {
   return value
     .replace(/^accesorio tecnol[oó]gico\s+/i, "")
@@ -371,6 +381,7 @@ function categoryByKeywords(product: CatalogProduct) {
 }
 
 export function officialCategory(product: CatalogProduct) {
+  if (isGenericProduct(product)) return "Accesorios Genéricos";
   return getValidatedEntry(product.sku)?.category || categoryByKeywords(product);
 }
 
@@ -421,6 +432,7 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
   const brand = canonicalBrandName(
     inventory?.brand || product.marca_producto?.marca,
   );
+  const displayBrand = isGenericProduct(product) ? "Genérico" : brand;
   return {
     ...serializableProduct,
     producto: preferredProductName(product),
@@ -433,8 +445,8 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
       "",
     marca_producto: {
       ...(product.marca_producto || {}),
-      marca: brand,
-      logo: brandLogo(brand),
+      marca: displayBrand,
+      logo: isGenericProduct(product) ? "" : brandLogo(brand),
     },
     precio: {
       ...(product.precio || {}),
