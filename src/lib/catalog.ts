@@ -502,9 +502,19 @@ export function isPublicProduct(product: Product) {
 
 /** Operational packaging and store displays stay in the CRUD, never in the customer catalog. */
 export function isInternalCatalogProduct(product: CatalogProduct) {
-  const category = normalizeText(product.categorias?.[0] || "");
-  const sku = normalizeText(product.sku || "");
-  return sku.startsWith("em-") || category.startsWith("empaque ") || category === "empaque" || category === "merchandising";
+  const inventory = getCurrentInventory(product.sku);
+  const category = normalizeText(inventory?.category || product.categorias?.[0] || "");
+  const subcategory = normalizeText(inventory?.subcategory || product.Subcategorias || "");
+  const sku = normalizeText(inventory?.sku || product.sku || "");
+  const excludedSkus = new Set(["mipp11csrsss221"]);
+  return (
+    excludedSkus.has(sku) ||
+    sku.startsWith("em-") ||
+    category.startsWith("empaque ") ||
+    category === "empaque" ||
+    category === "merchandising" ||
+    (category.includes("merchandising") && subcategory.includes("display"))
+  );
 }
 
 /** UPC and photography remain visible quality tasks, but do not hide a priced SKU. */
