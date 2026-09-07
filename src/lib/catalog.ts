@@ -40,11 +40,6 @@ export const OFFICIAL_CATEGORIES = [
     slug: "outdoor-pro",
     description: "Tecnología resistente para actividades y espacios exteriores.",
   },
-  {
-    name: "Accesorios Genéricos",
-    slug: "accesorios-genericos",
-    description: "Accesorios funcionales sin una marca comercial asignada.",
-  },
 ] as const;
 
 type CatalogProduct = Pick<
@@ -509,7 +504,11 @@ export function productQualityIssues(product: Product): ProductQualityIssue[] {
 }
 
 export function isPublicProduct(product: Product) {
-  return productBlockingIssues(product).length === 0 && !isInternalCatalogProduct(product);
+  return (
+    productBlockingIssues(product).length === 0 &&
+    !isInternalCatalogProduct(product) &&
+    !isGenericProduct(product)
+  );
 }
 
 /** Operational packaging, store displays and explicitly non-sellable SKUs stay in the CRUD only. */
