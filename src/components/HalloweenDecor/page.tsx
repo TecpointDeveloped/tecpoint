@@ -1,4 +1,13 @@
 import styles from "./styles.module.css";
+import type { CSSProperties } from "react";
+
+const BATS = [
+  { size: 27, top: 10, delay: 3.8, flight: "flightA", wings: "wingsFast" },
+  { size: 19, top: 32, delay: 4.35, flight: "flightB", wings: "wingsSlow" },
+  { size: 23, top: 18, delay: 4.8, flight: "flightC", wings: "wingsMedium" },
+  { size: 16, top: 42, delay: 5.15, flight: "flightB", wings: "wingsFast" },
+  { size: 21, top: 6, delay: 5.55, flight: "flightA", wings: "wingsMedium" },
+] as const;
 
 function Cobweb({ position }: { position: "left" | "right" }) {
   return (
@@ -36,12 +45,43 @@ function Spider() {
   );
 }
 
+function Bat({
+  bat,
+  index,
+}: {
+  bat: (typeof BATS)[number];
+  index: number;
+}) {
+  return (
+    <span
+      className={`${styles.batFlight} ${styles[bat.flight]} ${index > 1 ? styles.desktopBat : ""}`}
+      style={
+        {
+          "--bat-size": `${bat.size}px`,
+          "--bat-top": `${bat.top}px`,
+          "--bat-delay": `${bat.delay}s`,
+        } as CSSProperties
+      }
+    >
+      <svg className={styles.bat} viewBox="0 0 84 40">
+        <path className={`${styles.wing} ${styles.wingLeft} ${styles[bat.wings]}`} d="M39 19C28 5 12 3 1 8c8 4 10 10 9 17 7-4 13-2 18 5 1-7 5-10 11-11Z" />
+        <path className={`${styles.wing} ${styles.wingRight} ${styles[bat.wings]}`} d="M45 19C56 5 72 3 83 8c-8 4-10 10-9 17-7-4-13-2-18 5-1-7-5-10-11-11Z" />
+        <ellipse className={styles.batBody} cx="42" cy="22" rx="6" ry="12" />
+        <path className={styles.batEars} d="m37 13 1-8 5 6 4-6 1 8Z" />
+      </svg>
+    </span>
+  );
+}
+
 export default function HalloweenDecor() {
   return (
     <div className={styles.season} aria-hidden="true">
       <span className={styles.frame} />
       <Cobweb position="left" />
       <Cobweb position="right" />
+      <div className={styles.batFlock}>
+        {BATS.map((bat, index) => <Bat key={index} bat={bat} index={index} />)}
+      </div>
       <Spider />
     </div>
   );

@@ -40,6 +40,78 @@
   transform: scaleX(-1);
 }
 
+.batFlock {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 70px;
+  overflow: hidden;
+}
+
+.batFlight {
+  position: absolute;
+  left: calc(-1 * var(--bat-size) - 24px);
+  top: var(--bat-top);
+  width: var(--bat-size);
+  opacity: 0;
+  will-change: left, top, transform, opacity;
+}
+
+.bat {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 3px 3px rgba(24, 12, 31, 0.24));
+}
+
+.batBody,
+.batEars,
+.wing {
+  fill: #1a1420;
+}
+
+.wing {
+  transform-box: fill-box;
+}
+
+.wingLeft {
+  transform-origin: right center;
+}
+
+.wingRight {
+  transform-origin: left center;
+}
+
+.wingsFast {
+  animation: wingBeat 0.24s ease-in-out infinite alternate;
+}
+
+.wingsMedium {
+  animation: wingBeat 0.32s ease-in-out infinite alternate;
+}
+
+.wingsSlow {
+  animation: wingBeat 0.41s ease-in-out infinite alternate;
+}
+
+.wingRight.wingsFast,
+.wingRight.wingsMedium,
+.wingRight.wingsSlow {
+  animation-direction: alternate-reverse;
+}
+
+.flightA {
+  animation: batFlightA 33s linear var(--bat-delay) infinite;
+}
+
+.flightB {
+  animation: batFlightB 33s linear var(--bat-delay) infinite;
+}
+
+.flightC {
+  animation: batFlightC 33s linear var(--bat-delay) infinite;
+}
+
 .spiderTrack {
   position: absolute;
   inset: 0;
@@ -120,6 +192,38 @@
     height: calc(100vh - 48px);
     opacity: 0;
   }
+}
+
+@keyframes wingBeat {
+  from { transform: rotateX(0deg) rotateZ(2deg); }
+  to { transform: rotateX(58deg) rotateZ(-8deg); }
+}
+
+@keyframes batFlightA {
+  0%, 2% { left: -48px; top: var(--bat-top); opacity: 0; transform: rotate(-5deg); }
+  3% { opacity: 0.88; }
+  9% { top: calc(var(--bat-top) + 11px); transform: rotate(3deg); }
+  15% { top: calc(var(--bat-top) - 3px); transform: rotate(-2deg); }
+  22% { left: calc(100vw + 28px); top: calc(var(--bat-top) + 7px); opacity: 0.88; transform: rotate(4deg); }
+  23%, 100% { left: calc(100vw + 48px); opacity: 0; }
+}
+
+@keyframes batFlightB {
+  0%, 2% { left: -52px; top: var(--bat-top); opacity: 0; transform: rotate(4deg); }
+  3% { opacity: 0.82; }
+  11% { top: calc(var(--bat-top) - 8px); transform: rotate(-4deg); }
+  18% { top: calc(var(--bat-top) + 6px); transform: rotate(2deg); }
+  25% { left: calc(100vw + 28px); top: calc(var(--bat-top) - 2px); opacity: 0.82; transform: rotate(-3deg); }
+  26%, 100% { left: calc(100vw + 52px); opacity: 0; }
+}
+
+@keyframes batFlightC {
+  0%, 2% { left: -50px; top: var(--bat-top); opacity: 0; transform: rotate(-2deg); }
+  3% { opacity: 0.86; }
+  8% { top: calc(var(--bat-top) + 7px); transform: rotate(5deg); }
+  14% { top: calc(var(--bat-top) - 6px); transform: rotate(-5deg); }
+  20% { left: calc(100vw + 26px); top: calc(var(--bat-top) + 3px); opacity: 0.86; transform: rotate(2deg); }
+  21%, 100% { left: calc(100vw + 50px); opacity: 0; }
 }
 
 @keyframes spiderJourney {
@@ -236,9 +340,18 @@
     width: 46px;
     height: 50px;
   }
+  .batFlock {
+    height: 48px;
+  }
+  .desktopBat {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .batFlock {
+    display: none;
+  }
   .thread {
     display: none;
   }
