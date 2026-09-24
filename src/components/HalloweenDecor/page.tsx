@@ -21,8 +21,10 @@ function Spider() {
       <span className={styles.thread} />
       <svg className={styles.spider} viewBox="0 0 72 76">
         <g className={styles.spiderLegs} fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M29 31 17 22 6 24M27 37 13 34 3 40M27 43 14 48 7 58M29 48 20 59 19 70" />
-          <path d="m43 31 12-9 11 2M45 37l14-3 10 6M45 43l13 5 7 10M43 48l9 11 1 11" />
+          <path className={styles.legA} d="M29 31 17 22 6 24M27 43 14 48 7 58" />
+          <path className={styles.legB} d="M27 37 13 34 3 40M29 48 20 59 19 70" />
+          <path className={styles.legB} d="m43 31 12-9 11 2M45 43l13 5 7 10" />
+          <path className={styles.legA} d="m45 37 14-3 10 6M43 48l9 11 1 11" />
         </g>
         <ellipse className={styles.spiderAbdomen} cx="36" cy="45" rx="13" ry="18" />
         <circle className={styles.spiderHead} cx="36" cy="26" r="9" />
