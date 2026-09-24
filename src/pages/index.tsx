@@ -24,7 +24,7 @@ import { LiveMarketingContent, type MarketingAsset } from "@/components/Marketin
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import dynamic from "next/dynamic";
 import { productImageFallback } from "@/lib/imageFallback";
-import HondurasWelcome from "@/components/HondurasWelcome/page";
+import HalloweenDecor from "@/components/HalloweenDecor/page";
 
 const AppIntro = dynamic(() => import("@/components/AppIntro/page"), {
   ssr: false,
@@ -169,7 +169,7 @@ export default function Home({
 
   return (
     <>
-      <HondurasWelcome />
+      <HalloweenDecor />
       <AppIntro />
       <Head>
         <title>TECPOINT | Tecnología bien elegida</title>
