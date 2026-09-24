@@ -63,66 +63,36 @@
 .spider {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  width: 42px;
-  height: 42px;
+  bottom: -5px;
+  width: 54px;
+  height: 58px;
+  overflow: visible;
+  color: #17121b;
   transform: translateX(-50%);
-  filter: drop-shadow(0 5px 5px rgba(20, 12, 23, 0.28));
+  filter: drop-shadow(0 5px 4px rgba(20, 12, 23, 0.3));
   animation: spiderSway 1.9s ease-in-out infinite alternate;
 }
 
-.body,
-.body::before,
-.legs,
-.legs::before,
-.legs::after {
-  position: absolute;
-  display: block;
-  content: "";
+.spiderLegs {
+  stroke-width: 4.4;
 }
 
-.body {
-  z-index: 2;
-  left: 13px;
-  top: 14px;
-  width: 17px;
-  height: 21px;
-  border-radius: 50% 50% 46% 46%;
-  background: #1c1720;
-  box-shadow: inset 4px 0 0 rgba(255, 107, 26, 0.82);
+.spiderAbdomen,
+.spiderHead {
+  fill: #17121b;
 }
 
-.body::before {
-  left: 4px;
-  top: -7px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #1c1720;
+.spiderAbdomen {
+  stroke: rgba(255, 255, 255, 0.24);
+  stroke-width: 1.2;
 }
 
-.legs {
-  inset: 9px 4px 4px;
-  border-top: 3px solid #1c1720;
-  border-bottom: 3px solid #1c1720;
-  border-radius: 44%;
-  transform: rotate(18deg);
+.spiderMark {
+  fill: var(--halloween-orange);
 }
 
-.legs::before,
-.legs::after {
-  inset: 3px -1px;
-  border-top: 3px solid #1c1720;
-  border-bottom: 3px solid #1c1720;
-  border-radius: 45%;
-}
-
-.legs::before {
-  transform: rotate(34deg);
-}
-
-.legs::after {
-  transform: rotate(-34deg);
+.spiderEye {
+  fill: #ffb36d;
 }
 
 @keyframes spiderFrameTour {
