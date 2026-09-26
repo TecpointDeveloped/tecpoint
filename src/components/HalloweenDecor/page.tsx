@@ -90,7 +90,7 @@ function GhostSurprises() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const interactiveSelector = "button, summary, select, [role='button'], [aria-expanded], a[href]";
 
-    const revealGhost = (event: PointerEvent) => {
+    const revealGhost = (event: MouseEvent) => {
       if (reducedMotion.matches || event.button !== 0) return;
       const target = event.target instanceof Element ? event.target.closest(interactiveSelector) : null;
       if (!target) return;
@@ -110,11 +110,11 @@ function GhostSurprises() {
       setGhosts((current) => [...current.slice(-3), ghost]);
       window.setTimeout(() => {
         setGhosts((current) => current.filter((item) => item.id !== id));
-      }, 1250);
+      }, 1850);
     };
 
-    document.addEventListener("pointerdown", revealGhost, true);
-    return () => document.removeEventListener("pointerdown", revealGhost, true);
+    document.addEventListener("click", revealGhost, true);
+    return () => document.removeEventListener("click", revealGhost, true);
   }, []);
 
   return (

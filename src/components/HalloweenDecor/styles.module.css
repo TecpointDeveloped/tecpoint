@@ -107,7 +107,7 @@
   opacity: 0;
   transform: translate(-50%, -28%) scale(0.25);
   filter: drop-shadow(0 0 9px rgba(192, 167, 255, 0.72));
-  animation: ghostReveal 1.2s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation: ghostReveal 1.75s cubic-bezier(0.2, 0.75, 0.25, 1) both;
   will-change: transform, opacity;
 }
 
