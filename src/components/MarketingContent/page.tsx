@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "@/styles/marketingContent.module.css";
+import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
 export type MarketingAsset = {
   id: string;
@@ -166,8 +167,26 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
 }
 
 export function LiveMarketingContent({ initialBanners, initialPromotion }: { initialBanners: MarketingAsset[]; initialPromotion?: MarketingAsset | null }) {
+  const { mainWhatsApp } = useSiteConfig();
   const [banners, setBanners] = useState(initialBanners);
   const [promotion, setPromotion] = useState(initialPromotion || null);
+  const octoberBanner: MarketingAsset = {
+    id: "octubre-de-miedo-2026",
+    title: "Octubre de Miedo",
+    imageUrl: "/images/banners-current/octubre-de-miedo-desktop.webp",
+    mobileImageUrl: "/images/promotions/octubre-de-miedo.webp",
+    linkUrl: whatsappLink(
+      mainWhatsApp,
+      "Hola TECPOINT, vi el banner Octubre de Miedo y quiero conocer las promociones disponibles.",
+    ),
+    cta: "Ver promociones",
+    alt: "Octubre de Miedo: promociones TECPOINT en cobertores, audio, envío gratis y Optimus Card",
+    artworkOnly: true,
+  };
+  const visibleBanners = [
+    octoberBanner,
+    ...banners.filter((banner) => banner.id !== octoberBanner.id),
+  ];
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/marketing", { cache: "no-store", signal: controller.signal })
@@ -176,7 +195,7 @@ export function LiveMarketingContent({ initialBanners, initialPromotion }: { ini
       .catch(() => undefined);
     return () => controller.abort();
   }, []);
-  return <><HomepageBannerCarousel assets={banners}/><FlashPromotion asset={promotion}/></>;
+  return <><HomepageBannerCarousel assets={visibleBanners}/><FlashPromotion asset={promotion}/></>;
 }
 
 export function FlashPromotion({ asset }: { asset?: MarketingAsset | null }) {
