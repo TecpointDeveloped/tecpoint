@@ -15,9 +15,6 @@ const MotionSystem = dynamic(() => import("@/components/MotionSystem/page"), {
 const HalloweenDecor = dynamic(() => import("@/components/HalloweenDecor/page"), {
   ssr: false,
 });
-const SeasonalPromo = dynamic(() => import("@/components/SeasonalPromo/page"), {
-  ssr: false,
-});
 
 function DynamicSiteMeta() {
   const { googleSiteVerification } = useSiteConfig();
@@ -35,7 +32,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Tracking />
         <MotionSystem />
         {showStorefrontDecor && <HalloweenDecor />}
-        {showStorefrontDecor && <SeasonalPromo />}
         <Component {...pageProps} />
       </SiteConfigProvider>
     </AuthProvider>

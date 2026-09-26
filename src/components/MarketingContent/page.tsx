@@ -134,14 +134,14 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
     >
       {asset.linkUrl ? (
         <Link
-          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""}`}
+          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "octubre-de-miedo-2026" ? styles.octoberBanner : ""}`}
           href={asset.linkUrl}
           aria-label={`${asset.title}. ${asset.cta || "Ver campaña"}`}
         >
           {artwork}
         </Link>
       ) : (
-        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""}`}>
+        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "octubre-de-miedo-2026" ? styles.octoberBanner : ""}`}>
           {artwork}
         </div>
       )}
