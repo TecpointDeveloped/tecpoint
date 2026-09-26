@@ -76,6 +76,12 @@ function Bat({
 export default function HalloweenDecor() {
   return (
     <div className={styles.season} aria-hidden="true">
+      <span className={styles.vignette} />
+      <span className={`${styles.fog} ${styles.fogBack}`} />
+      <span className={`${styles.fog} ${styles.fogFront}`} />
+      <span className={`${styles.eyes} ${styles.eyesLeft}`}><i /><i /></span>
+      <span className={`${styles.eyes} ${styles.eyesRight}`}><i /><i /></span>
+      <span className={styles.lightning} />
       <span className={styles.frame} />
       <Cobweb position="left" />
       <Cobweb position="right" />
