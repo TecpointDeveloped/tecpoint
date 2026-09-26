@@ -1,4 +1,5 @@
 import styles from "./styles.module.css";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 const BATS = [
@@ -8,6 +9,14 @@ const BATS = [
   { size: 16, top: 42, delay: 5.15, flight: "flightB", wings: "wingsFast" },
   { size: 21, top: 6, delay: 5.55, flight: "flightA", wings: "wingsMedium" },
 ] as const;
+
+type GhostVisit = {
+  id: number;
+  x: number;
+  y: number;
+  direction: number;
+  size: number;
+};
 
 function Cobweb({ position }: { position: "left" | "right" }) {
   return (
@@ -73,6 +82,74 @@ function Bat({
   );
 }
 
+function GhostSurprises() {
+  const [ghosts, setGhosts] = useState<GhostVisit[]>([]);
+  const nextId = useRef(0);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const interactiveSelector = "button, summary, select, [role='button'], [aria-expanded], a[href]";
+
+    const revealGhost = (event: PointerEvent) => {
+      if (reducedMotion.matches || event.button !== 0) return;
+      const target = event.target instanceof Element ? event.target.closest(interactiveSelector) : null;
+      if (!target) return;
+
+      const id = nextId.current++;
+      const rect = target.getBoundingClientRect();
+      const x = Math.min(window.innerWidth - 38, Math.max(38, event.clientX || rect.left + rect.width / 2));
+      const y = Math.min(window.innerHeight - 50, Math.max(58, event.clientY || rect.top + rect.height / 2));
+      const ghost = {
+        id,
+        x,
+        y,
+        direction: id % 2 ? 1 : -1,
+        size: 34 + (id % 3) * 5,
+      };
+
+      setGhosts((current) => [...current.slice(-3), ghost]);
+      window.setTimeout(() => {
+        setGhosts((current) => current.filter((item) => item.id !== id));
+      }, 1250);
+    };
+
+    document.addEventListener("pointerdown", revealGhost, true);
+    return () => document.removeEventListener("pointerdown", revealGhost, true);
+  }, []);
+
+  return (
+    <div className={styles.ghostLayer}>
+      {ghosts.map((ghost) => (
+        <span
+          className={styles.ghostPop}
+          key={ghost.id}
+          style={
+            {
+              "--ghost-x": `${ghost.x}px`,
+              "--ghost-y": `${ghost.y}px`,
+              "--ghost-size": `${ghost.size}px`,
+              "--ghost-nudge": `${ghost.direction * 4}px`,
+              "--ghost-counter": `${ghost.direction * -3}px`,
+              "--ghost-drift": `${ghost.direction * 12}px`,
+              "--ghost-tilt-start": `${ghost.direction * -7}deg`,
+              "--ghost-tilt-mid": `${ghost.direction * 3}deg`,
+              "--ghost-tilt-counter": `${ghost.direction * -2}deg`,
+              "--ghost-tilt-end": `${ghost.direction * 7}deg`,
+            } as CSSProperties
+          }
+        >
+          <svg viewBox="0 0 64 76">
+            <path className={styles.ghostBody} d="M9 65V31C9 15 19 5 32 5s23 10 23 26v34l-8-6-7 8-8-8-8 8-7-8-8 6Z" />
+            <ellipse className={styles.ghostEye} cx="25" cy="30" rx="3.2" ry="5" />
+            <ellipse className={styles.ghostEye} cx="40" cy="30" rx="3.2" ry="5" />
+            <ellipse className={styles.ghostMouth} cx="33" cy="43" rx="4.5" ry="6" />
+          </svg>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function HalloweenDecor() {
   return (
     <div className={styles.season} aria-hidden="true">
@@ -82,6 +159,7 @@ export default function HalloweenDecor() {
       <span className={`${styles.eyes} ${styles.eyesLeft}`}><i /><i /></span>
       <span className={`${styles.eyes} ${styles.eyesRight}`}><i /><i /></span>
       <span className={styles.lightning} />
+      <GhostSurprises />
       <span className={styles.frame} />
       <Cobweb position="left" />
       <Cobweb position="right" />

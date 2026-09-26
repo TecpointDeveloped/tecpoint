@@ -93,6 +93,41 @@
   animation: distantFlash 23s linear infinite;
 }
 
+.ghostLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.ghostPop {
+  position: absolute;
+  left: var(--ghost-x);
+  top: var(--ghost-y);
+  width: var(--ghost-size);
+  opacity: 0;
+  transform: translate(-50%, -28%) scale(0.25);
+  filter: drop-shadow(0 0 9px rgba(192, 167, 255, 0.72));
+  animation: ghostReveal 1.2s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  will-change: transform, opacity;
+}
+
+.ghostPop svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ghostBody {
+  fill: rgba(249, 246, 255, 0.94);
+  stroke: rgba(94, 50, 120, 0.58);
+  stroke-width: 2;
+}
+
+.ghostEye,
+.ghostMouth {
+  fill: #28172f;
+}
+
 .web {
   position: absolute;
   top: 7px;
@@ -293,6 +328,25 @@
   85% { opacity: 0.23; }
 }
 
+@keyframes ghostReveal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -15%) scale(0.25) rotate(var(--ghost-tilt-start));
+  }
+  22% {
+    opacity: 0.96;
+    transform: translate(calc(-50% + var(--ghost-nudge)), -55%) scale(1.04) rotate(var(--ghost-tilt-mid));
+  }
+  52% {
+    opacity: 0.92;
+    transform: translate(calc(-50% + var(--ghost-counter)), -78%) scale(0.98) rotate(var(--ghost-tilt-counter));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--ghost-drift)), -150%) scale(0.72) rotate(var(--ghost-tilt-end));
+  }
+}
+
 @keyframes batFlightA {
   0%, 2% { left: -48px; top: var(--bat-top); opacity: 0; transform: rotate(-5deg); }
   3% { opacity: 0.88; }
@@ -447,6 +501,9 @@
   .eyesRight {
     display: none;
   }
+  .ghostPop {
+    width: min(var(--ghost-size), 38px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -455,7 +512,8 @@
   }
   .fog,
   .eyes,
-  .lightning {
+  .lightning,
+  .ghostLayer {
     display: none;
   }
   .thread {
