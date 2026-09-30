@@ -29,6 +29,7 @@ type CommercialCollection = {
   archived: boolean;
   startsAt: string | null;
   endsAt: string | null;
+  discountPercent?: number;
 };
 type Props = { campaign: CommercialCollection; products: Product[] };
 
@@ -53,6 +54,20 @@ const CHILDRENS_DAY: CommercialCollection = {
   startsAt: null,
   endsAt: null,
 };
+const CASES_GHOSTEK_XBASE: CommercialCollection = {
+  name: "Cobertores Ghostek + XBase",
+  slug: "cobertores-ghostek-xbase-15",
+  description:
+    "Protección seleccionada para su teléfono con 15% de descuento por tiempo limitado.",
+  heroImageUrl: "",
+  productSkus: [],
+  keywords: [],
+  active: true,
+  archived: false,
+  startsAt: null,
+  endsAt: null,
+  discountPercent: 15,
+};
 const plain = (value: unknown) =>
   String(value ?? "")
     .normalize("NFD")
@@ -68,6 +83,12 @@ const price = (product: Product) =>
     currency: "HNL",
     maximumFractionDigits: 0,
   }).format(Number(product.precio?.detalle || 0));
+const discountedPrice = (product: Product, percent: number) =>
+  new Intl.NumberFormat("es-HN", {
+    style: "currency",
+    currency: "HNL",
+    maximumFractionDigits: 0,
+  }).format(Number(product.precio?.detalle || 0) * (1 - percent / 100));
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({
   params,
@@ -78,11 +99,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     const snapshot = admin
       ? await admin.db.collection("site_collections").doc(slug).get()
       : null;
-    const data = snapshot?.exists
-      ? snapshot.data()
-      : slug === "dia-del-nino"
-        ? CHILDRENS_DAY
+    const fallback = slug === "dia-del-nino"
+      ? CHILDRENS_DAY
+      : slug === CASES_GHOSTEK_XBASE.slug
+        ? CASES_GHOSTEK_XBASE
         : null;
+    const data = snapshot?.exists ? snapshot.data() : fallback;
     if (!data) return { notFound: true };
     const campaign: CommercialCollection = {
       name: String(data.name || ""),
@@ -98,6 +120,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       startsAt:
         data.startsAt?.toDate?.().toISOString?.() || data.startsAt || null,
       endsAt: data.endsAt?.toDate?.().toISOString?.() || data.endsAt || null,
+      discountPercent: Number(data.discountPercent || 0),
     };
     const now = Date.now();
     if (
@@ -134,6 +157,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
           product.extradata?.stock === true,
       )
       .filter((product) => {
+        if (campaign.slug === CASES_GHOSTEK_XBASE.slug) {
+          const brand = plain(product.marca_producto?.marca);
+          const productType = plain(`${product.producto} ${product.descripcion || ""}`);
+          return (
+            (brand === "ghostek" || brand === "xbase") &&
+            /forro|cobertor|funda|protector cover|phone case/.test(productType)
+          );
+        }
         if (skus.size) return skus.has(plain(product.sku));
         const haystack = plain(
           [
@@ -154,6 +185,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { campaign, products } };
   } catch (error) {
     console.error("No se pudo cargar la colección comercial", error);
+    if (slug === CASES_GHOSTEK_XBASE.slug)
+      return { props: { campaign: CASES_GHOSTEK_XBASE, products: [] } };
     if (slug !== "dia-del-nino") return { notFound: true };
     return { props: { campaign: CHILDRENS_DAY, products: [] } };
   }
@@ -162,6 +195,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 export default function CollectionLanding({ campaign, products }: Props) {
   const canonical = `https://tecpoint.ws/colecciones/${campaign.slug}`;
   const isChildrensDay = campaign.slug === "dia-del-nino";
+  const isCasesSale = campaign.slug === CASES_GHOSTEK_XBASE.slug;
   const heroImage = isChildrensDay
     ? "/images/collections/dia-del-nino-lifestyle-v2.png"
     : campaign.heroImageUrl;
@@ -180,7 +214,7 @@ export default function CollectionLanding({ campaign, products }: Props) {
       </Head>
       <NavbarMenu />
       <main
-        className={`${styles.page} ${isChildrensDay ? styles.childrensDay : ""}`}
+        className={`${styles.page} ${isChildrensDay ? styles.childrensDay : ""} ${isCasesSale ? styles.caseSale : ""}`}
       >
         {isChildrensDay && (
           <div className={styles.celebration} aria-hidden="true">
@@ -208,12 +242,19 @@ export default function CollectionLanding({ campaign, products }: Props) {
                 campaign.name
               )}
             </h1>
-            <h2>Accesorios para celebrar a lo grande.</h2>
+            <h2>{isCasesSale ? "15% menos. Protección que sí se nota." : "Accesorios para celebrar a lo grande."}</h2>
             <span>{campaign.description}</span>
             <a href="#productos">Explorar selección</a>
           </div>
           <div className={styles.visual}>
-            {heroImage ? (
+            {isCasesSale ? (
+              <div className={styles.caseBrandStage} aria-label="Ghostek y XBase">
+                <span>15%</span>
+                <Image src="/logos/ghostek.png" alt="Ghostek" width={220} height={90} priority />
+                <i />
+                <Image src="/logos/xbase.png" alt="XBase" width={220} height={90} priority />
+              </div>
+            ) : heroImage ? (
               <Image
                 src={heroImage}
                 alt={`Colección ${campaign.name}`}
@@ -251,7 +292,7 @@ export default function CollectionLanding({ campaign, products }: Props) {
           <header>
             <div>
               <p>SELECCIÓN TECPOINT</p>
-              <h2>Regalos que conectan con su mundo.</h2>
+              <h2>{isCasesSale ? "Cobertores con 15% de descuento." : "Regalos que conectan con su mundo."}</h2>
             </div>
             <Link href="/shop">Ver toda la tienda →</Link>
           </header>
@@ -275,7 +316,13 @@ export default function CollectionLanding({ campaign, products }: Props) {
                   </div>
                   <small>{product.marca_producto?.marca || "TECPOINT"}</small>
                   <h3>{product.producto}</h3>
-                  <strong>{price(product)}</strong>
+                  {isCasesSale && <b className={styles.discountBadge}>15% DE DESCUENTO</b>}
+                  {isCasesSale ? (
+                    <div className={styles.promoPrice}>
+                      <del>{price(product)}</del>
+                      <strong>{discountedPrice(product, campaign.discountPercent || 15)}</strong>
+                    </div>
+                  ) : <strong>{price(product)}</strong>}
                   <span>Ver producto →</span>
                 </Link>
               ))}

@@ -327,6 +327,29 @@ export default function Home({
           </div>
         </section>
 
+        <section className={styles.casePromotion} aria-labelledby="case-promotion-title">
+          <div className={styles.casePromotionBadge} aria-hidden="true">
+            <strong>15%</strong>
+            <span>DE DESCUENTO</span>
+          </div>
+          <div className={styles.casePromotionCopy}>
+            <p className={`${styles.eyebrow} ${styles.light}`}>PROTECCIÓN EN PROMOCIÓN</p>
+            <h2 id="case-promotion-title">Cobertores Ghostek + XBase.</h2>
+            <p>
+              Diseños resistentes y compatibles para proteger su teléfono con
+              15% de descuento por tiempo limitado.
+            </p>
+            <Link href="/colecciones/cobertores-ghostek-xbase-15">
+              Ver cobertores con 15% →
+            </Link>
+          </div>
+          <div className={styles.casePromotionBrands} aria-label="Marcas participantes">
+            <Image src="/logos/ghostek.png" alt="Ghostek" width={210} height={80} />
+            <span />
+            <Image src="/logos/xbase.png" alt="XBase" width={210} height={80} />
+          </div>
+        </section>
+
         <section className={styles.categories}>
           <div className={styles.sectionHeading}>
             <div>

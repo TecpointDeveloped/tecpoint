@@ -299,6 +299,107 @@
 .locations {
   padding: clamp(70px, 9vw, 130px) clamp(24px, 5vw, 76px);
 }
+.casePromotion {
+  position: relative;
+  min-height: 390px;
+  padding: clamp(42px, 6vw, 86px) clamp(24px, 6vw, 94px);
+  display: grid;
+  grid-template-columns: auto minmax(300px, 1fr) minmax(270px, 0.72fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 87% 40%, rgba(200, 16, 46, 0.28), transparent 28%),
+    linear-gradient(125deg, #080b0c 0%, #14191a 62%, #390711 100%);
+  color: #fff;
+}
+.casePromotion:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(90deg, transparent, #000 65%);
+}
+.casePromotionBadge,
+.casePromotionCopy,
+.casePromotionBrands {
+  position: relative;
+  z-index: 1;
+}
+.casePromotionBadge {
+  width: clamp(150px, 15vw, 210px);
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 38px;
+  background: #c8102e;
+  text-align: center;
+  transform: rotate(-4deg);
+  box-shadow: 0 26px 65px rgba(200,16,46,.32);
+}
+.casePromotionBadge strong {
+  font-size: clamp(52px, 6vw, 86px);
+  line-height: .9;
+}
+.casePromotionBadge span {
+  margin-top: 9px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+.casePromotionCopy h2 {
+  max-width: 720px;
+  margin: 0 0 18px;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: .94;
+  letter-spacing: -.055em;
+}
+.casePromotionCopy > p:not(.eyebrow) {
+  max-width: 610px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.65;
+}
+.casePromotionCopy a {
+  margin-top: 22px;
+  display: inline-flex;
+  min-height: 48px;
+  padding: 0 21px;
+  align-items: center;
+  border-radius: 999px;
+  background: #fff;
+  color: #111516;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.casePromotionBrands {
+  min-height: 230px;
+  padding: 34px;
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 30px;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(12px);
+}
+.casePromotionBrands img {
+  width: min(210px, 90%);
+  height: 62px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.casePromotionBrands span {
+  width: 70%;
+  height: 1px;
+  background: rgba(255,255,255,.22);
+}
 .brands {
   padding: 0 clamp(24px, 5vw, 76px) clamp(70px, 8vw, 110px);
   display: grid;
@@ -1337,6 +1438,14 @@
   .advisor {
     grid-template-columns: 1fr;
   }
+  .casePromotion {
+    grid-template-columns: auto 1fr;
+  }
+  .casePromotionBrands {
+    grid-column: 1 / -1;
+    min-height: 150px;
+    grid-template-columns: 1fr auto 1fr;
+  }
   .advisorAction {
     min-height: 420px;
   }
@@ -1361,6 +1470,19 @@
   }
   .heroCopy {
     padding: 70px 22px 42px;
+  }
+  .casePromotion {
+    grid-template-columns: 1fr;
+    padding: 54px 22px;
+  }
+  .casePromotionBadge {
+    width: 132px;
+    border-radius: 28px;
+  }
+  .casePromotionBrands {
+    grid-column: auto;
+    min-height: 130px;
+    padding: 24px 18px;
   }
   .hero h1 {
     font-size: clamp(45px, 15vw, 59px);
