@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -49,16 +50,19 @@ function ResponsiveArtwork({ asset, priority = false }: { asset: MarketingAsset;
   if (!asset.imageUrl) return null;
   const desktopWebp = localBannerWebp(asset.imageUrl);
   const mobileWebp = localBannerWebp(asset.mobileImageUrl);
+  const imageSource = desktopWebp || asset.imageUrl;
+  const isRemoteWebp = /^https?:\/\//i.test(imageSource) && /\.webp(?:\?|$)/i.test(imageSource);
   return (
     <picture>
       {mobileWebp && <source media="(max-width: 680px)" srcSet={mobileWebp} type="image/webp" />}
       {asset.mobileImageUrl && <source media="(max-width: 680px)" srcSet={asset.mobileImageUrl} />}
       {desktopWebp && <source srcSet={desktopWebp} type="image/webp" />}
       <Image
-        src={desktopWebp || asset.imageUrl}
+        src={imageSource}
         alt={asset.alt || asset.title}
         fill
         priority={priority}
+        unoptimized={isRemoteWebp}
         sizes="100vw"
         className={styles.artwork}
       />
@@ -107,6 +111,7 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
   const asset = validAssets[active] || validAssets[0];
   const previous = () => setActive((active - 1 + validAssets.length) % validAssets.length);
   const next = () => setActive((active + 1) % validAssets.length);
+  const preloadAssets = validAssets.slice(0, 3);
   const artwork = (
     <span key={asset.id} className={styles.bannerScene}>
       <ResponsiveArtwork key={asset.id} asset={asset} priority={active === 0} />
@@ -123,15 +128,27 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
   );
 
   return (
-    <section
-      className={styles.carousel}
-      aria-roledescription="carrusel"
-      aria-label="Campañas TECPOINT"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
+    <>
+      <Head>
+        {preloadAssets.flatMap((item) => {
+          if (item.mediaType === "video" || !item.imageUrl) return [];
+          const desktop = localBannerWebp(item.imageUrl) || item.imageUrl;
+          const mobile = localBannerWebp(item.mobileImageUrl) || item.mobileImageUrl;
+          return [
+            <link key={`${item.id}-desktop`} rel="preload" as="image" href={desktop} media="(min-width: 681px)" />,
+            ...(mobile ? [<link key={`${item.id}-mobile`} rel="preload" as="image" href={mobile} media="(max-width: 680px)" />] : []),
+          ];
+        })}
+      </Head>
+      <section
+        className={styles.carousel}
+        aria-roledescription="carrusel"
+        aria-label="Campañas TECPOINT"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+      >
       {asset.linkUrl ? (
         <Link
           className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "octubre-de-miedo-2026" ? styles.octoberBanner : ""}`}
@@ -162,7 +179,8 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
           </div>
         </>
       )}
-    </section>
+      </section>
+    </>
   );
 }
 
