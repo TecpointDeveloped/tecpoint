@@ -16,7 +16,8 @@
     "catalog:images": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts",
     "catalog:images:apply": "tsx --env-file=.env.local scripts/import-approved-drive-images.ts --apply",
     "catalog:w34:static": "node scripts/import-w34-static-catalog.mjs",
-    "catalog:w35:static": "node scripts/import-w35-static-catalog.mjs"
+    "catalog:w35:static": "node scripts/import-w35-static-catalog.mjs",
+    "catalog:w40:static": "node scripts/import-w40-static-catalog.mjs"
   },
   "dependencies": {
     "@algolia/client-search": "^5.17.1",

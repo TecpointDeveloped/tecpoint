@@ -7,7 +7,7 @@ import { Product } from "@/types/ProductTypes";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import styles from "@/styles/home2026.module.css";
-import currentCatalog from "@/data/current-catalog-w31.json";
+import currentCatalog from "@/data/current-catalog-w40.json";
 import {
   enrichProduct,
   approvedCatalogProducts,

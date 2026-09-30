@@ -1,6 +1,6 @@
 import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
-import currentCatalog from "@/data/current-catalog-w35.json";
+import currentCatalog from "@/data/current-catalog-w40.json";
 import approvedImages from "@/data/approved-product-images.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
@@ -268,7 +268,7 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
     const image = exactImage || "/brand/isologo.svg";
     const brand = canonicalBrandName(inventory.brand);
     const product = {
-      id: `w35-${sku}`,
+      id: `w40-${sku}`,
       sku,
       producto: inventory.description,
       slug: inventory.slug,
@@ -550,7 +550,7 @@ export function deduplicateProducts<T extends Product>(products: T[]) {
       bySku.set(key, product);
     }
   }
-  // UPC is audited in the CRUD but is not a safe deduplication key: W35 contains
+  // UPC is audited in the CRUD but is not a safe deduplication key: W40 contains
   // legitimate variants that share one UPC while keeping distinct SKUs.
   return [...bySku.values()];
 }

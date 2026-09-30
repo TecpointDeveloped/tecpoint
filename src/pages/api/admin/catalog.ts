@@ -76,10 +76,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
-    if (req.method === "POST" && ["syncW34", "syncW34Drafts", "syncW35"].includes(req.body?.action)) {
+    if (req.method === "POST" && ["syncW34", "syncW34Drafts", "syncW35", "syncW40"].includes(req.body?.action)) {
       const approved = req.body.action === "syncW34Drafts"
         ? pendingW34DraftProducts()
-        : approvedCatalogProducts(req.body.action === "syncW35");
+        : approvedCatalogProducts(req.body.action === "syncW35" || req.body.action === "syncW40");
       const snapshot = await admin.db.collection(collectionName).get();
       const existingBySku = new Map(
         snapshot.docs
@@ -91,7 +91,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const operations = approved.map((product) => {
         const skuKey = text(product.sku).toLowerCase();
         const existing = existingBySku.get(skuKey);
-        const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : req.body.action === "syncW35" ? "w35" : "w34";
+        const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : req.body.action === "syncW40" ? "w40" : req.body.action === "syncW35" ? "w35" : "w34";
         const documentId = `${prefix}-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
         const reference = existing?.ref || admin.db.collection(collectionName).doc(documentId);
         const payload = {

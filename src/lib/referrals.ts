@@ -1,4 +1,4 @@
-import currentCatalog from "@/data/current-catalog-w31.json";
+import currentCatalog from "@/data/current-catalog-w40.json";
 
 export type ReferralOwnerType = "employee" | "influencer" | "tecpoint";
 
