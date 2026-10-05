@@ -304,7 +304,13 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                       title={`Ver productos ${item}`}
                     >
                       {logo ? (
-                        <Image src={logo} alt={item} width={132} height={48} />
+                        <Image
+                          src={logo}
+                          alt={item}
+                          width={132}
+                          height={48}
+                          style={{ width: "auto", height: "34px" }}
+                        />
                       ) : (
                         <b aria-hidden="true">{item.slice(0, 2).toUpperCase()}</b>
                       )}
@@ -330,7 +336,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                           alt={`Imagen de ${product.name}`}
                           fill
                           sizes="(max-width: 560px) 50vw, (max-width: 900px) 33vw, 20vw"
-                          quality={72}
+                          quality={75}
                           priority={index < 6}
                           onError={productImageFallback}
                         />
