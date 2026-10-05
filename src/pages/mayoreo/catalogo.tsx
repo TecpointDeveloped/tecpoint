@@ -32,6 +32,28 @@ type Props = {
 const CART_KEY = "tecpoint_wholesale_cart_v1";
 const PAGE_SIZE = 36;
 
+const BRAND_LOGOS: Record<string, string> = {
+  appacs: "/logos/appacs.png",
+  apple: "/logos/apple.png",
+  deken: "/logos/deken.png",
+  ghostek: "/logos/ghostek.png",
+  hoco: "/logos/hoco.png",
+  hypergear: "/logos/hypergear.webp",
+  krieg: "/logos/krieg.png",
+  langsdom: "/logos/langsdom.png",
+  naztech: "/logos/naztech.png",
+  powerpeak: "/logos/powepeak.png",
+  "rock space": "/logos/rock-space.png",
+  samsung: "/logos/samsung.png",
+  usg: "/logos/usg.png",
+  xbase: "/logos/xbase.png",
+  xo: "/logos/xo.png",
+};
+
+function brandLogo(name: string) {
+  return BRAND_LOGOS[name.trim().toLowerCase()] || null;
+}
+
 export async function getStaticProps() {
   const allProducts = wholesaleCatalog();
   const facets = wholesaleFacets(allProducts);
@@ -236,13 +258,6 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
               />
             </label>
             <label>
-              <span>Marca</span>
-              <select value={brand} onChange={(event) => setBrand(event.target.value)}>
-                <option value="">Todas las marcas</option>
-                {brands.map((item) => <option key={item}>{item}</option>)}
-              </select>
-            </label>
-            <label>
               <span>Categoría</span>
               <select value={category} onChange={(event) => setCategory(event.target.value)}>
                 <option value="">Todas las categorías</option>
@@ -261,6 +276,46 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
             )}
           </div>
 
+          <div className={styles.catalogLayout}>
+            <aside className={styles.brandRail} aria-label="Filtrar por marca">
+              <div className={styles.brandRailHeading}>
+                <span>MARCAS MAYOREO</span>
+                <strong>Elija una marca</strong>
+              </div>
+              <div className={styles.brandList}>
+                <button
+                  type="button"
+                  className={!brand ? styles.brandActive : ""}
+                  aria-pressed={!brand}
+                  onClick={() => setBrand("")}
+                >
+                  <Image src="/brand/isologo.svg" alt="Todas las marcas" width={52} height={52} />
+                  <span>Todas</span>
+                </button>
+                {brands.map((item) => {
+                  const logo = brandLogo(item);
+                  return (
+                    <button
+                      type="button"
+                      key={item}
+                      className={brand === item ? styles.brandActive : ""}
+                      aria-pressed={brand === item}
+                      onClick={() => setBrand(item)}
+                      title={`Ver productos ${item}`}
+                    >
+                      {logo ? (
+                        <Image src={logo} alt={item} width={132} height={48} />
+                      ) : (
+                        <b aria-hidden="true">{item.slice(0, 2).toUpperCase()}</b>
+                      )}
+                      <span>{item}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </aside>
+
+            <div className={styles.productArea}>
           {products.length ? (
             <>
               <div className={styles.grid}>
@@ -320,6 +375,8 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
               <button type="button" onClick={clearFilters}>Limpiar filtros</button>
             </div>
           )}
+            </div>
+          </div>
         </section>
       </main>
 
