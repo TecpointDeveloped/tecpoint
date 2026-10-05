@@ -14,7 +14,6 @@ import {
   publicCatalog,
   OFFICIAL_CATEGORIES,
   preferredProductSlug,
-  productPromotion,
   isNewProduct,
   isGenericProduct,
 } from "@/lib/catalog";
@@ -100,14 +99,9 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
     .filter((product) => Boolean(product.extradata?.stock));
 
   const products = completeProducts.slice(0, 8);
-  const wholesalePromotions = completeProducts
-    .filter((product) => Boolean(productPromotion(product)))
-    .slice(0, 4);
-
   return {
     props: {
       products,
-      wholesalePromotions,
       rockSpaceCount: currentCatalog.records.filter(
         (item) => item.brand === "Rock Space" && item.stock > 0,
       ).length,
@@ -140,20 +134,18 @@ function priceFor(product: Product) {
 
 export default function Home({
   products,
-  wholesalePromotions,
   rockSpaceCount,
   homepageBanners,
   flashPromotion,
   googleSiteVerification,
 }: {
   products: Product[];
-  wholesalePromotions: Product[];
   rockSpaceCount: number;
   homepageBanners: MarketingAsset[];
   flashPromotion: MarketingAsset | null;
   googleSiteVerification: string;
 }) {
-  const { locations, onlineWhatsApp, wholesaleWhatsApp } = useSiteConfig();
+  const { locations, onlineWhatsApp } = useSiteConfig();
   const selectedProducts = products
     .filter(
       (product) =>
@@ -173,7 +165,7 @@ export default function Home({
         <title>TECPOINT | Tecnología bien elegida</title>
         <meta
           name="description"
-          content="Accesorios tecnológicos seleccionados, compatibilidad clara y atención cercana. Compra al detalle y al mayoreo en Honduras."
+          content="Accesorios tecnológicos seleccionados, compatibilidad clara y atención cercana en Honduras."
         />
         {googleSiteVerification && (
           <meta
@@ -543,84 +535,6 @@ export default function Home({
               Consultar compatibilidad <b>↗</b>
             </a>
           </div>
-        </section>
-
-        <section className={styles.wholesale}>
-          <div className={styles.wholesaleCopy}>
-            <p className={styles.eyebrow}>TECPOINT MAYOREO</p>
-            <h2>Inventario que impulsa su negocio.</h2>
-            <p>
-              Atención especializada para comercios y distribuidores que buscan
-              variedad, disponibilidad y acompañamiento comercial.
-            </p>
-            <div><span>Asesoría comercial</span><span>Catálogo amplio</span><span>Pick up en SPS</span></div>
-            <Link
-              className={styles.darkButton}
-              href="/mayoreo"
-            >
-              Ver oportunidades
-            </Link>
-          </div>
-          <div className={styles.wholesaleVisual}>
-            <Image src="/brand/signal-field.svg" alt="" fill />
-            <div>
-              <Image src="/brand/isologo.svg" alt="" width={84} height={84} />
-              <span>CANAL MAYORISTA</span>
-              <strong>+504 9819-1003</strong>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.wholesaleDeals} aria-labelledby="mayoreo-promociones">
-          <div className={styles.sectionHeading}>
-            <div>
-              <p className={styles.eyebrow}>OPORTUNIDADES ACTUALES</p>
-              <h2 id="mayoreo-promociones">Productos con descuento.</h2>
-            </div>
-            <p>
-              Referencias disponibles con precio promocional visible. Para volumen,
-              disponibilidad y condiciones comerciales, confirme con Mayoreo.
-            </p>
-          </div>
-          <div className={styles.dealGrid}>
-            {wholesalePromotions.map((product) => {
-              const promotion = productPromotion(product);
-              if (!promotion) return null;
-              return (
-                <article className={styles.dealCard} key={`mayoreo-${product.id}`}>
-                  <Link className={styles.dealImage} href={`/shop/${preferredProductSlug(product)}`}>
-                    <span className={styles.discountBadge}>−{promotion.percent}%</span>
-                    {isNewProduct(product) && <span className={styles.newBadge}>Nuevo</span>}
-                    <Image
-                      src={imageFor(product)}
-                      alt={product.producto}
-                      fill
-                      sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 25vw"
-                      onError={productImageFallback}
-                    />
-                  </Link>
-                  <div className={styles.dealInfo}>
-                    <small>{product.marca_producto?.marca || "TECPOINT"} · {product.sku}</small>
-                    <h3>{product.producto}</h3>
-                    <div className={styles.dealPrices}>
-                      <span>{priceFor({ ...product, precio: { ...product.precio, detalle: promotion.regularPrice } })}</span>
-                      <strong>{priceFor({ ...product, precio: { ...product.precio, detalle: promotion.promotionalPrice } })}</strong>
-                    </div>
-                    <a
-                      href={whatsappLink(wholesaleWhatsApp, `Hola, deseo consultar disponibilidad y precio por volumen de ${product.producto} (${product.sku}).`)}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Consultar con Mayoreo ↗
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-          <Link className={styles.darkButton} href="/mayoreo">
-            Ver todos los descuentos
-          </Link>
         </section>
 
         <section className={styles.locations} id="ubicaciones">

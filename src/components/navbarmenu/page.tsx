@@ -46,7 +46,6 @@ export default function NavbarMenu() {
         <nav className={styles.desktopNav} aria-label="Navegación principal">
           <Link href="/">Inicio</Link>
           <Link href="/shop">Tienda</Link>
-          <Link href="/mayoreo">Mayoreo</Link>
           <Link href="/categories">Categorías</Link>
           <Link href="/#ubicaciones">Ubicaciones</Link>
           {canManage && <a className={styles.adminLink} href={CRUD_URL}>Administrar</a>}
@@ -117,7 +116,6 @@ export default function NavbarMenu() {
               <nav>
                 <Link href="/">Inicio</Link>
                 <Link href="/shop">Tienda</Link>
-                <Link href="/mayoreo">Mayoreo</Link>
                 <Link href="/categories">Categorías</Link>
                 <Link href="/#ubicaciones">Ubicaciones</Link>
                 <Link href="/cart">Mi carrito</Link>
