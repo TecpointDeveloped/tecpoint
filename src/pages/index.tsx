@@ -146,6 +146,9 @@ export default function Home({
   googleSiteVerification: string;
 }) {
   const { locations, onlineWhatsApp } = useSiteConfig();
+  const retailLocations = locations.filter(
+    (location) => !location.name.toLowerCase().includes("mayoreo"),
+  );
   const selectedProducts = products
     .filter(
       (product) =>
@@ -541,7 +544,7 @@ export default function Home({
           <div className={styles.sectionHeading}>
             <div>
               <p className={styles.eyebrow}>CERCA DE USTED</p>
-              <h2>Tres puntos de atención.</h2>
+              <h2>Dos puntos de atención.</h2>
             </div>
             <p>
               Visítenos, solicite pick up o reciba su pedido en cualquier lugar
@@ -549,7 +552,7 @@ export default function Home({
             </p>
           </div>
           <div className={styles.locationGrid}>
-            {locations.map((location, index) => (
+            {retailLocations.map((location, index) => (
               <article key={location.name}>
                 <div className={styles.locationVisual}>
                   <Image
@@ -592,7 +595,7 @@ export default function Home({
             </div>
           </div>
           <div className={styles.opinionLinks}>
-            {locations.slice(0, 2).map((location) => (
+            {retailLocations.map((location) => (
               <a key={location.name} href={location.maps} target="_blank" rel="noreferrer">
                 <span>{location.city}</span>
                 <strong>{location.name}</strong>
@@ -614,7 +617,7 @@ export default function Home({
         </section>
       </main>
 
-      <Footer />
+      <Footer hideWholesaleLocation />
     </>
   );
 }

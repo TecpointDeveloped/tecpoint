@@ -3,8 +3,15 @@ import Link from "next/link";
 import styles from "@/styles/footer2026.module.css";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 
-export default function Footer() {
+type FooterProps = {
+  hideWholesaleLocation?: boolean;
+};
+
+export default function Footer({ hideWholesaleLocation = false }: FooterProps) {
   const { locations: orderPoints, mainWhatsApp } = useSiteConfig();
+  const visibleOrderPoints = hideWholesaleLocation
+    ? orderPoints.filter((point) => !point.name.toLowerCase().includes("mayoreo"))
+    : orderPoints;
   return (
     <footer className={styles.footer}>
       <section className={styles.top}>
@@ -29,7 +36,7 @@ export default function Footer() {
       </section>
 
       <section className={styles.locations}>
-        {orderPoints.map((point) => (
+        {visibleOrderPoints.map((point) => (
           <article key={point.name}>
             <small>{point.city}</small>
             <strong>{point.name}</strong>
