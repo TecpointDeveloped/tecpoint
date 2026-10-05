@@ -350,7 +350,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                         <em>{product.stock > 0 ? "Disponible" : "Agotado"}</em>
                         <div className={styles.addRow}>
                           <div className={styles.stepper} aria-label={`Cantidad para ${product.name}`}>
-                            <button type="button" aria-label="Restar uno" onClick={() => setProductQuantity(product, quantity - 1)}><Minus size={15} /></button>
+                            <button type="button" aria-label="Restar uno" disabled={quantity <= 1} onClick={() => setProductQuantity(product, quantity - 1)}><Minus size={15} /></button>
                             <input
                               aria-label="Cantidad"
                               inputMode="numeric"
@@ -360,9 +360,9 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                               value={quantity}
                               onChange={(event) => setProductQuantity(product, Number(event.target.value))}
                             />
-                            <button type="button" aria-label="Sumar uno" onClick={() => setProductQuantity(product, quantity + 1)}><Plus size={15} /></button>
+                            <button type="button" aria-label="Sumar uno" disabled={quantity >= product.stock} onClick={() => setProductQuantity(product, quantity + 1)}><Plus size={15} /></button>
                           </div>
-                          <button className={styles.addButton} type="button" onClick={() => addProduct(product)}>Agregar</button>
+                          <button className={styles.addButton} type="button" aria-label={`Agregar ${product.name} al pedido`} onClick={() => addProduct(product)}>Agregar</button>
                         </div>
                       </div>
                     </article>
@@ -406,9 +406,9 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                 <strong>{line.name}</strong>
                 <small>{line.sku} · {line.price ? `${money(line.price)} c/u` : "Consultar precio"}</small>
                 <div className={styles.cartQuantity}>
-                  <button type="button" aria-label="Restar uno" onClick={() => updateCartQuantity(line.sku, line.quantity - 1)}><Minus size={14} /></button>
+                  <button type="button" aria-label="Restar uno" disabled={line.quantity <= 1} onClick={() => updateCartQuantity(line.sku, line.quantity - 1)}><Minus size={14} /></button>
                   <input type="number" min="1" max={line.stock} value={line.quantity} onChange={(event) => updateCartQuantity(line.sku, Number(event.target.value))} aria-label={`Cantidad de ${line.name}`} />
-                  <button type="button" aria-label="Sumar uno" onClick={() => updateCartQuantity(line.sku, line.quantity + 1)}><Plus size={14} /></button>
+                  <button type="button" aria-label="Sumar uno" disabled={line.quantity >= line.stock} onClick={() => updateCartQuantity(line.sku, line.quantity + 1)}><Plus size={14} /></button>
                   <button type="button" aria-label={`Eliminar ${line.name}`} onClick={() => updateCartQuantity(line.sku, 0)}><Trash2 size={15} /></button>
                 </div>
               </div>
