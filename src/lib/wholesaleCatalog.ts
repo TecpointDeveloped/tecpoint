@@ -11,6 +11,14 @@ export type WholesaleProduct = {
   stock: number;
 };
 
+const HIDDEN_WHOLESALE_BRANDS = new Set([
+  "crystaltech",
+  "itskins",
+  "qmadix",
+  "tekya",
+  "xiaomi",
+]);
+
 function imageFor(product: Product) {
   return (
     product.imagenes?.imagen_01?.img ||
@@ -30,6 +38,9 @@ export function wholesaleCatalog(): WholesaleProduct[] {
   return publicCatalog(approvedCatalogProducts())
     .filter(
       (product) =>
+        !HIDDEN_WHOLESALE_BRANDS.has(
+          normalize(String(product.marca_producto?.marca || "")),
+        ) &&
         product.extradata?.stock === true &&
         Number(product.extradata?.inventoryQuantity || 0) > 0 &&
         Number(product.precio?.mayoreo || 0) > 0 &&

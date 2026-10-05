@@ -35,6 +35,7 @@ const PAGE_SIZE = 36;
 const BRAND_LOGOS: Record<string, string> = {
   appacs: "/logos/appacs.png",
   apple: "/logos/apple.png",
+  coast: "/logos/coast.jpg",
   deken: "/logos/deken.png",
   ghostek: "/logos/ghostek.png",
   hoco: "/logos/hoco.png",
