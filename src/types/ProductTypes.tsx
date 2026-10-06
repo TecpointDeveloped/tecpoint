@@ -51,6 +51,7 @@ export interface Product {
     liquidacion?: boolean;
     wholesaleEnabled?: boolean;
     wholesaleCategory?: string;
+    wholesaleImage?: string;
   },
   objectID?: string;
 }

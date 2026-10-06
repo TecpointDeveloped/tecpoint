@@ -42,7 +42,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           sku: data.sku || "",
           producto: data.producto || "",
           brand: data.marca_producto?.marca || "",
-          image: data.imagenes?.imagen_01?.img || firstImage?.img || "",
+          image: data.extradata?.wholesaleImage || data.imagenes?.imagen_01?.img || firstImage?.img || "",
+          wholesaleImage: data.extradata?.wholesaleImage || "",
           retailPrice: Number(data.precio?.detalle) || 0,
           wholesalePrice: Number(data.precio?.mayoreo) || 0,
           wholesaleEnabled: data.extradata?.wholesaleEnabled === true,
@@ -64,6 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         "precio.mayoreo": Math.max(0, Number(req.body.wholesalePrice) || 0),
         "extradata.wholesaleEnabled": Boolean(req.body.wholesaleEnabled),
         "extradata.wholesaleCategory": text(req.body.wholesaleCategory, 120),
+        "extradata.wholesaleImage": text(req.body.wholesaleImage, 2000),
         updatedAt: FieldValue.serverTimestamp(),
       });
       return res.status(200).json({ ok: true });

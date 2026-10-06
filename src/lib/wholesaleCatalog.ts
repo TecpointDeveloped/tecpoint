@@ -21,6 +21,7 @@ const HIDDEN_WHOLESALE_BRANDS = new Set([
 
 function imageFor(product: Product) {
   return (
+    product.extradata?.wholesaleImage ||
     product.imagenes?.imagen_01?.img ||
     Object.values(product.imagenes || {})[0]?.img ||
     "/brand/isologo.svg"
