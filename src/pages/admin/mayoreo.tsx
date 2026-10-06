@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/context/useAuth";
 import { isAdminEmail } from "@/lib/adminAccess";
@@ -10,15 +11,16 @@ type Product = { id:string; sku:string; producto:string; brand:string; image:str
 type Lead = { id:string; name:string; whatsapp:string; email:string; storeName:string; status:string; createdAt?:string|null };
 type Pagination = { page:number; pageSize:number; totalItems:number; totalPages:number };
 
-export default function AdminWholesale() {
+export default function AdminWholesale({ standalone = false }: { standalone?: boolean }) {
+  const router = useRouter();
   const { currentUser, loading } = useAuth();
   const [authorized,setAuthorized]=useState<boolean|null>(null);
   const [products,setProducts]=useState<Product[]>([]); const [leads,setLeads]=useState<Lead[]>([]);
   const [pagination,setPagination]=useState<Pagination>({page:1,pageSize:30,totalItems:0,totalPages:1}); const [summary,setSummary]=useState({active:0,categories:0});
   const [tab,setTab]=useState<"products"|"leads">("products"); const [query,setQuery]=useState("");
   const [busy,setBusy]=useState(false); const [error,setError]=useState("");
-  useEffect(()=>{setAuthorized(isAdminEmail(currentUser?.email));},[currentUser]);
-  const request=useCallback(async(method="GET",body?:object,path="/api/admin/wholesale")=>{if(!currentUser)throw new Error("Sesión no disponible.");const token=await currentUser.getIdToken();const response=await fetch(path,{method,headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible completar la acción.");return data;},[currentUser]);
+  useEffect(()=>{if(!standalone){setAuthorized(isAdminEmail(currentUser?.email));return;}fetch("/api/wholesale-admin/session").then(response=>response.json()).then(data=>setAuthorized(Boolean(data.authenticated))).catch(()=>setAuthorized(false));},[currentUser,standalone]);
+  const request=useCallback(async(method="GET",body?:object,path="/api/admin/wholesale")=>{const headers:Record<string,string>={"Content-Type":"application/json"};if(!standalone){if(!currentUser)throw new Error("Sesión no disponible.");headers.Authorization=`Bearer ${await currentUser.getIdToken()}`;}const response=await fetch(path,{method,headers,body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"No fue posible completar la acción.");return data;},[currentUser,standalone]);
   const loadProducts=useCallback(async(page=1,search=query)=>{setBusy(true);try{const data=await request("GET",undefined,`/api/admin/wholesale?view=products&page=${page}&query=${encodeURIComponent(search)}`);setProducts(data.products);setPagination(data.pagination);setSummary(data.summary);setError("");}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar Mayoreo.");}finally{setBusy(false);}},[request,query]);
   const loadLeads=useCallback(async()=>{setBusy(true);try{const data=await request("GET",undefined,"/api/admin/wholesale?view=leads");setLeads(data.leads);setError("");}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar solicitudes.");}finally{setBusy(false);}},[request]);
   useEffect(()=>{if(!authorized)return;const timer=window.setTimeout(()=>loadProducts(1,query),query?350:0);return()=>window.clearTimeout(timer);},[authorized,query,loadProducts]);
@@ -26,10 +28,10 @@ export default function AdminWholesale() {
   const categories=useMemo(()=>Array.from(new Set(products.map(product=>product.wholesaleCategory).filter(Boolean))).sort(),[products]);
   async function saveProduct(event:FormEvent<HTMLFormElement>,product:Product){event.preventDefault();const data=new FormData(event.currentTarget);setBusy(true);try{await request("PATCH",{target:"product",id:product.id,wholesalePrice:data.get("wholesalePrice"),wholesaleCategory:data.get("wholesaleCategory"),wholesaleEnabled:data.get("wholesaleEnabled")==="on"});await loadProducts(pagination.page);}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible guardar.");setBusy(false);}}
   async function updateLead(lead:Lead,status:string){setBusy(true);try{await request("PATCH",{target:"lead",id:lead.id,status});await loadLeads();}catch(reason){setError(reason instanceof Error?reason.message:"No fue posible actualizar.");setBusy(false);}}
-  if(loading||authorized===null)return <main className={styles.state}>Verificando acceso…</main>;
-  if(!authorized)return <main className={styles.state}><h1>Acceso reservado</h1><Link href="/my-account">Iniciar sesión</Link></main>;
+  if((!standalone&&loading)||authorized===null)return <main className={styles.state}>Verificando acceso…</main>;
+  if(!authorized)return <main className={styles.state}><h1>Acceso reservado</h1><Link href={standalone?"/mayoreo/admin/login":"/my-account"}>Iniciar sesión</Link></main>;
   return <><Head><title>Mayoreo | Administración TECPOINT</title><meta name="robots" content="noindex,nofollow"/></Head><main className={styles.page}>
-    <header><div><Link href="/admin">← Panel central</Link><p>GESTIÓN MAYORISTA</p><h1>Mayoreo.</h1></div><button onClick={()=>tab==="products"?loadProducts(pagination.page):loadLeads()} disabled={busy}>{busy?"Actualizando…":"Actualizar datos"}</button></header>
+    <header><div><Link href={standalone?"/mayoreo/catalogo":"/admin"}>← {standalone?"Catálogo de mayoreo":"Panel central"}</Link><p>GESTIÓN MAYORISTA INDEPENDIENTE</p><h1>Mayoreo.</h1></div><div><button onClick={()=>tab==="products"?loadProducts(pagination.page):loadLeads()} disabled={busy}>{busy?"Actualizando…":"Actualizar datos"}</button>{standalone&&<button onClick={async()=>{await fetch("/api/wholesale-admin/session",{method:"DELETE"});await router.replace("/mayoreo/admin/login");}}>Cerrar sesión</button>}</div></header>
     {error&&<div className={styles.error}>{error}</div>}
     <section className={styles.metrics}><article><span>Productos activos</span><strong>{summary.active}</strong></article><article><span>Categorías</span><strong>{summary.categories}</strong></article><article><span>Solicitudes cargadas</span><strong>{leads.length}</strong></article></section>
     <nav className={styles.tabs}><button className={tab==="products"?styles.selected:""} onClick={()=>setTab("products")}>Productos y categorías</button><button className={tab==="leads"?styles.selected:""} onClick={()=>{setTab("leads");if(!leads.length)loadLeads();}}>Solicitudes recibidas</button></nav>

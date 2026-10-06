@@ -2,10 +2,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { isAdminEmail } from "@/lib/adminAccess";
+import { validWholesaleAdminSession } from "@/lib/wholesaleAdminAuth.server";
 
 async function requireAdmin(req: NextApiRequest) {
-  const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
   const admin = getFirebaseAdmin();
+  if (validWholesaleAdminSession(req)) return admin;
+  const token = req.headers.authorization?.replace(/^Bearer\s+/i, "");
   if (!token || !admin) return null;
   const decoded = await admin.auth.verifyIdToken(token);
   return isAdminEmail(decoded.email) ? admin : null;
