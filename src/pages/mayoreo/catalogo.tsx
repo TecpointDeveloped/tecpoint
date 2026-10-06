@@ -19,6 +19,7 @@ import {
   type WholesaleProduct,
 } from "@/lib/wholesaleCatalog";
 import styles from "@/styles/wholesaleCatalog.module.css";
+import { validWholesaleAccess, WHOLESALE_COOKIE } from "@/lib/wholesaleAccess.server";
 
 type CartLine = WholesaleProduct & { quantity: number };
 
@@ -55,7 +56,11 @@ function brandLogo(name: string) {
   return BRAND_LOGOS[name.trim().toLowerCase()] || null;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req, res }: { req: { cookies: Record<string,string> }; res: { setHeader: (name:string,value:string)=>void } }) {
+  res.setHeader("Cache-Control", "private, no-store");
+  if (!validWholesaleAccess(req.cookies[WHOLESALE_COOKIE])) {
+    return { redirect: { destination: "/mayoreo", permanent: false } };
+  }
   const allProducts = wholesaleCatalog();
   const facets = wholesaleFacets(allProducts);
   return {
@@ -64,7 +69,6 @@ export async function getStaticProps() {
       initialTotal: allProducts.length,
       ...facets,
     },
-    revalidate: 300,
   };
 }
 
@@ -163,6 +167,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
       };
     });
     setNotice(`${product.name} se agregó al pedido.`);
+    setDrawerOpen(true);
     window.setTimeout(() => setNotice(""), 2400);
   }
 
@@ -390,7 +395,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
       {notice && <div className={styles.notice} role="status">{notice}</div>}
 
       <button className={styles.cartButton} type="button" onClick={() => setDrawerOpen(true)}>
-        <ShoppingBag size={20} /> Ver pedido ({cartQuantity})
+        <ShoppingBag size={20} /> Carrito mayorista ({cartQuantity})
       </button>
       {drawerOpen && <button className={styles.backdrop} aria-label="Cerrar pedido" onClick={() => setDrawerOpen(false)} />}
       <aside className={`${styles.drawer} ${drawerOpen ? styles.drawerOpen : ""}`} aria-hidden={!drawerOpen} aria-label="Pedido de mayoreo">

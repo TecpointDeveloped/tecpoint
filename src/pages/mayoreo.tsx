@@ -3,18 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/database/Config";
 import NavbarMenu from "@/components/navbarmenu/page";
 import Footer from "@/components/Footer/page";
 import { Product } from "@/types/ProductTypes";
 import {
-  approvedCatalogProducts,
-  enrichProduct,
   preferredProductSlug,
   isNewProduct,
-  productAddedTime,
-  publicCatalog,
 } from "@/lib/catalog";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import { trackContact } from "@/lib/tracking";
@@ -24,46 +18,11 @@ import { productImageFallback } from "@/lib/imageFallback";
 
 type Props = { products: Product[]; totalProducts: number; currentPage: number; totalPages: number; catalogUnlocked: boolean; currentSearch: string };
 
-export async function getServerSideProps({ req, res, query }: { req: { cookies: Record<string, string> }; res: { setHeader: (name: string, value: string) => void }; query: { page?: string | string[]; search?: string | string[] } }) {
+export async function getServerSideProps({ req, res }: { req: { cookies: Record<string, string> }; res: { setHeader: (name: string, value: string) => void } }) {
   res.setHeader("Cache-Control", "private, no-store");
   const catalogUnlocked = validWholesaleAccess(req.cookies[WHOLESALE_COOKIE]);
   if (!catalogUnlocked) return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: false, currentSearch: "" } };
-  try {
-    const snapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_DATABASE_NAME as string));
-    const currentSearch = String(Array.isArray(query.search) ? query.search[0] : query.search || "").trim();
-    const wholesaleProducts = publicCatalog([
-      ...snapshot.docs.map((document) => {
-        const data = document.data();
-        return enrichProduct({
-          id: document.id,
-          ...data,
-          fecha_agregado: data.fecha_agregado?.toDate?.().toISOString() || null,
-        } as Product);
-      }),
-      ...approvedCatalogProducts(),
-    ])
-      .filter((product) => Boolean(
-        (product.extradata?.stock || Boolean(currentSearch)) &&
-        Number(product.precio?.mayoreo) > 0 &&
-        (product.extradata?.wholesaleEnabled !== false || Boolean(currentSearch)) &&
-        (!currentSearch || `${product.producto} ${product.sku} ${product.marca_producto?.marca || ""}`.toLowerCase().includes(currentSearch.toLowerCase())),
-      ))
-      .sort((left, right) => {
-        const dateDifference = productAddedTime(right) - productAddedTime(left);
-        if (dateDifference) return dateDifference;
-        return String(left.producto).localeCompare(String(right.producto));
-      });
-    const perPage = 16;
-    const requestedPage = Array.isArray(query.page) ? query.page[0] : query.page;
-    const totalProducts = wholesaleProducts.length;
-    const totalPages = Math.max(1, Math.ceil(totalProducts / perPage));
-    const currentPage = Math.min(totalPages, Math.max(1, Number(requestedPage) || 1));
-    const products = wholesaleProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
-    return { props: { products, totalProducts, currentPage, totalPages, catalogUnlocked: true, currentSearch } };
-  } catch (error) {
-    console.error("No fue posible cargar las oportunidades de mayoreo:", error);
-    return { props: { products: [], totalProducts: 0, currentPage: 1, totalPages: 1, catalogUnlocked: true, currentSearch: "" } };
-  }
+  return { redirect: { destination: "/mayoreo/catalogo", permanent: false } };
 }
 
 function imageFor(product: Product) {
@@ -102,7 +61,7 @@ export default function Mayoreo({ products, totalProducts, currentPage, totalPag
       setFormState("success");
       setFormMessage("¡Gracias! El equipo de Mayoreo recibió sus datos y podrá contactarle.");
       trackContact("Formulario mayoreo");
-      await router.push("/mayoreo");
+      await router.push("/mayoreo/catalogo");
     } catch (error) {
       setFormState("error");
       setFormMessage(error instanceof Error ? error.message : "No fue posible enviar sus datos.");
