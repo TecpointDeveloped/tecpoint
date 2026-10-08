@@ -19,6 +19,7 @@
 @media(max-width:650px){.brandList button{flex-basis:112px}.brandList button img{max-width:96px;height:30px}.catalogLayout{gap:10px}}
 @media(prefers-reduced-motion:reduce){.brandList button{transition:none}.brandList button:hover{transform:none}}
 .brandList button,.stepper button,.cartQuantity button,.addButton,.cartButton,.loadMore,.resultsBar button,.drawer button,.drawer a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.wholesaleHeader{min-height:74px;padding:12px clamp(18px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;border-bottom:1px solid #e2e6e7;color:#111516;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.wholesaleHeader img{max-width:48vw;height:auto}@media(max-width:650px){.wholesaleHeader{min-height:62px}.wholesaleHeader span{font-size:9px}}
 .brandList button:focus-visible,.stepper button:focus-visible,.cartQuantity button:focus-visible,.addButton:focus-visible,.cartButton:focus-visible,.loadMore:focus-visible,.resultsBar button:focus-visible,.drawer button:focus-visible,.drawer a:focus-visible{outline:3px solid #1677ff;outline-offset:2px}
 .stepper button:disabled,.cartQuantity button:disabled{cursor:not-allowed;opacity:.28}
 .addButton:active,.cartButton:active,.loadMore:active{transform:translateY(1px)}

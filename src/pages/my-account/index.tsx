@@ -143,7 +143,6 @@ export default function MyAccount({ title, description, keywords, robots }: Prop
 
               <div className={styles.switcher} role="tablist" aria-label="Tipo de cuenta">
                 <button type="button" role="tab" aria-selected={mode === "customer"} className={mode === "customer" ? styles.active : ""} onClick={() => { setMode("customer"); clearFeedback(); }}>Mi cuenta</button>
-                <button type="button" role="tab" aria-selected={mode === "wholesale"} className={mode === "wholesale" ? styles.active : ""} onClick={() => { setMode("wholesale"); clearFeedback(); }}>Soy mayorista</button>
               </div>
 
               <div className={styles.heading}>

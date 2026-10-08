@@ -9,8 +9,6 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import NavbarMenu from "@/components/navbarmenu/page";
-import Footer from "@/components/Footer/page";
 import { productImageFallback } from "@/lib/imageFallback";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import {
@@ -19,7 +17,6 @@ import {
   type WholesaleProduct,
 } from "@/lib/wholesaleCatalog";
 import styles from "@/styles/wholesaleCatalog.module.css";
-import { validWholesaleAccess, WHOLESALE_COOKIE } from "@/lib/wholesaleAccess.server";
 
 type CartLine = WholesaleProduct & { quantity: number };
 
@@ -56,11 +53,8 @@ function brandLogo(name: string) {
   return BRAND_LOGOS[name.trim().toLowerCase()] || null;
 }
 
-export async function getServerSideProps({ req, res }: { req: { cookies: Record<string,string> }; res: { setHeader: (name:string,value:string)=>void } }) {
-  res.setHeader("Cache-Control", "private, no-store");
-  if (!validWholesaleAccess(req.cookies[WHOLESALE_COOKIE])) {
-    return { redirect: { destination: "/mayoreo", permanent: false } };
-  }
+export async function getServerSideProps({ res }: { res: { setHeader: (name:string,value:string)=>void } }) {
+  res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
   const allProducts = wholesaleCatalog();
   const facets = wholesaleFacets(allProducts);
   return {
@@ -238,7 +232,10 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
         <meta name="robots" content="noindex,nofollow,noarchive" />
         <link rel="canonical" href="https://tecpoint.ws/mayoreo/catalogo" />
       </Head>
-      <NavbarMenu />
+      <header className={styles.wholesaleHeader}>
+        <Image src="/brand/logo-principal.svg" alt="TECPOINT" width={180} height={42} priority />
+        <span>Tienda de mayoreo</span>
+      </header>
       <main className={styles.page}>
         <header className={styles.hero}>
           <div className={styles.heroCopy}>
@@ -441,7 +438,6 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
           {cartLines.length > 0 && <button type="button" onClick={() => setCart({})}>Vaciar pedido</button>}
         </footer>
       </aside>
-      <Footer />
     </>
   );
 }
