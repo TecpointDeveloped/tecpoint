@@ -18,6 +18,9 @@ const HIDDEN_WHOLESALE_BRANDS = new Set([
   "tekya",
   "xiaomi",
 ]);
+let cachedProducts: WholesaleProduct[] | undefined;
+let cachedFacets: { brands: string[]; categories: string[] } | undefined;
+const searchIndex = new Map<string, string>();
 
 function imageFor(product: Product) {
   return (
@@ -36,7 +39,8 @@ function normalize(value: string) {
 }
 
 export function wholesaleCatalog(): WholesaleProduct[] {
-  return publicCatalog(approvedCatalogProducts())
+  if (cachedProducts) return cachedProducts;
+  cachedProducts = publicCatalog(approvedCatalogProducts())
     .filter(
       (product) =>
         !HIDDEN_WHOLESALE_BRANDS.has(
@@ -67,10 +71,15 @@ export function wholesaleCatalog(): WholesaleProduct[] {
       const brandOrder = left.brand.localeCompare(right.brand, "es");
       return brandOrder || left.name.localeCompare(right.name, "es");
     });
+  cachedProducts.forEach((product) => {
+    searchIndex.set(product.sku, normalize(`${product.name} ${product.brand} ${product.sku}`));
+  });
+  return cachedProducts;
 }
 
 export function wholesaleFacets(products = wholesaleCatalog()) {
-  return {
+  if (products === cachedProducts && cachedFacets) return cachedFacets;
+  const facets = {
     brands: Array.from(new Set(products.map((product) => product.brand))).sort(
       (a, b) => a.localeCompare(b, "es"),
     ),
@@ -78,6 +87,8 @@ export function wholesaleFacets(products = wholesaleCatalog()) {
       new Set(products.map((product) => product.category)),
     ).sort((a, b) => a.localeCompare(b, "es")),
   };
+  if (products === cachedProducts) cachedFacets = facets;
+  return facets;
 }
 
 export function filterWholesaleCatalog(
@@ -89,8 +100,6 @@ export function filterWholesaleCatalog(
     if (filters.brand && product.brand !== filters.brand) return false;
     if (filters.category && product.category !== filters.category) return false;
     if (!query) return true;
-    return normalize(`${product.name} ${product.brand} ${product.sku}`).includes(
-      query,
-    );
+    return (searchIndex.get(product.sku) || normalize(`${product.name} ${product.brand} ${product.sku}`)).includes(query);
   });
 }

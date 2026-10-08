@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     category: String(req.query.category || ""),
   });
   const offset = Math.max(0, Number(req.query.offset) || 0);
-  const limit = Math.min(60, Math.max(1, Number(req.query.limit) || 36));
+  const limit = Math.min(60, Math.max(1, Number(req.query.limit) || 24));
 
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
   return res.status(200).json({

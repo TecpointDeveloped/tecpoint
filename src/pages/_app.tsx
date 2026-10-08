@@ -24,13 +24,14 @@ function DynamicSiteMeta() {
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const showStorefrontDecor = !router.pathname.startsWith("/admin") && !router.pathname.startsWith("/mayoreo");
+  const showStorefrontMotion = !router.pathname.startsWith("/admin") && !router.pathname.startsWith("/mayoreo");
 
   return (
     <AuthProvider>
       <SiteConfigProvider>
         <DynamicSiteMeta />
         <Tracking />
-        <MotionSystem />
+        {showStorefrontMotion && <MotionSystem />}
         {showStorefrontDecor && <HalloweenDecor />}
         <Component {...pageProps} />
       </SiteConfigProvider>

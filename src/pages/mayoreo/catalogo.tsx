@@ -28,7 +28,7 @@ type Props = {
 };
 
 const CART_KEY = "tecpoint_wholesale_cart_v1";
-const PAGE_SIZE = 36;
+const PAGE_SIZE = 24;
 
 const BRAND_LOGOS: Record<string, string> = {
   appacs: "/logos/appacs.png",
@@ -348,9 +348,10 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                           src={product.image}
                           alt={`Imagen de ${product.name}`}
                           fill
-                          sizes="(max-width: 560px) 50vw, (max-width: 900px) 33vw, 20vw"
+                          sizes="(max-width: 650px) 48vw, (max-width: 900px) 32vw, (max-width: 1200px) 26vw, 20vw"
                           quality={75}
-                          priority={index < 6}
+                          priority={index < 2}
+                          decoding="async"
                           onError={productImageFallback}
                         />
                       </div>
