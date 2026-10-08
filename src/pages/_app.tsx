@@ -23,7 +23,7 @@ function DynamicSiteMeta() {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const showStorefrontDecor = !router.pathname.startsWith("/admin");
+  const showStorefrontDecor = !router.pathname.startsWith("/admin") && !router.pathname.startsWith("/mayoreo");
 
   return (
     <AuthProvider>

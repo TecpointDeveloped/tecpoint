@@ -21,6 +21,58 @@
 .brandList button,.stepper button,.cartQuantity button,.addButton,.cartButton,.loadMore,.resultsBar button,.drawer button,.drawer a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .wholesaleHeader{min-height:74px;padding:12px clamp(18px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;border-bottom:1px solid #e2e6e7;color:#111516;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.wholesaleHeader img{max-width:48vw;height:auto}@media(max-width:650px){.wholesaleHeader{min-height:62px}.wholesaleHeader span{font-size:9px}}
 .featuredBrand{margin-top:26px;min-height:60px;display:inline-flex;align-items:center;gap:17px;padding:9px 18px;border:1px solid rgba(255,255,255,.45);background:#fff;color:#111516;cursor:pointer;font:inherit;font-size:12px;font-weight:850}.featuredBrand img{width:116px;height:38px;object-fit:contain}.featuredBrand>span{display:flex;align-items:center;gap:9px}.featuredBrand:hover{border-color:#ff415e;box-shadow:0 8px 26px rgba(0,0,0,.18)}.addRow{grid-template-columns:minmax(0,1fr);gap:7px}.stepper{height:38px;justify-content:space-between}.stepper input{flex:1;width:100%;max-width:none}.addButton{min-height:38px;padding:0 12px}@media(max-width:650px){.featuredBrand{width:100%;justify-content:center;gap:10px;padding:8px}.featuredBrand img{width:90px}.featuredBrand>span{font-size:10px}}
+
+/* Wholesale storefront: editorial hierarchy, spacious product stages, clear buying controls. */
+.page{background:#f5f6f5;color:#131716}
+.wholesaleHeader{position:relative;z-index:3;min-height:82px;max-width:none;padding-inline:clamp(22px,5vw,84px);box-shadow:0 1px 0 #e5e8e7}
+.wholesaleHeader span{color:#697171}
+.hero{min-height:340px;grid-template-columns:minmax(0,1.65fr) minmax(250px,.35fr);background:radial-gradient(circle at 66% 25%,#343c39 0,#171c1a 38%,#101514 72%)}
+.heroCopy{padding:clamp(45px,6vw,84px) clamp(24px,6vw,96px)}
+.heroCopy>span{color:#ff6172;letter-spacing:.24em}
+.heroCopy h1{max-width:950px;margin:15px 0 18px;font-size:clamp(38px,5.4vw,72px);line-height:1.03;letter-spacing:-.065em}
+.heroCopy p{max-width:620px;color:#d2d9d6;line-height:1.6}
+.heroMark{background:#ba0d29;flex-direction:column;gap:22px}
+.heroMark:before{inset:0;background:linear-gradient(145deg,transparent 0 35%,rgba(255,255,255,.09) 35% 36%,transparent 36% 65%,rgba(255,255,255,.08) 65% 66%,transparent 66%)}
+.heroMark div{gap:10px;text-align:center;font-size:10px;letter-spacing:.14em}
+.heroMark b{padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.26)}
+.featuredBrand{border-radius:14px;box-shadow:0 14px 32px rgba(0,0,0,.16);transition:transform .2s,box-shadow .2s}
+.featuredBrand:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,0,0,.23)}
+.catalog{max-width:1680px;padding:clamp(22px,3vw,46px)}
+.tools{top:12px;grid-template-columns:minmax(300px,1fr) minmax(210px,300px);gap:14px;padding:16px;border-radius:18px;box-shadow:0 12px 35px rgba(17,21,22,.06)}
+.tools select,.search{min-height:54px;border-radius:11px}
+.resultsBar{padding:30px 3px 21px}
+.resultsBar strong{font-size:clamp(20px,2vw,28px);letter-spacing:-.035em}
+.catalogLayout{grid-template-columns:220px minmax(0,1fr);gap:20px}
+.brandRail{top:126px;border-radius:18px;box-shadow:0 8px 30px rgba(17,21,22,.035)}
+.brandRailHeading{padding:21px 18px 16px}
+.brandList{padding:10px}
+.brandList button{min-height:78px;border-radius:11px}
+.brandList button:hover{transform:none}
+.brandList .brandActive{background:#fff6f7}
+.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{overflow:hidden;border-radius:18px;box-shadow:0 5px 22px rgba(17,21,22,.035)}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(17,21,22,.11)}
+.imageWrap{aspect-ratio:1.16;background:linear-gradient(145deg,#fff,#f8faf9)}
+.imageWrap img{padding:20px}
+.imageWrap>span{top:14px;left:14px;padding:8px 10px;border-radius:6px;font-size:9px}
+.cardBody{padding:19px;gap:0}
+.cardBody h2{min-height:62px;margin:9px 0 8px;font-size:15px;line-height:1.4}
+.cardBody>p{margin-bottom:16px}
+.priceLabel{margin-top:auto;color:#697171;font-size:9px;font-weight:850;letter-spacing:.11em}
+.cardBody>strong{margin-top:3px;font-size:clamp(20px,2vw,25px);letter-spacing:-.045em;white-space:nowrap}
+.cardBody>em{margin:7px 0 17px;font-size:10px}
+.addRow{grid-template-columns:1fr;gap:9px}
+.stepper{height:44px;border-radius:9px;overflow:hidden}
+.stepper button{width:44px}
+.stepper input{font-size:14px}
+.addButton{min-height:47px;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:9px;background:#c8102e;font-size:10px;white-space:nowrap}
+.addButton:hover{background:#a70d26}
+.cartButton{min-height:58px;border:2px solid #fff;background:#c8102e;box-shadow:0 14px 40px rgba(81,0,15,.25);font-size:12px}
+.drawer>footer a{border-radius:9px;font-size:12px}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}.heroMark{display:none}.tools{position:relative;top:auto;grid-template-columns:1fr 1fr}.search{grid-column:1/-1}.catalogLayout{grid-template-columns:1fr}.brandRail{position:relative;top:auto;max-height:none}.brandRailHeading{display:none}.brandList{max-height:none;display:flex;overflow-x:auto;gap:9px;padding:10px;scroll-snap-type:x proximity}.brandList button{flex:0 0 135px;margin:0;scroll-snap-align:start}}
+@media(max-width:650px){.wholesaleHeader{min-height:64px}.heroCopy{padding:42px 22px 48px}.heroCopy h1{font-size:clamp(37px,10vw,52px)}.heroCopy p{font-size:14px}.catalog{padding:16px 12px 96px}.tools{grid-template-columns:1fr;gap:10px;padding:12px;border-radius:13px}.search{grid-column:auto}.resultsBar{padding:23px 3px 16px}.resultsBar strong{font-size:19px}.brandList button{flex-basis:116px;min-height:72px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{border-radius:13px}.imageWrap{aspect-ratio:1}.imageWrap img{padding:9px}.cardBody{padding:12px}.cardBody h2{min-height:64px;font-size:12px}.cardBody>strong{font-size:18px}.priceLabel{font-size:8px}.stepper{height:42px}.addButton{min-height:44px;font-size:9px}.cartButton{right:12px;bottom:12px;left:12px;justify-content:center}}
+@media(prefers-reduced-motion:reduce){.featuredBrand,.card{transition:none}.featuredBrand:hover,.card:hover{transform:none}}
 .brandList button:focus-visible,.stepper button:focus-visible,.cartQuantity button:focus-visible,.addButton:focus-visible,.cartButton:focus-visible,.loadMore:focus-visible,.resultsBar button:focus-visible,.drawer button:focus-visible,.drawer a:focus-visible{outline:3px solid #1677ff;outline-offset:2px}
 .stepper button:disabled,.cartQuantity button:disabled{cursor:not-allowed;opacity:.28}
 .addButton:active,.cartButton:active,.loadMore:active{transform:translateY(1px)}

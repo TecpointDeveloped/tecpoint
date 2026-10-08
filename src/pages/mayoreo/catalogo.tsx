@@ -243,9 +243,9 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
       <main className={styles.page}>
         <header className={styles.hero}>
           <div className={styles.heroCopy}>
-            <span>CANAL B2B · TECPOINT</span>
-            <h1>CATÁLOGO MAYOREO</h1>
-            <p>Precios exclusivos para clientes mayoristas TECPOINT.</p>
+            <span>TECPOINT · CATÁLOGO MAYORISTA</span>
+            <h1>Tu negocio merece<br />más opciones.</h1>
+            <p>Busca lo que necesitas, elige cantidades y arma tu pedido en minutos.</p>
             {featuredRockSpace && (
               <button className={styles.featuredBrand} type="button" onClick={() => { setBrand(featuredRockSpace); setCategory(""); setSearch(""); }}>
                 <Image src="/logos/rock-space.png" alt="" width={116} height={42} />
@@ -255,7 +255,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
           </div>
           <div className={styles.heroMark} aria-hidden="true">
             <Image src="/brand/isologo.svg" alt="" width={92} height={92} priority />
-            <div><b>BUSQUE</b><b>SELECCIONE</b><b>ENVÍE</b></div>
+            <div><b>01 · EXPLORA</b><b>02 · AGREGA</b><b>03 · ENVÍA TU PEDIDO</b></div>
           </div>
         </header>
 
@@ -281,8 +281,8 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
 
           <div className={styles.resultsBar}>
             <div>
-              <span>CATÁLOGO ACTUAL</span>
-              <strong id="catalog-title">{total} productos disponibles</strong>
+              <span>SELECCIÓN TECPOINT</span>
+              <strong id="catalog-title">{total} productos para tu negocio</strong>
             </div>
             {(search || brand || category) && (
               <button type="button" onClick={clearFilters}>Limpiar filtros</button>
@@ -358,8 +358,9 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                         <small>{product.brand}</small>
                         <h2>{product.name}</h2>
                         <p>Código: {product.sku}</p>
-                        <strong>{product.price ? `${money(product.price)} Mayoreo` : "Consultar precio"}</strong>
-                        <em>{product.stock > 0 ? "Disponible" : "Agotado"}</em>
+                        <span className={styles.priceLabel}>PRECIO MAYORISTA</span>
+                        <strong>{product.price ? money(product.price) : "Consultar precio"}</strong>
+                        <em>{product.stock > 0 ? "Disponible para pedir" : "Agotado"}</em>
                         <div className={styles.addRow}>
                           <div className={styles.stepper} aria-label={`Cantidad para ${product.name}`}>
                             <button type="button" aria-label="Restar uno" disabled={quantity <= 1} onClick={() => setProductQuantity(product, quantity - 1)}><Minus size={15} /></button>
@@ -374,7 +375,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                             />
                             <button type="button" aria-label="Sumar uno" disabled={quantity >= product.stock} onClick={() => setProductQuantity(product, quantity + 1)}><Plus size={15} /></button>
                           </div>
-                          <button className={styles.addButton} type="button" aria-label={`Agregar ${product.name} al pedido`} onClick={() => addProduct(product)}>Agregar</button>
+                          <button className={styles.addButton} type="button" aria-label={`Agregar ${product.name} al pedido`} onClick={() => addProduct(product)}>Agregar al carrito <Plus size={16} aria-hidden="true" /></button>
                         </div>
                       </div>
                     </article>
