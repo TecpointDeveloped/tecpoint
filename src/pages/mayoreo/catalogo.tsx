@@ -88,6 +88,10 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
   const [cartReady, setCartReady] = useState(false);
   const [notice, setNotice] = useState("");
   const firstRequest = useRef(true);
+  const featuredRockSpace = brands.find((item) => item.toLowerCase().replace(/\s+/g, "") === "rockspace");
+  const orderedBrands = featuredRockSpace
+    ? [featuredRockSpace, ...brands.filter((item) => item !== featuredRockSpace)]
+    : brands;
 
   useEffect(() => {
     try {
@@ -242,6 +246,12 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
             <span>CANAL B2B · TECPOINT</span>
             <h1>CATÁLOGO MAYOREO</h1>
             <p>Precios exclusivos para clientes mayoristas TECPOINT.</p>
+            {featuredRockSpace && (
+              <button className={styles.featuredBrand} type="button" onClick={() => { setBrand(featuredRockSpace); setCategory(""); setSearch(""); }}>
+                <Image src="/logos/rock-space.png" alt="" width={116} height={42} />
+                <span>Comprar Rock Space <span aria-hidden="true">→</span></span>
+              </button>
+            )}
           </div>
           <div className={styles.heroMark} aria-hidden="true">
             <Image src="/brand/isologo.svg" alt="" width={92} height={92} priority />
@@ -295,7 +305,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                   <Image src="/brand/isologo.svg" alt="Todas las marcas" width={52} height={52} />
                   <span>Todas</span>
                 </button>
-                {brands.map((item) => {
+                {orderedBrands.map((item) => {
                   const logo = brandLogo(item);
                   return (
                     <button
