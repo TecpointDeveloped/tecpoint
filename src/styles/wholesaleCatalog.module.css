@@ -73,6 +73,13 @@
 @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}.heroMark{display:none}.tools{position:relative;top:auto;grid-template-columns:1fr 1fr}.search{grid-column:1/-1}.catalogLayout{grid-template-columns:1fr}.brandRail{position:relative;top:auto;max-height:none}.brandRailHeading{display:none}.brandList{max-height:none;display:flex;overflow-x:auto;gap:9px;padding:10px;scroll-snap-type:x proximity}.brandList button{flex:0 0 135px;margin:0;scroll-snap-align:start}}
 @media(max-width:650px){.wholesaleHeader{min-height:64px}.heroCopy{padding:42px 22px 48px}.heroCopy h1{font-size:clamp(37px,10vw,52px)}.heroCopy p{font-size:14px}.catalog{padding:16px 12px 96px}.tools{grid-template-columns:1fr;gap:10px;padding:12px;border-radius:13px}.search{grid-column:auto}.resultsBar{padding:23px 3px 16px}.resultsBar strong{font-size:19px}.brandList button{flex-basis:116px;min-height:72px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{border-radius:13px}.imageWrap{aspect-ratio:1}.imageWrap img{padding:9px}.cardBody{padding:12px}.cardBody h2{min-height:64px;font-size:12px}.cardBody>strong{font-size:18px}.priceLabel{font-size:8px}.stepper{height:42px}.addButton{min-height:44px;font-size:9px}.cartButton{right:12px;bottom:12px;left:12px;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.featuredBrand,.card{transition:none}.featuredBrand:hover,.card:hover{transform:none}}
+.hero{min-height:285px}
+.heroCopy{padding:40px clamp(24px,6vw,96px) 43px}
+.heroCopy h1{margin:11px 0 12px;font-size:clamp(38px,4.65vw,62px)}
+.heroCopy p{font-size:15px}
+.featuredBrand{margin-top:17px;min-height:54px}
+.catalog{padding-top:24px}
+@media(max-width:650px){.heroCopy{padding:34px 22px 39px}.heroCopy h1{font-size:clamp(35px,9vw,47px)}.catalog{padding-top:15px}}
 .brandList button:focus-visible,.stepper button:focus-visible,.cartQuantity button:focus-visible,.addButton:focus-visible,.cartButton:focus-visible,.loadMore:focus-visible,.resultsBar button:focus-visible,.drawer button:focus-visible,.drawer a:focus-visible{outline:3px solid #1677ff;outline-offset:2px}
 .stepper button:disabled,.cartQuantity button:disabled{cursor:not-allowed;opacity:.28}
 .addButton:active,.cartButton:active,.loadMore:active{transform:translateY(1px)}
