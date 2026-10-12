@@ -47,7 +47,18 @@ import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 interface ProductDetailProps {
   product: Product | null;
   Banners: BannerInterface[]
-  ghostekVariants?: Array<{ sku: string; slug: string; color: string }>;
+  ghostekVariants?: Array<{ sku: string; slug: string; color: string; device: string; image: string }>;
+}
+
+function ghostekVariantParts(description: string) {
+  const [name, ...colorParts] = description.split(/\s+-\s+/);
+  const deviceAt = name.search(/\b(?:iPhone|Samsung|AirPods)\b/i);
+  if (deviceAt < 0 || colorParts.length === 0) return null;
+  return {
+    family: name.slice(0, deviceAt).replace(/\bApple\s*$/i, "").trim().toLowerCase(),
+    device: name.slice(deviceAt).trim(),
+    color: colorParts.join(" - ").trim(),
+  };
 }
 
 function ghostekVariantsFor(product: Product) {
@@ -55,10 +66,14 @@ function ghostekVariantsFor(product: Product) {
   const all = approvedCatalogProducts();
   const source = all.find((item) => item.sku === product.sku);
   if (!source) return [];
-  const base = source.descripcion.replace(/\s+-\s+[^-]+$/, "").trim().toLowerCase();
+  const selected = ghostekVariantParts(source.descripcion);
+  if (!selected) return [];
   return all
-    .filter((item) => item.marca_producto?.marca.toLowerCase() === "ghostek" && item.descripcion.replace(/\s+-\s+[^-]+$/, "").trim().toLowerCase() === base && isPublicProduct(item) && item.extradata?.stock)
-    .map((item) => ({ sku: item.sku, slug: preferredProductSlug(item), color: item.descripcion.split(/\s+-\s+/).at(-1) || "Color" }));
+    .filter((item) => item.marca_producto?.marca.toLowerCase() === "ghostek" && ghostekVariantParts(item.descripcion)?.family === selected.family && isPublicProduct(item) && item.extradata?.stock)
+    .map((item) => {
+      const parts = ghostekVariantParts(item.descripcion)!;
+      return { sku: item.sku, slug: preferredProductSlug(item), color: parts.color, device: parts.device, image: item.imagenes?.imagen_01?.img || "/brand/isologo.svg" };
+    });
 }
 
 interface CartItem {
@@ -500,18 +515,24 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
                 {product.producto}
               </h1>
 
-              {ghostekVariants.length > 1 && (
-                <div className={detailStyles.ghostekVariants} aria-label="Colores disponibles del mismo cobertor Ghostek">
-                  <strong>Elige tu color</strong>
-                  <div>
-                    {ghostekVariants.map((variant) => (
-                      <Link key={variant.sku} href={`/shop/${variant.slug}`} aria-current={variant.sku === product.sku ? "page" : undefined}>
-                        {variant.color}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {ghostekVariants.length > 0 && (() => {
+                const selected = ghostekVariants.find((variant) => variant.sku === product.sku) || ghostekVariants[0];
+                const devices = [...new Set(ghostekVariants.map((variant) => variant.device))];
+                const colors = ghostekVariants.filter((variant) => variant.device === selected.device);
+                return <div className={detailStyles.ghostekVariants} aria-label="Modelos y colores disponibles de este cobertor Ghostek">
+                  <strong>Compatible con: {selected.device}</strong>
+                  {devices.length > 1 && <div>{devices.map((device) => {
+                    const variant = ghostekVariants.find((item) => item.device === device)!;
+                    return <Link key={device} href={`/shop/${variant.slug}`} aria-current={device === selected.device ? "page" : undefined}>{device}</Link>;
+                  })}</div>}
+                  <strong>Color: {selected.color}</strong>
+                  <div>{colors.map((variant) => <Link key={variant.sku} href={`/shop/${variant.slug}`} aria-current={variant.sku === product.sku ? "page" : undefined}>
+                    <Image src={variant.image} alt="" width={38} height={38} unoptimized className={detailStyles.ghostekVariantImage} />
+                    {variant.color}
+                  </Link>)}</div>
+                  <small>Selecciona el dispositivo antes de agregar al carrito. Solo aparecen variantes disponibles.</small>
+                </div>;
+              })()}
 
               <Separator />
             </div>
