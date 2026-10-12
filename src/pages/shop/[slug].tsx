@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/Footer/page";
 import NavbarMenu from "@/components/navbarmenu/page";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -46,6 +47,18 @@ import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 interface ProductDetailProps {
   product: Product | null;
   Banners: BannerInterface[]
+  ghostekVariants?: Array<{ sku: string; slug: string; color: string }>;
+}
+
+function ghostekVariantsFor(product: Product) {
+  if (product.marca_producto?.marca.toLowerCase() !== "ghostek" || !/case|cover|cobertor|funda|forro/i.test(product.producto)) return [];
+  const all = approvedCatalogProducts();
+  const source = all.find((item) => item.sku === product.sku);
+  if (!source) return [];
+  const base = source.descripcion.replace(/\s+-\s+[^-]+$/, "").trim().toLowerCase();
+  return all
+    .filter((item) => item.marca_producto?.marca.toLowerCase() === "ghostek" && item.descripcion.replace(/\s+-\s+[^-]+$/, "").trim().toLowerCase() === base && isPublicProduct(item) && item.extradata?.stock)
+    .map((item) => ({ sku: item.sku, slug: preferredProductSlug(item), color: item.descripcion.split(/\s+-\s+/).at(-1) || "Color" }));
 }
 
 interface CartItem {
@@ -153,6 +166,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: serializedData,
           Banners: productBanner ? [productBanner] : [],
+          ghostekVariants: ghostekVariantsFor(serializedData),
         },
         revalidate: 30,
       };
@@ -164,6 +178,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         props: {
           product: approvedProduct,
           Banners: productBanner ? [productBanner] : [],
+          ghostekVariants: ghostekVariantsFor(approvedProduct),
         },
         revalidate: 300,
       };
@@ -176,7 +191,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 };
 
-const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
+const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetailProps) => {
   const { mainWhatsApp } = useSiteConfig();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -484,6 +499,19 @@ const ProductDetail = ({ product, Banners }: ProductDetailProps) => {
               <h1 className="text-[26px] font-semibold max-w-full md:w-[450px] lg:w-[560px] leading-8 2xl:text-4xl break-words [overflow-wrap:anywhere]">
                 {product.producto}
               </h1>
+
+              {ghostekVariants.length > 1 && (
+                <div className={detailStyles.ghostekVariants} aria-label="Colores disponibles del mismo cobertor Ghostek">
+                  <strong>Elige tu color</strong>
+                  <div>
+                    {ghostekVariants.map((variant) => (
+                      <Link key={variant.sku} href={`/shop/${variant.slug}`} aria-current={variant.sku === product.sku ? "page" : undefined}>
+                        {variant.color}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <Separator />
             </div>

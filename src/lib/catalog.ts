@@ -428,8 +428,13 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     inventory?.brand || product.marca_producto?.marca,
   );
   const displayBrand = isGenericProduct(product) ? "Genérico" : brand;
+  const ghostekOfficialSkus = new Set(["GHOCAS3532", "GHOCAS3659", "GHOCAS3660", "GHOCAS3951", "GHOCAS4142", "GHOCAS4153"]);
+  const officialGhostekImage = brand === "Ghostek" && ghostekOfficialSkus.has(product.sku)
+    ? (approvedImages as Record<string, string>)[product.sku]
+    : undefined;
   return {
     ...serializableProduct,
+    ...(officialGhostekImage ? { imagenes: { ...(product as CatalogProduct & Partial<Pick<Product, "imagenes">>).imagenes, imagen_01: { id: "imagen_01", img: officialGhostekImage } } } : {}),
     producto: preferredProductName(product),
     slug: preferredProductSlug(product),
     categorias: [category],
