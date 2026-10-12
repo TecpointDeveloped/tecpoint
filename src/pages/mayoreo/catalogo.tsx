@@ -282,8 +282,16 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
             </label>
             <label>
               <span>Categoría</span>
-              <select value={category} onChange={(event) => setCategory(event.target.value)}>
+              <select
+                value={liquidation ? "__liquidation" : category}
+                onChange={(event) => {
+                  const isLiquidation = event.target.value === "__liquidation";
+                  setLiquidation(isLiquidation);
+                  setCategory(isLiquidation ? "" : event.target.value);
+                }}
+              >
                 <option value="">Todas las categorías</option>
+                <option value="__liquidation">Liquidación · últimas unidades</option>
                 {categories.map((item) => <option key={item}>{item}</option>)}
               </select>
             </label>
@@ -294,7 +302,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
               <span>SELECCIÓN TECPOINT</span>
               <strong id="catalog-title">{total} productos para tu negocio</strong>
             </div>
-            <button type="button" className={liquidation ? styles.liquidationActive : ""} aria-pressed={liquidation} onClick={() => setLiquidation((value) => !value)}>Liquidación · últimas unidades</button>
+            <button type="button" className={liquidation ? styles.liquidationActive : ""} aria-pressed={liquidation} onClick={() => { setCategory(""); setLiquidation((value) => !value); }}>Liquidación · últimas unidades</button>
             {(search || brand || category || liquidation) && (
               <button type="button" onClick={clearFilters}>Limpiar filtros</button>
             )}
