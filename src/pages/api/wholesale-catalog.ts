@@ -16,6 +16,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     search: String(req.query.search || ""),
     brand: String(req.query.brand || ""),
     category: String(req.query.category || ""),
+    liquidation: req.query.liquidation === "1",
   });
   const offset = Math.max(0, Number(req.query.offset) || 0);
   const limit = Math.min(60, Math.max(1, Number(req.query.limit) || 24));

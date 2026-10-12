@@ -8,6 +8,11 @@ export type WholesaleProduct = {
   category: string;
   image: string;
   price: number | null;
+  retailPrice: number | null;
+  dozenPrice: number | null;
+  description: string;
+  subcategory: string;
+  upc: string;
   stock: number;
 };
 
@@ -64,6 +69,11 @@ export function wholesaleCatalog(): WholesaleProduct[] {
         ).trim(),
         image: imageFor(product),
         price: rawPrice > 0 ? rawPrice : null,
+        retailPrice: Number(product.precio?.detalle || 0) > 0 ? Number(product.precio.detalle) : null,
+        dozenPrice: null,
+        description: String(product.descripcion || "").trim(),
+        subcategory: String(product.Subcategorias || "").trim(),
+        upc: String(product.extradata?.upc || "").trim(),
         stock: Math.max(0, Number(product.extradata?.inventoryQuantity || 0)),
       };
     })
@@ -93,12 +103,13 @@ export function wholesaleFacets(products = wholesaleCatalog()) {
 
 export function filterWholesaleCatalog(
   products: WholesaleProduct[],
-  filters: { search?: string; brand?: string; category?: string },
+  filters: { search?: string; brand?: string; category?: string; liquidation?: boolean },
 ) {
   const query = normalize(String(filters.search || "").trim());
   return products.filter((product) => {
     if (filters.brand && product.brand !== filters.brand) return false;
     if (filters.category && product.category !== filters.category) return false;
+    if (filters.liquidation && product.stock > 2) return false;
     if (!query) return true;
     return (searchIndex.get(product.sku) || normalize(`${product.name} ${product.brand} ${product.sku}`)).includes(query);
   });

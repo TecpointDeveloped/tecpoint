@@ -79,6 +79,8 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
+  const [liquidation, setLiquidation] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<WholesaleProduct | null>(null);
   const [products, setProducts] = useState(initialProducts);
   const [total, setTotal] = useState(initialTotal);
   const [loading, setLoading] = useState(false);
@@ -110,7 +112,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
   }, [cart, cartReady]);
 
   useEffect(() => {
-    if (firstRequest.current && !search && !brand && !category) {
+    if (firstRequest.current && !search && !brand && !category && !liquidation) {
       firstRequest.current = false;
       return;
     }
@@ -118,7 +120,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
     const timer = window.setTimeout(async () => {
       setLoading(true);
       try {
-        const params = new URLSearchParams({ search, brand, category, offset: "0", limit: String(PAGE_SIZE) });
+        const params = new URLSearchParams({ search, brand, category, liquidation: liquidation ? "1" : "0", offset: "0", limit: String(PAGE_SIZE) });
         const response = await fetch(`/api/wholesale-catalog?${params}`, { signal: controller.signal });
         if (!response.ok) throw new Error("No fue posible actualizar el catálogo.");
         const data = await response.json();
@@ -133,7 +135,14 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
       }
     }, 220);
     return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [brand, category, search]);
+  }, [brand, category, search, liquidation]);
+
+  useEffect(() => {
+    if (!selectedProduct) return;
+    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedProduct(null); };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedProduct]);
 
   const cartLines = useMemo(() => Object.values(cart), [cart]);
   const cartQuantity = cartLines.reduce((sum, line) => sum + line.quantity, 0);
@@ -192,12 +201,13 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
     setSearch("");
     setBrand("");
     setCategory("");
+    setLiquidation(false);
   }
 
   async function loadMore() {
     setLoading(true);
     try {
-      const params = new URLSearchParams({ search, brand, category, offset: String(products.length), limit: String(PAGE_SIZE) });
+      const params = new URLSearchParams({ search, brand, category, liquidation: liquidation ? "1" : "0", offset: String(products.length), limit: String(PAGE_SIZE) });
       const response = await fetch(`/api/wholesale-catalog?${params}`);
       if (!response.ok) throw new Error("No fue posible cargar más productos.");
       const data = await response.json();
@@ -218,7 +228,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
         const subtotal = line.price
           ? money(line.price * line.quantity)
           : "Por confirmar";
-        return `${index + 1}. ${line.name}\n   Código: ${line.sku}\n   Cantidad: ${line.quantity}\n   Precio unitario: ${unitPrice}\n   Subtotal: ${subtotal}`;
+        return `${index + 1}. ${line.name}\n   Código: ${line.sku}\n   Cantidad: ${line.quantity}\n   Precio unitario: ${unitPrice}\n   Subtotal: ${subtotal}${line.stock <= 2 ? "\n   Liquidación: solicito precio especial" : ""}`;
       })
       .join("\n\n");
     const message = `Hola, deseo realizar el siguiente pedido de mayoreo TECPOINT:\n\n${detail}\n\nTotal estimado: ${money(cartTotal)}\n\nQuedo pendiente de confirmación de disponibilidad y total final.`;
@@ -284,7 +294,8 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
               <span>SELECCIÓN TECPOINT</span>
               <strong id="catalog-title">{total} productos para tu negocio</strong>
             </div>
-            {(search || brand || category) && (
+            <button type="button" className={liquidation ? styles.liquidationActive : ""} aria-pressed={liquidation} onClick={() => setLiquidation((value) => !value)}>Liquidación · últimas unidades</button>
+            {(search || brand || category || liquidation) && (
               <button type="button" onClick={clearFilters}>Limpiar filtros</button>
             )}
           </div>
@@ -342,8 +353,8 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                   const quantity = selectedQuantity(product);
                   return (
                     <article className={styles.card} key={product.sku}>
-                      <div className={styles.imageWrap}>
-                        {product.stock <= 5 && <span>Últimas {product.stock}</span>}
+                      <button className={styles.imageWrap} type="button" onClick={() => setSelectedProduct(product)} aria-label={`Ver características y precios de ${product.name}`}>
+                        {product.stock <= 2 ? <span>Liquidación · últimas unidades disponibles</span> : product.stock <= 5 ? <span>Últimas unidades disponibles</span> : null}
                         <Image
                           src={product.image}
                           alt={`Imagen de ${product.name}`}
@@ -354,13 +365,14 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                           decoding="async"
                           onError={productImageFallback}
                         />
-                      </div>
+                      </button>
                       <div className={styles.cardBody}>
                         <small>{product.brand}</small>
                         <h2>{product.name}</h2>
                         <p>Código: {product.sku}</p>
                         <span className={styles.priceLabel}>PRECIO MAYORISTA</span>
                         <strong>{product.price ? money(product.price) : "Consultar precio"}</strong>
+                        {product.stock <= 2 && <a className={styles.specialLink} href={whatsappLink(wholesaleWhatsApp, `Hola, quiero consultar el precio especial de liquidación para ${product.name} (SKU ${product.sku}).`)} target="_blank" rel="noreferrer">Solicitar precio especial por WhatsApp →</a>}
                         <em>{product.stock > 0 ? "Disponible para pedir" : "Agotado"}</em>
                         <div className={styles.addRow}>
                           <div className={styles.stepper} aria-label={`Cantidad para ${product.name}`}>
@@ -400,6 +412,33 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
           </div>
         </section>
       </main>
+
+      {selectedProduct && <div className={styles.detailOverlay} role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelectedProduct(null); }}>
+        <section className={styles.detailDialog} role="dialog" aria-modal="true" aria-labelledby="wholesale-detail-title">
+          <button className={styles.detailClose} type="button" aria-label="Cerrar ficha" onClick={() => setSelectedProduct(null)}><X size={22} /></button>
+          <div className={styles.detailImage}><Image src={selectedProduct.image} alt={selectedProduct.name} fill sizes="(max-width: 650px) 90vw, 400px" onError={productImageFallback} /></div>
+          <div className={styles.detailContent}>
+            <small>{selectedProduct.brand} · {selectedProduct.sku}</small>
+            <h2 id="wholesale-detail-title">{selectedProduct.name}</h2>
+            {selectedProduct.stock <= 2 && <span className={styles.detailLiquidation}>Liquidación · últimas unidades disponibles</span>}
+            <h3>Características del producto</h3>
+            <p>{selectedProduct.description || selectedProduct.name}</p>
+            <dl>
+              <div><dt>Categoría</dt><dd>{selectedProduct.category}</dd></div>
+              {selectedProduct.subcategory && <div><dt>Tipo</dt><dd>{selectedProduct.subcategory}</dd></div>}
+              {selectedProduct.upc && <div><dt>UPC</dt><dd>{selectedProduct.upc}</dd></div>}
+            </dl>
+            <h3>Precios</h3>
+            <div className={styles.detailPrices}>
+              <div><span>Detalle</span><strong>{selectedProduct.retailPrice ? money(selectedProduct.retailPrice) : "Consultar"}</strong></div>
+              <div><span>Docena</span><strong>{selectedProduct.dozenPrice ? money(selectedProduct.dozenPrice) : "Consultar por WhatsApp"}</strong></div>
+              <div><span>Mayoreo</span><strong>{selectedProduct.price ? money(selectedProduct.price) : "Consultar"}</strong></div>
+            </div>
+            {selectedProduct.stock <= 2 && <p className={styles.detailNote}>Precio especial de liquidación disponible al consultar por WhatsApp. El total final se confirma con un asesor.</p>}
+            <a className={styles.detailWhatsApp} href={whatsappLink(wholesaleWhatsApp, `Hola, quiero consultar ${selectedProduct.stock <= 2 ? "el precio especial de liquidación y " : ""}el precio por docena de ${selectedProduct.name} (SKU ${selectedProduct.sku}).`)} target="_blank" rel="noreferrer">Consultar por WhatsApp →</a>
+          </div>
+        </section>
+      </div>}
 
       {notice && <div className={styles.notice} role="status">{notice}</div>}
 
