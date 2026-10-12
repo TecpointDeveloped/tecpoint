@@ -4,6 +4,7 @@ Estas imágenes se descargaron del sitio oficial de Ghostek el 12 de octubre de 
 
 | SKU TECPOINT | Imagen oficial | Modelo y color |
 | --- | --- | --- |
+| GHOCAS2853 | `ATOMIC-SLIM-CASE-IPHONE-13-PRO-BLACK-1_1089x1089.jpg` | iPhone 13 Pro, Black |
 | GHOCAS2856 | `ATOMIC-SLIM-CASE-IPHONE-13-PRO-PRISMATIC-1_76dc7bb1-d540-4cea-9c73-14a01257c9f1_1089x1089.jpg` | iPhone 13 Pro, Prismatic |
 | GHOCAS3342 | `COVERT6-SAMSUNG-S23-PLUS-01-CLEAR_1089x1089.jpg` | Galaxy S23 Plus, Clear |
 | GHOCAS3532 | `ATOMIC-SLIM-CASE-IPHONE-15-PRO-MAX-PRISMATIC-3_1089x1089.jpg` | iPhone 15 Pro Max, Prismatic |
@@ -15,5 +16,11 @@ Estas imágenes se descargaron del sitio oficial de Ghostek el 12 de octubre de 
 | GHOCAS4153 | `COVERT7-IPHONE-16E-01-SMOKE-MATTE_1089x1089.jpg` | iPhone 16e, Smoke Matte |
 
 No se asignó foto a los SKU antiguos que ya no abren en Ghostek o cuya galería mostró un dispositivo distinto al descrito por el SKU. Se deben verificar con fotografías del inventario físico o material oficial adicional antes de publicarlas como imágenes del producto.
+
+## Fotos locales recuperadas
+
+Los SKU GHOCAS2764 (Leopard), GHOCAS2765 (Stardust), GHOCAS2766 (Waves) y GHOCAS2768 (Terrazzo) se identificaron en `Desktop/descuentos 30%/` por nombre de archivo y diseño visible. Las versiones publicadas se editaron con la herramienta integrada de imágenes para retirar el sello «30%», que no debe comunicar una promoción vigente. Se conservó el patrón de cada producto. Son fotos editadas del inventario local, no imágenes originales descargadas de Ghostek.
+
+Siguen sin foto verificable: GHOCAS2733, GHOCAS2836, GHOCAS3469 y GHOCAS3518. No se utilizó la foto local GHOCAS2733_02.png porque muestra un empaque COVERT, no CRUSHER; ni GHOCAS3518_02.png porque muestra un sello de descuento y la reconstrucción del empaque no permite asegurar fidelidad comercial. Para GHOCAS2853 se encontró una foto limpia del fabricante en lugar de usar la foto local con descuento.
 
 Fuentes de las tres verificaciones adicionales: [GHOCAS2856](https://ghostek.com/products/atomic-slim-iphone-13-case?variant=39879401209909), [GHOCAS3342](https://ghostek.com/products/covert-s23?variant=42021391925301) y [GHOCAS4140](https://ghostek.com/products/iphone-16-series-covert-case?variant=51757998145899). En los dos últimos, Ghostek usa `COVERT6` en el nombre de la foto; conviene confirmar la denominación comercial «Covert 7» en la ficha de TECPOINT, pero la foto corresponde al SKU, dispositivo y color seleccionados.

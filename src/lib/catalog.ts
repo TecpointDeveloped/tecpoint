@@ -428,8 +428,8 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     inventory?.brand || product.marca_producto?.marca,
   );
   const displayBrand = isGenericProduct(product) ? "Genérico" : brand;
-  const ghostekOfficialSkus = new Set(["GHOCAS2856", "GHOCAS3342", "GHOCAS3532", "GHOCAS3659", "GHOCAS3660", "GHOCAS3951", "GHOCAS4140", "GHOCAS4142", "GHOCAS4153"]);
-  const officialGhostekImage = brand === "Ghostek" && ghostekOfficialSkus.has(product.sku)
+  const ghostekVerifiedSkus = new Set(["GHOCAS2764", "GHOCAS2765", "GHOCAS2766", "GHOCAS2768", "GHOCAS2853", "GHOCAS2856", "GHOCAS3342", "GHOCAS3532", "GHOCAS3659", "GHOCAS3660", "GHOCAS3951", "GHOCAS4140", "GHOCAS4142", "GHOCAS4153"]);
+  const officialGhostekImage = brand === "Ghostek" && ghostekVerifiedSkus.has(product.sku)
     ? (approvedImages as Record<string, string>)[product.sku]
     : undefined;
   return {

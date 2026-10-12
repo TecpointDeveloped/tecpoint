@@ -52,7 +52,7 @@ interface ProductDetailProps {
 
 function ghostekVariantParts(description: string) {
   const [name, ...colorParts] = description.split(/\s+-\s+/);
-  const deviceAt = name.search(/\b(?:iPhone|Samsung|AirPods)\b/i);
+  const deviceAt = name.search(/\b(?:iPhone|Samsung|AirPods?)\b/i);
   if (deviceAt < 0 || colorParts.length === 0) return null;
   return {
     family: name.slice(0, deviceAt).replace(/\bApple\s*$/i, "").trim().toLowerCase(),
