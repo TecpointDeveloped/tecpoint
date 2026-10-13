@@ -17,10 +17,10 @@ Estas imágenes se descargaron del sitio oficial de Ghostek el 12 de octubre de 
 
 No se asignó foto a los SKU antiguos que ya no abren en Ghostek o cuya galería mostró un dispositivo distinto al descrito por el SKU. Se deben verificar con fotografías del inventario físico o material oficial adicional antes de publicarlas como imágenes del producto.
 
-## Fotos locales recuperadas
+## Fotos aún no verificables en el fabricante
 
-Los SKU GHOCAS2764 (Leopard), GHOCAS2765 (Stardust), GHOCAS2766 (Waves) y GHOCAS2768 (Terrazzo) se identificaron en `Desktop/descuentos 30%/` por nombre de archivo y diseño visible. Las versiones publicadas se editaron con la herramienta integrada de imágenes para retirar el sello «30%», que no debe comunicar una promoción vigente. Se conservó el patrón de cada producto. Son fotos editadas del inventario local, no imágenes originales descargadas de Ghostek.
+Las imágenes locales retocadas de GHOCAS2764 (Leopard), GHOCAS2765 (Stardust), GHOCAS2766 (Waves) y GHOCAS2768 (Terrazzo) se retiraron del catálogo: no provenían de Ghostek. La [ficha Scarlet de Ghostek](https://ghostek.com/products/scarlet-airpods-pro-case) identifica los colores y SKU, pero sus enlaces de imagen antiguos responden 404. No asignarles una imagen hasta obtener un archivo oficial descargable y comprobar su correspondencia exacta.
 
-Siguen sin foto verificable: GHOCAS2733, GHOCAS2836, GHOCAS3469 y GHOCAS3518. No se utilizó la foto local GHOCAS2733_02.png porque muestra un empaque COVERT, no CRUSHER; ni GHOCAS3518_02.png porque muestra un sello de descuento y la reconstrucción del empaque no permite asegurar fidelidad comercial. Para GHOCAS2853 se encontró una foto limpia del fabricante en lugar de usar la foto local con descuento.
+También siguen sin foto verificable: GHOCAS2733, GHOCAS2836, GHOCAS3469 y GHOCAS3518. No se utilizó la foto local GHOCAS2733_02.png porque muestra un empaque COVERT, no CRUSHER; ni GHOCAS3518_02.png porque muestra un sello de descuento y la reconstrucción del empaque no permite asegurar fidelidad comercial. Para GHOCAS2853 se encontró una foto limpia del fabricante en lugar de usar la foto local con descuento.
 
 Fuentes de las tres verificaciones adicionales: [GHOCAS2856](https://ghostek.com/products/atomic-slim-iphone-13-case?variant=39879401209909), [GHOCAS3342](https://ghostek.com/products/covert-s23?variant=42021391925301) y [GHOCAS4140](https://ghostek.com/products/iphone-16-series-covert-case?variant=51757998145899). En los dos últimos, Ghostek usa `COVERT6` en el nombre de la foto; conviene confirmar la denominación comercial «Covert 7» en la ficha de TECPOINT, pero la foto corresponde al SKU, dispositivo y color seleccionados.
