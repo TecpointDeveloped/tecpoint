@@ -94,6 +94,15 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
   const orderedBrands = featuredRockSpace
     ? [featuredRockSpace, ...brands.filter((item) => item !== featuredRockSpace)]
     : brands;
+  const quickCategories = [
+    { name: "Cobertores", label: "Cobertores" },
+    { name: "Cables y Cargadores", label: "Carga y cables" },
+    { name: "Audio", label: "Audio" },
+    { name: "Proteccion de Pantalla", label: "Protección" },
+  ].map((target) => ({
+    ...target,
+    value: categories.find((item) => item.toLocaleLowerCase("es") === target.name.toLocaleLowerCase("es")),
+  })).filter((target): target is { name: string; label: string; value: string } => Boolean(target.value));
 
   useEffect(() => {
     try {
@@ -268,6 +277,28 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
             <div><b>01 · EXPLORA</b><b>02 · AGREGA</b><b>03 · ENVÍA TU PEDIDO</b></div>
           </div>
         </header>
+
+        {quickCategories.length > 0 && (
+          <nav className={styles.quickNav} aria-label="Categorías destacadas de mayoreo">
+            <div className={styles.quickNavHeading}>
+              <span>ENCUENTRA LO QUE NECESITAS</span>
+              <strong>Compra por categoría</strong>
+            </div>
+            <div className={styles.quickNavLinks}>
+              {quickCategories.map((item) => (
+                <button
+                  key={item.value}
+                  type="button"
+                  aria-pressed={category === item.value && !liquidation}
+                  className={category === item.value && !liquidation ? styles.quickNavActive : ""}
+                  onClick={() => { setCategory(item.value); setBrand(""); setSearch(""); setLiquidation(false); }}
+                >
+                  {item.label} <span aria-hidden="true">↗</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+        )}
 
         <section className={styles.catalog} aria-labelledby="catalog-title">
           <div className={styles.tools}>

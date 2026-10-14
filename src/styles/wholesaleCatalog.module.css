@@ -120,3 +120,32 @@
 @media(max-width:900px){.catalogLayout{grid-template-columns:1fr}.brandRail{top:auto}.brandList button{min-height:82px}.brandList button.coastBrand{min-height:82px;flex-basis:170px}.brandList button.coastBrand img{max-width:156px;height:60px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.heroCopy{padding:28px 20px 32px}.heroCopy h1{font-size:clamp(34px,9vw,43px)}.catalog{padding:14px 14px 96px}.resultsBar{gap:8px}.resultsBar strong{font-size:19px}.resultsBar button{min-height:40px;padding-inline:13px}.grid{grid-template-columns:1fr;gap:14px}.imageWrap{aspect-ratio:1.42}.imageWrap img{padding:18px}.cardBody{padding:16px}.cardBody h2{font-size:15px}.cardBody>strong{font-size:23px}.addRow{grid-template-columns:132px minmax(0,1fr);align-items:stretch}.stepper,.addButton{min-height:46px}.stepper button{width:42px}.addButton{white-space:normal;text-align:center}.brandList button.coastBrand{flex-basis:154px}.brandList button.coastBrand img{max-width:145px;height:58px}}
 @media(max-width:360px){.addRow{grid-template-columns:1fr}}
+
+/* Higher-impact wholesale accents keep the shopping controls and product art unobstructed. */
+.wholesaleHeader{border-top:4px solid #c8102e}
+.hero{position:relative;min-height:215px;border-bottom:4px solid #c8102e}
+.hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:#c8102e}
+.heroCopy{padding-block:27px 31px}
+.heroCopy h1{font-size:clamp(37px,4.2vw,58px)}
+.quickNav{max-width:1540px;margin:20px auto 0;padding:0 clamp(22px,3vw,46px);display:grid;grid-template-columns:245px minmax(0,1fr);align-items:stretch}
+.quickNavHeading{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:16px 20px;background:#c8102e;color:#fff}
+.quickNavHeading span{font-size:9px;font-weight:850;letter-spacing:.11em}
+.quickNavHeading strong{font-size:17px;letter-spacing:-.03em}
+.quickNavLinks{min-width:0;display:flex;align-items:center;gap:10px;padding:10px 14px;overflow-x:auto;border:1px solid #e1e5e5;border-left:0;background:#fff;scrollbar-width:thin}
+.quickNavLinks button{min-height:48px;flex:1 0 auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #d9dedf;border-radius:8px;background:#fff;color:#171d1b;font:inherit;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
+.quickNavLinks button span{color:#c8102e;font-size:18px;font-weight:600}
+.quickNavLinks button:hover,.quickNavLinks .quickNavActive{border-color:#c8102e;background:#fff3f5;color:#a40d27}
+.quickNavLinks button:focus-visible{outline:3px solid #1677ff;outline-offset:2px}
+.catalog{padding-top:17px}
+.card{border-top:3px solid #c8102e}
+.imageWrap{border-bottom:1px solid #e8eded}
+.cardBody>small{letter-spacing:.14em}
+.cardBody>strong{color:#b20f2b}
+.addButton{box-shadow:0 4px 12px rgba(200,16,46,.12)}
+.brandList .brandActive{background:#fff3f5}
+@media(max-width:900px){.quickNav{grid-template-columns:1fr}.quickNavHeading{padding:13px 16px}.quickNavLinks{border-left:1px solid #e1e5e5;border-top:0}.quickNavLinks button{flex:0 0 auto}}
+@media(max-width:540px){.hero{min-height:0}.heroCopy{padding:23px 20px 27px}.heroCopy h1{font-size:clamp(34px,9vw,43px)}.quickNav{margin-top:12px;padding:0 14px}.quickNavHeading{padding:12px 14px}.quickNavHeading span{font-size:8px}.quickNavHeading strong{font-size:15px}.quickNavLinks{gap:8px;padding:9px}.quickNavLinks button{min-height:44px;padding-inline:12px;font-size:11px}.catalog{padding-top:14px}}
+@media(prefers-reduced-motion:reduce){.quickNavLinks button{transition:none}}
+.quickNavLinks{scrollbar-width:none}
+.quickNavLinks::-webkit-scrollbar{display:none}
+@media(max-width:540px){.quickNav{display:flex;min-height:70px;overflow:hidden;background:#fff}.quickNavHeading{flex:0 0 112px;padding:10px 12px}.quickNavHeading span{display:none}.quickNavHeading strong{font-size:13px;line-height:1.2}.quickNavLinks{flex:1 1 auto;border:1px solid #e1e5e5;border-left:0;padding:8px}.quickNavLinks button{min-height:42px}}
