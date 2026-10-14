@@ -4,6 +4,33 @@ import currentCatalog from "@/data/current-catalog-w40.json";
 import approvedImages from "@/data/approved-product-images.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
+const verifiedGhostekSkus = new Set([
+  "GHOCAS3153", "GHOCAS3162", "GHOCAS3179", "GHOCAS3181", "GHOCAS3183",
+  "GHOCAS2853", "GHOCAS2856", "GHOCAS2878", "GHOCAS2882", "GHOCAS2955", "GHOCAS3325", "GHOCAS3342", "GHOCAS3532", "GHOCAS3659", "GHOCAS3660",
+  "GHOCAS3823", "GHOCAS3950", "GHOCAS3951", "GHOCAS3969", "GHOCAS4140", "GHOCAS4142", "GHOCAS4151", "GHOCAS4153",
+  "GHOCAS4210", "GHOCAS4211", "GHOCAS4212", "GHOCAS4213", "GHOCAS4214", "GHOCAS4215",
+  "GHOCAS4216", "GHOCAS4218", "GHOCAS4219", "GHOCAS4221", "GHOCAS4229",
+  "GHOCAS4300", "GHOCAS4301", "GHOCAS4302", "GHOCAS4311", "GHOCAS4326", "GHOCAS4327",
+]);
+
+const ghostekGallerySkus = new Set([
+  "GHOCAS2878", "GHOCAS2882", "GHOCAS2955", "GHOCAS3153", "GHOCAS3162", "GHOCAS3179", "GHOCAS3181", "GHOCAS3183", "GHOCAS3325", "GHOCAS3823", "GHOCAS3950", "GHOCAS3969", "GHOCAS4151",
+  "GHOCAS4210", "GHOCAS4211", "GHOCAS4212", "GHOCAS4213", "GHOCAS4214", "GHOCAS4215",
+  "GHOCAS4216", "GHOCAS4218", "GHOCAS4219", "GHOCAS4221", "GHOCAS4229",
+  "GHOCAS4300", "GHOCAS4301", "GHOCAS4302", "GHOCAS4311", "GHOCAS4326", "GHOCAS4327",
+]);
+
+function approvedProductImages(sku: string, primaryImage: string): Product["imagenes"] {
+  const images: Product["imagenes"] = {
+    imagen_01: { id: "imagen_01", img: primaryImage },
+  };
+  if (ghostekGallerySkus.has(sku)) {
+    images.imagen_02 = { id: "imagen_02", img: `/images/products/${sku}-02.jpg` };
+    images.imagen_03 = { id: "imagen_03", img: `/images/products/${sku}-03.jpg` };
+  }
+  return images;
+}
+
 export const OFFICIAL_CATEGORIES = [
   {
     name: "Power & Charge",
@@ -277,7 +304,7 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
       Subcategorias: inventory.subcategory,
       marca_producto: { marca: brand, logo: brandLogo(brand) },
       precio: { detalle: inventory.detailPrice, mayoreo: inventory.bronzePrice },
-      imagenes: { imagen_01: { id: "imagen_01", img: image } },
+      imagenes: approvedProductImages(sku, image),
       extradata: {
         upc: inventory.upc,
         stock: inventory.stock > 0,
@@ -428,13 +455,12 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     inventory?.brand || product.marca_producto?.marca,
   );
   const displayBrand = isGenericProduct(product) ? "Genérico" : brand;
-  const ghostekVerifiedSkus = new Set(["GHOCAS2853", "GHOCAS2856", "GHOCAS3342", "GHOCAS3532", "GHOCAS3659", "GHOCAS3660", "GHOCAS3951", "GHOCAS4140", "GHOCAS4142", "GHOCAS4153"]);
-  const officialGhostekImage = brand === "Ghostek" && ghostekVerifiedSkus.has(product.sku)
+  const officialGhostekImage = brand === "Ghostek" && verifiedGhostekSkus.has(product.sku)
     ? (approvedImages as Record<string, string>)[product.sku]
     : undefined;
   return {
     ...serializableProduct,
-    ...(officialGhostekImage ? { imagenes: { ...(product as CatalogProduct & Partial<Pick<Product, "imagenes">>).imagenes, imagen_01: { id: "imagen_01", img: officialGhostekImage } } } : {}),
+    ...(officialGhostekImage ? { imagenes: approvedProductImages(product.sku, officialGhostekImage) } : {}),
     producto: preferredProductName(product),
     slug: preferredProductSlug(product),
     categorias: [category],

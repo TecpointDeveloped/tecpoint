@@ -1,5 +1,9 @@
 # Fotos Ghostek verificadas por SKU
 
+Actualización del 14 de octubre de 2026: se incorporaron galerías de tres imágenes oficiales para otros 30 SKU. Las URL exactas de las imágenes principales están en [ghostek-official-images.json](ghostek-official-images.json); las imágenes secundarias usan el mismo modelo y color en el CDN oficial. No se modificaron precios ni inventario. Así, 40 de los 53 cobertores Ghostek del inventario W40 tienen ahora al menos una foto oficial identificada y descargada.
+
+Los 13 SKU restantes son GHOCAS2693, GHOCAS2733, GHOCAS2764, GHOCAS2765, GHOCAS2766, GHOCAS2768, GHOCAS2821, GHOCAS2836, GHOCAS2880, GHOCAS3040, GHOCAS3469, GHOCAS3518 y GHOCAS3521. En varios casos los enlaces de galería del fabricante ya responden 404 o muestran un dispositivo/color distinto; las imágenes locales existentes que no tienen procedencia oficial confirmada no se contaron como verificadas. No se asignaron fotos de otros modelos como sustituto.
+
 Estas imágenes se descargaron del sitio oficial de Ghostek el 12 de octubre de 2026. Se comprobó el SKU seleccionado en la página del producto y que el nombre del archivo de la foto correspondiera al modelo y color del inventario TECPOINT. Los precios de Ghostek no se importaron.
 
 | SKU TECPOINT | Imagen oficial | Modelo y color |
