@@ -330,7 +330,10 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                     <button
                       type="button"
                       key={item}
-                      className={brand === item ? styles.brandActive : ""}
+                      className={[
+                        brand === item ? styles.brandActive : "",
+                        item.trim().toLowerCase() === "coast" ? styles.coastBrand : "",
+                      ].filter(Boolean).join(" ")}
                       aria-pressed={brand === item}
                       onClick={() => setBrand(item)}
                       title={`Ver productos ${item}`}
@@ -341,7 +344,6 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
                           alt={item}
                           width={132}
                           height={48}
-                          style={{ width: "auto", height: "34px" }}
                         />
                       ) : (
                         <b aria-hidden="true">{item.slice(0, 2).toUpperCase()}</b>

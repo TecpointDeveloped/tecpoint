@@ -85,3 +85,38 @@
 .addButton:active,.cartButton:active,.loadMore:active{transform:translateY(1px)}
 @media(max-width:650px){.brandList button,.addButton,.stepper button,.cartQuantity button,.cartButton,.loadMore{min-height:44px}.drawer>header button{min-width:44px;min-height:44px}.drawer>footer a{min-height:56px}}
 .imageWrap{display:block;width:100%;padding:0;cursor:pointer;text-align:left}.imageWrap:focus-visible{outline:3px solid #1677ff;outline-offset:-3px}.imageWrap>span{max-width:calc(100% - 28px);line-height:1.35}.resultsBar .liquidationActive{border-color:#c8102e;background:#fff0f2;color:#a20d26}.specialLink{margin:6px 0 12px;color:#b20c28;font-size:10px;font-weight:850;line-height:1.4;text-decoration:underline}.detailOverlay{position:fixed;z-index:10010;inset:0;display:grid;place-items:center;padding:20px;background:rgba(9,13,13,.72)}.detailDialog{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:min(900px,100%);max-height:calc(100dvh - 40px);overflow:auto;border-radius:18px;background:#fff;color:#111516;box-shadow:0 30px 90px rgba(0,0,0,.35)}.detailClose{position:absolute;z-index:2;right:13px;top:13px;display:grid;place-items:center;width:42px;height:42px;border:1px solid #dce1e2;border-radius:50%;background:#fff;cursor:pointer}.detailImage{position:relative;min-height:450px;background:#f6f8f8}.detailImage img{object-fit:contain;padding:28px}.detailContent{padding:48px 36px 34px;overflow:auto}.detailContent>small{color:#c8102e;font-size:11px;font-weight:900;text-transform:uppercase}.detailContent h2{margin:10px 0 20px;font-size:clamp(23px,3vw,34px);line-height:1.2}.detailContent h3{margin:23px 0 10px;font-size:15px}.detailContent p{font-size:13px;line-height:1.6}.detailContent dl{margin:0}.detailContent dl>div,.detailPrices>div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #e5e9e9;font-size:12px}.detailContent dt,.detailPrices span{color:#697171}.detailContent dd{margin:0;text-align:right}.detailPrices strong{text-align:right}.detailLiquidation{display:inline-block;padding:8px 10px;border-radius:5px;background:#fff0d3;color:#8d5400;font-size:10px;font-weight:900;text-transform:uppercase}.detailContent .detailNote{color:#8d5400}.detailWhatsApp{display:flex;align-items:center;justify-content:center;min-height:46px;margin-top:20px;border-radius:8px;background:#0b865f;color:#fff;font-size:12px;font-weight:850;text-align:center;text-decoration:none}.detailClose:focus-visible,.detailWhatsApp:focus-visible,.specialLink:focus-visible{outline:3px solid #1677ff;outline-offset:2px}@media(max-width:650px){.resultsBar{flex-wrap:wrap}.detailOverlay{padding:8px}.detailDialog{grid-template-columns:1fr;max-height:calc(100dvh - 16px)}.detailImage{min-height:240px}.detailContent{padding:22px}.detailContent h2{font-size:22px}.detailContent h3{margin-top:18px}}
+
+/* Premium wholesale pass: spacious products, compact introduction and legible buying controls. */
+.hero{min-height:235px}
+.heroCopy{padding-block:32px 36px}
+.heroCopy h1{max-width:740px;font-size:clamp(36px,4vw,55px)}
+.heroCopy p{max-width:590px}
+.catalog{max-width:1540px;padding-top:20px}
+.tools{box-shadow:0 8px 30px rgba(17,21,22,.045)}
+.search:focus-within,.tools select:focus-visible{outline:2px solid #c8102e;outline-offset:2px}
+.resultsBar{flex-wrap:wrap;justify-content:flex-start;gap:10px;padding-block:25px 18px}
+.resultsBar div{flex:1 1 100%;margin-bottom:3px}
+.resultsBar button{border-radius:999px;font-size:10px}
+.catalogLayout{grid-template-columns:240px minmax(0,1fr);gap:22px}
+.brandRail{top:108px}
+.brandList button{min-height:84px}
+.brandList button img{width:100%;max-width:150px;height:42px;object-fit:contain}
+.brandList button.coastBrand{min-height:108px}
+.brandList button.coastBrand img{width:100%;max-width:196px;height:70px;object-fit:cover;object-position:center}
+.brandList button.coastBrand span{margin-top:-3px}
+.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{border-radius:16px}
+.imageWrap{aspect-ratio:1.22;background:#fff}
+.imageWrap img{padding:18px}
+.cardBody{padding:18px}
+.cardBody h2{min-height:0;margin-block:8px 6px;font-size:15px;line-height:1.4}
+.cardBody>p{margin-bottom:14px}
+.priceLabel{font-size:10px}
+.cardBody>strong{font-size:23px}
+.cardBody>em{margin-bottom:15px}
+.stepper,.addButton{min-height:46px}
+.addButton{font-size:11px}
+@media(max-width:1200px){.catalogLayout{grid-template-columns:200px minmax(0,1fr)}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brandList button.coastBrand img{max-width:170px}}
+@media(max-width:900px){.catalogLayout{grid-template-columns:1fr}.brandRail{top:auto}.brandList button{min-height:82px}.brandList button.coastBrand{min-height:82px;flex-basis:170px}.brandList button.coastBrand img{max-width:156px;height:60px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.heroCopy{padding:28px 20px 32px}.heroCopy h1{font-size:clamp(34px,9vw,43px)}.catalog{padding:14px 14px 96px}.resultsBar{gap:8px}.resultsBar strong{font-size:19px}.resultsBar button{min-height:40px;padding-inline:13px}.grid{grid-template-columns:1fr;gap:14px}.imageWrap{aspect-ratio:1.42}.imageWrap img{padding:18px}.cardBody{padding:16px}.cardBody h2{font-size:15px}.cardBody>strong{font-size:23px}.addRow{grid-template-columns:132px minmax(0,1fr);align-items:stretch}.stepper,.addButton{min-height:46px}.stepper button{width:42px}.addButton{white-space:normal;text-align:center}.brandList button.coastBrand{flex-basis:154px}.brandList button.coastBrand img{max-width:145px;height:58px}}
+@media(max-width:360px){.addRow{grid-template-columns:1fr}}
