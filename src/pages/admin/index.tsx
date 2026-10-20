@@ -7,7 +7,7 @@ import { isAdminEmail } from "@/lib/adminAccess";
 import styles from "@/styles/adminHub.module.css";
 
 const modules = [
-  { href: "/admin/productos", label: "Catálogo", title: "Productos y calidad", copy: "Detecte fichas incompletas y duplicados antes de publicarlos." },
+  { href: "/admin/productos", label: "Catálogo", title: "Buscar y actualizar productos", copy: "Encuentre por nombre, SKU o UPC; edite fichas y revise faltantes o duplicados." },
   { href: "/admin/mayoreo", label: "Mayoreo", title: "Productos y solicitudes de Mayoreo", copy: "Administre precios, categorías, visibilidad y negocios registrados." },
   { href: "/admin/marketing", label: "Contenido", title: "Banners y promociones", copy: "Suba imágenes o videos, programe fechas y controle el orden de aparición." },
   { href: "/admin/categorias", label: "Campañas", title: "Categorías y colecciones", copy: "Cree colecciones comerciales y copie enlaces listos para los botones de banners." },
