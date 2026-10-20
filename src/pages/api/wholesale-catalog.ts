@@ -1,17 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
   filterWholesaleCatalog,
-  wholesaleCatalog,
   wholesaleFacets,
 } from "@/lib/wholesaleCatalog";
+import { liveWholesaleCatalog } from "@/lib/wholesaleCatalog.server";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).json({ error: "Método no permitido." });
   }
 
-  const allProducts = wholesaleCatalog();
+  const allProducts = await liveWholesaleCatalog();
   const products = filterWholesaleCatalog(allProducts, {
     search: String(req.query.search || ""),
     brand: String(req.query.brand || ""),

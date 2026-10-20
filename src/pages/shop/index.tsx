@@ -39,7 +39,7 @@ interface ShopProps {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   context.res.setHeader(
     "Cache-Control",
-    "public, s-maxage=300, stale-while-revalidate=900",
+    "public, s-maxage=60, stale-while-revalidate=120",
   );
 
   try {

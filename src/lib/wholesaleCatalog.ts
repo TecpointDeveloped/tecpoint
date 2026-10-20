@@ -43,9 +43,9 @@ function normalize(value: string) {
     .toLowerCase();
 }
 
-export function wholesaleCatalog(): WholesaleProduct[] {
-  if (cachedProducts) return cachedProducts;
-  cachedProducts = publicCatalog(approvedCatalogProducts())
+export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[] {
+  if (!sourceProducts && cachedProducts) return cachedProducts;
+  const result = publicCatalog(sourceProducts || approvedCatalogProducts())
     .filter(
       (product) =>
         !HIDDEN_WHOLESALE_BRANDS.has(
@@ -81,10 +81,11 @@ export function wholesaleCatalog(): WholesaleProduct[] {
       const brandOrder = left.brand.localeCompare(right.brand, "es");
       return brandOrder || left.name.localeCompare(right.name, "es");
     });
-  cachedProducts.forEach((product) => {
+  result.forEach((product) => {
     searchIndex.set(product.sku, normalize(`${product.name} ${product.brand} ${product.sku}`));
   });
-  return cachedProducts;
+  if (!sourceProducts) cachedProducts = result;
+  return result;
 }
 
 export function wholesaleFacets(products = wholesaleCatalog()) {

@@ -52,6 +52,8 @@ export interface Product {
     wholesaleEnabled?: boolean;
     wholesaleCategory?: string;
     wholesaleImage?: string;
+    manualDetailPrice?: boolean;
+    manualWholesalePrice?: boolean;
   },
   objectID?: string;
 }

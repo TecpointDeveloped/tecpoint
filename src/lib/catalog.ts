@@ -255,7 +255,7 @@ export function productPromotion(product: CatalogProduct): ProductPromotion | nu
   const categoryMatch = category.match(/PROMOCI(?:O|Ó)N\s*(\d{1,2})\s*%/i);
   const explicitDiscount = Number(product.extradata?.discount || 0);
   const percent = categoryMatch ? Number(categoryMatch[1]) : explicitDiscount;
-  const regularPrice = Number(inventory?.detailPrice || product.precio?.detalle || 0);
+  const regularPrice = Number(product.precio?.detalle ?? inventory?.detailPrice ?? 0);
 
   if (!Number.isFinite(percent) || percent <= 0 || percent >= 100 || regularPrice <= 0) {
     return null;
@@ -476,19 +476,17 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     },
     precio: {
       ...(product.precio || {}),
-      detalle:
-        inventory ? inventory.detailPrice : product.precio?.detalle || 0,
-      mayoreo:
-        inventory ? inventory.bronzePrice : product.precio?.mayoreo || 0,
+      detalle: product.precio?.detalle ?? inventory?.detailPrice ?? 0,
+      mayoreo: product.precio?.mayoreo ?? inventory?.bronzePrice ?? 0,
     },
     extradata: {
       ...(product.extradata || {}),
       upc: inventory?.upc || product.extradata?.upc || "",
       stock: inventory ? inventory.stock > 0 : product.extradata?.stock,
       inventoryQuantity: inventory?.stock ?? product.extradata?.inventoryQuantity,
-      wholesaleEnabled: inventory
+      wholesaleEnabled: product.extradata?.wholesaleEnabled ?? (inventory
         ? inventory.stock > 0 && inventory.bronzePrice > 0
-        : product.extradata?.wholesaleEnabled,
+        : undefined),
     },
   };
 }
@@ -577,7 +575,9 @@ export function deduplicateProducts<T extends Product>(products: T[]) {
   for (const product of products) {
     const key = normalizeText(product.sku || "") || product.id;
     const existing = bySku.get(key);
-    if (!existing || completenessScore(product) > completenessScore(existing)) {
+    const hasManualPrice = Boolean(product.extradata?.manualDetailPrice || product.extradata?.manualWholesalePrice);
+    const existingManualPrice = Boolean(existing?.extradata?.manualDetailPrice || existing?.extradata?.manualWholesalePrice);
+    if (!existing || (hasManualPrice && !existingManualPrice) || (hasManualPrice === existingManualPrice && completenessScore(product) > completenessScore(existing))) {
       bySku.set(key, product);
     }
   }

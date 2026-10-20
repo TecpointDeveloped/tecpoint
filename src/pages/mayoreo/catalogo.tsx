@@ -12,7 +12,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { productImageFallback } from "@/lib/imageFallback";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import {
-  wholesaleCatalog,
   wholesaleFacets,
   type WholesaleProduct,
 } from "@/lib/wholesaleCatalog";
@@ -55,7 +54,8 @@ function brandLogo(name: string) {
 
 export async function getServerSideProps({ res }: { res: { setHeader: (name:string,value:string)=>void } }) {
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
-  const allProducts = wholesaleCatalog();
+  const { liveWholesaleCatalog } = await import("@/lib/wholesaleCatalog.server");
+  const allProducts = await liveWholesaleCatalog();
   const facets = wholesaleFacets(allProducts);
   return {
     props: {

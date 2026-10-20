@@ -94,6 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const prefix = req.body.action === "syncW34Drafts" ? "w34-draft" : req.body.action === "syncW40" ? "w40" : req.body.action === "syncW35" ? "w35" : "w34";
         const documentId = `${prefix}-${text(product.sku, 100).replace(/[^a-z0-9_-]+/gi, "-")}`;
         const reference = existing?.ref || admin.db.collection(collectionName).doc(documentId);
+        const existingData = existing?.data() as Product | undefined;
         const payload = {
           sku: product.sku,
           producto: product.producto,
@@ -102,9 +103,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           categorias: product.categorias,
           Subcategorias: product.Subcategorias,
           marca_producto: product.marca_producto,
-          precio: product.precio,
+          precio: {
+            ...product.precio,
+            ...(existingData?.extradata?.manualDetailPrice ? { detalle: existingData.precio?.detalle } : {}),
+            ...(existingData?.extradata?.manualWholesalePrice ? { mayoreo: existingData.precio?.mayoreo } : {}),
+          },
           imagenes: product.imagenes,
-          extradata: product.extradata,
+          extradata: {
+            ...product.extradata,
+            ...(existingData?.extradata?.manualDetailPrice ? { manualDetailPrice: true } : {}),
+            ...(existingData?.extradata?.manualWholesalePrice ? { manualWholesalePrice: true } : {}),
+            ...(typeof existingData?.extradata?.wholesaleEnabled === "boolean" ? { wholesaleEnabled: existingData.extradata.wholesaleEnabled } : {}),
+            ...(existingData?.extradata?.wholesaleCategory ? { wholesaleCategory: existingData.extradata.wholesaleCategory } : {}),
+            ...(existingData?.extradata?.wholesaleImage ? { wholesaleImage: existingData.extradata.wholesaleImage } : {}),
+          },
           fecha_agregado: product.fecha_agregado,
           updatedAt: FieldValue.serverTimestamp(),
           ...(!existing ? { createdAt: FieldValue.serverTimestamp() } : {}),
@@ -124,6 +136,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === "PATCH") {
       const id = text(req.body?.id, 200);
       if (!id) return res.status(400).json({ error: "Producto inválido." });
+      const reference = admin.db.collection(collectionName).doc(id);
+      const before = await reference.get();
+      if (!before.exists) return res.status(404).json({ error: "Producto no encontrado." });
+      const previous = before.data() as Product;
       const updates: Record<string, unknown> = { updatedAt: FieldValue.serverTimestamp() };
       if ("producto" in req.body) updates.producto = text(req.body.producto, 250);
       if ("slug" in req.body) updates.slug = text(req.body.slug, 300);
@@ -133,12 +149,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if ("marca" in req.body) updates["marca_producto.marca"] = text(req.body.marca, 120);
       if ("upc" in req.body) updates["extradata.upc"] = text(req.body.upc, 80);
       if ("color" in req.body) updates["extradata.color"] = text(req.body.color, 80);
-      if ("precioDetalle" in req.body) updates["precio.detalle"] = Math.max(0, Number(req.body.precioDetalle) || 0);
-      if ("precioMayoreo" in req.body) updates["precio.mayoreo"] = Math.max(0, Number(req.body.precioMayoreo) || 0);
+      if ("precioDetalle" in req.body) {
+        const price = Number(req.body.precioDetalle);
+        if (!Number.isFinite(price) || price < 0) return res.status(400).json({ error: "Precio de detalle inválido." });
+        updates["precio.detalle"] = price;
+        if (price !== Number(previous.precio?.detalle)) updates["extradata.manualDetailPrice"] = true;
+      }
+      if ("precioMayoreo" in req.body) {
+        const price = Number(req.body.precioMayoreo);
+        if (!Number.isFinite(price) || price < 0) return res.status(400).json({ error: "Precio de mayoreo inválido." });
+        updates["precio.mayoreo"] = price;
+        if (price !== Number(previous.precio?.mayoreo)) updates["extradata.manualWholesalePrice"] = true;
+      }
       if ("wholesaleEnabled" in req.body) updates["extradata.wholesaleEnabled"] = Boolean(req.body.wholesaleEnabled);
       if ("wholesaleCategory" in req.body) updates["extradata.wholesaleCategory"] = text(req.body.wholesaleCategory, 120);
       if ("imagen" in req.body) updates["imagenes.imagen_01"] = { id: "imagen_01", img: text(req.body.imagen, 2000) };
-      await admin.db.collection(collectionName).doc(id).update(updates);
+      await reference.update(updates);
       return res.status(200).json({ ok: true });
     }
 

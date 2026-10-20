@@ -61,8 +61,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === "PATCH" && req.body?.target === "product") {
       const id = text(req.body.id, 200);
       if (!id) return res.status(400).json({ error: "Producto inválido." });
-      await admin.db.collection(collectionName).doc(id).update({
-        "precio.mayoreo": Math.max(0, Number(req.body.wholesalePrice) || 0),
+      const price = Number(req.body.wholesalePrice);
+      if (!Number.isFinite(price) || price < 0) return res.status(400).json({ error: "Precio de mayoreo inválido." });
+      const reference = admin.db.collection(collectionName).doc(id);
+      const before = await reference.get();
+      if (!before.exists) return res.status(404).json({ error: "Producto no encontrado." });
+      await reference.update({
+        "precio.mayoreo": price,
+        ...(price !== Number(before.data()?.precio?.mayoreo) ? { "extradata.manualWholesalePrice": true } : {}),
         "extradata.wholesaleEnabled": Boolean(req.body.wholesaleEnabled),
         "extradata.wholesaleCategory": text(req.body.wholesaleCategory, 120),
         "extradata.wholesaleImage": text(req.body.wholesaleImage, 2000),
