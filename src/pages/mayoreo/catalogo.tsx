@@ -9,6 +9,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { WholesaleCatalogIntro } from "@/components/WholesaleCatalogIntro";
 import { productImageFallback } from "@/lib/imageFallback";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
 import {
@@ -255,6 +256,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
         <meta name="robots" content="noindex,nofollow,noarchive" />
         <link rel="canonical" href="https://tecpoint.ws/mayoreo/catalogo" />
       </Head>
+      <WholesaleCatalogIntro />
       <header className={styles.wholesaleHeader}>
         <Image src="/brand/logo-principal.svg" alt="TECPOINT" width={180} height={42} priority />
         <span>Tienda de mayoreo</span>
