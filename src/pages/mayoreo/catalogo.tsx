@@ -1,10 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
 import {
+  ChevronLeft,
+  ChevronRight,
   Minus,
   Plus,
   Search,
   ShoppingBag,
+  TrendingUp,
   Trash2,
   X,
 } from "lucide-react";
@@ -23,6 +26,7 @@ type CartLine = WholesaleProduct & { quantity: number };
 type Props = {
   initialProducts: WholesaleProduct[];
   initialTotal: number;
+  popularProducts: WholesaleProduct[];
   brands: string[];
   categories: string[];
 };
@@ -55,13 +59,15 @@ function brandLogo(name: string) {
 
 export async function getServerSideProps({ res }: { res: { setHeader: (name:string,value:string)=>void } }) {
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
-  const { liveWholesaleCatalog } = await import("@/lib/wholesaleCatalog.server");
+  const { livePopularWholesaleProducts, liveWholesaleCatalog } = await import("@/lib/wholesaleCatalog.server");
   const allProducts = await liveWholesaleCatalog();
+  const popularProducts = await livePopularWholesaleProducts(allProducts);
   const facets = wholesaleFacets(allProducts);
   return {
     props: {
       initialProducts: allProducts.slice(0, PAGE_SIZE),
       initialTotal: allProducts.length,
+      popularProducts,
       ...facets,
     },
   };
@@ -75,7 +81,7 @@ function money(value: number) {
   }).format(value);
 }
 
-export default function WholesaleCatalog({ initialProducts, initialTotal, brands, categories }: Props) {
+export default function WholesaleCatalog({ initialProducts, initialTotal, popularProducts, brands, categories }: Props) {
   const { wholesaleWhatsApp } = useSiteConfig();
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("");
@@ -91,6 +97,7 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
   const [cartReady, setCartReady] = useState(false);
   const [notice, setNotice] = useState("");
   const firstRequest = useRef(true);
+  const popularTrack = useRef<HTMLDivElement>(null);
   const featuredRockSpace = brands.find((item) => item.toLowerCase().replace(/\s+/g, "") === "rockspace");
   const orderedBrands = featuredRockSpace
     ? [featuredRockSpace, ...brands.filter((item) => item !== featuredRockSpace)]
@@ -163,6 +170,13 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
 
   function selectedQuantity(product: WholesaleProduct) {
     return Math.max(1, quantities[product.sku] || 1);
+  }
+
+  function scrollPopular(direction: -1 | 1) {
+    const track = popularTrack.current;
+    if (!track) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollBy({ left: direction * Math.max(280, track.clientWidth * 0.82), behavior: prefersReducedMotion ? "auto" : "smooth" });
   }
 
   function setProductQuantity(product: WholesaleProduct, value: number) {
@@ -300,6 +314,38 @@ export default function WholesaleCatalog({ initialProducts, initialTotal, brands
               ))}
             </div>
           </nav>
+        )}
+
+        {popularProducts.length > 0 && (
+          <section className={styles.popular} aria-labelledby="popular-title">
+            <header className={styles.popularHeader}>
+              <div>
+                <span><TrendingUp size={15} aria-hidden="true" /> BASADO EN VENTAS REALES</span>
+                <h2 id="popular-title">Productos populares</h2>
+                <p>Los favoritos de nuestros clientes mayoristas.</p>
+              </div>
+              <div className={styles.popularControls}>
+                <button type="button" onClick={() => scrollPopular(-1)} aria-label="Ver productos populares anteriores"><ChevronLeft size={20} /></button>
+                <button type="button" onClick={() => scrollPopular(1)} aria-label="Ver más productos populares"><ChevronRight size={20} /></button>
+              </div>
+            </header>
+            <div className={styles.popularTrack} ref={popularTrack}>
+              {popularProducts.map((product, index) => (
+                <article className={styles.popularCard} key={product.sku}>
+                  <button type="button" className={styles.popularImage} onClick={() => setSelectedProduct(product)} aria-label={`Ver ${product.name}`}>
+                    <span>#{index + 1}</span>
+                    <Image src={product.image} alt={`Imagen de ${product.name}`} fill sizes="(max-width: 650px) 72vw, 210px" quality={75} onError={productImageFallback} />
+                  </button>
+                  <div>
+                    <small>{product.brand}</small>
+                    <h3>{product.name}</h3>
+                    <strong>{product.price ? money(product.price) : "Consultar"}</strong>
+                    <button type="button" onClick={() => addProduct(product)}>Agregar <Plus size={15} aria-hidden="true" /></button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
         )}
 
         <section className={styles.catalog} aria-labelledby="catalog-title">

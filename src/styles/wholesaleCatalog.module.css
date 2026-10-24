@@ -174,3 +174,29 @@
 @keyframes wholesaleDrawerIn{from{transform:translateX(105%)}to{transform:translateX(0)}}
 @media(hover:none){.quickNavLinks button:hover,.brandList button:hover,.card:hover,.cartButton:hover{transform:none}.heroMark:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){.heroMark:after,.drawerOpen{animation:none}.heroMark img,.quickNavLinks button,.brandList button,.card,.card:before,.addButton,.cartButton{transition:none}.quickNavLinks button:hover,.brandList button:hover,.card:hover,.cartButton:hover,.heroMark:hover img{transform:none}}
+.popular{max-width:1540px;margin:22px auto 0;padding:24px clamp(18px,3vw,34px) 28px;overflow:hidden;border:1px solid #dfe4e4;border-radius:18px;background:#fff;box-shadow:0 12px 34px rgba(17,21,22,.055)}
+.popularHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px}
+.popularHeader>div:first-child>span{display:flex;align-items:center;gap:7px;color:#c8102e;font-size:9px;font-weight:900;letter-spacing:.14em}
+.popularHeader h2{margin:7px 0 3px;font-size:clamp(24px,2.6vw,36px);letter-spacing:-.045em}
+.popularHeader p{margin:0;color:#697171;font-size:13px}
+.popularControls{display:flex;gap:8px}
+.popularControls button{width:43px;height:43px;display:grid;place-items:center;border:1px solid #d8dddd;border-radius:50%;background:#fff;color:#151a19;cursor:pointer;transition:border-color .18s,background .18s,color .18s,transform .18s}
+.popularControls button:hover{border-color:#c8102e;background:#c8102e;color:#fff;transform:translateY(-2px)}
+.popularTrack{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(190px,calc((100% - 70px)/6));gap:14px;overflow-x:auto;overscroll-behavior-inline:contain;padding:2px 2px 8px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#c8102e #ecefef}
+.popularCard{min-width:0;overflow:hidden;border:1px solid #e2e6e6;border-radius:13px;background:#fff;scroll-snap-align:start;transition:transform .22s,box-shadow .22s,border-color .22s}
+.popularCard:hover{transform:translateY(-4px);border-color:#d0d6d6;box-shadow:0 14px 30px rgba(17,21,22,.1)}
+.popularImage{position:relative;display:block;width:100%;aspect-ratio:1.15;padding:0;border:0;border-bottom:1px solid #ecefef;background:#f8faf9;cursor:pointer}
+.popularImage>span{position:absolute;z-index:2;left:10px;top:10px;display:grid;place-items:center;min-width:29px;height:29px;padding:0 7px;border-radius:999px;background:#c8102e;color:#fff;font-size:10px;font-weight:900}
+.popularImage img{object-fit:contain;padding:13px}
+.popularCard>div{display:grid;padding:13px}
+.popularCard small{color:#c8102e;font-size:8px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.popularCard h3{height:39px;margin:7px 0 10px;overflow:hidden;font-size:12px;line-height:1.4}
+.popularCard strong{font-size:17px;letter-spacing:-.035em}
+.popularCard>div>button{min-height:38px;margin-top:11px;display:flex;align-items:center;justify-content:center;gap:5px;border:0;border-radius:7px;background:#111716;color:#fff;font-size:9px;font-weight:900;text-transform:uppercase;cursor:pointer;transition:background .18s,transform .18s}
+.popularCard>div>button:hover{background:#c8102e}
+.popularCard>div>button:active{transform:scale(.98)}
+.popularControls button:focus-visible,.popularImage:focus-visible,.popularCard>div>button:focus-visible{outline:3px solid #1677ff;outline-offset:2px}
+@media(max-width:1150px){.popularTrack{grid-auto-columns:minmax(205px,calc((100% - 42px)/4))}}
+@media(max-width:800px){.popular{margin:16px 14px 0}.popularTrack{grid-auto-columns:minmax(195px,calc((100% - 28px)/3))}}
+@media(max-width:540px){.popular{margin:12px 14px 0;padding:19px 14px 20px;border-radius:14px}.popularHeader{align-items:flex-start}.popularHeader h2{font-size:25px}.popularHeader p{font-size:12px}.popularControls{display:none}.popularTrack{grid-auto-columns:78%;gap:10px;padding-bottom:7px}.popularCard h3{height:auto;min-height:39px}.popularImage{aspect-ratio:1.25}}
+@media(prefers-reduced-motion:reduce){.popularControls button,.popularCard,.popularCard>div>button{transition:none}.popularControls button:hover,.popularCard:hover{transform:none}.popularTrack{scroll-behavior:auto}}

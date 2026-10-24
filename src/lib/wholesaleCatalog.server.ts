@@ -33,3 +33,20 @@ export async function liveWholesaleCatalog() {
     });
   }));
 }
+
+/** Resolve the sales ranking against products that are currently sellable in Mayoreo. */
+export async function livePopularWholesaleProducts(products: ReturnType<typeof wholesaleCatalog>, limit = 12) {
+  const admin = getFirebaseAdmin();
+  if (!admin) return [];
+  const snapshot = await admin.db.collection("wholesale_settings").doc("popular_products").get();
+  if (!snapshot.exists) return [];
+
+  const ranking = snapshot.data()?.ranking;
+  if (!Array.isArray(ranking)) return [];
+  const productBySku = new Map(products.map((product) => [product.sku.trim().toUpperCase(), product]));
+
+  return ranking
+    .map((item: { sku?: unknown }) => productBySku.get(String(item.sku || "").trim().toUpperCase()))
+    .filter((product): product is NonNullable<typeof product> => Boolean(product))
+    .slice(0, limit);
+}
