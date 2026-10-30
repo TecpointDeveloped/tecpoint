@@ -1,0 +1,24 @@
+import type { DeviceCompatibility } from './wholesaleProductRules';
+export type WholesaleProduct = {
+  sku: string;
+  name: string;
+  brand: string;
+  category: string;
+  image: string;
+  thumbnail: string;
+  thumbnailLarge?: string;
+  gallery?: string[];
+  detailFile?: string;
+  devices: DeviceCompatibility[];
+  classification: string;
+  originalPrice: number | null;
+  discountPercent: number | null;
+  price: number | null;
+  retailPrice: number | null;
+  dozenPrice: number | null;
+  description: string;
+  specifications: Record<string, string>;
+  subcategory: string;
+  upc: string;
+  stock: number;
+};

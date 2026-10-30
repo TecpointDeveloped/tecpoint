@@ -1,0 +1,139 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #030303;
+  isolation: isolate;
+  animation: introExit 420ms cubic-bezier(0.4, 0, 1, 1) 1.78s forwards;
+}
+
+:global(html[data-wholesale-intro="skip"]) .intro,
+:global(html[data-wholesale-intro="done"]) .intro {
+  display: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(72vw, 760px);
+  flex-direction: column;
+  align-items: center;
+}
+
+.glow {
+  position: absolute;
+  width: min(84vw, 900px);
+  aspect-ratio: 1.8;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(225 31 28 / 23%) 0%,
+    rgb(225 31 28 / 8%) 38%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  opacity: 0;
+  transform: scale(0.72);
+  animation: glowReveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  filter: drop-shadow(0 0 28px rgb(225 31 28 / 16%));
+  transform: scale(0.9);
+  animation: logoReveal 820ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards;
+}
+
+.label {
+  margin-top: clamp(24px, 4vw, 38px);
+  color: rgb(255 255 255 / 88%);
+  font-size: clamp(0.68rem, 1.25vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.54em;
+  line-height: 1;
+  opacity: 0;
+  padding-left: 0.54em;
+  text-transform: uppercase;
+  transform: translateY(8px);
+  animation: labelReveal 540ms ease-out 650ms forwards;
+}
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes labelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  58% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
+@keyframes introExit {
+  to {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    width: min(84vw, 560px);
+  }
+
+  .glow {
+    width: 108vw;
+    filter: blur(22px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    animation: none;
+  }
+
+  .glow,
+  .logo,
+  .label {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .glow {
+    opacity: 0.45;
+  }
+}

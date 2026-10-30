@@ -1,3 +1,4 @@
+import "@/styles/wholesale-ui/base.css";
 import { AuthProvider } from "@/context/AuthContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
