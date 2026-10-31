@@ -13,5 +13,5 @@ export default function Image({fill,priority,quality,unoptimized,decoding='async
  void quality;
  void unoptimized;
  const srcSet=typeof src==='string'&&src.includes('/thumbs/')&&src.endsWith('-320.webp')?`${src} 320w, ${src.replace('-320.webp','-640.webp')} 640w`:undefined;
- return <img {...props} alt={props.alt ?? ''} src={src} srcSet={srcSet} decoding={decoding} loading={priority?'eager':loading||'lazy'} fetchPriority={priority?'high':'auto'} style={{...(fill?{position:'absolute',inset:0,width:'100%',height:'100%'}:{}),...style}}/>;
+ return <img {...props} alt={props.alt ?? ''} src={src} srcSet={srcSet} decoding={decoding} loading={priority?'eager':loading||'lazy'} style={{...(fill?{position:'absolute',inset:0,width:'100%',height:'100%'}:{}),...style}}/>;
 }
