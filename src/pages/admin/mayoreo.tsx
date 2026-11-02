@@ -36,6 +36,8 @@ export default function AdminWholesale({ standalone = false }: { standalone?: bo
   const [summary,setSummary]=useState({active:0,categories:0});
   const [tab,setTab]=useState<Tab>("products");
   const [query,setQuery]=useState("");
+  const [onlyMissingImages,setOnlyMissingImages]=useState(false);
+  const [uploadingId,setUploadingId]=useState("");
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState("");
   const [success,setSuccess]=useState("");
@@ -54,12 +56,12 @@ export default function AdminWholesale({ standalone = false }: { standalone?: bo
     return data;
   },[currentUser,standalone]);
 
-  const loadProducts=useCallback(async(page=1,search=query)=>{
+  const loadProducts=useCallback(async(page=1,search=query,missingImages=onlyMissingImages)=>{
     setBusy(true);
-    try{const data=await request("GET",undefined,`/api/admin/wholesale?view=products&page=${page}&query=${encodeURIComponent(search)}`);setProducts(data.products);setPagination(data.pagination);setSummary(data.summary);setError("");}
+    try{const data=await request("GET",undefined,`/api/admin/wholesale?view=products&page=${page}&query=${encodeURIComponent(search)}&missingImages=${missingImages?"1":"0"}`);setProducts(data.products);setPagination(data.pagination);setSummary(data.summary);setError("");}
     catch(reason){setError(reason instanceof Error?reason.message:"No fue posible cargar Mayoreo.");}
     finally{setBusy(false);}
-  },[request,query]);
+  },[request,query,onlyMissingImages]);
 
   const loadLeads=useCallback(async()=>{
     setBusy(true);
@@ -75,7 +77,7 @@ export default function AdminWholesale({ standalone = false }: { standalone?: bo
     finally{setBusy(false);}
   },[request]);
 
-  useEffect(()=>{if(!authorized)return;const timer=window.setTimeout(()=>loadProducts(1,query),query?350:0);return()=>window.clearTimeout(timer);},[authorized,query,loadProducts]);
+  useEffect(()=>{if(!authorized)return;const timer=window.setTimeout(()=>loadProducts(1,query,onlyMissingImages),query?350:0);return()=>window.clearTimeout(timer);},[authorized,query,onlyMissingImages,loadProducts]);
   useEffect(()=>{if(authorized)void loadSales();},[authorized,loadSales]);
   const visible=useMemo(()=>products,[products]);
   const categories=useMemo(()=>Array.from(new Set(products.map(product=>product.wholesaleCategory).filter(Boolean))).sort(),[products]);
@@ -88,9 +90,10 @@ export default function AdminWholesale({ standalone = false }: { standalone?: bo
 
   async function uploadImage(product:Product,file?:File){
     if(!file)return;if(!file.type.startsWith("image/")){setError("Seleccione un archivo de imagen válido.");return;}if(file.size>6*1024*1024){setError("La imagen debe pesar menos de 6 MB.");return;}
-    setBusy(true);setError("");setSuccess("");
-    try{const dataUrl=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result||""));reader.onerror=()=>reject(new Error("No fue posible leer la imagen."));reader.readAsDataURL(file);});await request("POST",{id:product.id,dataUrl},"/api/wholesale-admin/image");await loadProducts(pagination.page);setSuccess(`Imagen de ${product.sku} actualizada.`);}
-    catch(reason){setError(reason instanceof Error?reason.message:"No fue posible subir la imagen.");setBusy(false);}
+    setUploadingId(product.id);setError("");setSuccess("");
+    try{const dataUrl=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result||""));reader.onerror=()=>reject(new Error("No fue posible leer la imagen."));reader.readAsDataURL(file);});const data=await request("POST",{id:product.id,dataUrl},"/api/wholesale-admin/image");setProducts(current=>current.map(item=>item.id===product.id?{...item,image:data.url,wholesaleImage:data.url}:item));setSuccess(`Imagen de ${product.sku} actualizada correctamente.`);}
+    catch(reason){setError(reason instanceof Error?reason.message:"No fue posible subir la imagen.");}
+    finally{setUploadingId("");}
   }
 
   async function uploadSales(file?:File){
@@ -114,7 +117,23 @@ export default function AdminWholesale({ standalone = false }: { standalone?: bo
     <section className={styles.metrics}><article><span>Productos activos</span><strong>{summary.active}</strong></article><article><span>Categorías</span><strong>{summary.categories}</strong></article><article><span>Populares configurados</span><strong>{sales.ranking.filter(item=>item.catalogVisible).length}</strong></article></section>
     <nav className={styles.tabs}><button className={tab==="products"?styles.selected:""} onClick={()=>setTab("products")}>Productos y categorías</button><button className={tab==="sales"?styles.selected:""} onClick={()=>{setTab("sales");void loadSales();}}>Ventas y populares</button><button className={tab==="leads"?styles.selected:""} onClick={()=>{setTab("leads");if(!leads.length)void loadLeads();}}>Solicitudes recibidas</button></nav>
 
-    {tab==="products"&&<><div className={styles.tools}><input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Buscar producto, SKU, marca o categoría"/><span>{pagination.totalItems} productos</span></div><section className={styles.productList}>{visible.map(product=><details key={product.id}><summary><div className={styles.productIdentity}>{product.image?<Image src={encodeURI(product.image)} alt="" width={72} height={72} unoptimized/>:<span className={styles.noImage}>Sin imagen</span>}<div><strong>{product.producto||"Producto sin nombre"}</strong><small>{product.sku} · {product.brand||"Sin marca"}</small></div></div><div className={styles.badges}>{product.wholesaleEnabled&&product.wholesalePrice>0?<b>VISIBLE EN MAYOREO</b>:<em>OCULTO</em>}<span>{product.wholesaleCategory||"Sin categoría"}</span></div></summary><form onSubmit={event=>saveProduct(event,product)}><label>Precio de mayoreo<input name="wholesalePrice" type="number" min="0" step="0.01" defaultValue={product.wholesalePrice}/></label><label>Categoría de mayoreo<input name="wholesaleCategory" list="wholesale-categories" defaultValue={product.wholesaleCategory}/></label><label className={styles.imageField}>Imagen exclusiva de mayoreo<input name="wholesaleImage" type="url" defaultValue={product.wholesaleImage} placeholder="Pegue una URL o suba una imagen"/><input type="file" accept="image/png,image/jpeg,image/webp,image/avif" onChange={event=>uploadImage(product,event.target.files?.[0])}/><small>JPG, PNG, WebP o AVIF · máximo 6 MB. Se optimiza automáticamente.</small></label><label className={styles.check}><input name="wholesaleEnabled" type="checkbox" defaultChecked={product.wholesaleEnabled}/>Mostrar en catálogo de Mayoreo</label><p>Precio de detalle actual: L {product.retailPrice.toLocaleString("es-HN",{minimumFractionDigits:2})}</p><button disabled={busy}>Guardar cambios</button></form></details>)}</section>{pagination.totalPages>1&&<nav className={styles.tools}><button disabled={busy||pagination.page===1} onClick={()=>loadProducts(pagination.page-1)}>Anterior</button><span>Página {pagination.page} de {pagination.totalPages}</span><button disabled={busy||pagination.page===pagination.totalPages} onClick={()=>loadProducts(pagination.page+1)}>Siguiente</button></nav>}<datalist id="wholesale-categories">{categories.map(category=><option key={category} value={category}/>)}</datalist></>}
+    {tab==="products"&&<>
+      <section className={styles.productSearch}>
+        <div><label htmlFor="wholesale-product-search">BUSCAR EN TODO EL CATÁLOGO</label><div className={styles.searchBox}><span aria-hidden="true">⌕</span><input id="wholesale-product-search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Escriba el SKU exacto, nombre o marca" autoComplete="off"/>{query&&<button type="button" onClick={()=>setQuery("")} aria-label="Limpiar búsqueda">×</button>}</div><small>Para encontrar un producto rápidamente, escriba o pegue su SKU.</small></div>
+        <label className={styles.missingToggle}><input type="checkbox" checked={onlyMissingImages} onChange={event=>setOnlyMissingImages(event.target.checked)}/><span>Mostrar solo productos sin imagen</span></label>
+        <strong>{busy?"Buscando…":`${pagination.totalItems} producto${pagination.totalItems===1?"":"s"}`}</strong>
+      </section>
+      <section className={styles.productList}>{visible.length?visible.map(product=><article className={styles.productCard} key={product.id}>
+        <div className={styles.productOverview}>
+          <div className={styles.productImage}>{product.image?<Image src={encodeURI(product.image)} alt={product.producto||product.sku} width={144} height={144} unoptimized/>:<span className={styles.noImage}>SIN<br/>IMAGEN</span>}</div>
+          <div className={styles.productInfo}><button type="button" className={styles.skuButton} onClick={()=>navigator.clipboard?.writeText(product.sku)} title="Copiar SKU">SKU {product.sku||"SIN SKU"}</button><h2>{product.producto||"Producto sin nombre"}</h2><p>{product.brand||"Sin marca"} · {product.wholesaleCategory||"Sin categoría"}</p><div className={styles.badges}>{product.wholesaleEnabled&&product.wholesalePrice>0?<b>VISIBLE EN MAYOREO</b>:<em>OCULTO</em>}<span>L {product.wholesalePrice.toLocaleString("es-HN",{minimumFractionDigits:2})}</span></div></div>
+          <div className={styles.imageActions}><span>IMAGEN DEL PRODUCTO</span><label className={styles.quickUpload}>{uploadingId===product.id?"Subiendo y optimizando…":product.image?"Cambiar imagen":"Subir imagen"}<input type="file" accept="image/png,image/jpeg,image/webp,image/avif" disabled={Boolean(uploadingId)} onChange={event=>{void uploadImage(product,event.target.files?.[0]);event.currentTarget.value="";}}/></label><small>JPG, PNG, WebP o AVIF · máximo 6 MB</small></div>
+        </div>
+        <details className={styles.productEditor}><summary>Editar precio, categoría y publicación <span>＋</span></summary><form onSubmit={event=>saveProduct(event,product)}><label>Precio de mayoreo<input name="wholesalePrice" type="number" min="0" step="0.01" defaultValue={product.wholesalePrice}/></label><label>Categoría de mayoreo<input name="wholesaleCategory" list="wholesale-categories" defaultValue={product.wholesaleCategory}/></label><label className={styles.imageField}>URL de imagen exclusiva<input name="wholesaleImage" type="url" defaultValue={product.wholesaleImage} placeholder="Opcional: pegue una URL de imagen"/><small>También puede usar el botón “Cambiar imagen” de arriba.</small></label><label className={styles.check}><input name="wholesaleEnabled" type="checkbox" defaultChecked={product.wholesaleEnabled}/>Mostrar en catálogo de Mayoreo</label><p>Precio de detalle actual: L {product.retailPrice.toLocaleString("es-HN",{minimumFractionDigits:2})}</p><button disabled={busy}>Guardar cambios</button></form></details>
+      </article>):<div className={styles.empty}>{query?<>No encontramos productos con “{query}”. Revise el SKU e intente nuevamente.</>:onlyMissingImages?"Todos los productos de esta búsqueda tienen imagen.":"No hay productos para mostrar."}</div>}</section>
+      {pagination.totalPages>1&&<nav className={styles.pagination}><button disabled={busy||pagination.page===1} onClick={()=>loadProducts(pagination.page-1)}>← Anterior</button><span>Página {pagination.page} de {pagination.totalPages}</span><button disabled={busy||pagination.page===pagination.totalPages} onClick={()=>loadProducts(pagination.page+1)}>Siguiente →</button></nav>}
+      <datalist id="wholesale-categories">{categories.map(category=><option key={category} value={category}/>)}</datalist>
+    </>}
 
     {tab==="sales"&&<section className={styles.salesPanel}>
       <article className={styles.salesUpload}>

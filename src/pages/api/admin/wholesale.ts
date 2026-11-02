@@ -51,7 +51,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
       });
       const search = text(req.query.query, 160).toLowerCase();
-      const filtered = products.filter((product) => !search || `${product.sku} ${product.producto} ${product.brand} ${product.wholesaleCategory}`.toLowerCase().includes(search));
+      const missingImages = req.query.missingImages === "1";
+      const filtered = products
+        .filter((product) => (!search || `${product.sku} ${product.producto} ${product.brand} ${product.wholesaleCategory}`.toLowerCase().includes(search)) && (!missingImages || !product.image))
+        .sort((left, right) => {
+          if (!search) return left.producto.localeCompare(right.producto, "es");
+          const leftExact = left.sku.toLowerCase() === search;
+          const rightExact = right.sku.toLowerCase() === search;
+          if (leftExact !== rightExact) return leftExact ? -1 : 1;
+          const leftStarts = left.sku.toLowerCase().startsWith(search);
+          const rightStarts = right.sku.toLowerCase().startsWith(search);
+          if (leftStarts !== rightStarts) return leftStarts ? -1 : 1;
+          return left.producto.localeCompare(right.producto, "es");
+        });
       const pageSize = 30;
       const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
       const page = Math.min(totalPages, Math.max(1, Number(req.query.page) || 1));
