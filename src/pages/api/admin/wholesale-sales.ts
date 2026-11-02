@@ -3,7 +3,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "@/lib/firebaseAdmin";
 import { isAdminEmail } from "@/lib/adminAccess";
 import { validWholesaleAdminSession } from "@/lib/wholesaleAdminAuth.server";
-import { parseWholesaleSalesWorkbook } from "@/lib/wholesaleSales.server";
+import { parseWholesaleSalesFile } from "@/lib/wholesaleSales.server";
 import { wholesaleCatalog } from "@/lib/wholesaleCatalog";
 import type { Product } from "@/types/ProductTypes";
 
@@ -47,6 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         unmatchedSkus: Array.isArray(data.unmatchedSkus) ? data.unmatchedSkus : [],
         quantityColumnDetected: Boolean(data.quantityColumnDetected),
         worksheets: Array.isArray(data.worksheets) ? data.worksheets : [],
+        sourceType: data.sourceType === "html" ? "html" : "excel",
         ranking: Array.isArray(data.ranking) ? data.ranking.slice(0, 20) : [],
         uploadedAt: data.uploadedAt?.toDate?.().toISOString() || null,
       });
@@ -54,17 +55,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === "POST") {
       const fileName = cleanFileName(req.body?.fileName);
-      if (!fileName.toLowerCase().endsWith(".xlsx")) {
-        return res.status(400).json({ error: "Suba un archivo Excel con extensión .xlsx." });
+      if (!/\.(?:xlsx|xls|html?)$/i.test(fileName)) {
+        return res.status(400).json({ error: "Suba un archivo Excel .xlsx o una tabla HTML .html/.htm/.xls." });
       }
       const dataBase64 = String(req.body?.dataBase64 || "");
-      if (!dataBase64) return res.status(400).json({ error: "No se recibió el archivo Excel." });
+      if (!dataBase64) return res.status(400).json({ error: "No se recibió el archivo." });
       const buffer = Buffer.from(dataBase64, "base64");
       if (!buffer.length || buffer.length > MAX_FILE_BYTES) {
-        return res.status(400).json({ error: "El Excel debe pesar menos de 6 MB." });
+        return res.status(400).json({ error: "El archivo debe pesar menos de 6 MB." });
       }
 
-      const result = await parseWholesaleSalesWorkbook(buffer);
+      const result = await parseWholesaleSalesFile(buffer, fileName);
       const collectionName = process.env.NEXT_PUBLIC_DATABASE_NAME;
       if (!collectionName) return res.status(503).json({ error: "Colección de productos no configurada." });
 
@@ -100,6 +101,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         unmatchedSkus: unmatchedSkus.slice(0, 100),
         quantityColumnDetected: result.quantityColumnDetected,
         worksheets: result.worksheets,
+        sourceType: result.sourceType,
         ranking,
         uploadedAt: FieldValue.serverTimestamp(),
       });
@@ -113,6 +115,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         unmatchedSkus: unmatchedSkus.slice(0, 100),
         quantityColumnDetected: result.quantityColumnDetected,
         worksheets: result.worksheets,
+        sourceType: result.sourceType,
         ranking: ranking.slice(0, 20),
       });
     }
@@ -121,7 +124,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } catch (error) {
     console.error("Wholesale sales upload error", error);
     return res.status(500).json({
-      error: error instanceof Error ? error.message : "No fue posible procesar el Excel.",
+      error: error instanceof Error ? error.message : "No fue posible procesar el archivo.",
     });
   }
 }

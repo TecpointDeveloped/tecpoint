@@ -11,6 +11,7 @@ export type SalesWorkbookResult = {
   processedRows: number;
   worksheets: string[];
   quantityColumnDetected: boolean;
+  sourceType: "excel" | "html";
 };
 
 const SKU_HEADERS = new Set([
@@ -116,5 +117,51 @@ export async function parseWholesaleSalesWorkbook(buffer: Buffer): Promise<Sales
     .sort((left, right) => right.unitsSold - left.unitsSold || left.sku.localeCompare(right.sku))
     .map((item, index) => ({ ...item, rank: index + 1 }));
 
-  return { ranking, processedRows, worksheets, quantityColumnDetected };
+  return { ranking, processedRows, worksheets, quantityColumnDetected, sourceType: "excel" };
+}
+
+function decodeHtml(value: string) {
+  const entities: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+  return value.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<br\s*\/?\s*>/gi, " ").replace(/<[^>]+>/g, " ")
+    .replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (_match, entity: string) => {
+      if (entity[0] === "#") { const hex = entity[1]?.toLowerCase() === "x"; const point = Number.parseInt(entity.slice(hex ? 2 : 1), hex ? 16 : 10); return Number.isFinite(point) ? String.fromCodePoint(point) : " "; }
+      return entities[entity.toLowerCase()] || " ";
+    }).replace(/\s+/g, " ").trim();
+}
+
+export function parseWholesaleSalesHtml(buffer: Buffer): SalesWorkbookResult {
+  const html = buffer[0] === 0xff && buffer[1] === 0xfe ? buffer.subarray(2).toString("utf16le") : buffer.toString("utf8");
+  if (!/<(?:html|table|tr)\b/i.test(html)) throw new Error("El archivo no contiene una tabla HTML válida.");
+  const totals = new Map<string, number>();
+  let processedRows = 0, quantityColumnDetected = false, recognizedTables = 0;
+  for (const tableMatch of html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)) {
+    const rows = Array.from(tableMatch[1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi), match => Array.from(match[1].matchAll(/<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi), cell => decodeHtml(cell[1]))).filter(row => row.length);
+    let headerIndex = -1, skuColumn = -1, quantityColumn = -1;
+    for (let index = 0; index < Math.min(20, rows.length); index += 1) {
+      skuColumn = rows[index].findIndex(cell => SKU_HEADERS.has(normalizeHeader(cell)));
+      quantityColumn = rows[index].findIndex(cell => QUANTITY_HEADERS.has(normalizeHeader(cell)));
+      if (skuColumn >= 0) { headerIndex = index; break; }
+    }
+    if (headerIndex < 0) continue;
+    recognizedTables += 1; quantityColumnDetected ||= quantityColumn >= 0;
+    for (const row of rows.slice(headerIndex + 1)) {
+      const sku = String(row[skuColumn] || "").trim().toUpperCase(); if (!sku) continue;
+      const quantity = quantityColumn >= 0 ? safeQuantity(row[quantityColumn], row[quantityColumn] || "") : 1; if (quantity <= 0) continue;
+      totals.set(sku, (totals.get(sku) || 0) + quantity); processedRows += 1;
+    }
+  }
+  if (!recognizedTables) throw new Error("No se encontró una tabla con columna SKU o Código en el HTML.");
+  if (!processedRows) throw new Error("El HTML no contiene ventas válidas para procesar.");
+  const ranking = Array.from(totals, ([sku, unitsSold]) => ({ sku, unitsSold, rank: 0 })).sort((a, b) => b.unitsSold - a.unitsSold || a.sku.localeCompare(b.sku)).map((item, index) => ({ ...item, rank: index + 1 }));
+  return { ranking, processedRows, worksheets: [`HTML · ${recognizedTables} tabla${recognizedTables === 1 ? "" : "s"}`], quantityColumnDetected, sourceType: "html" };
+}
+
+export async function parseWholesaleSalesFile(buffer: Buffer, fileName: string) {
+  const start = buffer[0] === 0xff && buffer[1] === 0xfe ? buffer.subarray(2, 8194).toString("utf16le") : buffer.subarray(0, 4096).toString("utf8");
+  if (/<(?:!doctype\s+html|html|table)\b/i.test(start)) return parseWholesaleSalesHtml(buffer);
+  if (buffer[0] === 0x50 && buffer[1] === 0x4b) return parseWholesaleSalesWorkbook(buffer);
+  if (/\.(?:html?|xls)$/i.test(fileName)) return parseWholesaleSalesHtml(buffer);
+  if (/\.xlsx$/i.test(fileName)) return parseWholesaleSalesWorkbook(buffer);
+  throw new Error("Formato no reconocido. Suba Excel .xlsx o HTML .html/.htm.");
 }
