@@ -1,4 +1,8 @@
+import compatibilityData from "@/data/wholesale-compatibility-w43.json";
+import recoveredMedia from "@/data/recovered-product-media.json";
 import { approvedCatalogProducts, publicCatalog } from "@/lib/catalog";
+import { cleanCategory, titleFacts } from "@/lib/wholesale-ui/productPresentation";
+import { normalizeDevices, reviewedDevices, wholesalePricing, type DeviceCompatibility } from "@/lib/wholesale-ui/wholesaleProductRules";
 import { Product } from "@/types/ProductTypes";
 
 export type WholesaleProduct = {
@@ -7,10 +11,17 @@ export type WholesaleProduct = {
   brand: string;
   category: string;
   image: string;
+  thumbnail: string;
+  gallery?: string[];
+  devices: DeviceCompatibility[];
+  classification: string;
+  originalPrice: number | null;
+  discountPercent: number | null;
   price: number | null;
   retailPrice: number | null;
   dozenPrice: number | null;
   description: string;
+  specifications: Record<string, string>;
   subcategory: string;
   upc: string;
   stock: number;
@@ -28,8 +39,10 @@ let cachedFacets: { brands: string[]; categories: string[] } | undefined;
 const searchIndex = new Map<string, string>();
 
 function imageFor(product: Product) {
+  const recovered = (recoveredMedia as Record<string, { image: string }>)[product.sku];
   return (
     product.extradata?.wholesaleImage ||
+    recovered?.image ||
     product.imagenes?.imagen_01?.img ||
     Object.values(product.imagenes || {})[0]?.img ||
     "/brand/isologo.svg"
@@ -58,20 +71,36 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
     )
     .map((product) => {
       const rawPrice = Number(product.precio?.mayoreo || 0);
+      const reference = (compatibilityData as Record<string, { devices?: DeviceCompatibility[]; classification?: string }>)[String(product.sku || "").trim().toLowerCase()];
+      const devices = reviewedDevices(
+        String(product.producto || ""),
+        normalizeDevices(product.extradata?.compatibleDevices ?? reference?.devices),
+        [product.extradata?.wholesaleCategory, ...(product.categorias || []), product.Subcategorias].filter(Boolean).join(" "),
+      );
+      const pricing = wholesalePricing(rawPrice, product.extradata?.wholesalePromotion);
+      const image = imageFor(product);
       return {
         sku: String(product.sku || "").trim(),
         name: String(product.producto || "Producto TECPOINT").trim(),
         brand: String(product.marca_producto?.marca || "TECPOINT").trim(),
-        category: String(
+        category: cleanCategory(String(
           product.extradata?.wholesaleCategory ||
             product.categorias?.[0] ||
             "Otros",
-        ).trim(),
-        image: imageFor(product),
-        price: rawPrice > 0 ? rawPrice : null,
+        ).trim(), String(product.producto || ""), String(product.Subcategorias || "")),
+        image,
+        thumbnail: product.extradata?.wholesaleThumbnail || image,
+        gallery: Object.values(product.imagenes || {}).map(entry => entry?.img).filter((url): url is string => typeof url === "string" && url.startsWith("/")),
+        devices,
+        classification: product.extradata?.wholesaleClassification ?? reference?.classification ?? "",
+        ...pricing,
         retailPrice: Number(product.precio?.detalle || 0) > 0 ? Number(product.precio.detalle) : null,
         dozenPrice: null,
         description: String(product.descripcion || "").trim(),
+        specifications: {
+          ...titleFacts(String(product.producto || "")),
+          ...Object.fromEntries(Object.entries(product.extradata?.especificaciones || {}).filter((entry): entry is [string, string] => typeof entry[1] === "string")),
+        },
         subcategory: String(product.Subcategorias || "").trim(),
         upc: String(product.extradata?.upc || "").trim(),
         stock: Math.max(0, Number(product.extradata?.inventoryQuantity || 0)),

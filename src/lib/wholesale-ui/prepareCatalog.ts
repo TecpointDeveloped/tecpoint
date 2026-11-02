@@ -9,13 +9,13 @@ export function prepareCatalog(products: SourceWholesaleProduct[]) {
   const rows = products.map(product => {
     const p: WholesaleProduct = {
       ...product,
-      thumbnail: product.image,
-      devices: [],
-      classification: '',
-      originalPrice: null,
-      discountPercent: null,
-      gallery: [],
-      specifications: {},
+      thumbnail: product.thumbnail || product.image,
+      devices: product.devices || [],
+      classification: product.classification || '',
+      originalPrice: product.originalPrice ?? null,
+      discountPercent: product.discountPercent ?? null,
+      gallery: product.gallery || [],
+      specifications: product.specifications || {},
     };
     const known = (media as Record<string, { original: string; image: string; thumbnail: string }>)[p.sku];
     // The current panel image wins when it differs from the delivered baseline.

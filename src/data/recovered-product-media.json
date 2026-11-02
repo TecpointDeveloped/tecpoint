@@ -1,0 +1,290 @@
+{
+  "DK-C11PRGP": {
+    "image": "/images/recovered/e04da1aeb0c6f7e0.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C17",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 11 Pro - Graphite",
+    "sha256": "e04da1aeb0c6f7e0b4df7626d10e611ea98dcfa68e9791a2839a290b5ece6c9f"
+  },
+  "DK-C11PRSV": {
+    "image": "/images/recovered/d19750d87351d186.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C25",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 11 Pro - Silver",
+    "sha256": "d19750d87351d186fdbad1d0ff2d0c4065787bf7f56c6ee69535518db8b2ec9c"
+  },
+  "DK-C11PRG": {
+    "image": "/images/recovered/2c07d16803307487.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C9",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 11 Pro - Gold",
+    "sha256": "2c07d168033074874b2e634af202a0cbda4f4c401cde9efd79f869e729b58c57"
+  },
+  "DK-C15PLLB": {
+    "image": "/images/recovered/ad880bd2d5befe62.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C56",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 15 / 15 Plus - Light Blue",
+    "sha256": "ad880bd2d5befe62972220cbc0b9b390daf7be8ea7bba5734941c538fef0c8a0"
+  },
+  "DK-C15PLLG": {
+    "image": "/images/recovered/1288be3c02b3a848.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C57",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 15 / 15 Plus - Light Green",
+    "sha256": "1288be3c02b3a84886d40087694edbdc91841d37e5c65471c178160b94bcbc08"
+  },
+  "DK-C15PLLP": {
+    "image": "/images/recovered/f8f23afecb27c1fa.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C59",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 15 / 15 Plus - Light Pink",
+    "sha256": "f8f23afecb27c1fa72671400a9f96fa16c8855c409f57d25029e91d2f2891168"
+  },
+  "DK-C15PLLY": {
+    "image": "/images/recovered/3981508eea83f826.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C60",
+    "sourceDescription": "Vidrio Dëken para Camara de iPhone 15 / 15 Plus - Light Yellow",
+    "sha256": "3981508eea83f826f5608c68ac714c98c96c52a2f5fbf89e75b16f5fd852a2f6"
+  },
+  "DK-CS23PLGR": {
+    "image": "/images/recovered/ee4c6caae1528a16.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C66",
+    "sourceDescription": "Vidrio Dëken para Camara de Samsung S23 Plus - Green",
+    "sha256": "ee4c6caae1528a164074a32be34defbc5b70dcbcfd8319c2fd41efc4c1a02eb2"
+  },
+  "DK-CS23PLLV": {
+    "image": "/images/recovered/95f0cb03b7128a6e.webp",
+    "source": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+    "sheet": "xl/worksheets/sheet1.xml",
+    "cell": "C68",
+    "sourceDescription": "Vidrio Dëken para Camara de Samsung S23 Plus - Lavender",
+    "sha256": "95f0cb03b7128a6e45fb05f41615fe03c8b9e9a854d78f64be353f62f703e1bf"
+  },
+  "GHOCAS2733": {
+    "image": "/images/recovered/e0310dccc2019c90.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet6.xml",
+    "cell": "C5",
+    "sourceDescription": "Ghostek Crusher Case AirPod 3 - Black",
+    "sha256": "e0310dccc2019c90770da0bfd1c9484b5fb3e15b4fd06362cd38893f41227814"
+  },
+  "GHOCAS2764": {
+    "image": "/images/recovered/da794f4289e4b4b4.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet6.xml",
+    "cell": "C6",
+    "sourceDescription": "Ghostek Scarlet Case AirPod Pro - Leopard",
+    "sha256": "da794f4289e4b4b4d1efaf512c90212e0ceaa517ebb1ef67905c54fefcb0a2cf"
+  },
+  "GHOCAS2765": {
+    "image": "/images/recovered/7d156a9ac1bec5ab.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet6.xml",
+    "cell": "C7",
+    "sourceDescription": "Ghostek Scarlet Case AirPod Pro - Stardust",
+    "sha256": "7d156a9ac1bec5ab8fca606ee957131c9e4f928ebeef559cfd2ee3f4645f8861"
+  },
+  "GHOCAS2768": {
+    "image": "/images/recovered/adbd62f07b4aff6b.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet6.xml",
+    "cell": "C8",
+    "sourceDescription": "Ghostek Scarlet Case AirPod Pro - Terrazzo",
+    "sha256": "adbd62f07b4aff6bb8a00cad43c1103a5de97461b55e9f6ca810e019ccc5fdb4"
+  },
+  "GHOCAS2766": {
+    "image": "/images/recovered/f6e1ee89649318f9.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet6.xml",
+    "cell": "C9",
+    "sourceDescription": "Ghostek Scarlet Case AirPod Pro - Waves",
+    "sha256": "f6e1ee89649318f92de51103eaed275c281ab06bc06cbfa25b92d8646efb0cda"
+  },
+  "BS-DHKPS26UC": {
+    "image": "/images/recovered/5d42caa92f5e42cc.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C37",
+    "sourceDescription": "XBase DuoHybrid Kickstand Pro Samsung S26 Ultra - Clear",
+    "sha256": "5d42caa92f5e42cc5c256429f5f0098c1a764af4b742f4058eaa8d22cb9e885f"
+  },
+  "BS-DHP16PSB": {
+    "image": "/images/recovered/568e8f2142a582cc.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C38",
+    "sourceDescription": "XBase DuoHybrid PoP iPhone 16 Pro - Silver Black",
+    "sha256": "568e8f2142a582ccac1b76aa32b73560b76b0bf9174070fd1cbb573d1cbd029e"
+  },
+  "BS-HI14PMB": {
+    "image": "/images/recovered/3df2262f1b8bc082.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C22",
+    "sourceDescription": "XBase ClipPro Combo IPhone 14 Pro Max (6.7) - Black",
+    "sha256": "3df2262f1b8bc082d1368a8a31049a587a004146bd95f0ff9379496ff1eab708"
+  },
+  "BS-CKS26UC": {
+    "image": "/images/recovered/eacbc5236584da92.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C23",
+    "sourceDescription": "XBase Crystal Skin MagSafe Samsung S26 Ultra - Clear",
+    "sha256": "eacbc5236584da928b25b424163ed21f90470107b88cf9b935775be1c8b273f4"
+  },
+  "BS-DHS25UBL": {
+    "image": "/images/recovered/476aff3bdc29703d.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C42",
+    "sourceDescription": "XBase DuoHybrid Samsung S25 Ultra - Blue",
+    "sha256": "476aff3bdc29703dfdb73aff40381b5f1b8d37b562d421a248036bd03a05ed70"
+  },
+  "BS-DHS25UPK": {
+    "image": "/images/recovered/a4161f045f617d29.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C43",
+    "sourceDescription": "XBase DuoHybrid Samsung S25 Ultra - Pink",
+    "sha256": "a4161f045f617d2955ce62aa8f495ed6ff2b1ee4f166e87066efab48069f95bd"
+  },
+  "BS-GSCGM-BK": {
+    "image": "/images/recovered/7c5eefa3bf2dfb6b.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C46",
+    "sourceDescription": "XBase Grip MagSafe Suction Cup Phone Mount - Black",
+    "sha256": "7c5eefa3bf2dfb6b63666a9820a8567d4d9580fa537234d6ce101e8645bcbd11"
+  },
+  "BS-GSCG-WH": {
+    "image": "/images/recovered/528a89f2f7113764.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C47",
+    "sourceDescription": "XBase Grip MagSafe Suction Cup Phone Mount - White",
+    "sha256": "528a89f2f711376416345dc40e7a85c94bcc0ca52be46c33d42e0af5f758ce6b"
+  },
+  "BS-GSCG-BK": {
+    "image": "/images/recovered/e4f6256357fbe697.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C48",
+    "sourceDescription": "XBase Grip Suction Cup Phone Holder - Black",
+    "sha256": "e4f6256357fbe697332950c5891d39a45afb7a8a80406f44d2f3e43af6baeb0e"
+  },
+  "BS-L15PROP": {
+    "image": "/images/recovered/e7221bef0ef9afa6.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C57",
+    "sourceDescription": "XBase Liquid Silicone MagSafe iPhone 15 Pro (6.1) - Purple",
+    "sha256": "e7221bef0ef9afa6f3096f57a27a25f9232826adac6027a4cf38666271c80b19"
+  },
+  "BS-MLG-BK": {
+    "image": "/images/recovered/0004ac9828e912ca.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C72",
+    "sourceDescription": "XBase Magnetic Loop Grip - Black",
+    "sha256": "0004ac9828e912cae27d4d02c63f11cd72cd9c0d216cbfa2c6be554ae67356fc"
+  },
+  "BS-MLG-CL": {
+    "image": "/images/recovered/bfcff8db3c61d444.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C73",
+    "sourceDescription": "XBase Magnetic Loop Grip - Clear Sparkle",
+    "sha256": "bfcff8db3c61d44484ff99bb3bf1bc94a0cc2b606b83d7a3565fcd2cdf92342a"
+  },
+  "BS-MLG-IR": {
+    "image": "/images/recovered/b5c8844c7337dda7.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C75",
+    "sourceDescription": "XBase Magnetic Loop Grip - Iridescent",
+    "sha256": "b5c8844c7337dda7f2d69f4301957008a0a4a20d1790a272b555ef9c130388e7"
+  },
+  "BS-MI14PMP": {
+    "image": "/images/recovered/3b77bcc65bf2d961.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C76",
+    "sourceDescription": "XBase Marble iPhone 14 Pro Max (6.7) - White/Pink",
+    "sha256": "3b77bcc65bf2d961306b7d2a8b52740ab44c405b79328042c71e21771c86da6f"
+  },
+  "BS-MI15PMC": {
+    "image": "/images/recovered/137dcc36f1451ebd.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C78",
+    "sourceDescription": "XBase Marble MagSafe iPhone 15 Pro Max (6.7) - Colorful",
+    "sha256": "137dcc36f1451ebd71c72d1ca538d1a0b21ff19c55f915b8f72b4dd775626642"
+  },
+  "BS-MI15PMB": {
+    "image": "/images/recovered/f4ecf43fbcc16ff3.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C79",
+    "sourceDescription": "XBase Marble MagSafe iPhone 15 Pro Max (6.7) - White / Black",
+    "sha256": "f4ecf43fbcc16ff36c965cafeacd324b5730909c14d29b482bcc525b0bdc3e52"
+  },
+  "BS-PI14PMB": {
+    "image": "/images/recovered/e01a3b3b4fd9b2a4.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C80",
+    "sourceDescription": "XBase ProTech MagSafe iPhone 14 Pro Max (6.7) - Black",
+    "sha256": "e01a3b3b4fd9b2a41151e5259f477a804ecc99325ad7ce12732c353a867760f4"
+  },
+  "BS-S15PROC": {
+    "image": "/images/recovered/23da3bc44fcdb93c.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C93",
+    "sourceDescription": "XBase Sparkle MagSafe iPhone 15 Pro (6.1) - Clear",
+    "sha256": "23da3bc44fcdb93c6104e821c78a2a5fce2d34253ff5cc233ba6792d604e6f21"
+  },
+  "BS-S15PROR": {
+    "image": "/images/recovered/6da5f08c585cd48c.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C96",
+    "sourceDescription": "XBase Sparkle MagSafe iPhone 15 Pro (6.1) - Rose Gold",
+    "sha256": "6da5f08c585cd48c58344c17b0fdc2926f2be45506eddbc56678e606109c6687"
+  },
+  "BS-S15PROW": {
+    "image": "/images/recovered/506b1e7a56056560.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C97",
+    "sourceDescription": "XBase Sparkle MagSafe iPhone 15 Pro (6.1) - White Gold",
+    "sha256": "506b1e7a56056560ef3d5b1bb5075865c2ef04b3764f2a905132bd43bea02845"
+  },
+  "BS-V14PRMB": {
+    "image": "/images/recovered/400c707c00f29fab.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C123",
+    "sourceDescription": "XBase Vegan Leather MagSafe iPhone 14 Pro Max (6.7) -Black",
+    "sha256": "400c707c00f29fabd6afd4bec4659f38b22ff7f62eda11725b9d4b5b1d51e03f"
+  },
+  "BS-V16PRBR": {
+    "image": "/images/recovered/8cfd971df6908b26.webp",
+    "source": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+    "sheet": "xl/worksheets/sheet7.xml",
+    "cell": "C126",
+    "sourceDescription": "XBase Vegan Leather MagSafe iPhone 16 Pro - Brown",
+    "sha256": "8cfd971df6908b26d4a43eaae9f81185029a37dc07fe9b4edd12ffca681cba21"
+  }
+}

@@ -1,0 +1,4959 @@
+{
+  "ghocas2853": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 10
+    }
+  },
+  "ghocas3518": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 11
+    }
+  },
+  "ghocas4300": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 12
+    }
+  },
+  "ghocas3521": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 13
+    }
+  },
+  "ghocas3532": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 14
+    }
+  },
+  "ghocas4301": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 15
+    }
+  },
+  "ghocas4311": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 16
+    }
+  },
+  "ghocas3325": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 17
+    }
+  },
+  "ghocas4302": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 18
+    }
+  },
+  "ghocas2955": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S22 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 19
+    }
+  },
+  "ghocas3040": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A33"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 21
+    }
+  },
+  "ghocas3659": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Plus"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 22
+    }
+  },
+  "ghocas2821": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 23
+    }
+  },
+  "ghocas3469": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 24
+    }
+  },
+  "ghocas3950": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 25
+    }
+  },
+  "ghocas4210": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 26
+    }
+  },
+  "ghocas4214": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 27
+    }
+  },
+  "ghocas4218": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 28
+    }
+  },
+  "ghocas4140": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 29
+    }
+  },
+  "ghocas4142": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 30
+    }
+  },
+  "ghocas4151": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 31
+    }
+  },
+  "ghocas4211": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 32
+    }
+  },
+  "ghocas4215": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 33
+    }
+  },
+  "ghocas4219": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 34
+    }
+  },
+  "ghocas4229": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 35
+    }
+  },
+  "ghocas3153": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 37
+    }
+  },
+  "ghocas3660": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Plus"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 38
+    }
+  },
+  "ghocas3951": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 39
+    }
+  },
+  "ghocas4212": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 42
+    }
+  },
+  "ghocas4153": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 43
+    }
+  },
+  "ghocas4213": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 44
+    }
+  },
+  "ghocas2878": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 45
+    }
+  },
+  "ghocas2880": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 46
+    }
+  },
+  "ghocas4327": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 47
+    }
+  },
+  "ghocas4326": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "GHOSTEK",
+      "row": 49
+    }
+  },
+  "bs-b15prmm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 3
+    }
+  },
+  "bs-b16ebl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 4
+    }
+  },
+  "bs-b15prmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 5
+    }
+  },
+  "bs-b16bk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 6
+    }
+  },
+  "bs-b17prma": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 7
+    }
+  },
+  "bs-b15prma": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 8
+    }
+  },
+  "bs-bc17prmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 9
+    }
+  },
+  "bs-b15proa": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 10
+    }
+  },
+  "bs-b15prob": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 11
+    }
+  },
+  "bs-b16bl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 12
+    }
+  },
+  "bs-b17prob": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 20
+    }
+  },
+  "bs-b17prmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 21
+    }
+  },
+  "bs-hi14pmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 22
+    }
+  },
+  "bs-cks26uc": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 23
+    }
+  },
+  "bs-cs16prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 24
+    }
+  },
+  "bs-css23fc": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 FE"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 25
+    }
+  },
+  "bs-cl17cl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 26
+    }
+  },
+  "bs-cl17pcl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 27
+    }
+  },
+  "bs-dh16pbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 29
+    }
+  },
+  "bs-dh16pmbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 30
+    }
+  },
+  "bs-dh16pmbl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 32
+    }
+  },
+  "bs-dhk17c": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 33
+    }
+  },
+  "bs-dhk17prc": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 34
+    }
+  },
+  "bs-dhks26ucl": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 35
+    }
+  },
+  "bs-dhk17pmc": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 36
+    }
+  },
+  "bs-dhkps26uc": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 37
+    }
+  },
+  "bs-dhp16psb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 38
+    }
+  },
+  "bs-dhp16pmsb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 39
+    }
+  },
+  "bs-dhp17psb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 40
+    }
+  },
+  "bs-dhp17pmsb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 41
+    }
+  },
+  "bs-dhs25ubl": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 42
+    }
+  },
+  "bs-dhs25upk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 43
+    }
+  },
+  "bs-l14pmpk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 50
+    }
+  },
+  "bs-l15pror": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 51
+    }
+  },
+  "bs-l16pk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 52
+    }
+  },
+  "bs-l16epk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 53
+    }
+  },
+  "bs-l16propk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 54
+    }
+  },
+  "bs-l17pk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 55
+    }
+  },
+  "bs-l17propk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 56
+    }
+  },
+  "bs-l15prop": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 57
+    }
+  },
+  "bs-l15pmpr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 58
+    }
+  },
+  "bs-l15pmgr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 59
+    }
+  },
+  "bs-l15prob": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 60
+    }
+  },
+  "bs-l15pmbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 61
+    }
+  },
+  "bs-l16bk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 62
+    }
+  },
+  "bs-l16ebk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 63
+    }
+  },
+  "bs-l16probk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 64
+    }
+  },
+  "bs-l16promb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 65
+    }
+  },
+  "bs-l17bk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 66
+    }
+  },
+  "bs-l17probk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 67
+    }
+  },
+  "bs-l17prombk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 68
+    }
+  },
+  "bs-ls26ubk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 69
+    }
+  },
+  "bs-l17dg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 70
+    }
+  },
+  "bs-l17prodg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 71
+    }
+  },
+  "bs-mi14pmp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 76
+    }
+  },
+  "bs-mi15pma": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 77
+    }
+  },
+  "bs-mi15pmc": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 78
+    }
+  },
+  "bs-mi15pmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 79
+    }
+  },
+  "bs-pi14pmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 80
+    }
+  },
+  "bs-pi16pb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 81
+    }
+  },
+  "bs-pi16pmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 82
+    }
+  },
+  "bs-pi17bk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 83
+    }
+  },
+  "bs-pi17pb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 84
+    }
+  },
+  "bs-pi17pmb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 85
+    }
+  },
+  "bs-pss24feb": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 FE"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 86
+    }
+  },
+  "bs-pss26ub": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 87
+    }
+  },
+  "bs-pi16ebl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 88
+    }
+  },
+  "bs-pi17pa": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 89
+    }
+  },
+  "bs-pi17pma": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 90
+    }
+  },
+  "bs-pss24fea": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 FE"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 91
+    }
+  },
+  "bs-pss26ua": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 92
+    }
+  },
+  "bs-s15proc": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 93
+    }
+  },
+  "bs-s16esl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 94
+    }
+  },
+  "bs-s16prosl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 95
+    }
+  },
+  "bs-s15pror": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 96
+    }
+  },
+  "bs-s15prow": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 97
+    }
+  },
+  "bs-s16prowg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 98
+    }
+  },
+  "bs-s16eir": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 103
+    }
+  },
+  "bs-s16proir": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 104
+    }
+  },
+  "bs-s16prmir": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 105
+    }
+  },
+  "bs-s17ir": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 106
+    }
+  },
+  "bs-s17prmir": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 107
+    }
+  },
+  "bs-ss25uir": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 108
+    }
+  },
+  "bs-ss26uir": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 109
+    }
+  },
+  "bs-s16ss": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 110
+    }
+  },
+  "bs-s16ess": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 111
+    }
+  },
+  "bs-s16pross": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 112
+    }
+  },
+  "bs-s16prmss": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 113
+    }
+  },
+  "bs-s17ss": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 114
+    }
+  },
+  "bs-s16gs": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 115
+    }
+  },
+  "bs-s16egs": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 116
+    }
+  },
+  "bs-s16progs": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 117
+    }
+  },
+  "bs-s17prmgs": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 120
+    }
+  },
+  "bs-u17prmbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 121
+    }
+  },
+  "bs-u17prmbr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 122
+    }
+  },
+  "bs-v16prbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 124
+    }
+  },
+  "bs-v16prmbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 125
+    }
+  },
+  "bs-v16prbr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 126
+    }
+  },
+  "bs-v16prmbr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 127
+    }
+  },
+  "bs-v17prmbr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "",
+    "source": {
+      "file": "PROMO ELI-EZER(TECPOINT) W43.xlsx",
+      "sheet": "XBASE",
+      "row": 128
+    }
+  },
+  "dk-c11prg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 9
+    }
+  },
+  "dk-c12prg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 10
+    }
+  },
+  "dk-c12pmg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 11
+    }
+  },
+  "dk-c13prg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 12
+    }
+  },
+  "dk-c13pmg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 13
+    }
+  },
+  "dk-c14plg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 14
+    }
+  },
+  "dk-c16egl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 15
+    }
+  },
+  "dk-c17agl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 16
+    }
+  },
+  "dk-c11prgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 17
+    }
+  },
+  "dk-c11pmgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 18
+    }
+  },
+  "dk-c12prgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 19
+    }
+  },
+  "dk-c12pmgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 20
+    }
+  },
+  "dk-c13prgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 21
+    }
+  },
+  "dk-c13pmgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 22
+    }
+  },
+  "dk-c14plgp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 23
+    }
+  },
+  "dk-c11prsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 25
+    }
+  },
+  "dk-c12prsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 26
+    }
+  },
+  "dk-c12pmsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 27
+    }
+  },
+  "dk-c13prsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 28
+    }
+  },
+  "dk-c13pmsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 29
+    }
+  },
+  "dk-c14plsv": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 30
+    }
+  },
+  "dk-c16plsl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 32
+    }
+  },
+  "dk-c16esl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 34
+    }
+  },
+  "dk-c17asl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 35
+    }
+  },
+  "dk-c17sl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 36
+    }
+  },
+  "dk-cs23sv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 38
+    }
+  },
+  "dk-cs23plsv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 39
+    }
+  },
+  "dk-cs24sv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 40
+    }
+  },
+  "dk-cs26ulsl": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 41
+    }
+  },
+  "dk-c15plbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 42
+    }
+  },
+  "dk-c16plbk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 43
+    }
+  },
+  "dk-c16ebk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16E"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 45
+    }
+  },
+  "dk-c17bk": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 46
+    }
+  },
+  "dk-cs22bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S22"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 47
+    }
+  },
+  "dk-cs22plbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S22 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 48
+    }
+  },
+  "dk-cs22ulbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S22 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 49
+    }
+  },
+  "dk-cs23bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 50
+    }
+  },
+  "dk-cs23plbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 51
+    }
+  },
+  "dk-cs23ulbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 52
+    }
+  },
+  "dk-cs24bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 53
+    }
+  },
+  "dk-cs24plbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 54
+    }
+  },
+  "dk-cs26ulbk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 55
+    }
+  },
+  "dk-c15pllb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 56
+    }
+  },
+  "dk-c15pllg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 57
+    }
+  },
+  "dk-c17lg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 58
+    }
+  },
+  "dk-c15pllp": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 59
+    }
+  },
+  "dk-c15plly": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 60
+    }
+  },
+  "dk-c17atb": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 63
+    }
+  },
+  "dk-cs23plgr": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 66
+    }
+  },
+  "dk-cs23ulgr": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 67
+    }
+  },
+  "dk-cs23pllv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Plus"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 68
+    }
+  },
+  "dk-cs23ullv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 69
+    }
+  },
+  "dk-cs26ulpr": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 70
+    }
+  },
+  "dk-cs26ulbl": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 71
+    }
+  },
+  "dk-cszfl3bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Z Flip 3"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 72
+    }
+  },
+  "dk-cszfl4bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Z Flip 4"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 73
+    }
+  },
+  "dk-cszfo3bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Z Fold 3"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 74
+    }
+  },
+  "dk-cszfo4bk": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Z Fold 4"
+      }
+    ],
+    "classification": "CAMARA",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "CAMARA",
+      "row": 75
+    }
+  },
+  "dk-3h200l": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "200 Lite"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "400 Lite"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X8b"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X8c"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 9
+    }
+  },
+  "dk-3h400": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "400"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 10
+    }
+  },
+  "dk-3h90l": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "90 Lite"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X8"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X8a"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 11
+    }
+  },
+  "dk-3hmg8l": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "Magic 8 Lite"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 12
+    }
+  },
+  "dk-3hx5b": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "X5b"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X5 Plus"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 13
+    }
+  },
+  "dk-3hx5cp": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "X5c Plus"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X5c"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 14
+    }
+  },
+  "dk-3hx7": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "X7"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 15
+    }
+  },
+  "dk-3hx7c": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "X7c"
+      },
+      {
+        "manufacturer": "Honor",
+        "model": "X7b"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 16
+    }
+  },
+  "dk-3ifgt20p": {
+    "devices": [
+      {
+        "manufacturer": "Infinix",
+        "model": "GT 20 Pro"
+      },
+      {
+        "manufacturer": "Infinix",
+        "model": "Note 40 Pro"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 17
+    }
+  },
+  "dk-3ifh11s": {
+    "devices": [
+      {
+        "manufacturer": "Infinix",
+        "model": "Hot 11s"
+      },
+      {
+        "manufacturer": "Infinix",
+        "model": "Zero 5G 2023"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 18
+    }
+  },
+  "dk-3ifh20": {
+    "devices": [
+      {
+        "manufacturer": "Infinix",
+        "model": "Hot 20"
+      },
+      {
+        "manufacturer": "Infinix",
+        "model": "Hot 12"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 19
+    }
+  },
+  "dk-3ifh40i": {
+    "devices": [
+      {
+        "manufacturer": "Infinix",
+        "model": "Hot 40i"
+      },
+      {
+        "manufacturer": "Infinix",
+        "model": "Smart 8"
+      },
+      {
+        "manufacturer": "Infinix",
+        "model": "Smart 7"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 20
+    }
+  },
+  "dk-3ip12": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 21
+    }
+  },
+  "dk-3ip12pm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 22
+    }
+  },
+  "dk-3ip13pm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 23
+    }
+  },
+  "dk-3ip14": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 24
+    }
+  },
+  "dk-3ip14pr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 25
+    }
+  },
+  "dk-3ip14pm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 26
+    }
+  },
+  "dk-3ip15pm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 27
+    }
+  },
+  "dk-3ip15": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 28
+    }
+  },
+  "dk-3ip16pl": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Plus"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 29
+    }
+  },
+  "dk-3ip16": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 30
+    }
+  },
+  "dk-3ip16pr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 31
+    }
+  },
+  "dk-3ip17": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 32
+    }
+  },
+  "dk-3ip17ar": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 33
+    }
+  },
+  "dk-3ip17pr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 34
+    }
+  },
+  "dk-3ip17pm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 35
+    }
+  },
+  "dk-3mog05": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G05"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G04"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G24"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "E15"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 36
+    }
+  },
+  "dk-3mog35": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G35"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 37
+    }
+  },
+  "dk-3mog54": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G54"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G55"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G23"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G14"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 38
+    }
+  },
+  "dk-3mog56": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G56"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 39
+    }
+  },
+  "dk-3mog75": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G75"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 40
+    }
+  },
+  "dk-3mog72": {
+    "devices": [
+      {
+        "manufacturer": "Motorola",
+        "model": "G84"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G72"
+      },
+      {
+        "manufacturer": "Motorola",
+        "model": "G52"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 41
+    }
+  },
+  "dk-3opa80": {
+    "devices": [
+      {
+        "manufacturer": "Oppo",
+        "model": "A80"
+      },
+      {
+        "manufacturer": "Oppo",
+        "model": "A60"
+      },
+      {
+        "manufacturer": "Oppo",
+        "model": "A35"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 42
+    }
+  },
+  "dk-3opr13": {
+    "devices": [
+      {
+        "manufacturer": "Oppo",
+        "model": "Reno 13"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 44
+    }
+  },
+  "dk-3opr13f": {
+    "devices": [
+      {
+        "manufacturer": "Oppo",
+        "model": "Reno 13 F"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 45
+    }
+  },
+  "dk-3ss25upv": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 46
+    }
+  },
+  "dk-3sma05s": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A05S"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 47
+    }
+  },
+  "dk-3sma06": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A07"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A06"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A05"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 48
+    }
+  },
+  "dk-3sma25": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A25"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A24"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A15"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 49
+    }
+  },
+  "dk-3sma17": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A26"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A17"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A16"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 50
+    }
+  },
+  "dk-3sma27": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A27"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 51
+    }
+  },
+  "dk-3sma55": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A55"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A35"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 52
+    }
+  },
+  "dk-3sma565": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "A57"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A56"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A37"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A36"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 FE"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 53
+    }
+  },
+  "dk-3ss23fe": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 FE"
+      },
+      {
+        "manufacturer": "Samsung",
+        "model": "A54"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 54
+    }
+  },
+  "dk-3ss25fe": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 FE"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 55
+    }
+  },
+  "dk-3tecm30": {
+    "devices": [
+      {
+        "manufacturer": "Tecno",
+        "model": "Camon 30"
+      },
+      {
+        "manufacturer": "Tecno",
+        "model": "Camon 30 Pro"
+      },
+      {
+        "manufacturer": "Tecno",
+        "model": "Spark 20 Pro+"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 56
+    }
+  },
+  "dk-3xm13t": {
+    "devices": [
+      {
+        "manufacturer": "Xiaomi",
+        "model": "14T"
+      },
+      {
+        "manufacturer": "Xiaomi",
+        "model": "13T"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 57
+    }
+  },
+  "dk-3xra3": {
+    "devices": [
+      {
+        "manufacturer": "Xiaomi",
+        "model": "Redmi A3"
+      },
+      {
+        "manufacturer": "Xiaomi",
+        "model": "Poco C61"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 59
+    }
+  },
+  "dk-3xrn14": {
+    "devices": [
+      {
+        "manufacturer": "Xiaomi",
+        "model": "Redmi Note 14"
+      }
+    ],
+    "classification": "DEKEN PRO 2.5D",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN PRO 2.5D",
+      "row": 61
+    }
+  },
+  "dk-hnm5": {
+    "devices": [
+      {
+        "manufacturer": "Honor",
+        "model": "Magic 5 Lite"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 12
+    }
+  },
+  "dk-hwn10": {
+    "devices": [
+      {
+        "manufacturer": "Huawei",
+        "model": "Nova 10"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 13
+    }
+  },
+  "dk-hwp60": {
+    "devices": [
+      {
+        "manufacturer": "Huawei",
+        "model": "P60 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 14
+    }
+  },
+  "dk-i8p3db": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 8 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 15
+    }
+  },
+  "dk-i8p3dw": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 8 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 16
+    }
+  },
+  "dk-ip123d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 17
+    }
+  },
+  "dk-ip12min": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Mini"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 18
+    }
+  },
+  "dk-ip12prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 19
+    }
+  },
+  "dk-ip12pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 20
+    }
+  },
+  "dk-ip133d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 21
+    }
+  },
+  "dk-ip13min": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Mini"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 22
+    }
+  },
+  "dk-ip13prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 23
+    }
+  },
+  "dk-ip13pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 24
+    }
+  },
+  "dk-ip143d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 25
+    }
+  },
+  "dk-ip14prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 27
+    }
+  },
+  "dk-ip14pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 28
+    }
+  },
+  "dk-ip153d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 29
+    }
+  },
+  "dk-ip15pls": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 30
+    }
+  },
+  "dk-ip15prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 31
+    }
+  },
+  "dk-ip15pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 32
+    }
+  },
+  "dk-ip163d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 33
+    }
+  },
+  "dk-ip16prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 34
+    }
+  },
+  "dk-ip16pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 35
+    }
+  },
+  "dk-ip173d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 36
+    }
+  },
+  "dk-ip17a3d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 37
+    }
+  },
+  "dk-ip17prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 38
+    }
+  },
+  "dk-ip17pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 39
+    }
+  },
+  "dk-ip83db": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 8"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 40
+    }
+  },
+  "dk-ip83dw": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 8"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 41
+    }
+  },
+  "dk-ipse4d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone SE4"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 42
+    }
+  },
+  "dk-ipxfg": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone Xs"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone X"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 43
+    }
+  },
+  "dk-ipxi3d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 44
+    }
+  },
+  "dk-ipxsm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone Xs Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 45
+    }
+  },
+  "dk-ixim3": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 46
+    }
+  },
+  "dk-ixipr3": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 47
+    }
+  },
+  "dk-m20p3": {
+    "devices": [
+      {
+        "manufacturer": "Huawei",
+        "model": "Mate 20 PRO"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 48
+    }
+  },
+  "dk-p30p3": {
+    "devices": [
+      {
+        "manufacturer": "Huawei",
+        "model": "P30 PRO"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 49
+    }
+  },
+  "dk-s10pfg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S10 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 50
+    }
+  },
+  "dk-s20pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S20 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 51
+    }
+  },
+  "dk-s20ug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S20 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 52
+    }
+  },
+  "dk-s21pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S21 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 53
+    }
+  },
+  "dk-s22pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S22 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 54
+    }
+  },
+  "dk-s23feug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 FE"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 55
+    }
+  },
+  "dk-s23pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 56
+    }
+  },
+  "dk-s24feug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 FE"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 57
+    }
+  },
+  "dk-s24fg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 58
+    }
+  },
+  "dk-s24fpug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 59
+    }
+  },
+  "dk-s24fug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 60
+    }
+  },
+  "dk-s24fuug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 61
+    }
+  },
+  "dk-s24pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 62
+    }
+  },
+  "dk-s25eg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Edge"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 63
+    }
+  },
+  "dk-s25pg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 64
+    }
+  },
+  "dk-s25ug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 65
+    }
+  },
+  "dk-s26g": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 66
+    }
+  },
+  "dk-s26ug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 67
+    }
+  },
+  "dk-s7efg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S7 Edge"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 68
+    }
+  },
+  "dk-s9pfg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S9 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 69
+    }
+  },
+  "dk-sn20fg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Note 20"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 70
+    }
+  },
+  "dk-sn20ug": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Note 20 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 71
+    }
+  },
+  "dk-sn9fg": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "Note 9"
+      }
+    ],
+    "classification": "DEKEN MAX 3D HD",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX 3D HD",
+      "row": 72
+    }
+  },
+  "dk-pvip113d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 9
+    }
+  },
+  "dk-pvip11pr": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 10
+    }
+  },
+  "dk-pvip11prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 11
+    }
+  },
+  "dk-pvip12prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 12
+    }
+  },
+  "dk-pvip12pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12"
+      },
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 13
+    }
+  },
+  "dk-pvip13prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 14
+    }
+  },
+  "dk-pvip143d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 15
+    }
+  },
+  "dk-pvip14prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 17
+    }
+  },
+  "dk-pvip14pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 18
+    }
+  },
+  "dk-pvip153d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 19
+    }
+  },
+  "dk-pvip15pls": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 20
+    }
+  },
+  "dk-pvip15prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 21
+    }
+  },
+  "dk-pvip15pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 22
+    }
+  },
+  "dk-pvip163d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 23
+    }
+  },
+  "dk-pvip16pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 16 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 24
+    }
+  },
+  "dk-pvip17air": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Air"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 25
+    }
+  },
+  "dk-pvip17pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 26
+    }
+  },
+  "dk-pvip17prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 17 Pro Max"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 27
+    }
+  },
+  "dk-pvss23fe": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S23 FE"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 28
+    }
+  },
+  "dk-pvss24fe": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 FE"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 29
+    }
+  },
+  "dk-pvss24u": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S24 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 30
+    }
+  },
+  "dk-pvss25e": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Edge"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 31
+    }
+  },
+  "dk-pvss25p": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Plus"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 32
+    }
+  },
+  "dk-pvss25u": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S25 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 33
+    }
+  },
+  "dk-pvss26": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 34
+    }
+  },
+  "dk-pvss26u": {
+    "devices": [
+      {
+        "manufacturer": "Samsung",
+        "model": "S26 Ultra"
+      }
+    ],
+    "classification": "DEKEN MAX PRIVACY",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "DEKEN MAX PRIVACY",
+      "row": 35
+    }
+  },
+  "dk-abip113d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 9
+    }
+  },
+  "dk-abip11prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 11 Pro Max"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 19
+    }
+  },
+  "dk-abip12prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 Pro Max"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 29
+    }
+  },
+  "dk-abip13prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 13 Pro Max"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 39
+    }
+  },
+  "dk-abip143d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 49
+    }
+  },
+  "dk-abip14prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro Max"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 69
+    }
+  },
+  "dk-abip14pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 14 Pro"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 79
+    }
+  },
+  "dk-abip153d": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 89
+    }
+  },
+  "dk-abip15pls": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Plus"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 99
+    }
+  },
+  "dk-abip15prm": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro Max"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 108
+    }
+  },
+  "dk-abip15pro": {
+    "devices": [
+      {
+        "manufacturer": "Apple",
+        "model": "iPhone 15 Pro"
+      }
+    ],
+    "classification": "3D ANTIBLUE LIGHT",
+    "source": {
+      "file": "DEKEN VIDRIOS TEMPLADOS W43.xlsx",
+      "sheet": "3D ANTIBLUE LIGHT",
+      "row": 119
+    }
+  }
+}
+

@@ -52,6 +52,17 @@ export interface Product {
     wholesaleEnabled?: boolean;
     wholesaleCategory?: string;
     wholesaleImage?: string;
+    wholesaleThumbnail?: string;
+    wholesaleClassification?: string;
+    compatibleDevices?: Array<{ manufacturer: string; model: string }>;
+    wholesalePromotion?: {
+      active: boolean;
+      originalPrice: number;
+      finalPrice: number;
+      startsAt: string;
+      endsAt: string;
+      source?: string;
+    };
     manualDetailPrice?: boolean;
     manualWholesalePrice?: boolean;
   },
