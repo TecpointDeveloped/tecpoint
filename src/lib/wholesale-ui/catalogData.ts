@@ -40,6 +40,7 @@ export function decodeCatalog(data: PackedCatalog): WholesaleProduct[] {
       upc: '',
       gallery: [],
       stock: Math.max(0, asNumber(p.stock) ?? 0),
+      promotionLabel: p.promotionLabel === 'last-units' ? 'last-units' : p.promotionLabel === 'offer' ? 'offer' : '',
     };
   });
 }

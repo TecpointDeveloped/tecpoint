@@ -4,7 +4,7 @@ import { cleanCategory } from './productPresentation';
 import { normalizeDevices, reviewedDevices } from './wholesaleProductRules';
 import type { WholesaleProduct } from './types';
 const prefix = '/tecpoint-catalog-ui';
-const columns = ['sku','name','brand','category','image','thumbnail','devices','classification','originalPrice','discountPercent','price','retailPrice','stock'];
+const columns = ['sku','name','brand','category','image','thumbnail','devices','classification','originalPrice','discountPercent','price','retailPrice','stock','promotionLabel'];
 export function prepareCatalog(products: SourceWholesaleProduct[]) {
   const rows = products.map(product => {
     const p: WholesaleProduct = {
@@ -26,7 +26,7 @@ export function prepareCatalog(products: SourceWholesaleProduct[]) {
     p.image ||= prefix + '/brand/isologo.svg'; p.thumbnail ||= p.image;
     p.category = cleanCategory(p.category || 'Otros', p.name, p.subcategory);
     p.devices = reviewedDevices(p.name, normalizeDevices(p.devices), p.category);
-    return [p.sku, p.name, p.brand, p.category, p.image, p.thumbnail, p.devices.map(d => [d.manufacturer,d.model]), p.classification, p.originalPrice, p.discountPercent, p.price, p.retailPrice, p.stock];
+    return [p.sku, p.name, p.brand, p.category, p.image, p.thumbnail, p.devices.map(d => [d.manufacturer,d.model]), p.classification, p.originalPrice, p.discountPercent, p.price, p.retailPrice, p.stock, p.promotionLabel || ''];
   });
   return {columns,rows,details:[]};
 }

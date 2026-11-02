@@ -1,4 +1,5 @@
 import compatibilityData from "@/data/wholesale-compatibility-w43.json";
+import blackNovemberData from "@/data/black-november-2026.json";
 import recoveredMedia from "@/data/recovered-product-media.json";
 import { approvedCatalogProducts, publicCatalog } from "@/lib/catalog";
 import { cleanCategory, titleFacts } from "@/lib/wholesale-ui/productPresentation";
@@ -25,7 +26,19 @@ export type WholesaleProduct = {
   subcategory: string;
   upc: string;
   stock: number;
+  promotionLabel: "offer" | "last-units" | "";
 };
+
+type BlackNovemberOffer = { level: "A1" | "A2" | "B" | "C" | "D"; stock: number; originalPrice: number; finalPrice: number; discountPercent: number };
+const BLACK_NOVEMBER_OFFERS = blackNovemberData as Record<string, BlackNovemberOffer>;
+const BLACK_NOVEMBER_START = Date.UTC(2026, 10, 1, 6);
+const BLACK_NOVEMBER_END = Date.UTC(2026, 11, 1, 6);
+function activeBlackNovemberOffer(sku: string) {
+  const now = Date.now();
+  return now >= BLACK_NOVEMBER_START && now < BLACK_NOVEMBER_END
+    ? BLACK_NOVEMBER_OFFERS[sku.trim().toUpperCase()]
+    : undefined;
+}
 
 const HIDDEN_WHOLESALE_BRANDS = new Set([
   "crystaltech",
@@ -78,6 +91,14 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         [product.extradata?.wholesaleCategory, ...(product.categorias || []), product.Subcategorias].filter(Boolean).join(" "),
       );
       const pricing = wholesalePricing(rawPrice, product.extradata?.wholesalePromotion);
+      const blackNovember = activeBlackNovemberOffer(String(product.sku || ""));
+      const campaignPricing = blackNovember ? {
+        originalPrice: blackNovember.originalPrice,
+        discountPercent: blackNovember.discountPercent,
+        price: blackNovember.finalPrice,
+      } : pricing;
+      const promotionLabel: WholesaleProduct["promotionLabel"] =
+        blackNovember?.level === "A1" ? "last-units" : blackNovember ? "offer" : "";
       const image = imageFor(product);
       return {
         sku: String(product.sku || "").trim(),
@@ -93,7 +114,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         gallery: Object.values(product.imagenes || {}).map(entry => entry?.img).filter((url): url is string => typeof url === "string" && url.startsWith("/")),
         devices,
         classification: product.extradata?.wholesaleClassification ?? reference?.classification ?? "",
-        ...pricing,
+        ...campaignPricing,
         retailPrice: Number(product.precio?.detalle || 0) > 0 ? Number(product.precio.detalle) : null,
         dozenPrice: null,
         description: String(product.descripcion || "").trim(),
@@ -104,6 +125,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         subcategory: String(product.Subcategorias || "").trim(),
         upc: String(product.extradata?.upc || "").trim(),
         stock: Math.max(0, Number(product.extradata?.inventoryQuantity || 0)),
+        promotionLabel,
       };
     })
     .sort((left, right) => {

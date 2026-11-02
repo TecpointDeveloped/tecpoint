@@ -14,6 +14,11 @@ export function productFamily(p: WholesaleProduct) {
   return /cobertor|funda|case |forro/.test(value) ? 'covers' : /vidrio|proteccion.*pantalla|protector.*pantalla|nanopolimero/.test(value) ? 'glass' : 'other';
 }
 export function hasOffer(p: WholesaleProduct) { return p.price != null && p.originalPrice != null && p.originalPrice > p.price; }
+export function isLiquidation(p: WholesaleProduct) { return p.promotionLabel === 'last-units' || (p.stock > 0 && p.stock <= 2); }
+export function offerPercent(p: WholesaleProduct) {
+  if (!hasOffer(p)) return 0;
+  return Math.round((p.discountPercent ?? (1 - p.price! / p.originalPrice!) * 100) * 100) / 100;
+}
 export function matchesDevice(p: WholesaleProduct, manufacturer = '', model = '') {
   return p.devices.some(d => (!manufacturer || normalizeDevice(d.manufacturer) === normalizeDevice(manufacturer)) && (!model || normalizeDevice(d.model) === normalizeDevice(model)));
 }
@@ -35,7 +40,7 @@ export function filterWholesaleCatalog(products: WholesaleProduct[], filters: Fi
     if (filters.category === '__accessories') { if (!p.devices.length) return false; }
     else if (filters.category?.startsWith('__')) { if (productFamily(p) !== filters.category.slice(2)) return false; }
     else if (filters.category && p.category !== filters.category) return false;
-    if (filters.liquidation && (p.stock > 2 || p.stock <= 0)) return false;
+    if (filters.liquidation && !isLiquidation(p)) return false;
     if (filters.offers && !hasOffer(p)) return false;
     if (filters.classification && p.classification !== filters.classification) return false;
     if ((filters.manufacturer || filters.model) && !matchesDevice(p, filters.manufacturer, filters.model)) return false;
