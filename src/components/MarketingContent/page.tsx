@@ -151,14 +151,14 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
       >
       {asset.linkUrl ? (
         <Link
-          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "octubre-de-miedo-2026" ? styles.octoberBanner : ""}`}
+          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""}`}
           href={asset.linkUrl}
           aria-label={`${asset.title}. ${asset.cta || "Ver campaña"}`}
         >
           {artwork}
         </Link>
       ) : (
-        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "octubre-de-miedo-2026" ? styles.octoberBanner : ""}`}>
+        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""}`}>
           {artwork}
         </div>
       )}
@@ -188,22 +188,22 @@ export function LiveMarketingContent({ initialBanners, initialPromotion }: { ini
   const { mainWhatsApp } = useSiteConfig();
   const [banners, setBanners] = useState(initialBanners);
   const [promotion, setPromotion] = useState(initialPromotion || null);
-  const octoberBanner: MarketingAsset = {
-    id: "octubre-de-miedo-2026",
-    title: "Octubre de Miedo",
-    imageUrl: "/images/banners-current/octubre-de-miedo-desktop.webp",
-    mobileImageUrl: "/images/promotions/octubre-de-miedo.webp",
+  const blackNovemberBanner: MarketingAsset = {
+    id: "black-november-2026",
+    title: "Black November: super precios",
+    imageUrl: "/images/banners-current/black-november-2026.webp",
+    mobileImageUrl: "/images/banners-current/black-november-2026.webp",
     linkUrl: whatsappLink(
       mainWhatsApp,
-      "Hola TECPOINT, vi el banner Octubre de Miedo y quiero conocer las promociones disponibles.",
+      "Hola TECPOINT, vi el banner Black November y quiero conocer las promociones disponibles.",
     ),
     cta: "Ver promociones",
-    alt: "Octubre de Miedo: promociones TECPOINT en cobertores, audio, envío gratis y Optimus Card",
+    alt: "Black November TECPOINT: super precios en cobertores, audio, envío gratis y Optimus Card",
     artworkOnly: true,
   };
   const visibleBanners = [
-    octoberBanner,
-    ...banners.filter((banner) => banner.id !== octoberBanner.id),
+    blackNovemberBanner,
+    ...banners.filter((banner) => banner.id !== blackNovemberBanner.id && banner.id !== "octubre-de-miedo-2026"),
   ];
   useEffect(() => {
     const controller = new AbortController();
