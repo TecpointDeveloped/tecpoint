@@ -16,6 +16,7 @@ const CartPage = () => {
   const [referralError, setReferralError] = useState("");
   const [referralLoading, setReferralLoading] = useState(false);
   const [orderSubmitting, setOrderSubmitting] = useState(false);
+  const [optimusRequested, setOptimusRequested] = useState(false);
   const [appliedReferral, setAppliedReferral] = useState<null | { code: string; ownerName: string; discountPercent: number; subtotal: number; discount: number; total: number }>(null);
 
   const { cart: storedCart } = useCartStore();
@@ -43,6 +44,9 @@ const CartPage = () => {
       status: "Active",
     }
   ];
+  const cartSubtotal = cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0);
+  const optimusDiscount = Math.round(cartSubtotal * 0.1 * 100) / 100;
+  const optimusEstimatedTotal = Math.round((cartSubtotal - optimusDiscount) * 100) / 100;
 
   useEffect(() => {
     const updatedCart = storedCart.map((item: CartItem) => {
@@ -75,6 +79,10 @@ const CartPage = () => {
   const referralItems = () => cart.map((item) => ({ sku: item.sku, quantity: item.quantity }));
 
   const applyReferral = async () => {
+    if (optimusRequested) {
+      setReferralError("El beneficio Optimus Card no se acumula con códigos. Desactívelo para aplicar un código.");
+      return;
+    }
     setReferralLoading(true);
     setReferralError("");
     try {
@@ -127,8 +135,11 @@ const CartPage = () => {
       }
     }
     const referralSummary = appliedReferral ? `\nCódigo: ${appliedReferral.code}\nDescuento: L ${appliedReferral.discount.toFixed(2)}\nTotal con descuento: L ${appliedReferral.total.toFixed(2)}\n` : "";
-    const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}${referralSummary}`;
-    const total = cart.reduce((sum, item) => sum + (item.precio || 0) * item.quantity, 0);
+    const optimusSummary = optimusRequested
+      ? `\nBENEFICIO OPTIMUS CARD SOLICITADO: 10%\nDescuento estimado: L ${optimusDiscount.toFixed(2)}\nTotal estimado: L ${optimusEstimatedTotal.toFixed(2)}\nIMPORTANTE: Presentaré mi Optimus Card al asesor. Comprendo que el descuento y el total final deben comprobarse antes de confirmar el pedido. No compartiré el número completo de la tarjeta ni el CVV.\n`
+      : "";
+    const message = `Hola Tecpoint, quiero realizar un pedido:\n\n${cart.map(item => `Producto: ${item.producto}\nSKU: ${item.sku}\nCantidad: ${item.quantity}\n`).join('\n')}${referralSummary}${optimusSummary}`;
+    const total = cartSubtotal;
     trackInitiateCheckout(
       cart.map((item) => ({
         id: item.sku || item.id,
@@ -136,7 +147,7 @@ const CartPage = () => {
         price: item.precio || 0,
         quantity: item.quantity,
       })),
-      appliedReferral?.total ?? total,
+      appliedReferral?.total ?? (optimusRequested ? optimusEstimatedTotal : total),
     );
     trackContact("WhatsApp pedido");
     const waLink = whatsappLink(phoneNumber, message);
@@ -271,6 +282,31 @@ const CartPage = () => {
               {referralError && <p className="mt-2 text-sm text-[#a90d28]">{referralError}</p>}
               {appliedReferral && <p className="mt-3 rounded-xl bg-[#fff1f3] p-3 text-sm text-[#8f0b24]"><strong>{appliedReferral.code}</strong> aplicado · 15% de descuento · Referido por {appliedReferral.ownerName}</p>}
             </div>
+            <div className="my-5 overflow-hidden rounded-2xl border-2 border-black bg-black text-white shadow-xl">
+              <label className="flex cursor-pointer items-start gap-3 p-4">
+                <input
+                  type="checkbox"
+                  checked={optimusRequested}
+                  disabled={Boolean(appliedReferral)}
+                  onChange={(event) => {
+                    setOptimusRequested(event.target.checked);
+                    setReferralError("");
+                  }}
+                  className="mt-1 size-5 accent-[#c8102e]"
+                />
+                <span>
+                  <strong className="block text-base uppercase tracking-[.04em]"><span className="text-[#ff334f]">Optimus Card</span> · Solicitar 10%</strong>
+                  <small className="mt-1 block leading-5 text-white/70">El beneficio se calcula como estimado y se activa únicamente después de comprobar la tarjeta con el asesor por WhatsApp.</small>
+                </span>
+              </label>
+              {optimusRequested && (
+                <div className="border-t border-white/15 bg-[#17191a] px-4 py-3 text-sm">
+                  <div className="flex justify-between"><span>Descuento estimado:</span><b>− HNL. {optimusDiscount.toFixed(2)}</b></div>
+                  <div className="mt-2 flex justify-between text-base"><span>Total estimado:</span><b>HNL. {optimusEstimatedTotal.toFixed(2)}</b></div>
+                  <p className="mt-3 text-xs leading-5 text-[#ffc3cb]">Sujeto a validación. No envíe el número completo de la tarjeta, fecha de vencimiento ni CVV.</p>
+                </div>
+              )}
+            </div>
             {appliedReferral && <div className="flex justify-between mb-2 text-[#c8102e]"><span>Descuento ({appliedReferral.discountPercent}%):</span><span className="font-bold">− HNL. {appliedReferral.discount.toFixed(2)}</span></div>}
             <div className="flex justify-between mb-2">
               <span className="text-gray-700">ISV (15%):</span>
@@ -278,8 +314,9 @@ const CartPage = () => {
             </div>
             <div className="flex justify-between mb-4">
               <span className="text-gray-700">Total:</span>
-              <span className="font-bold">HNL. {(appliedReferral?.total ?? cart.reduce((acc, item) => acc + (item.precio || 0) * item.quantity, 0)).toFixed(2)}</span>
+              <span className="font-bold">HNL. {(appliedReferral?.total ?? (optimusRequested ? optimusEstimatedTotal : cartSubtotal)).toFixed(2)}{optimusRequested ? "*" : ""}</span>
             </div>
+            {optimusRequested && <p className="mb-4 text-xs text-[#8f0b24]">* Total estimado. El asesor confirmará el beneficio después de validar la Optimus Card.</p>}
             <button
               onClick={handleWhatsAppOrder}
               disabled={orderSubmitting}

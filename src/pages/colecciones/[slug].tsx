@@ -316,7 +316,7 @@ export default function CollectionLanding({ campaign, products }: Props) {
                   </div>
                   <small>{product.marca_producto?.marca || "TECPOINT"}</small>
                   <h3>{product.producto}</h3>
-                  {isCasesSale && <b className={styles.discountBadge}>15% DE DESCUENTO</b>}
+                  {isCasesSale && <b className={styles.discountBadge}><span>BLACK FRIDAY</span>15% DE DESCUENTO</b>}
                   {isCasesSale ? (
                     <div className={styles.promoPrice}>
                       <del>{price(product)}</del>

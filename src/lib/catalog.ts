@@ -245,6 +245,21 @@ export type ProductPromotion = {
   label: string;
 };
 
+export function isBlackFridayCase(product: CatalogProduct) {
+  const brand = normalizeText(product.marca_producto?.marca || "");
+  if (brand !== "ghostek" && brand !== "xbase") return false;
+  return /\b(case|cover|cobertor|forro|funda|protector)\b/.test(
+    normalizeText(`${product.producto || ""} ${product.descripcion || ""} ${product.Subcategorias || ""}`),
+  );
+}
+
+export function blackFridayCasePrice(product: CatalogProduct) {
+  const regularPrice = Number(product.precio?.detalle || 0);
+  return isBlackFridayCase(product) && regularPrice > 0
+    ? Math.round(regularPrice * 0.85 * 100) / 100
+    : regularPrice;
+}
+
 /**
  * Reads the active commercial promotion from the inventory source of truth.
  * We intentionally do not infer discounts from visual labels or product copy.

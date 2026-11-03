@@ -40,6 +40,8 @@ import {
   productSearchTerms,
   preferredProductSlug,
   isNewProduct,
+  isBlackFridayCase,
+  blackFridayCasePrice,
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -215,6 +217,8 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
   const [activeInfoTab, setActiveInfoTab] = useState<"features" | "description" | "specs">("features");
   // const route = useRouter();
   const addToCart = useCartStore((state) => state.addToCart);
+  const blackFridayCase = product ? isBlackFridayCase(product) : false;
+  const retailPrice = product ? blackFridayCasePrice(product) : 0;
 
   const handleAddToCart = () => {
     if (product && product.imagenes && Object.keys(product.imagenes).length > 0) {
@@ -223,13 +227,13 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
         quantity: quantity,
         sku: product.sku,
         imagenes: Object(product.imagenes),
-        precio: Number(product.precio.detalle),
+        precio: retailPrice,
         producto: product.producto,
       });
       trackAddToCart({
         id: product.sku || product.id,
         name: product.producto,
-        price: Number(product.precio.detalle),
+        price: retailPrice,
         quantity,
       });
     }
@@ -240,7 +244,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
       trackViewContent({
         id: product.sku || product.id,
         name: product.producto,
-        price: Number(product.precio.detalle),
+        price: retailPrice,
       });
       const cart: CartItem[] = JSON.parse(localStorage.getItem("cart_tecpoint") || "[]");
       if (!Array.isArray(cart)) {
@@ -250,7 +254,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
       const isProductInCart = cart.some((item) => item.id === product.id);
       setIsAddedToCart(isProductInCart);
     }
-  }, [product]);
+  }, [product, retailPrice]);
 
   const handleQuantityChange = (operation: "increase" | "decrease") => {
     setQuantity((prev) => {
@@ -558,10 +562,16 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
               </span>
 
               <div className="flex gap-x-12 md:py-4">
-                <span className="flex flex-col">
+                <span className="flex flex-col gap-1">
                   <p className="text-[#696969]">Precio Detalle</p>
-                  <p className="text-2xl font-bold leading-4">
-                    {product.precio.detalle}.00
+                  {blackFridayCase && (
+                    <b className="w-fit rounded-lg bg-black px-3 py-1 text-[11px] font-black uppercase tracking-[.1em] text-white ring-2 ring-[#c8102e]">
+                      <span className="text-[#ff334f]">Black Friday</span> · 15% OFF
+                    </b>
+                  )}
+                  {blackFridayCase && <del className="text-sm text-[#7b8587]">HNL. {Number(product.precio.detalle).toFixed(2)}</del>}
+                  <p className="text-2xl font-bold leading-6 text-[#c8102e]">
+                    HNL. {retailPrice.toFixed(2)}
                   </p>
                 </span>
 
@@ -616,7 +626,8 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
 
               <button
                 onClick={() => {
-                  const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}`;
+                  const offer = blackFridayCase ? `\nPromoción: BLACK FRIDAY 15% OFF\nPrecio promocional mostrado: HNL. ${retailPrice.toFixed(2)}` : "";
+                  const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}${offer}`;
                   trackContact("WhatsApp producto");
                   const whatsappUrl = whatsappLink(mainWhatsApp, message);
                   window.open(whatsappUrl, "_blank");

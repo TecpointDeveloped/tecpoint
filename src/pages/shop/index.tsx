@@ -23,6 +23,7 @@ import {
   productColor,
   productAddedTime,
   isNewProduct,
+  isBlackFridayCase,
   publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
@@ -400,6 +401,7 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-3">
           {currentProducts.map((product: Product, productIndex: number) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
+            const blackFridayCase = isBlackFridayCase(product);
 
             return (
               <article
@@ -407,6 +409,12 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                 className="border border-[#dfe3e4] bg-white p-4 flex flex-col min-w-0 sm:w-full md:w-full min-h-[430px] relative justify-between overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <span className="absolute top-4 left-4 z-10">
+                  {blackFridayCase && (
+                    <div className="mb-2 w-fit rounded-xl bg-black px-3 py-2 text-white shadow-xl ring-2 ring-[#ef233c]">
+                      <p className="text-[10px] font-black uppercase tracking-[.12em] text-[#ff4059]">Black Friday</p>
+                      <p className="text-[13px] font-black uppercase tracking-[.05em]">15% OFF</p>
+                    </div>
+                  )}
                   {isNewProduct(product) && (
                     <div className="mb-2 w-fit rounded-full bg-[#c8102e] px-4 py-1 text-white shadow-lg">
                       <p className="text-[12px] font-extrabold uppercase tracking-[.08em]">Nuevo</p>
