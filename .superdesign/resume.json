@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/": {
+      "targetKind": "existing-ui",
+      "projectId": "f1bc95be-c888-4023-89de-997b4ad351bc",
+      "baselineDraftId": "3749c3b1-c059-465f-a14e-7e0f52bac038",
+      "activeDraftId": "de4dc3b4-3c8d-4277-b2d8-428a8dbcec2f",
+      "designSystemPath": ".superdesign/design-system.md",
+      "referenceIds": ["tecpoint-logo-principal"],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "tecpoint-logo-principal",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f1bc95be-c888-4023-89de-997b4ad351bc/brand-assets/tecpoint-logo-principal/logo-principal.svg",
+          "sourcePath": "public/brand/logo-principal.svg"
+        }
+      },
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/pages/index.tsx",
+        "src/pages/_app.tsx",
+        "src/components/navbarmenu/page.tsx",
+        "src/components/Footer/page.tsx",
+        "src/components/BlackNovemberDecor/page.tsx",
+        "src/components/BlackNovemberDecor/styles.module.css",
+        "src/styles/home2026.module.css:1:480",
+        "src/styles/home2026.module.css:542:990",
+        "src/styles/home2026.module.css:1271:1653",
+        "src/styles/globals.css"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "5d540be9cf22f75b42c7460018781e48f3df9622c959bbfb479a368bd9caa9ba",
+        "src/pages/index.tsx": "0d5353e9734ce31d6a4f57347a995da814ea3a680e61e21b406a8203492e06f1",
+        "src/pages/_app.tsx": "7c4ee00d6e86371db2f32c85eb37db513bb6185925810a2db440e1e8edece2d8",
+        "src/components/navbarmenu/page.tsx": "061e89d857e6b67eb8a8065dc115d1c100d0ba53c3be46df584d2f47bd576241",
+        "src/components/Footer/page.tsx": "0123b02625f3e48c7d502a1124c12786b9f3024aa158edcfe8e7ed46d0fa4e9f",
+        "src/components/BlackNovemberDecor/page.tsx": "63cc164a402e4c5e9816abecfad9b74d1cacd85dd7294bdc1cf6be265b3da8be",
+        "src/components/BlackNovemberDecor/styles.module.css": "977dae40f9b5cd446b652439a16c794527ec88ec6dc6210ca50a662446966e21",
+        "src/styles/home2026.module.css": "d1a5844e2a88f061c035528375f09cde0955c2ee8b0b570f9a837f6925f58f18",
+        "src/styles/globals.css": "c3f9e1d3d5db93ab4724192d90636b7239e0a9e9dc67436bf74365028e305452"
+      },
+      "components": [],
+      "drafts": {
+        "3749c3b1-c059-465f-a14e-7e0f52bac038": {
+          "title": "TECPOINT Home — base actual",
+          "visualDirection": "faithful retail homepage baseline",
+          "currentVersion": 1
+        },
+        "de4dc3b4-3c8d-4277-b2d8-428a8dbcec2f": {
+          "title": "TECPOINT Black November Update",
+          "visualDirection": "premium Black November with restrained early Christmas accents",
+          "parentDraftId": "3749c3b1-c059-465f-a14e-7e0f52bac038",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-11-03T08:50:00-06:00"
+    }
+  }
+}

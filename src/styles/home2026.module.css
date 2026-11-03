@@ -13,13 +13,50 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background: #c8102e;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 50%, rgba(239,35,60,.42), transparent 24%),
+    linear-gradient(100deg, #060708 0%, #17191a 56%, #4c0714 100%);
   color: #fff;
   font:
     700 10px/1.2 "Sora",
     "Segoe UI",
     sans-serif;
   letter-spacing: 0.13em;
+}
+.announcement:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 24%, rgba(255,255,255,.12) 46%, transparent 67%);
+  transform: translateX(-100%);
+  animation: announcementShine 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.announcement b { color: #fff4ce; font-weight: 900; }
+.seasonalBadge {
+  width: fit-content;
+  margin: 0 0 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px 7px 12px;
+  border: 1px solid rgba(200,16,46,.24);
+  border-radius: 999px;
+  background: #111516;
+  box-shadow: 0 10px 28px rgba(17,21,22,.12);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+.seasonalBadge span { color: #fff4ce; }
+.seasonalBadge i {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #c8102e;
+  font-style: normal;
 }
 .eyebrow {
   margin: 0 0 18px;
@@ -294,6 +331,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+@keyframes announcementShine {
+  0%, 62% { transform: translateX(-110%); }
+  82%, 100% { transform: translateX(110%); }
 }
 .categories,
 .locations {

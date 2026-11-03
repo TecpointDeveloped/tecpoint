@@ -13,7 +13,7 @@ const Tracking = dynamic(() => import("@/components/analytics/Tracking"), {
 const MotionSystem = dynamic(() => import("@/components/MotionSystem/page"), {
   ssr: false,
 });
-const HalloweenDecor = dynamic(() => import("@/components/HalloweenDecor/page"), {
+const BlackNovemberDecor = dynamic(() => import("@/components/BlackNovemberDecor/page"), {
   ssr: false,
 });
 
@@ -24,7 +24,7 @@ function DynamicSiteMeta() {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const showStorefrontDecor = !router.pathname.startsWith("/admin") && !router.pathname.startsWith("/mayoreo");
+  const showStorefrontDecor = router.pathname === "/";
   const showStorefrontMotion = !router.pathname.startsWith("/admin") && !router.pathname.startsWith("/mayoreo");
 
   return (
@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <DynamicSiteMeta />
         <Tracking />
         {showStorefrontMotion && <MotionSystem />}
-        {showStorefrontDecor && <HalloweenDecor />}
+        {showStorefrontDecor && <BlackNovemberDecor />}
         <Component {...pageProps} />
       </SiteConfigProvider>
     </AuthProvider>

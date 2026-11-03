@@ -1,0 +1,386 @@
+# Theme
+
+## Compact token summary
+
+- Brand black: `#111817` / `#171717`
+- TECPOINT red: `#c8102e`; bright red accents use `#ef233c`
+- White: `#ffffff`; soft backgrounds: `#f4f6f7`, `#edf0f1`
+- Primary font: Poppins, locally hosted; admin surfaces sometimes use Montserrat fallback.
+- Focus ring: 3px `#c8102e` with 3px offset.
+- Radius token: `0.5rem`; branded storefront commonly uses crisp or lightly rounded geometry.
+- Motion: calm 0.65–0.8s entrance, fast feedback, no layout shifts; reduced motion disables animation.
+- Breakpoints are component-specific; common mobile breakpoint is 760px.
+
+## Tailwind configuration
+
+```ts
+import { heroui } from '@heroui/theme';
+import type { Config } from "tailwindcss";
+
+export default {
+	darkMode: ["class"],
+	content: [
+		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+		"./node_modules/@heroui/theme/dist/components/(checkbox|form).js"
+	],
+	theme: {
+		extend: {
+			colors: {
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))'
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				chart: {
+					'1': 'hsl(var(--chart-1))',
+					'2': 'hsl(var(--chart-2))',
+					'3': 'hsl(var(--chart-3))',
+					'4': 'hsl(var(--chart-4))',
+					'5': 'hsl(var(--chart-5))'
+				}
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
+			keyframes: {
+				'accordion-down': {
+					from: {
+						height: '0'
+					},
+					to: {
+						height: 'var(--radix-accordion-content-height)'
+					}
+				},
+				'accordion-up': {
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
+				},
+				"caret-blink": {
+					"0%,70%,100%": { opacity: "1" },
+					"20%,50%": { opacity: "0" },
+				},
+				"background-shine": {
+					"from": {
+						"backgroundPosition": "0 0"
+					},
+					"to": {
+						"backgroundPosition": "-200% 0"
+					}
+				}
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				"caret-blink": "caret-blink 1.25s ease-out infinite",
+				"background-shine": "background-shine 2s linear infinite"
+			}
+		}
+	},
+	plugins: [require("tailwindcss-animate"), heroui()],
+} satisfies Config;
+
+
+```
+
+## Global CSS
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  box-sizing: border-box;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+.embla {
+  overflow: hidden;
+  width: 300px;
+  border: solid 1px #000;
+  padding: 2px;
+}
+.embla__container {
+  display: flex;
+  gap: 16px;
+}
+.embla__slide {
+  min-width: 200px;
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #000;
+  border-radius: 12px;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Poppins';
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #c8102e;
+  outline-offset: 3px;
+}
+
+/* TECPOINT motion language: calm entrances, fast feedback and no layout shifts. */
+.tp-route-progress {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #8f0b24, #ef233c 55%, #ffffff);
+}
+
+.tp-route-progress.is-active {
+  opacity: 1;
+  animation: tp-route-loading 1.1s cubic-bezier(.2,.75,.2,1) infinite;
+}
+
+.tp-motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(3px);
+  transition:
+    opacity .7s cubic-bezier(.2,.75,.2,1) var(--tp-motion-delay, 0ms),
+    transform .8s cubic-bezier(.2,.75,.2,1) var(--tp-motion-delay, 0ms),
+    filter .65s ease var(--tp-motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.tp-motion-reveal.tp-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+@keyframes tp-route-loading {
+  0% { transform: scaleX(0); }
+  55% { transform: scaleX(.72); }
+  100% { transform: scaleX(.94); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .tp-motion-reveal,
+  .tp-motion-reveal.tp-motion-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .tp-route-progress {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-display: swap;
+    src: url('../pages/fonts/Poppins-Regular.ttf') format('truetype');
+  }
+}
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-inner {
+  display: flex;
+  animation: marquee 50s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.text-gradient {
+  color: #929292;
+  background-image: linear-gradient(45deg, #929292 29%, #ffffff 50%, #6b6868 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* .text-gradient {
+  color: #616161;
+  background-image: linear-gradient(315deg, #616161 2%, #ffffff 37%, #616161 94%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+```
+

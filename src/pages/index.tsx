@@ -257,8 +257,8 @@ export default function Home({
       </Head>
 
       <div className={styles.announcement}>
+        <span><b>BLACK NOVEMBER</b> · TECNOLOGÍA PARA REGALAR</span>
         <span>ENVÍO GRATIS EN COMPRAS MAYORES A L 1,500</span>
-        <span>ENVÍOS NACIONALES · PICK UP DISPONIBLE</span>
       </div>
 
       <NavbarMenu />
@@ -268,6 +268,7 @@ export default function Home({
       <main className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
+            <div className={styles.seasonalBadge}><span>BLACK NOVEMBER</span><i>EDICIÓN ESPECIAL</i></div>
             <p className={styles.eyebrow}>EL PUNTO DE LA TECNOLOGÍA</p>
             <h1>
               Tecnología
