@@ -19,6 +19,7 @@ import {
   ShieldCheck,
   ShoppingBag,
   Smartphone,
+  Truck,
   SlidersHorizontal,
   TrendingUp,
   X,
@@ -226,12 +227,6 @@ export default function Catalog({
     ) / 100;
   const cartUnits = cart.reduce((sum, p) => sum + p.quantity, 0),
     total = orderTotal(cart);
-  const coverPhoto = allProducts.find(
-    (p) => productFamily(p) === "covers" && !p.image.includes("isologo"),
-  );
-  const glassPhoto = allProducts.find(
-    (p) => productFamily(p) === "glass" && !p.image.includes("isologo"),
-  );
   const activeFilters = Boolean(
     filters.search ||
       filters.category ||
@@ -568,22 +563,23 @@ export default function Catalog({
             </button>
           </div>
         </div>
-        <section className={styles.hero}>
-          <div className={styles.heroCopy}>
-            <span className={styles.heroEyebrow}>
-              <i />
-              TU PRÓXIMA REPOSICIÓN EMPIEZA AQUÍ
+        <section className={`${styles.hero} ${styles.blackNovemberHero}`}>
+          <div className={styles.blackNovemberGlow} aria-hidden="true" />
+          <div className={styles.blackNovemberContent}>
+            <span className={styles.blackNovemberEyebrow}>
+              OFERTAS DE TEMPORADA
             </span>
-            <h1>
-              Más opciones.
-              <br />
-              <em>Mejores conexiones</em>
+            <h1 className={styles.blackNovemberTitle}>
+              <span>BLACK</span>
+              <strong>NOVEMBER</strong>
             </h1>
-            <p>
-              Encuentra el accesorio correcto, compara marcas y prepara tu
-              pedido con todo a mano.
-            </p>
-            <div className={styles.heroActions}>
+            <div className={styles.shippingMessage}>
+              <Truck size={19} aria-hidden="true" />
+              <span>
+                ENVÍO GRATIS EN COMPRAS DESDE <b>L 10,000</b>
+              </span>
+            </div>
+            <div className={`${styles.heroActions} ${styles.blackNovemberActions}`}>
               <button
                 className={styles.primary}
                 onClick={() => {
@@ -606,48 +602,6 @@ export default function Catalog({
                 Armar un pedido rápido <ArrowUpRight size={16} />
               </button>
             </div>
-            <div className={styles.heroFacts}>
-              <span>
-                <b>{allProducts.length}</b> productos en un lugar
-              </span>
-              <span>
-                <b>{facets.brands.length}</b> marcas para elegir
-              </span>
-              <span>
-                <b>A tu ritmo.</b> Guarda tus listas.
-              </span>
-            </div>
-          </div>
-          <div className={styles.heroScene} aria-hidden="true">
-            <div className={styles.orbit} />
-            <span className={styles.sceneLabel}>
-              PROTEGE. CONECTA. DESTACA.
-            </span>
-            {[coverPhoto, glassPhoto].map(
-              (p, i) =>
-                p && (
-                  <div
-                    className={`${styles.heroProduct} ${i ? styles.heroProductSecond : ""}`}
-                    key={p.sku}
-                  >
-                    <span>{i ? "02 / PROTECCIÓN" : "01 / COBERTORES"}</span>
-                    <Image
-                      src={p.thumbnailLarge || p.thumbnail}
-                      width={190}
-                      height={210}
-                      sizes="(max-width:650px) 135px, 200px"
-                      alt=""
-                    />
-                    <strong>
-                      {i ? "Hecho para encajar." : "Tu teléfono. Tu estilo."}
-                    </strong>
-                    <small>{p.brand}</small>
-                  </div>
-                ),
-            )}
-            <span className={styles.scenePill}>
-              TECPOINT · SELECCIÓN MAYORISTA
-            </span>
           </div>
         </section>
         <div className={styles.serviceStrip}>

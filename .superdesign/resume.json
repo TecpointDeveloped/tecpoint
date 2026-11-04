@@ -54,6 +54,42 @@
         }
       },
       "updatedAt": "2026-11-03T08:50:00-06:00"
+    },
+    "/mayoreo/catalogo": {
+      "targetKind": "existing-ui",
+      "projectId": "9cd193a2-a513-4ec5-be3d-cfdcd2092eae",
+      "activeDraftId": "cd63e427-0d72-4d8f-b068-331c31208589",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/pages/mayoreo/catalogo.tsx",
+        "src/components/wholesale-ui/CatalogExperience.tsx",
+        "src/styles/wholesale-ui/catalog.module.css"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "5d540be9cf22f75b42c7460018781e48f3df9622c959bbfb479a368bd9caa9ba",
+        "src/pages/mayoreo/catalogo.tsx": "e859598d42b65c27fd1c758328c64a1b98a68a28fc59e320bcd4bf6d0227b822",
+        "src/components/wholesale-ui/CatalogExperience.tsx": "651d4774a6f5096bd6aff36a4887c790507e3918067182365cce59d74d3bbbc2",
+        "src/styles/wholesale-ui/catalog.module.css": "6a8b9f6bbb8fbea42920f1e6c080c2a6921eec5087d35e568bdcdba02e3f66d3"
+      },
+      "components": [],
+      "drafts": {
+        "cd63e427-0d72-4d8f-b068-331c31208589": {
+          "title": "Black November Catálogo Mayoreo | TECPOINT",
+          "visualDirection": "premium Black November wholesale hero with free shipping from L 10,000",
+          "currentVersion": 7
+        }
+      },
+      "implementationSources": {
+        "cd63e427-0d72-4d8f-b068-331c31208589": {
+          "version": 7,
+          "files": [
+            "src/components/wholesale-ui/CatalogExperience.tsx",
+            "src/styles/wholesale-ui/catalog.module.css"
+          ]
+        }
+      },
+      "updatedAt": "2026-11-04T00:00:00-06:00"
     }
   }
 }
