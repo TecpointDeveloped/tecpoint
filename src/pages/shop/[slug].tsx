@@ -44,6 +44,7 @@ import {
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
+import { productImageFallback } from "@/lib/imageFallback";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -285,8 +286,15 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
     );
   }
 
-  const imagenesArray = Object.entries(product.imagenes || {}).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).map(([, value]) => value);
-  const primaryImage = imagenesArray[0]?.img || "https://firebasestorage.googleapis.com/v0/b/tecpoint-2024.appspot.com/o/logos%2Fog_image.png?alt=media&token=26d74138-1987-4143-86ce-31eab8af8338";
+  const imagenesArray = Object.entries(product.imagenes || {})
+    .filter(([, value]) => Boolean(value?.img?.trim()))
+    .sort(([keyA], [keyB]) => {
+      if (keyA === "imagen_01") return -1;
+      if (keyB === "imagen_01") return 1;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([, value]) => value);
+  const primaryImage = imagenesArray[0]?.img || "/brand/isologo.svg";
   const canAddToCart =
     product.extradata?.stock === true && Number(product.precio?.detalle) > 0;
   const specificationEntries = Object.entries(
@@ -364,7 +372,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
       "@type": "Offer",
       url: `https://tecpoint.ws/shop/${product.slug}` || "#",
       priceCurrency: "HNL",
-      price: product.precio?.detalle || 0,
+      price: retailPrice,
       availability:
         product.extradata?.stock === true
           ? "https://schema.org/InStock"
@@ -448,6 +456,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
                         width={1100}
                         height={1100}
                         sizes="(max-width: 640px) 100vw, 500px"
+                        onError={productImageFallback}
                       />
                     </CarouselItem>
                   )) :
@@ -469,6 +478,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
                   width={110}
                   height={110}
                   sizes="110px"
+                  onError={productImageFallback}
                 />
               ))}
 

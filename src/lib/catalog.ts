@@ -72,7 +72,7 @@ export const OFFICIAL_CATEGORIES = [
 
 type CatalogProduct = Pick<
   Product,
-  "sku" | "producto" | "slug" | "descripcion" | "categorias" | "Subcategorias"
+  "sku" | "producto" | "slug" | "descripcion" | "categorias" | "Subcategorias" | "imagenes"
 > & {
   marca_producto?: { marca?: string };
   precio?: Product["precio"];
@@ -503,11 +503,16 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     inventory?.brand || product.marca_producto?.marca,
   );
   const displayBrand = isGenericProduct(product) ? "Genérico" : brand;
+  const approvedPrimaryImage = (approvedImages as Record<string, string>)[product.sku];
   const officialGhostekImage = brand === "Ghostek" && verifiedGhostekSkus.has(product.sku)
-    ? (approvedImages as Record<string, string>)[product.sku]
+    ? approvedPrimaryImage
     : undefined;
+  const synchronizedImages = approvedPrimaryImage
+    ? approvedProductImages(product.sku, approvedPrimaryImage)
+    : product.imagenes;
   return {
     ...serializableProduct,
+    ...(synchronizedImages ? { imagenes: synchronizedImages } : {}),
     ...(officialGhostekImage ? { imagenes: approvedProductImages(product.sku, officialGhostekImage) } : {}),
     producto: preferredProductName(product),
     slug: preferredProductSlug(product),

@@ -477,8 +477,9 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                       ))}
                     </div>
 
-                    {promotion && (
-                      <div className={blackNovemberStyles.priceBlock}>
+                    <div className={blackNovemberStyles.priceBlock}>
+                      {promotion ? (
+                        <>
                         <div className={blackNovemberStyles.priceRow}>
                           <span className={blackNovemberStyles.priceLabel}>Precio normal</span>
                           <del className={blackNovemberStyles.regularPrice}>L {promotion.regularPrice.toFixed(2)}</del>
@@ -488,8 +489,14 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                           <strong className={blackNovemberStyles.promoPrice}>L {promotion.promotionalPrice.toFixed(2)}</strong>
                         </div>
                         <p className={blackNovemberStyles.savings}>Ahorras L {savings.toFixed(2)}</p>
-                      </div>
-                    )}
+                        </>
+                      ) : (
+                        <div className={blackNovemberStyles.priceRow}>
+                          <span className={blackNovemberStyles.priceLabel}>Precio detalle</span>
+                          <strong className={blackNovemberStyles.promoPrice}>L {Number(product.precio.detalle || 0).toFixed(2)}</strong>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
