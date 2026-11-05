@@ -40,8 +40,7 @@ import {
   productSearchTerms,
   preferredProductSlug,
   isNewProduct,
-  isBlackFridayCase,
-  blackFridayCasePrice,
+  productPromotion,
 } from "@/lib/catalog";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 import { useSiteConfig, whatsappLink } from "@/lib/siteConfig";
@@ -217,8 +216,10 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
   const [activeInfoTab, setActiveInfoTab] = useState<"features" | "description" | "specs">("features");
   // const route = useRouter();
   const addToCart = useCartStore((state) => state.addToCart);
-  const blackFridayCase = product ? isBlackFridayCase(product) : false;
-  const retailPrice = product ? blackFridayCasePrice(product) : 0;
+  const promotion = product ? productPromotion(product) : null;
+  const retailPrice = product
+    ? promotion?.promotionalPrice ?? Number(product.precio.detalle || 0)
+    : 0;
 
   const handleAddToCart = () => {
     if (product && product.imagenes && Object.keys(product.imagenes).length > 0) {
@@ -564,15 +565,20 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
               <div className="flex gap-x-12 md:py-4">
                 <span className="flex flex-col gap-1">
                   <p className="text-[#696969]">Precio Detalle</p>
-                  {blackFridayCase && (
+                  {promotion && (
                     <b className="w-fit rounded-lg bg-black px-3 py-1 text-[11px] font-black uppercase tracking-[.1em] text-white ring-2 ring-[#c8102e]">
-                      <span className="text-[#ff334f]">Black Friday</span> · 15% OFF
+                      <span className="text-[#ff334f]">Black November</span> · {promotion.percent}% OFF
                     </b>
                   )}
-                  {blackFridayCase && <del className="text-sm text-[#7b8587]">HNL. {Number(product.precio.detalle).toFixed(2)}</del>}
+                  {promotion && <del className="text-sm text-[#7b8587]">HNL. {promotion.regularPrice.toFixed(2)}</del>}
                   <p className="text-2xl font-bold leading-6 text-[#c8102e]">
                     HNL. {retailPrice.toFixed(2)}
                   </p>
+                  {promotion && (
+                    <small className="font-bold text-[#c8102e]">
+                      Ahorras HNL. {(promotion.regularPrice - promotion.promotionalPrice).toFixed(2)}
+                    </small>
+                  )}
                 </span>
 
                 {/* <span className="flex flex-col">
@@ -626,7 +632,7 @@ const ProductDetail = ({ product, Banners, ghostekVariants = [] }: ProductDetail
 
               <button
                 onClick={() => {
-                  const offer = blackFridayCase ? `\nPromoción: BLACK FRIDAY 15% OFF\nPrecio promocional mostrado: HNL. ${retailPrice.toFixed(2)}` : "";
+                  const offer = promotion ? `\nPromoción: BLACK NOVEMBER ${promotion.percent}% OFF\nPrecio normal: HNL. ${promotion.regularPrice.toFixed(2)}\nPrecio promocional mostrado: HNL. ${retailPrice.toFixed(2)}` : "";
                   const message = `https://tecpoint.ws/shop/${product.slug}\n\nHola Tecpoint, quiero ordenar un: \n \n${product.producto}\nSKU : ${product.sku}\ncantidad : ${quantity}${offer}`;
                   trackContact("WhatsApp producto");
                   const whatsappUrl = whatsappLink(mainWhatsApp, message);

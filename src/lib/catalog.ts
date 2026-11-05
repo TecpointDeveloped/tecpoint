@@ -2,6 +2,7 @@ import { Product } from "@/types/ProductTypes";
 import validatedCatalog from "@/data/validated-web-catalog.json";
 import currentCatalog from "@/data/current-catalog-w40.json";
 import approvedImages from "@/data/approved-product-images.json";
+import retailBlackFriday from "@/data/black-friday-retail-2026.json";
 import { brandLogo, canonicalBrandName } from "@/lib/brands";
 
 const verifiedGhostekSkus = new Set([
@@ -245,6 +246,26 @@ export type ProductPromotion = {
   label: string;
 };
 
+type RetailBlackFridayOffer = {
+  sku: string;
+  description: string;
+  category: string;
+  brand: string;
+  campaignLabel: string;
+  plazaStock: number;
+  vieraStock: number;
+  originalPrice: number;
+  promotionalPrice: number;
+  discountPercent: number;
+  promotionalValue: number;
+};
+
+const retailBlackFridayOffers = retailBlackFriday as Record<string, RetailBlackFridayOffer>;
+
+export function retailBlackFridayOffer(product: Pick<CatalogProduct, "sku">) {
+  return retailBlackFridayOffers[String(product.sku || "").trim().toUpperCase()] || null;
+}
+
 export function isBlackFridayCase(product: CatalogProduct) {
   const brand = normalizeText(product.marca_producto?.marca || "");
   if (brand !== "ghostek" && brand !== "xbase") return false;
@@ -254,6 +275,8 @@ export function isBlackFridayCase(product: CatalogProduct) {
 }
 
 export function blackFridayCasePrice(product: CatalogProduct) {
+  const exactOffer = retailBlackFridayOffer(product);
+  if (exactOffer) return exactOffer.promotionalPrice;
   const regularPrice = Number(product.precio?.detalle || 0);
   return isBlackFridayCase(product) && regularPrice > 0
     ? Math.round(regularPrice * 0.85 * 100) / 100
@@ -265,6 +288,16 @@ export function blackFridayCasePrice(product: CatalogProduct) {
  * We intentionally do not infer discounts from visual labels or product copy.
  */
 export function productPromotion(product: CatalogProduct): ProductPromotion | null {
+  const exactOffer = retailBlackFridayOffer(product);
+  if (exactOffer) {
+    return {
+      percent: exactOffer.discountPercent,
+      regularPrice: exactOffer.originalPrice,
+      promotionalPrice: exactOffer.promotionalPrice,
+      label: `BLACK NOVEMBER · ${exactOffer.discountPercent}% DE DESCUENTO`,
+    };
+  }
+
   const inventory = getCurrentInventory(product.sku);
   const category = String(inventory?.category || product.categorias?.[0] || "");
   const categoryMatch = category.match(/PROMOCI(?:O|Ó)N\s*(\d{1,2})\s*%/i);

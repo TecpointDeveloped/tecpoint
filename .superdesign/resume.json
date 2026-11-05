@@ -55,6 +55,81 @@
       },
       "updatedAt": "2026-11-03T08:50:00-06:00"
     },
+    "/shop": {
+      "targetKind": "existing-ui",
+      "projectId": "f1bc95be-c888-4023-89de-997b4ad351bc",
+      "baselineDraftId": "f49ce4b9-8a2e-43ee-b3eb-f8968ed9ee17",
+      "activeDraftId": "7e5db9c1-a1e6-4600-8cd6-4b5276e3a4ea",
+      "designSystemPath": ".superdesign/design-system.md",
+      "referenceIds": ["tecpoint-logo-principal"],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "tecpoint-logo-principal",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f1bc95be-c888-4023-89de-997b4ad351bc/brand-assets/tecpoint-logo-principal/logo-principal.svg",
+          "sourcePath": "public/brand/logo-principal.svg"
+        }
+      },
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/pages/shop/index.tsx",
+        "src/styles/shopHero2026.module.css",
+        "src/components/navbarmenu/page.tsx",
+        "src/styles/navigation2026.module.css",
+        "src/components/Footer/page.tsx",
+        "src/styles/footer2026.module.css",
+        "src/lib/catalog.ts",
+        "src/styles/globals.css",
+        "tailwind.config.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "5d540be9cf22f75b42c7460018781e48f3df9622c959bbfb479a368bd9caa9ba",
+        "src/pages/shop/index.tsx": "41d77962f54193d5cdacc6cb16e51bda721a21ccb32af88beaf6b6853d8d7d4f",
+        "src/styles/shopHero2026.module.css": "4b14f8fc60f9fc8fb8dfecfbc06df43681e1e41ceca14b645d6d0e72b7f00b81",
+        "src/components/navbarmenu/page.tsx": "061e89d857e6b67eb8a8065dc115d1c100d0ba53c3be46df584d2f47bd576241",
+        "src/styles/navigation2026.module.css": "04fcee85453012f3eb2ddb66d3d1be1cefa0c5d3799cd8e58a30f324e8351bf5",
+        "src/components/Footer/page.tsx": "0123b02625f3e48c7d502a1124c12786b9f3024aa158edcfe8e7ed46d0fa4e9f",
+        "src/styles/footer2026.module.css": "fa4c0fedb62345cadfd0231ff32309336e714aa6e8fff4f5e72b49e977635738",
+        "src/lib/catalog.ts": "ef3bb5a4a3838a74907a7bb9680875616bfe071bf2364faf37740da2ab30d601",
+        "src/styles/globals.css": "c3f9e1d3d5db93ab4724192d90636b7239e0a9e9dc67436bf74365028e305452",
+        "tailwind.config.ts": "ad84386969645e2b566b3d7dc328d78ed6c4d6da2345eeb756e0b4b2ec0f8598"
+      },
+      "components": [
+        {"componentId": "4d3b15b9-37c0-4027-9827-2bbcaafabb56", "name": "NavbarMenu", "logoAssetKey": "tecpoint-logo-principal"},
+        {"componentId": "ee45b90b-bdf6-4fed-991a-22136a625908", "name": "StorefrontFooter", "logoAssetKey": "tecpoint-logo-principal"}
+      ],
+      "drafts": {
+        "f49ce4b9-8a2e-43ee-b3eb-f8968ed9ee17": {
+          "title": "Tienda TECPOINT — Catálogo retail",
+          "visualDirection": "faithful retail catalog baseline",
+          "currentVersion": 1
+        },
+        "7e5db9c1-a1e6-4600-8cd6-4b5276e3a4ea": {
+          "title": "Tienda TECPOINT — Black November retail cards",
+          "visualDirection": "bold Black November ribbon and savings block",
+          "parentDraftId": "f49ce4b9-8a2e-43ee-b3eb-f8968ed9ee17",
+          "currentVersion": 1
+        },
+        "013afc57-9ea9-455f-adad-147182963945": {
+          "title": "Tienda TECPOINT — Black November",
+          "visualDirection": "refined Black November price-ticket treatment",
+          "parentDraftId": "f49ce4b9-8a2e-43ee-b3eb-f8968ed9ee17",
+          "currentVersion": 1
+        }
+      },
+      "implementationSources": {
+        "7e5db9c1-a1e6-4600-8cd6-4b5276e3a4ea": {
+          "version": 1,
+          "files": [
+            "src/pages/shop/index.tsx",
+            "src/pages/shop/[slug].tsx",
+            "src/styles/retailBlackNovember.module.css",
+            "src/lib/catalog.ts",
+            "src/data/black-friday-retail-2026.json"
+          ]
+        }
+      },
+      "updatedAt": "2026-11-05T00:00:00-06:00"
+    },
     "/mayoreo/catalogo": {
       "targetKind": "existing-ui",
       "projectId": "9cd193a2-a513-4ec5-be3d-cfdcd2092eae",

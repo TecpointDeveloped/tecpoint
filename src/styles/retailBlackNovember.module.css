@@ -1,0 +1,97 @@
+.campaignBar {
+  position: relative;
+  overflow: hidden;
+  padding: 0.7rem 1rem;
+  background: #111817;
+  color: #fff;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.campaignBar::after,
+.promoHeader::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -45%;
+  width: 35%;
+  transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  animation: blackNovemberShine 4.2s ease-in-out infinite;
+}
+
+.campaignBar strong { color: #ff4059; }
+
+.promoCard {
+  border-top: 3px solid #c8102e !important;
+  box-shadow: 0 -4px 20px rgba(200, 16, 46, .12);
+}
+
+.promoHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem;
+  overflow: hidden;
+  margin-bottom: .75rem;
+  border-radius: .45rem;
+  background: #111817;
+  padding: .55rem .65rem;
+  color: #fff;
+}
+
+.promoHeader span:first-child {
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.promoHeader span:last-child {
+  position: relative;
+  z-index: 1;
+  border-radius: .3rem;
+  background: #ef233c;
+  padding: .25rem .5rem;
+  font-size: .75rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.priceBlock {
+  margin-top: 1rem;
+  border-top: 1px solid #e4e7e8;
+  padding-top: .75rem;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.priceLabel {
+  color: #6b7271;
+  font-size: .6rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.promoLabel { color: #c8102e; }
+.regularPrice { color: #6b7271; font-size: .82rem; }
+.promoPrice { color: #111817; font-size: 1.45rem; font-weight: 900; letter-spacing: -.03em; }
+.savings { margin-top: .2rem; color: #c8102e; font-size: .65rem; font-weight: 800; text-align: right; }
+
+@keyframes blackNovemberShine {
+  0%, 58% { left: -45%; }
+  82%, 100% { left: 125%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campaignBar::after,
+  .promoHeader::after { animation: none; }
+}

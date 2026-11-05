@@ -23,10 +23,11 @@ import {
   productColor,
   productAddedTime,
   isNewProduct,
-  isBlackFridayCase,
+  productPromotion,
   publicCatalog,
 } from "@/lib/catalog";
 import shopStyles from "@/styles/shopHero2026.module.css";
+import blackNovemberStyles from "@/styles/retailBlackNovember.module.css";
 import { trackSearch, trackViewCategory } from "@/lib/tracking";
 import { Search } from "lucide-react";
 
@@ -253,6 +254,10 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
 
       <NavbarMenu />
 
+      <div className={blackNovemberStyles.campaignBar}>
+        <strong>Black November</strong> · precios especiales en productos seleccionados · sujeto a existencias
+      </div>
+
       <section className={shopStyles.hero}>
         <div className={shopStyles.copy}>
           <p className={shopStyles.eyebrow}>CATÁLOGO ACTUAL TECPOINT</p>
@@ -401,20 +406,23 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1100px] mx-auto gap-3">
           {currentProducts.map((product: Product, productIndex: number) => {
             const imagen_01 = product.imagenes?.imagen_01?.img || "/default-product.png";
-            const blackFridayCase = isBlackFridayCase(product);
+            const promotion = productPromotion(product);
+            const savings = promotion
+              ? Math.max(0, promotion.regularPrice - promotion.promotionalPrice)
+              : 0;
 
             return (
               <article
                 key={product.id}
-                className="border border-[#dfe3e4] bg-white p-4 flex flex-col min-w-0 sm:w-full md:w-full min-h-[430px] relative justify-between overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className={`border border-[#dfe3e4] bg-white p-4 flex flex-col min-w-0 sm:w-full md:w-full min-h-[430px] relative justify-between overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl ${promotion ? blackNovemberStyles.promoCard : ""}`}
               >
-                <span className="absolute top-4 left-4 z-10">
-                  {blackFridayCase && (
-                    <div className="mb-2 w-fit rounded-xl bg-black px-3 py-2 text-white shadow-xl ring-2 ring-[#ef233c]">
-                      <p className="text-[10px] font-black uppercase tracking-[.12em] text-[#ff4059]">Black Friday</p>
-                      <p className="text-[13px] font-black uppercase tracking-[.05em]">15% OFF</p>
-                    </div>
-                  )}
+                {promotion && (
+                  <div className={blackNovemberStyles.promoHeader}>
+                    <span>BLACK NOVEMBER</span>
+                    <span>-{promotion.percent}%</span>
+                  </div>
+                )}
+                <span className={`absolute left-4 z-10 ${promotion ? "top-[4.5rem]" : "top-4"}`}>
                   {isNewProduct(product) && (
                     <div className="mb-2 w-fit rounded-full bg-[#c8102e] px-4 py-1 text-white shadow-lg">
                       <p className="text-[12px] font-extrabold uppercase tracking-[.08em]">Nuevo</p>
@@ -468,6 +476,20 @@ const Shop = ({ products = [], totalProducts = 0, brands = [], colors = [] }: Sh
                         </span>
                       ))}
                     </div>
+
+                    {promotion && (
+                      <div className={blackNovemberStyles.priceBlock}>
+                        <div className={blackNovemberStyles.priceRow}>
+                          <span className={blackNovemberStyles.priceLabel}>Precio normal</span>
+                          <del className={blackNovemberStyles.regularPrice}>L {promotion.regularPrice.toFixed(2)}</del>
+                        </div>
+                        <div className={blackNovemberStyles.priceRow}>
+                          <span className={`${blackNovemberStyles.priceLabel} ${blackNovemberStyles.promoLabel}`}>Precio Black November</span>
+                          <strong className={blackNovemberStyles.promoPrice}>L {promotion.promotionalPrice.toFixed(2)}</strong>
+                        </div>
+                        <p className={blackNovemberStyles.savings}>Ahorras L {savings.toFixed(2)}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
