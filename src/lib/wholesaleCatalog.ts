@@ -29,7 +29,16 @@ export type WholesaleProduct = {
   promotionLabel: "offer" | "last-units" | "";
 };
 
-type BlackNovemberOffer = { level: "A1" | "A2" | "B" | "C" | "D"; stock: number; originalPrice: number; finalPrice: number; discountPercent: number };
+type BlackNovemberOffer = {
+  name: string;
+  category: string;
+  brand: string;
+  level: "A1" | "A2" | "B" | "C" | "D" | "E";
+  stock: number;
+  originalPrice: number;
+  finalPrice: number;
+  discountPercent: number;
+};
 const BLACK_NOVEMBER_OFFERS = blackNovemberData as Record<string, BlackNovemberOffer>;
 const BLACK_NOVEMBER_START = Date.UTC(2026, 10, 1, 6);
 const BLACK_NOVEMBER_END = Date.UTC(2026, 11, 1, 6);
@@ -69,6 +78,14 @@ function normalize(value: string) {
     .toLowerCase();
 }
 
+function canonicalBrand(value: string) {
+  const brand = String(value || "TECPOINT").trim();
+  const normalized = normalize(brand);
+  if (normalized === "deken") return "Dekën";
+  if (normalized === "urban sound gear") return "USG";
+  return brand;
+}
+
 export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[] {
   if (!sourceProducts && cachedProducts) return cachedProducts;
   const result = publicCatalog(sourceProducts || approvedCatalogProducts())
@@ -77,9 +94,11 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         !HIDDEN_WHOLESALE_BRANDS.has(
           normalize(String(product.marca_producto?.marca || "")),
         ) &&
-        product.extradata?.stock === true &&
-        Number(product.extradata?.inventoryQuantity || 0) > 0 &&
-        Number(product.precio?.mayoreo || 0) > 0 &&
+        (activeBlackNovemberOffer(String(product.sku || ""))?.stock ||
+          (product.extradata?.stock === true &&
+            Number(product.extradata?.inventoryQuantity || 0) > 0)) &&
+        (Number(product.precio?.mayoreo || 0) > 0 ||
+          Boolean(activeBlackNovemberOffer(String(product.sku || "")))) &&
         product.extradata?.wholesaleEnabled !== false,
     )
     .map((product) => {
@@ -103,7 +122,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
       return {
         sku: String(product.sku || "").trim(),
         name: String(product.producto || "Producto TECPOINT").trim(),
-        brand: String(product.marca_producto?.marca || "TECPOINT").trim(),
+        brand: canonicalBrand(String(product.marca_producto?.marca || "TECPOINT")),
         category: cleanCategory(String(
           product.extradata?.wholesaleCategory ||
             product.categorias?.[0] ||
@@ -124,7 +143,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         },
         subcategory: String(product.Subcategorias || "").trim(),
         upc: String(product.extradata?.upc || "").trim(),
-        stock: Math.max(0, Number(product.extradata?.inventoryQuantity || 0)),
+        stock: Math.max(0, Number(blackNovember?.stock ?? product.extradata?.inventoryQuantity ?? 0)),
         promotionLabel,
       };
     })
@@ -132,6 +151,41 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
       const brandOrder = left.brand.localeCompare(right.brand, "es");
       return brandOrder || left.name.localeCompare(right.name, "es");
     });
+  const includedSkus = new Set(result.map((product) => product.sku.toUpperCase()));
+  for (const [sku, offer] of Object.entries(BLACK_NOVEMBER_OFFERS)) {
+    if (
+      !activeBlackNovemberOffer(sku) ||
+      includedSkus.has(sku) ||
+      HIDDEN_WHOLESALE_BRANDS.has(normalize(offer.brand)) ||
+      offer.stock <= 0
+    ) continue;
+    result.push({
+      sku,
+      name: offer.name,
+      brand: canonicalBrand(offer.brand),
+      category: cleanCategory(offer.category, offer.name, ""),
+      image: "/brand/isologo.svg",
+      thumbnail: "/brand/isologo.svg",
+      gallery: [],
+      devices: [],
+      classification: "",
+      originalPrice: offer.originalPrice,
+      discountPercent: offer.discountPercent,
+      price: offer.finalPrice,
+      retailPrice: null,
+      dozenPrice: null,
+      description: offer.name,
+      specifications: titleFacts(offer.name),
+      subcategory: "",
+      upc: "",
+      stock: offer.stock,
+      promotionLabel: offer.level === "A1" ? "last-units" : "offer",
+    });
+  }
+  result.sort((left, right) => {
+    const brandOrder = left.brand.localeCompare(right.brand, "es");
+    return brandOrder || left.name.localeCompare(right.name, "es");
+  });
   result.forEach((product) => {
     searchIndex.set(product.sku, normalize(`${product.name} ${product.brand} ${product.sku}`));
   });
