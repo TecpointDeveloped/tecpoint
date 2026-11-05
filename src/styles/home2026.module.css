@@ -596,6 +596,10 @@
   background: #fff;
   border: 1px solid rgba(17, 21, 22, 0.08);
 }
+.offerCard {
+  border-color: rgba(200, 16, 46, 0.32);
+  box-shadow: 0 12px 34px rgba(200, 16, 46, 0.08);
+}
 .productImage {
   position: relative;
   width: 100%;
@@ -624,6 +628,11 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+.productImage > .offerBadge {
+  background: #111817;
+  box-shadow: inset 3px 0 0 var(--red), 0 6px 18px rgba(17, 24, 23, 0.16);
+  letter-spacing: 0.04em;
+}
 .productInfo {
   padding: 18px;
 }
@@ -646,6 +655,22 @@
 }
 .productInfo > div strong {
   font-size: 15px;
+}
+.productInfo > .productPriceRow {
+  align-items: flex-end;
+}
+.productPrice {
+  display: grid;
+  gap: 2px;
+}
+.productPrice del {
+  color: #7b8587;
+  font-size: 10px;
+}
+.productPrice small {
+  color: var(--red);
+  font-size: 8px;
+  font-weight: 800;
 }
 .productInfo a {
   min-height: 44px;

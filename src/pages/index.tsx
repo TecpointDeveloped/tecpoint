@@ -16,6 +16,7 @@ import {
   preferredProductSlug,
   isNewProduct,
   isGenericProduct,
+  productPromotion,
 } from "@/lib/catalog";
 import { brandAssets } from "@/lib/brands";
 import { ArrowUpRight, MapPin, MessageCircle, Star } from "lucide-react";
@@ -98,7 +99,18 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
     })
     .filter((product) => Boolean(product.extradata?.stock));
 
-  const products = completeProducts.slice(0, 8);
+  const products = [...completeProducts]
+    .sort((a, b) => {
+      const promotionA = productPromotion(a);
+      const promotionB = productPromotion(b);
+      if (promotionA && promotionB) {
+        return promotionB.percent - promotionA.percent;
+      }
+      if (promotionA) return -1;
+      if (promotionB) return 1;
+      return 0;
+    })
+    .slice(0, 8);
   return {
     props: {
       products,
@@ -406,22 +418,29 @@ export default function Home({
         <section className={styles.products}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>SELECCIÓN ACTUAL</p>
-              <h2>Productos que elevan su día.</h2>
+              <p className={styles.eyebrow}>PRECIOS ESPECIALES</p>
+              <h2>Las mejores ofertas.</h2>
             </div>
             <Link className={styles.darkButton} href="/shop">
               Ver catálogo completo
             </Link>
           </div>
           <div className={styles.productGrid}>
-            {selectedProducts.map((product, index) => (
-              <article className={styles.productCard} key={product.id}>
+            {selectedProducts.map((product, index) => {
+              const promotion = productPromotion(product);
+              const savings = promotion
+                ? promotion.regularPrice - promotion.promotionalPrice
+                : 0;
+              return (
+              <article className={`${styles.productCard} ${promotion ? styles.offerCard : ""}`} key={product.id}>
                 <Link
                   className={styles.productImage}
                   href={`/shop/${preferredProductSlug(product)}`}
                   aria-label={`Ver ${product.producto}`}
                 >
-                  {isNewProduct(product) ? <span>Nuevo</span> : index < 2 && <span>Selección</span>}
+                  {promotion ? (
+                    <span className={styles.offerBadge}>Black November · -{promotion.percent}%</span>
+                  ) : isNewProduct(product) ? <span>Nuevo</span> : index < 2 && <span>Selección</span>}
                   <Image
                     src={imageFor(product)}
                     alt={product.producto}
@@ -435,13 +454,22 @@ export default function Home({
                     {product.marca_producto?.marca || "TECPOINT"} · {product.sku}
                   </small>
                   <h3>{product.producto}</h3>
-                  <div>
-                    <strong>{priceFor(product)}</strong>
+                  <div className={styles.productPriceRow}>
+                    <div className={styles.productPrice}>
+                      {promotion && <del>L {promotion.regularPrice.toFixed(2)}</del>}
+                      <strong>
+                        {promotion
+                          ? `L ${promotion.promotionalPrice.toFixed(2)}`
+                          : priceFor(product)}
+                      </strong>
+                      {promotion && <small>Ahorras L {savings.toFixed(2)}</small>}
+                    </div>
                     <Link href={`/shop/${preferredProductSlug(product)}`}>Ver producto +</Link>
                   </div>
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </section>
 
