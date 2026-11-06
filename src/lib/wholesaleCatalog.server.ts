@@ -34,19 +34,44 @@ export async function liveWholesaleCatalog() {
   }));
 }
 
-/** Resolve the sales ranking against products that are currently sellable in Mayoreo. */
+function hasRealProductImage(product: ReturnType<typeof wholesaleCatalog>[number]) {
+  const image = String(product.image || "").trim().toLowerCase();
+  return Boolean(image) &&
+    !image.includes("/brand/isologo.svg") &&
+    !image.includes("default-product") &&
+    !image.includes("placeholder");
+}
+
+function imageBackfill(products: ReturnType<typeof wholesaleCatalog>, excluded: Set<string>, limit: number) {
+  return products
+    .filter((product) => hasRealProductImage(product) && !excluded.has(product.sku.trim().toUpperCase()))
+    .sort((left, right) =>
+      Number(right.discountPercent || 0) - Number(left.discountPercent || 0) ||
+      right.stock - left.stock ||
+      left.name.localeCompare(right.name, "es"),
+    )
+    .slice(0, limit);
+}
+
+/** Resolve the sales ranking and replace entries without a real photo. */
 export async function livePopularWholesaleProducts(products: ReturnType<typeof wholesaleCatalog>, limit = 12) {
   const admin = getFirebaseAdmin();
-  if (!admin) return [];
-  const snapshot = await admin.db.collection("wholesale_settings").doc("popular_products").get();
-  if (!snapshot.exists) return [];
-
-  const ranking = snapshot.data()?.ranking;
-  if (!Array.isArray(ranking)) return [];
   const productBySku = new Map(products.map((product) => [product.sku.trim().toUpperCase(), product]));
+  let ranking: Array<{ sku?: unknown }> = [];
+  if (admin) {
+    const snapshot = await admin.db.collection("wholesale_settings").doc("popular_products").get();
+    if (snapshot.exists && Array.isArray(snapshot.data()?.ranking)) {
+      ranking = snapshot.data()?.ranking;
+    }
+  }
 
-  return ranking
-    .map((item: { sku?: unknown }) => productBySku.get(String(item.sku || "").trim().toUpperCase()))
-    .filter((product): product is NonNullable<typeof product> => Boolean(product))
-    .slice(0, limit);
+  const rankedWithImages = ranking
+    .map((item) => productBySku.get(String(item.sku || "").trim().toUpperCase()))
+    .filter((product): product is NonNullable<typeof product> => product !== undefined && hasRealProductImage(product));
+  const selected = rankedWithImages.slice(0, limit);
+  const selectedSkus = new Set(selected.map((product) => product.sku.trim().toUpperCase()));
+  return [
+    ...selected,
+    ...imageBackfill(products, selectedSkus, Math.max(0, limit - selected.length)),
+  ];
 }
