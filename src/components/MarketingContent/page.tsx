@@ -151,14 +151,14 @@ export function HomepageBannerCarousel({ assets }: { assets: MarketingAsset[] })
       >
       {asset.linkUrl ? (
         <Link
-          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""}`}
+          className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""} ${asset.id === "foneng-nuevo-ingreso" ? styles.fonengBanner : ""}`}
           href={asset.linkUrl}
           aria-label={`${asset.title}. ${asset.cta || "Ver campaña"}`}
         >
           {artwork}
         </Link>
       ) : (
-        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""}`}>
+        <div className={`${styles.banner} ${asset.artworkOnly ? styles.artworkOnly : ""} ${asset.id === "black-november-2026" ? styles.blackNovemberBanner : ""} ${asset.id === "foneng-nuevo-ingreso" ? styles.fonengBanner : ""}`}>
           {artwork}
         </div>
       )}
@@ -201,9 +201,23 @@ export function LiveMarketingContent({ initialBanners, initialPromotion }: { ini
     alt: "Black November TECPOINT: super precios en cobertores, audio, envío gratis y Optimus Card",
     artworkOnly: true,
   };
+  const fonengBanner: MarketingAsset = {
+    id: "foneng-nuevo-ingreso",
+    title: "FONENG: nueva marca en TECPOINT",
+    imageUrl: "/images/banners-current/foneng-nuevo-ingreso.webp",
+    mobileImageUrl: "/images/banners-current/foneng-nuevo-ingreso.webp",
+    linkUrl: whatsappLink(
+      mainWhatsApp,
+      "Hola TECPOINT, vi el banner de la nueva marca FONENG y quiero conocer los productos disponibles.",
+    ),
+    cta: "Conocer FONENG",
+    alt: "Nueva marca FONENG en TECPOINT: power banks, carga rápida y diseño premium",
+    artworkOnly: true,
+  };
   const visibleBanners = [
     blackNovemberBanner,
-    ...banners.filter((banner) => banner.id !== blackNovemberBanner.id && banner.id !== "octubre-de-miedo-2026"),
+    fonengBanner,
+    ...banners.filter((banner) => banner.id !== blackNovemberBanner.id && banner.id !== fonengBanner.id && banner.id !== "octubre-de-miedo-2026"),
   ];
   useEffect(() => {
     const controller = new AbortController();
