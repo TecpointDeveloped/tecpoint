@@ -65,6 +65,7 @@ function ResponsiveArtwork({ asset, priority = false }: { asset: MarketingAsset;
         unoptimized={isRemoteWebp}
         sizes="100vw"
         className={styles.artwork}
+        style={asset.id === "foneng-nuevo-ingreso" ? { objectFit: "contain", objectPosition: "center" } : undefined}
       />
     </picture>
   );
