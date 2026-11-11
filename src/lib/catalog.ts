@@ -21,6 +21,11 @@ const ghostekGallerySkus = new Set([
   "GHOCAS4300", "GHOCAS4301", "GHOCAS4302", "GHOCAS4311", "GHOCAS4326", "GHOCAS4327",
 ]);
 
+const fonengGallerySkus = new Set([
+  "FN-40101", "FN-40102", "FN-40103", "FN-40104",
+  "FN-40105", "FN-40106", "FN-40107", "FN-40108",
+]);
+
 function approvedProductImages(sku: string, primaryImage: string): Product["imagenes"] {
   const images: Product["imagenes"] = {
     imagen_01: { id: "imagen_01", img: primaryImage },
@@ -28,6 +33,8 @@ function approvedProductImages(sku: string, primaryImage: string): Product["imag
   if (ghostekGallerySkus.has(sku)) {
     images.imagen_02 = { id: "imagen_02", img: `/images/products/${sku}-02.jpg` };
     images.imagen_03 = { id: "imagen_03", img: `/images/products/${sku}-03.jpg` };
+  } else if (fonengGallerySkus.has(sku)) {
+    images.imagen_02 = { id: "imagen_02", img: `/images/products/${sku}-02.webp` };
   }
   return images;
 }
