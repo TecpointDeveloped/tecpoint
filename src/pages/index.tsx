@@ -36,6 +36,17 @@ type MarketingDoc = Omit<MarketingAsset, "id"> & {
   endsAt?: { toDate?: () => Date };
 };
 
+const FONENG_NEW_SKUS = new Set([
+  "FN-40101",
+  "FN-40102",
+  "FN-40103",
+  "FN-40104",
+  "FN-40105",
+  "FN-40106",
+  "FN-40107",
+  "FN-40108",
+]);
+
 const LOCATION_IMAGES = [
   {
     src: "/images/locations/plaza-carolina.webp",
@@ -73,7 +84,7 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
     getDoc(doc(db, "site_settings", "general")).catch(() => null),
   ]);
 
-  const completeProducts = publicCatalog([...productDocs.docs.map<Product>((doc) => {
+  const catalogProducts = publicCatalog([...productDocs.docs.map<Product>((doc) => {
     const data = doc.data();
     return enrichProduct({
       id: doc.id,
@@ -96,11 +107,20 @@ export async function getServerSideProps({ res }: { res: { setHeader: (name: str
         ? new Date(b.fecha_agregado).getTime()
         : 0;
       return dateB - dateA;
-    })
-    .filter((product) => Boolean(product.extradata?.stock));
+    });
 
-  const products = [...completeProducts]
+  const completeProducts = catalogProducts.filter((product) => Boolean(product.extradata?.stock));
+  const fonengNewProducts = catalogProducts.filter((product) => FONENG_NEW_SKUS.has(product.sku));
+
+  const products = [
+    ...fonengNewProducts,
+    ...completeProducts.filter((product) => !FONENG_NEW_SKUS.has(product.sku)),
+  ]
     .sort((a, b) => {
+      const fonengA = FONENG_NEW_SKUS.has(a.sku);
+      const fonengB = FONENG_NEW_SKUS.has(b.sku);
+      if (fonengA !== fonengB) return fonengA ? -1 : 1;
+      if (fonengA && fonengB) return a.sku.localeCompare(b.sku);
       const promotionA = productPromotion(a);
       const promotionB = productPromotion(b);
       if (promotionA && promotionB) {
@@ -167,7 +187,7 @@ export default function Home({
         product.producto &&
         product.slug &&
         product.precio?.detalle &&
-        product.extradata?.stock &&
+        (product.extradata?.stock || FONENG_NEW_SKUS.has(product.sku)) &&
         !isGenericProduct(product) &&
         imageFor(product) !== "/default-product.png",
     )
@@ -418,11 +438,11 @@ export default function Home({
         <section className={styles.products}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>PRECIOS ESPECIALES</p>
-              <h2>Las mejores ofertas.</h2>
+              <p className={styles.eyebrow}>NUEVA MARCA · FONENG</p>
+              <h2>Energía que va con vos.</h2>
             </div>
-            <Link className={styles.darkButton} href="/shop">
-              Ver catálogo completo
+            <Link className={styles.darkButton} href="/shop?search=Foneng">
+              Ver productos FONENG
             </Link>
           </div>
           <div className={styles.productGrid}>
@@ -438,7 +458,9 @@ export default function Home({
                   href={`/shop/${preferredProductSlug(product)}`}
                   aria-label={`Ver ${product.producto}`}
                 >
-                  {promotion ? (
+                  {FONENG_NEW_SKUS.has(product.sku) ? (
+                    <span>Nuevo · FONENG</span>
+                  ) : promotion ? (
                     <span className={styles.offerBadge}>Black November · -{promotion.percent}%</span>
                   ) : isNewProduct(product) ? <span>Nuevo</span> : index < 2 && <span>Selección</span>}
                   <Image
@@ -454,6 +476,9 @@ export default function Home({
                     {product.marca_producto?.marca || "TECPOINT"} · {product.sku}
                   </small>
                   <h3>{product.producto}</h3>
+                  {product.extradata?.stock !== true && (
+                    <p className={styles.availabilityNote}>Disponible próximamente</p>
+                  )}
                   <div className={styles.productPriceRow}>
                     <div className={styles.productPrice}>
                       {promotion && <del>L {promotion.regularPrice.toFixed(2)}</del>}

@@ -207,10 +207,7 @@ export function LiveMarketingContent({ initialBanners, initialPromotion }: { ini
     title: "FONENG: nueva marca en TECPOINT",
     imageUrl: "/images/banners-current/foneng-nuevo-ingreso.webp",
     mobileImageUrl: "/images/banners-current/foneng-nuevo-ingreso.webp",
-    linkUrl: whatsappLink(
-      mainWhatsApp,
-      "Hola TECPOINT, vi el banner de la nueva marca FONENG y quiero conocer los productos disponibles.",
-    ),
+    linkUrl: "/shop?search=Foneng",
     cta: "Conocer FONENG",
     alt: "Nueva marca FONENG en TECPOINT: power banks, carga rápida y diseño premium",
     artworkOnly: true,
