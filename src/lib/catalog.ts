@@ -362,7 +362,7 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
       imagenes: approvedProductImages(sku, image),
       extradata: {
         upc: inventory.upc,
-        stock: inventory.stock > 0,
+        stock: inventory.stock > 0 || fonengGallerySkus.has(sku),
         inventoryQuantity: inventory.stock,
         imagePending: !exactImage,
         wholesaleEnabled: inventory.bronzePrice > 0,
@@ -542,7 +542,9 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     extradata: {
       ...(product.extradata || {}),
       upc: inventory?.upc || product.extradata?.upc || "",
-      stock: inventory ? inventory.stock > 0 : product.extradata?.stock,
+      stock: inventory
+        ? inventory.stock > 0 || fonengGallerySkus.has(product.sku)
+        : product.extradata?.stock,
       inventoryQuantity: inventory?.stock ?? product.extradata?.inventoryQuantity,
       wholesaleEnabled: product.extradata?.wholesaleEnabled ?? (inventory
         ? inventory.stock > 0 && inventory.bronzePrice > 0

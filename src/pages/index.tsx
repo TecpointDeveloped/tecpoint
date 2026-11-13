@@ -476,9 +476,6 @@ export default function Home({
                     {product.marca_producto?.marca || "TECPOINT"} · {product.sku}
                   </small>
                   <h3>{product.producto}</h3>
-                  {product.extradata?.stock !== true && (
-                    <p className={styles.availabilityNote}>Disponible próximamente</p>
-                  )}
                   <div className={styles.productPriceRow}>
                     <div className={styles.productPrice}>
                       {promotion && <del>L {promotion.regularPrice.toFixed(2)}</del>}
