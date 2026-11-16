@@ -367,7 +367,9 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
         imagePending: !exactImage,
         wholesaleEnabled: inventory.bronzePrice > 0,
         wholesaleCategory: inventory.category,
-        wholesaleDozenPrice: "dozenPrice" in inventory ? inventory.dozenPrice : undefined,
+        ...("dozenPrice" in inventory && Number(inventory.dozenPrice) > 0
+          ? { wholesaleDozenPrice: inventory.dozenPrice }
+          : {}),
       },
       fecha_agregado: "2026-08-31T00:00:00.000Z",
     } satisfies Product;
@@ -550,8 +552,12 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
       wholesaleEnabled: product.extradata?.wholesaleEnabled ?? (inventory
         ? inventory.stock > 0 && inventory.bronzePrice > 0
         : undefined),
-      wholesaleDozenPrice: product.extradata?.wholesaleDozenPrice ?? (
-        inventory && "dozenPrice" in inventory ? inventory.dozenPrice : undefined
+      ...(
+        Number(product.extradata?.wholesaleDozenPrice || 0) > 0
+          ? { wholesaleDozenPrice: product.extradata?.wholesaleDozenPrice }
+          : inventory && "dozenPrice" in inventory && Number(inventory.dozenPrice) > 0
+            ? { wholesaleDozenPrice: inventory.dozenPrice }
+            : {}
       ),
     },
   };
