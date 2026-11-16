@@ -7,6 +7,7 @@ import { getProductDetail, money } from "@/lib/wholesale-ui/catalogData";
 import {
   hasOffer,
   isLiquidation,
+  isNewArrival,
   offerPercent,
 } from "@/lib/wholesale-ui/catalogFilters";
 import { displayTitle } from "@/lib/wholesale-ui/productPresentation";
@@ -76,6 +77,7 @@ export function ProductDialog({
           </span>
           <h2 id="product-title">{title}</h2>
           <div className={styles.blackPromoFlags}>
+            {isNewArrival(detail) && <em className={styles.newProductFlag}>NUEVO</em>}
             {hasOffer(detail) && (
               <span>BLACK NOVEMBER · OFERTA −{offerPercent(detail)}%</span>
             )}

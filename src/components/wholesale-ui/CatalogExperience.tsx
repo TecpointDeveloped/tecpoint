@@ -37,6 +37,7 @@ import {
   filterWholesaleCatalog,
   hasOffer,
   isLiquidation,
+  isNewArrival,
   offerPercent,
   matchesDevice,
   productFamily,
@@ -655,6 +656,9 @@ export default function Catalog({
                     aria-label={`Ver ${product.name}`}
                   >
                     <span>#{index + 1}</span>
+                    {isNewArrival(product) && (
+                      <span className={styles.popularNewBadge}>NUEVO</span>
+                    )}
                     {product.image.includes("isologo") ? (
                       <div className={styles.missingPhoto}>
                         <ImageOff size={27} />
@@ -1087,6 +1091,9 @@ export default function Catalog({
                             )}
                           </button>
                           <div className={styles.promoBadges}>
+                            {isNewArrival(p) && (
+                              <span className={styles.newArrivalBadge}>NUEVO</span>
+                            )}
                             {hasOffer(p) && (
                               <span className={styles.blackOfferBadge}>
                                 <b>BLACK NOVEMBER</b>

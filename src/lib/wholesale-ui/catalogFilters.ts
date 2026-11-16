@@ -15,6 +15,7 @@ export function productFamily(p: WholesaleProduct) {
 }
 export function hasOffer(p: WholesaleProduct) { return p.price != null && p.originalPrice != null && p.originalPrice > p.price; }
 export function isLiquidation(p: WholesaleProduct) { return p.promotionLabel === 'last-units' || (p.stock > 0 && p.stock <= 2); }
+export function isNewArrival(p: WholesaleProduct) { return normalizeDevice(p.brand) === 'foneng'; }
 export function offerPercent(p: WholesaleProduct) {
   if (!hasOffer(p)) return 0;
   return Math.round((p.discountPercent ?? (1 - p.price! / p.originalPrice!) * 100) * 100) / 100;
