@@ -8,6 +8,7 @@ const BRAND_ASSETS: BrandAsset[] = [
   { name: "Appacs", logo: "/logos/appacs.png", accent: "#76D660" },
   { name: "Apple", logo: "/logos/apple.png", accent: "#444444" },
   { name: "Deken", logo: "/logos/deken.png", accent: "#0099FF" },
+  { name: "Foneng", logo: "/logos/foneng.png", accent: "#FFEB00" },
   { name: "Ghostek", logo: "/logos/ghostek.png", accent: "#333333" },
   { name: "Hoco", logo: "/logos/hoco.png", accent: "#333333" },
   { name: "HyperGear", logo: "/logos/hypergear.png", accent: "#FF7F5C" },

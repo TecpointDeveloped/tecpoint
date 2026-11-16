@@ -499,6 +499,18 @@
 .brandCard[data-brand="XO"] img {
   filter: grayscale(1) contrast(1.25);
 }
+.brandCard[data-brand="Foneng"] {
+  background: #ffeb00;
+}
+.brandCard[data-brand="Foneng"] img {
+  width: min(88%, 220px);
+  height: 72px;
+  filter: none;
+  opacity: 1;
+}
+.brandCard[data-brand="Foneng"]:hover {
+  background: #ffe000;
+}
 .brandCard:hover {
   position: relative;
   z-index: 1;
