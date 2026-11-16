@@ -3,7 +3,7 @@ import blackNovemberData from "@/data/black-november-2026.json";
 import recoveredMedia from "@/data/recovered-product-media.json";
 import { approvedCatalogProducts, publicCatalog } from "@/lib/catalog";
 import { cleanCategory, titleFacts } from "@/lib/wholesale-ui/productPresentation";
-import { normalizeDevices, reviewedDevices, wholesalePricing, type DeviceCompatibility } from "@/lib/wholesale-ui/wholesaleProductRules";
+import { normalizeDevices, reviewedDevices, roundNormalPriceUp, wholesalePricing, type DeviceCompatibility } from "@/lib/wholesale-ui/wholesaleProductRules";
 import { Product } from "@/types/ProductTypes";
 
 export type WholesaleProduct = {
@@ -142,8 +142,8 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         devices,
         classification: product.extradata?.wholesaleClassification ?? reference?.classification ?? "",
         ...campaignPricing,
-        retailPrice: Number(product.precio?.detalle || 0) > 0 ? Number(product.precio.detalle) : null,
-        dozenPrice: Number(product.extradata?.wholesaleDozenPrice || 0) || null,
+        retailPrice: roundNormalPriceUp(Number(product.precio?.detalle || 0)),
+        dozenPrice: roundNormalPriceUp(Number(product.extradata?.wholesaleDozenPrice || 0)),
         description: String(product.descripcion || "").trim(),
         specifications: {
           ...titleFacts(String(product.producto || "")),
