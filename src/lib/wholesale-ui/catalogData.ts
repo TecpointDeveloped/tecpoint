@@ -33,13 +33,14 @@ export function decodeCatalog(data: PackedCatalog): WholesaleProduct[] {
       discountPercent: asNumber(p.discountPercent),
       price: asNumber(p.price),
       retailPrice: asNumber(p.retailPrice),
-      dozenPrice: null,
+      dozenPrice: asNumber(p.dozenPrice),
       description: '',
       specifications: {},
       subcategory: '',
       upc: '',
       gallery: [],
       stock: Math.max(0, asNumber(p.stock) ?? 0),
+      stockKnown: p.stockKnown !== false,
       promotionLabel: p.promotionLabel === 'last-units' ? 'last-units' : p.promotionLabel === 'offer' ? 'offer' : '',
     };
   });

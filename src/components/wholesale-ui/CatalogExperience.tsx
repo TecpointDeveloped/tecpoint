@@ -1151,9 +1151,11 @@ export default function Catalog({
                             </b>
                           </div>
                           <span className={styles.stock}>
-                            {isLiquidation(p)
-                              ? `Últimas unidades disponibles · ${p.stock} en archivo`
-                              : `${p.stock} unidades en archivo`}
+                            {!p.stockKnown
+                              ? "Disponible · confirmar existencias"
+                              : isLiquidation(p)
+                                ? `Últimas unidades disponibles · ${p.stock} en archivo`
+                                : `${p.stock} unidades en archivo`}
                           </span>
                           <div className={styles.cardOrder}>
                             <div className={styles.quantity}>

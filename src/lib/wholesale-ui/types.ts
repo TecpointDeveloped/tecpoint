@@ -21,5 +21,6 @@ export type WholesaleProduct = {
   subcategory: string;
   upc: string;
   stock: number;
+  stockKnown: boolean;
   promotionLabel: 'offer' | 'last-units' | '';
 };

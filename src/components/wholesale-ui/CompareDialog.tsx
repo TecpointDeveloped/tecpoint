@@ -10,11 +10,11 @@ export function CompareDialog({ products, onClose, onRemove, onAdd }: { products
   const facts = new Map(products.map(p => [p.sku, { ...titleFacts(p.name), ...p.specifications }]));
   const fields = [...new Set([...facts.values()].flatMap(Object.keys))];
   const rows: [string, (p: WholesaleProduct) => string][] = [
-    ['Mayoreo', p => p.price ? money(p.price) : 'Consultar'], ['Detalle', p => p.retailPrice ? money(p.retailPrice) : 'Consultar'],
+    ['Mayoreo', p => p.price ? money(p.price) : 'Consultar'], ['Docena', p => p.dozenPrice ? money(p.dozenPrice) : 'Consultar'], ['Detalle', p => p.retailPrice ? money(p.retailPrice) : 'Consultar'],
     ['Categoría', p => p.category], ['Línea', p => p.classification || 'Consultar'],
     ['Compatibilidad del archivo', p => p.devices.length ? p.devices.map(d => `${d.manufacturer} ${d.model}`).join(' · ') : 'Consultar'],
     ...fields.map(key => [key, (p: WholesaleProduct) => facts.get(p.sku)?.[key] || 'No indicado'] as [string, (p: WholesaleProduct) => string]),
-    ['Existencias del archivo', p => `${p.stock} ${p.stock === 1 ? 'unidad' : 'unidades'}`], ['Código', p => p.sku]
+    ['Existencias', p => p.stockKnown ? `${p.stock} ${p.stock === 1 ? 'unidad' : 'unidades'}` : 'Disponible · confirmar con asesor'], ['Código', p => p.sku]
   ];
   const photo = (p: WholesaleProduct) => p.image.includes('isologo') ? <div className={styles.compareMissing}><ImageOff size={30} /><small>Foto pendiente</small></div> : <Image src={p.thumbnail} width={140} height={130} sizes="140px" alt={p.name} onError={productImageFallback} />;
   return <NativeDialog label="comparison-title" onClose={onClose}>

@@ -83,8 +83,9 @@ export function ProductDialog({
           </div>
           <span className={styles.availability}>
             <i />
-            {detail.stock} {detail.stock === 1 ? "unidad" : "unidades"} en el
-            archivo recibido
+            {detail.stockKnown
+              ? `${detail.stock} ${detail.stock === 1 ? "unidad" : "unidades"} en el archivo recibido`
+              : "Disponible · confirmar existencias con el asesor"}
           </span>
           <div className={styles.detailPrice}>
             <span>
@@ -119,8 +120,8 @@ export function ProductDialog({
               </b>
             </div>
             <div>
-              <span>Precio de reventa</span>
-              <b>Consultar con asesor</b>
+              <span>Precio por docena</span>
+              <b>{detail.dozenPrice ? money(detail.dozenPrice) : "Consultar con asesor"}</b>
             </div>
           </div>
           <div className={styles.detailActions}>

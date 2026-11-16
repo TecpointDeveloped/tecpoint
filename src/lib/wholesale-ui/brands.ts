@@ -9,6 +9,7 @@ const BRAND_ASSETS: BrandAsset[] = [
   { name: "Apple", logo: "/tecpoint-catalog-ui/logos/apple.webp", accent: "#444444" },
   { name: "Coast", logo: "/tecpoint-catalog-ui/logos/coast.webp", accent: "#333333" },
   { name: "Deken", logo: "/tecpoint-catalog-ui/logos/deken.webp", accent: "#0099FF" },
+  { name: "Foneng", logo: "/tecpoint-catalog-ui/logos/foneng.webp", accent: "#FFEB00" },
   { name: "Ghostek", logo: "/tecpoint-catalog-ui/logos/ghostek.webp", accent: "#333333" },
   { name: "Hoco", logo: "/tecpoint-catalog-ui/logos/hoco.webp", accent: "#333333" },
   { name: "HyperGear", logo: "/tecpoint-catalog-ui/logos/hypergear.webp", accent: "#FF7F5C" },

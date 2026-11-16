@@ -26,6 +26,7 @@ export type WholesaleProduct = {
   subcategory: string;
   upc: string;
   stock: number;
+  stockKnown: boolean;
   promotionLabel: "offer" | "last-units" | "";
 };
 
@@ -55,6 +56,10 @@ const HIDDEN_WHOLESALE_BRANDS = new Set([
   "qmadix",
   "tekya",
   "xiaomi",
+]);
+const AVAILABLE_WITHOUT_EXACT_STOCK = new Set([
+  "FN-40101", "FN-40102", "FN-40103", "FN-40104",
+  "FN-40105", "FN-40106", "FN-40107", "FN-40108",
 ]);
 let cachedProducts: WholesaleProduct[] | undefined;
 let cachedFacets: { brands: string[]; categories: string[] } | undefined;
@@ -96,7 +101,8 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         ) &&
         (activeBlackNovemberOffer(String(product.sku || ""))?.stock ||
           (product.extradata?.stock === true &&
-            Number(product.extradata?.inventoryQuantity || 0) > 0)) &&
+            (Number(product.extradata?.inventoryQuantity || 0) > 0 ||
+              AVAILABLE_WITHOUT_EXACT_STOCK.has(String(product.sku || "").trim().toUpperCase())))) &&
         (Number(product.precio?.mayoreo || 0) > 0 ||
           Boolean(activeBlackNovemberOffer(String(product.sku || "")))) &&
         product.extradata?.wholesaleEnabled !== false,
@@ -119,6 +125,8 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
       const promotionLabel: WholesaleProduct["promotionLabel"] =
         blackNovember?.level === "A1" ? "last-units" : blackNovember ? "offer" : "";
       const image = imageFor(product);
+      const recordedStock = Math.max(0, Number(blackNovember?.stock ?? product.extradata?.inventoryQuantity ?? 0));
+      const stockKnown = recordedStock > 0 || !AVAILABLE_WITHOUT_EXACT_STOCK.has(String(product.sku || "").trim().toUpperCase());
       return {
         sku: String(product.sku || "").trim(),
         name: String(product.producto || "Producto TECPOINT").trim(),
@@ -135,7 +143,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         classification: product.extradata?.wholesaleClassification ?? reference?.classification ?? "",
         ...campaignPricing,
         retailPrice: Number(product.precio?.detalle || 0) > 0 ? Number(product.precio.detalle) : null,
-        dozenPrice: null,
+        dozenPrice: Number(product.extradata?.wholesaleDozenPrice || 0) || null,
         description: String(product.descripcion || "").trim(),
         specifications: {
           ...titleFacts(String(product.producto || "")),
@@ -143,7 +151,8 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
         },
         subcategory: String(product.Subcategorias || "").trim(),
         upc: String(product.extradata?.upc || "").trim(),
-        stock: Math.max(0, Number(blackNovember?.stock ?? product.extradata?.inventoryQuantity ?? 0)),
+        stock: stockKnown ? recordedStock : 9999,
+        stockKnown,
         promotionLabel,
       };
     })
@@ -179,6 +188,7 @@ export function wholesaleCatalog(sourceProducts?: Product[]): WholesaleProduct[]
       subcategory: "",
       upc: "",
       stock: offer.stock,
+      stockKnown: true,
       promotionLabel: offer.level === "A1" ? "last-units" : "offer",
     });
   }

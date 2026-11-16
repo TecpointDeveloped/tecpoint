@@ -54,6 +54,7 @@ export interface Product {
     wholesaleImage?: string;
     wholesaleThumbnail?: string;
     wholesaleClassification?: string;
+    wholesaleDozenPrice?: number;
     compatibleDevices?: Array<{ manufacturer: string; model: string }>;
     wholesalePromotion?: {
       active: boolean;
