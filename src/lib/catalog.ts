@@ -26,6 +26,27 @@ const fonengGallerySkus = new Set([
   "FN-40105", "FN-40106", "FN-40107", "FN-40108",
 ]);
 
+const GENERIC_DEKEN_SCREEN_PROTECTOR_IMAGE =
+  "/images/products/generic-deken-3d-5-en-1.png";
+
+function missingScreenProtectorFallback(candidate: {
+  sku?: string;
+  description?: string;
+  category?: string;
+  subcategory?: string;
+}) {
+  const sku = normalizeText(candidate.sku || "");
+  const text = normalizeText(
+    `${candidate.description || ""} ${candidate.category || ""} ${candidate.subcategory || ""}`,
+  );
+  const isThreeDOrFiveInOne = /\b3d\b/.test(text) || /\b5\s*(?:en|in)\s*1\b/.test(text);
+  const isScreenProtector =
+    /vidrio templado|protector de pantalla|proteccion de pantalla|screen protection/.test(text);
+
+  if (sku.startsWith("em-") || !isThreeDOrFiveInOne || !isScreenProtector) return "";
+  return GENERIC_DEKEN_SCREEN_PROTECTOR_IMAGE;
+}
+
 function approvedProductImages(sku: string, primaryImage: string): Product["imagenes"] {
   const images: Product["imagenes"] = {
     imagen_01: { id: "imagen_01", img: primaryImage },
@@ -347,7 +368,8 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
       return [];
     }
     const exactImage = imageMap[sku];
-    const image = exactImage || "/brand/isologo.svg";
+    const genericImage = missingScreenProtectorFallback(inventory);
+    const image = exactImage || genericImage || "/brand/isologo.svg";
     const brand = canonicalBrandName(inventory.brand);
     const product = {
       id: `w40-${sku}`,
@@ -517,9 +539,19 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
   const officialGhostekImage = brand === "Ghostek" && verifiedGhostekSkus.has(product.sku)
     ? approvedPrimaryImage
     : undefined;
+  const genericMissingImage = !approvedPrimaryImage && !usableImageUrls(serializableProduct).length
+    ? missingScreenProtectorFallback({
+        sku: product.sku,
+        description: inventory?.description || product.producto || product.descripcion,
+        category: inventory?.category || product.categorias?.[0],
+        subcategory: inventory?.subcategory || product.Subcategorias,
+      })
+    : "";
   const synchronizedImages = approvedPrimaryImage
     ? approvedProductImages(product.sku, approvedPrimaryImage)
-    : product.imagenes;
+    : genericMissingImage
+      ? approvedProductImages(product.sku, genericMissingImage)
+      : product.imagenes;
   return {
     ...serializableProduct,
     ...(synchronizedImages ? { imagenes: synchronizedImages } : {}),
@@ -549,6 +581,7 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
         ? inventory.stock > 0 || fonengGallerySkus.has(product.sku)
         : product.extradata?.stock,
       inventoryQuantity: inventory?.stock ?? product.extradata?.inventoryQuantity,
+      imagePending: genericMissingImage ? true : product.extradata?.imagePending,
       wholesaleEnabled: product.extradata?.wholesaleEnabled ?? (inventory
         ? inventory.stock > 0 && inventory.bronzePrice > 0
         : undefined),
@@ -578,13 +611,13 @@ export type ProductQualityIssue =
   | "precio"
   | "imagen";
 
-function usableImageUrls(product: Product) {
+function usableImageUrls(product: Pick<Product, "imagenes">) {
   return Object.values(product.imagenes || {})
     .map((image) => image?.img?.trim())
     .filter((url): url is string =>
       Boolean(
         url &&
-          !/default-product|placeholder|sin-imagen|brand\/isologo/i.test(url) &&
+          !/default-product|placeholder|sin-imagen|brand\/isologo|generic-deken-3d-5-en-1/i.test(url) &&
           (/^https?:\/\//i.test(url) || url.startsWith("/")),
       ),
     );
