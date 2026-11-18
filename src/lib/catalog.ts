@@ -581,7 +581,7 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
         ? inventory.stock > 0 || fonengGallerySkus.has(product.sku)
         : product.extradata?.stock,
       inventoryQuantity: inventory?.stock ?? product.extradata?.inventoryQuantity,
-      imagePending: genericMissingImage ? true : product.extradata?.imagePending,
+      ...(genericMissingImage ? { imagePending: true } : {}),
       wholesaleEnabled: product.extradata?.wholesaleEnabled ?? (inventory
         ? inventory.stock > 0 && inventory.bronzePrice > 0
         : undefined),
