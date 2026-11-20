@@ -28,6 +28,8 @@ const fonengGallerySkus = new Set([
 
 const GENERIC_DEKEN_SCREEN_PROTECTOR_IMAGE =
   "/images/products/generic-deken-3d-5-en-1.png";
+const GENERIC_NANOPOLYMER_WATCH_PROTECTOR_IMAGE =
+  "/images/products/generic-nanopolymer-watch-protector.png";
 
 function missingScreenProtectorFallback(candidate: {
   sku?: string;
@@ -45,6 +47,30 @@ function missingScreenProtectorFallback(candidate: {
 
   if (sku.startsWith("em-") || !isThreeDOrFiveInOne || !isScreenProtector) return "";
   return GENERIC_DEKEN_SCREEN_PROTECTOR_IMAGE;
+}
+
+function missingNanopolymerFallback(candidate: {
+  sku?: string;
+  description?: string;
+  category?: string;
+  subcategory?: string;
+}) {
+  const sku = normalizeText(candidate.sku || "");
+  const text = normalizeText(
+    `${candidate.description || ""} ${candidate.category || ""} ${candidate.subcategory || ""}`,
+  );
+
+  if (sku.startsWith("em-") || !/nano\s*polimero/.test(text)) return "";
+  return GENERIC_NANOPOLYMER_WATCH_PROTECTOR_IMAGE;
+}
+
+function missingProductImageFallback(candidate: {
+  sku?: string;
+  description?: string;
+  category?: string;
+  subcategory?: string;
+}) {
+  return missingScreenProtectorFallback(candidate) || missingNanopolymerFallback(candidate);
 }
 
 function approvedProductImages(sku: string, primaryImage: string): Product["imagenes"] {
@@ -368,7 +394,7 @@ export function approvedCatalogProducts(includeMissingPrice = false): Product[] 
       return [];
     }
     const exactImage = imageMap[sku];
-    const genericImage = missingScreenProtectorFallback(inventory);
+    const genericImage = missingProductImageFallback(inventory);
     const image = exactImage || genericImage || "/brand/isologo.svg";
     const brand = canonicalBrandName(inventory.brand);
     const product = {
@@ -540,7 +566,7 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     ? approvedPrimaryImage
     : undefined;
   const genericMissingImage = !approvedPrimaryImage && !usableImageUrls(serializableProduct).length
-    ? missingScreenProtectorFallback({
+    ? missingProductImageFallback({
         sku: product.sku,
         description: inventory?.description || product.producto || product.descripcion,
         category: inventory?.category || product.categorias?.[0],
@@ -617,7 +643,7 @@ function usableImageUrls(product: Pick<Product, "imagenes">) {
     .filter((url): url is string =>
       Boolean(
         url &&
-          !/default-product|placeholder|sin-imagen|brand\/isologo|generic-deken-3d-5-en-1/i.test(url) &&
+          !/default-product|placeholder|sin-imagen|brand\/isologo|generic-deken-3d-5-en-1|generic-nanopolymer-watch-protector/i.test(url) &&
           (/^https?:\/\//i.test(url) || url.startsWith("/")),
       ),
     );
