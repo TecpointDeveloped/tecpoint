@@ -545,6 +545,35 @@ export function productColor(product: CatalogProduct & { extradata?: { color?: s
   );
 }
 
+function auditTimestampMillis(value: unknown) {
+  if (!value) return 0;
+  if (value instanceof Date) return value.getTime();
+  if (typeof value === "string" || typeof value === "number") {
+    const parsed = new Date(value).getTime();
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+  if (typeof value === "object") {
+    const timestamp = value as {
+      toMillis?: () => number;
+      seconds?: number;
+      _seconds?: number;
+    };
+    if (typeof timestamp.toMillis === "function") return timestamp.toMillis();
+    const seconds = timestamp.seconds ?? timestamp._seconds;
+    if (Number.isFinite(seconds)) return Number(seconds) * 1000;
+  }
+  return 0;
+}
+
+function hasCurrentManualPrice(product: CatalogProduct, flag: "manualDetailPrice" | "manualWholesalePrice") {
+  if (!product.extradata?.[flag]) return false;
+  const catalogUpdatedAt = new Date(currentCatalog.generatedAt).getTime();
+  const productUpdatedAt = auditTimestampMillis(
+    (product as CatalogProduct & { updatedAt?: unknown }).updatedAt,
+  );
+  return !Number.isFinite(catalogUpdatedAt) || productUpdatedAt > catalogUpdatedAt;
+}
+
 export function enrichProduct<T extends CatalogProduct>(product: T) {
   // Firestore agrega marcas de tiempo de auditoría que Next.js no puede
   // serializar directamente desde getStaticProps/getServerSideProps.
@@ -557,6 +586,8 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     ? String(product.categorias?.[0] || "Merchandising")
     : officialCategory(product);
   const inventory = getCurrentInventory(product.sku);
+  const keepManualDetailPrice = hasCurrentManualPrice(product, "manualDetailPrice");
+  const keepManualWholesalePrice = hasCurrentManualPrice(product, "manualWholesalePrice");
   const brand = canonicalBrandName(
     inventory?.brand || product.marca_producto?.marca,
   );
@@ -597,8 +628,12 @@ export function enrichProduct<T extends CatalogProduct>(product: T) {
     },
     precio: {
       ...(product.precio || {}),
-      detalle: product.precio?.detalle ?? inventory?.detailPrice ?? 0,
-      mayoreo: product.precio?.mayoreo ?? inventory?.bronzePrice ?? 0,
+      detalle: keepManualDetailPrice
+        ? product.precio?.detalle ?? inventory?.detailPrice ?? 0
+        : inventory?.detailPrice ?? product.precio?.detalle ?? 0,
+      mayoreo: keepManualWholesalePrice
+        ? product.precio?.mayoreo ?? inventory?.bronzePrice ?? 0
+        : inventory?.bronzePrice ?? product.precio?.mayoreo ?? 0,
     },
     extradata: {
       ...(product.extradata || {}),
